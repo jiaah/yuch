@@ -1,3 +1,1 @@
-module.exports = {
-  COUNT: 'count',
-};
+module.exports = {};

@@ -16,12 +16,6 @@ const Loading = props => {
   return null;
 };
 
-const User = Loadable({
-  loader: () => import('./src/components/User'),
-  /* webpackChunkName: 'User', webpackPrefetch: true */
-  loading: Loading,
-});
-
 const NoMatch = Loadable({
   loader: () =>
     import('./src/components/NoMatch' /* webpackChunkName: 'NoMatch' */),
@@ -33,7 +27,6 @@ const routes = () => (
     <App />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/user" component={User} />
       <Route component={NoMatch} />
     </Switch>
   </div>
