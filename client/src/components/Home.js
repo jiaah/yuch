@@ -1,3 +1,9 @@
 import React from 'react';
 
-export default React;
+class Home extends React.Component {
+  render() {
+    return <header />;
+  }
+}
+
+export default Home;

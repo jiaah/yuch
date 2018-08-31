@@ -72,6 +72,7 @@ module.exports = {
     'consistent-return': 'off',
     'no-use-before-define': 'off',
     'global-require': 'off',
+    'react/prefer-stateless-function': 'warn',
     'prettier/prettier': 'warn',
   },
 };
