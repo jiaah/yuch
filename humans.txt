@@ -1,0 +1,6 @@
+/* AUTHOR */
+  Jiah Lee
+
+/* SITE */
+Last updated : 2018/08/29
+Technology colophon: HTML5, CSS3, Javascript, ReactJS, NodeJS, Webpack

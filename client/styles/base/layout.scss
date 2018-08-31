@@ -1,0 +1,17 @@
+.cover {
+  width: 100vw;
+  height: 100vh;
+}
+
+.background {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	flex: 1;
+}
+
+.center-center {
+  align-items: center;
+  justify-content: center;
+}
