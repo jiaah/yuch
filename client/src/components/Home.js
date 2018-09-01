@@ -1,4 +1,5 @@
 import React from 'react';
+/* --- Shared --- */
 import Nav from '../shared/nav';
 
 class Home extends React.Component {

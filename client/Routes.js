@@ -3,7 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import App from './src/app';
+/* --- Components --- */
 import Home from './src/components/Home';
+import Login from './src/components/login';
 
 const Spinner = () =>
   import('./src/shared/Spinner' /* webpackChunkName: 'Spinner' */);
@@ -27,6 +29,7 @@ const routes = () => (
     <App />
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route path="/login" component={Login} />
       <Route component={NoMatch} />
     </Switch>
   </div>
