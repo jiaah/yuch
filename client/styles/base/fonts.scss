@@ -1,31 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,400');
 
-body, div, span, h1, h2, h3, h4, h5, h6 {
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 body {
   font-size: 16px;
-  color: #3c4858;
+  color: #605E5E;
 }
 
 /* ------ FONT SIZE ------ */
-.f4 {
-  font-size: 12px;
-}
-
-.f5 {
-  font-size: 14px;
-}
-
-.f6 {
-  font-size: 18px;
-}
-
-.f-xm {
-  font-size: .7em;
-}
-
 .f-mini {
   font-size: .9em;
 }
@@ -51,7 +43,7 @@ body {
 }
 
 /* ------ FONT WEIGHT ------ */
-.fw1 {
+.fw2 {
   font-weight: 200;
 }
 

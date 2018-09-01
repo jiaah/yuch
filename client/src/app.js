@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Nav from './src/shared/nav';
+import Nav from './shared/nav';
 
 const App = props => (
   <div id="app">
@@ -20,8 +20,8 @@ const App = props => (
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
       />
     </Helmet>
-    <Nav />
     {props.children}
+    {/* <Nav /> */}
   </div>
 );
 

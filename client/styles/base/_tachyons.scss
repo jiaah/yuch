@@ -1,5 +1,4 @@
 /* Layouts */
-
 .float-left {
   float: left;
 }
@@ -95,7 +94,6 @@
 }
 
 /* Height / Width */
-
 .h-100 {
   height: 100%;
 }
@@ -133,7 +131,6 @@
 }
 
 /* Paddings */
-
 .ph {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -233,7 +230,6 @@
 }
 
 /* Margins */
-
 .center {
   margin-right: auto;
   margin-left: auto;
@@ -246,6 +242,11 @@
 .ml-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mh-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .mw1 {
@@ -350,7 +351,6 @@
 }
 
 /* Borders */
-
 .border-z {
   border: none;
 }
@@ -362,7 +362,6 @@
 }
 
 /* Coordinates */
-
 .left-0 {
   left: 0;
 }

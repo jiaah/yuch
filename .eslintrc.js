@@ -41,6 +41,7 @@ module.exports = {
     'react/jsx-boolean-value': 'off',
     'no-nested-ternary': 'off',
     'no-plusplus': 'off',
+    'import/prefer-default-export': 'off',
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': [
       'error',

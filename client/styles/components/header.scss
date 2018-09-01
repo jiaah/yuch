@@ -5,3 +5,13 @@ header {
   background-attachment: fixed;
   height: 100vh;
 }
+
+.nav {
+  padding: 1em 1em 0 1em;
+}
+
+.nav .nav-menu {
+  margin: .5em 0;
+  display: flex;
+  justify-content: space-around;
+}

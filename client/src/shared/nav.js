@@ -1,6 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+/* --- shared --- */
+import * as data from './data';
+import Hr from './hr';
+import Ul from './ul';
 
-const Nav = () => <div />;
+const Nav = () => (
+  <div className="nav">
+    <div className="flex justify-between">
+      <p className="mh-auto fw2">
+        상담전화
+        <span className="f-regular fw3"> 010&#45;8034&#45;0057</span>
+      </p>
+      <button type="submit">로그인</button>
+    </div>
+    <h1 className="tc mh1 c-point1">YUCHUNG</h1>
+    <Hr />
+    <div>
+      <Ul links={data.nav} />
+    </div>
+    <Hr />
+  </div>
+);
 
 export default Nav;

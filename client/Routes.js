@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-import App from './App';
+import App from './src/app';
 import Home from './src/components/Home';
 
 const Spinner = () =>
