@@ -6,7 +6,7 @@ import App from './App';
 import Home from './src/components/Home';
 
 const Spinner = () =>
-  import('./src/components/Spinner' /* webpackChunkName: 'Spinner' */);
+  import('./src/shared/Spinner' /* webpackChunkName: 'Spinner' */);
 
 const Loading = props => {
   if (props.error) {
@@ -18,7 +18,7 @@ const Loading = props => {
 
 const NoMatch = Loadable({
   loader: () =>
-    import('./src/components/NoMatch' /* webpackChunkName: 'NoMatch' */),
+    import('./src/shared/NoMatch' /* webpackChunkName: 'NoMatch' */),
   loading: Loading,
 });
 

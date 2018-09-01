@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Nav from './src/components/nav';
+import Nav from './src/shared/nav';
 
 const App = props => (
   <div id="app">
