@@ -1,31 +1,70 @@
-/* margin: auto not working */
 .home-main--container {
-  padding: 1em;
-}
-
-.home-main--box {
-  width: 100vw;
-  margin-top: 3em;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 400px;
 
   @include for-desktop-up {
-    display: flex;
+    max-width: 900px;
   }
 }
 
-.home-main--img {}
+.home-main--box {
+  margin-top: 3em;
+
+  @include for-desktop-up {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.home-main--img {
+  width: 100%;
+  height: auto;
+
+  @include for-desktop-up {
+    width: 45%;
+  }
+}
 
 .home-main--text {
   margin-top: 1.5em;
 
   @include for-desktop-up {
-    margin: auto 0;
+    width: 45%;
+    margin-top: 0;
   }
 }
 
 .reverse {
   @include for-desktop-up {
     flex-direction: row-reverse;
+  }
+}
+
+.img-1 {
+  @include for-desktop-up {
+    margin-top: 5em;
+    height: 300px;
+  }
+}
+
+.img-2 {
+  @include for-desktop-up {
+    margin-top: -5.5em;
+    height: 420px;
+  }
+}
+
+.img-3 {
+  @include for-desktop-up {
+    margin-top: -6.5em;
+    height: 400px;
+  }
+}
+
+.img-4 {
+  @include for-desktop-up {
+    margin-top: -3.5em;
+    height: 300px;
   }
 }

@@ -11,7 +11,7 @@ const Home = () => (
         <h1>
           <span className="f-regular f-en lh-3">NO MSG!</span>
           <br />
-          힘들게 일한 당신께 착한 가격의 집밥을 선물하세요.
+          오늘도 열심히 일하는 당신에게 착한 가격의 집밥을 선물하세요.
         </h1>
       </div>
     </header>

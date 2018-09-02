@@ -1,15 +1,10 @@
 /* --- Header --- */
-.header--container {
-  // width: 100vw;
-}
-
 header {
   background-image: linear-gradient(#ece3ec40, rgba(236, 227, 236, 0.5)), url(./../assets/img/header.jpeg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
-  // background-size: contain;
   z-index: -1;
   height: 100vh;
   position: relative;
