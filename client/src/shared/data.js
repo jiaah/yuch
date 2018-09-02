@@ -3,7 +3,7 @@ export const nav = [
     id: 1,
     name: '위탁급식/식당',
     to: '#',
-    className: 'td-none c-point1',
+    className: 'td-none c-text',
   },
   {
     id: 2,

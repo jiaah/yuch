@@ -7,7 +7,8 @@ const Home = () => (
     <Nav />
     <div className="header-text--box">
       <h2>
-        NO MSG <br />
+        <span className="f-large">NO MSG!</span>
+        <br />
         힘들게 일한 당신께 착한 가격의 집밥을 선물하세요.
       </h2>
     </div>

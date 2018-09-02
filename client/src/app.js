@@ -16,8 +16,8 @@ const App = props => (
       <link type="text/plain" rel="author" href="http://domain/humans.txt" />
       <link type="text/plain" rel="author" href="http://domain/robots.txt" />
       <link
+        href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
       />
     </Helmet>
     {props.children}
