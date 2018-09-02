@@ -1,0 +1,31 @@
+/* margin: auto not working */
+.home-main--container {
+  padding: 1em;
+}
+
+.home-main--box {
+  width: 100vw;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include for-desktop-up {
+    display: flex;
+  }
+}
+
+.home-main--img {}
+
+.home-main--text {
+  margin-top: 1.5em;
+
+  @include for-desktop-up {
+    margin: auto 0;
+  }
+}
+
+.reverse {
+  @include for-desktop-up {
+    flex-direction: row-reverse;
+  }
+}

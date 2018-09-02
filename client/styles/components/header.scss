@@ -1,7 +1,6 @@
 /* --- Header --- */
 header {
-  // background-image: linear-gradient(rgba(134, 101, 134, 0.25), rgba(134, 101, 134, 0.25)), url(./../assets/img/header.jpeg);
-  background-image: linear-gradient(rgba(236, 227, 236, 0.251), rgba(236, 227, 236, 0.251)), url(./../assets/img/header.jpeg);
+  background-image: linear-gradient(#ece3ec40, rgba(236, 227, 236, 0.5)), url(./../assets/img/header.jpeg);
   background-attachment: fixed;
   background-size: contain;
   z-index: -1;
@@ -18,8 +17,6 @@ header {
   -ms-transform: translate(-50%, -30%);
   -o-transform: translate(-50%, -30%);
   /* Bug !! width is over 100vw...*/
-  margin-left: 2em;
-  margin-right: -3em;
 }
 
 /* --- Nav --- */

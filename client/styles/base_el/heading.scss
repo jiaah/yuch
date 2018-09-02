@@ -1,14 +1,54 @@
 h1 {
   font-size: 2em;
-  margin-top: .5em;
-  margin-bottom: .8em;
-  letter-spacing: 2px;
+  line-height: 1.25em;
+  text-shadow: .4px .4px rgba(41, 40, 40, 0.815);
+  color: $c-text;
+  letter-spacing: .5px;
+
+  @include for-tablet-landscape-up {
+    font-size: 2.5em;
+    line-height: 1.125em;
+  }
+
+  @include for-m-desktop-up {
+    font-size: 3em;
+    line-height: 1.05em;
+  }
 }
 
 h2 {
   font-size: 1.625em;
-  line-height: 1.15384615em;
-  text-shadow: .4px .4px rgb(168, 166, 166);
-  color: #ffffff;
-  letter-spacing: 1px;
+  margin-top: .3em;
+  margin-bottom: .6em;
+  letter-spacing: 2px;
+
+  @include for-tablet-landscape-up {
+    font-size: 2em;
+  }
+
+  @include for-m-desktop-up {
+    font-size: 2.25em;
+  }
+}
+
+h3 {
+  font-size: 1.375em;
+  color: $c-point1;
+  margin-bottom: .75em;
+  line-height: 1.13636364em;
+
+  @include for-tablet-landscape-up {
+    font-size: 1.5em;
+    line-height: 1.25em;
+  }
+
+  @include for-m-desktop-up {
+    font-size: 1.75em;
+  }
+}
+
+h4 {
+  font-size: 1.125em;
+  color: $c-point2;
+  margin-bottom: .5em;
 }

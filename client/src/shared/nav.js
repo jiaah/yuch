@@ -9,11 +9,11 @@ const Nav = () => (
     <div className="flex justify-between nav--top">
       <p className="mh-auto f-mini fw3 c-point1">
         상담전화
-        <span className="f-small"> 010&#45;8034&#45;0057</span>
+        <span className="f-regular"> 010&#45;8034&#45;0057</span>
       </p>
       <Ul links={data.login} />
     </div>
-    <h1 className="tc c-point2">YUCHUNG</h1>
+    <h2 className="tc c-point2 f-en">YUCHUNG</h2>
     <Hr />
     <div>
       <Ul links={data.nav} />
