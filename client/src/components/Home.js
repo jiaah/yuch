@@ -4,8 +4,8 @@ import Nav from '../shared/nav';
 import HomeMain from './Home.main';
 
 const Home = () => (
-  <div>
-    <header className="cover background">
+  <div className="header--container">
+    <header>
       <Nav />
       <div className="header-text--box">
         <h1>
