@@ -4,6 +4,7 @@ import * as data from './data';
 import Hr from './hr';
 import Ul from './ul';
 
+// Preload Nav Component on mouseover Login button when on Homepage
 const Nav = () => (
   <div className="nav">
     <div className="flex justify-between nav--top">

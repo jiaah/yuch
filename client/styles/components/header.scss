@@ -1,9 +1,5 @@
 /* --- Header --- */
-.header--container {
-  height: 90vh;
-}
-
-.header-img {
+header {
   background-image: linear-gradient(#ece3ec40, rgba(129, 78, 1, 0.2)), url(./../assets/img/header.jpeg);
   background-repeat: no-repeat;
   background-position: center center;
@@ -11,12 +7,12 @@
   background-attachment: fixed;
   z-index: -1;
   position: relative;
-  height: 100%;
+  height: 95vh;
 }
 
 .header-text--box {
   position: absolute;
-  top: 35%;
+  top: 48%;
   padding-left: 1em;
   padding-right: 1em;
 
@@ -34,7 +30,6 @@
 .nav {
   z-index: 10000;
   background-color: #ffffff;
-  overflow: auto;
 }
 
 .nav--top {
