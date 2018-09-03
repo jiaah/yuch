@@ -1,27 +1,19 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import Loadable from 'react-loadable';
 import App from './src/app';
 /* --- Components --- */
 import Home from './src/components/Home';
-import Login from './src/components/login';
+import Loader from './src/shared/loader';
 
-const Spinner = () =>
-  import('./src/shared/Spinner' /* webpackChunkName: 'Spinner' */);
+const Login = Loader({
+  loader: () =>
+    import('./src/components/login' /* webpackChunkName: 'Login' */),
+});
 
-const Loading = props => {
-  if (props.error) {
-    return <div> Routing Error!</div>;
-  }
-  Spinner();
-  return null;
-};
-
-const NoMatch = Loadable({
+const NoMatch = Loader({
   loader: () =>
     import('./src/shared/NoMatch' /* webpackChunkName: 'NoMatch' */),
-  loading: Loading,
 });
 
 const routes = () => (

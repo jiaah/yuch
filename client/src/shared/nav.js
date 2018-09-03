@@ -1,5 +1,7 @@
 import React from 'react';
 /* --- shared --- */
+import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import * as data from './data';
 import Hr from './hr';
 import Ul from './ul';
@@ -11,9 +13,11 @@ const Nav = () => (
         상담전화
         <span className="f-regular"> 010&#45;8034&#45;0057</span>
       </p>
-      <Ul links={data.login} />
+      <Ul links={data.redirectToLogin} />
     </div>
-    <h2 className="tc c-point2 f-en">YUCHUNG</h2>
+    <h2 className="tc c-point2 f-en">
+      <Ul links={data.redirectToHome} />
+    </h2>
     <Hr />
     <div>
       <Ul links={data.nav} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Ul = ({ links, info }) => (
+const Ul = ({ links }) => (
   <ul className="nav-menu">
     {links &&
       links.map(e => (

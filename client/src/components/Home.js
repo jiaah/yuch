@@ -6,7 +6,6 @@ import HomeMain from './Home.main';
 const Home = () => (
   <div className="header--container">
     <header>
-      <Nav />
       <div className="header-text--box">
         <h1>
           <span className="f-regular f-en lh-3">NO MSG!</span>

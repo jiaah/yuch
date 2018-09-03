@@ -25,7 +25,7 @@ const App = props => (
       />
     </Helmet>
     {props.children}
-    {/* <Nav /> */}
+    <Nav />
   </div>
 );
 
