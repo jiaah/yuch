@@ -1,9 +1,7 @@
 h1 {
   font-size: 2em;
   line-height: 1.25em;
-  text-shadow: .4px .4px rgba(41, 40, 40, 0.815);
-  color: $c-text;
-  letter-spacing: .5px;
+  letter-spacing: 2px;
 
   @include for-tablet-landscape-up {
     font-size: 2.5em;
@@ -20,10 +18,14 @@ h2 {
   font-size: 1.625em;
   margin-top: .3em;
   margin-bottom: .6em;
-  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: .4px .4px rgba(41, 40, 40, 0.815);
+  letter-spacing: .5px;
+  line-height: 1.125em;
 
   @include for-tablet-landscape-up {
     font-size: 2em;
+    line-height: 1.25em;
   }
 
   @include for-m-desktop-up {

@@ -13,7 +13,7 @@ export const nav = [
   },
   {
     id: 3,
-    name: '유청',
+    name: '유청 정보',
     to: '#',
     className: 'td-none c-text',
   },
@@ -33,6 +33,6 @@ export const redirectToHome = [
     id: 1,
     name: 'YUCHUNG',
     to: '/',
-    className: 'td-none',
+    className: 'td-none tc f-en c-point1',
   },
 ];
