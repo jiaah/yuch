@@ -33,6 +33,6 @@ export const redirectToHome = [
     id: 1,
     name: 'YUCHUNG',
     to: '/',
-    className: 'td-none tc f-en c-point2',
+    className: 'td-none tc f-en c-point1',
   },
 ];

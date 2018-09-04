@@ -3,8 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import App from './src/app';
 /* --- Components --- */
-import Home from './src/components/Home';
 import Loader from './src/shared/loader';
+
+const Home = Loader({
+  loader: () => import('./src/components/Home' /* webpackChunkName: 'Home' */),
+});
 
 const Login = Loader({
   loader: () =>
