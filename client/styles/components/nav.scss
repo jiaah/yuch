@@ -1,0 +1,14 @@
+.nav {
+  z-index: 10000;
+  background-color: #ffffff;
+}
+
+.nav--top {
+  padding: .2em .7em 0 .7em;
+}
+
+.nav .nav-menu {
+  padding: .25em 0;
+  display: flex;
+  justify-content: space-around;
+}
