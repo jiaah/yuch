@@ -37,13 +37,13 @@ header {
 }
 
 .nav .nav-menu {
-  margin: .5em 0;
+  padding: .25em 0;
   display: flex;
   justify-content: space-around;
 }
 
 .btn--border {
-  border: 1px solid $c-point1;
+  border: 1px solid $c-point2;
   padding: 3px 15px;
   border-radius: 5px;
   cursor: pointer;
