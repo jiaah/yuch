@@ -1,8 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import App from './src/app';
+import { withRouter } from 'react-router';
 /* --- Components --- */
+import App from './src/app';
 import Loader from './src/shared/loader';
 
 const Home = Loader({
@@ -19,9 +20,9 @@ const NoMatch = Loader({
     import('./src/shared/NoMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
-const routes = () => (
+const routes = props => (
   <div>
-    <App />
+    <App history={props.history} />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
@@ -35,4 +36,4 @@ const Routes =
     ? routes
     : hot(module)(routes);
 
-export default Routes;
+export default withRouter(Routes);

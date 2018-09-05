@@ -5,8 +5,8 @@ const Ul = ({ links }) => (
   <ul className="nav-menu">
     {links &&
       links.map(e => (
-        <li>
-          <Link className={e.className} key={e.id} to={e.to}>
+        <li key={e.id}>
+          <Link className={e.className} to={e.to}>
             {e.name}
           </Link>
         </li>

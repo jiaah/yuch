@@ -8,7 +8,7 @@ const Nav = Loader({
 });
 
 const App = props => {
-  const isHomepage = window.location.pathname === '/';
+  const isHomepage = props.history.location.pathname === '/';
 
   return (
     <div id="app">
