@@ -1,7 +1,8 @@
 import React from 'react';
 import Loadable from 'react-Loadable';
 
-const Spinner = () => import('./Spinner' /* webpackChunkName: 'Spinner' */);
+const Spinner = () =>
+  import('../shared/spinner' /* webpackChunkName: 'Spinner' */);
 
 const Loading = props => {
   if (props.error) {

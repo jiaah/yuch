@@ -1,9 +1,9 @@
 import React from 'react';
 /* --- Images --- */
-import delivery from '../../assets/img/delivery.jpeg';
-import localfood from '../../assets/img/localfood.jpeg';
-import sesame from '../../assets/img/sesame.jpeg';
-import women from '../../assets/img/women.jpeg';
+import delivery from '../../../assets/img/delivery.jpeg';
+import localfood from '../../../assets/img/localfood.jpeg';
+import sesame from '../../../assets/img/sesame.jpeg';
+import women from '../../../assets/img/women.jpeg';
 
 const HomeMain = () => (
   <div className="home-main--container">

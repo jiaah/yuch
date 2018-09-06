@@ -3,11 +3,12 @@ import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
-import App from './src/app';
-import Loader from './src/shared/loader';
+import App from './app';
+import Loader from './src/utils/loader';
 
 const Home = Loader({
-  loader: () => import('./src/components/Home' /* webpackChunkName: 'Home' */),
+  loader: () =>
+    import('./src/components/home/home.container' /* webpackChunkName: 'Home' */),
 });
 
 const Login = Loader({
@@ -17,7 +18,7 @@ const Login = Loader({
 
 const NoMatch = Loader({
   loader: () =>
-    import('./src/shared/NoMatch' /* webpackChunkName: 'NoMatch' */),
+    import('./src/shared/noMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
 const routes = props => (

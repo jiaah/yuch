@@ -1,4 +1,4 @@
-/* Layouts */
+/* ------ Layouts ------ */
 .float-left {
   float: left;
 }
@@ -93,7 +93,25 @@
   font-weight: bold;
 }
 
-/* Height / Width */
+.cover {
+  width: 100vw;
+  height: 100vh;
+}
+
+.background {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  flex: 1;
+}
+
+.center-center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----- Heihgt / Width ----- */
 .h-100 {
   height: 100%;
 }
@@ -130,7 +148,7 @@
   width: 100%;
 }
 
-/* Paddings */
+/* ----- Paddings ----- */
 .ph {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -229,7 +247,7 @@
   padding-bottom: 8em;
 }
 
-/* Margins */
+/* ----- Margins ----- */
 .center {
   margin-right: auto;
   margin-left: auto;
@@ -345,9 +363,25 @@
   margin: 2em;
 }
 
-/* Borders */
+/* ----- Borders ----- */
 .border-z {
   border: none;
+}
+
+.br {
+  border: 1px solid $c-point1;
+  padding: 3px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.br:hover {
+  color: $c-point1;
+  transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
 }
 
 .bb {
@@ -356,7 +390,11 @@
   border-bottom-color: rgb(221, 234, 250);
 }
 
-/* Coordinates */
+.bt {
+  border-top: 1px solid $c-point1;
+}
+
+/* ----- Coordinates ----- */
 .left-0 {
   left: 0;
 }

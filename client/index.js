@@ -6,8 +6,6 @@ import createHistory from 'history/createBrowserHistory';
 import Store from './Store';
 import Routes from './Routes';
 
-require('./styles/main.scss');
-
 const root = document.createElement('div');
 document.body.appendChild(root);
 

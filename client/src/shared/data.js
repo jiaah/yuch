@@ -24,7 +24,7 @@ export const redirectToLogin = [
     id: 1,
     name: '로그인',
     to: '/login',
-    className: 'td-none c-text btn--border f-mini',
+    className: 'td-none c-text br f-mini',
   },
 ];
 

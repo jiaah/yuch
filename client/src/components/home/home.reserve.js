@@ -15,11 +15,13 @@ const styles = theme => ({
 });
 
 class Reserve extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-  // const { classes } = props;
+  disableDates = () => {
+    const today = new Date();
+  };
+
   render() {
+    const today = new Date();
+    console.log(today);
     return (
       <div className="tc white reserve-container">
         <h3 className="white f-xl mb2">Reservation</h3>
@@ -28,12 +30,13 @@ class Reserve extends React.Component {
           <TextField
             id="date"
             label="날짜"
+            // placeholder="날짜"
             type="date"
-            defaultValue="2017-05-24"
-            // className={classes.textField}
+            // defaultValue={{ today }}
             InputLabelProps={{
               shrink: true,
             }}
+            shoulddisabledate={this.disableDates}
           />
           <TextField
             id="time"

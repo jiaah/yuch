@@ -1,9 +1,10 @@
 import React from 'react';
-/* --- shared --- */
+/* --- Components --- */
 import * as data from './data';
 import Ul from './ul';
 
 // Preload Nav Component on mouseover Login button when on Homepage
+// Use State to keep track of routes.
 const Nav = () => (
   <div className="nav">
     <div className="flex justify-between nav--top">
@@ -16,7 +17,7 @@ const Nav = () => (
     <h1>
       <Ul links={data.redirectToHome} />
     </h1>
-    <div className="hr-center">
+    <div className="bt">
       <Ul links={data.nav} />
     </div>
   </div>
