@@ -36,7 +36,9 @@ class Reserve extends React.Component {
             InputLabelProps={{
               shrink: true,
             }}
-            shoulddisabledate={this.disableDates}
+            margin="normal"
+            value="number"
+            required="true"
           />
           <TextField
             id="time"
@@ -50,6 +52,8 @@ class Reserve extends React.Component {
             inputProps={{
               step: 150, // 30 min
             }}
+            margin="normal"
+            required="true"
           />
         </form>
       </div>
