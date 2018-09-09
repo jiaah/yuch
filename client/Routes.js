@@ -13,7 +13,7 @@ const Home = Loader({
 
 const Login = Loader({
   loader: () =>
-    import('./src/components/login' /* webpackChunkName: 'Login' */),
+    import('./src/components/auth/login' /* webpackChunkName: 'Login' */),
 });
 
 const NoMatch = Loader({
