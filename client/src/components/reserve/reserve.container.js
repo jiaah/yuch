@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import * as moment from '../../shared/moment';
 /* --- Actions --- */
-import { reserve } from './reserve.action';
+import { saveReserveInfo } from './reserve.action';
 
 const styles = theme => ({
   container: {
@@ -23,12 +23,12 @@ class Reserve extends React.Component {
   handleChange = ev => {
     ev.preventDefault();
     const { id, value } = ev.target;
-    this.props.onReserve(value, '2:00', 2, 'korea');
+    this.props.onSaveReserveInfo(id, value);
   };
 
   render() {
     const { tommrow } = moment;
-    console.log(`Component state: ${this.props.reserveInfo}`);
+    console.log('reserveInfo', this.props.reserveInfo);
     return (
       <div className="tc white reserve-container">
         <h3 className="white f-xl mb2">Reservation</h3>
@@ -61,6 +61,7 @@ class Reserve extends React.Component {
             }}
             margin="normal"
             required={true}
+            onChange={ev => this.handleChange(ev)}
           />
         </form>
       </div>
@@ -68,15 +69,12 @@ class Reserve extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(`mapSataeToProps: ${state.reserve.reserve}`);
-  return {
-    reserveInfo: state.reserve.reserve,
-  };
-};
+const mapStateToProps = state => ({
+  reserveInfo: state.reservation.reserve,
+});
 
 const mapDispatchToProps = dispatch => ({
-  onReserve: () => dispatch(reserve()),
+  onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),
 });
 
 export default connect(

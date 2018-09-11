@@ -1,3 +1,3 @@
 module.exports = {
-  RESERVE_INFO: 'RESERVE_INFO',
+  SAVE_RESERVE_INFO: 'SAVE_RESERVE_INFO',
 };

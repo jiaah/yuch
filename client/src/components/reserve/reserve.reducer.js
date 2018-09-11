@@ -4,23 +4,24 @@ import { tommrow } from '../../shared/moment';
 
 const initialState = {
   reserve: {
-    when: tommrow,
-    at: '12:30',
-    number: '',
-    place: '',
+    date: tommrow,
+    time: '12:30',
   },
 };
 
 const reserve = (state = initialState, action) => {
-  const { date, time, people, place } = action;
-  const reserveInfo = { when: date, at: time, number: people, where: place };
+  const { id, value } = action;
+  console.log('REDUCER: id, value: ', id, value);
 
-  switch (action.Type) {
-    case actionTypes.RESERVE_INFO: {
-      // Fix this.
-      return update(state, {
-        reserve: { $set: reserveInfo },
-      });
+  switch (action.type) {
+    case actionTypes.SAVE_RESERVE_INFO: {
+      return {
+        ...state,
+        reserve: {
+          ...state.reserve,
+          [id]: value,
+        },
+      };
     }
     default:
       return state;

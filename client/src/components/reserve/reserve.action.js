@@ -1,11 +1,10 @@
 import * as actionTypes from '../actionTypes';
 
-export const reserve = (date, time, people, place) => ({
-  type: actionTypes.RESERVE_INFO,
-  payload: {
-    date,
-    time,
-    people,
-    place,
-  },
-});
+export const saveReserveInfo = (id, value) => {
+  console.log('ACTION: id, value: ', id, value);
+  return {
+    type: actionTypes.SAVE_RESERVE_INFO,
+    id,
+    value,
+  };
+};
