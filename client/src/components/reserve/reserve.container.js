@@ -1,30 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
 /* --- Components --- */
-import ActionTranslate from 'material-ui/SvgIcon';
-import ReserveFormsWrapped from './reserve.forms';
-import SimpleModalWrapped from './reserve.modal';
+import SimpleModal from './modal';
 /* --- Actions --- */
 import { openReserve, saveReserveInfo } from './reserve.action';
-
-const styles = theme => ({
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-  },
-});
 
 class Reserve extends React.Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleOpen = () => {
@@ -43,40 +28,23 @@ class Reserve extends React.Component {
 
   render() {
     console.log('reserveInfo', this.props.reserveInfo);
-    console.log('show: ', this.props.show);
 
-    const { classes, show } = this.props;
-    const modalStyle = {
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    };
+    const { show } = this.props;
 
     return (
       <div>
         <div className="tc white reserve-container">
           <h3 className="white">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
-          <Button className="btn" onClick={this.handleOpen}>
-            지금 예약하기
-          </Button>
+          <button type="button" className="btn" onClick={this.handleOpen}>
+            예약하기
+          </button>
         </div>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={show}
-          onClose={this.handleClose}
-        >
-          <div style={modalStyle} className={classes.paper}>
-            <Typography variant="title" id="modal-title">
-              Text in a modal
-            </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <ReserveFormsWrapped handleChange={this.handleChange} />
-          </div>
-        </Modal>
+        <SimpleModal
+          show={show}
+          handleClose={this.handleClose}
+          handleChange={this.handleChange}
+        />
       </div>
     );
   }
@@ -95,6 +63,6 @@ const mapDispatchToProps = dispatch => ({
 const ReserveWrapped = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Reserve));
+)(Reserve);
 
 export default ReserveWrapped;

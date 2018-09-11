@@ -19,8 +19,8 @@ const styles = theme => ({
 const ReserveForms = ({ handleChange }) => {
   const { tommrow } = moment;
   return (
-    <div className="tc white reserve-container">
-      <form noValidate className="flex justify-around">
+    <form noValidate className="reserve-form--box tc white">
+      <div className="reserve-form">
         <TextField
           id="date"
           label="날짜"
@@ -29,29 +29,29 @@ const ReserveForms = ({ handleChange }) => {
           InputLabelProps={{
             shrink: true,
           }}
-          margin="normal"
           required={true}
           // minDate not working
           mindate={tommrow}
           onChange={ev => handleChange(ev)}
         />
-        <TextField
-          id="time"
-          label="시간"
-          type="time"
-          defaultValue="12:30"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 100, // 30 min
-          }}
-          margin="normal"
-          required={true}
-          onChange={ev => handleChange(ev)}
-        />
-      </form>
-    </div>
+      </div>
+      {/* <div className="reserve-form"> */}
+      <TextField
+        id="time"
+        label="시간"
+        type="time"
+        defaultValue="12:30"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          step: 100, // 20 min
+        }}
+        required={true}
+        onChange={ev => handleChange(ev)}
+      />
+      {/* </div> */}
+    </form>
   );
 };
 
