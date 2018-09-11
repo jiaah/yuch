@@ -1,25 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import withStyles from '@material-ui/core/styles/withStyles';
-import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
-import * as moment from '../../shared/moment';
+import ReserveForms from './reserve.forms';
 /* --- Actions --- */
-import { saveReserveInfo } from './reserve.action';
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-});
+import { openReserve, saveReserveInfo } from './reserve.action';
 
 class Reserve extends React.Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleClick = () => {
+    this.props.onOpenReserve();
+  };
+
   handleChange = ev => {
     ev.preventDefault();
     const { id, value } = ev.target;
@@ -27,43 +22,20 @@ class Reserve extends React.Component {
   };
 
   render() {
-    const { tommrow } = moment;
     console.log('reserveInfo', this.props.reserveInfo);
+    console.log('show: ', this.props.show);
+    const { show } = this.props;
     return (
       <div className="tc white reserve-container">
-        <h3 className="white f-xl mb2">Reservation</h3>
         <p>기업체 각종 행사, 모임 단체 식사 주문받습니다&#46;</p>
-        <form noValidate className="flex justify-around">
-          <TextField
-            id="date"
-            label="날짜"
-            type="date"
-            defaultValue={tommrow}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-            required={true}
-            // minDate not working
-            mindate={tommrow}
-            onChange={ev => this.handleChange(ev)}
-          />
-          <TextField
-            id="time"
-            label="시간"
-            type="time"
-            defaultValue="12:30"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 100, // 30 min
-            }}
-            margin="normal"
-            required={true}
-            onChange={ev => this.handleChange(ev)}
-          />
-        </form>
+        <button
+          type="button"
+          className="btn white f-regular"
+          onClick={this.handleClick}
+        >
+          Reservation
+        </button>
+        {show ? <ReserveForms handleChange={this.handleChange} /> : null}
       </div>
     );
   }
@@ -71,13 +43,20 @@ class Reserve extends React.Component {
 
 const mapStateToProps = state => ({
   reserveInfo: state.reservation.reserve,
+  show: state.reservation.show,
 });
 
 const mapDispatchToProps = dispatch => ({
   onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),
+  onOpenReserve: () => dispatch(openReserve()),
 });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(withStyles(styles)(Reserve));
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Reserve));
+)(Reserve);

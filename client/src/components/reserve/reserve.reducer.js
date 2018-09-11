@@ -1,4 +1,3 @@
-import update from 'immutability-helper';
 import * as actionTypes from '../actionTypes';
 import { tommrow } from '../../shared/moment';
 
@@ -7,6 +6,7 @@ const initialState = {
     date: tommrow,
     time: '12:30',
   },
+  show: false,
 };
 
 const reserve = (state = initialState, action) => {
@@ -21,6 +21,12 @@ const reserve = (state = initialState, action) => {
           ...state.reserve,
           [id]: value,
         },
+      };
+    }
+    case actionTypes.OPEN_RESERVE: {
+      return {
+        ...state,
+        show: !state.show,
       };
     }
     default:

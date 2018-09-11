@@ -1,3 +1,4 @@
 module.exports = {
   SAVE_RESERVE_INFO: 'SAVE_RESERVE_INFO',
+  OPEN_RESERVE: 'OPEN_RESERVE',
 };

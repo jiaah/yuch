@@ -52,7 +52,6 @@ module.exports = {
       },
     ],
     'class-methods-use-this': 'off',
-    'no-underscore-dangle': 'off',
     'react/jsx-filename-extension': [
       1,
       {
@@ -69,6 +68,8 @@ module.exports = {
     semi: 'off',
     'no-unused-vars': 'warn', // ['error', 'always'],
     'no-inline-comments': 'off',
+    'no-underscore-dangle': 'off',
+    'no-useless-constructor': 'warn',
     'init-declarations': 'off',
     'prefer-destructuring': 'off',
     'consistent-return': 'off',

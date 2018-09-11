@@ -8,3 +8,7 @@ export const saveReserveInfo = (id, value) => {
     value,
   };
 };
+
+export const openReserve = () => ({
+  type: actionTypes.OPEN_RESERVE,
+});

@@ -3,3 +3,11 @@
   padding: 2em;
   background-color: $c-point1;
 }
+
+.reserve-container {
+  .btn {
+    background-color: $c-point2;
+    border: $c-point2;
+    padding: 10px 20px;
+  }
+}
