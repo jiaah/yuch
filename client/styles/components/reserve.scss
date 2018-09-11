@@ -5,9 +5,20 @@
 }
 
 .reserve-container {
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: .5em;
+  }
+
   .btn {
     background-color: $c-point2;
     border: $c-point2;
     padding: 10px 20px;
+    margin-top: 1.5em;
+    color: white;
+
+    @include for-desktop-up {
+      font-size: .75em;
+    }
   }
 }

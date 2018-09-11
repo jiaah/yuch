@@ -55,4 +55,5 @@ const ReserveForms = ({ handleChange }) => {
   );
 };
 
-export default withStyles(styles)(ReserveForms);
+const ReserveFormsWrapped = withStyles(styles)(ReserveForms);
+export default ReserveFormsWrapped;
