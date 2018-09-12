@@ -2,7 +2,6 @@ const isTest = String(process.env.NODE_ENV) === 'test';
 
 module.exports = {
   presets: [
-    'react',
     [
       'env',
       {
@@ -15,6 +14,7 @@ module.exports = {
         debug: isTest ? false : true,
       },
     ],
+    'react',
   ],
   retainLines: true,
   plugins: [
@@ -27,9 +27,9 @@ module.exports = {
         moduleName: 'babel-runtime',
       },
     ],
-    'syntax-dynamic-import',
     'transform-class-properties',
     'transform-object-rest-spread',
+    'syntax-dynamic-import',
     isTest ? 'dynamic-import-node' : null,
   ].filter(Boolean),
   env: {

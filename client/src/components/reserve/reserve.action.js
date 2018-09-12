@@ -1,14 +1,14 @@
-import * as actionTypes from '../actionTypes';
+import * as types from '../actionTypes';
 
 export const saveReserveInfo = (id, value) => {
   console.log('ACTION: id, value: ', id, value);
   return {
-    type: actionTypes.SAVE_RESERVE_INFO,
+    type: types.SAVE_RESERVE_INFO,
     id,
     value,
   };
 };
 
 export const openReserve = () => ({
-  type: actionTypes.OPEN_RESERVE,
+  type: types.OPEN_RESERVE,
 });

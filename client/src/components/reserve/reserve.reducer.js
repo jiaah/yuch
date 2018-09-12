@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as types from '../actionTypes';
 import { tommrow } from '../../shared/moment';
 
 const initialState = {
@@ -14,7 +14,7 @@ const reserve = (state = initialState, action) => {
   console.log('REDUCER: id, value: ', id, value);
 
   switch (action.type) {
-    case actionTypes.SAVE_RESERVE_INFO: {
+    case types.SAVE_RESERVE_INFO: {
       return {
         ...state,
         reserve: {
@@ -23,7 +23,7 @@ const reserve = (state = initialState, action) => {
         },
       };
     }
-    case actionTypes.OPEN_RESERVE: {
+    case types.OPEN_RESERVE: {
       return {
         ...state,
         show: !state.show,
