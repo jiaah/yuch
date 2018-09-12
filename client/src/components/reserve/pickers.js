@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const ReserveForms = ({ handleChange }) => {
+const Pickers = ({ handleChange }) => {
   const { tommrow } = moment;
   return (
     <form noValidate className="reserve-form--box tc white">
@@ -55,5 +55,4 @@ const ReserveForms = ({ handleChange }) => {
   );
 };
 
-const ReserveFormsWrapped = withStyles(styles)(ReserveForms);
-export default ReserveFormsWrapped;
+export default withStyles(styles)(Pickers);

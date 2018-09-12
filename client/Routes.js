@@ -8,7 +8,7 @@ import Loader from './src/utils/loader';
 
 const Home = Loader({
   loader: () =>
-    import('./src/components/home/home.container' /* webpackChunkName: 'Home' */),
+    import('./src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
 });
 
 const Login = Loader({

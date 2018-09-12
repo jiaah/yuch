@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import SimpleModal from './modal';
+import Loader from '../../utils/loader';
 /* --- Actions --- */
 import { openReserve, saveReserveInfo } from './reserve.action';
 
-class Reserve extends React.Component {
+const SimpleModal = Loader({
+  loader: () => import('./simpleModal' /* webpackChunkName: 'SimpleModal' */),
+});
+class ReserveContainer extends React.Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
@@ -38,11 +41,13 @@ class Reserve extends React.Component {
             예약하기
           </button>
         </div>
-        <SimpleModal
-          show={show}
-          handleClose={this.handleClose}
-          handleChange={this.handleChange}
-        />
+        {show && (
+          <SimpleModal
+            show={show}
+            handleClose={this.handleClose}
+            handleChange={this.handleChange}
+          />
+        )}
       </div>
     );
   }
@@ -61,9 +66,7 @@ const mapDispatchToProps = dispatch => ({
   onOpenReserve: () => dispatch(openReserve()),
 });
 
-const ReserveWrapped = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Reserve);
-
-export default ReserveWrapped;
+)(ReserveContainer);

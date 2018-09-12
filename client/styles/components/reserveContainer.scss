@@ -9,20 +9,30 @@
   }
 
   .btn {
-    background-color: $white;
+    background-color: $c-point2;
     border: $c-point2;
+    color: $white;
     padding: 10px 20px;
     margin-top: 1.5em;
-    color: $c-point1;
     font-size: 1em;
-    font-weight: 500;
+    letter-spacing: 1.1px;
 
     @include for-desktop-up {
       font-size: .75em;
     }
   }
+
+  .btn:hover {
+    background-color: #814981;
+    transition: font-size .2s;
+    -webkit-transition: font-size .2s;
+    -moz-transition: font-size .2s;
+    -ms-transition: font-size .2s;
+    -o-transition: background-color .2s;
+  }
 }
 
+/* --- Modal --- */
 .modal {
   width: 17em;
   padding: 2em 1em;
@@ -43,6 +53,7 @@
   }
 }
 
+/* --- Form --- */
 .reserve-form--box {
   display: flex;
   flex-direction: column;
