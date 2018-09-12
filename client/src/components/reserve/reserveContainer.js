@@ -53,13 +53,10 @@ class ReserveContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    reserveInfo: state.componentsReducer.reservation.reserve,
-    show: state.componentsReducer.reservation.show,
-  };
-};
+const mapStateToProps = state => ({
+  reserveInfo: state.componentsReducer.reservation.reserve,
+  show: state.componentsReducer.reservation.show,
+});
 
 const mapDispatchToProps = dispatch => ({
   onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),

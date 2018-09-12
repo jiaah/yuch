@@ -15,7 +15,6 @@ const initialState = {
 
 const reserve = (state = initialState, action) => {
   const { id, value } = action;
-  console.log('REDUCER: id, value: ', id, value);
 
   switch (action.type) {
     case types.SAVE_RESERVE_INFO: {

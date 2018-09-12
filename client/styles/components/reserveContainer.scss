@@ -9,9 +9,11 @@
   }
 
   .btn {
-    background-color: $c-point2;
-    border: $c-point2;
-    color: $white;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid $c-point1;
+    box-shadow: 1px 1px #866586d0;
+    color: $c-point1;
     padding: 10px 20px;
     margin-top: 1.5em;
     font-size: 1em;
@@ -23,12 +25,13 @@
   }
 
   .btn:hover {
-    background-color: #814981;
+    border: 2px solid $c-point2;
+    color: #814981;
     transition: font-size .2s;
     -webkit-transition: font-size .2s;
     -moz-transition: font-size .2s;
     -ms-transition: font-size .2s;
-    -o-transition: background-color .2s;
+    -o-transition: border .2s color .2s;
   }
 }
 
