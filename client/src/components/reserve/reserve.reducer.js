@@ -3,6 +3,8 @@ import { tommrow } from '../../shared/moment';
 
 const initialState = {
   reserve: {
+    name: '',
+    contact: '(0  )    -    ',
     date: tommrow,
     time: '12:30',
   },

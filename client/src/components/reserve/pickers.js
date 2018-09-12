@@ -4,53 +4,50 @@ import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import * as moment from '../../shared/moment';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
+    width: 300,
+    margin: 5,
   },
 });
 
 const Pickers = ({ handleChange }) => {
   const { tommrow } = moment;
   return (
-    <form noValidate className="reserve-form--box tc white">
-      <div className="reserve-form">
-        <TextField
-          id="date"
-          label="날짜"
-          type="date"
-          defaultValue={tommrow}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          required={true}
-          // minDate not working
-          mindate={tommrow}
-          onChange={ev => handleChange(ev)}
-        />
-      </div>
-      {/* <div className="reserve-form"> */}
+    <form noValidate>
+      <TextField
+        id="date"
+        label="날짜"
+        type="date"
+        // minDate not working !!
+        defaultValue={tommrow}
+        mindate={tommrow}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        margin="normal"
+        onChange={ev => handleChange(ev)}
+        required
+      />
       <TextField
         id="time"
         label="시간"
         type="time"
         defaultValue="12:30"
-        InputLabelProps={{
-          shrink: true,
-        }}
         inputProps={{
           step: 100, // 20 min
         }}
-        required={true}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        margin="normal"
         onChange={ev => handleChange(ev)}
+        required
       />
-      {/* </div> */}
     </form>
   );
 };
