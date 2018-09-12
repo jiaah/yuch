@@ -28,9 +28,7 @@ class Reserve extends React.Component {
 
   render() {
     console.log('reserveInfo', this.props.reserveInfo);
-
     const { show } = this.props;
-
     return (
       <div>
         <div className="tc white reserve-container">
@@ -50,10 +48,13 @@ class Reserve extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  reserveInfo: state.reservation.reserve,
-  show: state.reservation.show,
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    reserveInfo: state.componentsReducer.reservation.reserve,
+    show: state.componentsReducer.reservation.show,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),

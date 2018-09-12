@@ -1,12 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 /* --- Components --- */
-import Loader from './src/utils/loader';
+import Loader from './utils/loader';
 
-require('./styles/main.scss');
+require('../styles/main.scss');
 
 const Nav = Loader({
-  loader: () => import('./src/shared/nav' /* webpackChunkName: 'Nav' */),
+  loader: () => import('./shared/nav' /* webpackChunkName: 'Nav' */),
 });
 
 const App = props => {

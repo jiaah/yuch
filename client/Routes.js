@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
-import App from './app';
+import App from './src/app';
 import Loader from './src/utils/loader';
 
 const Home = Loader({

@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter as Router } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import Store from './Store';
-import Routes from './Routes';
+import Store from './store';
+import Routes from './routes';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
