@@ -5,13 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Pickers from './pickers';
 import TextFields from './textFields';
 
-const SimpleModal = ({
-  show,
-  contactNumber,
-  number,
-  handleClose,
-  handleChange,
-}) => (
+const SimpleModal = ({ show, reserveInfo, handleClose, handleChange }) => (
   <Modal
     aria-labelledby="simple-modal-title"
     aria-describedby="simple-modal-description"
@@ -27,7 +21,7 @@ const SimpleModal = ({
         못받으시면, 유청으로 연락주시길 바랍니다.
       </Typography>
       <div className="reserve-form--box tc">
-        <TextFields contactNumber={contactNumber} handleChange={handleChange} />
+        <TextFields reserveInfo={reserveInfo} handleChange={handleChange} />
         <Pickers handleChange={handleChange} />
       </div>
     </div>

@@ -30,8 +30,7 @@ class ReserveContainer extends React.Component {
   };
 
   render() {
-    console.log('reserveInfo', this.props.reserveInfo);
-    const { show, contactNumber, number } = this.props;
+    const { show, reserveInfo } = this.props;
     return (
       <div>
         <div className="tc white reserve-container">
@@ -44,8 +43,7 @@ class ReserveContainer extends React.Component {
         {show && (
           <SimpleModal
             show={show}
-            contactNumber={contactNumber}
-            number={number}
+            reserveInfo={reserveInfo}
             handleClose={this.handleClose}
             handleChange={this.handleChange}
           />
@@ -59,8 +57,6 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     reserveInfo: state.componentsReducer.reservation.reserve,
-    contactNumber: state.componentsReducer.reservation.reserve.contact,
-    number: state.componentsReducer.reservation.reserve.contact,
     show: state.componentsReducer.reservation.show,
   };
 };
