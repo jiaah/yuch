@@ -52,30 +52,55 @@ function TextMaskCustom(props) {
 
 // width: TextFields-textField-31
 // margin-top 16 bottom 8 TextFields-textField-31
-const TextFields = ({ classes, handleChange, contactNumber }) => (
-  <div>
-    <form className={classes.container} noValidate autoComplete="off">
-      <TextField
-        id="name"
-        label="이름"
-        className={classes.textField}
-        InputLabelProps={{ shrink: true }}
-        margin="normal"
-        onChange={ev => handleChange(ev)}
-        required
-      />
-    </form>
-    <FormControl className={classes.formControl}>
+const TextFields = ({ classes, contactNumber, number, handleChange }) => (
+  <div className={classes.container}>
+    <TextField
+      id="name"
+      label="이름"
+      className={`${classes.textField}`}
+      InputLabelProps={{ shrink: true }}
+      margin="normal"
+      onChange={ev => handleChange(ev)}
+      // maxLength not working
+      maxLength="10"
+      required
+    />
+    <FormControl className={classes.formControl} margin="normal">
       <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
       <Input
         id="contact"
         value={contactNumber}
         inputComponent={TextMaskCustom}
-        margin="normal"
         onChange={ev => handleChange(ev)}
         required
       />
     </FormControl>
+    <TextField
+      id="number"
+      label="인원수"
+      placeholder="대규모 가능"
+      value={number}
+      onChange={ev => handleChange(ev)}
+      type="number"
+      className={classes.textField}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      margin="normal"
+      required
+    />
+    <TextField
+      id="place"
+      label="장소"
+      placeholder="경주 전 지역"
+      className={`${classes.textField}`}
+      InputLabelProps={{ shrink: true }}
+      margin="normal"
+      onChange={ev => handleChange(ev)}
+      // maxLength not working
+      maxLength="20"
+      required
+    />
   </div>
 );
 

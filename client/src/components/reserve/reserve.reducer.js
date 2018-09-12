@@ -5,6 +5,8 @@ const initialState = {
   reserve: {
     name: '',
     contact: '(0  )    -    ',
+    number: '',
+    place: '',
     date: tommrow,
     time: '12:30',
   },

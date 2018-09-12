@@ -5,7 +5,13 @@ import Modal from '@material-ui/core/Modal';
 import Pickers from './pickers';
 import TextFields from './textFields';
 
-const SimpleModal = ({ show, contactNumber, handleClose, handleChange }) => (
+const SimpleModal = ({
+  show,
+  contactNumber,
+  number,
+  handleClose,
+  handleChange,
+}) => (
   <Modal
     aria-labelledby="simple-modal-title"
     aria-describedby="simple-modal-description"
