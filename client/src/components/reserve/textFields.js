@@ -12,7 +12,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    width: 300,
+    width: 400,
     margin: 5,
   },
   formControl: {
@@ -81,7 +81,6 @@ const TextFields = ({ classes, reserveInfo, handleChange }) => {
       <TextField
         id="number"
         label="인원수"
-        placeholder="대규모 가능"
         value={number}
         onChange={ev => handleChange(ev)}
         type="number"
@@ -95,7 +94,6 @@ const TextFields = ({ classes, reserveInfo, handleChange }) => {
       <TextField
         id="place"
         label="장소"
-        placeholder="경주 전 지역"
         value={place}
         className={`${classes.textField}`}
         InputLabelProps={{ shrink: true }}

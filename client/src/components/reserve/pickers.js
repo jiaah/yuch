@@ -10,7 +10,7 @@ const styles = () => ({
     flexWrap: 'wrap',
   },
   textField: {
-    width: 300,
+    width: 400,
     margin: 5,
   },
 });

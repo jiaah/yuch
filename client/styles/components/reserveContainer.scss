@@ -4,41 +4,45 @@
   background-color: $c-point1;
 
   h3 {
-    font-size: 1.9em;
+    font-size: 1.75em;
     margin-bottom: .5em;
   }
 
-  .btn {
-    font-weight: bold;
-    background-color: white;
-    border: 2px solid $c-point1;
-    box-shadow: 1px 1px #866586d0;
-    color: $c-point1;
-    padding: 10px 20px;
-    margin-top: 1.5em;
-    font-size: 1em;
-    letter-spacing: 1.1px;
-
-    @include for-desktop-up {
-      font-size: .75em;
-    }
+  p {
+    margin-bottom: 1.5em;
   }
+}
 
-  .btn:hover {
-    border: 2px solid $c-point2;
-    color: #814981;
-    transition: font-size .2s;
-    -webkit-transition: font-size .2s;
-    -moz-transition: font-size .2s;
-    -ms-transition: font-size .2s;
-    -o-transition: border .2s color .2s;
+.reserve-btn {
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid $c-point1;
+  box-shadow: .2px .2px #866586d0;
+  color: $c-point1;
+  padding: 7px 17px;
+  font-size: .9em;
+  letter-spacing: 1.1px;
+
+  @include for-desktop-up {
+    font-size: .75em;
+    padding: 9.5px 25px;
   }
+}
+
+.reserve-btn:hover {
+  border: 2px solid $c-point2;
+  color: #814981;
+  transition: font-size .2s;
+  -webkit-transition: font-size .2s;
+  -moz-transition: font-size .2s;
+  -ms-transition: font-size .2s;
+  -o-transition: border .2s color .2s;
 }
 
 /* --- Modal --- */
 .modal {
   width: 17em;
-  padding: 2em 1em;
+  padding: 1.7em 1.2em;
   position: absolute;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
   background-color: #fff;
@@ -49,11 +53,33 @@
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
+  overflow-y: scroll;
 
   @include for-tablet-portrait-up {
     width: 23em;
-    padding: 4em;
+    padding: 3em;
   }
+
+  p {
+    font-size: .835em;
+  }
+
+  .reserve-btn {
+    font-size: .65em;
+    font-weight: 500;
+    padding: 5px 10px;
+  }
+
+  .reserve-btn:first-child {
+    margin-right: 1.5em;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* remove scrollbar space */
+  background: transparent;
+  /* optional: just make scrollbar invisible */
 }
 
 /* --- Form --- */
@@ -61,5 +87,5 @@
   display: flex;
   flex-direction: column;
   width: 170px;
-  margin: 1.5em auto;
+  margin: 1.2em auto;
 }

@@ -34,9 +34,13 @@ class ReserveContainer extends React.Component {
     return (
       <div>
         <div className="tc white reserve-container">
-          <h3 className="white">Reservation</h3>
+          <h3 className="white f-en">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
-          <button type="button" className="btn" onClick={this.handleOpen}>
+          <button
+            type="button"
+            className="reserve-btn"
+            onClick={this.handleOpen}
+          >
             예약하기
           </button>
         </div>

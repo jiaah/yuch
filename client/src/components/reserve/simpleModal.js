@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 /* --- Components --- */
 import Pickers from './pickers';
@@ -16,13 +15,21 @@ const SimpleModal = ({ show, reserveInfo, handleClose, handleChange }) => (
       <h3 variant="title" id="modal-title" className="mb2">
         Reservation
       </h3>
-      <Typography variant="subheading" id="simple-modal-description">
+      <p>
         예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을
         못받으시면, 유청으로 연락주시길 바랍니다.
-      </Typography>
+      </p>
       <div className="reserve-form--box tc">
         <TextFields reserveInfo={reserveInfo} handleChange={handleChange} />
         <Pickers handleChange={handleChange} />
+      </div>
+      <div>
+        <button type="button" className="reserve-btn">
+          예약완료
+        </button>
+        <button type="button" className="reserve-btn" onClick={handleClose}>
+          닫기
+        </button>
       </div>
     </div>
   </Modal>
