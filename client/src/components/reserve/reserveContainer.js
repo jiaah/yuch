@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import Loader from '../../utils/loader';
+import * as moment from '../../shared/moment';
 /* --- Actions --- */
-import { openReserve, saveReserveInfo } from './reserve.action';
+import {
+  showReserve,
+  saveReserveInfo,
+  reserve,
+  resetReserve,
+} from './reserve.action';
 
 const SimpleModal = Loader({
   loader: () => import('./simpleModal' /* webpackChunkName: 'SimpleModal' */),
@@ -13,24 +19,37 @@ class ReserveContainer extends React.Component {
     super();
     this.handleChange = this.handleChange.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
-  handleOpen = () => {
-    this.props.onOpenReserve();
-  };
+  handleOpen = () => this.props.onShowReserve();
 
-  handleClose = () => {
-    if (this.props.show) this.props.onOpenReserve();
-  };
+  handleClose = () => this.props.onResetReserve();
 
   handleChange = ev => {
     ev.preventDefault();
     const { id, value } = ev.target;
-    this.props.onSaveReserveInfo(id, value);
+    return this.props.onSaveReserveInfo(id, value);
+  };
+
+  handleSave = () => {
+    const { reserveInfo, onReserve } = this.props;
+    const { today } = moment;
+    const finalReserveInfo = {
+      name: reserveInfo.name,
+      contact: reserveInfo.contact,
+      number: reserveInfo.number,
+      place: reserveInfo.place,
+      date: reserveInfo.date,
+      time: reserveInfo.time,
+      at: today,
+    };
+    return onReserve(finalReserveInfo);
   };
 
   render() {
-    const { show, reserveInfo } = this.props;
+    const { tommrow } = moment;
+    const { show, reserveInfo, displayMessage } = this.props;
     return (
       <div>
         <div className="tc white reserve-container">
@@ -46,10 +65,13 @@ class ReserveContainer extends React.Component {
         </div>
         {show && (
           <SimpleModal
+            displayMessage={displayMessage}
             show={show}
+            tommrow={tommrow}
             reserveInfo={reserveInfo}
             handleClose={this.handleClose}
             handleChange={this.handleChange}
+            handleSave={this.handleSave}
           />
         )}
       </div>
@@ -60,11 +82,14 @@ class ReserveContainer extends React.Component {
 const mapStateToProps = state => ({
   reserveInfo: state.componentsReducer.reservation.reserve,
   show: state.componentsReducer.reservation.show,
+  displayMessage: state.componentsReducer.reservation.displayMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
   onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),
-  onOpenReserve: () => dispatch(openReserve()),
+  onShowReserve: () => dispatch(showReserve()),
+  onReserve: reserveInfo => dispatch(reserve(reserveInfo)),
+  onResetReserve: () => dispatch(resetReserve()),
 });
 
 export default connect(

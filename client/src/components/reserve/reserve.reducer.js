@@ -9,8 +9,12 @@ const initialState = {
     place: '',
     date: tommrow,
     time: '12:30',
+    at: '',
   },
   show: false,
+  loading: false,
+  error: '',
+  displayMessage: '',
 };
 
 const reserve = (state = initialState, action) => {
@@ -26,10 +30,49 @@ const reserve = (state = initialState, action) => {
         },
       };
     }
-    case types.OPEN_RESERVE: {
+    case types.SHOW_RESERVE: {
       return {
         ...state,
         show: !state.show,
+      };
+    }
+    case types.RESERVE_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case types.RESERVE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        displayMessage: 'success',
+      };
+    }
+    case types.RESERVE_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        displayMessage: 'error',
+      };
+    }
+    case types.RESET_RESERVE: {
+      return {
+        ...state,
+        reserve: {
+          ...state.reserve,
+          name: '',
+          contact: '(0  )    -    ',
+          number: '',
+          place: '',
+          date: tommrow,
+          time: '12:30',
+          at: '',
+        },
+        show: false,
+        error: '',
+        displayMessage: '',
       };
     }
     default:
