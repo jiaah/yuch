@@ -53,7 +53,6 @@
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
-  overflow-y: scroll;
 
   @include for-tablet-portrait-up {
     width: 23em;
@@ -75,17 +74,14 @@
   }
 }
 
-::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
-  background: transparent;
-  /* optional: just make scrollbar invisible */
-}
-
 /* --- Form --- */
 .reserve-form--box {
   display: flex;
   flex-direction: column;
-  width: 170px;
+  width: 15em;
   margin: 1.2em auto;
+
+  @include for-tablet-portrait-up {
+    width: 13em;
+  }
 }

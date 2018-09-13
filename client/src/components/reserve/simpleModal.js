@@ -19,7 +19,7 @@ const SimpleModal = ({ show, reserveInfo, handleClose, handleChange }) => (
         예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을
         못받으시면, 유청으로 연락주시길 바랍니다.
       </p>
-      <div className="reserve-form--box tc">
+      <div className="reserve-form--box">
         <TextFields reserveInfo={reserveInfo} handleChange={handleChange} />
         <Pickers handleChange={handleChange} />
       </div>

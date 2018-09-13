@@ -1,24 +1,9 @@
 import React from 'react';
 import MaskedInput from 'react-text-mask';
-import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    width: 400,
-    margin: 5,
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-  },
-});
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -50,25 +35,23 @@ function TextMaskCustom(props) {
   );
 }
 
-// width: TextFields-textField-31
-// margin-top 16 bottom 8 TextFields-textField-31
-const TextFields = ({ classes, reserveInfo, handleChange }) => {
+const TextFields = ({ reserveInfo, handleChange }) => {
   const { name, contact, number, place } = reserveInfo;
   return (
-    <div className={classes.container}>
+    <div>
       <TextField
         id="name"
         label="이름"
         value={name}
-        className={`${classes.textField}`}
         InputLabelProps={{ shrink: true }}
         margin="normal"
+        fullWidth
         onChange={ev => handleChange(ev)}
         // maxLength not working
         maxLength="10"
         required
       />
-      <FormControl className={classes.formControl} margin="normal">
+      <FormControl margin="normal" fullWidth>
         <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
         <Input
           id="contact"
@@ -84,20 +67,20 @@ const TextFields = ({ classes, reserveInfo, handleChange }) => {
         value={number}
         onChange={ev => handleChange(ev)}
         type="number"
-        className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
         margin="normal"
+        fullWidth
         required
       />
       <TextField
         id="place"
         label="장소"
         value={place}
-        className={`${classes.textField}`}
         InputLabelProps={{ shrink: true }}
         margin="normal"
+        fullWidth
         onChange={ev => handleChange(ev)}
         // maxLength not working
         maxLength="20"
@@ -107,4 +90,4 @@ const TextFields = ({ classes, reserveInfo, handleChange }) => {
   );
 };
 
-export default withStyles(styles)(TextFields);
+export default TextFields;

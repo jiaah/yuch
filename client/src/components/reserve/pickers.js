@@ -1,19 +1,7 @@
 import React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import * as moment from '../../shared/moment';
-
-const styles = () => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    width: 400,
-    margin: 5,
-  },
-});
 
 const Pickers = ({ handleChange }) => {
   const { tommrow } = moment;
@@ -30,6 +18,7 @@ const Pickers = ({ handleChange }) => {
           shrink: true,
         }}
         margin="normal"
+        fullWidth
         onChange={ev => handleChange(ev)}
         required
       />
@@ -45,6 +34,7 @@ const Pickers = ({ handleChange }) => {
           shrink: true,
         }}
         margin="normal"
+        fullWidth
         onChange={ev => handleChange(ev)}
         required
       />
@@ -52,4 +42,4 @@ const Pickers = ({ handleChange }) => {
   );
 };
 
-export default withStyles(styles)(Pickers);
+export default Pickers;
