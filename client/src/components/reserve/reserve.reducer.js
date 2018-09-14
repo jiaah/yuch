@@ -13,8 +13,9 @@ const initialState = {
   },
   show: false,
   loading: false,
+  submitText: '',
   error: '',
-  displayMessage: '',
+  btnClicked: false,
 };
 
 const reserve = (state = initialState, action) => {
@@ -46,7 +47,7 @@ const reserve = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        displayMessage: 'success',
+        submitText: 'success',
       };
     }
     case types.RESERVE_FAILURE: {
@@ -54,7 +55,7 @@ const reserve = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error,
-        displayMessage: 'error',
+        submitText: 'error',
       };
     }
     case types.RESET_RESERVE: {
@@ -67,12 +68,19 @@ const reserve = (state = initialState, action) => {
           number: '',
           place: '',
           date: tommrow,
-          time: '12:30',
+          time: '12:30 PM',
           at: '',
         },
         show: false,
         error: '',
-        displayMessage: '',
+        submitText: '',
+        btnClicked: false,
+      };
+    }
+    case types.BUTTON_CLICKED: {
+      return {
+        ...state,
+        btnClicked: true,
       };
     }
     default:

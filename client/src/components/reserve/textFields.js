@@ -35,8 +35,9 @@ function TextMaskCustom(props) {
   );
 }
 
-const TextFields = ({ reserveInfo, handleChange }) => {
+const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
   const { name, contact, number, place } = reserveInfo;
+
   return (
     <div>
       <TextField
@@ -46,10 +47,12 @@ const TextFields = ({ reserveInfo, handleChange }) => {
         InputLabelProps={{ shrink: true }}
         margin="normal"
         fullWidth
+        error={btnClicked && name === ''}
+        // helperText={btnClicked && name === '' ? '성함을 입력하세요' : ''}
         onChange={ev => handleChange(ev)}
         // maxLength not working
         maxLength="10"
-        required
+        required={true}
       />
       <FormControl margin="normal" fullWidth>
         <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
@@ -57,14 +60,22 @@ const TextFields = ({ reserveInfo, handleChange }) => {
           id="contact"
           value={contact}
           inputComponent={TextMaskCustom}
+          // BUG: error only works before there is input or click the delete button..
+          error={
+            btnClicked &&
+            (contact === '' ||
+              contact === '(0  )    -    ' ||
+              contact === '(   )    -    ')
+          }
           onChange={ev => handleChange(ev)}
-          required
+          required={true}
         />
       </FormControl>
       <TextField
         id="number"
         label="인원수"
         value={number}
+        error={btnClicked && (number === '' || number <= 0)}
         onChange={ev => handleChange(ev)}
         type="number"
         InputLabelProps={{
@@ -72,7 +83,7 @@ const TextFields = ({ reserveInfo, handleChange }) => {
         }}
         margin="normal"
         fullWidth
-        required
+        required={true}
       />
       <TextField
         id="place"
@@ -81,10 +92,11 @@ const TextFields = ({ reserveInfo, handleChange }) => {
         InputLabelProps={{ shrink: true }}
         margin="normal"
         fullWidth
+        error={btnClicked && place === ''}
         onChange={ev => handleChange(ev)}
         // maxLength not working
         maxLength="20"
-        required
+        required={true}
       />
     </div>
   );

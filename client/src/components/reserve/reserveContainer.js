@@ -9,6 +9,7 @@ import {
   saveReserveInfo,
   reserve,
   resetReserve,
+  buttonClicked,
 } from './reserve.action';
 
 const SimpleModal = Loader({
@@ -32,9 +33,10 @@ class ReserveContainer extends React.Component {
     return this.props.onSaveReserveInfo(id, value);
   };
 
-  handleSave = () => {
-    const { reserveInfo, onReserve } = this.props;
+  handleSave = async () => {
+    const { reserveInfo, onReserve, onButtonClicked, btnClicked } = this.props;
     const { today } = moment;
+    const { name, contact, number, place, date, time } = reserveInfo;
     const finalReserveInfo = {
       name: reserveInfo.name,
       contact: reserveInfo.contact,
@@ -44,12 +46,27 @@ class ReserveContainer extends React.Component {
       time: reserveInfo.time,
       at: today,
     };
-    return onReserve(finalReserveInfo);
+    await onButtonClicked();
+    // fix contact error text condition !!!!!!!!!
+    if (btnClicked) {
+      if (
+        name === '' ||
+        contact === '' ||
+        number === '' ||
+        place === '' ||
+        date === '' ||
+        time === ''
+      ) {
+        return null;
+      }
+      return onReserve(finalReserveInfo);
+    }
   };
 
   render() {
     const { tommrow } = moment;
-    const { show, reserveInfo, displayMessage } = this.props;
+    const { show, reserveInfo, submitText, btnClicked } = this.props;
+
     return (
       <div>
         <div className="tc white reserve-container">
@@ -65,10 +82,11 @@ class ReserveContainer extends React.Component {
         </div>
         {show && (
           <SimpleModal
-            displayMessage={displayMessage}
+            submitText={submitText}
             show={show}
             tommrow={tommrow}
             reserveInfo={reserveInfo}
+            btnClicked={btnClicked}
             handleClose={this.handleClose}
             handleChange={this.handleChange}
             handleSave={this.handleSave}
@@ -82,7 +100,8 @@ class ReserveContainer extends React.Component {
 const mapStateToProps = state => ({
   reserveInfo: state.componentsReducer.reservation.reserve,
   show: state.componentsReducer.reservation.show,
-  displayMessage: state.componentsReducer.reservation.displayMessage,
+  submitText: state.componentsReducer.reservation.submitText,
+  btnClicked: state.componentsReducer.reservation.btnClicked,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -90,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
   onShowReserve: () => dispatch(showReserve()),
   onReserve: reserveInfo => dispatch(reserve(reserveInfo)),
   onResetReserve: () => dispatch(resetReserve()),
+  onButtonClicked: () => dispatch(buttonClicked()),
 });
 
 export default connect(
