@@ -8,6 +8,6 @@ test('should create an action to update reserve info', () => {
   expect(action).toEqual({
     type: types.SAVE_RESERVE_INFO,
     id: 'date',
-    value: '2018-09-29',
+    value: '2018-09-30',
   });
 });

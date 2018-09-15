@@ -29,8 +29,8 @@ function TextMaskCustom(props) {
         /\d/,
         /\d/,
       ]}
-      placeholderChar={'\u2000'}
-      showMask
+      // placeholderChar={'\u2000'}
+      showMask={false}
     />
   );
 }
@@ -48,24 +48,23 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         margin="normal"
         fullWidth
         error={btnClicked && name === ''}
-        // helperText={btnClicked && name === '' ? '성함을 입력하세요' : ''}
         onChange={ev => handleChange(ev)}
-        // maxLength not working
-        maxLength="10"
         required={true}
       />
       <FormControl margin="normal" fullWidth>
         <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
         <Input
           id="contact"
+          placeholder="(054)-745-0999"
           value={contact}
           inputComponent={TextMaskCustom}
-          // BUG: error only works before there is input or click the delete button..
           error={
             btnClicked &&
             (contact === '' ||
-              contact === '(0  )    -    ' ||
-              contact === '(   )    -    ')
+              contact === '(0  )    -    ' ||
+              !!(contact[11].indexOf('_') !== -1) ||
+              !!(contact[12].indexOf('_') !== -1) ||
+              !!(contact[13].indexOf('_') !== -1))
           }
           onChange={ev => handleChange(ev)}
           required={true}
@@ -92,10 +91,9 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         InputLabelProps={{ shrink: true }}
         margin="normal"
         fullWidth
+        multiline
         error={btnClicked && place === ''}
         onChange={ev => handleChange(ev)}
-        // maxLength not working
-        maxLength="20"
         required={true}
       />
     </div>

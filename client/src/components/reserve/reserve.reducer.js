@@ -4,7 +4,7 @@ import { tommrow } from '../../shared/moment';
 const initialState = {
   reserve: {
     name: '',
-    contact: '(0  )    -    ',
+    contact: '(0  )    -    ',
     number: '',
     place: '',
     date: tommrow,
@@ -64,7 +64,7 @@ const reserve = (state = initialState, action) => {
         reserve: {
           ...state.reserve,
           name: '',
-          contact: '(0  )    -    ',
+          contact: '(0  )    -    ',
           number: '',
           place: '',
           date: tommrow,

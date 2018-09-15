@@ -1,22 +1,18 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
+const Pickers = ({ today, tommrow, reserveInfo, btnClicked, handleChange }) => {
   const { date, time } = reserveInfo;
   return (
-    <form noValidate>
+    <form>
       <TextField
         id="date"
         label="날짜"
         type="date"
-        // minDate not working !!
         defaultValue={tommrow}
-        mindate={tommrow}
-        InputLabelProps={{
-          shrink: true,
-        }}
         margin="normal"
         fullWidth
+        maxDate={today}
         error={btnClicked && date === ''}
         onChange={ev => handleChange(ev)}
         required={true}
@@ -28,9 +24,6 @@ const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
         defaultValue="12:30"
         inputProps={{
           step: 900,
-        }}
-        InputLabelProps={{
-          shrink: true,
         }}
         margin="normal"
         fullWidth

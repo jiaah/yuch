@@ -27,16 +27,18 @@ class ReserveContainer extends React.Component {
 
   handleClose = () => this.props.onResetReserve();
 
-  handleChange = ev => {
-    ev.preventDefault();
-    const { id, value } = ev.target;
-    return this.props.onSaveReserveInfo(id, value);
-  };
+  handleChange = ({ target: { id, value } }) =>
+    this.props.onSaveReserveInfo(id, value);
 
   handleSave = async () => {
-    const { reserveInfo, onReserve, onButtonClicked, btnClicked } = this.props;
-    const { today } = moment;
-    const { name, contact, number, place, date, time } = reserveInfo;
+    const {
+      reserveInfo,
+      reserveInfo: { name, contact, number, place, date, time },
+      onReserve,
+      onButtonClicked,
+      btnClicked,
+    } = this.props;
+    const { now } = moment;
     const finalReserveInfo = {
       name: reserveInfo.name,
       contact: reserveInfo.contact,
@@ -44,14 +46,17 @@ class ReserveContainer extends React.Component {
       place: reserveInfo.place,
       date: reserveInfo.date,
       time: reserveInfo.time,
-      at: today,
+      at: now,
     };
     await onButtonClicked();
-    // fix contact error text condition !!!!!!!!!
     if (btnClicked) {
       if (
         name === '' ||
         contact === '' ||
+        contact === '(0  )    -    ' ||
+        !!(contact[11].indexOf('_') !== -1) ||
+        !!(contact[12].indexOf('_') !== -1) ||
+        !!(contact[13].indexOf('_') !== -1) ||
         number === '' ||
         place === '' ||
         date === '' ||
@@ -64,7 +69,7 @@ class ReserveContainer extends React.Component {
   };
 
   render() {
-    const { tommrow } = moment;
+    const { today, tommrow } = moment;
     const { show, reserveInfo, submitText, btnClicked } = this.props;
 
     return (
@@ -84,6 +89,7 @@ class ReserveContainer extends React.Component {
           <SimpleModal
             submitText={submitText}
             show={show}
+            today={today}
             tommrow={tommrow}
             reserveInfo={reserveInfo}
             btnClicked={btnClicked}
