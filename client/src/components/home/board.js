@@ -3,7 +3,7 @@ import React from 'react';
 const Board = () => (
   <div>
     <div id="board" className="home-board">
-      <div className="tc board">
+      <div className="tc mb4">
         <h3>&#45; Location &#45;</h3>
         <p>
           경주시 황성동 1071&#45;1번지
@@ -12,7 +12,7 @@ const Board = () => (
           강남골프장 맞은 편
         </p>
       </div>
-      <div className="board">
+      <div className="mb4">
         <h3 className="tc">&#45; Hours &#45;</h3>
         <div className="flex justify-center">
           <p className="mr3 float-left">
@@ -30,7 +30,7 @@ const Board = () => (
           </p>
         </div>
       </div>
-      <div className="tc board">
+      <div className="tc mb4">
         <h3>&#45; Contact &#45;</h3>
         <p className="f-regular lh-2">
           054 &#46; 745 &#46; 0999
