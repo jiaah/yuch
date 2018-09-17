@@ -1,4 +1,8 @@
 import React from 'react';
 
-const Login = () => <h1>Hello Login</h1>;
+const Login = () => (
+  <div className="tc login-container">
+    <h1>Comming Soon...</h1>
+  </div>
+);
 export default Login;
