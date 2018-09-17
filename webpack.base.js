@@ -64,7 +64,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              // includePaths: ['client/styles/main.scss'],
+              includePaths: ['client/styles/main.scss'],
             },
           },
         ],
@@ -89,14 +89,6 @@ module.exports = {
         options: {
           name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
         },
-      },
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'markdown-with-front-matter-loader',
-          },
-        ],
       },
     ],
   },

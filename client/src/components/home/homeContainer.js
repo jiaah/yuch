@@ -1,14 +1,16 @@
 import React from 'react';
 /* --- Components --- */
-import Header from './Header';
+import Header from './header';
 import HomeMain from './homeMain';
 import ReserveContainer from '../reserve/reserveContainer';
+import Board from './board';
 
 const Home = () => (
   <div>
     <Header />
     <HomeMain />
     <ReserveContainer />
+    <Board />
   </div>
 );
 

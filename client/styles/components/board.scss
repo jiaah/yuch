@@ -1,0 +1,10 @@
+.home-board {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .board {
+    margin-bottom: 1.5em;
+  }
+}
