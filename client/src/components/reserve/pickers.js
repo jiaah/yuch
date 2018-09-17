@@ -12,7 +12,7 @@ const Pickers = ({ today, tommrow, reserveInfo, btnClicked, handleChange }) => {
         defaultValue={tommrow}
         margin="normal"
         fullWidth
-        maxDate={today}
+        // maxDate={today}
         error={btnClicked && date === ''}
         onChange={ev => handleChange(ev)}
         required={true}

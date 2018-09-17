@@ -66,6 +66,8 @@ if (!isProd) {
   // );
 }
 
+app.use('/api', require('./api'));
+
 // error handlers
 app.use((req, res) =>
   res.status(404).send({ message: `Route${req.url} Not found.` }),

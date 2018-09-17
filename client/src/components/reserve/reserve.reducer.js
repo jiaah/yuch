@@ -14,7 +14,6 @@ const initialState = {
   show: false,
   loading: false,
   submitText: '',
-  error: '',
   btnClicked: false,
 };
 

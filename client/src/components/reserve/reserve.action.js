@@ -16,7 +16,7 @@ export const reserve = reserveInfo => dispatch => {
     type: types.RESERVE_REQUEST,
   });
   axios
-    .post('/reserve', reserveInfo)
+    .post('/api/reserve', reserveInfo)
     .then(() =>
       dispatch({
         type: types.RESERVE_SUCCESS,
