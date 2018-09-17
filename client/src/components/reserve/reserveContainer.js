@@ -36,7 +36,6 @@ class ReserveContainer extends React.Component {
       reserveInfo: { name, contact, number, place, date, time },
       onReserve,
       onButtonClicked,
-      btnClicked,
     } = this.props;
     const { now } = moment;
     const finalReserveInfo = {
@@ -49,23 +48,22 @@ class ReserveContainer extends React.Component {
       at: now,
     };
     await onButtonClicked();
-    if (btnClicked) {
-      if (
-        name === '' ||
-        contact === '' ||
-        contact === '(0  )    -    ' ||
-        !!(contact[11].indexOf('_') !== -1) ||
-        !!(contact[12].indexOf('_') !== -1) ||
-        !!(contact[13].indexOf('_') !== -1) ||
-        number === '' ||
-        place === '' ||
-        date === '' ||
-        time === ''
-      ) {
-        return null;
-      }
-      return onReserve(finalReserveInfo);
+
+    if (
+      name === '' ||
+      contact === '' ||
+      contact === '(0  )    -    ' ||
+      !!(contact[11].indexOf('_') !== -1) ||
+      !!(contact[12].indexOf('_') !== -1) ||
+      !!(contact[13].indexOf('_') !== -1) ||
+      number === '' ||
+      place === '' ||
+      date === '' ||
+      time === ''
+    ) {
+      return null;
     }
+    return onReserve(finalReserveInfo);
   };
 
   render() {
