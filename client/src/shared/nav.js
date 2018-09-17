@@ -13,7 +13,7 @@ const Nav = props => {
       <div className="flex justify-between nav--top">
         <a
           className="contact mh-auto f-mini fw3 td-none c-text"
-          href="tel:+81-54-745-0999"
+          href="tel:+82-54-745-0999"
         >
           상담전화
           <span className="f-regular">

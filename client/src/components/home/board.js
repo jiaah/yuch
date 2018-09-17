@@ -32,11 +32,14 @@ const Board = () => (
       </div>
       <div className="tc mb4">
         <h3>&#45; Contact &#45;</h3>
-        <p className="f-regular lh-2">
+        <a
+          className="f-regular lh-2 td-none c-text"
+          href="tel:+82-10-8034-0057"
+        >
           054 &#46; 745 &#46; 0999
           <br />
           010 &#46; 8034 &#46; 0057
-        </p>
+        </a>
       </div>
     </div>
     <footer className="bt tc ph f-mini f-en">
