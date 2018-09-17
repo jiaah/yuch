@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const Pickers = ({ today, tommrow, reserveInfo, btnClicked, handleChange }) => {
+const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
   const { date, time } = reserveInfo;
   return (
     <form>
@@ -12,7 +12,6 @@ const Pickers = ({ today, tommrow, reserveInfo, btnClicked, handleChange }) => {
         defaultValue={tommrow}
         margin="normal"
         fullWidth
-        // maxDate={today}
         error={btnClicked && date === ''}
         onChange={ev => handleChange(ev)}
         required={true}

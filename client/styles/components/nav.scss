@@ -1,14 +1,32 @@
 .nav {
   z-index: 10000;
   background-color: #ffffff;
-}
 
-.nav--top {
-  padding: .5em .7em 0 .7em;
-}
+  .anchor:hover {
+    color: $c-point1;
+    transition: color .2s;
+    -webkit-transition: color .2s;
+    -moz-transition: color .2s;
+    -ms-transition: color .2s;
+    -o-transition: color .2s;
+  }
 
-.nav .nav-menu {
-  padding: .25em 0;
-  display: flex;
-  justify-content: space-around;
+  .contact:hover {
+    font-weight: bold;
+    transition: font-weight .2s;
+    -webkit-transition: font-weight .2s;
+    -moz-transition: font-weight .2s;
+    -ms-transition: font-weight .2s;
+    -o-transition: font-weight .2s;
+  }
+
+  .nav--top {
+    padding: .5em .7em 0 .7em;
+  }
+
+  .nav-menu {
+    padding: .25em 0;
+    display: flex;
+    justify-content: space-around;
+  }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Board = () => (
   <div>
-    <div className="home-board">
+    <div id="board" className="home-board">
       <div className="tc board">
         <h3>&#45; Location &#45;</h3>
         <p>
@@ -39,9 +39,9 @@ const Board = () => (
         </p>
       </div>
     </div>
-    <div className="bt tc ph ls-1 f-mini">
+    <footer className="bt tc ph f-mini f-en">
       &#169; 2018 &#124; All right reserved &#124; YUCH
-    </div>
+    </footer>
   </div>
 );
 export default Board;

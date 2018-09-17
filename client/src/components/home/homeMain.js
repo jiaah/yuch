@@ -6,7 +6,7 @@ import sesame from '../../../assets/img/sesame.jpeg';
 import women from '../../../assets/img/women.jpeg';
 
 const HomeMain = () => (
-  <div className="home-main--container">
+  <div id="home-main" className="home-main--container">
     <div className="home-main--box">
       <img
         className="home-main--img img-1"

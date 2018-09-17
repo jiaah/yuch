@@ -8,9 +8,9 @@ import Ul from './ul';
 const Nav = () => (
   <div className="nav">
     <div className="flex justify-between nav--top">
-      <p className="mh-auto f-mini fw3">
+      <p className="contact mh-auto f-mini fw3">
         상담전화
-        <span className="f-regular"> xxx&#45;xxxx&#45;xxxx</span>
+        <span className="f-regular"> 054&#45;745&#45;0999</span>
       </p>
       <Ul links={data.redirectToLogin} />
     </div>
@@ -18,7 +18,7 @@ const Nav = () => (
       <Ul links={data.redirectToHome} />
     </h1>
     <div className="bt">
-      <Ul links={data.nav} />
+      <Ul anchor={data.nav} />
     </div>
   </div>
 );

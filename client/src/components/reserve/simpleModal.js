@@ -6,7 +6,6 @@ import TextFields from './textFields';
 
 const SimpleModal = ({
   show,
-  today,
   tommrow,
   submitText,
   reserveInfo,
@@ -48,7 +47,6 @@ const SimpleModal = ({
           <Pickers
             reserveInfo={reserveInfo}
             btnClicked={btnClicked}
-            today={today}
             tommrow={tommrow}
             handleChange={handleChange}
           />
