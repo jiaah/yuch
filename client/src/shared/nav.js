@@ -11,10 +11,15 @@ const Nav = props => {
   return (
     <div className="nav">
       <div className="flex justify-between nav--top">
-        <p className="contact mh-auto f-mini fw3">
+        <a
+          className="contact mh-auto f-mini fw3 td-none c-text"
+          href="tel:+81-54-745-0999"
+        >
           상담전화
-          <span className="f-regular"> 054&#45;745&#45;0999</span>
-        </p>
+          <span className="f-regular">
+            &#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999
+          </span>
+        </a>
         <Ul links={data.redirectToLogin} />
       </div>
       <h1>
