@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Loader from '../../utils/loader';
 import * as moment from '../../shared/moment';
@@ -11,6 +13,15 @@ import {
   resetReserve,
   buttonClicked,
 } from './reserve.action';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 const SimpleModal = Loader({
   loader: () => import('./simpleModal' /* webpackChunkName: 'SimpleModal' */),
@@ -31,12 +42,7 @@ class ReserveContainer extends React.Component {
     this.props.onSaveReserveInfo(id, value);
 
   handleSave = async () => {
-    const {
-      reserveInfo,
-      reserveInfo: { name, contact, number, place, date, time },
-      onReserve,
-      onButtonClicked,
-    } = this.props;
+    const { reserveInfo, onReserve, onButtonClicked } = this.props;
     const { now } = moment;
     const finalReserveInfo = {
       name: reserveInfo.name,
@@ -48,21 +54,6 @@ class ReserveContainer extends React.Component {
       at: now,
     };
     await onButtonClicked();
-
-    if (
-      name === '' ||
-      contact === '' ||
-      contact === '(0  )    -    ' ||
-      !!(contact[11].indexOf('_') !== -1) ||
-      !!(contact[12].indexOf('_') !== -1) ||
-      !!(contact[13].indexOf('_') !== -1) ||
-      number === '' ||
-      place === '' ||
-      date === '' ||
-      time === ''
-    ) {
-      return null;
-    }
     return onReserve(finalReserveInfo);
   };
 
@@ -75,13 +66,14 @@ class ReserveContainer extends React.Component {
         <div className="tc white reserve-container">
           <h3 className="white f-en">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
-          <button
-            type="button"
+          <Button
             className="reserve-btn"
             onClick={this.handleOpen}
+            variant="outlined"
+            color="primary"
           >
             예약하기
-          </button>
+          </Button>
         </div>
         {show && (
           <SimpleModal
@@ -118,4 +110,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ReserveContainer);
+)(withStyles(styles)(ReserveContainer));

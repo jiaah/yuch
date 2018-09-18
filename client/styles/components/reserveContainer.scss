@@ -65,9 +65,7 @@
   }
 
   .reserve-btn {
-    font-size: .65em;
-    font-weight: 500;
-    padding: 5px 10px;
+    width: 90px;
   }
 
   .reserve-btn:first-child {
@@ -79,8 +77,4 @@
 .reserve-form--box {
   width: 15em;
   margin: 1.2em auto;
-
-  @include for-tablet-portrait-up {
-    width: 13em;
-  }
 }

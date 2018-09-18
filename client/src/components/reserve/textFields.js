@@ -14,16 +14,20 @@ function TextMaskCustom(props) {
       ref={inputRef}
       mask={[
         '(',
+        ' ',
         /[0-9]/,
         /\d/,
         /\d/,
+        ' ',
         ')',
         ' ',
         /\d/,
         /\d/,
         /\d/,
         /\d/,
+        ' ',
         '-',
+        ' ',
         /\d/,
         /\d/,
         /\d/,
@@ -51,21 +55,24 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         onChange={ev => handleChange(ev)}
         required={true}
       />
-      <FormControl margin="normal" fullWidth>
+      <FormControl
+        margin="normal"
+        fullWidth
+        error={
+          btnClicked &&
+          (contact === '' ||
+            contact === '(0  )    -    ' ||
+            !!(contact[11].indexOf('_') !== -1) ||
+            !!(contact[12].indexOf('_') !== -1) ||
+            !!(contact[13].indexOf('_') !== -1))
+        }
+      >
         <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
         <Input
           id="contact"
           placeholder="(054)-745-0999"
           value={contact}
           inputComponent={TextMaskCustom}
-          error={
-            btnClicked &&
-            (contact === '' ||
-              contact === '(0  )    -    ' ||
-              !!(contact[11].indexOf('_') !== -1) ||
-              !!(contact[12].indexOf('_') !== -1) ||
-              !!(contact[13].indexOf('_') !== -1))
-          }
           onChange={ev => handleChange(ev)}
           required={true}
         />
