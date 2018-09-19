@@ -16,6 +16,18 @@ const styles = theme => ({
     paddingTop: '5px',
     paddingBottom: '5px',
   },
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 33,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 6,
+    [theme.breakpoints.up('md')]: {
+      width: theme.spacing.unit * 36,
+      paddingLeft: theme.spacing.unit * 12,
+      paddingRight: theme.spacing.unit * 12,
+    },
+  },
 });
 
 const SimpleModal = ({
@@ -37,7 +49,14 @@ const SimpleModal = ({
       open={show}
       onClose={handleClose}
     >
-      <div className="tc modal">
+      <div
+        className={`tc modal ${classes.paper}`}
+        style={{
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
         <h3 variant="title" id="modal-title" className="mb2">
           Reservation
         </h3>
@@ -55,7 +74,7 @@ const SimpleModal = ({
           </p>
         ) : null}
         {(submitText === '' || submitText === undefined) && (
-          <div className="reserve-form--box">
+          <div>
             <TextFields
               reserveInfo={reserveInfo}
               btnClicked={btnClicked}
@@ -69,7 +88,7 @@ const SimpleModal = ({
             />
           </div>
         )}
-        <div>
+        <div className="mt2">
           {(submitText === '' || submitText === undefined) && (
             <Button
               onClick={handleSave}

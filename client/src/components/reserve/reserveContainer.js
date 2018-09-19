@@ -16,9 +16,12 @@ import {
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
-    width: '120px',
+    width: '8em',
     paddingTop: '10px',
     paddingBottom: '10px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1em',
+    },
   },
 });
 

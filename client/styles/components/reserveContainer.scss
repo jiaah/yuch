@@ -1,5 +1,5 @@
 .reserve-container {
-  margin: 3em 0;
+  margin: 2em 0;
   padding: 2.2em;
   background-color: $c-point1;
 
@@ -11,40 +11,4 @@
   p {
     margin-bottom: 1.5em;
   }
-}
-
-/* --- Modal --- */
-.modal {
-  width: 17em;
-  padding: 1.7em 1.2em;
-  position: absolute;
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
-  background-color: #fff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-
-  @include for-tablet-portrait-up {
-    width: 23em;
-    padding: 3em;
-  }
-
-  p {
-    font-size: .835em;
-    margin-bottom: 1.5em;
-  }
-
-  .reserve-btn:first-child {
-    margin-right: 1.5em;
-  }
-}
-
-/* --- Form --- */
-.reserve-form--box {
-  width: 15em;
-  margin: 1.2em auto;
 }
