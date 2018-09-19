@@ -33,7 +33,3 @@ export const reserve = reserveInfo => dispatch => {
 export const resetReserve = () => ({
   type: types.RESET_RESERVE,
 });
-
-export const buttonClicked = () => ({
-  type: types.BUTTON_CLICKED,
-});

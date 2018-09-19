@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
+const Pickers = ({ tommrow, reserveInfo, handleChange }) => {
   const { date, time } = reserveInfo;
   return (
     <form>
@@ -12,7 +12,6 @@ const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
         defaultValue={tommrow}
         margin="normal"
         fullWidth
-        error={btnClicked && date === ''}
         onChange={ev => handleChange(ev)}
         required={true}
       />
@@ -26,7 +25,6 @@ const Pickers = ({ tommrow, reserveInfo, btnClicked, handleChange }) => {
         }}
         margin="normal"
         fullWidth
-        error={btnClicked && time === ''}
         onChange={ev => handleChange(ev)}
         required={true}
       />

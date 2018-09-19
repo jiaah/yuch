@@ -9,6 +9,7 @@ import TextFields from './textFields';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
+    width: '90px',
   },
   input: {
     display: 'none',
@@ -16,7 +17,6 @@ const styles = theme => ({
 });
 
 const SimpleModal = ({
-  // props,
   show,
   tommrow,
   submitText,
@@ -25,11 +25,10 @@ const SimpleModal = ({
   handleClose,
   handleChange,
   handleSave,
+  classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
   return (
-    // const { classes } = props;
-
     <Modal
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
@@ -71,10 +70,10 @@ const SimpleModal = ({
         <div>
           {(submitText === '' || submitText === undefined) && (
             <Button
-              className="reserve-btn"
               onClick={handleSave}
               variant="outlined"
-              color="primary"
+              color="primaryColor"
+              className={classes.button}
               disabled={
                 name === '' ||
                 contact === '' ||
@@ -87,16 +86,15 @@ const SimpleModal = ({
                 date === '' ||
                 time === ''
               }
-              // className={classes.button}
             >
               예약완료
             </Button>
           )}
           <Button
-            className="reserve-btn"
             onClick={handleClose}
             variant="outlined"
-            color="primary"
+            color="primaryColor"
+            className={classes.button}
           >
             닫기
           </Button>

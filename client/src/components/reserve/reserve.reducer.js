@@ -73,13 +73,6 @@ const reserve = (state = initialState, action) => {
         show: false,
         error: '',
         submitText: '',
-        btnClicked: false,
-      };
-    }
-    case types.BUTTON_CLICKED: {
-      return {
-        ...state,
-        btnClicked: true,
       };
     }
     default:

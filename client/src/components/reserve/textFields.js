@@ -39,7 +39,7 @@ function TextMaskCustom(props) {
   );
 }
 
-const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
+const TextFields = ({ reserveInfo, handleChange }) => {
   const { name, contact, number, place } = reserveInfo;
 
   return (
@@ -51,22 +51,10 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         InputLabelProps={{ shrink: true }}
         margin="normal"
         fullWidth
-        error={btnClicked && name === ''}
         onChange={ev => handleChange(ev)}
         required={true}
       />
-      <FormControl
-        margin="normal"
-        fullWidth
-        error={
-          btnClicked &&
-          (contact === '' ||
-            contact === '(0  )    -    ' ||
-            !!(contact[11].indexOf('_') !== -1) ||
-            !!(contact[12].indexOf('_') !== -1) ||
-            !!(contact[13].indexOf('_') !== -1))
-        }
-      >
+      <FormControl margin="normal" fullWidth>
         <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
         <Input
           id="contact"
@@ -81,7 +69,6 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         id="number"
         label="인원수"
         value={number}
-        error={btnClicked && (number === '' || number <= 0)}
         onChange={ev => handleChange(ev)}
         type="number"
         InputLabelProps={{
@@ -99,7 +86,6 @@ const TextFields = ({ reserveInfo, btnClicked, handleChange }) => {
         margin="normal"
         fullWidth
         multiline
-        error={btnClicked && place === ''}
         onChange={ev => handleChange(ev)}
         required={true}
       />
