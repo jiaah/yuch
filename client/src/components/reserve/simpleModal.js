@@ -9,7 +9,12 @@ import TextFields from './textFields';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
-    width: '90px',
+    width: '85px',
+  },
+  root: {
+    minHeight: '30px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
   },
 });
 
@@ -70,7 +75,7 @@ const SimpleModal = ({
               onClick={handleSave}
               variant="contained"
               color="secondary"
-              className={classes.button}
+              className={`${classes.button} ${classes.root}`}
               disabled={
                 name === '' ||
                 contact === '' ||
@@ -91,7 +96,7 @@ const SimpleModal = ({
             onClick={handleClose}
             variant="outlined"
             color="secondary"
-            className={classes.button}
+            className={`${classes.button} ${classes.root}`}
           >
             닫기
           </Button>
