@@ -11,9 +11,6 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     width: '90px',
   },
-  input: {
-    display: 'none',
-  },
 });
 
 const SimpleModal = ({
@@ -71,8 +68,8 @@ const SimpleModal = ({
           {(submitText === '' || submitText === undefined) && (
             <Button
               onClick={handleSave}
-              variant="outlined"
-              color="primaryColor"
+              variant="contained"
+              color="secondary"
               className={classes.button}
               disabled={
                 name === '' ||
@@ -93,7 +90,7 @@ const SimpleModal = ({
           <Button
             onClick={handleClose}
             variant="outlined"
-            color="primaryColor"
+            color="secondary"
             className={classes.button}
           >
             닫기

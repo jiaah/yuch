@@ -12,8 +12,8 @@ const root = document.createElement('div');
 document.body.appendChild(root);
 const theme = createMuiTheme({
   palette: {
-    primaryColor: '#AE9A65',
-    secondary: deepPurple500,
+    primary: { main: '#AE9A65' },
+    secondary: { main: '#866586' },
   },
 });
 

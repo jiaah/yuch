@@ -17,9 +17,8 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     width: '120px',
-  },
-  input: {
-    display: 'none',
+    paddingTop: '10px',
+    paddingBottom: '10px',
   },
 });
 
