@@ -43,16 +43,20 @@ class ReserveContainer extends React.Component {
   handleChange = ({ target: { id, value } }) =>
     this.props.onSaveReserveInfo(id, value);
 
-  handleSave = () => {
-    const { reserveInfo, onReserve } = this.props;
+  handleSave = ev => {
+    ev.preventDefault();
+    const {
+      reserveInfo: { name, contact, number, place, date, time },
+      onReserve,
+    } = this.props;
     const { now } = moment;
     const finalReserveInfo = {
-      name: reserveInfo.name,
-      contact: reserveInfo.contact,
-      number: reserveInfo.number,
-      place: reserveInfo.place,
-      date: reserveInfo.date,
-      time: reserveInfo.time,
+      name,
+      contact,
+      number,
+      place,
+      date,
+      time,
       at: now,
     };
     return onReserve(finalReserveInfo);

@@ -91,7 +91,7 @@ const SimpleModal = ({
         <div className="mt2">
           {(submitText === '' || submitText === undefined) && (
             <Button
-              onClick={handleSave}
+              onClick={ev => handleSave(ev)}
               variant="contained"
               color="secondary"
               className={`${classes.button} ${classes.root}`}
