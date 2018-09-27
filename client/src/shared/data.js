@@ -36,3 +36,33 @@ export const redirectToHome = [
     className: 'td-none tc f-en c-point1',
   },
 ];
+
+export const loginForm = [
+  {
+    key: 1,
+    // id: 'name',
+    label: 'id',
+    value: '',
+  },
+  {
+    key: 2,
+    // id: 'password',
+    label: 'password',
+    value: '',
+  },
+];
+
+export const loginBtn = [
+  {
+    key: 1,
+    name: '로그인',
+    variant: 'outlined',
+    color: 'secondary',
+  },
+  {
+    key: 2,
+    name: '가입하기',
+    variant: 'contained',
+    color: 'secondary',
+  },
+];

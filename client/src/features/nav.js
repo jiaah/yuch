@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 /* --- Components --- */
-import * as data from './data';
-import Ul from './ul';
+import * as data from '../shared/data';
+import Ul from '../shared/ul';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.

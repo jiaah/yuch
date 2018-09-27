@@ -2,7 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import Header from './header';
 import HomeMain from './homeMain';
-import ReserveContainer from '../reserve/reserveContainer';
+import ReserveContainer from '../reserve/components/reserveContainer';
 import Board from './board';
 
 const Home = () => [

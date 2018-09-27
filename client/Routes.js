@@ -8,17 +8,17 @@ import Loader from './src/utils/loader';
 
 const Home = Loader({
   loader: () =>
-    import('./src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
+    import('./src/features/home/homeContainer' /* webpackChunkName: 'Home' */),
 });
 
 const Login = Loader({
   loader: () =>
-    import('./src/components/auth/login' /* webpackChunkName: 'Login' */),
+    import('./src/features/auth/login' /* webpackChunkName: 'Login' */),
 });
 
 const NoMatch = Loader({
   loader: () =>
-    import('./src/shared/noMatch' /* webpackChunkName: 'NoMatch' */),
+    import('./src/features/noMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
 const routes = props => (

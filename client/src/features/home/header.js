@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import Nav from '../../shared/nav';
+import Nav from '../nav';
 
 const Header = () => (
   <header>

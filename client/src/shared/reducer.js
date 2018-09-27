@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 /* --- Components --- */
-import componentsReducer from './src/components/reducer';
+import { reducer as reserve } from '../features/reserve/reserve';
 
 export default combineReducers({
-  componentsReducer,
+  reserve,
   routing: routerReducer,
 });

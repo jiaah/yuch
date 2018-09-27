@@ -1,4 +1,4 @@
-import * as types from '../actionTypes';
+import * as types from '../../shared/actionTypes';
 import { tommrow } from '../../shared/moment';
 
 const initialState = {

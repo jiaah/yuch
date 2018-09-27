@@ -2,11 +2,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 /* --- Components --- */
 import Loader from './utils/loader';
+import './firebase/firebase';
 
 require('../styles/main.scss');
 
 const Nav = Loader({
-  loader: () => import('./shared/nav' /* webpackChunkName: 'Nav' */),
+  loader: () => import('./features/nav' /* webpackChunkName: 'Nav' */),
 });
 
 const App = props => {

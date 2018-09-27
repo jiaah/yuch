@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import Loader from '../../utils/loader';
-import * as moment from '../../shared/moment';
+import Loader from '../../../utils/loader';
+import * as moment from '../../../shared/moment';
 /* --- Actions --- */
 import {
   showReserve,
   saveReserveInfo,
   reserve,
   resetReserve,
-} from './reserve.action';
+} from '../reserve.action';
 
 const styles = theme => ({
   button: {
@@ -97,9 +97,9 @@ class ReserveContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  reserveInfo: state.componentsReducer.reservation.reserve,
-  show: state.componentsReducer.reservation.show,
-  submitText: state.componentsReducer.reservation.submitText,
+  reserveInfo: state.reserve.reserve,
+  show: state.reserve.show,
+  submitText: state.reserve.submitText,
 });
 
 const mapDispatchToProps = dispatch => ({
