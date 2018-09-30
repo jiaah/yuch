@@ -74,10 +74,15 @@ class ReserveContainer extends React.Component {
           <SimpleModal
             show={show}
             handleClose={this.handleClose}
-            apiRequest={apiRequest}
-            reserveInfo={reserveInfo}
-            handleChange={this.handleChange}
-            handleSave={this.handleSave}
+            component={
+              <SwitchReserve
+                apiRequest={apiRequest}
+                reserveInfo={reserveInfo}
+                handleChange={this.handleChange}
+                handleSave={this.handleSave}
+                handleClose={this.handleClose}
+              />
+            }
           />
         )}
       </div>

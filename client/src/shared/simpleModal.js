@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
-import SwitchReserve from '../features/reserve/components/switchReserve';
 
 const styles = theme => ({
   paper: {
@@ -18,16 +17,7 @@ const styles = theme => ({
   },
 });
 
-const SimpleModal = ({
-  show,
-  handleClose,
-  classes,
-  // component,
-  apiRequest,
-  reserveInfo,
-  handleChange,
-  handleSave,
-}) => (
+const SimpleModal = ({ show, handleClose, classes, component }) => (
   <Modal
     aria-labelledby="simple-modal-title"
     aria-describedby="simple-modal-description"
@@ -42,13 +32,7 @@ const SimpleModal = ({
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <SwitchReserve
-        apiRequest={apiRequest}
-        reserveInfo={reserveInfo}
-        handleChange={handleChange}
-        handleSave={handleSave}
-        handleClose={handleClose}
-      />
+      {component}
     </div>
   </Modal>
 );
