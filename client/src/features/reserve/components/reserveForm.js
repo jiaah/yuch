@@ -1,11 +1,13 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import MaskedInput from 'react-text-mask';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import { withStyles } from '@material-ui/core/styles';
+import {
+  Button,
+  TextField,
+  FormControl,
+  Input,
+  InputLabel,
+} from '@material-ui/core';
 
 const styles = theme => ({
   button: {
