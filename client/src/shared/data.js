@@ -37,32 +37,8 @@ export const redirectToHome = [
   },
 ];
 
-export const loginForm = [
-  {
-    key: 1,
-    // id: 'name',
-    label: 'id',
-    value: '',
-  },
-  {
-    key: 2,
-    // id: 'password',
-    label: 'password',
-    value: '',
-  },
-];
+export const reserveSuccessMessage =
+  '예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, 유청으로 연락주시길 바랍니다.';
 
-export const loginBtn = [
-  {
-    key: 1,
-    name: '로그인',
-    variant: 'outlined',
-    color: 'secondary',
-  },
-  {
-    key: 2,
-    name: '가입하기',
-    variant: 'contained',
-    color: 'secondary',
-  },
-];
+export const reserveErrorMessage =
+  '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.';

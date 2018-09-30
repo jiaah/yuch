@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import SwitchReserve from './switchReserve';
+import ReserveContents from '../features/reserve/components/reserveForm';
 
 const styles = theme => ({
   paper: {
@@ -21,8 +21,8 @@ const styles = theme => ({
 
 const SimpleModal = ({
   show,
-  apiRequest,
   tommrow,
+  apiRequest,
   reserveInfo,
   handleClose,
   handleChange,
@@ -42,19 +42,15 @@ const SimpleModal = ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
       }}
-    >
-      <h3 variant="title" id="modal-title" className="mb2">
-        Reservation
-      </h3>
-      <SwitchReserve
-        tommrow={tommrow}
-        apiRequest={apiRequest}
-        reserveInfo={reserveInfo}
-        handleChange={handleChange}
-        handleSave={handleSave}
-        handleClose={handleClose}
-      />
-    </div>
+    />
+    <ReserveContents
+      reserveInfo={reserveInfo}
+      tommrow={tommrow}
+      handleChange={handleChange}
+      handleClose={handleClose}
+      handleSave={handleSave}
+      apiRequest={apiRequest}
+    />
   </Modal>
 );
 

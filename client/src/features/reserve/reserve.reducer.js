@@ -13,8 +13,7 @@ const initialState = {
   },
   show: false,
   loading: false,
-  submitText: '',
-  btnClicked: false,
+  apiRequest: '',
 };
 
 const reserve = (state = initialState, action) => {
@@ -46,7 +45,7 @@ const reserve = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        submitText: 'success',
+        apiRequest: 'success',
       };
     }
     case types.RESERVE_FAILURE: {
@@ -54,7 +53,7 @@ const reserve = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error,
-        submitText: 'error',
+        apiRequest: 'error',
       };
     }
     case types.RESET_RESERVE: {
@@ -72,7 +71,7 @@ const reserve = (state = initialState, action) => {
         },
         show: false,
         error: '',
-        submitText: '',
+        apiRequest: '',
       };
     }
     default:
