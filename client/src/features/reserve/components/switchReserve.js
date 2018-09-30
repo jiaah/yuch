@@ -4,7 +4,6 @@ import ReserveForm from './reserveForm';
 import ReserveResolvedText from './reserveResolvedText';
 
 const SwitchReserve = ({
-  tommrow,
   apiRequest,
   reserveInfo,
   handleClose,
@@ -12,9 +11,11 @@ const SwitchReserve = ({
   handleSave,
 }) => (
   <div>
+    <h3 variant="title" id="modal-title" className="mb2">
+      Reservation
+    </h3>
     {apiRequest === '' || apiRequest === undefined ? (
       <ReserveForm
-        tommrow={tommrow}
         reserveInfo={reserveInfo}
         handleChange={handleChange}
         handleSave={handleSave}

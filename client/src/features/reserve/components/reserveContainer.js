@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import Loader from '../../../utils/loader';
-import * as moment from '../../../shared/moment';
 import Buttons from '../../../shared/buttons';
 /* --- Actions --- */
 import {
@@ -13,8 +12,14 @@ import {
 } from '../reserve.action';
 
 const SimpleModal = Loader({
-  loader: () => import('./simpleModal' /* webpackChunkName: 'SimpleModal' */),
+  loader: () =>
+    import('../../../shared/simpleModal' /* webpackChunkName: 'simpleModal' */),
 });
+const SwitchReserve = Loader({
+  loader: () =>
+    import('./switchReserve' /* webpackChunkName: 'switchReserve' */),
+});
+
 class ReserveContainer extends React.Component {
   constructor() {
     super();
@@ -31,13 +36,12 @@ class ReserveContainer extends React.Component {
   handleChange = ({ target: { id, value } }) =>
     this.props.onSaveReserveInfo(id, value);
 
-  handleSave = ev => {
+  handleSave = (ev, timeStamp) => {
     ev.preventDefault();
     const {
       reserveInfo: { name, contact, number, place, date, time },
       onReserve,
     } = this.props;
-    const { now } = moment;
     const finalReserveInfo = {
       name,
       contact,
@@ -45,13 +49,12 @@ class ReserveContainer extends React.Component {
       place,
       date,
       time,
-      at: now,
+      at: timeStamp,
     };
     return onReserve(finalReserveInfo);
   };
 
   render() {
-    const { tommrow } = moment;
     const { show, reserveInfo, apiRequest } = this.props;
 
     return (
@@ -69,13 +72,12 @@ class ReserveContainer extends React.Component {
         </div>
         {show && (
           <SimpleModal
-            tommrow={tommrow}
             show={show}
+            handleClose={this.handleClose}
             apiRequest={apiRequest}
             reserveInfo={reserveInfo}
             handleChange={this.handleChange}
             handleSave={this.handleSave}
-            handleClose={this.handleClose}
           />
         )}
       </div>

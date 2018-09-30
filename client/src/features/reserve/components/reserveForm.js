@@ -1,5 +1,4 @@
 import React from 'react';
-import MaskedInput from 'react-text-mask';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -8,6 +7,9 @@ import {
   Input,
   InputLabel,
 } from '@material-ui/core';
+/* --- Components --- */
+import TextMaskCustom from './textMaskCustom';
+import * as moment from '../../../shared/moment';
 
 const styles = theme => ({
   button: {
@@ -18,41 +20,7 @@ const styles = theme => ({
   },
 });
 
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={inputRef}
-      mask={[
-        '(',
-        ' ',
-        /[0-9]/,
-        /\d/,
-        /\d/,
-        ' ',
-        ')',
-        ' ',
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-        ' ',
-        '-',
-        ' ',
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-      ]}
-      // placeholderChar={'\u2000'}
-      showMask={false}
-    />
-  );
-}
 const ReserveForm = ({
-  tommrow,
   reserveInfo,
   handleClose,
   handleChange,
@@ -60,6 +28,7 @@ const ReserveForm = ({
   classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
+  const { tommrow, now } = moment;
 
   return (
     <div>
@@ -135,7 +104,7 @@ const ReserveForm = ({
       </div>
       <div className="mt2">
         <Button
-          onClick={ev => handleSave(ev)}
+          onClick={ev => handleSave(ev, now)}
           variant="contained"
           color="secondary"
           className={classes.button}

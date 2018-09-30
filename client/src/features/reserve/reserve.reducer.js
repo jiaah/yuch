@@ -9,7 +9,6 @@ const initialState = {
     place: '',
     date: tommrow,
     time: '12:30',
-    at: '',
   },
   show: false,
   loading: false,
