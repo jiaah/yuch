@@ -6,7 +6,7 @@ module.exports = {
   setupTestFrameworkScriptFile: require.resolve(
     '../test/setup-test-framework.js',
   ),
-  modulePaths: ['<rootDir>/src', '<rootDir>/test'],
+  modulePaths: ['<rootDir>/client/src', '<rootDir>/client/src/__test__'],
   moduleNameMapper: {
     // module must come first
     // '\\.module\\.css$': 'identity-obj-proxy',

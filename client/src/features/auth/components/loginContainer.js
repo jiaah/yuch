@@ -1,9 +1,9 @@
 import React from 'react';
 /* --- Components --- */
 import LoginForm from './loginForm';
-import Buttons from '../../shared/buttons';
+import Buttons from '../../../shared/buttons';
 
-class Login extends React.Component {
+class LoginContainer extends React.Component {
   constructor() {
     super();
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -48,4 +48,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default LoginContainer;
