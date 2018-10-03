@@ -1,5 +1,5 @@
-import * as types from '../shared/actionTypes';
-import { saveReserveInfo } from '../features/reserve/reserve.action';
+import * as types from '../../shared/actionTypes';
+import { saveReserveInfo } from '../../features/reserve/reserve.action';
 
 test('should create an action to update reserve info', () => {
   const id = 'date';
