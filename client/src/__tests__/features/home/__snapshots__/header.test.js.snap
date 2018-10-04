@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<header>
+  <withRouter(Connect(Nav)) />
+  <div
+    className="header-text--box"
+  >
+    <h2>
+      <span
+        className="f-regular f-en lh-3"
+      >
+        NO MSG!
+      </span>
+      <br />
+      오늘도 열심히 일하는 당신에게 착한 가격의 집밥을 선물하세요.
+    </h2>
+  </div>
+</header>
+`;

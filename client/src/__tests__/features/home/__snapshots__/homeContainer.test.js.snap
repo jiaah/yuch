@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+Array [
+  <Header
+    key="1"
+  />,
+  <HomeMain
+    key="2"
+  />,
+  <Connect(ReserveContainer)
+    key="3"
+  />,
+  <Board
+    key="4"
+  />,
+]
+`;

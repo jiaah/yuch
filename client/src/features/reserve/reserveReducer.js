@@ -13,9 +13,10 @@ const initialState = {
   show: false,
   loading: false,
   apiRequest: '',
+  error: '',
 };
 
-const reserve = (state = initialState, action) => {
+const reserveReducer = (state = initialState, action) => {
   const { id, value } = action;
 
   switch (action.type) {
@@ -65,10 +66,10 @@ const reserve = (state = initialState, action) => {
           number: '',
           place: '',
           date: tommrow,
-          time: '12:30 PM',
-          at: '',
+          time: '12:30',
         },
         show: false,
+        loading: false,
         error: '',
         apiRequest: '',
       };
@@ -78,4 +79,4 @@ const reserve = (state = initialState, action) => {
   }
 };
 
-export default reserve;
+export default reserveReducer;

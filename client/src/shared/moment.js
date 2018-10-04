@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const today = moment().format('YYYY-MM-DD');
 export const tommrow = moment()

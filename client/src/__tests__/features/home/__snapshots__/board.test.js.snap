@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<div>
+  <div
+    className="home-board"
+    id="board"
+  >
+    <div
+      className="tc mb4"
+    >
+      <h3>
+        - Location -
+      </h3>
+      <p>
+        경주시 황성동 1071-1번지
+        <br />
+        홈플러스 근처 공단 안
+        <br />
+        강남골프장 맞은 편
+      </p>
+    </div>
+    <div
+      className="mb4"
+    >
+      <h3
+        className="tc"
+      >
+        - Hours -
+      </h3>
+      <div
+        className="flex justify-center"
+      >
+        <p
+          className="mr3 float-left"
+        >
+          평일
+          <br />
+          <br />
+          공휴일/주말
+        </p>
+        <p>
+          중식  11 : 30 - 13 : 30
+          <br />
+          석식  16 : 30 - 18 : 00
+          <br />
+          중식  11 : 30 - 13 : 30
+        </p>
+      </div>
+    </div>
+    <div
+      className="tc mb4"
+    >
+      <h3>
+        - Contact -
+      </h3>
+      <a
+        className="f-regular lh-2 td-none c-text"
+        href="tel:+82-10-8034-0057"
+      >
+        054 . 745 . 0999
+        <br />
+        010 . 8034 . 0057
+      </a>
+    </div>
+  </div>
+  <footer
+    className="bt tc ph f-mini f-en"
+  >
+    © 2018 | All right reserved | YUCH
+  </footer>
+</div>
+`;

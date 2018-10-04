@@ -15,11 +15,12 @@ export const reserve = reserveInfo => dispatch => {
   dispatch({
     type: types.RESERVE_REQUEST,
   });
-  axios
+  return axios
     .post('/api/reserve', reserveInfo)
     .then(() =>
       dispatch({
         type: types.RESERVE_SUCCESS,
+        reserveInfo,
       }),
     )
     .catch(error =>

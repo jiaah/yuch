@@ -9,7 +9,7 @@ import {
   saveReserveInfo,
   reserve,
   resetReserve,
-} from '../reserve.action';
+} from '../reserveAction';
 
 const SimpleModal = Loader({
   loader: () =>
@@ -49,7 +49,7 @@ class ReserveContainer extends React.Component {
       place,
       date,
       time,
-      at: timeStamp,
+      createdAt: timeStamp,
     };
     return onReserve(finalReserveInfo);
   };

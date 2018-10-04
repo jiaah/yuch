@@ -19,7 +19,7 @@ class Nav extends React.Component {
 
   handleUserLogout = ev => {
     ev.preventDefault();
-    this.props.onStartLogout();
+    this.props.startLogout();
   };
 
   render() {
@@ -55,7 +55,7 @@ class Nav extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onStartLogout: () => dispatch(startLogout()),
+  startLogout: () => dispatch(startLogout()),
 });
 
 export default withRouter(
