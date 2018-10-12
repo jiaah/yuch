@@ -24,92 +24,55 @@ describe('<ReserveForm />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('when typeing into inputs', () => {
-    describe('name', () => {
+  describe('when typeing into input, calls a callback function', () => {
+    it('name', () => {
       const ev = { target: { id: 'name', value: 'Yuchung' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-name').simulate('change', ev);
-      });
-
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-name').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
 
-    describe('contact', () => {
+    it('contact', () => {
       const ev = { target: { id: 'contact', value: '123123123' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-contact').simulate('change', ev);
-      });
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-contact').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
 
-    describe('number', () => {
+    it('number', () => {
       const ev = { target: { id: 'number', value: '100' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-number').simulate('change', ev);
-      });
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-number').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
 
-    describe('place', () => {
+    it('place', () => {
       const ev = { target: { id: 'place', value: 'Gyeongju' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-place').simulate('change', ev);
-      });
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-place').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
 
-    describe('date', () => {
+    it('date', () => {
       const ev = { target: { id: 'date', value: '2019-12-25' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-date').simulate('change', ev);
-      });
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-date').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
 
-    describe('time', () => {
+    it('time', () => {
       const ev = { target: { id: 'time', value: '2:30 PM' } };
-
-      beforeEach(() => {
-        wrapper.find('.input-time').simulate('change', ev);
-      });
-      it('calls save Reserve Info callback', () => {
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+      wrapper.find('.input-time').simulate('change', ev);
+      expect(mockChange).toHaveBeenCalledWith(ev);
     });
   });
 
-  describe('when clicking reserve complete button', () => {
+  describe('when clicking button, calls a callback function', () => {
     const mockedEvent = { target: {} };
     const { now } = mockData;
 
-    beforeEach(() => {
+    it('reserve button', () => {
       wrapper.find('.btn-reserve').simulate('click', mockedEvent, now);
-    });
-    it('calls save Reserve Info callback', () => {
       expect(mockSave).toHaveBeenCalledWith(mockedEvent, now);
     });
-  });
 
-  describe('when clicking close button', () => {
-    beforeEach(() => {
+    it('close button', () => {
       wrapper.find('.btn-close').simulate('click');
-    });
-    it('calls save Reserve Info callback', () => {
       expect(mockClose).toHaveBeenCalledWith();
     });
   });
