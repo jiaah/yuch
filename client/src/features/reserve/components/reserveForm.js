@@ -31,7 +31,7 @@ const ReserveForm = ({
   const { tommrow, now } = moment;
 
   return (
-    <div>
+    <React.Fragment>
       <div>
         <TextField
           id="name"
@@ -42,6 +42,7 @@ const ReserveForm = ({
           fullWidth
           onChange={ev => handleChange(ev)}
           required={true}
+          className="input-name"
         />
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
@@ -52,6 +53,7 @@ const ReserveForm = ({
             inputComponent={TextMaskCustom}
             onChange={ev => handleChange(ev)}
             required={true}
+            className="input-contact"
           />
         </FormControl>
         <TextField
@@ -66,6 +68,7 @@ const ReserveForm = ({
           margin="normal"
           fullWidth
           required={true}
+          className="input-number"
         />
         <TextField
           id="place"
@@ -77,6 +80,7 @@ const ReserveForm = ({
           multiline
           onChange={ev => handleChange(ev)}
           required={true}
+          className="input-place"
         />
         <TextField
           id="date"
@@ -87,6 +91,7 @@ const ReserveForm = ({
           fullWidth
           onChange={ev => handleChange(ev)}
           required={true}
+          className="input-date"
         />
         <TextField
           id="time"
@@ -100,6 +105,7 @@ const ReserveForm = ({
           fullWidth
           onChange={ev => handleChange(ev)}
           required={true}
+          className="input-time"
         />
       </div>
       <div className="mt2">
@@ -107,7 +113,7 @@ const ReserveForm = ({
           onClick={ev => handleSave(ev, now)}
           variant="contained"
           color="secondary"
-          className={classes.button}
+          className={`btn-reserve ${classes.button}`}
           disabled={
             name === '' ||
             contact === '' ||
@@ -127,12 +133,12 @@ const ReserveForm = ({
           onClick={handleClose}
           variant="outlined"
           color="secondary"
-          className={classes.button}
+          className={`btn-close ${classes.button}`}
         >
           닫기
         </Button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

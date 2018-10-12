@@ -4,7 +4,7 @@ import Buttons from '../../../shared/buttons';
 import * as data from '../../../shared/data';
 
 const ReserveResolvedText = ({ apiRequest, handleClose }) => (
-  <div>
+  <React.Fragment>
     {apiRequest === 'success' ? (
       <p>{data.reserveSuccessMessage}</p>
     ) : apiRequest === 'error' ? (
@@ -23,7 +23,7 @@ const ReserveResolvedText = ({ apiRequest, handleClose }) => (
         name="닫기"
       />
     </div>
-  </div>
+  </React.Fragment>
 );
 
 export default ReserveResolvedText;

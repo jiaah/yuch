@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import { render } from 'react-testing-library';
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
 import Buttons from '../shared/buttons';
@@ -11,7 +10,7 @@ import { startLogout } from './auth/login.action';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.
-class Nav extends React.Component {
+class Nav extends Component {
   constructor() {
     super();
     this.handleUserLogout = this.handleUserLogout.bind(this);

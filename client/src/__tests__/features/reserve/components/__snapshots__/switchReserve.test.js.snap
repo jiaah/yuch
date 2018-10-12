@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<switchReserve /> render reserve form when api request not made 1`] = `
+<Fragment>
+  <h3
+    className="mb2"
+    id="modal-title"
+    variant="title"
+  >
+    Reservation
+  </h3>
+  <WithStyles(ReserveForm) />
+</Fragment>
+`;
+
+exports[`<switchReserve /> render reserve request resolved text when api request is made 1`] = `
+<Fragment>
+  <h3
+    className="mb2"
+    id="modal-title"
+    variant="title"
+  >
+    Reservation
+  </h3>
+  <ReserveResolvedText
+    apiRequest="success"
+  />
+</Fragment>
+`;

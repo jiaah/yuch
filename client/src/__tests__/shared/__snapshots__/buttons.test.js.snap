@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`material ui button display button correctly 1`] = `
+<WithStyles(Button)
+  className={
+    Object {
+      "paddingBottom": "5px",
+      "paddingTop": "5px",
+      "width": "6em",
+    }
+  }
+  color="secondary"
+  onClick={[Function]}
+  variant="contained"
+>
+  예약하기
+</WithStyles(Button)>
+`;

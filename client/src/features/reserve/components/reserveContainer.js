@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import Loader from '../../../utils/loader';
@@ -20,7 +20,7 @@ const SwitchReserve = Loader({
     import('./switchReserve' /* webpackChunkName: 'switchReserve' */),
 });
 
-class ReserveContainer extends React.Component {
+class ReserveContainer extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
@@ -103,6 +103,7 @@ const mapDispatchToProps = dispatch => ({
   onResetReserve: () => dispatch(resetReserve()),
 });
 
+export const Unwrapped = ReserveContainer;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

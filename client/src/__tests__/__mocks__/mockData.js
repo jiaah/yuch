@@ -1,11 +1,11 @@
-import moment from 'moment';
+import moment from './moment';
 
-const tommrow = moment()
+export const tommrow = moment()
   .startOf('day')
   .add(1, 'day')
   .format('YYYY-MM-DD');
 
-const now = moment().format('MMMM Do YYYY, h:mm a');
+export const now = moment().format('MMMM Do YYYY, h:mm a');
 
 export const reserveInitState = {
   reserve: {
@@ -45,4 +45,13 @@ export const reserveInfo = {
   date: '2019-11-11',
   time: '12:30',
   createdAt: now,
+};
+
+export const reserveInfoInit = {
+  name: '',
+  contact: '(0  )    -    ',
+  number: '',
+  place: '',
+  date: tommrow,
+  time: '12:30',
 };

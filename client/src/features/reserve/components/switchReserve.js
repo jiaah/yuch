@@ -10,7 +10,7 @@ const SwitchReserve = ({
   handleChange,
   handleSave,
 }) => (
-  <div>
+  <React.Fragment>
     <h3 variant="title" id="modal-title" className="mb2">
       Reservation
     </h3>
@@ -24,7 +24,7 @@ const SwitchReserve = ({
     ) : (
       <ReserveResolvedText handleClose={handleClose} apiRequest={apiRequest} />
     )}
-  </div>
+  </React.Fragment>
 );
 
 export default SwitchReserve;

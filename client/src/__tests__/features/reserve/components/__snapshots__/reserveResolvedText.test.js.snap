@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<reserveResolvedText /> display null 1`] = `
+<Fragment>
+  <div
+    className="mt2"
+  >
+    <WithStyles(Buttons)
+      classNameValue="button"
+      colorValue="secondary"
+      handleClick={[MockFunction]}
+      name="닫기"
+      variantValue="outlined"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`<reserveResolvedText /> display reserve request error text 1`] = `
+<Fragment>
+  <p>
+    프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.
+     
+    <br />
+    <br />
+    <span
+      className="b"
+    >
+      상담전화 054-745-0999
+    </span>
+  </p>
+  <div
+    className="mt2"
+  >
+    <WithStyles(Buttons)
+      classNameValue="button"
+      colorValue="secondary"
+      handleClick={[MockFunction]}
+      name="닫기"
+      variantValue="outlined"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`<reserveResolvedText /> display reserve request success text 1`] = `
+<Fragment>
+  <p>
+    예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, 유청으로 연락주시길 바랍니다.
+  </p>
+  <div
+    className="mt2"
+  >
+    <WithStyles(Buttons)
+      classNameValue="button"
+      colorValue="secondary"
+      handleClick={[MockFunction]}
+      name="닫기"
+      variantValue="outlined"
+    />
+  </div>
+</Fragment>
+`;

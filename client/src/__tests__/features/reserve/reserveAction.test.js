@@ -1,7 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import * as types from '../../../shared/actionTypes';
-import * as mockData from '../../../../__mocks__/mockData';
+import * as mockData from '../../__mocks__/mockData';
 import {
   showReserve,
   saveReserveInfo,
@@ -9,7 +11,9 @@ import {
   resetReserve,
 } from '../../../features/reserve/reserveAction';
 
+// config axios && store/ middleware
 const mockAxios = new MockAdapter(axios);
+const mockStore = configureMockStore([thunk]);
 
 test('should generate an show reserve action to open the reserve modal', () => {
   expect(showReserve()).toEqual({ type: types.SHOW_RESERVE });
