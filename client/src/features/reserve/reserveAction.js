@@ -1,12 +1,6 @@
 import axios from 'axios';
 import * as types from '../../shared/actionTypes';
 
-export const saveReserveInfo = (id, value) => ({
-  type: types.SAVE_RESERVE_INFO,
-  id,
-  value,
-});
-
 export const showReserve = () => ({
   type: types.SHOW_RESERVE,
 });

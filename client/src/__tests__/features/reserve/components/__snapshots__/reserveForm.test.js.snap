@@ -77,7 +77,6 @@ exports[`<ReserveForm /> renders correctly 1`] = `
     />
     <TextField
       className="input-date"
-      defaultValue="1970-01-02"
       fullWidth={true}
       id="date"
       label="날짜"

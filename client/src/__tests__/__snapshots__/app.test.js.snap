@@ -1,66 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> renders correctly with Nav on index page 1`] = `
-<div
-  id="app"
->
-  <HelmetWrapper
-    defer={true}
-    encodeSpecialCharacters={true}
-  >
-    <meta
-      charset="UTF-8"
-    />
-    <meta
-      content="width=device-width, initial-scale=1"
-      name="viewport"
-    />
-    <title>
-      ###
-    </title>
-    <meta
-      content="###"
-      property="og:title"
-    />
-    <meta
-      content="###"
-      property="og:description"
-    />
-    <meta
-      content="###"
-      property="og:type"
-    />
-    <meta
-      content="###"
-      property="og:url"
-    />
-    <meta
-      content="###"
-      property="og:image"
-    />
-    <link
-      href="http://domain/humans.txt"
-      rel="author"
-      type="text/plain"
-    />
-    <link
-      href="http://domain/robots.txt"
-      rel="author"
-      type="text/plain"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-      rel="stylesheet"
-    />
-  </HelmetWrapper>
-</div>
-`;
-
-exports[`<App /> renders correctly with Nav on sub pages 1`] = `
+exports[`<App /> on sub pages renders correctly with Nav 1`] = `
 <div
   id="app"
 >
@@ -118,5 +58,65 @@ exports[`<App /> renders correctly with Nav on sub pages 1`] = `
     />
   </HelmetWrapper>
   <LoadableComponent />
+</div>
+`;
+
+exports[`<App /> renders correctly with Nav on index page 1`] = `
+<div
+  id="app"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <meta
+      charset="UTF-8"
+    />
+    <meta
+      content="width=device-width, initial-scale=1"
+      name="viewport"
+    />
+    <title>
+      ###
+    </title>
+    <meta
+      content="###"
+      property="og:title"
+    />
+    <meta
+      content="###"
+      property="og:description"
+    />
+    <meta
+      content="###"
+      property="og:type"
+    />
+    <meta
+      content="###"
+      property="og:url"
+    />
+    <meta
+      content="###"
+      property="og:image"
+    />
+    <link
+      href="http://domain/humans.txt"
+      rel="author"
+      type="text/plain"
+    />
+    <link
+      href="http://domain/robots.txt"
+      rel="author"
+      type="text/plain"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      rel="stylesheet"
+    />
+  </HelmetWrapper>
 </div>
 `;

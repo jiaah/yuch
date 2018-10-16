@@ -1,40 +1,13 @@
 import * as types from '../../shared/actionTypes';
-import { tommrow } from '../../shared/moment';
 
 const initialState = {
-  reserve: {
-    name: '',
-    contact: '(0  )    -    ',
-    number: '',
-    place: '',
-    date: tommrow,
-    time: '12:30',
-  },
-  show: false,
   loading: false,
   apiRequest: '',
   error: '',
 };
 
 const reserveReducer = (state = initialState, action) => {
-  const { id, value } = action;
-
   switch (action.type) {
-    case types.SAVE_RESERVE_INFO: {
-      return {
-        ...state,
-        reserve: {
-          ...state.reserve,
-          [id]: value,
-        },
-      };
-    }
-    case types.SHOW_RESERVE: {
-      return {
-        ...state,
-        show: !state.show,
-      };
-    }
     case types.RESERVE_REQUEST: {
       return {
         ...state,
@@ -59,16 +32,6 @@ const reserveReducer = (state = initialState, action) => {
     case types.RESET_RESERVE: {
       return {
         ...state,
-        reserve: {
-          ...state.reserve,
-          name: '',
-          contact: '(0  )    -    ',
-          number: '',
-          place: '',
-          date: tommrow,
-          time: '12:30',
-        },
-        show: false,
         loading: false,
         error: '',
         apiRequest: '',

@@ -10,24 +10,6 @@ test('should setup default reserve values', () => {
   expect(state).toEqual(mockData.reserveInitState);
 });
 
-test('should update reserve info obj', () => {
-  const id = 'number';
-  const value = 60;
-  const state = reserveReducer(reserveInitState, {
-    type: types.SAVE_RESERVE_INFO,
-    id,
-    value,
-  });
-  expect(state.reserve.number).toBe(60);
-});
-
-test('should set reserve show status', () => {
-  const state = reserveReducer(reserveInitState, {
-    type: types.SHOW_RESERVE,
-  });
-  expect(state).toEqual({ ...reserveInitState, show: true });
-});
-
 test('should set loading status on reserve api request', () => {
   const state = reserveReducer(reserveInitState, {
     type: types.RESERVE_REQUEST,

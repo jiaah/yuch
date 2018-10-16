@@ -24,6 +24,15 @@ describe('<ReserveForm />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('creates inputs', () => {
+    expect(wrapper.find('.input-name').exists()).toBe(true);
+    expect(wrapper.find('.input-contact').exists()).toBe(true);
+    expect(wrapper.find('.input-number').exists()).toBe(true);
+    expect(wrapper.find('.input-place').exists()).toBe(true);
+    expect(wrapper.find('.input-date').exists()).toBe(true);
+    expect(wrapper.find('.input-time').exists()).toBe(true);
+  });
+
   describe('when typeing into input, calls a callback function', () => {
     it('name', () => {
       const ev = { target: { id: 'name', value: 'Yuchung' } };
@@ -64,11 +73,10 @@ describe('<ReserveForm />', () => {
 
   describe('when clicking button, calls a callback function', () => {
     const mockedEvent = { target: {} };
-    const { now } = mockData;
 
     it('reserve button', () => {
-      wrapper.find('.btn-reserve').simulate('click', mockedEvent, now);
-      expect(mockSave).toHaveBeenCalledWith(mockedEvent, now);
+      wrapper.find('.btn-reserve').simulate('click', mockedEvent);
+      expect(mockSave).toHaveBeenCalledWith(mockedEvent);
     });
 
     it('close button', () => {

@@ -18,12 +18,19 @@ describe('<App />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders correctly with Nav on sub pages', () => {
+  describe('on sub pages', () => {
     const props = {
       history: { location: { pathname: '/login' } },
       Nav: NavWrapper,
     };
     const wrapper = shallow(<App {...props} />);
-    expect(wrapper).toMatchSnapshot();
+
+    it('contains Loadable Component', () => {
+      expect(wrapper.find('LoadableComponent').exists()).toBe(true);
+    });
+
+    it('renders correctly with Nav', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

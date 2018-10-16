@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
-import * as moment from '../../../shared/moment';
 
 const styles = theme => ({
   button: {
@@ -22,13 +21,13 @@ const styles = theme => ({
 
 const ReserveForm = ({
   reserveInfo,
+  tomorrow,
   handleClose,
   handleChange,
   handleSave,
   classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
-  const { tommrow, now } = moment;
 
   return (
     <React.Fragment>
@@ -86,7 +85,7 @@ const ReserveForm = ({
           id="date"
           label="날짜"
           type="date"
-          defaultValue={tommrow}
+          defaultValue={tomorrow}
           margin="normal"
           fullWidth
           onChange={ev => handleChange(ev)}
@@ -110,7 +109,7 @@ const ReserveForm = ({
       </div>
       <div className="mt2">
         <Button
-          onClick={ev => handleSave(ev, now)}
+          onClick={ev => handleSave(ev)}
           variant="contained"
           color="secondary"
           className={`btn-reserve ${classes.button}`}

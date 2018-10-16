@@ -3,13 +3,9 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import Loader from '../../../utils/loader';
 import Buttons from '../../../shared/buttons';
+import * as moment from '../../../shared/moment';
 /* --- Actions --- */
-import {
-  showReserve,
-  saveReserveInfo,
-  reserve,
-  resetReserve,
-} from '../reserveAction';
+import { reserve, resetReserve } from '../reserveAction';
 
 const SimpleModal = Loader({
   loader: () =>
@@ -19,43 +15,55 @@ const SwitchReserve = Loader({
   loader: () =>
     import('./switchReserve' /* webpackChunkName: 'switchReserve' */),
 });
-
+/* react/no-unused-state:false */
 class ReserveContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSave = this.handleSave.bind(this);
+
+    this.state = {
+      show: false,
+      name: '',
+      contact: '(0  )    -    ',
+      number: '',
+      place: '',
+      date: moment.tomorrow,
+      time: '12:30',
+    };
   }
 
-  handleOpen = () => this.props.onShowReserve();
+  handleOpen = () => this.setState({ show: true });
 
-  handleClose = () => this.props.onResetReserve();
+  handleClose = () => {
+    this.setState({ show: false });
+    this.props.onResetReserve();
+  };
 
-  handleChange = ({ target: { id, value } }) =>
-    this.props.onSaveReserveInfo(id, value);
+  handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
 
-  handleSave = (ev, timeStamp) => {
+  handleSave = ev => {
     ev.preventDefault();
-    const {
-      reserveInfo: { name, contact, number, place, date, time },
-      onReserve,
-    } = this.props;
-    const finalReserveInfo = {
+    const { onReserve } = this.props;
+    const { name, contact, number, place, date, time } = this.state;
+    const reserveInfo = {
       name,
       contact,
       number,
       place,
       date,
       time,
-      createdAt: timeStamp,
+      createdAt: moment.timeStamp,
     };
-    return onReserve(finalReserveInfo);
+    return onReserve(reserveInfo);
   };
 
   render() {
-    const { show, reserveInfo, apiRequest } = this.props;
+    const { apiRequest } = this.props;
+    const { show } = this.state;
+    const { tomorrow } = moment;
 
     return (
       <div id="reserve">
@@ -77,7 +85,8 @@ class ReserveContainer extends Component {
             component={
               <SwitchReserve
                 apiRequest={apiRequest}
-                reserveInfo={reserveInfo}
+                reserveInfo={this.state}
+                tomorrow={tomorrow}
                 handleChange={this.handleChange}
                 handleSave={this.handleSave}
                 handleClose={this.handleClose}
@@ -91,14 +100,10 @@ class ReserveContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  reserveInfo: state.reserve.reserve,
-  show: state.reserve.show,
   apiRequest: state.reserve.apiRequest,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSaveReserveInfo: (id, value) => dispatch(saveReserveInfo(id, value)),
-  onShowReserve: () => dispatch(showReserve()),
   onReserve: reserveInfo => dispatch(reserve(reserveInfo)),
   onResetReserve: () => dispatch(resetReserve()),
 });
