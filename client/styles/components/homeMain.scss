@@ -9,7 +9,7 @@
 }
 
 .home-main--box {
-  margin-top: 3em;
+  margin-top: 100px;
 
   @include for-desktop-up {
     display: flex;
@@ -20,6 +20,7 @@
 .home-main--img {
   width: 100%;
   height: auto;
+  height: 320px;
 
   @include for-desktop-up {
     width: 45%;
@@ -27,44 +28,15 @@
 }
 
 .home-main--text {
-  margin-top: 1.5em;
+  margin: auto 0;
 
   @include for-desktop-up {
     width: 45%;
-    margin-top: 0;
   }
 }
 
 .reverse {
   @include for-desktop-up {
     flex-direction: row-reverse;
-  }
-}
-
-.img-1 {
-  @include for-desktop-up {
-    margin-top: 5em;
-    height: 300px;
-  }
-}
-
-.img-2 {
-  @include for-desktop-up {
-    margin-top: -5.5em;
-    height: 420px;
-  }
-}
-
-.img-3 {
-  @include for-desktop-up {
-    margin-top: -6.5em;
-    height: 400px;
-  }
-}
-
-.img-4 {
-  @include for-desktop-up {
-    margin-top: -3.5em;
-    height: 300px;
   }
 }

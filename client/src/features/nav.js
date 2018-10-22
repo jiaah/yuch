@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 /* --- Components --- */
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
@@ -27,25 +28,27 @@ class Nav extends Component {
       <div className="nav">
         <div className="flex justify-between nav--top">
           <a
-            className="contact mh-auto f-mini fw3 td-none c-text"
+            className="contact mh-auto pa2 f-mini b td-none br white"
             href="tel:+82-54-745-0999"
           >
-            상담전화
-            <span className="f-regular">
-              &#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999
-            </span>
+            상담전화&#8201;
+            <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
           </a>
-          <Ul links={data.redirectToLogin} />
-          <Buttons
+          <Link className="login-btn td-none c-text br f-mini" to="/login">
+            로그인
+          </Link>
+          {/* <Buttons
             handleClick={this.handleUserLogout}
             variantValue="contained"
             colorValue="secondary"
             classNameValue="button"
             name="로그아웃"
-          />
+          /> */}
         </div>
-        <h1>
-          <Ul links={data.redirectToHome} />
+        <h1 className="tc c-point1">
+          <Link className="f-large td-none c-point1" to="/">
+            YUCHUNG
+          </Link>
         </h1>
         <div className="bt">{isHomepage && <Ul anchor={data.nav} />}</div>
       </div>

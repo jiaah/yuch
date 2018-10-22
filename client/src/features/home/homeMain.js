@@ -8,11 +8,7 @@ import women from '../../../assets/img/women.jpeg';
 const HomeMain = () => (
   <div id="home-main" className="home-main--container">
     <div className="home-main--box">
-      <img
-        className="home-main--img img-1"
-        src={delivery}
-        alt="신선한 음식 배달"
-      />
+      <img className="home-main--img" src={delivery} alt="신선한 음식 배달" />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR RESTAURANT</p>
         <h3>당신의 위한 유청 서비스</h3>
@@ -31,7 +27,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <img className="home-main--img img-2" src={localfood} alt="지역 농산품" />
+      <img className="home-main--img" src={localfood} alt="지역 농산품" />
       <div className="home-main--text">
         <h3>신선한 지역 농산물</h3>
         <p>
@@ -41,7 +37,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box">
-      <img className="home-main--img img-3" src={sesame} alt="참기름" />
+      <img className="home-main--img" src={sesame} alt="참기름" />
       <div className="home-main--text">
         <h3>
           경주시 지원사업 장려
@@ -64,11 +60,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <img
-        className="home-main--img img-4"
-        src={women}
-        alt="여성을 위한 기업"
-      />
+      <img className="home-main--img" src={women} alt="여성을 위한 기업" />
       <div className="home-main--text">
         <h3>여성이 일하기 좋은 기업</h3>
         <p>

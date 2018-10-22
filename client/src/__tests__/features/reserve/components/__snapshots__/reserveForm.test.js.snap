@@ -112,7 +112,6 @@ exports[`<ReserveForm /> renders correctly 1`] = `
     <WithStyles(Button)
       className="btn-reserve undefined"
       color="secondary"
-      disabled={true}
       onClick={[Function]}
       variant="contained"
     >

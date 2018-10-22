@@ -22,9 +22,10 @@ const styles = theme => ({
 const ReserveForm = ({
   reserveInfo,
   tomorrow,
+  submitBtnClicked,
   handleClose,
   handleChange,
-  handleSave,
+  handleSubmit,
   classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
@@ -39,11 +40,24 @@ const ReserveForm = ({
           InputLabelProps={{ shrink: true }}
           margin="normal"
           fullWidth
+          error={submitBtnClicked && name === ''}
+          // helperText={nameErrorText}
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-name"
         />
-        <FormControl margin="normal" fullWidth>
+        <FormControl
+          margin="normal"
+          fullWidth
+          error={
+            submitBtnClicked &&
+            (contact === '' ||
+              contact === '(0  )    -    ' ||
+              !!(contact[11].indexOf('_') !== -1) ||
+              !!(contact[12].indexOf('_') !== -1) ||
+              !!(contact[13].indexOf('_') !== -1))
+          }
+        >
           <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
           <Input
             id="contact"
@@ -109,22 +123,22 @@ const ReserveForm = ({
       </div>
       <div className="mt2">
         <Button
-          onClick={ev => handleSave(ev)}
+          onClick={ev => handleSubmit(ev)}
           variant="contained"
           color="secondary"
           className={`btn-reserve ${classes.button}`}
-          disabled={
-            name === '' ||
-            contact === '' ||
-            contact === '(0  )    -    ' ||
-            !!(contact[11].indexOf('_') !== -1) ||
-            !!(contact[12].indexOf('_') !== -1) ||
-            !!(contact[13].indexOf('_') !== -1) ||
-            number === '' ||
-            place === '' ||
-            date === '' ||
-            time === ''
-          }
+          // disabled={
+          //   name === '' ||
+          //   contact === '' ||
+          //   contact === '(0  )    -    ' ||
+          //   !!(contact[11].indexOf('_') !== -1) ||
+          //   !!(contact[12].indexOf('_') !== -1) ||
+          //   !!(contact[13].indexOf('_') !== -1) ||
+          //   number === '' ||
+          //   place === '' ||
+          //   date === '' ||
+          //   time === ''
+          // }
         >
           예약완료
         </Button>

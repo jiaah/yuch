@@ -7,9 +7,10 @@ const SwitchReserve = ({
   apiRequest,
   reserveInfo,
   tomorrow,
+  submitBtnClicked,
   handleClose,
   handleChange,
-  handleSave,
+  handleSubmit,
 }) => (
   <React.Fragment>
     <h3 variant="title" id="modal-title" className="mb2">
@@ -19,8 +20,9 @@ const SwitchReserve = ({
       <ReserveForm
         reserveInfo={reserveInfo}
         tomorrow={tomorrow}
+        submitBtnClicked={submitBtnClicked}
         handleChange={handleChange}
-        handleSave={handleSave}
+        handleSubmit={handleSubmit}
         handleClose={handleClose}
       />
     ) : (

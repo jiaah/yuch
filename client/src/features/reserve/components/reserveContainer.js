@@ -7,6 +7,7 @@ import * as moment from '../../../shared/moment';
 /* --- Actions --- */
 import { reserve, resetReserve } from '../reserveAction';
 
+/* react/no-unused-state: false */
 const SimpleModal = Loader({
   loader: () =>
     import('../../../shared/simpleModal' /* webpackChunkName: 'simpleModal' */),
@@ -15,17 +16,17 @@ const SwitchReserve = Loader({
   loader: () =>
     import('./switchReserve' /* webpackChunkName: 'switchReserve' */),
 });
-/* react/no-unused-state:false */
 class ReserveContainer extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       show: false,
+      submitBtnClicked: false,
       name: '',
       contact: '(0  )    -    ',
       number: '',
@@ -42,10 +43,14 @@ class ReserveContainer extends Component {
     this.props.onResetReserve();
   };
 
-  handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
+  handleChange = ({ target: { id, value } }) => {
+    this.setState({ [id]: value });
+  };
 
-  handleSave = ev => {
-    ev.preventDefault();
+  handleSubmit = async ev => {
+    await ev.preventDefault();
+    await this.setState({ submitBtnClicked: true });
+
     const { onReserve } = this.props;
     const { name, contact, number, place, date, time } = this.state;
     const reserveInfo = {
@@ -57,12 +62,26 @@ class ReserveContainer extends Component {
       time,
       createdAt: moment.timeStamp,
     };
+    if (
+      name === '' ||
+      contact === '' ||
+      contact === '(0  )    -    ' ||
+      !!(contact[11].indexOf('_') !== -1) ||
+      !!(contact[12].indexOf('_') !== -1) ||
+      !!(contact[13].indexOf('_') !== -1) ||
+      number === '' ||
+      place === '' ||
+      date === '' ||
+      time === ''
+    ) {
+      return '';
+    }
     return onReserve(reserveInfo);
   };
 
   render() {
     const { apiRequest } = this.props;
-    const { show } = this.state;
+    const { show, submitBtnClicked } = this.state;
     const { tomorrow } = moment;
 
     return (
@@ -87,8 +106,9 @@ class ReserveContainer extends Component {
                 apiRequest={apiRequest}
                 reserveInfo={this.state}
                 tomorrow={tomorrow}
+                submitBtnClicked={submitBtnClicked}
                 handleChange={this.handleChange}
-                handleSave={this.handleSave}
+                handleSubmit={this.handleSubmit}
                 handleClose={this.handleClose}
               />
             }

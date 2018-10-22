@@ -2,6 +2,16 @@
   z-index: 10000;
   background-color: #ffffff;
 
+  .contact {
+    background-color: $c-point1;
+  }
+
+  .login-btn {
+    padding: 5px 20px;
+    margin: 5px 0;
+  }
+
+  .login-btn:hover,
   .anchor:hover {
     color: $c-point1;
     transition: color .2s;
@@ -11,17 +21,14 @@
     -o-transition: color .2s;
   }
 
-  .contact:hover {
-    font-weight: 500;
-    transition: font-weight .2s;
-    -webkit-transition: font-weight .2s;
-    -moz-transition: font-weight .2s;
-    -ms-transition: font-weight .2s;
-    -o-transition: font-weight .2s;
+  h1 {
+    font-family: 'Notable', sans-serif;
+    margin-bottom: .5em;
+    margin-top: 0;
   }
 
   .nav--top {
-    padding: .5em .7em 0 .7em;
+    padding: .5em .7em .5em .7em;
   }
 
   .nav-menu {

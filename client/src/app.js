@@ -27,7 +27,11 @@ const App = props => {
         <link type="text/plain" rel="author" href="http://domain/humans.txt" />
         <link type="text/plain" rel="author" href="http://domain/robots.txt" />
         <link
-          href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+          href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Notable"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=Luckiest+Guy"
           rel="stylesheet"
         />
         <link

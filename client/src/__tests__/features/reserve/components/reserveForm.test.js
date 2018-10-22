@@ -7,7 +7,7 @@ import * as mockData from '../../../__mocks__/mockData';
 describe('<ReserveForm />', () => {
   const mockClose = jest.fn();
   const mockChange = jest.fn();
-  const mockSave = jest.fn();
+  const mockSubmit = jest.fn();
 
   const ComponentNaked = unwrap(ReserveForm);
 
@@ -15,7 +15,7 @@ describe('<ReserveForm />', () => {
     reserveInfo: mockData.reserveInfoInit,
     handleClose: mockClose,
     handleChange: mockChange,
-    handleSave: mockSave,
+    handleSubmit: mockSubmit,
     classes: {},
   };
   const wrapper = shallow(<ComponentNaked {...props} />);
@@ -76,7 +76,7 @@ describe('<ReserveForm />', () => {
 
     it('reserve button', () => {
       wrapper.find('.btn-reserve').simulate('click', mockedEvent);
-      expect(mockSave).toHaveBeenCalledWith(mockedEvent);
+      expect(mockSubmit).toHaveBeenCalledWith(mockedEvent);
     });
 
     it('close button', () => {

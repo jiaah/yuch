@@ -19,24 +19,6 @@ export const nav = [
   },
 ];
 
-export const redirectToLogin = [
-  {
-    id: 1,
-    name: '로그인',
-    to: '/login',
-    className: 'td-none c-text br f-mini',
-  },
-];
-
-export const redirectToHome = [
-  {
-    id: 1,
-    name: 'YUCHUNG',
-    to: '/',
-    className: 'td-none tc f-en c-point1',
-  },
-];
-
 export const reserveSuccessMessage =
   '예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, 유청으로 연락주시길 바랍니다.';
 

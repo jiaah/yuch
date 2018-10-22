@@ -10,7 +10,7 @@ exports[`should render Header correctly 1`] = `
   >
     <img
       alt="신선한 음식 배달"
-      className="home-main--img img-1"
+      className="home-main--img"
       src="text-file-stub"
     />
     <div
@@ -51,7 +51,7 @@ exports[`should render Header correctly 1`] = `
   >
     <img
       alt="지역 농산품"
-      className="home-main--img img-2"
+      className="home-main--img"
       src="text-file-stub"
     />
     <div
@@ -70,7 +70,7 @@ exports[`should render Header correctly 1`] = `
   >
     <img
       alt="참기름"
-      className="home-main--img img-3"
+      className="home-main--img"
       src="text-file-stub"
     />
     <div
@@ -100,7 +100,7 @@ exports[`should render Header correctly 1`] = `
   >
     <img
       alt="여성을 위한 기업"
-      className="home-main--img img-4"
+      className="home-main--img"
       src="text-file-stub"
     />
     <div
