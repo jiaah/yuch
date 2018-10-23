@@ -28,7 +28,7 @@ class Nav extends Component {
       <div className="nav">
         <div className="flex justify-between nav--top">
           <a
-            className="contact mh-auto pa2 f-mini b td-none br white"
+            className="contact mh-auto pa1 f-mini b td-none br white"
             href="tel:+82-54-745-0999"
           >
             상담전화&#8201;
@@ -46,7 +46,7 @@ class Nav extends Component {
           /> */}
         </div>
         <h1 className="tc c-point1">
-          <Link className="f-large td-none c-point1" to="/">
+          <Link className="f-regular td-none c-point1" to="/">
             YUCHUNG
           </Link>
         </h1>

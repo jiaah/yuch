@@ -12,10 +12,10 @@ import TextMaskCustom from './textMaskCustom';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
-    width: '6em',
-    paddingTop: '5px',
-    paddingBottom: '5px',
+    margin: '10px',
+    width: '8em',
+    paddingTop: '3px',
+    paddingBottom: '3px',
   },
 });
 
@@ -33,6 +33,12 @@ const ReserveForm = ({
   const dateToNumber = date.replace(/[^a-zA-Z0-9 ]/g, '');
   const timeToNumber = time.replace(/[^a-zA-Z0-9 ]/g, '');
   const validDateToNumber = inThreeDays.replace(/[^a-zA-Z0-9 ]/g, '');
+  const inValidContactValue = !!(
+    contact === '(0  )    -    ' ||
+    !!(contact[11].indexOf('_') !== -1) ||
+    !!(contact[12].indexOf('_') !== -1) ||
+    !!(contact[13].indexOf('_') !== -1)
+  );
 
   return (
     <React.Fragment>
@@ -67,7 +73,7 @@ const ReserveForm = ({
             placeholder="(054)-745-0999"
             value={contact}
             inputComponent={TextMaskCustom}
-            error={submitBtnClicked && contact === ''}
+            error={submitBtnClicked && inValidContactValue}
             onChange={ev => handleChange(ev)}
             required={true}
             className="input-contact"
@@ -132,7 +138,7 @@ const ReserveForm = ({
           className="input-time"
         />
       </div>
-      <div className="mt2">
+      <div className="mt3">
         <Button
           onClick={ev => handleSubmit(ev)}
           variant="contained"

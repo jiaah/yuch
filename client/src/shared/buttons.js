@@ -14,9 +14,9 @@ const styles = theme => ({
   },
   bigButton: {
     margin: theme.spacing.unit,
-    width: '8em',
-    paddingTop: '10px',
-    paddingBottom: '10px',
+    width: '9em',
+    paddingTop: '5px',
+    paddingBottom: '5px',
     [theme.breakpoints.up('md')]: {
       fontSize: '1em',
     },

@@ -7,8 +7,12 @@
   }
 
   .login-btn {
-    padding: 5px 20px;
+    padding: 3.5px 20px;
     margin: 5px 0;
+    border: 1.4px solid $c-point1;
+    -webkit-box-shadow: 0.1px 0.1px 5px 0px rgba(174, 154, 101, 0.18);
+    -moz-box-shadow: 0.1px 0.1px 5px 0px rgba(174, 154, 101, 0.18);
+    box-shadow: 0.1px 0.1px 5px 0px rgba(174, 154, 101, 0.18);
   }
 
   .login-btn:hover,
@@ -23,8 +27,12 @@
 
   h1 {
     font-family: 'Notable', sans-serif;
-    margin-bottom: .5em;
-    margin-top: 0;
+    margin-bottom: .55em;
+    margin-top: .25em;
+
+    @include for-desktop-up {
+      margin-top: 0;
+    }
   }
 
   .nav--top {

@@ -87,7 +87,7 @@ class ReserveContainer extends Component {
     return (
       <div id="reserve">
         <div className="tc white reserve-container">
-          <h3 className="white f-en">Reservation</h3>
+          <h3 className="white f-en b">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
           <Buttons
             handleClick={this.handleOpen}
