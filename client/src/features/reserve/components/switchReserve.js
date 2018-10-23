@@ -6,7 +6,7 @@ import ReserveResolvedText from './reserveResolvedText';
 const SwitchReserve = ({
   apiRequest,
   reserveInfo,
-  tomorrow,
+  inThreeDays,
   submitBtnClicked,
   handleClose,
   handleChange,
@@ -19,7 +19,7 @@ const SwitchReserve = ({
     {apiRequest === '' || apiRequest === undefined ? (
       <ReserveForm
         reserveInfo={reserveInfo}
-        tomorrow={tomorrow}
+        inThreeDays={inThreeDays}
         submitBtnClicked={submitBtnClicked}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

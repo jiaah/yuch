@@ -21,7 +21,7 @@ const styles = theme => ({
 
 const ReserveForm = ({
   reserveInfo,
-  tomorrow,
+  inThreeDays,
   submitBtnClicked,
   handleClose,
   handleChange,
@@ -29,6 +29,10 @@ const ReserveForm = ({
   classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
+
+  const dateToNumber = date.replace(/[^a-zA-Z0-9 ]/g, '');
+  const timeToNumber = time.replace(/[^a-zA-Z0-9 ]/g, '');
+  const validDateToNumber = inThreeDays.replace(/[^a-zA-Z0-9 ]/g, '');
 
   return (
     <React.Fragment>
@@ -41,7 +45,6 @@ const ReserveForm = ({
           margin="normal"
           fullWidth
           error={submitBtnClicked && name === ''}
-          // helperText={nameErrorText}
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-name"
@@ -64,6 +67,7 @@ const ReserveForm = ({
             placeholder="(054)-745-0999"
             value={contact}
             inputComponent={TextMaskCustom}
+            error={submitBtnClicked && contact === ''}
             onChange={ev => handleChange(ev)}
             required={true}
             className="input-contact"
@@ -73,6 +77,7 @@ const ReserveForm = ({
           id="number"
           label="인원수"
           value={number}
+          error={submitBtnClicked && number === ''}
           onChange={ev => handleChange(ev)}
           type="number"
           InputLabelProps={{
@@ -91,6 +96,8 @@ const ReserveForm = ({
           margin="normal"
           fullWidth
           multiline
+          error={submitBtnClicked && place === ''}
+          helperText="경주시 내 전지역 배달 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-place"
@@ -99,9 +106,11 @@ const ReserveForm = ({
           id="date"
           label="날짜"
           type="date"
-          defaultValue={tomorrow}
+          defaultValue={inThreeDays}
           margin="normal"
           fullWidth
+          error={dateToNumber < validDateToNumber}
+          helperText="최소 3일 전일 경우에만 예약 진행 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-date"
@@ -116,6 +125,8 @@ const ReserveForm = ({
           }}
           margin="normal"
           fullWidth
+          error={timeToNumber < 900 || timeToNumber > 2100}
+          helperText="( 예약 가능 시간 )  09:00 - 21:00"
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-time"
@@ -127,18 +138,6 @@ const ReserveForm = ({
           variant="contained"
           color="secondary"
           className={`btn-reserve ${classes.button}`}
-          // disabled={
-          //   name === '' ||
-          //   contact === '' ||
-          //   contact === '(0  )    -    ' ||
-          //   !!(contact[11].indexOf('_') !== -1) ||
-          //   !!(contact[12].indexOf('_') !== -1) ||
-          //   !!(contact[13].indexOf('_') !== -1) ||
-          //   number === '' ||
-          //   place === '' ||
-          //   date === '' ||
-          //   time === ''
-          // }
         >
           예약완료
         </Button>

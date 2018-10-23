@@ -31,7 +31,7 @@ class ReserveContainer extends Component {
       contact: '(0  )    -    ',
       number: '',
       place: '',
-      date: moment.tomorrow,
+      date: moment.inThreeDays,
       time: '12:30',
     };
   }
@@ -82,7 +82,7 @@ class ReserveContainer extends Component {
   render() {
     const { apiRequest } = this.props;
     const { show, submitBtnClicked } = this.state;
-    const { tomorrow } = moment;
+    const { inThreeDays } = moment;
 
     return (
       <div id="reserve">
@@ -105,7 +105,7 @@ class ReserveContainer extends Component {
               <SwitchReserve
                 apiRequest={apiRequest}
                 reserveInfo={this.state}
-                tomorrow={tomorrow}
+                inThreeDays={inThreeDays}
                 submitBtnClicked={submitBtnClicked}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}

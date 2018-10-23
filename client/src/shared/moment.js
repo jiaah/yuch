@@ -1,9 +1,9 @@
 import moment from 'moment';
 
 export const today = moment().format('YYYY-MM-DD');
-export const tomorrow = moment()
+export const inThreeDays = moment()
   .startOf('day')
-  .add(1, 'day')
+  .add(3, 'day')
   .format('YYYY-MM-DD');
 export const timeToNow = moment().toNow();
 export const timeStamp = moment().format('MMMM Do YYYY, h:mm a');
