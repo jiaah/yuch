@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReserveContainer /> renders correctly 1`] = `
+exports[`<ReserveContainer /> renders initial reserve section correctly renders correctly 1`] = `
 <div
   id="reserve"
 >
@@ -8,7 +8,7 @@ exports[`<ReserveContainer /> renders correctly 1`] = `
     className="tc white reserve-container"
   >
     <h3
-      className="white f-en"
+      className="white f-en b"
     >
       Reservation
     </h3>

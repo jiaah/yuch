@@ -1,8 +1,8 @@
 import moment from './moment';
 
-export const tommrow = moment()
+export const inThreeDays = moment()
   .startOf('day')
-  .add(1, 'day')
+  .add(3, 'day')
   .format('YYYY-MM-DD');
 
 export const now = moment().format('MMMM Do YYYY, h:mm a');
@@ -24,7 +24,7 @@ export const reserveInfoInit = {
   contact: '(0  )    -    ',
   number: '',
   place: '',
-  date: tommrow,
+  date: inThreeDays,
   time: '12:30',
 };
 

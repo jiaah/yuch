@@ -13,6 +13,7 @@ describe('<ReserveForm />', () => {
 
   const props = {
     reserveInfo: mockData.reserveInfoInit,
+    inThreeDays: mockData.inThreeDays,
     handleClose: mockClose,
     handleChange: mockChange,
     handleSubmit: mockSubmit,

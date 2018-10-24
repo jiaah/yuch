@@ -74,7 +74,7 @@ class ReserveContainer extends Component {
       date === '' ||
       time === ''
     ) {
-      return '';
+      return null;
     }
     return onReserve(reserveInfo);
   };

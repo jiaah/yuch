@@ -27,7 +27,9 @@ exports[`should render Header correctly 1`] = `
       <div
         className="mb3"
       >
-        <h4>
+        <h4
+          className="b"
+        >
           위탁급식
         </h4>
         <p>
@@ -37,7 +39,9 @@ exports[`should render Header correctly 1`] = `
         </p>
       </div>
       <div>
-        <h4>
+        <h4
+          className="b"
+        >
           식당
         </h4>
         <p>
@@ -84,7 +88,7 @@ exports[`should render Header correctly 1`] = `
       <p>
         경주 시니어 클럽에서 주관하는 노인 일자리 창출 사업을 장려하기 위해 
         <a
-          className="td-none"
+          className="td-none b"
           href="http://www.xn--0z2bz4lsqjfrj.com/"
           rel="noopener noreferrer"
           target="_blank"

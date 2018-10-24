@@ -13,7 +13,7 @@ const HomeMain = () => (
         <p className="f-mini lh-3">OUR RESTAURANT</p>
         <h3>당신의 위한 유청 서비스</h3>
         <div className="mb3">
-          <h4>위탁급식</h4>
+          <h4 className="b">위탁급식</h4>
           <p>
             기업계&#44; 각종 행사 모임
             <br />
@@ -21,7 +21,7 @@ const HomeMain = () => (
           </p>
         </div>
         <div>
-          <h4>식당</h4>
+          <h4 className="b">식당</h4>
           <p>중식&#44; 석식 뷔폐 서비스</p>
         </div>
       </div>
@@ -51,7 +51,7 @@ const HomeMain = () => (
             href="http://www.xn--0z2bz4lsqjfrj.com/"
             rel="noopener noreferrer"
             target="_blank"
-            className="td-none"
+            className="td-none b"
           >
             착한손맛
           </a>

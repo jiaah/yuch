@@ -42,7 +42,7 @@ const ReserveForm = ({
 
   return (
     <React.Fragment>
-      <div>
+      <div className="mh2">
         <TextField
           id="name"
           label="이름"
@@ -131,8 +131,8 @@ const ReserveForm = ({
           }}
           margin="normal"
           fullWidth
-          error={timeToNumber < 900 || timeToNumber > 2100}
-          helperText="( 예약 가능 시간 )  09:00 - 21:00"
+          error={timeToNumber < 1100 || timeToNumber > 2000}
+          helperText="( 예약 가능 시간 )  11:00 - 20:00"
           onChange={ev => handleChange(ev)}
           required={true}
           className="input-time"

@@ -3,11 +3,11 @@
 exports[`<switchReserve /> render reserve form when api request not made 1`] = `
 <Fragment>
   <h3
-    className="mb2"
+    className="mb2 f-xxl"
     id="modal-title"
     variant="title"
   >
-    Reservation
+    - Reservation -
   </h3>
   <WithStyles(ReserveForm) />
 </Fragment>
@@ -16,11 +16,11 @@ exports[`<switchReserve /> render reserve form when api request not made 1`] = `
 exports[`<switchReserve /> render reserve request resolved text when api request is made 1`] = `
 <Fragment>
   <h3
-    className="mb2"
+    className="mb2 f-xxl"
     id="modal-title"
     variant="title"
   >
-    Reservation
+    - Reservation -
   </h3>
   <ReserveResolvedText
     apiRequest="success"
