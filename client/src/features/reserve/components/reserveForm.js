@@ -10,12 +10,10 @@ import {
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
 
-const styles = theme => ({
+const styles = () => ({
   button: {
     margin: '10px',
     width: '8em',
-    paddingTop: '3px',
-    paddingBottom: '3px',
   },
 });
 
