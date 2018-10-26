@@ -1,11 +1,51 @@
-.home-board {
-  @include for-desktop-up {
+.homeboard {
+  width: 80%;
+  margin: 80px auto;
+
+  @include for-tablet-portrait-up {
+    width: 93%;
     display: flex;
     justify-content: space-around;
   }
 
+  @include for-desktop-up {
+    justify-content: center;
+  }
+}
+
+#map {
+  height: 400px;
+  width: auto;
+
+  @include for-tablet-portrait-up {
+    width: 40%;
+    margin: auto 0;
+  }
+
+  @include for-desktop-up {
+    height: 500px;
+  }
+
+  @include for-m-desktop-up {
+    width: 600px;
+  }
+}
+
+.homeboard--text {
+  padding-top: 50px;
+
+
   h3 {
     font-family: 'Nanum Gothic', sans-serif;
+  }
+
+  @include for-tablet-portrait-up {
+    padding-top: 0;
+    margin: auto 0;
+  }
+
+  @include for-desktop-up {
+    padding-left: 120px;
   }
 }
 

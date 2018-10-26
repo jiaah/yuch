@@ -70,6 +70,7 @@ module.exports = {
     'no-inline-comments': 'off',
     'no-underscore-dangle': 'off',
     'no-useless-constructor': 'warn',
+    'no-undef': 'off',
     'init-declarations': 'off',
     'prefer-destructuring': 'off',
     'consistent-return': 'off',
