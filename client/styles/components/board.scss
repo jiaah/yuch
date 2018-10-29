@@ -7,10 +7,6 @@
     display: flex;
     justify-content: space-around;
   }
-
-  @include for-desktop-up {
-    justify-content: center;
-  }
 }
 
 #map {
@@ -18,16 +14,12 @@
   width: auto;
 
   @include for-tablet-portrait-up {
-    width: 40%;
+    width: 50%;
     margin: auto 0;
   }
 
   @include for-desktop-up {
     height: 500px;
-  }
-
-  @include for-m-desktop-up {
-    width: 600px;
   }
 }
 
@@ -44,8 +36,18 @@
     margin: auto 0;
   }
 
+  @include for-big-desktop-up {
+    padding-right: 80px;
+  }
+}
+
+.phone-icon {
+  margin: auto 0;
+  padding-right: 18px;
+
   @include for-desktop-up {
-    padding-left: 120px;
+    width: 30px;
+    height: 30px;
   }
 }
 

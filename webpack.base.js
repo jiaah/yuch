@@ -85,10 +85,10 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'file-loader',
-        options: {
-          name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
-        },
+        loader: 'svg-inline-loader',
+        // options: {
+        //   name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
+        // },
       },
     ],
   },
