@@ -23,6 +23,8 @@
   }
 }
 
+.contact-image {}
+
 .homeboard--text {
   padding-top: 50px;
 
@@ -38,16 +40,6 @@
 
   @include for-big-desktop-up {
     padding-right: 80px;
-  }
-}
-
-.phone-icon {
-  margin: auto 0;
-  padding-right: 18px;
-
-  @include for-desktop-up {
-    width: 30px;
-    height: 30px;
   }
 }
 

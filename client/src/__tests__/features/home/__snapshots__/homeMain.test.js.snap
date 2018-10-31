@@ -53,9 +53,9 @@ exports[`should render Header correctly 1`] = `
   <div
     className="home-main--box reverse"
   >
-    <img
+    <LazyImage
       alt="지역 농산품"
-      className="home-main--img"
+      classes="home-main--img"
       src="text-file-stub"
     />
     <div
@@ -72,9 +72,9 @@ exports[`should render Header correctly 1`] = `
   <div
     className="home-main--box"
   >
-    <img
+    <LazyImage
       alt="참기름"
-      className="home-main--img"
+      classes="home-main--img"
       src="text-file-stub"
     />
     <div
@@ -102,9 +102,9 @@ exports[`should render Header correctly 1`] = `
   <div
     className="home-main--box reverse"
   >
-    <img
+    <LazyImage
       alt="여성을 위한 기업"
-      className="home-main--img"
+      classes="home-main--img"
       src="text-file-stub"
     />
     <div

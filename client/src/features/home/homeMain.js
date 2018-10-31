@@ -1,4 +1,6 @@
 import React from 'react';
+/* --- Component --- */
+import LazyImage from '../../shared/lazyImage';
 /* --- Images --- */
 import delivery from '../../../assets/img/delivery.jpeg';
 import localfood from '../../../assets/img/localfood.jpeg';
@@ -27,7 +29,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <img className="home-main--img" src={localfood} alt="지역 농산품" />
+      <LazyImage classes="home-main--img" src={localfood} alt="지역 농산품" />
       <div className="home-main--text">
         <h3>신선한 지역 농산물</h3>
         <p>
@@ -37,7 +39,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box">
-      <img className="home-main--img" src={sesame} alt="참기름" />
+      <LazyImage classes="home-main--img" src={sesame} alt="참기름" />
       <div className="home-main--text">
         <h3>
           경주시 지원사업 장려
@@ -60,7 +62,7 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <img className="home-main--img" src={women} alt="여성을 위한 기업" />
+      <LazyImage classes="home-main--img" src={women} alt="여성을 위한 기업" />
       <div className="home-main--text">
         <h3>여성이 일하기 좋은 기업</h3>
         <p>

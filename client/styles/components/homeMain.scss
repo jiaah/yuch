@@ -18,13 +18,13 @@
 }
 
 .home-main--img {
-  width: 100%;
-  height: auto;
-  height: 320px;
+  width: 80%;
+  height: 220px;
   margin-bottom: 1.34em;
 
   @include for-desktop-up {
     width: 45%;
+    height: 320px;
     margin-bottom: 0;
   }
 }
