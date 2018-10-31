@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
 import App from './src/app';
-import Loader from './src/utils/loader';
+import Loader from './src/shared/loader';
 
 const Home = Loader({
   loader: () =>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import Loader from '../../../utils/loader';
+import Loader from '../../../shared/loader';
 import Buttons from '../../../shared/buttons';
 import * as moment from '../../../shared/moment';
 /* --- Actions --- */

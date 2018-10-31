@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 /* --- Components --- */
-import Loader from './utils/loader';
+import Loader from './shared/loader';
 // import './firebase/firebase';
 
 require('../styles/main.scss');
