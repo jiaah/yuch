@@ -1,9 +1,6 @@
 import React from 'react';
 /* --- Component --- */
 import Loader from '../../utils/loader';
-// import LazyImage from '../../shared/lazyImage';
-/* --- Images --- */
-// import phone from '../../../assets/svg/phone.svg';
 
 const Map = Loader({
   loader: () => import('./map' /* webpackChunkName: 'Map' */),
@@ -63,13 +60,6 @@ class Board extends React.Component {
               </p>
               <br />
               <div className="flex justify-center">
-                {/* <img
-                  className="contact-image mr2 mh-auto"
-                  src={phone}
-                  alt="contact"
-                  width="28"
-                  height="28"
-                /> */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
