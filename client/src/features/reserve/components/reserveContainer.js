@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import compose from 'recompose/compose';
 /* --- Components --- */
 import Loader from '../../../shared/loader';
-import Buttons from '../../../shared/buttons';
 import * as moment from '../../../shared/moment';
 /* --- Actions --- */
 import { reserve, resetReserve } from '../reserveAction';
@@ -16,11 +18,22 @@ const SwitchReserve = Loader({
   loader: () =>
     import('./switchReserve' /* webpackChunkName: 'switchReserve' */),
 });
+
+const styles = theme => ({
+  bigButton: {
+    margin: theme.spacing.unit,
+    width: '9em',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1em',
+    },
+  },
+});
 class ReserveContainer extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -80,7 +93,7 @@ class ReserveContainer extends Component {
   };
 
   render() {
-    const { apiRequest } = this.props;
+    const { apiRequest, classes } = this.props;
     const { show, submitBtnClicked } = this.state;
     const { inThreeDays } = moment;
 
@@ -89,13 +102,14 @@ class ReserveContainer extends Component {
         <div className="tc white reserve-container">
           <h3 className="white f-en b">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
-          <Buttons
-            handleClick={this.handleOpen}
-            variantValue="contained"
-            colorValue="secondary"
-            name="예약하기"
-            classNameValue="bigButton"
-          />
+          <Button
+            onClick={ev => this.handleOpen(ev)}
+            variant="contained"
+            color="secondary"
+            className={`btn--reserve-modal ${classes.bigButton}`}
+          >
+            예약하기
+          </Button>
         </div>
         {show && (
           <SimpleModal
@@ -129,7 +143,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const Unwrapped = ReserveContainer;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
 )(ReserveContainer);

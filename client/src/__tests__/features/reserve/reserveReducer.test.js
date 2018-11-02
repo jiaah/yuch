@@ -7,7 +7,7 @@ const { reserveInitState, reserveUpdatedState } = mockData;
 test('should setup default reserve values', () => {
   const action = { type: '@@INIT' };
   const state = reserveReducer(undefined, action);
-  expect(state).toEqual(mockData.reserveInitState);
+  expect(state).toEqual(reserveInitState);
 });
 
 test('should set loading status on reserve api request', () => {

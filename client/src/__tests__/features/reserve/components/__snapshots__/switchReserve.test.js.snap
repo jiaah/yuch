@@ -3,7 +3,7 @@
 exports[`<switchReserve /> render reserve form when api request not made 1`] = `
 <Fragment>
   <h3
-    className="mb2 f-xxl"
+    className="mb2 f-xl"
     id="modal-title"
     variant="title"
   >
@@ -16,7 +16,7 @@ exports[`<switchReserve /> render reserve form when api request not made 1`] = `
 exports[`<switchReserve /> render reserve request resolved text when api request is made 1`] = `
 <Fragment>
   <h3
-    className="mb2 f-xxl"
+    className="mb2 f-xl"
     id="modal-title"
     variant="title"
   >

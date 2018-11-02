@@ -11,14 +11,21 @@ const mockAxios = new MockAdapter(axios);
 const mockStore = configureMockStore([thunk]);
 
 test('should generate reset reserve info action', () => {
-  expect(resetReserve()).toEqual({ type: types.RESET_RESERVE });
+  const expectedAction = { type: types.RESET_RESERVE };
+  expect(resetReserve()).toEqual(expectedAction);
 });
 
-test('should generate reserve api request action object with provided values', async () => {
-  // const action = reserve(reserveInfo);
-  // await expect(action).toEqual({
-  //   type: types.RESERVE_REQUEST,
-  //   reserveInfo,
+describe('async reserve request actions', async () => {
+  // mockAxios.onPost('/api/reserve', mockRequest).reply(200);
+  // const expectedActions = [
+  //   {
+  //     type: types.RESERVE_REQUEST,
+  //     body: { reserveInfo: mockData.reserveUpdatedState },
+  //   },
+  //   { type: types.RESERVE_SUCCESS },
+  // ];
+  // const store = mockStore({});
+  // store.dispatch(reserve()).then(() => {
+  //   expect(store.getActions()).toEqual(expectedActions);
   // });
-  mockAxios.onPost('/api/reserve', mockData.reserveInfo).reply(200);
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../app';
-import Loader from '../utils/loader';
+import Loader from '../shared/loader';
 
 describe('<App />', () => {
   const Nav = Loader({

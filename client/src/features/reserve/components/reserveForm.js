@@ -141,7 +141,7 @@ const ReserveForm = ({
           onClick={ev => handleSubmit(ev)}
           variant="contained"
           color="secondary"
-          className={`btn-reserve ${classes.button}`}
+          className={`btn-submit ${classes.button}`}
         >
           예약완료
         </Button>

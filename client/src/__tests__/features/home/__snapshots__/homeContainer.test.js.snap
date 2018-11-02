@@ -8,7 +8,7 @@ Array [
   <HomeMain
     key="2"
   />,
-  <Connect(ReserveContainer)
+  <WithStyles(Connect(ReserveContainer))
     key="3"
   />,
   <Board

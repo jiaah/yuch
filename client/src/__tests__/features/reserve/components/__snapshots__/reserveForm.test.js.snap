@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReserveForm /> renders correctly 1`] = `
+exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
 <Fragment>
   <div
     className="mh2"
@@ -118,7 +118,7 @@ exports[`<ReserveForm /> renders correctly 1`] = `
     className="mt3"
   >
     <WithStyles(Button)
-      className="btn-reserve undefined"
+      className="btn-submit undefined"
       color="secondary"
       onClick={[Function]}
       variant="contained"
