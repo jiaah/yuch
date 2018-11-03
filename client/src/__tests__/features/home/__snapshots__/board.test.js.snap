@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Header correctly 1`] = `
+exports[`<Board /> renders properly 1`] = `
 <Fragment>
   <div
     className="homeboard"
     id="board"
   >
-    <Map />
     <div
       className="homeboard--text"
     >

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Header correctly 1`] = `
+exports[`<HomeContainer /> renders correctly 1`] = `
 Array [
   <Header
     key="1"

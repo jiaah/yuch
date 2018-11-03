@@ -1,8 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Board from '../../../features/home/board';
 
-it('should render Header correctly', () => {
+describe('<Board />', () => {
   const wrapper = shallow(<Board />);
-  expect(wrapper).toMatchSnapshot();
+
+  it('renders properly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('sets initial state', () => {
+    expect(wrapper.state().lastScrollY).toBe(0);
+  });
+
+  describe('when mouted', () => {
+    beforeEach(() => {
+      // wrapper = mount(<Board {...props} />);
+      wrapper.setState({ lastScrollY: 1010 });
+    });
+
+    afterEach(() => {
+      wrapper.setState({ lastScrollY: 0 });
+    });
+
+    it('laods Map on scroll down', () => {
+      expect(wrapper.find('LoadableComponent').exists()).toBe(true);
+    });
+  });
 });

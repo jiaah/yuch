@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Header correctly 1`] = `
+exports[`<HomeMain /> renders correctly 1`] = `
 <div
   className="home-main--container"
   id="home-main"

@@ -13,6 +13,9 @@ module.exports = {
   collectCoverageFrom: [
     '**/src/**/*.js',
     '!**/__tests__/**',
-    '!./jest.config.js',
+    '!./../jest.config.js',
+    '!./../index.js',
+    '!./../store.js',
+    '!./../src/shared/actionTypes.js',
   ],
 };

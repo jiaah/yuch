@@ -2,7 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import HomeContainer from '../../../features/home/homeContainer';
 
-it('should render Header correctly', () => {
+describe('<HomeContainer />', () => {
   const wrapper = shallow(<HomeContainer />);
-  expect(wrapper).toMatchSnapshot();
+
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 });
