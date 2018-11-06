@@ -16,21 +16,17 @@ h1 {
 }
 
 h2 {
-  font-size: 1.625em;
+  font-size: 1.5em;
   margin-top: .3em;
   margin-bottom: .6em;
   color: #ffffff;
   text-shadow: .4px .4px rgba(41, 40, 40, 0.815);
   letter-spacing: .5px;
-  line-height: 1.125em;
-
-  @include for-tablet-landscape-up {
-    font-size: 2em;
-    line-height: 1.25em;
-  }
+  line-height: 1.2em;
 
   @include for-m-desktop-up {
-    font-size: 2.25em;
+    font-size: 1.7em;
+    line-height: 1.25em;
   }
 }
 
