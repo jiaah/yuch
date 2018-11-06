@@ -27,6 +27,7 @@ describe('<ReserveContainer />', () => {
       });
 
       it('call handleOpen function and changes show state to true on button click event', () => {
+        // check handleOpen.toHaveBeenCalled();
         expect(wrapper.state().show).toEqual(true);
       });
 

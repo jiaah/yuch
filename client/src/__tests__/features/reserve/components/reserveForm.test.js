@@ -11,16 +11,19 @@ describe('<ReserveForm />', () => {
 
   const ComponentNaked = unwrap(ReserveForm);
 
+  const props = {
+    inThreeDays: mockData.inThreeDays,
+    handleClose: mockClose,
+    handleChange: mockChange,
+    handleSubmit: mockSubmit,
+    submitBtnClicked: false,
+    classes: {},
+  };
+
   describe('with initial reserve info', () => {
-    const props = {
-      reserveInfo: mockData.reserveInfoInit,
-      inThreeDays: mockData.inThreeDays,
-      handleClose: mockClose,
-      handleChange: mockChange,
-      handleSubmit: mockSubmit,
-      classes: {},
-    };
-    const wrapper = shallow(<ComponentNaked {...props} />);
+    const wrapper = shallow(
+      <ComponentNaked {...props} reserveInfo={mockData.reserveInfoInit} />,
+    );
 
     it('renders correctly', () => {
       expect(wrapper).toMatchSnapshot();
@@ -92,52 +95,40 @@ describe('<ReserveForm />', () => {
     });
   });
 
-  // describe('throwing error for an empty input value on submit', () => {
-  //   describe('name value empty', () => {
-  //     const setup = () => {
-  //       const props = {
-  //         inThreeDays: mockData.inThreeDays,
-  //         handleClose: mockClose,
-  //         handleChange: mockChange,
-  //         handleSubmit: mockSubmit,
-  //         submitBtnClicked: false,
-  //         classes: {},
-  //       };
+  describe('throwing error for an empty input value on submit', () => {
+    const mockedEvent = { target: {} };
 
-  //       const wrapper = shallow(
-  //         <ComponentNaked
-  //           {...props}
-  //           reserveInfo={{
-  //             name: '',
-  //             contact: '(010)2542-1222',
-  //             number: '60',
-  //             place: '경주 교회',
-  //             date: '2019-11-11',
-  //             time: '12:30',
-  //             createdAt: '2019-11-09, 01:00 PM',
-  //           }}
-  //         />,
-  //       );
-  //       const mockedEvent = { target: {} };
+    describe('name value empty', () => {
+      const setup = () => {
+        const wrapper = shallow(
+          <ComponentNaked
+            {...props}
+            reserveInfo={{
+              name: '',
+              contact: '(010)2542-1222',
+              number: '60',
+              place: '경주 교회',
+              date: '2019-11-11',
+              time: '12:30',
+              createdAt: '2019-11-09, 01:00 PM',
+            }}
+          />,
+        );
+        return { wrapper };
+      };
+      const { wrapper } = setup();
 
-  //       return { wrapper, props, mockedEvent };
-  //     };
+      beforeEach(() => {
+        wrapper.find('.btn-submit').simulate('click', mockedEvent);
+      });
 
-  //     beforeEach(() => {
-  //       const { wrapper, props, mockedEvent } = setup();
+      it('return submitBtnClicked state true', () => {
+        // expect(wrapper.props.submitBtnClicked).toEqual(true);
+      });
 
-  //       wrapper.find('.btn-submit').simulate('click', mockedEvent);
-  //       console.log(props.reserveInfo);
-  //     });
-
-  //     it('return submitBtnClicked state true', () => {
-  //       // console.log(setup().props().submitBtnClicked);
-  //       // expect(wrapper.props().submitBtnClicked).toEqual(true);
-  //     });
-
-  //     it('throw the name error', () => {
-  //       // expect(wrapper.find('#name').props().error).toEqual(true);
-  //     });
-  //   });
-  // });
+      it('throw the name error', () => {
+        // expect(wrapper.find('#name').props().error).toEqual(true);
+      });
+    });
+  });
 });

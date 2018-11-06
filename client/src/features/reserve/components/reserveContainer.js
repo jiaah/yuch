@@ -21,6 +21,7 @@ const SwitchReserve = Loader({
 
 const styles = theme => ({
   bigButton: {
+    color: '#ffffff',
     margin: theme.spacing.unit,
     width: '9em',
     paddingTop: '5px',

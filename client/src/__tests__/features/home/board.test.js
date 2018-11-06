@@ -14,17 +14,32 @@ describe('<Board />', () => {
   });
 
   describe('when mouted', () => {
-    beforeEach(() => {
-      // wrapper = mount(<Board {...props} />);
-      wrapper.setState({ lastScrollY: 1010 });
-    });
+    // let spy;
+    // beforeEach(() => {
+
+    //   wrapper.setState({ lastScrollY: 1010 });
+    // });
 
     afterEach(() => {
-      wrapper.setState({ lastScrollY: 0 });
+      // wrapper.setState({ lastScrollY: 0 });
+      // spy.mockClear();
     });
 
+    it('should call methodName on scroll during componentDidMount', () => {
+      // const map = {};
+      // window.addEventListener = jest.jest.genMockFn().mockImpl((event, cb) => {
+      //   map[event] = cb;
+      // });
+      // wrapper = mount(<Board />);
+      // map.scroll({ pageY: 1010 });
+      // expect(wrapper.handleScroll).toHaveBeenCalled();
+      // spy = jest.spyOn(global, 'addEventListener');
+      // wrapper.instance().handleScroll();
+      // expect(spy).toHaveBeenCalled();
+    });
+    it('should update lastScrollY state', () => {});
     it('laods Map on scroll down', () => {
-      expect(wrapper.find('LoadableComponent').exists()).toBe(true);
+      // expect(wrapper.find('LoadableComponent').exists()).toBe(true);
     });
   });
 });

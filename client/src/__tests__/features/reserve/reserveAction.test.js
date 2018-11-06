@@ -1,14 +1,16 @@
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
+// import mockAxios from 'axios';
 import * as types from '../../../shared/actionTypes';
 import * as mockData from '../../__mocks__/mockData';
 import { reserve, resetReserve } from '../../../features/reserve/reserveAction';
 
-// config axios && store/ middleware
+// config store/ middleware & axios
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 const mockAxios = new MockAdapter(axios);
-const mockStore = configureMockStore([thunk]);
 
 test('should generate reset reserve info action', () => {
   const expectedAction = { type: types.RESET_RESERVE };

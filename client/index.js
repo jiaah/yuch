@@ -13,7 +13,7 @@ document.body.appendChild(root);
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#AE9A65' },
-    secondary: { main: '#866586' },
+    secondary: { main: '#ee9105' },
   },
 });
 

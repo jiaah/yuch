@@ -1,32 +1,41 @@
 .nav {
   z-index: 10000;
   background-color: #ffffff;
+  letter-spacing: 1.2px;
 
   .contact {
-    background-color: #866586;
-    border-color: #866586;
-    -webkit-box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
-    -moz-box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
-    box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
+    background-color: $c-point2;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 8px 20px 6px 20px;
   }
 
   .login-btn {
-    padding: 3.5px 20px;
+    padding: 6px 20px 3px 20px;
     margin: 5px 0;
-    border: 1.4px solid #866586;
-    -webkit-box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
-    -moz-box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
-    box-shadow: 0.1px 0.1px 1px 0px rgba(174, 154, 101, 0.18);
+    border: 1.48px solid $c-point2;
   }
 
-  .login-btn:hover,
-  .anchor:hover {
+  .login-btn:hover {
     color: $c-point1;
     transition: color .2s;
     -webkit-transition: color .2s;
     -moz-transition: color .2s;
     -ms-transition: color .2s;
     -o-transition: color .2s;
+  }
+
+  .anchor:hover {
+    font-weight: bold;
+    transition: font-weight .2s;
+    -webkit-transition: font-weight .2s;
+    -moz-transition: font-weight .2s;
+    -ms-transition: font-weight .2s;
+    -o-transition: font-weight .2s;
   }
 
   h1 {
@@ -44,8 +53,10 @@
   }
 
   .nav-menu {
-    padding: .25em 0;
+    padding: .4em 0;
     display: flex;
     justify-content: space-around;
+    background-color: $c-point1;
+    color: #ffffff;
   }
 }

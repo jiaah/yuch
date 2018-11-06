@@ -3,19 +3,19 @@ export const nav = [
     id: 1,
     name: '위탁급식/식당',
     to: '#home-main',
-    className: 'anchor td-none c-text',
+    className: 'anchor td-none white',
   },
   {
     id: 2,
     name: '온라인 예약',
     to: '#reserve',
-    className: 'anchor td-none c-text',
+    className: 'anchor td-none white',
   },
   {
     id: 3,
     name: '연락처/오픈시간',
     to: '#board',
-    className: 'anchor td-none c-text',
+    className: 'anchor td-none white',
   },
 ];
 
