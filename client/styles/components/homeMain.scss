@@ -37,6 +37,10 @@
   }
 }
 
+.sesame-link {
+  color: #fab812;
+}
+
 .reverse {
   @include for-desktop-up {
     flex-direction: row-reverse;

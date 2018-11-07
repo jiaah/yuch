@@ -53,7 +53,7 @@ const HomeMain = () => (
             href="http://www.xn--0z2bz4lsqjfrj.com/"
             rel="noopener noreferrer"
             target="_blank"
-            className="td-none b"
+            className="sesame-link td-none b"
           >
             착한손맛
           </a>
