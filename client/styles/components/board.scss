@@ -2,42 +2,34 @@
   width: 80%;
   margin: 80px auto;
 
-  @include for-tablet-portrait-up {
-    width: 93%;
+  @include for-desktop-up {
+    width: 80%;
     display: flex;
     justify-content: space-around;
   }
 }
 
 #map {
-  height: 400px;
+  height: 350px;
   width: auto;
 
-  @include for-tablet-portrait-up {
-    width: 50%;
-    margin: auto 0;
-  }
-
   @include for-desktop-up {
-    height: 500px;
+    height: 400px;
+    width: 40%;
+    margin: auto 0;
   }
 }
 
 .homeboard--text {
   padding-top: 50px;
 
-
   h3 {
     font-family: 'Nanum Gothic', sans-serif;
   }
 
-  @include for-tablet-portrait-up {
+  @include for-desktop-up {
     padding-top: 0;
     margin: auto 0;
-  }
-
-  @include for-big-desktop-up {
-    padding-right: 80px;
   }
 }
 

@@ -30,8 +30,8 @@
   }
 
   .anchor:hover {
-    font-weight: bold;
-    transition: font-weight .2s;
+    color: #c4c4c4;
+    transition: color .2s;
     -webkit-transition: font-weight .2s;
     -moz-transition: font-weight .2s;
     -ms-transition: font-weight .2s;
@@ -40,12 +40,6 @@
 
   h1 {
     font-family: 'Notable', sans-serif;
-    margin-bottom: .55em;
-    margin-top: .25em;
-
-    @include for-desktop-up {
-      margin-top: 0;
-    }
   }
 
   .nav--top {
@@ -56,7 +50,6 @@
     padding: .4em 0;
     display: flex;
     justify-content: space-around;
-    background-color: $c-point1;
-    color: #ffffff;
+    background-color: #ffffff;
   }
 }

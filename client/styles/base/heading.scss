@@ -2,7 +2,8 @@ h1 {
   font-size: 2em;
   line-height: 1.25em;
   letter-spacing: 2px;
-  margin: .25em;
+  margin-top: .4em;
+  margin-bottom: .7em;
 
   @include for-tablet-landscape-up {
     font-size: 2.5em;
