@@ -17,11 +17,13 @@
   .login-btn {
     padding: 6px 20px 3px 20px;
     margin: 5px 0;
-    border: 1.48px solid $c-point2;
+    border: 1.48px solid $c-point1;
+    background-color: $c-point1;
+    color: #ffffff;
   }
 
   .login-btn:hover {
-    color: $c-point1;
+    color: #c4c4c4;
     transition: color .2s;
     -webkit-transition: color .2s;
     -moz-transition: color .2s;
@@ -36,10 +38,6 @@
     -moz-transition: font-weight .2s;
     -ms-transition: font-weight .2s;
     -o-transition: font-weight .2s;
-  }
-
-  h1 {
-    font-family: 'Notable', sans-serif;
   }
 
   .nav--top {

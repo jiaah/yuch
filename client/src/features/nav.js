@@ -8,6 +8,7 @@ import Ul from '../shared/ul';
 import Buttons from '../shared/buttons';
 /* --- Actions --- */
 import { startLogout } from './auth/login.action';
+import logo from '../../assets/img/yuch-logo.png';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.
@@ -45,9 +46,9 @@ class Nav extends Component {
             name="로그아웃"
           /> */}
         </div>
-        <h1 className="tc c-point1">
-          <Link className="f-regular td-none f-en b c-point1" to="/">
-            YUCHUNG
+        <h1 className="tc">
+          <Link className="td-none" to="/">
+            <img src={logo} alt="logo" />
           </Link>
         </h1>
         <div className="bt">{isHomepage && <Ul anchor={data.nav} />}</div>

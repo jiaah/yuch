@@ -36,3 +36,15 @@
 footer {
   letter-spacing: .5px;
 }
+
+.contact-number {
+  border-top: 1px solid #c4c4c4;
+  width: 250px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  font-size: 1.2em;
+
+  @include for-desktop-up {
+    width: 300px;
+  }
+}
