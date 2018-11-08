@@ -2,10 +2,10 @@ import React from 'react';
 /* --- Component --- */
 import LazyImage from '../../shared/lazyImage';
 /* --- Images --- */
-import delivery from '../../../assets/img/delivery.jpeg';
-import localfood from '../../../assets/img/localfood.jpeg';
-import sesame from '../../../assets/img/sesame.jpeg';
-import women from '../../../assets/img/women.jpeg';
+import delivery from '../../../assets/img/delivery.jpg';
+import localfood from '../../../assets/img/localfood.jpg';
+import sesame from '../../../assets/img/sesame.jpg';
+import women from '../../../assets/img/women.jpg';
 
 const HomeMain = () => (
   <div id="home-main" className="home-main--container">
