@@ -1,11 +1,11 @@
 {
-  "name": "Web Developer",
-  "short_name": "Jiah Lee",
+  "name": "YuchunG",
+  "short_name": "YucH",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#fff",
-  "description": "React Web Developer, Jiah Lee",
+  "description": "위탁급식/식당",
   "icons": [{
     "src": "/manifest/homescreen48.png",
     "sizes": "48x48",
