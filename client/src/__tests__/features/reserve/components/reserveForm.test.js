@@ -105,29 +105,70 @@ describe('<ReserveForm />', () => {
             {...props}
             reserveInfo={{
               name: '',
-              contact: '(010)2542-1222',
-              number: '60',
-              place: '경주 교회',
-              date: '2019-11-11',
-              time: '12:30',
-              createdAt: '2019-11-09, 01:00 PM',
+              contact: '(0  )    -    ',
+              number: '',
+              place: '',
+              date: '',
+              time: '',
+              createdAt: '',
             }}
           />,
         );
         return { wrapper };
       };
-      const { wrapper } = setup();
 
+      const { wrapper } = setup();
       beforeEach(() => {
         wrapper.find('.btn-submit').simulate('click', mockedEvent);
+        wrapper.setProps({ submitBtnClicked: true });
       });
 
       it('return submitBtnClicked state true', () => {
-        // expect(wrapper.props.submitBtnClicked).toEqual(true);
+        // expect(wrapper.props().submitBtnClicked).toEqual(true);
       });
 
-      it('throw the name error', () => {
-        // expect(wrapper.find('#name').props().error).toEqual(true);
+      it('should show error when name field is empty', () => {
+        expect(
+          wrapper
+            .find('.input-name')
+            .first()
+            .props().error,
+        ).toEqual(true);
+      });
+
+      it('should show error when number field is empty', () => {
+        expect(
+          wrapper
+            .find('.input-number')
+            .first()
+            .props().error,
+        ).toEqual(true);
+      });
+
+      it('should show error when place field is empty', () => {
+        expect(
+          wrapper
+            .find('.input-place')
+            .first()
+            .props().error,
+        ).toEqual(true);
+      });
+
+      it('should show error when time field is empty', () => {
+        expect(
+          wrapper
+            .find('.input-time')
+            .first()
+            .props().error,
+        ).toEqual(true);
+      });
+      it('should show error when date field is empty', () => {
+        expect(
+          wrapper
+            .find('.input-date')
+            .first()
+            .props().error,
+        ).toEqual(true);
       });
     });
   });
