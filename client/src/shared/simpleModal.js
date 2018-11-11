@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -17,24 +18,30 @@ const styles = theme => ({
   },
 });
 
-const SimpleModal = ({ show, handleClose, classes, component }) => (
-  <Modal
-    aria-labelledby="simple-modal-title"
-    aria-describedby="simple-modal-description"
-    open={show}
-    onClose={handleClose}
-  >
-    <div
-      className={`tc modal ${classes.paper}`}
-      style={{
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      }}
-    >
-      {component}
-    </div>
-  </Modal>
+const SimpleModal = ({ showModal, classes, component }) => (
+  <React.Fragment>
+    {showModal && (
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={showModal}
+      >
+        <div
+          className={`tc modal ${classes.paper}`}
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          {component}
+        </div>
+      </Modal>
+    )}
+  </React.Fragment>
 );
-
-export default withStyles(styles)(SimpleModal);
+const mapStateToProps = state => ({ showModal: state.modal.show });
+export default connect(
+  mapStateToProps,
+  undefined,
+)(withStyles(styles)(SimpleModal));

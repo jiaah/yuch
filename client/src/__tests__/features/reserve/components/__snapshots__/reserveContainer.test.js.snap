@@ -24,6 +24,29 @@ exports[`<ReserveContainer /> renders initial reserve section correctly renders 
       예약하기
     </WithStyles(Button)>
   </div>
+  <LoadableComponent
+    component={
+      <LoadableComponent
+        handleChange={[Function]}
+        handleClose={[Function]}
+        handleSubmit={[Function]}
+        inThreeDays="1970-01-04"
+        reserveInfo={
+          Object {
+            "contact": "(0  )    -    ",
+            "date": "1970-01-04",
+            "name": "",
+            "number": "",
+            "place": "",
+            "show": false,
+            "submitBtnClicked": false,
+            "time": "12:30",
+          }
+        }
+        submitBtnClicked={false}
+      />
+    }
+  />
 </div>
 `;
 
@@ -65,7 +88,7 @@ exports[`<ReserveContainer /> renders initial reserve section correctly when cli
             "name": "",
             "number": "",
             "place": "",
-            "show": true,
+            "show": false,
             "submitBtnClicked": false,
             "time": "12:30",
           }
@@ -73,8 +96,6 @@ exports[`<ReserveContainer /> renders initial reserve section correctly when cli
         submitBtnClicked={false}
       />
     }
-    handleClose={[Function]}
-    show={true}
   />
 </div>
 `;

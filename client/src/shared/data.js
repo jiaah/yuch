@@ -13,7 +13,7 @@ export const nav = [
   },
   {
     id: 3,
-    name: '연락처/오픈시간',
+    name: '위치/오픈시간',
     to: '#board',
     className: 'anchor td-none c-text',
   },

@@ -16,7 +16,7 @@ const SwitchReserve = ({
     <h3 variant="title" id="modal-title" className="mb2 f-xl">
       - Reservation -
     </h3>
-    {apiRequest === '' || apiRequest === undefined ? (
+    {!apiRequest ? (
       <ReserveForm
         reserveInfo={reserveInfo}
         inThreeDays={inThreeDays}

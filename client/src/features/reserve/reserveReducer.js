@@ -2,7 +2,7 @@ import * as types from '../../shared/actionTypes';
 
 const initialState = {
   loading: false,
-  apiRequest: '',
+  apiRequest: null,
   error: '',
 };
 
@@ -34,7 +34,7 @@ const reserveReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: '',
-        apiRequest: '',
+        apiRequest: null,
       };
     }
     default:

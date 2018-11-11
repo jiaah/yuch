@@ -16,14 +16,14 @@ exports[`<App /> on sub pages renders correctly with Nav 1`] = `
       name="viewport"
     />
     <title>
-      ###
+      위탁급식/식당 유청
     </title>
     <meta
-      content="###"
+      content="위탁급식/식당 유청"
       property="og:title"
     />
     <meta
-      content="###"
+      content="착한가격의 집밥, 위탁 급식, 뷔폐 식당, 기업체 각종 행사/ 모임 단체 식사, 경주 전지역 배달, No MSG, 신선한 지역 농산물"
       property="og:description"
     />
     <meta
@@ -35,7 +35,7 @@ exports[`<App /> on sub pages renders correctly with Nav 1`] = `
       property="og:url"
     />
     <meta
-      content="###"
+      content="./../assets/img/header.jpg"
       property="og:image"
     />
     <link
@@ -47,18 +47,6 @@ exports[`<App /> on sub pages renders correctly with Nav 1`] = `
       href="http://domain/robots.txt"
       rel="author"
       type="text/plain"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Notable"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Luckiest+Guy"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-      rel="stylesheet"
     />
   </HelmetWrapper>
   <LoadableComponent />
@@ -81,14 +69,14 @@ exports[`<App /> renders correctly with Nav on index page 1`] = `
       name="viewport"
     />
     <title>
-      ###
+      위탁급식/식당 유청
     </title>
     <meta
-      content="###"
+      content="위탁급식/식당 유청"
       property="og:title"
     />
     <meta
-      content="###"
+      content="착한가격의 집밥, 위탁 급식, 뷔폐 식당, 기업체 각종 행사/ 모임 단체 식사, 경주 전지역 배달, No MSG, 신선한 지역 농산물"
       property="og:description"
     />
     <meta
@@ -100,7 +88,7 @@ exports[`<App /> renders correctly with Nav on index page 1`] = `
       property="og:url"
     />
     <meta
-      content="###"
+      content="./../assets/img/header.jpg"
       property="og:image"
     />
     <link
@@ -112,18 +100,6 @@ exports[`<App /> renders correctly with Nav on index page 1`] = `
       href="http://domain/robots.txt"
       rel="author"
       type="text/plain"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Notable"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Luckiest+Guy"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-      rel="stylesheet"
     />
   </HelmetWrapper>
 </div>

@@ -5,6 +5,10 @@ export const showReserve = () => ({
   type: types.SHOW_RESERVE,
 });
 
+export const resetReserve = () => ({
+  type: types.RESET_RESERVE,
+});
+
 export const reserve = reserveInfo => dispatch => {
   dispatch({
     type: types.RESERVE_REQUEST,
@@ -24,7 +28,3 @@ export const reserve = reserveInfo => dispatch => {
       }),
     );
 };
-
-export const resetReserve = () => ({
-  type: types.RESET_RESERVE,
-});

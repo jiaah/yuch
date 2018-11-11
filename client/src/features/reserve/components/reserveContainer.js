@@ -8,6 +8,7 @@ import Loader from '../../../shared/loader';
 import * as moment from '../../../shared/moment';
 /* --- Actions --- */
 import { reserve, resetReserve } from '../reserveAction';
+import { showModalAction, hideModalAction } from '../../../shared/modalModule';
 
 /* react/no-unused-state: false */
 const SimpleModal = Loader({
@@ -48,6 +49,11 @@ class ReserveContainer extends Component {
       date: moment.inThreeDays,
       time: '12:30',
     };
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUmount funciotn called');
+    this.props.onResetReserve();
   }
 
   handleOpen = () => this.setState({ show: true });
@@ -104,7 +110,7 @@ class ReserveContainer extends Component {
           <h3 className="white f-en b">Reservation</h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
           <Button
-            onClick={ev => this.handleOpen(ev)}
+            onClick={() => this.props.showModalAction()}
             variant="contained"
             color="secondary"
             className={`btn--reserve-modal ${classes.bigButton}`}
@@ -112,23 +118,19 @@ class ReserveContainer extends Component {
             예약하기
           </Button>
         </div>
-        {show && (
-          <SimpleModal
-            show={show}
-            handleClose={this.handleClose}
-            component={
-              <SwitchReserve
-                apiRequest={apiRequest}
-                reserveInfo={this.state}
-                inThreeDays={inThreeDays}
-                submitBtnClicked={submitBtnClicked}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-                handleClose={this.handleClose}
-              />
-            }
-          />
-        )}
+        <SimpleModal
+          component={
+            <SwitchReserve
+              apiRequest={apiRequest}
+              reserveInfo={this.state}
+              inThreeDays={inThreeDays}
+              submitBtnClicked={submitBtnClicked}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleClose={() => this.props.hideModalAction()}
+            />
+          }
+        />
       </div>
     );
   }
@@ -141,6 +143,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onReserve: reserveInfo => dispatch(reserve(reserveInfo)),
   onResetReserve: () => dispatch(resetReserve()),
+  showModalAction: () => dispatch(showModalAction()),
+  hideModalAction: () => {
+    dispatch(hideModalAction());
+    dispatch(resetReserve());
+  },
 });
 
 export const Unwrapped = ReserveContainer;

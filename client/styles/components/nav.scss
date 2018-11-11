@@ -11,15 +11,25 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    padding: 8px 20px 6px 20px;
+    padding: 6px 20px 4px 20px;
+
+    @include for-big-desktop-up {
+      padding-top: 8px;
+      padding-bottom: 6px;
+    }
   }
 
   .login-btn {
-    padding: 6px 20px 3px 20px;
+    padding: 4.2px 20px 1.5px 20px;
     margin: 5px 0;
     border: 1.48px solid $c-point1;
     background-color: $c-point1;
     color: #ffffff;
+
+    @include for-big-desktop-up {
+      padding-top: 6px;
+      padding-bottom: 3px;
+    }
   }
 
   .login-btn:hover {

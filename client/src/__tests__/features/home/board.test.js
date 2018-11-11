@@ -1,45 +1,36 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Board from '../../../features/home/board';
 
 describe('<Board />', () => {
-  const wrapper = shallow(<Board />);
+  const setup = (props = {}) => mount(<Board {...props} />);
 
-  it('renders properly', () => {
-    expect(wrapper).toMatchSnapshot();
+  it('should render successfully', () => {
+    const component = setup();
+    expect(component).toMatchSnapshot();
   });
 
-  it('sets initial state', () => {
-    expect(wrapper.state().lastScrollY).toBe(0);
+  it('should update "lastScrollY" in state when compnent mounts', () => {
+    const map = {};
+    global.window.addEventListener = jest.fn((event, handler) => {
+      map[event] = handler;
+    });
+    const Component = setup();
+
+    global.window.scrollY = 200;
+    map.scroll({ scrollY: 200 });
+
+    expect(global.window.addEventListener).toHaveBeenCalled();
+    expect(Component.instance().state.lastScrollY).toBe(200);
   });
 
-  describe('when mouted', () => {
-    // let spy;
-    // beforeEach(() => {
-
-    //   wrapper.setState({ lastScrollY: 1010 });
-    // });
-
-    afterEach(() => {
-      // wrapper.setState({ lastScrollY: 0 });
-      // spy.mockClear();
-    });
-
-    it('should call methodName on scroll during componentDidMount', () => {
-      // const map = {};
-      // window.addEventListener = jest.jest.genMockFn().mockImpl((event, cb) => {
-      //   map[event] = cb;
-      // });
-      // wrapper = mount(<Board />);
-      // map.scroll({ pageY: 1010 });
-      // expect(wrapper.handleScroll).toHaveBeenCalled();
-      // spy = jest.spyOn(global, 'addEventListener');
-      // wrapper.instance().handleScroll();
-      // expect(spy).toHaveBeenCalled();
-    });
-    it('should update lastScrollY state', () => {});
-    it('laods Map on scroll down', () => {
-      // expect(wrapper.find('LoadableComponent').exists()).toBe(true);
-    });
+  it('should remove event listener when component unmounts ', () => {
+    const removeEventListenerSpy = jest.spyOn(
+      global.window,
+      'removeEventListener',
+    );
+    const Component = setup();
+    Component.unmount();
+    expect(removeEventListenerSpy).toHaveBeenCalled();
   });
 });
