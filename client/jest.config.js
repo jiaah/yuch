@@ -1,7 +1,7 @@
 module.exports = {
   displayName: 'client',
   modulePaths: ['<rootDir>/src', '<rootDir>/src/__tests__'],
-  testMatch: ['<rootDir>/src/__tests__/**/*.test.js'],
+  testMatch: ['**/*.test.js'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'scss'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/__tests__/setupTests'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
@@ -16,6 +16,6 @@ module.exports = {
     '!./../jest.config.js',
     '!./../index.js',
     '!./../store.js',
-    '!./../src/shared/actionTypes.js',
+    '!./../src/actions/actionTypes.js',
   ],
 };

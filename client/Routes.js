@@ -3,22 +3,22 @@ import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
-import App from './src/app';
+import App from './app';
 import Loader from './src/shared/loader';
 
 const Home = Loader({
   loader: () =>
-    import('./src/features/home/homeContainer' /* webpackChunkName: 'Home' */),
+    import('./src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
 });
 
 const Login = Loader({
   loader: () =>
-    import('./src/features/auth/components/loginContainer' /* webpackChunkName: 'Login' */),
+    import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
 const NoMatch = Loader({
   loader: () =>
-    import('./src/features/noMatch' /* webpackChunkName: 'NoMatch' */),
+    import('./src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
 const routes = props => (

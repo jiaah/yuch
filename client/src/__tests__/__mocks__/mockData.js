@@ -9,7 +9,7 @@ export const now = moment().format('MMMM Do YYYY, h:mm a');
 
 export const reserveInitState = {
   loading: false,
-  apiRequest: '',
+  apiRequest: null,
   error: '',
 };
 
