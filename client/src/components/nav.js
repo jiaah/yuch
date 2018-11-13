@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 /* --- Components --- */
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
-import Buttons from '../shared/buttons';
 /* --- Actions --- */
 import { startLogout } from '../actions/loginAction';
 import logo from '../../assets/img/yuch-logo.png';

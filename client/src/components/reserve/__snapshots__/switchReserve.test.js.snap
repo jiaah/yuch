@@ -22,7 +22,7 @@ exports[`<switchReserve /> render reserve request resolved text when api request
   >
     - Reservation -
   </h3>
-  <ReserveResolvedText
+  <WithStyles(ReserveResolvedText)
     apiRequest="success"
   />
 </Fragment>

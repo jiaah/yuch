@@ -3,15 +3,21 @@ import { shallow } from 'enzyme';
 import SwitchReserve from './switchReserve';
 
 describe('<switchReserve />', () => {
+  const props = {
+    apiRequest: null,
+  };
+  const wrapper = shallow(<SwitchReserve {...props} />);
+
   it('render reserve form when api request not made', () => {
-    const wrapper = shallow(<SwitchReserve apiRequest="" />);
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('WithStyles(ReserveForm)').exists()).toBe(true);
+    expect(wrapper.find('WithStyles(ReserveForm)').exists()).toBeTruthy();
   });
 
   it('render reserve request resolved text when api request is made', () => {
-    const wrapper = shallow(<SwitchReserve apiRequest="success" />);
+    wrapper.setProps({ apiRequest: 'success' });
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('ReserveResolvedText').exists()).toBe(true);
+    expect(
+      wrapper.find('WithStyles(ReserveResolvedText)').exists(),
+    ).toBeTruthy();
   });
 });

@@ -98,7 +98,7 @@ describe('<ReserveForm />', () => {
   describe('throwing error for an empty input value on submit', () => {
     const mockedEvent = { target: {} };
 
-    describe('name value empty', () => {
+    describe('should show error when input field is empty', () => {
       const setup = () => {
         const wrapper = shallow(
           <ComponentNaked
@@ -118,16 +118,13 @@ describe('<ReserveForm />', () => {
       };
 
       const { wrapper } = setup();
+
       beforeEach(() => {
         wrapper.find('.btn-submit').simulate('click', mockedEvent);
         wrapper.setProps({ submitBtnClicked: true });
       });
 
-      it('return submitBtnClicked state true', () => {
-        // expect(wrapper.props().submitBtnClicked).toEqual(true);
-      });
-
-      it('should show error when name field is empty', () => {
+      it('when name field is empty', () => {
         expect(
           wrapper
             .find('.input-name')
@@ -136,7 +133,7 @@ describe('<ReserveForm />', () => {
         ).toEqual(true);
       });
 
-      it('should show error when number field is empty', () => {
+      it('when number field is empty', () => {
         expect(
           wrapper
             .find('.input-number')
@@ -145,7 +142,7 @@ describe('<ReserveForm />', () => {
         ).toEqual(true);
       });
 
-      it('should show error when place field is empty', () => {
+      it('when place field is empty', () => {
         expect(
           wrapper
             .find('.input-place')
@@ -154,7 +151,7 @@ describe('<ReserveForm />', () => {
         ).toEqual(true);
       });
 
-      it('should show error when time field is empty', () => {
+      it('when time field is empty', () => {
         expect(
           wrapper
             .find('.input-time')
@@ -162,7 +159,8 @@ describe('<ReserveForm />', () => {
             .props().error,
         ).toEqual(true);
       });
-      it('should show error when date field is empty', () => {
+
+      it('when date field is empty', () => {
         expect(
           wrapper
             .find('.input-date')

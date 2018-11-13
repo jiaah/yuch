@@ -53,18 +53,7 @@ const ReserveForm = ({
           required={true}
           className="input-name"
         />
-        <FormControl
-          margin="normal"
-          fullWidth
-          error={
-            submitBtnClicked &&
-            (contact === '' ||
-              contact === '(0  )    -    ' ||
-              !!(contact[11].indexOf('_') !== -1) ||
-              !!(contact[12].indexOf('_') !== -1) ||
-              !!(contact[13].indexOf('_') !== -1))
-          }
-        >
+        <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
           <Input
             id="contact"

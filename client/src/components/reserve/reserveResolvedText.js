@@ -1,9 +1,20 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Buttons from '../../shared/buttons';
 import * as data from '../../shared/data';
 
-const ReserveResolvedText = ({ apiRequest, handleClose }) => (
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+    width: '6em',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+  },
+});
+
+const ReserveResolvedText = ({ apiRequest, handleClose, classes }) => (
   <React.Fragment>
     {apiRequest === 'success' ? (
       <p>{data.reserveSuccessMessage}</p>
@@ -15,15 +26,16 @@ const ReserveResolvedText = ({ apiRequest, handleClose }) => (
       </p>
     ) : null}
     <div className="mt2">
-      <Buttons
-        handleClick={handleClose}
-        variantValue="outlined"
-        colorValue="secondary"
-        classNameValue="button"
-        name="닫기"
-      />
+      <Button
+        onClick={handleClose}
+        variant="outlined"
+        color="secondary"
+        className={classes.button}
+      >
+        닫기
+      </Button>
     </div>
   </React.Fragment>
 );
 
-export default ReserveResolvedText;
+export default withStyles(styles)(ReserveResolvedText);

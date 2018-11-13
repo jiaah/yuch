@@ -4,17 +4,19 @@ import { Unwrapped as UnwrappedReserveContainer } from './reserveContainer';
 
 describe('<ReserveContainer />', () => {
   describe('renders initial reserve section correctly', () => {
+    const showModalAction = jest.fn();
     const props = {
       show: false,
       classes: {
         bigButton: { width: '9em' },
       },
-      showModalAction: jest.fn(),
+      showModalAction,
     };
 
     const wrapper = shallow(<UnwrappedReserveContainer {...props} />);
 
     it('renders correctly', () => {
+      expect(wrapper.find('WithStyles(Button)').exists()).toBeTruthy();
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -27,13 +29,12 @@ describe('<ReserveContainer />', () => {
         wrapper.setState({ show: false });
       });
 
-      it('call handleOpen function and changes show state to true on button click event', () => {
-        // check handleOpen.toHaveBeenCalled();
-        // expect(wrapper.state().show).toEqual(true);
+      it('showModalAction called', () => {
+        expect(showModalAction).toHaveBeenCalled();
       });
 
       it('load a reserve Modal component', () => {
-        expect(wrapper.find('LoadableComponent').exists()).toBe(true);
+        expect(wrapper.find('LoadableComponent').exists()).toBeTruthy();
         expect(wrapper).toMatchSnapshot();
       });
     });

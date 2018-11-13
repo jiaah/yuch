@@ -8,41 +8,19 @@ const styles = theme => ({
     width: '6em',
     paddingTop: '5px',
     paddingBottom: '5px',
-    [theme.breakpoints.up('md')]: {
-      // fontSize: '1em',
-    },
-  },
-  bigButton: {
-    margin: theme.spacing.unit,
-    width: '9em',
-    paddingTop: '5px',
-    paddingBottom: '5px',
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1em',
-    },
+    [theme.breakpoints.up('md')]: {},
   },
 });
 
-const Buttons = ({
-  handleClick,
-  classes,
-  variantValue,
-  colorValue,
-  classNameValue,
-  name,
-}) => {
-  const buttonStyle =
-    classNameValue === 'bigButton' ? classes.bigButton : classes.button;
-  return (
-    <Button
-      onClick={ev => handleClick(ev)}
-      variant={variantValue}
-      color={colorValue}
-      className={buttonStyle}
-    >
-      {name}
-    </Button>
-  );
-};
+const Buttons = ({ handleClick, classes, variantValue, colorValue, name }) => (
+  <Button
+    onClick={ev => handleClick(ev)}
+    variant={variantValue}
+    color={colorValue}
+    className={classes.button}
+  >
+    {name}
+  </Button>
+);
 
 export default withStyles(styles)(Buttons);
