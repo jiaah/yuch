@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 /* --- Components --- */
 import reserve from './reserveReducer';
-import { modalReducer as modal } from './modalModule';
+import modal from './modalReducer';
 
 export default combineReducers({
   modal,

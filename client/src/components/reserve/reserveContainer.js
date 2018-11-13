@@ -8,7 +8,7 @@ import Loader from '../../shared/loader';
 import * as moment from '../../shared/moment';
 /* --- Actions --- */
 import { reserve, resetReserve } from '../../actions/reserveAction';
-import { showModalAction, hideModalAction } from '../../reducers/modalModule';
+import { showModalAction, hideModalAction } from '../../actions/modalAction';
 
 /* react/no-unused-state: false */
 const SimpleModal = Loader({
