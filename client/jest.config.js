@@ -17,5 +17,6 @@ module.exports = {
     '!./../index.js',
     '!./../store.js',
     '!./../src/actions/actionTypes.js',
+    '!./../src/reducers/index.js',
   ],
 };
