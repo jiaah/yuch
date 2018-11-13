@@ -41,6 +41,8 @@ const SimpleModal = ({ showModal, classes, component }) => (
   </React.Fragment>
 );
 const mapStateToProps = state => ({ showModal: state.modal.show });
+
+export const Unwrapped = SimpleModal;
 export default connect(
   mapStateToProps,
   undefined,

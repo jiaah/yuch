@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SimpleModal /> should not show the modal when showModal is true should contain Modal 1`] = `
+<Fragment>
+  <WithStyles(Modal)
+    aria-describedby="simple-modal-description"
+    aria-labelledby="simple-modal-title"
+    open={true}
+  >
+    <div
+      className="tc modal [object Object]"
+      style={
+        Object {
+          "left": "50%",
+          "top": "50%",
+          "transform": "translate(-50%, -50%)",
+        }
+      }
+    >
+      <Component />
+    </div>
+  </WithStyles(Modal)>
+</Fragment>
+`;
