@@ -86,7 +86,7 @@ class ReserveContainer extends Component {
   };
 
   render() {
-    const { apiRequest, classes } = this.props;
+    const { apiRequest, showModal, classes } = this.props;
     const { submitBtnClicked } = this.state;
     const { inThreeDays } = moment;
 
@@ -104,19 +104,21 @@ class ReserveContainer extends Component {
             예약하기
           </Button>
         </div>
-        <SimpleModal
-          component={
-            <SwitchReserve
-              apiRequest={apiRequest}
-              reserveInfo={this.state}
-              inThreeDays={inThreeDays}
-              submitBtnClicked={submitBtnClicked}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              handleClose={() => this.props.hideModalAction()}
-            />
-          }
-        />
+        {showModal && (
+          <SimpleModal
+            component={
+              <SwitchReserve
+                apiRequest={apiRequest}
+                reserveInfo={this.state}
+                inThreeDays={inThreeDays}
+                submitBtnClicked={submitBtnClicked}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                handleClose={() => this.props.hideModalAction()}
+              />
+            }
+          />
+        )}
       </div>
     );
   }
@@ -124,6 +126,7 @@ class ReserveContainer extends Component {
 
 const mapStateToProps = state => ({
   apiRequest: state.reserve.apiRequest,
+  showModal: state.modal.show,
 });
 
 const mapDispatchToProps = dispatch => ({
