@@ -3,7 +3,7 @@ const isTest = String(process.env.NODE_ENV) === 'test';
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      'env',
       {
         useBuiltIns: 'usage',
         targets: {
@@ -15,14 +15,14 @@ module.exports = {
         debug: isTest ? false : true,
       },
     ],
-    '@babel/preset-react',
+    'react',
   ],
   retainLines: true,
   plugins: [
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-syntax-dynamic-import',
+    'transform-runtime',
+    'transform-class-properties',
+    'transform-object-rest-spread',
+    'syntax-dynamic-import',
     [
       'import',
       {
