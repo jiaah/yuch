@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
 
 const NODE_ENV = process.env.NODE_ENV;
