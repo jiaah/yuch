@@ -18,10 +18,7 @@
     "heroku-postbuild": "npm run build:prod",
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
     "test:client": "cross-env NODE_ENV=test jest --config ./client/jest.config.js --coverage --watch",
-    "test:server": "jest --config ./server/jest.config.js --coverage --watch",
-    "test:e2e:dev": "npm-run-all --parallel dev:server cy:run",
-    "test:e2e": "npm-run-all --parallel --race start cy:run",
-    "cy:run": "cypress run"
+    "test:server": "jest --config ./server/jest.config.js --coverage --watch"
   },
   "lint-staged": {
     "linters": {
@@ -105,8 +102,6 @@
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "cssnano": "^4.0.5",
-    "cypress": "^3.1.0",
-    "cypress-testing-library": "^2.2.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
@@ -114,7 +109,6 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-loader": "^2.1.0",
-    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-flow": "^2.29.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",

@@ -4,8 +4,6 @@ public/dist/**
 # Testing Files
 flow-typed/npm/**
 coverage/
-cypress/videos
-cypress/screenshots
 
 # Logs
 logs

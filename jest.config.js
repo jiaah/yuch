@@ -6,6 +6,8 @@ module.exports = {
     '**/src/**/*.js',
     '!**/__tests__/**',
     '!**/node_modules/**',
+    '!**/cypress/videos/**',
+    '!**/cypress/screenshots/**',
   ],
   projects: ['./client', './server'],
 };
