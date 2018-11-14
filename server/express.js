@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import devMiddleware from 'webpack-dev-middleware';
 import hotMiddleware from 'webpack-hot-middleware';
-// import expressStaticGzip from 'express-static-gzip');
+import expressStaticGzip from 'express-static-gzip';
 import config from '../webpack.dev';
 
 require('dotenv').config();
@@ -58,12 +58,12 @@ if (!isProd) {
 } else {
   app.use(express.static(DIST_DIR));
   app.get('*', (req, res) => res.sendFile(HTML_FILE));
-  // app.use(
-  //   expressStaticGzip(DIST_DIR, {
-  //     enableBrotli: true,
-  //     orderPreference: ['br'],
-  //   }),
-  // );
+  app.use(
+    expressStaticGzip(DIST_DIR, {
+      enableBrotli: true,
+      orderPreference: ['br'],
+    }),
+  );
 }
 
 app.use('/api', require('./api'));

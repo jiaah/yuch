@@ -1,7 +1,5 @@
 # Compiled Files
 public/dist/**
-public/dist/bundle.js
-public/dist/bundle.js.map
 
 # Testing Files
 flow-typed/npm/**
