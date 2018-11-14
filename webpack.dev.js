@@ -21,6 +21,10 @@ const config = {
     overlay: true,
     hot: true,
     historyApiFallback: true,
+    // historyApiFallback: {
+    //   index: '/client/index',
+    //   rewrites: [{ from: /favicon.ico/, to: '/public/favicons/favicon.ico' }],
+    // },
     stats: {
       colors: true,
       reasons: true,

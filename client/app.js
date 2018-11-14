@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 /* --- Components --- */
 import Loader from './src/shared/loader';
 // import './firebase/firebase';
-
-require('./styles/main.scss');
+import './styles/main.scss';
+import '../public/favicons/favicon.ico';
 
 const Nav = Loader({
   loader: () => import('./src/components/nav' /* webpackChunkName: 'Nav' */),

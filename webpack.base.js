@@ -77,7 +77,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|png|gif|ico)$/,
         loader: 'file-loader',
         options: {
           name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
@@ -105,6 +105,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicons/favicon.ico',
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[chunkhash].css',
