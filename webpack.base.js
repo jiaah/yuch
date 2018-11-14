@@ -111,6 +111,7 @@ module.exports = {
       filename: devMode ? '[name].css' : '[name].[chunkhash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[chunkhash].css',
     }),
+    new CaseSensitivePathsPlugin(),
     isTest
       ? new BundleAnalyzerPlugin({
           generateStatsFile: true,
