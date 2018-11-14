@@ -1,5 +1,5 @@
 import React from 'react';
-import Loadable from 'react-Loadable';
+import Loadable from 'react-loadable';
 
 const Spinner = () =>
   import('../components/spinner' /* webpackChunkName: 'Spinner' */);
