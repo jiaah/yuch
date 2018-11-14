@@ -80,14 +80,14 @@ module.exports = {
         test: /\.(jpe?g|png|gif|ico)$/,
         loader: 'file-loader',
         options: {
-          name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
+          name: devMode ? 'assets/[name].[ext]' : 'assets/[name].[hash].[ext]',
         },
       },
       {
         test: /\.svg$/,
         loader: 'file-loader',
         options: {
-          name: devMode ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
+          name: devMode ? 'assets/[name].[ext]' : 'assets/[name].[hash].[ext]',
         },
       },
       {

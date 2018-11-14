@@ -1,7 +1,8 @@
 const merge = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
-// Compress Files
+const TerserPlugin = require('terser-webpack-plugin');
+
 const BrotliPlugin = require('brotli-webpack-plugin');
 
 const baseConfig = require('./webpack.base');
@@ -11,6 +12,7 @@ const config = {
   entry: './client/index.js',
   devtool: 'source-map',
   optimization: {
+    minimize: true,
     minimizer: [
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.optimize\.css$/g,
@@ -19,6 +21,18 @@ const config = {
           discardComments: { removeAll: true },
         },
         canPrint: true,
+      }),
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        exclude: /node_modules/,
+        terserOptions: {
+          ecma: 6,
+          compress: true,
+          output: {
+            comments: false,
+            beautify: false,
+          },
+        },
       }),
     ],
   },
