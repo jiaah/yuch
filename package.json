@@ -80,6 +80,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "vanilla-lazyload": "^8.17.0",
+    "webpack": "^4.16.5",
     "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
@@ -145,7 +146,6 @@
     "style-loader": "^0.22.1",
     "svg-inline-loader": "^0.8.0",
     "terser-webpack-plugin": "^1.1.0",
-    "webpack": "^4.16.5",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.1.3",
