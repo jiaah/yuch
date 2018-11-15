@@ -57,6 +57,10 @@ if (!isProd) {
 } else {
   app.use(express.static(DIST_DIR));
   app.get('*', (req, res) => res.sendFile(HTML_FILE));
+
+  app.get('/', (req, res) => {
+    res.redirect('https://jin827.github.io/yuchung/');
+  });
 }
 
 app.use('/api', require('./api'));

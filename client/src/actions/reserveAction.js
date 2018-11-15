@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as types from './actionTypes';
+import { API_HOST } from '../../config';
 
 export const showReserve = () => ({
   type: types.SHOW_RESERVE,
@@ -14,7 +15,7 @@ export const reserve = reserveInfo => dispatch => {
     type: types.RESERVE_REQUEST,
   });
   return axios
-    .post('/api/reserve', reserveInfo)
+    .post(`${API_HOST}/api/reserve`, reserveInfo)
     .then(() =>
       dispatch({
         type: types.RESERVE_SUCCESS,
