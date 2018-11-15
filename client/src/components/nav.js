@@ -7,7 +7,7 @@ import * as data from '../shared/data';
 import Ul from '../shared/ul';
 /* --- Actions --- */
 import { startLogout } from '../actions/loginAction';
-import logo from '../../assets/svg/yuch-logo.svg';
+import logo from '../../assets/img/yuch-logo.png';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.

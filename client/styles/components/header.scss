@@ -1,5 +1,5 @@
 header {
-  background-image: linear-gradient(#ece3ec40, rgba(76, 76, 76, .65)), url(./../assets/img/header.jpg);
+  background-image: linear-gradient(rgba(29, 28, 27, 0.65), rgba(39, 37, 35, 0.6)), url(./../assets/img/header.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -11,7 +11,7 @@ header {
 
 .header-text--box {
   position: absolute;
-  top: 49%;
+  top: 48%;
   padding-left: 1em;
   padding-right: 1em;
 
@@ -24,7 +24,15 @@ header {
     left: 5%;
   }
 
-  .point {
+  .point1 {
+    font-size: 1.7em;
+
+    @include for-big-desktop-up {
+      font-size: 2.5em;
+    }
+  }
+
+  .point2 {
     color: #f8b37d;
   }
 }
