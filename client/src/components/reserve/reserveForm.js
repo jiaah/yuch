@@ -39,8 +39,8 @@ const ReserveForm = ({
   );
 
   return (
-    <React.Fragment>
-      <div className="mh2">
+    <div className="reserve-form">
+      <div className="mh1">
         <TextField
           id="name"
           label="이름"
@@ -125,7 +125,7 @@ const ReserveForm = ({
           className="input-time"
         />
       </div>
-      <div className="mt3">
+      <div>
         <Button
           onClick={ev => handleSubmit(ev)}
           variant="contained"
@@ -143,7 +143,7 @@ const ReserveForm = ({
           닫기
         </Button>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
