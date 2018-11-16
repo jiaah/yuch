@@ -63,9 +63,14 @@
   }
 
   .nav-menu {
-    padding: .4em 0;
+    padding: .32em 0;
     display: flex;
     justify-content: space-around;
     background-color: #ffffff;
+
+    @include for-big-desktop-up {
+      padding-top: .4em;
+      padding-bottom: .4em;
+    }
   }
 }
