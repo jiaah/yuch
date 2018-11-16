@@ -21,7 +21,10 @@ const ReserveResolvedText = ({ apiRequest, handleClose, classes }) => (
       <p>
         {data.reserveErrorMessage} <br />
         <br />
-        <span className="b">상담전화 054-745-0999</span>
+        <a className="b" href="tel:+82-54-745-0999">
+          상담전화&#8201;
+          <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
+        </a>
       </p>
     ) : null}
     <div className="mt2">
