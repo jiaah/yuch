@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 const LoginForm = ({ handleChange, id, password }) => (
-  <div>
+  <div className="mh1">
     <TextField
       id="id"
       label="ID"

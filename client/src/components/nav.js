@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
 /* --- Actions --- */
-import { startLogout } from '../actions/loginAction';
 import logo from '../../assets/img/yuch-logo.png';
 
 // Preload Nav Component on mouseover Login button when on Homepage
@@ -19,7 +18,6 @@ class Nav extends Component {
 
   handleUserLogout = ev => {
     ev.preventDefault();
-    this.props.startLogout();
   };
 
   render() {
@@ -56,9 +54,7 @@ class Nav extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout()),
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default withRouter(
   connect(
