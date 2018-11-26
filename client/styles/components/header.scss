@@ -3,10 +3,19 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   z-index: 1;
   position: relative;
   height: 100vh;
+  min-height: 100%;
+  background-attachment: fixed;
+
+  @include for-ios-devices {
+    //background-attachment fixed doesn't work with background-size on iso devices
+    background-attachment: local;
+  }
 }
 
 .header-text--box {

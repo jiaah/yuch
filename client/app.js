@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import Loader from './src/shared/loader';
 // import './firebase/firebase';
 import './styles/main.scss';
-import '../public/favicons/favicon.ico';
 
 const Nav = Loader({
   loader: () => import('./src/components/nav' /* webpackChunkName: 'Nav' */),

@@ -45,3 +45,18 @@
     @content;
   }
 }
+
+
+@mixin for-all-devices {
+  @supports not (-webkit-overflow-scrolling: touch) {
+    /* CSS for other than iOS devices excluding IE */
+    @content;
+  }
+}
+
+@mixin for-ios-devices {
+  @supports (-webkit-overflow-scrolling: touch) {
+    /* CSS specific to iOS devices */
+    @content;
+  }
+}
