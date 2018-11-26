@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const TerserPlugin = require('terser-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const BrotliPlugin = require('brotli-webpack-plugin');
 
@@ -36,7 +37,7 @@ const config = {
       }),
     ],
   },
-  plugins: [new BrotliPlugin()],
+  plugins: [new BrotliPlugin(), new ManifestPlugin()],
 };
 
 module.exports = merge(config, baseConfig);
