@@ -59,7 +59,7 @@ if (!isProd) {
   app.get('*', (req, res) => res.sendFile(HTML_FILE));
 
   app.get('/', (req, res) => {
-    res.redirect('https://jin827.github.io/yuchung/');
+    res.redirect('https://yu-chung.com/');
   });
 }
 
