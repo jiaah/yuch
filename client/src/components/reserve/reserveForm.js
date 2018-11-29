@@ -40,7 +40,7 @@ const ReserveForm = ({
 
   return (
     <div className="reserve-form">
-      <div className="mh1">
+      <div className="form">
         <TextField
           id="name"
           label="이름"

@@ -13,7 +13,7 @@ const SwitchReserve = ({
   handleSubmit,
 }) => (
   <React.Fragment>
-    <h3 variant="title" id="modal-title" className="mb2 f-xl">
+    <h3 variant="title" id="modal-title" className="f-xl">
       - Reservation -
     </h3>
     {!apiRequest ? (

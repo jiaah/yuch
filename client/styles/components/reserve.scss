@@ -16,4 +16,23 @@
 
 .reserve-form {
   overflow-y: scroll;
+
+  .form {
+    margin-top: .2em;
+    margin-bottom: .2em;
+
+    @include for-tablet-portrait-up {
+      margin-top: .6em;
+      margin-bottom: .6em;
+    }
+
+    @include for-big-desktop-up {
+      margin-top: .8em;
+      margin-bottom: .8em;
+    }
+  }
+}
+
+#modal-title {
+  margin-bottom: 0;
 }

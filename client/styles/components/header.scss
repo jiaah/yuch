@@ -20,13 +20,19 @@ header {
 
 .header-text--box {
   position: absolute;
-  top: 48%;
+  top: 52%;
   padding-left: 1em;
   padding-right: 1em;
 
-  @include for-x-tablet-portrait-up {
-    padding-left: 6em;
+  @include for-tablet-portrait-up {
+    top: 53%;
+    padding-left: 4em;
     padding-right: 4em;
+  }
+
+  @include for-tablet-landscape-up {
+    top: 55%;
+    padding-left: 6em;
   }
 
   @include for-big-desktop-up {
