@@ -4,23 +4,39 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
-    width: '6em',
-    paddingTop: '5px',
-    paddingBottom: '5px',
+    margin: '10px 12px',
+    width: '7em',
+    paddingTop: '2px',
+    paddingBottom: '2px',
     [theme.breakpoints.up('md')]: {},
   },
 });
 
-const Buttons = ({ handleClick, classes, variantValue, colorValue, name }) => (
-  <Button
-    onClick={ev => handleClick(ev)}
-    variant={variantValue}
-    color={colorValue}
-    className={classes.button}
-  >
-    {name}
-  </Button>
+const Buttons = ({
+  handleFirstButtonClick,
+  handleSecondButtonClick,
+  classes,
+  firstButtonName,
+  secondButtonName,
+}) => (
+  <React.Fragment>
+    <Button
+      onClick={ev => handleFirstButtonClick(ev)}
+      variant="contained"
+      color="secondary"
+      className={classes.button}
+    >
+      {firstButtonName}
+    </Button>
+    <Button
+      onClick={ev => handleSecondButtonClick(ev)}
+      variant="outlined"
+      color="secondary"
+      className={classes.button}
+    >
+      {secondButtonName}
+    </Button>
+  </React.Fragment>
 );
 
 export default withStyles(styles)(Buttons);

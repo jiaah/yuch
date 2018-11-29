@@ -1,21 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import {
-  Button,
-  TextField,
-  FormControl,
-  Input,
-  InputLabel,
-} from '@material-ui/core';
+import { TextField, FormControl, Input, InputLabel } from '@material-ui/core';
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
-
-const styles = () => ({
-  button: {
-    margin: '10px',
-    width: '8em',
-  },
-});
+import Buttons from '../../shared/buttons';
 
 const ReserveForm = ({
   reserveInfo,
@@ -24,7 +11,6 @@ const ReserveForm = ({
   handleClose,
   handleChange,
   handleSubmit,
-  classes,
 }) => {
   const { name, contact, number, place, date, time } = reserveInfo;
 
@@ -126,25 +112,15 @@ const ReserveForm = ({
         />
       </div>
       <div>
-        <Button
-          onClick={ev => handleSubmit(ev)}
-          variant="contained"
-          color="secondary"
-          className={`btn-submit ${classes.button}`}
-        >
-          예약완료
-        </Button>
-        <Button
-          onClick={handleClose}
-          variant="outlined"
-          color="secondary"
-          className={`btn-close ${classes.button}`}
-        >
-          닫기
-        </Button>
+        <Buttons
+          handleFirstButtonClick={handleSubmit}
+          handleSecondButtonClick={handleClose}
+          firstButtonName="예약완료"
+          secondButtonName="닫기"
+        />
       </div>
     </div>
   );
 };
 
-export default withStyles(styles)(ReserveForm);
+export default ReserveForm;

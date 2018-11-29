@@ -35,18 +35,10 @@ class LoginContainer extends React.Component {
       <div className="tc login-container">
         <LoginForm handleChange={this.handleInputValue} />
         <Buttons
-          handleClick={this.handleUserLogin}
-          variantValue="outlined"
-          colorValue="secondary"
-          name="로그인"
-          classNameValue="button"
-        />
-        <Buttons
-          handleClick={this.renderRegisterPage}
-          variantValue="contained"
-          colorValue="secondary"
-          name="가입하기"
-          classNameValue="button"
+          handleFirstButtonClick={this.handleUserLogin}
+          handleSecondButtonClick={this.renderRegisterPage}
+          firstButtonName="로그인"
+          secondButtonName="가입하기"
         />
       </div>
     );
