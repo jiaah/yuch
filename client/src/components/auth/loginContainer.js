@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
 /* --- Actions --- */
-import { startLogin } from '../../actions/loginAction';
+// import { startLogin } from '../../actions/loginAction';
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ class LoginContainer extends React.Component {
   handleUserLogin = ev => {
     ev.preventDefault();
     console.log('login clicked');
-    this.props.onStartLogin();
+    // this.props.onStartLogin();
   };
 
   renderRegisterPage = ev => {
@@ -53,7 +53,7 @@ class LoginContainer extends React.Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  onStartLogin: () => dispatch(startLogin()),
+  // onStartLogin: () => dispatch(startLogin()),
 });
 
 export default connect(

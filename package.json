@@ -8,7 +8,6 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "webpack-init": "webpack-dev-server --config=webpack.dev.js",
     "precommit": "lint-staged",
     "dev": "npm-run-all --parallel dev:*",
     "dev:client": "cross-env NODE_ENV=development webpack --config webpack.dev.js --watch",
@@ -60,12 +59,12 @@
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "cookie-parser": "^1.4.3",
+    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "cssnano": "^4.0.5",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "firebase": "^5.5.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "history": "^4.7.2",
     "html-loader": "^0.5.5",

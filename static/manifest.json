@@ -1,0 +1,74 @@
+{
+  "Home.js": "Home.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "Login.js": "Login.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "Map.js": "Map.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "Nav.js": "Nav.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "NoMatch.js": "NoMatch.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "Spinner.js": "Spinner.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "background_color": "#fff",
+  "delivery.jpg": "delivery.38a922aa04f045aa56e076ae04e36d93.jpg",
+  "description": "위탁급식/식당",
+  "display": "standalone",
+  "farm.jpeg": "farm.48873bf3a4551f7f8e2d425e366a007c.jpeg",
+  "icons": [
+    {
+      "src": "/manifest/homescreen48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/manifest/homescreen512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "localfood.jpg": "localfood.3ac27563da788009fac5a84941e7c8f6.jpg",
+  "main.css": "main.04a4686c8872d4fe5a6a.css",
+  "main.css.map": "main.04a4686c8872d4fe5a6a.css.map",
+  "main.js": "bundle.0c465aa491cf2ff3062a.js",
+  "name": "YuchunG",
+  "sesame.jpg": "sesame.c87766a7152d4da61a66c442464fc09d.jpg",
+  "short_name": "YucH",
+  "simpleModal.js": "simpleModal.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "start_url": "/",
+  "switchReserve.js": "switchReserve.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "theme_color": "#fff",
+  "vendors~Home.js": "vendors~Home.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "vendors~Home~Login.js": "vendors~Home~Login.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "vendors~Home~Nav.js": "vendors~Home~Nav.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "vendors~Login~simpleModal~switchReserve.js": "vendors~Login~simpleModal~switchReserve.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "vendors~Login~switchReserve.js": "vendors~Login~switchReserve.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "vendors~main.js": "vendors~main.lazy-chunk.0c465aa491cf2ff3062a.js",
+  "women.jpg": "women.56f4dcc442a39f288bfe62ef6f6c793c.jpg",
+  "yuch-logo.png": "yuch-logo.9d1755f88d375ff3caf36abe3318752c.png"
+}
