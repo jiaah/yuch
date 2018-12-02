@@ -42,7 +42,7 @@ const HomeMain = () => (
     <div className="home-main--box">
       <LazyImage classes="home-main--img" src={sesame} alt="참기름" />
       <div className="home-main--text">
-        <p className="f-mini lh-3">ENCOURAGE COMMUNITY</p>
+        <p className="f-mini lh-3">COMMUNITY</p>
         <h3>
           경주시 지원사업 장려
           <br />
