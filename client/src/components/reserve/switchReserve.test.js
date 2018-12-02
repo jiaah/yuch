@@ -10,7 +10,7 @@ describe('<switchReserve />', () => {
 
   it('render reserve form when api request not made', () => {
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('WithStyles(ReserveForm)').exists()).toBeTruthy();
+    expect(wrapper.find('ReserveForm').exists()).toBeTruthy();
   });
 
   it('render reserve request resolved text when api request is made', () => {

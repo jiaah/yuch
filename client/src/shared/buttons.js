@@ -6,8 +6,8 @@ const styles = theme => ({
   button: {
     margin: '10px 12px',
     width: '7em',
-    paddingTop: '2px',
-    paddingBottom: '2px',
+    paddingTop: '0',
+    paddingBottom: '0',
     [theme.breakpoints.up('md')]: {},
   },
 });
@@ -24,7 +24,7 @@ const Buttons = ({
       onClick={ev => handleFirstButtonClick(ev)}
       variant="contained"
       color="secondary"
-      className={classes.button}
+      className={`firstBtn ${classes.button}`}
     >
       {firstButtonName}
     </Button>
@@ -32,7 +32,7 @@ const Buttons = ({
       onClick={ev => handleSecondButtonClick(ev)}
       variant="outlined"
       color="secondary"
-      className={classes.button}
+      className={`secBtn ${classes.button}`}
     >
       {secondButtonName}
     </Button>

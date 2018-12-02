@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
-<Fragment>
+<div
+  className="reserve-form"
+>
   <div
-    className="mh2"
+    className="form"
   >
     <TextField
       InputLabelProps={
@@ -118,25 +120,13 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       variant="standard"
     />
   </div>
-  <div
-    className="mt3"
-  >
-    <WithStyles(Button)
-      className="btn-submit undefined"
-      color="secondary"
-      onClick={[Function]}
-      variant="contained"
-    >
-      예약완료
-    </WithStyles(Button)>
-    <WithStyles(Button)
-      className="btn-close undefined"
-      color="secondary"
-      onClick={[MockFunction]}
-      variant="outlined"
-    >
-      닫기
-    </WithStyles(Button)>
+  <div>
+    <WithStyles(Buttons)
+      firstButtonName="예약완료"
+      handleFirstButtonClick={[MockFunction]}
+      handleSecondButtonClick={[MockFunction]}
+      secondButtonName="닫기"
+    />
   </div>
-</Fragment>
+</div>
 `;

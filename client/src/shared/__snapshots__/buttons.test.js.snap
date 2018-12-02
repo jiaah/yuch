@@ -1,18 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`material ui button display button correctly 1`] = `
-<WithStyles(Button)
-  className={
-    Object {
-      "paddingBottom": "5px",
-      "paddingTop": "5px",
-      "width": "6em",
-    }
-  }
-  color="secondary"
-  onClick={[Function]}
-  variant="contained"
->
-  예약하기
-</WithStyles(Button)>
+exports[`material ui button first button display button correctly 1`] = `
+<Fragment>
+  <WithStyles(Button)
+    className="firstBtn [object Object]"
+    color="secondary"
+    onClick={[Function]}
+    variant="contained"
+  >
+    예약하기
+  </WithStyles(Button)>
+  <WithStyles(Button)
+    className="secBtn [object Object]"
+    color="secondary"
+    onClick={[Function]}
+    variant="outlined"
+  >
+    가입하기
+  </WithStyles(Button)>
+</Fragment>
+`;
+
+exports[`material ui button second button display button correctly 1`] = `
+<Fragment>
+  <WithStyles(Button)
+    className="firstBtn [object Object]"
+    color="secondary"
+    onClick={[Function]}
+    variant="contained"
+  >
+    예약하기
+  </WithStyles(Button)>
+  <WithStyles(Button)
+    className="secBtn [object Object]"
+    color="secondary"
+    onClick={[Function]}
+    variant="outlined"
+  >
+    가입하기
+  </WithStyles(Button)>
+</Fragment>
 `;

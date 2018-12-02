@@ -8,7 +8,7 @@ describe('<ReserveContainer />', () => {
     const props = {
       show: false,
       classes: {
-        bigButton: { width: '9em' },
+        bigButton: {},
       },
       showModalAction,
     };
@@ -23,10 +23,11 @@ describe('<ReserveContainer />', () => {
     describe('when clicking reserve button', () => {
       beforeEach(() => {
         wrapper.find('.btn--reserve-modal').simulate('click');
+        wrapper.setProps({ showModal: true });
       });
 
       afterEach(() => {
-        wrapper.setState({ show: false });
+        wrapper.setProps({ showModal: false });
       });
 
       it('showModalAction called', () => {

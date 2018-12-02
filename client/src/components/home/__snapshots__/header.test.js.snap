@@ -8,7 +8,7 @@ exports[`<Header /> renders correctly 1`] = `
   >
     <h2>
       <span
-        className="f-xxl f-en lh-3"
+        className="point1 f-en lh-3"
       >
         NO MSG!
       </span>
@@ -17,11 +17,10 @@ exports[`<Header /> renders correctly 1`] = `
       <br />
       당신만을 위한 
       <span
-        className="point"
+        className="point2"
       >
         착한 가격의 집밥을
       </span>
-       
       선물하세요.
     </h2>
   </div>

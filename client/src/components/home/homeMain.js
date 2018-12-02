@@ -31,6 +31,7 @@ const HomeMain = () => (
     <div className="home-main--box reverse">
       <LazyImage classes="home-main--img" src={localfood} alt="지역 농산품" />
       <div className="home-main--text">
+        <p className="f-mini lh-3">HEALTHY FOOD</p>
         <h3>신선한 지역 농산물</h3>
         <p>
           지역 농산물 생산 &#183; 가공 &#183; 소비 활성화를 위하여&#44; 경주
@@ -41,6 +42,7 @@ const HomeMain = () => (
     <div className="home-main--box">
       <LazyImage classes="home-main--img" src={sesame} alt="참기름" />
       <div className="home-main--text">
+        <p className="f-mini lh-3">ENCOURAGE COMMUNITY</p>
         <h3>
           경주시 지원사업 장려
           <br />
@@ -64,6 +66,7 @@ const HomeMain = () => (
     <div className="home-main--box reverse">
       <LazyImage classes="home-main--img" src={women} alt="여성을 위한 기업" />
       <div className="home-main--text">
+        <p className="f-mini lh-3">CAREER WOMEN</p>
         <h3>여성이 일하기 좋은 기업</h3>
         <p>
           2016년 여성이 일하기 좋은 기업으로 선정&#46;

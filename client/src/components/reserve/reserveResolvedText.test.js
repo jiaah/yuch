@@ -11,7 +11,12 @@ describe('<reserveResolvedText />', () => {
     apiRequest: 'null',
     handleClose,
     classes: {
-      button: {},
+      button: {
+        margin: '',
+        width: '6em',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+      },
     },
   };
 
@@ -46,7 +51,7 @@ describe('<reserveResolvedText />', () => {
 
     it('should contain error text', () => {
       expect(wrapper.find('p').text()).toBe(
-        '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다. 상담전화 054-745-0999',
+        '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다. 상담전화  (054) 745 - 0999',
       );
       expect(wrapper).toMatchSnapshot();
     });

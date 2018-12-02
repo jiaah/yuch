@@ -18,5 +18,7 @@ module.exports = {
     '!./../store.js',
     '!./../src/actions/actionTypes.js',
     '!./../src/reducers/index.js',
+    '!./../src/components/reserve/textMaskCustom.js',
+    '!./../src/components/home/map.js',
   ],
 };

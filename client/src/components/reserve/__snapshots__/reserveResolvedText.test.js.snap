@@ -7,17 +7,28 @@ exports[`<reserveResolvedText /> when reservation request is failed should conta
      
     <br />
     <br />
-    <span
+    <a
       className="b"
+      href="tel:+82-54-745-0999"
     >
-      상담전화 054-745-0999
-    </span>
+      상담전화 
+      <span>
+         (054) 745 - 0999
+      </span>
+    </a>
   </p>
   <div
     className="mt2"
   >
     <WithStyles(Button)
-      className={Object {}}
+      className={
+        Object {
+          "margin": "",
+          "paddingBottom": "5px",
+          "paddingTop": "5px",
+          "width": "6em",
+        }
+      }
       color="secondary"
       onClick={[MockFunction]}
       variant="outlined"
@@ -37,7 +48,14 @@ exports[`<reserveResolvedText /> when reservation request is successfully made s
     className="mt2"
   >
     <WithStyles(Button)
-      className={Object {}}
+      className={
+        Object {
+          "margin": "",
+          "paddingBottom": "5px",
+          "paddingTop": "5px",
+          "width": "6em",
+        }
+      }
       color="secondary"
       onClick={[MockFunction]}
       variant="outlined"
