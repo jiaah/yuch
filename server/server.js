@@ -62,14 +62,14 @@ if (!isProd) {
   });
 } else {
   app.use(express.static(DIST_DIR));
-  app.get('*', (req, res) => res.sendFile(HTML_FILE));
+  app.get('*', cors(corsOptions), (req, res) => res.sendFile(HTML_FILE));
 
   app.get('/', cors(corsOptions), (req, res) => {
     res.redirect('https://yu-chung.com');
   });
 }
 
-app.use('/api', require('./api'));
+app.use('/api', cors(corsOptions), require('./api'));
 
 // error handlers
 app.use((req, res) =>
