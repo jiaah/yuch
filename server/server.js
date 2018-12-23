@@ -69,7 +69,7 @@ if (!isProd) {
   });
 }
 
-app.use('/api', cors(corsOptions), require('./api'));
+app.use('/api', require('./api'));
 
 // error handlers
 app.use((req, res) =>
