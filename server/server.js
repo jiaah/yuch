@@ -16,8 +16,8 @@ const app = express();
 
 const isProd = process.env.NODE_ENV === 'production';
 const corsOptions = {
-  origin: 'https://yu-chung.com/',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: 'https://yu-chung.com',
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -64,8 +64,8 @@ if (!isProd) {
   app.use(express.static(DIST_DIR));
   app.get('*', (req, res) => res.sendFile(HTML_FILE));
 
-  app.get('/', (req, res) => {
-    res.redirect('https://yu-chung.com/');
+  app.get('/', cors(corsOptions), (req, res) => {
+    res.redirect('https://yu-chung.com');
   });
 }
 
