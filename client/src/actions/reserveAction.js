@@ -2,6 +2,8 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
+console.log('API_HOST: ', API_HOST);
+
 export const showReserve = () => ({
   type: types.SHOW_RESERVE,
 });
