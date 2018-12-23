@@ -817,13 +817,13 @@ h1 img {
 
 @media (min-width: 900px) {
   h1 img {
-    width: 320px;
+    width: 350px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h1 img {
-    width: 400px;
+    width: 420px;
   }
 }
 
@@ -837,7 +837,7 @@ h2 {
   line-height: 1.2em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h2 {
     font-size: 1.7em;
     line-height: 1.25em;
@@ -851,7 +851,7 @@ h3 {
   line-height: 1.13636364em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h3 {
     font-size: 1.75em;
   }

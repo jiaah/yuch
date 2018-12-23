@@ -59,11 +59,13 @@ module.exports = {
       },
       '@material-ui/core/icons',
     ],
-    isTest ? 'dynamic-import-node' : null,
-  ].filter(Boolean),
+  ],
   env: {
     development: {
       plugins: ['react-hot-loader/babel'],
+    },
+    test: {
+      plugins: ['dynamic-import-node'],
     },
   },
 };

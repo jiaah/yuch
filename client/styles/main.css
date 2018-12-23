@@ -817,13 +817,13 @@ h1 img {
 
 @media (min-width: 900px) {
   h1 img {
-    width: 320px;
+    width: 350px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h1 img {
-    width: 400px;
+    width: 420px;
   }
 }
 
@@ -837,7 +837,7 @@ h2 {
   line-height: 1.2em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h2 {
     font-size: 1.7em;
     line-height: 1.25em;
@@ -851,7 +851,7 @@ h3 {
   line-height: 1.13636364em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1480px) {
   h3 {
     font-size: 1.75em;
   }
@@ -979,15 +979,23 @@ header {
 
 .header-text--box {
   position: absolute;
-  top: 48%;
+  top: 52%;
   padding-left: 1em;
   padding-right: 1em;
 }
 
-@media (min-width: 750px) {
+@media (min-width: 600px) {
   .header-text--box {
-    padding-left: 6em;
+    top: 53%;
+    padding-left: 4em;
     padding-right: 4em;
+  }
+}
+
+@media (min-width: 900px) {
+  .header-text--box {
+    top: 55%;
+    padding-left: 6em;
   }
 }
 
@@ -1092,6 +1100,29 @@ header {
 
 .reserve-form {
   overflow-y: scroll;
+}
+
+.reserve-form .form {
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+
+@media (min-width: 600px) {
+  .reserve-form .form {
+    margin-top: .6em;
+    margin-bottom: .6em;
+  }
+}
+
+@media (min-width: 1480px) {
+  .reserve-form .form {
+    margin-top: .8em;
+    margin-bottom: .8em;
+  }
+}
+
+#modal-title {
+  margin-bottom: 0;
 }
 
 .homeboard {
