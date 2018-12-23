@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const webpack = require('webpack');
+const cors = require('cors');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -14,7 +15,12 @@ require('dotenv').config();
 const app = express();
 
 const isProd = process.env.NODE_ENV === 'production';
+const corsOptions = {
+  origin: 'https://yu-chung.com/',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(
   bodyParser.urlencoded({
