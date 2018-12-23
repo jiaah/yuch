@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import * as data from '../../shared/data';
+import SingleButton from '../../shared/singleButton';
 
 const styles = theme => ({
   button: {
@@ -28,14 +29,19 @@ const ReserveResolvedText = ({ apiRequest, handleClose, classes }) => (
       </p>
     ) : null}
     <div className="mt2">
-      <Button
+      {/* <Button
         onClick={handleClose}
         variant="outlined"
         color="secondary"
         className={classes.button}
       >
         닫기
-      </Button>
+      </Button> */}
+      <SingleButton
+        handleButtonClick={handleClose}
+        variantType="outlined"
+        buttonName="닫기"
+      />
     </div>
   </React.Fragment>
 );

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    margin: '30px 12px 0 12px',
+    margin: '18px 12px 0 12px',
     width: '7em',
     paddingTop: '0',
     paddingBottom: '0',
