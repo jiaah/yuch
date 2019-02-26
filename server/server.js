@@ -15,6 +15,9 @@ require('dotenv').config();
 const reserveRoute = require('./routes/reserve');
 const authRoute = require('./routes/auth');
 
+// Database config
+const pool = require('../db');
+
 const app = express();
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -96,7 +99,4 @@ if (app.get('env') === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 9080;
-app.listen(PORT, () => {
-  console.log(`Sever is listening on ${PORT} in ${process.env.NODE_ENV}`);
-});
+module.exports = app;

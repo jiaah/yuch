@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+const app = require('../server/server.js');
+
+const PORT = process.env.PORT || 9080;
+
+app.listen(PORT, () => {
+  console.log(`Sever is listening on ${PORT} in ${process.env.NODE_ENV}`);
+});
