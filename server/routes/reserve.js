@@ -4,7 +4,7 @@ const sgMail = require('@sendgrid/mail');
 module.exports = () => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-  router.post('/', (req, res, next) => {
+  router.post('/', (req, res) => {
     const { name, contact, number, place, date, time } = req.body;
 
     const mailOptions = {

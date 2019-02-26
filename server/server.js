@@ -12,6 +12,7 @@ const config = require('../webpack.dev');
 
 // Routes
 const reserveRoute = require('./routes/reserve');
+const authRoute = require('./routes/auth');
 
 require('dotenv').config();
 
@@ -73,6 +74,7 @@ if (!isProd) {
 }
 
 app.use('/reserve', reserveRoute());
+app.use('/auth', authRoute());
 
 // error handlers
 app.use((req, res) =>

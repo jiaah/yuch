@@ -6,7 +6,7 @@ import Buttons from '../../shared/buttons';
 import SignupAuth from './signupAuth';
 import Loader from '../../shared/loader';
 /* --- Actions --- */
-// import { startLogin } from '../../actions/loginAction';
+import { userLogin } from '../../actions/loginAction';
 import { showModalAction, hideModalAction } from '../../actions/modalAction';
 
 const SimpleModal = Loader({
@@ -19,17 +19,18 @@ class LoginContainer extends React.Component {
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.renderRegisterPage = this.renderRegisterPage.bind(this);
+
+    this.state = {};
   }
 
   handleInputValue = ({ target: { id, value } }) => {
-    console.log('id: ', id);
-    console.log('value: ', value);
+    this.setState({ [id]: value });
   };
 
   handleUserLogin = ev => {
     ev.preventDefault();
-    return this.props.showModalAction();
-    // this.props.onStartLogin();
+    const { username, password } = this.state;
+    return this.props.onUserLogin(username, password);
   };
 
   renderRegisterPage = ev => {
@@ -65,7 +66,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // onStartLogin: () => dispatch(startLogin()),
+  onUserLogin: (username, password) => dispatch(userLogin(username, password)),
   showModalAction: () => dispatch(showModalAction()),
   hideModalAction: () => dispatch(hideModalAction()),
 });

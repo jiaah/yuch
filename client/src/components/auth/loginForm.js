@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 const LoginForm = ({ handleChange, id, password }) => (
   <div className="mh1">
     <TextField
-      id="id"
+      id="username"
       label="ID"
       value={id}
       onChange={ev => handleChange(ev)}
