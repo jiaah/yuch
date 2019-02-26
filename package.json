@@ -15,6 +15,7 @@
     "build:prod": "cross-env NODE_ENV=production webpack --config=webpack.prod.js",
     "start": "cross-env NODE_ENV=production node server/server.js",
     "heroku-postbuild": "npm run build:prod",
+    "configure": "./bin/configuredb.sh",
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
     "test:client": "cross-env NODE_ENV=test jest --config ./client/jest.config.js --coverage --watch",
     "test:server": "jest --config ./server/jest.config.js --coverage --watch"

@@ -9,12 +9,11 @@ const cookieParser = require('cookie-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.dev');
+require('dotenv').config();
 
 // Routes
 const reserveRoute = require('./routes/reserve');
 const authRoute = require('./routes/auth');
-
-require('dotenv').config();
 
 const app = express();
 
