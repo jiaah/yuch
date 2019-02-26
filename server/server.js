@@ -10,6 +10,9 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.dev');
 
+// Routes
+const reserveRoute = require('./routes/reserve');
+
 require('dotenv').config();
 
 const app = express();
@@ -69,7 +72,7 @@ if (!isProd) {
   });
 }
 
-app.use('/api', require('./api'));
+app.use('/reserve', reserveRoute());
 
 // error handlers
 app.use((req, res) =>
