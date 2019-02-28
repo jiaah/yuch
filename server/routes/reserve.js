@@ -9,7 +9,7 @@ const {
 module.exports = () => {
   sgMail.setApiKey(SENDGRID_API_KEY);
 
-  router.post('/', (req, res) => {
+  router.post('/', (req, res, next) => {
     const { name, contact, number, place, date, time } = req.body;
 
     const mailOptions = {
@@ -24,8 +24,8 @@ module.exports = () => {
         res.status(201).send('Reserve Email has been sent successfully!'),
       )
       .catch(err => {
-        console.log(err); // eslint-disable-line
         res.status(400).json(err);
+        next(err);
       });
   });
 

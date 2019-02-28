@@ -66,6 +66,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/no-unused-prop-types': 'off',
     'no-undef': 'off',
+    'no-shadow': 'off',
     'init-declarations': 'off',
     'prefer-destructuring': 'off',
     'consistent-return': 'off',
