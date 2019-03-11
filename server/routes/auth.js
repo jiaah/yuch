@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const pool = require('../db');
+const knex = require('../database');
 
 module.exports = () => {
-  router.post('/login', (request, response, next) => {
-    const { username, password } = request.body;
+  router.get('/', (req, res) => {
+    knex
+      .select()
+      .from('users')
+      .then(data => res.send(data));
   });
 
   return router;

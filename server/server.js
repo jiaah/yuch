@@ -14,13 +14,6 @@ require('dotenv').config();
 
 const app = express();
 
-// Configure Database
-const pool = require('./db');
-
-pool.on('error', err => {
-  console.error('idle client error', err.message, err.stack);
-});
-
 const isProd = process.env.NODE_ENV === 'production';
 const DIST_DIR = path.join(__dirname, '../', 'public/dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
@@ -35,12 +28,12 @@ app.use((req, res, next) => {
 });
 app.use(cors(corsOptions));
 app.use(logger('dev'));
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: true,
   }),
 );
-app.use(bodyParser.json());
 
 app.use('/', routes);
 

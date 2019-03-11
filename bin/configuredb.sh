@@ -13,6 +13,11 @@ echo "Configuring database: $database"
 dropdb -U postgres yuchdb
 createdb -U postgres yuchdb
 
-psql -U postgres yuchdb < ./bin/sql/yuch.sql
+# psql -U postgres yuchdb < ./bin/sql/yuch.sql
+
+# knex migrate:make file_name
+# knex migrate:rollback
+# knex migrate:latest
+# knex seed:run
 
 echo "$database configured"

@@ -1,18 +1,18 @@
-CREATE TABLE admin
-(
-  id SERIAL,
-  username CHAR varying(50) NOT NULL UNIQUE,
-  password CHAR varying(20) NOT NULL,
-  PRIMARY KEY (id)
-);
+DROP DATABASE IF EXISTS yuchdb;
+CREATE DATABASE yuchdb;
 
+\c yuchdb;
+
+CREATE EXTENSION
+IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users
 (
-  id SERIAL,
-  name CHAR varying(50) NOT NULL UNIQUE,
-  username CHAR varying(50) NOT NULL UNIQUE,
-  contact_no CHAR varying(20) NOT NULL,
+  id uuid UNIQUE DEFAULT uuid_generate_v4 (),
+  name CHAR varying(100) NOT NULL UNIQUE,
+  username CHAR varying(100) NOT NULL UNIQUE,
+  contact_no CHAR varying(100) NOT NULL,
+  password CHAR varying(100) NOT NULL,
   bank_account_id INT,
   meal_price INT,
   default_lunch_quantity SMALLINT,
@@ -22,8 +22,9 @@ CREATE TABLE users
   PRIMARY KEY (id)
 );
 
-INSERT INTO admin
-  (username, password )
+INSERT INTO users
+  (name, username, contact_no, password )
 VALUES
-  ('yuch', 'yuch12')
+  ('yuch', 'yuch', '01033060057', '01033060057'),
+  ('hundea', 'hundea', '00', '00')
 
