@@ -7,6 +7,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
+const session = require('express-session');
 const config = require('../webpack.dev');
 const routes = require('./routes');
 
@@ -34,6 +35,19 @@ app.use(
     extended: true,
   }),
 );
+
+const secret = require('../secrets/session_config');
+
+const sessConfig = {
+  secret: secret.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {},
+};
+if (app.get('env') === 'production') {
+  sessConfig.cookie.secure = true;
+}
+app.use(session(sessConfig));
 
 app.use('/', routes);
 

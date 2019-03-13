@@ -60,7 +60,6 @@
     "body-parser": "^1.18.3",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "clean-webpack-plugin": "^0.1.19",
-    "cookie-parser": "^1.4.3",
     "copy-webpack-plugin": "^4.6.0",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
