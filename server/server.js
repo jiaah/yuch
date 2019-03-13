@@ -73,23 +73,27 @@ if (!isProd) {
   });
 }
 
-// Error handlers
-app.use((req, res) =>
-  res.status(404).send({ message: `Route${req.url} Not found.` }),
-);
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status(404).send({ message: `Route${req.url} Not found.` });
+  next(err);
+});
 
+// production error handler (no stacktraces leaked to user)
 if (app.get('env') === 'production') {
   app.use((err, req, res, next) => {
-    console.error(err.stack);
     res.status(err.status || 500).send({
+      message: err.message,
       error: {},
-      message: 'internal server error',
     });
   });
-} else {
+}
+// development error handler (will print stacktrace)
+else {
   app.use((err, req, res, next) => {
-    console.log(err.stack);
     res.status(err.status || 500).send({
+      message: err.message,
       error: err.stack,
     });
   });
