@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const session = require('express-session');
+const passport = require('passport');
 const config = require('../webpack.dev');
 const routes = require('./routes');
 

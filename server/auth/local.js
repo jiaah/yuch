@@ -16,10 +16,10 @@ passport.use(
       .where({ username })
       .first()
       .then(user => {
-        if (!user) return done(null, false);
+        if (!user) return done(null, false, { message: 'Incorrect username.' });
         // check to see if the password matches
         if (!authHelpers.comparePass(password, user.password)) {
-          return done(null, false);
+          return done(null, false, { message: 'Incorrect password.' });
         }
         return done(null, user);
       })

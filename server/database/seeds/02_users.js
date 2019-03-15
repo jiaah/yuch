@@ -1,16 +1,21 @@
-// eslint-disable-next-line func-names
-exports.seed = function(knex, Promise) {
-  return knex('users')
+const bcrypt = require('bcryptjs');
+const adminInfo = require('../../../secrets/admin_info');
+
+const { COMPANY_NAME, USERNAME, PASSWORD, CONTACT_NO, IS_ADMIN } = adminInfo;
+
+exports.seed = (knex, Promise) =>
+  knex('users')
     .del()
-    .then(() =>
-      knex('users').insert([
-        {
-          company_name: 'yuchung',
-          username: 'yuch',
-          contact_no: '01033060057',
-          password: 'temp',
-          is_admin: true,
-        },
-      ]),
-    );
-};
+    .then(() => {
+      const salt = bcrypt.genSaltSync();
+      const hash = bcrypt.hashSync(adminInfo.PASSWORD, salt);
+      return Promise.join(
+        knex('users').insert({
+          company_name: adminInfo.COMPANY_NAME,
+          username: adminInfo.USERNAME,
+          password: hash,
+          contact_no: adminInfo.CONTACT_NO,
+          is_admin: adminInfo.IS_ADMIN,
+        }),
+      );
+    });

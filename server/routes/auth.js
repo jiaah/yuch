@@ -1,13 +1,28 @@
 const router = require('express').Router();
-const knex = require('../database');
+const passport = require('../auth/local');
+
+function handleResponse(res, code, statusMsg) {
+  res.status(code).json({ status: statusMsg });
+}
 
 module.exports = () => {
-  router.get('/', (req, res) => {
-    console.log('@@@@@@@@', req.session);
-    knex
-      .select()
-      .from('users')
-      .then(data => res.send(data));
+  router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        handleResponse(res, 500, 'error');
+      }
+      if (!user) {
+        handleResponse(res, 404, 'User not found');
+      }
+      if (user) {
+        req.logIn(user, err => {
+          if (err) {
+            handleResponse(res, 500, 'error');
+          }
+          handleResponse(res, 200, 'success');
+        });
+      }
+    })(req, res, next);
   });
 
   return router;

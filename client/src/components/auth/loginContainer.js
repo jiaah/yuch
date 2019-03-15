@@ -71,6 +71,7 @@ const mapDispatchToProps = dispatch => ({
   hideModalAction: () => dispatch(hideModalAction()),
 });
 
+export const Unwrapped = LoginContainer;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

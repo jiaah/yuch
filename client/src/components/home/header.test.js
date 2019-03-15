@@ -4,7 +4,6 @@ import Header from './header';
 
 describe('<Header />', () => {
   const wrapper = shallow(<Header />);
-
   it('renders correctly', () => {
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('h2').text()).toBe(
