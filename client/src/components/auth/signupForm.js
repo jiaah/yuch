@@ -6,6 +6,7 @@ import Buttons from '../../shared/buttons';
 const SignupAuth = ({
   companyName,
   username,
+  password,
   contactNumber,
   handleChange,
   handleUserSignup,
@@ -30,6 +31,14 @@ const SignupAuth = ({
         id="username"
         label="고객 아이디"
         value={username}
+        onChange={ev => handleChange(ev)}
+        margin="normal"
+        fullWidth
+      />
+      <TextField
+        id="password"
+        label="비밀번호"
+        value={password}
         onChange={ev => handleChange(ev)}
         margin="normal"
         fullWidth

@@ -10,6 +10,21 @@ function handleResponse(res, code, statusMsg) {
 }
 
 module.exports = () => {
+  router.post('/signup', (req, res, next) =>
+    authHelpers
+      .createUser(req, res)
+      .then(response => {
+        passport.authenticate('local', (err, user, info) => {
+          if (user) {
+            handleResponse(res, 200, 'success');
+          }
+        })(req, res, next);
+      })
+      .catch(err => {
+        handleResponse(res, 500, 'error');
+      }),
+  );
+
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', { session: false }, (err, user, info) => {
       if (err) {
@@ -27,9 +42,6 @@ module.exports = () => {
 
           // generate a signed son web token with the contents of user object and return it in the response
           const token = jwt.sign(user, JSONWEBTOKEN_KEY);
-          console.log('token: ', token);
-          console.log('session', req.session);
-          console.log(' user: ', user);
           return res.json({ user, token });
         });
       }

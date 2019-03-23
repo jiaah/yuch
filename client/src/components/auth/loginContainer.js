@@ -41,8 +41,13 @@ class LoginContainer extends React.Component {
 
   handleUserSignup = ev => {
     ev.preventDefault();
-    const { companyName, username, contactNumber } = this.state;
-    return this.props.onUserSignup(companyName, username, contactNumber);
+    const { companyName, username, password, contactNumber } = this.state;
+    return this.props.onUserSignup(
+      companyName,
+      username,
+      password,
+      contactNumber,
+    );
   };
 
   render() {
@@ -77,8 +82,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onUserSignup: (companyName, username, contactNumber) =>
-    dispatch(userSignup(companyName, username, contactNumber)),
+  onUserSignup: (companyName, username, password, contactNumber) =>
+    dispatch(userSignup(companyName, username, password, contactNumber)),
   onUserLogin: (username, password) => dispatch(userLogin(username, password)),
   showModalAction: () => dispatch(showModalAction()),
   hideModalAction: () => dispatch(hideModalAction()),

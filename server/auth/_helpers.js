@@ -1,4 +1,21 @@
 const bcrypt = require('bcryptjs');
+const knex = require('../database');
+
+function createUser(req) {
+  const { companyName, username, password, contactNumber } = req.body;
+  const salt = bcrypt.genSaltSync();
+  const hash = bcrypt.hashSync(password, salt);
+
+  return knex('users')
+    .insert({
+      company_name: companyName,
+      username,
+      password: hash,
+      contact_no: contactNumber,
+    })
+    .returning('*')
+    .catch(err => console.log(err));
+}
 
 function comparePass(userPassword, databasePassword) {
   return bcrypt.compareSync(userPassword, databasePassword);
@@ -17,4 +34,5 @@ function comparePass(userPassword, databasePassword) {
 
 module.exports = {
   comparePass,
+  createUser,
 };

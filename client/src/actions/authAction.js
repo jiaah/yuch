@@ -5,14 +5,17 @@ import { API_HOST } from '../../config';
 export const userSignup = (
   companyName,
   username,
+  password,
   contactNumber,
 ) => dispatch => {
   axios
     .post(`${API_HOST}/auth/signup`, {
       companyName,
       username,
+      password,
       contactNumber,
     })
+    .then(res => console.log(res))
     .catch(err => console.log(err));
 };
 
