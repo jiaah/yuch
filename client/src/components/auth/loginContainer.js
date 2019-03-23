@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
-import SignupAuth from './signupAuth';
+import SignupForm from './signupForm';
 import Loader from '../../shared/loader';
 /* --- Actions --- */
-import { userLogin } from '../../actions/loginAction';
+import { userLogin, userSignup } from '../../actions/authAction';
 import { showModalAction, hideModalAction } from '../../actions/modalAction';
 
 const SimpleModal = Loader({
@@ -18,7 +18,8 @@ class LoginContainer extends React.Component {
     super(props);
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
-    this.renderRegisterPage = this.renderRegisterPage.bind(this);
+    this.renderSignupModal = this.renderSignupModal.bind(this);
+    this.handleUserSignup = this.handleUserSignup.bind(this);
 
     this.state = {};
   }
@@ -33,9 +34,15 @@ class LoginContainer extends React.Component {
     return this.props.onUserLogin(username, password);
   };
 
-  renderRegisterPage = ev => {
+  renderSignupModal = ev => {
     ev.preventDefault();
     return this.props.showModalAction();
+  };
+
+  handleUserSignup = ev => {
+    ev.preventDefault();
+    const { companyName, username, contactNumber } = this.state;
+    return this.props.onUserSignup(companyName, username, contactNumber);
   };
 
   render() {
@@ -44,14 +51,18 @@ class LoginContainer extends React.Component {
         <LoginForm handleChange={this.handleInputValue} />
         <Buttons
           handleFirstButtonClick={this.handleUserLogin}
-          handleSecondButtonClick={this.renderRegisterPage}
+          handleSecondButtonClick={this.renderSignupModal}
           firstButtonName="로그인"
           secondButtonName="가입하기"
         />
         {this.props.showModal && (
           <SimpleModal
             component={
-              <SignupAuth handleClose={() => this.props.hideModalAction()} />
+              <SignupForm
+                handleChange={this.handleInputValue}
+                handleUserSignup={this.handleUserSignup}
+                handleClose={() => this.props.hideModalAction()}
+              />
             }
           />
         )}
@@ -66,6 +77,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onUserSignup: (companyName, username, contactNumber) =>
+    dispatch(userSignup(companyName, username, contactNumber)),
   onUserLogin: (username, password) => dispatch(userLogin(username, password)),
   showModalAction: () => dispatch(showModalAction()),
   hideModalAction: () => dispatch(hideModalAction()),

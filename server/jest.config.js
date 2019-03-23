@@ -1,5 +1,6 @@
 module.exports = {
   displayName: 'server',
   testEnvironment: 'node',
-  modulePaths: ['<rootDir>/src', '<rootDir>/test'],
+  modulePaths: ['<rootDir>/server', '<rootDir>/server/__tests__'],
+  testMatch: ['**/*.test.js'],
 };

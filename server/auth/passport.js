@@ -3,6 +3,7 @@ const knex = require('../database');
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    console.log('#################serialized User');
     done(null, user.id);
   });
 
@@ -11,6 +12,7 @@ module.exports = () => {
       .where({ id })
       .first()
       .then(user => {
+        console.log('##################deserialized User');
         done(null, user);
       })
       .catch(err => {

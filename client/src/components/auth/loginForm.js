@@ -1,12 +1,12 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const LoginForm = ({ handleChange, id, password }) => (
+const LoginForm = ({ handleChange, username, password }) => (
   <div className="mh1">
     <TextField
       id="username"
-      label="ID"
-      value={id}
+      label="Username"
+      value={username}
       onChange={ev => handleChange(ev)}
       margin="normal"
       fullWidth
