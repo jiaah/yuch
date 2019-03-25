@@ -38,17 +38,17 @@ app.use(
     extended: true,
   }),
 );
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.COOKIE_KEY],
-  }),
-);
+// app.use(
+//   cookieSession({
+//     maxAge: 30 * 24 * 60 * 60 * 1000,
+//     keys: [keys.COOKIE_KEY],
+//   }),
+// );
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // routes
-app.use('/', routes);
+app.use('/api', routes);
 
 if (!isProd) {
   const compiler = webpack(config);
@@ -87,11 +87,10 @@ if (!isProd) {
 }
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status(404).send({ message: `Route${req.url} Not found.` });
-  next(err);
-});
+app.use((req, res, next) =>
+  // const err = new Error('Not Found');
+  res.status(404).send({ message: `Route${req.url} Not found.` }),
+);
 
 // production error handler (no stacktraces leaked to user)
 if (app.get('env') === 'production') {

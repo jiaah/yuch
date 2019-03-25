@@ -4,7 +4,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 }
 
 const URL = IS_DEV_MODE
-  ? 'http://localhost:9080'
+  ? 'http://localhost:9080/api'
   : 'https://yuchung.herokuapp.com';
 
 module.exports = {

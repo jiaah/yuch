@@ -1,13 +1,7 @@
 const router = require('express').Router();
-
-const passport = require('../auth/local');
+const dataLoader = require('../lib/middleware');
 
 router.use('/reserve', require('./reserve')());
-router.use('/auth', require('./auth')());
-router.use(
-  '/user',
-  passport.authenticate('jwt', { session: false }),
-  require('./user')(),
-);
+router.use('/auth', require('./auth')(dataLoader));
 
 module.exports = router;

@@ -28,7 +28,7 @@ export const reserveInfoInit = {
   time: '12:30',
 };
 
-export const reserveInfo = {
+export const reserveContents = {
   name: 'Jiah Lee',
   contact: '(010)2542-1222',
   number: '60',
