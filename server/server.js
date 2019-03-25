@@ -7,12 +7,8 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
 const config = require('../webpack.dev');
 const routes = require('./routes');
-
-require('dotenv').config();
 
 const app = express();
 
@@ -23,7 +19,6 @@ const corsOptions = {
   origin: 'https://yu-chung.com',
   optionsSuccessStatus: 200,
 };
-const keys = require('../secrets/keys');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -38,14 +33,6 @@ app.use(
     extended: true,
   }),
 );
-// app.use(
-//   cookieSession({
-//     maxAge: 30 * 24 * 60 * 60 * 1000,
-//     keys: [keys.COOKIE_KEY],
-//   }),
-// );
-app.use(passport.initialize());
-// app.use(passport.session());
 
 // routes
 app.use('/api', routes);

@@ -1,21 +1,21 @@
 const bcrypt = require('bcryptjs');
-const adminInfo = require('../../../secrets/admin_info');
+require('dotenv').config();
 
-const { COMPANY_NAME, USERNAME, PASSWORD, CONTACT_NO, IS_ADMIN } = adminInfo;
+const { COMPANY_NAME, USERNAME, PASSWORD, CONTACT_NO, IS_ADMIN } = process.env;
 
 exports.seed = (knex, Promise) =>
   knex('users')
     .del()
     .then(() => {
       const salt = bcrypt.genSaltSync();
-      const hash = bcrypt.hashSync(adminInfo.PASSWORD, salt);
+      const hash = bcrypt.hashSync(PASSWORD, salt);
       return Promise.join(
         knex('users').insert({
-          company_name: adminInfo.COMPANY_NAME,
-          username: adminInfo.USERNAME,
+          company_name: COMPANY_NAME,
+          username: USERNAME,
           password: hash,
-          contact_no: adminInfo.CONTACT_NO,
-          is_admin: adminInfo.IS_ADMIN,
+          contact_no: CONTACT_NO,
+          is_admin: IS_ADMIN,
         }),
       );
     });

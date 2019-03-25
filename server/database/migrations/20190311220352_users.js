@@ -15,11 +15,7 @@ exports.up = (knex, Promise) =>
         .string('username')
         .unique()
         .notNullable();
-      table
-        .string('contact_no')
-        .unique()
-        .notNullable()
-        .comment('contact number is set as password execpt admin user.');
+      table.string('contact_no').notNullable();
       table.string('password').notNullable();
       table
         .boolean('is_admin')
