@@ -7,7 +7,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const passport = require('passport');
 const config = require('../webpack.dev');
 const routes = require('./routes');
@@ -23,17 +23,7 @@ const corsOptions = {
   origin: 'https://yu-chung.com',
   optionsSuccessStatus: 200,
 };
-const secret = require('../secrets/session_config');
-// express-session config
-const sessConfig = {
-  secret: secret.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {},
-};
-if (app.get('env') === 'production') {
-  sessConfig.cookie.secure = true;
-}
+const keys = require('../secrets/keys');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -41,16 +31,19 @@ app.use((req, res, next) => {
 });
 app.use(cors(corsOptions));
 app.use(logger('dev'));
+// extract POST data from HTTP request
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   }),
 );
-// express-session middleware
-app.use(session(sessConfig));
-
-// passport middleware
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.COOKIE_KEY],
+  }),
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

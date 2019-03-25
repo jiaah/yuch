@@ -9,21 +9,21 @@ export const userSignup = (
   contactNumber,
 ) => dispatch => {
   axios
-    .post(`${API_HOST}/auth/signup`, {
+    .post(`${API_HOST}/auth/register`, {
       companyName,
       username,
       password,
       contactNumber,
     })
     .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.response.status, err.response.data.status));
 };
 
 export const userLogin = (username, password) => dispatch => {
   axios
     .post(`${API_HOST}/auth/login`, { username, password })
-    .then(res => console.log(res, res.token))
-    .catch(err => console.log(err));
+    .then(res => console.log(res))
+    .catch(err => console.log(err.response.status, err.response.data.status));
 };
 
 export const userLogout = () => () => {};
