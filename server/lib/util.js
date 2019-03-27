@@ -11,7 +11,7 @@ exports.getRandomToken = function getRandomToken(user) {
       expiresIn: '1h',
     });
     if (token === '' || token === undefined) {
-      reject(new Error('Failed to create token.'));
+      reject(new Error('Failed to create token'));
     }
     resolve(token);
   });
@@ -26,11 +26,13 @@ exports.comparePassword = function comparePassword(
 
 exports.bcryptPassword = function bcryptPassword(password) {
   return new Promise((resolve, reject) => {
-    const salt = bcrypt.genSaltSync();
-    const hashedPassword = bcrypt.hashSync(password, salt);
-    if (hashedPassword === '' || hashedPassword === undefined) {
-      reject(new Error('Bcrypt Password Failed'));
-    }
-    resolve(hashedPassword);
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) {
+          reject(new Error('Auth failed'));
+        }
+        resolve(hash);
+      });
+    });
   });
 };
