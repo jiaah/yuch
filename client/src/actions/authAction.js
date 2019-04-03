@@ -7,23 +7,27 @@ export const userSignup = (
   username,
   password,
   contactNumber,
-) => dispatch => {
-  axios
-    .post(`${API_HOST}/auth/register`, {
-      companyName,
-      username,
-      password,
-      contactNumber,
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err.response.status, err.response.data.status));
+) => async dispatch => {
+  const res = await axios.post(`${API_HOST}/auth/register`, {
+    companyName,
+    username,
+    password,
+    contactNumber,
+  });
+  console.log(res);
 };
 
-export const userLogin = (username, password) => dispatch => {
-  axios
-    .post(`${API_HOST}/auth/login`, { username, password })
-    .then(res => console.log(res))
-    .catch(err => console.log(err.response.status, err.response.data.status));
+export const userLogin = (username, password) => async dispatch => {
+  const res = await axios.post(`${API_HOST}/auth/login`, {
+    username,
+    password,
+  });
+  console.log(res);
 };
 
+export const fetchUser = () => async dispatch => {
+  const res = await axios.get(`${API_HOST}/auth/current_user`);
+  dispatch({ type: types.FETCH_USER, payload: res.data });
+  console.log('res.data: ', res.data);
+};
 export const userLogout = () => () => {};

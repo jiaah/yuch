@@ -10,22 +10,21 @@ export const resetReserve = () => ({
   type: types.RESET_RESERVE,
 });
 
-export const reserve = reserveInfo => dispatch => {
+export const reserve = reserveInfo => async dispatch => {
   dispatch({
     type: types.RESERVE_REQUEST,
   });
-  return axios
-    .post(`${API_HOST}/reserve`, reserveInfo)
-    .then(() =>
-      dispatch({
-        type: types.RESERVE_SUCCESS,
-        reserveInfo,
-      }),
-    )
-    .catch(error =>
-      dispatch({
-        type: types.RESERVE_FAILURE,
-        error,
-      }),
-    );
+  try {
+    const response = await axios.post(`${API_HOST}/reserve`, reserveInfo);
+    dispatch({
+      type: types.RESERVE_SUCCESS,
+      response,
+    });
+  } catch (error) {
+    dispatch({
+      type: types.RESERVE_FAILURE,
+      error,
+    });
+  }
+  return 'done';
 };
