@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
 import SignupForm from './signupForm';
 import Loader from '../../shared/loader';
+import { isLoggedIn, saveToken } from '../../../localStorage';
 /* --- Actions --- */
-import { userLogin, userSignup } from '../../actions/authAction';
+import { requestLogin, requestSignup } from '../../actions/authAction';
 import { showModalAction, hideModalAction } from '../../actions/modalAction';
 
 const SimpleModal = Loader({
@@ -21,17 +23,35 @@ class LoginContainer extends React.Component {
     this.renderSignupModal = this.renderSignupModal.bind(this);
     this.handleUserSignup = this.handleUserSignup.bind(this);
 
-    this.state = {};
+    this.state = {
+      submitBtnClicked: false,
+      username: '',
+      password: '',
+      companyName: '',
+      contactNumber: '',
+    };
   }
 
   handleInputValue = ({ target: { id, value } }) => {
     this.setState({ [id]: value });
   };
 
-  handleUserLogin = ev => {
+  handleUserLogin = async ev => {
     ev.preventDefault();
     const { username, password } = this.state;
-    return this.props.onUserLogin(username, password);
+
+    await this.setState({ submitBtnClicked: true });
+
+    if (username === '' || password === '') {
+      return null;
+    }
+    if (isLoggedIn()) {
+      throw new Error('Already logged in');
+    }
+
+    const res = await this.props.requestLogin(username, password);
+    await saveToken(res);
+    return this.props.history.push('/');
   };
 
   renderSignupModal = ev => {
@@ -39,21 +59,39 @@ class LoginContainer extends React.Component {
     return this.props.showModalAction();
   };
 
-  handleUserSignup = ev => {
+  handleUserSignup = async ev => {
     ev.preventDefault();
     const { companyName, username, password, contactNumber } = this.state;
-    return this.props.onUserSignup(
+
+    await this.setState({ submitBtnClicked: true });
+    if (
+      username === '' ||
+      password === '' ||
+      companyName === '' ||
+      contactNumber === ''
+    ) {
+      return null;
+    }
+    await this.props.requestSignup(
       companyName,
       username,
       password,
       contactNumber,
     );
+    return console.log('User has been successfully created');
   };
 
   render() {
+    const { submitBtnClicked, username, password } = this.state;
+
     return (
       <div className="tc login-container">
-        <LoginForm handleChange={this.handleInputValue} />
+        <LoginForm
+          handleChange={this.handleInputValue}
+          submitBtnClicked={submitBtnClicked}
+          username={username}
+          password={password}
+        />
         <Buttons
           handleFirstButtonClick={this.handleUserLogin}
           handleSecondButtonClick={this.renderSignupModal}
@@ -67,6 +105,8 @@ class LoginContainer extends React.Component {
                 handleChange={this.handleInputValue}
                 handleUserSignup={this.handleUserSignup}
                 handleClose={() => this.props.hideModalAction()}
+                submitBtnClicked={submitBtnClicked}
+                inputValue={this.state}
               />
             }
           />
@@ -82,15 +122,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onUserSignup: (companyName, username, password, contactNumber) =>
-    dispatch(userSignup(companyName, username, password, contactNumber)),
-  onUserLogin: (username, password) => dispatch(userLogin(username, password)),
+  requestSignup: (companyName, username, password, contactNumber) =>
+    dispatch(requestSignup(companyName, username, password, contactNumber)),
+  requestLogin: (username, password) =>
+    dispatch(requestLogin(username, password)),
   showModalAction: () => dispatch(showModalAction()),
   hideModalAction: () => dispatch(hideModalAction()),
 });
 
 export const Unwrapped = LoginContainer;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(LoginContainer),
+);

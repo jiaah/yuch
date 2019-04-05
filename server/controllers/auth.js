@@ -16,8 +16,6 @@ exports.createUser = (req, res) => {
         })
         .returning('*'),
     )
-    .then(user => util.getRandomToken(user))
-    .then(token => res.status(201).json({ token }))
     .catch(err => res.status(409).json(err));
 };
 

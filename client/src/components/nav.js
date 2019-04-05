@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 /* --- Components --- */
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
+import { isLoggedIn, deleteToken } from '../../localStorage';
 /* --- Actions --- */
 import logo from '../../assets/img/yuch-logo.png';
 
@@ -16,8 +17,10 @@ class Nav extends Component {
     this.handleUserLogout = this.handleUserLogout.bind(this);
   }
 
-  handleUserLogout = ev => {
+  handleUserLogout = async ev => {
     ev.preventDefault();
+    await deleteToken();
+    return this.props.history.push('/login');
   };
 
   render() {
@@ -32,16 +35,19 @@ class Nav extends Component {
             상담전화&#8201;
             <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
           </a>
-          <Link className="login-btn td-none c-text br f-mini" to="/login">
-            로그인
-          </Link>
-          {/* <Buttons
-            handleClick={this.handleUserLogout}
-            variantValue="contained"
-            colorValue="secondary"
-            classNameValue="button"
-            name="로그아웃"
-          /> */}
+          {isLoggedIn() ? (
+            <button
+              type="button"
+              className="login-btn td-none c-text br f-mini"
+              onClick={this.handleUserLogout}
+            >
+              로그아웃
+            </button>
+          ) : (
+            <Link className="login-btn td-none c-text br f-mini" to="/login">
+              로그인
+            </Link>
+          )}
         </div>
         <h1 className="tc">
           <Link className="td-none" to="/">
