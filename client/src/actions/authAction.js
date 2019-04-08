@@ -2,22 +2,16 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
-export const requestSignup = (
-  companyName,
-  username,
-  password,
-  contactNumber,
-) => async dispatch => {
+export const requestSignup = userInfo => async dispatch => {
+  console.log('SIGNUP ACTION FUNCTION HAS CALLED');
   const res = await axios.post(`${API_HOST}/auth/register`, {
-    companyName,
-    username,
-    password,
-    contactNumber,
+    userInfo,
   });
   return res.data;
 };
 
 export const requestLogin = (username, password) => async dispatch => {
+  console.log('LOGIN ACTION FUNCTION HAS CALLED');
   const res = await axios.post(`${API_HOST}/auth/login`, {
     username,
     password,

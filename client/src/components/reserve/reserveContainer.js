@@ -8,7 +8,7 @@ import Loader from '../../shared/loader';
 import * as moment from '../../shared/moment';
 /* --- Actions --- */
 import { reserve, resetReserve } from '../../actions/reserveAction';
-import { showModalAction, hideModalAction } from '../../actions/modalAction';
+import { showModal, hideModal } from '../../actions/modalAction';
 
 /* react/no-unused-state: false */
 const SimpleModal = Loader({
@@ -132,9 +132,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onReserve: reserveInfo => dispatch(reserve(reserveInfo)),
   onResetReserve: () => dispatch(resetReserve()),
-  showModalAction: () => dispatch(showModalAction()),
+  showModalAction: () => dispatch(showModal()),
   hideModalAction: () => {
-    dispatch(hideModalAction());
+    dispatch(hideModal());
     dispatch(resetReserve());
   },
 });

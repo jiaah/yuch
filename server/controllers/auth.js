@@ -2,7 +2,7 @@ const knex = require('../database');
 const util = require('../lib/util');
 
 exports.createUser = (req, res) => {
-  const { companyName, username, password, contactNumber } = req.body;
+  const { companyName, username, password, contactNumber } = req.body.userInfo;
 
   util
     .bcryptPassword(password)

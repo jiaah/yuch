@@ -17,6 +17,7 @@ test('should generate reset reserve info action', () => {
 
 describe('async reserve request actions', () => {
   beforeEach(() => {
+    store.clearActions();
     moxios.install();
   });
 
