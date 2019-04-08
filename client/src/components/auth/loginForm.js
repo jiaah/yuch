@@ -1,13 +1,22 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const LoginForm = ({ handleChange, submitBtnClicked, username, password }) => (
+const LoginForm = ({
+  handleChange,
+  handleUserLogin,
+  submitBtnClicked,
+  username,
+  password,
+}) => (
   <div className="mh1">
     <TextField
       id="username"
       label="Username"
       value={username}
       onChange={ev => handleChange(ev)}
+      onKeyPress={ev => {
+        if (ev.key === 'Enter') handleUserLogin(ev);
+      }}
       error={submitBtnClicked && (username === '' || username === undefined)}
       required={true}
       margin="normal"
@@ -18,6 +27,9 @@ const LoginForm = ({ handleChange, submitBtnClicked, username, password }) => (
       label="Password"
       value={password}
       onChange={ev => handleChange(ev)}
+      onKeyPress={ev => {
+        if (ev.key === 'Enter') handleUserLogin(ev);
+      }}
       error={submitBtnClicked && (password === '' || password === undefined)}
       required={true}
       margin="normal"

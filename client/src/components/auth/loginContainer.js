@@ -23,6 +23,10 @@ class LoginContainer extends React.Component {
 
     this.state = {
       submitBtnClicked: false,
+      username: '',
+      password: '',
+      companyName: '',
+      contactNumber: '',
     };
   }
 
@@ -75,6 +79,7 @@ class LoginContainer extends React.Component {
       <div className="tc login-container">
         <LoginForm
           handleChange={this.handleInputValue}
+          handleUserLogin={this.handleUserLogin}
           submitBtnClicked={submitBtnClicked}
           username={username}
           password={password}
