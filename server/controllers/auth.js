@@ -16,6 +16,7 @@ exports.createUser = (req, res) => {
         })
         .returning('*'),
     )
+    .then(() => res.status(200).json(companyName))
     .catch(err => res.status(409).json(err));
 };
 
