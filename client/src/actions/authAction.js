@@ -22,7 +22,7 @@ export const requestLogin = (username, password) => async dispatch => {
       password,
     });
     const token = res.data.token;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'login', data: token });
+    dispatch({ type: types.HTTP_SUCCESS, api: 'login' });
     return token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });

@@ -3,11 +3,11 @@ import { routerReducer } from 'react-router-redux';
 /* --- Components --- */
 import reserve from './reserveReducer';
 import modal from './modalReducer';
-import HTTPRequestHandler from './HTTPRequestHandlerReducer';
+import httpHandler from './HTTPHandlerReducer';
 
 export default combineReducers({
   modal,
   reserve,
-  HTTPRequestHandler,
+  httpHandler,
   routing: routerReducer,
 });

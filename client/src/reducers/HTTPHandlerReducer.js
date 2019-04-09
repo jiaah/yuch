@@ -7,13 +7,15 @@ const initialState = {
   error: '',
 };
 
-const HTTPRequestHandler = (state = initialState, action) => {
+const httpHandler = (state = initialState, action) => {
   switch (action.type) {
     case types.HTTP_REQUEST:
       return {
         ...state,
         api: action.api,
         isLoading: true,
+        data: [],
+        error: '',
       };
     case types.HTTP_SUCCESS:
       return {
@@ -34,4 +36,4 @@ const HTTPRequestHandler = (state = initialState, action) => {
   }
 };
 
-export default HTTPRequestHandler;
+export default httpHandler;

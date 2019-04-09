@@ -69,8 +69,11 @@ class LoginContainer extends React.Component {
       throw new Error('Already logged in');
     }
     const res = await this.props.authActions.requestLogin(username, password);
-    await saveToken(res);
-    return this.props.history.push('/');
+    if (this.props.error.status === 200) {
+      await saveToken(res);
+      return this.props.history.push('/');
+    }
+    return null;
   };
 
   render() {
@@ -111,6 +114,8 @@ class LoginContainer extends React.Component {
 const mapStateToProps = state => ({
   apiRequest: state.reserve.apiRequest,
   showModal: state.modal.show,
+  error: state.httpHandler.error,
+  state,
 });
 
 const mapDispatchToProps = dispatch => ({
