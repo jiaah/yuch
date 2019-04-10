@@ -36,9 +36,7 @@ class UsersContainer extends React.Component {
   }
 
   handleInputValue = ({ target: { id, value } }) => {
-    // eslint-disable-next-line radix
-    const InputValue = isNaN(parseInt(value)) ? value : parseInt(value);
-    this.setState({ [id]: InputValue });
+    this.setState({ [id]: value });
   };
 
   handleCheckbox = name => () => {

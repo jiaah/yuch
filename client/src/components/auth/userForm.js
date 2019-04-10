@@ -84,8 +84,9 @@ const UserForm = ({
           value={contactNumber}
           onChange={ev => handleChange(ev)}
           error={
-            submitBtnClicked &&
-            (contactNumber === '' || contactNumber === undefined)
+            (contactNumber !== '' && isNaN(contactNumber)) ||
+            (submitBtnClicked &&
+              (contactNumber === '' || contactNumber === undefined))
           }
           required={true}
           margin="normal"

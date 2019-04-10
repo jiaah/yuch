@@ -21,6 +21,7 @@ export const userAccountInputChecker = userInputValue => {
     companyName === undefined ||
     contactNumber === '' ||
     contactNumber === undefined ||
+    (contactNumber !== '' && isNaN(contactNumber)) ||
     mealPrice === '' ||
     mealPrice === undefined ||
     (mealPrice !== '' && isNaN(mealPrice)) ||
