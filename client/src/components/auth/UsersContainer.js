@@ -45,7 +45,7 @@ class UsersContainer extends React.Component {
       return this.setState({
         checkedA: true,
         checkedB: false,
-        bankAccount: 'A',
+        bankAccount: '1',
       });
     }
     if (name === 'checkedB') {
@@ -55,7 +55,7 @@ class UsersContainer extends React.Component {
       return this.setState({
         checkedA: false,
         checkedB: true,
-        bankAccount: 'B',
+        bankAccount: '2',
       });
     }
   };
@@ -66,7 +66,7 @@ class UsersContainer extends React.Component {
       this.setState({
         checkedA: true,
         checkedB: false,
-        bankAccount: 'A',
+        bankAccount: '1',
       });
     }
     return this.props.modalActions.showModal();

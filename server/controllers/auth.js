@@ -2,7 +2,14 @@ const knex = require('../database');
 const util = require('../lib/util');
 
 exports.createUser = (req, res) => {
-  const { companyName, username, password, contactNumber } = req.body.userInfo;
+  const {
+    username,
+    password,
+    companyName,
+    contactNumber,
+    mealPrice,
+    bankAccount,
+  } = req.body.userInfo;
 
   util
     .bcryptPassword(password)
@@ -13,6 +20,8 @@ exports.createUser = (req, res) => {
           username,
           password: hashedPassword,
           contact_no: contactNumber,
+          meal_price: mealPrice,
+          bank_account_id: bankAccount,
         })
         .returning('*'),
     )
