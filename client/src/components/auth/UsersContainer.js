@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import SingleButton from '../../shared/singleButton';
 import UserForm from './userForm';
 import Loader from '../../shared/loader';
-import { signUpInputChecker } from './inputChecker';
+import { userAccountInputChecker } from './inputChecker';
 /* --- Actions --- */
 import * as authActions from '../../actions/authAction';
 import * as modalActions from '../../actions/modalAction';
@@ -27,6 +27,9 @@ class UsersContainer extends React.Component {
       companyName: '',
       contactNumber: '',
       mealPrice: '',
+      checkedA: '',
+      checkedB: '',
+      bankAccount: '',
     };
   }
 
@@ -34,8 +37,38 @@ class UsersContainer extends React.Component {
     this.setState({ [id]: value });
   };
 
+  handleCheckbox = name => () => {
+    if (name === 'checkedA') {
+      if (this.state.checkedA) {
+        return null;
+      }
+      return this.setState({
+        checkedA: true,
+        checkedB: false,
+        bankAccount: 'A',
+      });
+    }
+    if (name === 'checkedB') {
+      if (this.state.checkedB) {
+        return null;
+      }
+      return this.setState({
+        checkedA: false,
+        checkedB: true,
+        bankAccount: 'B',
+      });
+    }
+  };
+
   showModal = ev => {
     ev.preventDefault();
+    if (this.state.bankAccount === '') {
+      this.setState({
+        checkedA: true,
+        checkedB: false,
+        bankAccount: 'A',
+      });
+    }
     return this.props.modalActions.showModal();
   };
 
@@ -47,15 +80,39 @@ class UsersContainer extends React.Component {
 
   handleCreateUser = async ev => {
     ev.preventDefault();
-    const { submitBtnClicked, ...others } = this.state;
-    const userInfo = { ...others };
+    const {
+      submitBtnClicked,
+      username,
+      password,
+      confirmPassword,
+      companyName,
+      contactNumber,
+      mealPrice,
+      bankAccount,
+    } = this.state;
+    const userInputValue = {
+      username,
+      password,
+      confirmPassword,
+      companyName,
+      contactNumber,
+      mealPrice,
+    };
+    const userInfo = {
+      username,
+      password,
+      companyName,
+      contactNumber,
+      mealPrice,
+      bankAccount,
+    };
 
     // this state need to be set first for input error checking
     await this.setState({ submitBtnClicked: true });
 
     // Input fields error's checked in the form,
     // this requires to prevent from making unnecessary http request
-    const isInputFilledOut = await signUpInputChecker(userInfo);
+    const isInputFilledOut = await userAccountInputChecker(userInputValue);
     if (isInputFilledOut !== null) {
       return this.props.authActions.createUser(userInfo);
     }
@@ -76,6 +133,7 @@ class UsersContainer extends React.Component {
             component={
               <UserForm
                 handleChange={this.handleInputValue}
+                handleCheckbox={this.handleCheckbox}
                 handleCreateUser={this.handleCreateUser}
                 handleClose={this.hideModal}
                 inputValue={this.state}

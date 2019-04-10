@@ -1,4 +1,4 @@
-export const signUpInputChecker = userInfo => {
+export const userAccountInputChecker = userInputValue => {
   const {
     username,
     password,
@@ -6,7 +6,7 @@ export const signUpInputChecker = userInfo => {
     contactNumber,
     confirmPassword,
     mealPrice,
-  } = userInfo;
+  } = userInputValue;
   if (
     username === '' ||
     username === undefined ||

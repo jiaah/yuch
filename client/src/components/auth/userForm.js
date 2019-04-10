@@ -1,10 +1,12 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-
+import Checkbox from '@material-ui/core/Checkbox';
+/* --- Components --- */
 import Buttons from '../../shared/buttons';
 
 const UserForm = ({
   inputValue,
+  handleCheckbox,
   handleChange,
   handleCreateUser,
   handleClose,
@@ -16,6 +18,8 @@ const UserForm = ({
     confirmPassword,
     contactNumber,
     mealPrice,
+    checkedA,
+    checkedB,
     submitBtnClicked,
   } = inputValue;
 
@@ -99,6 +103,16 @@ const UserForm = ({
           fullWidth
         />
       </div>
+      <Checkbox
+        checked={checkedA}
+        value="checkedA"
+        onChange={handleCheckbox('checkedA')}
+      />
+      <Checkbox
+        checked={checkedB}
+        value="checkedB"
+        onChange={handleCheckbox('checkedB')}
+      />
       <Buttons
         handleFirstButtonClick={handleCreateUser}
         handleSecondButtonClick={handleClose}
