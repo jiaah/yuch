@@ -3,10 +3,10 @@ import TextField from '@material-ui/core/TextField';
 
 import Buttons from '../../shared/buttons';
 
-const SignupAuth = ({
+const UserForm = ({
   inputValue,
   handleChange,
-  handleUserSignup,
+  handleCreateUser,
   handleClose,
 }) => {
   const {
@@ -19,7 +19,7 @@ const SignupAuth = ({
 
   return (
     <React.Fragment>
-      <h3 className="f-en b">- 신규업체 등록 -</h3>
+      <h3 className="f-en b"> 신규업체 등록 </h3>
       <div className="mh1">
         <TextField
           id="companyName"
@@ -73,7 +73,7 @@ const SignupAuth = ({
         />
       </div>
       <Buttons
-        handleFirstButtonClick={handleUserSignup}
+        handleFirstButtonClick={handleCreateUser}
         handleSecondButtonClick={handleClose}
         firstButtonName="가입하기"
         secondButtonName="닫기"
@@ -82,4 +82,4 @@ const SignupAuth = ({
   );
 };
 
-export default SignupAuth;
+export default UserForm;

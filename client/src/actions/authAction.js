@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
-export const requestSignup = userInfo => async dispatch => {
+export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST });
   try {
     const res = await axios.post(`${API_HOST}/auth/register`, { userInfo });
@@ -14,7 +14,7 @@ export const requestSignup = userInfo => async dispatch => {
   }
 };
 
-export const requestLogin = (username, password) => async dispatch => {
+export const userLogin = (username, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
     const res = await axios.post(`${API_HOST}/auth/login`, {

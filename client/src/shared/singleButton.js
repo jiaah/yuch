@@ -17,17 +17,20 @@ const SingleButton = ({
   classes,
   variantType,
   buttonName,
-}) => (
-  <React.Fragment>
-    <Button
-      onClick={ev => handleButtonClick(ev)}
-      variant={variantType}
-      color="secondary"
-      className={`firstBtn ${classes.button}`}
-    >
-      {buttonName}
-    </Button>
-  </React.Fragment>
-);
+}) => {
+  console.log(handleButtonClick, classes, variantType, buttonName);
+  return (
+    <React.Fragment>
+      <Button
+        onClick={ev => handleButtonClick(ev)}
+        variant={variantType}
+        color="secondary"
+        className={`firstBtn ${classes.button}`}
+      >
+        {buttonName}
+      </Button>
+    </React.Fragment>
+  );
+};
 
 export default withStyles(styles)(SingleButton);

@@ -1,22 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
-import SignupForm from './signupForm';
-import Loader from '../../shared/loader';
 import { isLoggedIn, saveToken } from '../../../localStorage';
-import { signUpInputChecker, loginInputChecker } from './inputChecker';
+import { loginInputChecker } from './inputChecker';
 /* --- Actions --- */
-import * as authActions from '../../actions/authAction';
-import * as modalActions from '../../actions/modalAction';
+import { userLogin } from '../../actions/authAction';
 
-const SimpleModal = Loader({
-  loader: () =>
-    import('../../shared/simpleModal' /* webpackChunkName: 'simpleModal' */),
-});
 class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -25,8 +17,6 @@ class LoginContainer extends React.Component {
       submitBtnClicked: false,
       username: '',
       password: '',
-      companyName: '',
-      contactNumber: '',
     };
   }
 
@@ -34,26 +24,9 @@ class LoginContainer extends React.Component {
     this.setState({ [id]: value });
   };
 
-  renderSignupModal = ev => {
+  renderHomepage = ev => {
     ev.preventDefault();
-    return this.props.modalActions.showModal();
-  };
-
-  handleUserSignup = async ev => {
-    ev.preventDefault();
-    const { submitBtnClicked, ...others } = this.state;
-    const userInfo = { ...others };
-
-    // this state need to be set first for input error checking
-    await this.setState({ submitBtnClicked: true });
-
-    // Input fields error's checked in the form,
-    // this requires to prevent from making unnecessary http request
-    const isInputFilledOut = await signUpInputChecker(userInfo);
-    if (isInputFilledOut === null) {
-      return null;
-    }
-    return this.props.authActions.requestSignup(userInfo);
+    this.props.history.push('/');
   };
 
   handleUserLogin = async ev => {
@@ -68,12 +41,12 @@ class LoginContainer extends React.Component {
     if (isLoggedIn()) {
       throw new Error('Already logged in');
     }
-    const res = await this.props.authActions.requestLogin(username, password);
-    if (this.props.error.status === 200) {
-      await saveToken(res);
-      return this.props.history.push('/');
+    const res = await this.props.userLogin(username, password);
+    if (!res || res === undefined) {
+      return null;
     }
-    return null;
+    await saveToken(res);
+    return this.props.history.push('/');
   };
 
   render() {
@@ -89,44 +62,23 @@ class LoginContainer extends React.Component {
         />
         <Buttons
           handleFirstButtonClick={this.handleUserLogin}
-          handleSecondButtonClick={this.renderSignupModal}
+          handleSecondButtonClick={this.renderHomepage}
           firstButtonName="로그인"
-          secondButtonName="가입하기"
+          secondButtonName="홈페이지"
         />
-        {this.props.showModal && (
-          <SimpleModal
-            component={
-              <SignupForm
-                handleChange={this.handleInputValue}
-                handleUserSignup={this.handleUserSignup}
-                handleClose={() => this.props.modalActions.hideModal()}
-                submitBtnClicked={submitBtnClicked}
-                inputValue={this.state}
-              />
-            }
-          />
-        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  apiRequest: state.reserve.apiRequest,
-  showModal: state.modal.show,
-  error: state.httpHandler.error,
-  state,
-});
-
 const mapDispatchToProps = dispatch => ({
-  authActions: bindActionCreators(authActions, dispatch),
-  modalActions: bindActionCreators(modalActions, dispatch),
+  userLogin: (username, password) => dispatch(userLogin(username, password)),
 });
 
 export const Unwrapped = LoginContainer;
 export default withRouter(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
   )(LoginContainer),
 );
