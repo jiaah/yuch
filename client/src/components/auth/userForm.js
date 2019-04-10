@@ -13,6 +13,7 @@ const UserForm = ({
     companyName,
     username,
     password,
+    confirmPassword,
     contactNumber,
     submitBtnClicked,
   } = inputValue;
@@ -53,6 +54,19 @@ const UserForm = ({
           onChange={ev => handleChange(ev)}
           error={
             submitBtnClicked && (password === '' || password === undefined)
+          }
+          required={true}
+          margin="normal"
+          fullWidth
+        />
+        <TextField
+          id="confirmPassword"
+          label="비밀번호 확인"
+          value={confirmPassword}
+          onChange={ev => handleChange(ev)}
+          error={
+            submitBtnClicked &&
+            (confirmPassword === '' || password !== confirmPassword)
           }
           required={true}
           margin="normal"

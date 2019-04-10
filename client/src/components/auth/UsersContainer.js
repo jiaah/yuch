@@ -23,6 +23,7 @@ class UsersContainer extends React.Component {
       submitBtnClicked: false,
       username: '',
       password: '',
+      confirmPassword: '',
       companyName: '',
       contactNumber: '',
     };
@@ -39,7 +40,8 @@ class UsersContainer extends React.Component {
 
   hideModal = ev => {
     ev.preventDefault();
-    return this.props.modalActions.hideModal();
+    this.props.modalActions.hideModal();
+    return this.setState({ submitBtnClicked: false });
   };
 
   handleCreateUser = async ev => {
@@ -53,14 +55,15 @@ class UsersContainer extends React.Component {
     // Input fields error's checked in the form,
     // this requires to prevent from making unnecessary http request
     const isInputFilledOut = await signUpInputChecker(userInfo);
-    if (isInputFilledOut === null) {
-      return null;
+    if (isInputFilledOut !== null) {
+      return this.props.authActions.createUser(userInfo);
     }
-    return this.props.authActions.createUser(userInfo);
+    return null;
   };
 
   render() {
     const { submitBtnClicked } = this.state;
+
     return (
       <div>
         <h1>고객계정</h1>

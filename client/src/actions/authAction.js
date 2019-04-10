@@ -3,6 +3,7 @@ import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
 export const createUser = userInfo => async dispatch => {
+  console.log('CREATE USER API HAS BEEN CALLED');
   dispatch({ type: types.HTTP_REQUEST });
   try {
     const res = await axios.post(`${API_HOST}/auth/register`, { userInfo });
