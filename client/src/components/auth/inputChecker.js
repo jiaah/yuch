@@ -5,6 +5,7 @@ export const signUpInputChecker = userInfo => {
     companyName,
     contactNumber,
     confirmPassword,
+    mealPrice,
   } = userInfo;
   if (
     username === '' ||
@@ -17,7 +18,9 @@ export const signUpInputChecker = userInfo => {
     companyName === '' ||
     companyName === undefined ||
     contactNumber === '' ||
-    contactNumber === undefined
+    contactNumber === undefined ||
+    mealPrice === '' ||
+    mealPrice === undefined
   )
     return null;
 };

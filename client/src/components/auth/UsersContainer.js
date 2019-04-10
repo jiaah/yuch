@@ -26,6 +26,7 @@ class UsersContainer extends React.Component {
       confirmPassword: '',
       companyName: '',
       contactNumber: '',
+      mealPrice: '',
     };
   }
 
@@ -62,8 +63,6 @@ class UsersContainer extends React.Component {
   };
 
   render() {
-    const { submitBtnClicked } = this.state;
-
     return (
       <div>
         <h1>고객계정</h1>
@@ -79,7 +78,6 @@ class UsersContainer extends React.Component {
                 handleChange={this.handleInputValue}
                 handleCreateUser={this.handleCreateUser}
                 handleClose={this.hideModal}
-                submitBtnClicked={submitBtnClicked}
                 inputValue={this.state}
               />
             }

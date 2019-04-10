@@ -15,6 +15,7 @@ const UserForm = ({
     password,
     confirmPassword,
     contactNumber,
+    mealPrice,
     submitBtnClicked,
   } = inputValue;
 
@@ -80,6 +81,18 @@ const UserForm = ({
           error={
             submitBtnClicked &&
             (contactNumber === '' || contactNumber === undefined)
+          }
+          required={true}
+          margin="normal"
+          fullWidth
+        />
+        <TextField
+          id="mealPrice"
+          label="식수가격"
+          value={mealPrice}
+          onChange={ev => handleChange(ev)}
+          error={
+            submitBtnClicked && (mealPrice === '' || mealPrice === undefined)
           }
           required={true}
           margin="normal"
