@@ -6,6 +6,8 @@ export const userAccountInputChecker = userInputValue => {
     contactNumber,
     confirmPassword,
     mealPrice,
+    lunchQuantity,
+    dinnerQuantity,
   } = userInputValue;
   if (
     username === '' ||
@@ -20,7 +22,10 @@ export const userAccountInputChecker = userInputValue => {
     contactNumber === '' ||
     contactNumber === undefined ||
     mealPrice === '' ||
-    mealPrice === undefined
+    mealPrice === undefined ||
+    (mealPrice !== '' && isNaN(mealPrice)) ||
+    (lunchQuantity !== '' && isNaN(lunchQuantity)) ||
+    (dinnerQuantity !== '' && isNaN(dinnerQuantity))
   )
     return null;
 };

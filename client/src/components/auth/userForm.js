@@ -18,11 +18,12 @@ const UserForm = ({
     confirmPassword,
     contactNumber,
     mealPrice,
+    lunchQuantity,
+    dinnerQuantity,
     checkedA,
     checkedB,
     submitBtnClicked,
   } = inputValue;
-
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
@@ -96,12 +97,33 @@ const UserForm = ({
           value={mealPrice}
           onChange={ev => handleChange(ev)}
           error={
-            submitBtnClicked && (mealPrice === '' || mealPrice === undefined)
+            (mealPrice !== '' && isNaN(mealPrice)) ||
+            (submitBtnClicked && (mealPrice === '' || mealPrice === undefined))
           }
           required={true}
           margin="normal"
           fullWidth
         />
+        <div>
+          <TextField
+            id="lunchQuantity"
+            label="중식 식수량"
+            value={lunchQuantity}
+            onChange={ev => handleChange(ev)}
+            error={lunchQuantity !== '' && isNaN(lunchQuantity)}
+            margin="normal"
+            fullWidth
+          />
+          <TextField
+            id="dinnerQuantity"
+            label="석식 식수량"
+            value={dinnerQuantity}
+            onChange={ev => handleChange(ev)}
+            error={dinnerQuantity !== '' && isNaN(dinnerQuantity)}
+            margin="normal"
+            fullWidth
+          />
+        </div>
       </div>
       <Checkbox
         checked={checkedA}

@@ -9,6 +9,8 @@ exports.createUser = (req, res) => {
     contactNumber,
     mealPrice,
     bankAccount,
+    lunchQuantity,
+    dinnerQuantity,
   } = req.body.userInfo;
 
   util
@@ -22,6 +24,8 @@ exports.createUser = (req, res) => {
           contact_no: contactNumber,
           meal_price: mealPrice,
           bank_account_id: bankAccount,
+          init_lunch_quantity: lunchQuantity,
+          init_dinner_quantity: dinnerQuantity,
         })
         .returning('*'),
     )

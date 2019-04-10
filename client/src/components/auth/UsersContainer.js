@@ -27,6 +27,8 @@ class UsersContainer extends React.Component {
       companyName: '',
       contactNumber: '',
       mealPrice: '',
+      lunchQuantity: '',
+      dinnerQuantity: '',
       checkedA: '',
       checkedB: '',
       bankAccount: '',
@@ -34,7 +36,9 @@ class UsersContainer extends React.Component {
   }
 
   handleInputValue = ({ target: { id, value } }) => {
-    this.setState({ [id]: value });
+    // eslint-disable-next-line radix
+    const InputValue = isNaN(parseInt(value)) ? value : parseInt(value);
+    this.setState({ [id]: InputValue });
   };
 
   handleCheckbox = name => () => {
@@ -45,7 +49,7 @@ class UsersContainer extends React.Component {
       return this.setState({
         checkedA: true,
         checkedB: false,
-        bankAccount: '1',
+        bankAccount: 1,
       });
     }
     if (name === 'checkedB') {
@@ -55,7 +59,7 @@ class UsersContainer extends React.Component {
       return this.setState({
         checkedA: false,
         checkedB: true,
-        bankAccount: '2',
+        bankAccount: 2,
       });
     }
   };
@@ -66,7 +70,7 @@ class UsersContainer extends React.Component {
       this.setState({
         checkedA: true,
         checkedB: false,
-        bankAccount: '1',
+        bankAccount: 1,
       });
     }
     return this.props.modalActions.showModal();
@@ -82,31 +86,18 @@ class UsersContainer extends React.Component {
     ev.preventDefault();
     const {
       submitBtnClicked,
-      username,
-      password,
       confirmPassword,
-      companyName,
-      contactNumber,
-      mealPrice,
-      bankAccount,
+      checkedA,
+      checkedB,
+      ...others
     } = this.state;
     const userInputValue = {
-      username,
-      password,
       confirmPassword,
-      companyName,
-      contactNumber,
-      mealPrice,
+      ...others,
     };
     const userInfo = {
-      username,
-      password,
-      companyName,
-      contactNumber,
-      mealPrice,
-      bankAccount,
+      ...others,
     };
-
     // this state need to be set first for input error checking
     await this.setState({ submitBtnClicked: true });
 
