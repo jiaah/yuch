@@ -21,11 +21,10 @@ exports.up = (knex, Promise) =>
         .boolean('is_admin')
         .notNullable()
         .defaultTo(false);
-      // table.decimal('meal_price', 6, 2);
-      table.string('meal_price');
-      table.string('init_lunch_quantity');
-      table.string('init_dinner_quantity');
-      table.string('bank_account_id').unsigned();
+      table.decimal('meal_price', 10, 2);
+      table.integer('init_lunch_quantity');
+      table.integer('init_dinner_quantity');
+      table.integer('bank_account_id').unsigned();
       table
         .foreign('bank_account_id')
         .references('id')

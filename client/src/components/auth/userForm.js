@@ -31,6 +31,7 @@ const UserForm = ({
         <TextField
           id="companyName"
           label="고객명"
+          placeholder="유청"
           value={companyName}
           onChange={ev => handleChange(ev)}
           error={
@@ -44,6 +45,7 @@ const UserForm = ({
         <TextField
           id="username"
           label="고객 아이디"
+          placeholder="yucheong"
           value={username}
           onChange={ev => handleChange(ev)}
           error={
@@ -56,6 +58,7 @@ const UserForm = ({
         <TextField
           id="password"
           label="비밀번호"
+          type="password"
           value={password}
           onChange={ev => handleChange(ev)}
           error={
@@ -68,6 +71,13 @@ const UserForm = ({
         <TextField
           id="confirmPassword"
           label="비밀번호 확인"
+          type="password"
+          helperText={
+            submitBtnClicked &&
+            (confirmPassword === '' || password !== confirmPassword)
+              ? '비밀번호가 일치하지 않습니다.'
+              : null
+          }
           value={confirmPassword}
           onChange={ev => handleChange(ev)}
           error={
@@ -81,6 +91,7 @@ const UserForm = ({
         <TextField
           id="contactNumber"
           label="연락처"
+          placeholder="054-745-0999"
           value={contactNumber}
           onChange={ev => handleChange(ev)}
           error={
@@ -95,6 +106,7 @@ const UserForm = ({
         <TextField
           id="mealPrice"
           label="식수가격"
+          placeholder="5000"
           value={mealPrice}
           onChange={ev => handleChange(ev)}
           error={
@@ -109,6 +121,7 @@ const UserForm = ({
           <TextField
             id="lunchQuantity"
             label="중식 식수량"
+            placeholder="70"
             value={lunchQuantity}
             onChange={ev => handleChange(ev)}
             error={lunchQuantity !== '' && isNaN(lunchQuantity)}
@@ -118,6 +131,7 @@ const UserForm = ({
           <TextField
             id="dinnerQuantity"
             label="석식 식수량"
+            placeholder="35"
             value={dinnerQuantity}
             onChange={ev => handleChange(ev)}
             error={dinnerQuantity !== '' && isNaN(dinnerQuantity)}
