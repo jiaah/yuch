@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
@@ -76,9 +75,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const Unwrapped = LoginContainer;
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps,
-  )(LoginContainer),
-);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoginContainer);

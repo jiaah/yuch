@@ -31,7 +31,7 @@ const routes = props => (
     <App history={props.history} />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/users/account" component={Users} />
       <Route component={NoMatch} />
     </Switch>
