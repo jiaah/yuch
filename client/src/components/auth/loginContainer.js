@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import Buttons from '../../shared/buttons';
-import { isLoggedIn, saveToken } from '../../../localStorage';
+import { isLoggedIn, saveUserNameAndToken } from '../../../localStorage';
 import { loginInputChecker } from './inputChecker';
 /* --- Actions --- */
 import { userLogin } from '../../actions/authAction';
@@ -40,11 +40,12 @@ class LoginContainer extends React.Component {
     if (isLoggedIn()) {
       throw new Error('Already logged in');
     }
-    const res = await this.props.userLogin(username, password);
-    if (!res || res === undefined) {
+    const userData = await this.props.userLogin(username, password);
+    if (!userData || userData === undefined) {
       return null;
     }
-    await saveToken(res);
+
+    await saveUserNameAndToken(userData);
     return this.props.history.push('/');
   };
 

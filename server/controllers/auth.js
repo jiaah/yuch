@@ -35,7 +35,7 @@ exports.createUser = (req, res) => {
 
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
-
+  let companyName;
   return knex('users')
     .where({ username })
     .first()
@@ -46,8 +46,9 @@ exports.loginUser = (req, res) => {
       if (!util.comparePassword(password, user.password)) {
         return res.status(409).json('Auth failed');
       }
+      companyName = user.company_name;
       return util.getRandomToken(user);
     })
-    .then(token => res.status(200).json({ token }))
+    .then(token => res.status(200).json({ token, companyName }))
     .catch(err => res.status(500).json(err));
 };
