@@ -1,5 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+/* --- Components --- */
+import Button from '../../shared/button';
 
 const LoginForm = ({
   handleChange,
@@ -8,7 +10,7 @@ const LoginForm = ({
   username,
   password,
 }) => (
-  <div className="mh1">
+  <form className="mh1">
     <TextField
       id="username"
       label="Username"
@@ -35,7 +37,16 @@ const LoginForm = ({
       margin="normal"
       fullWidth
     />
-  </div>
+    <div className="float-left flex">
+      <Button
+        typeValue="submit"
+        handleButtonClick={handleUserLogin}
+        variantValue="contained"
+        buttonName="로그인"
+        width="medium"
+      />
+    </div>
+  </form>
 );
 
 export default LoginForm;

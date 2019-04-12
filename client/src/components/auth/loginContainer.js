@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
-import Buttons from '../../shared/buttons';
 import { isLoggedIn, saveUserNameAndToken } from '../../../localStorage';
 import { loginInputChecker } from './inputChecker';
 /* --- Actions --- */
@@ -59,12 +58,6 @@ class LoginContainer extends React.Component {
           submitBtnClicked={submitBtnClicked}
           username={username}
           password={password}
-        />
-        <Buttons
-          handleFirstButtonClick={this.handleUserLogin}
-          handleSecondButtonClick={this.renderHomepage}
-          firstButtonName="로그인"
-          secondButtonName="홈페이지"
         />
       </div>
     );
