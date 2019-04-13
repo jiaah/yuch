@@ -1,0 +1,30 @@
+.login-container {
+  height: 85vh;
+  position: relative;
+  width: 280px;
+  margin: 5em auto;
+
+  @include for-desktop-up {
+    width: 400px;
+    margin-top: 8em;
+  }
+}
+
+.users-container {
+  min-width: 60em;
+  width: 90vw;
+}
+
+.users-form-fields {
+  @include for-desktop-up {
+    display: flex;
+    // Not working
+    // justify-content: space-around;
+  }
+}
+
+.users-form-fields div {
+  @include for-desktop-up {
+    width: 90%
+  }
+}

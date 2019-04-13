@@ -6,12 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: theme.spacing.unit * 33,
+    width: '80vw',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 6,
     [theme.breakpoints.up('md')]: {
-      width: theme.spacing.unit * 36,
+      width: theme.spacing.unit * 80,
       paddingLeft: theme.spacing.unit * 12,
       paddingRight: theme.spacing.unit * 12,
     },

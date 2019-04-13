@@ -116,7 +116,7 @@ class UsersContainer extends React.Component {
       dinnerQuantity: '',
     };
     return (
-      <div>
+      <div className="users-container">
         <h1>고객계정</h1>
         <Button
           typeValue="button"
