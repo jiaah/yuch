@@ -13,6 +13,7 @@ exports.createUser = (req, res) => {
     dinnerQuantity,
   } = req.body.userInfo;
 
+  // database does not accept empty string for the column with integer type
   const lunchQuantityValue = lunchQuantity === '' ? null : lunchQuantity;
   const dinnerQuantityValue = dinnerQuantity === '' ? null : dinnerQuantity;
 

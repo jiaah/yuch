@@ -26,59 +26,25 @@ class UsersContainer extends React.Component {
 
     this.state = {
       submitBtnClicked: false,
-      checkedA: '',
-      checkedB: '',
-      bankAccount: '',
     };
   }
 
-  handleCheckbox = name => () => {
-    if (name === 'checkedA') {
-      if (this.state.checkedA) {
-        return null;
-      }
-      return this.setState({
-        checkedA: true,
-        checkedB: false,
-        bankAccount: 1,
-      });
-    }
-    if (name === 'checkedB') {
-      if (this.state.checkedB) {
-        return null;
-      }
-      return this.setState({
-        checkedA: false,
-        checkedB: true,
-        bankAccount: 2,
-      });
-    }
-  };
-
   showModal = ev => {
     ev.preventDefault();
-    if (this.state.bankAccount === '') {
-      this.setState({
-        checkedA: true,
-        checkedB: false,
-        bankAccount: 1,
-      });
-    }
+
     return this.props.modalActions.showModal();
   };
 
-  handleClose = ev => {
-    ev.preventDefault();
+  handleClose = () => {
     this.props.modalActions.hideModal();
     return this.setState({ submitBtnClicked: false });
   };
 
   handleCreateUser = async (values, actions) => {
     const { confirmPassword, ...others } = values;
-    const { submitBtnClicked, bankAccount } = this.state;
+    const { submitBtnClicked } = this.state;
     const userInfo = {
       ...others,
-      bankAccount,
     };
     // this state need to be set first for input error checking
     await this.setState({ submitBtnClicked: true });
@@ -87,21 +53,23 @@ class UsersContainer extends React.Component {
     // this requires to prevent from making unnecessary http request
     const isInputFilledOut = await userAccountInputChecker(values);
 
-    if (isInputFilledOut !== null) {
-      const userData = await this.props.authActions.createUser(userInfo);
-      if (!userData || userData === undefined) {
-        alert(
-          `${
-            values.companyName
-          } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
-            this.props.errorMessage.data.detail
-          }`,
-        );
-        return actions.setSubmitting(false);
-      }
-      await alert(`${userData} 고객정보가 등록되었습니다.`);
+    if (isInputFilledOut === null) {
       return actions.setSubmitting(false);
     }
+    const userData = await this.props.authActions.createUser(userInfo);
+    if (!userData || userData === undefined) {
+      alert(
+        `${
+          values.companyName
+        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
+          this.props.errorMessage.data.detail
+        }`,
+      );
+      return actions.setSubmitting(false);
+    }
+    await alert(`${userData} 고객정보가 등록되었습니다.`);
+    await actions.setSubmitting(false);
+    return this.handleClose();
   };
 
   render() {
@@ -114,6 +82,7 @@ class UsersContainer extends React.Component {
       mealPrice: '',
       lunchQuantity: '',
       dinnerQuantity: '',
+      bankAccount: '1',
     };
     return (
       <div className="users-container">
@@ -134,7 +103,6 @@ class UsersContainer extends React.Component {
                   <Form
                     {...props}
                     state={this.state}
-                    handleCheckbox={this.handleCheckbox}
                     handleClose={this.handleClose}
                   />
                 )}

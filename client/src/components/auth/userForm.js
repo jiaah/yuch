@@ -1,8 +1,10 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 /* --- Components --- */
 import FormButton from '../../shared/formButton';
 import Button from '../../shared/button';
@@ -18,6 +20,7 @@ const UserForm = props => {
       mealPrice,
       lunchQuantity,
       dinnerQuantity,
+      bankAccount,
     },
     errors,
     touched,
@@ -25,11 +28,9 @@ const UserForm = props => {
     handleSubmit,
     isSubmitting,
     handleBlur,
-    handleCheckbox,
     handleClose,
   } = props;
-
-  const { checkedA, checkedB, submitBtnClicked } = props.state;
+  const { submitBtnClicked } = props.state;
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
@@ -150,28 +151,29 @@ const UserForm = props => {
                 fullWidth
               />
             </div>
-            <FormGroup row className="mt3">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checkedA}
-                    value="checkedA"
-                    onChange={handleCheckbox('checkedA')}
-                  />
-                }
-                label="김귀자 농협"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checkedB}
-                    value="checkedB"
-                    onChange={handleCheckbox('checkedB')}
-                  />
-                }
-                label="이상환 농협"
-              />
-            </FormGroup>
+            <FormControl>
+              <FormLabel>입금 계좌번호</FormLabel>
+              <RadioGroup
+                aria-label="bankAccount"
+                name="bankAccount"
+                value={bankAccount}
+                onChange={handleChange}
+                row
+              >
+                <FormControlLabel
+                  value="1"
+                  control={<Radio color="primary" />}
+                  label="김귀자 농협"
+                  labelPlacement="end"
+                />
+                <FormControlLabel
+                  value="2"
+                  control={<Radio color="primary" />}
+                  label="이상환 농협"
+                  labelPlacement="end"
+                />
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <FormButton
