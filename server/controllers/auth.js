@@ -22,9 +22,9 @@ exports.createUser = (req, res) => {
     .then(hashedPassword =>
       knex('users')
         .insert({
-          company_name: companyName,
-          username,
-          password: hashedPassword,
+          company_name: companyName.toLowerCase(),
+          username: username.toLowerCase(),
+          password: hashedPassword.toLowerCase(),
           contact_no: contactNumber,
           meal_price: mealPrice,
           bank_account_id: bankAccount,

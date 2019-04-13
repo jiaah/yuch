@@ -18,17 +18,26 @@ const SimpleModal = Loader({
     import('../../shared/simpleModal' /* webpackChunkName: 'simpleModal' */),
 });
 
-const validationSchema = {};
+const validationSchema = Yup.object({
+  companyName: Yup.string('').required('업체 상호명을 한글로 입력하세요.'),
+  username: Yup.string('').required('고객 로그인 아이디를 입력하세요.'),
+  password: Yup.string('')
+    .min(8, '비밀번호는 8자 이상이여야 합니다.')
+    .required('비밀번호를 입력하세요.'),
+  confirmPassword: Yup.string('')
+    .required('비밀번호를 입력하세요.')
+    .oneOf([Yup.ref('password')], '비밀번호가 일치하지 않습니다.'),
+  contactNumber: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .required('연락처를 입력하세요.'),
+  mealPrice: Yup.string('숫자만 입력하세요.')
+    .max(4, '천원단위까지만 입력가능합니다.')
+    .required('식수가격을 입력하세요.'),
+  lunchQuantity: Yup.string('숫자만 입력하세요.'),
+  dinnerQuantity: Yup.string('숫자만 입력하세요.'),
+});
 
 class UsersContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      submitBtnClicked: false,
-    };
-  }
-
   showModal = ev => {
     ev.preventDefault();
 
@@ -37,17 +46,13 @@ class UsersContainer extends React.Component {
 
   handleClose = () => {
     this.props.modalActions.hideModal();
-    return this.setState({ submitBtnClicked: false });
   };
 
   handleCreateUser = async (values, actions) => {
     const { confirmPassword, ...others } = values;
-    const { submitBtnClicked } = this.state;
     const userInfo = {
       ...others,
     };
-    // this state need to be set first for input error checking
-    await this.setState({ submitBtnClicked: true });
 
     // Input fields error's checked in the form,
     // this requires to prevent from making unnecessary http request

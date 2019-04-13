@@ -30,7 +30,6 @@ const UserForm = props => {
     handleBlur,
     handleClose,
   } = props;
-  const { submitBtnClicked } = props.state;
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
@@ -40,13 +39,12 @@ const UserForm = props => {
             <TextField
               id="companyName"
               label="고객명"
-              placeholder="유청"
+              placeholder="(한글) 유청"
               value={companyName}
               onChange={handleChange}
-              error={
-                submitBtnClicked &&
-                (companyName === '' || companyName === undefined)
-              }
+              onBlur={handleBlur}
+              helperText={touched.companyName && errors.companyName}
+              error={touched.companyName && Boolean(errors.companyName)}
               required={true}
               margin="normal"
               fullWidth
@@ -54,12 +52,12 @@ const UserForm = props => {
             <TextField
               id="username"
               label="고객 아이디"
-              placeholder="yucheong"
+              placeholder="(영문) yucheong"
               value={username}
               onChange={handleChange}
-              error={
-                submitBtnClicked && (username === '' || username === undefined)
-              }
+              onBlur={handleBlur}
+              helperText={touched.username && errors.username}
+              error={touched.username && Boolean(errors.username)}
               required={true}
               margin="normal"
               fullWidth
@@ -68,11 +66,12 @@ const UserForm = props => {
               id="password"
               label="비밀번호"
               type="password"
+              placeholder="(영문 or 숫자)"
               value={password}
               onChange={handleChange}
-              error={
-                submitBtnClicked && (password === '' || password === undefined)
-              }
+              onBlur={handleBlur}
+              helperText={touched.password && errors.password}
+              error={touched.password && Boolean(errors.password)}
               required={true}
               margin="normal"
               fullWidth
@@ -81,18 +80,11 @@ const UserForm = props => {
               id="confirmPassword"
               label="비밀번호 확인"
               type="password"
-              helperText={
-                submitBtnClicked &&
-                (confirmPassword === '' || password !== confirmPassword)
-                  ? '비밀번호가 일치하지 않습니다.'
-                  : null
-              }
               value={confirmPassword}
               onChange={handleChange}
-              error={
-                submitBtnClicked &&
-                (confirmPassword === '' || password !== confirmPassword)
-              }
+              onBlur={handleBlur}
+              helperText={touched.confirmPassword && errors.confirmPassword}
+              error={touched.confirmPassword && Boolean(errors.confirmPassword)}
               required={true}
               margin="normal"
               fullWidth
@@ -102,13 +94,14 @@ const UserForm = props => {
             <TextField
               id="contactNumber"
               label="연락처"
-              placeholder="054-745-0999"
+              placeholder="0547450999"
               value={contactNumber}
               onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.contactNumber && errors.contactNumber}
               error={
                 (contactNumber !== '' && isNaN(contactNumber)) ||
-                (submitBtnClicked &&
-                  (contactNumber === '' || contactNumber === undefined))
+                (touched.contactNumber && Boolean(errors.contactNumber))
               }
               required={true}
               margin="normal"
@@ -120,10 +113,11 @@ const UserForm = props => {
               placeholder="5000"
               value={mealPrice}
               onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.mealPrice && errors.mealPrice}
               error={
                 (mealPrice !== '' && isNaN(mealPrice)) ||
-                (submitBtnClicked &&
-                  (mealPrice === '' || mealPrice === undefined))
+                (touched.mealPrice && Boolean(errors.mealPrice))
               }
               required={true}
               margin="normal"
@@ -136,6 +130,8 @@ const UserForm = props => {
                 placeholder="70"
                 value={lunchQuantity}
                 onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={touched.lunchQuantity && errors.lunchQuantity}
                 error={lunchQuantity !== '' && isNaN(lunchQuantity)}
                 margin="normal"
                 fullWidth
@@ -146,13 +142,15 @@ const UserForm = props => {
                 placeholder="35"
                 value={dinnerQuantity}
                 onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={touched.dinnerQuantity && errors.dinnerQuantity}
                 error={dinnerQuantity !== '' && isNaN(dinnerQuantity)}
                 margin="normal"
                 fullWidth
               />
             </div>
             <FormControl>
-              <FormLabel>입금 계좌번호</FormLabel>
+              <FormLabel className="mt3">입금 계좌번호</FormLabel>
               <RadioGroup
                 aria-label="bankAccount"
                 name="bankAccount"

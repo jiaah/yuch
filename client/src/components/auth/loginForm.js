@@ -21,7 +21,7 @@ const Form = props => {
         value={username}
         onChange={handleChange}
         onBlur={handleBlur}
-        helperText={errors.username}
+        helperText={touched.username && errors.username}
         error={touched.username && Boolean(errors.username)}
         required={true}
         margin="normal"
@@ -33,7 +33,7 @@ const Form = props => {
         value={password}
         onChange={handleChange}
         onBlur={handleBlur}
-        helperText={errors.password}
+        helperText={touched.password && errors.password}
         error={touched.password && Boolean(errors.password)}
         required={true}
         margin="normal"
