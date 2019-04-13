@@ -13,6 +13,9 @@ exports.createUser = (req, res) => {
     dinnerQuantity,
   } = req.body.userInfo;
 
+  const lunchQuantityValue = lunchQuantity === '' ? null : lunchQuantity;
+  const dinnerQuantityValue = dinnerQuantity === '' ? null : dinnerQuantity;
+
   util
     .bcryptPassword(password)
     .then(hashedPassword =>
@@ -24,8 +27,8 @@ exports.createUser = (req, res) => {
           contact_no: contactNumber,
           meal_price: mealPrice,
           bank_account_id: bankAccount,
-          init_lunch_quantity: lunchQuantity,
-          init_dinner_quantity: dinnerQuantity,
+          init_lunch_quantity: lunchQuantityValue,
+          init_dinner_quantity: dinnerQuantityValue,
         })
         .returning('*'),
     )

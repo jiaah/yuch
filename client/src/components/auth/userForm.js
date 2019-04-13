@@ -2,38 +2,42 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 /* --- Components --- */
-import Buttons from '../../shared/buttons';
+import FormButton from '../../shared/formButton';
+import Button from '../../shared/button';
 
-const UserForm = ({
-  inputValue,
-  handleCheckbox,
-  handleChange,
-  handleCreateUser,
-  handleClose,
-}) => {
+const UserForm = props => {
   const {
-    companyName,
-    username,
-    password,
-    confirmPassword,
-    contactNumber,
-    mealPrice,
-    lunchQuantity,
-    dinnerQuantity,
-    checkedA,
-    checkedB,
-    submitBtnClicked,
-  } = inputValue;
+    values: {
+      companyName,
+      username,
+      password,
+      confirmPassword,
+      contactNumber,
+      mealPrice,
+      lunchQuantity,
+      dinnerQuantity,
+    },
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    handleBlur,
+    handleCheckbox,
+    handleClose,
+  } = props;
+
+  const { checkedA, checkedB, submitBtnClicked } = props.state;
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
-      <div className="mh1">
+      <form className="mh1" onSubmit={handleSubmit}>
         <TextField
           id="companyName"
           label="고객명"
           placeholder="유청"
           value={companyName}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             submitBtnClicked &&
             (companyName === '' || companyName === undefined)
@@ -47,7 +51,7 @@ const UserForm = ({
           label="고객 아이디"
           placeholder="yucheong"
           value={username}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             submitBtnClicked && (username === '' || username === undefined)
           }
@@ -60,7 +64,7 @@ const UserForm = ({
           label="비밀번호"
           type="password"
           value={password}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             submitBtnClicked && (password === '' || password === undefined)
           }
@@ -79,7 +83,7 @@ const UserForm = ({
               : null
           }
           value={confirmPassword}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             submitBtnClicked &&
             (confirmPassword === '' || password !== confirmPassword)
@@ -93,7 +97,7 @@ const UserForm = ({
           label="연락처"
           placeholder="054-745-0999"
           value={contactNumber}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             (contactNumber !== '' && isNaN(contactNumber)) ||
             (submitBtnClicked &&
@@ -108,7 +112,7 @@ const UserForm = ({
           label="식수가격"
           placeholder="5000"
           value={mealPrice}
-          onChange={ev => handleChange(ev)}
+          onChange={handleChange}
           error={
             (mealPrice !== '' && isNaN(mealPrice)) ||
             (submitBtnClicked && (mealPrice === '' || mealPrice === undefined))
@@ -117,13 +121,13 @@ const UserForm = ({
           margin="normal"
           fullWidth
         />
-        <div>
+        <div className="flex">
           <TextField
             id="lunchQuantity"
             label="중식 식수량"
             placeholder="70"
             value={lunchQuantity}
-            onChange={ev => handleChange(ev)}
+            onChange={handleChange}
             error={lunchQuantity !== '' && isNaN(lunchQuantity)}
             margin="normal"
             fullWidth
@@ -133,29 +137,37 @@ const UserForm = ({
             label="석식 식수량"
             placeholder="35"
             value={dinnerQuantity}
-            onChange={ev => handleChange(ev)}
+            onChange={handleChange}
             error={dinnerQuantity !== '' && isNaN(dinnerQuantity)}
             margin="normal"
             fullWidth
           />
         </div>
-      </div>
-      <Checkbox
-        checked={checkedA}
-        value="checkedA"
-        onChange={handleCheckbox('checkedA')}
-      />
-      <Checkbox
-        checked={checkedB}
-        value="checkedB"
-        onChange={handleCheckbox('checkedB')}
-      />
-      <Buttons
-        handleFirstButtonClick={handleCreateUser}
-        handleSecondButtonClick={handleClose}
-        firstButtonName="가입하기"
-        secondButtonName="닫기"
-      />
+        <Checkbox
+          checked={checkedA}
+          value="checkedA"
+          onChange={handleCheckbox('checkedA')}
+        />
+        <Checkbox
+          checked={checkedB}
+          value="checkedB"
+          onChange={handleCheckbox('checkedB')}
+        />
+        <FormButton
+          typeValue="submit"
+          variantValue="contained"
+          buttonName="로그인"
+          width="medium"
+          isSubmitting={isSubmitting}
+        />
+        <Button
+          typeValue="reset"
+          variantValue="contained"
+          buttonName="닫기"
+          width="medium"
+          handleButtonClick={ev => handleClose(ev)}
+        />
+      </form>
     </React.Fragment>
   );
 };
