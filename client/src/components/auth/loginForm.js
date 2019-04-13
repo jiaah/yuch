@@ -1,52 +1,53 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
-import Button from '../../shared/button';
+import Button from '../../shared/formButton';
 
-const LoginForm = ({
-  handleChange,
-  handleUserLogin,
-  submitBtnClicked,
-  username,
-  password,
-}) => (
-  <form className="mh1">
-    <TextField
-      id="username"
-      label="Username"
-      value={username}
-      onChange={ev => handleChange(ev)}
-      onKeyPress={ev => {
-        if (ev.key === 'Enter') handleUserLogin(ev);
-      }}
-      error={submitBtnClicked && (username === '' || username === undefined)}
-      required={true}
-      margin="normal"
-      fullWidth
-    />
-    <TextField
-      id="password"
-      label="Password"
-      value={password}
-      onChange={ev => handleChange(ev)}
-      onKeyPress={ev => {
-        if (ev.key === 'Enter') handleUserLogin(ev);
-      }}
-      error={submitBtnClicked && (password === '' || password === undefined)}
-      required={true}
-      margin="normal"
-      fullWidth
-    />
-    <div className="float-left flex">
+const Form = props => {
+  const {
+    values: { username, password },
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    handleBlur,
+  } = props;
+  return (
+    <form onSubmit={handleSubmit}>
+      <TextField
+        id="username"
+        label="Username"
+        value={username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        helperText={errors.username}
+        error={touched.username && Boolean(errors.username)}
+        required={true}
+        margin="normal"
+        fullWidth
+      />
+      <TextField
+        id="password"
+        label="Password"
+        value={password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        helperText={errors.password}
+        error={touched.password && Boolean(errors.password)}
+        required={true}
+        margin="normal"
+        fullWidth
+      />
       <Button
         typeValue="submit"
-        handleButtonClick={handleUserLogin}
         variantValue="contained"
         buttonName="로그인"
         width="medium"
+        isSubmitting={isSubmitting}
       />
-    </div>
-  </form>
-);
+    </form>
+  );
+};
 
-export default LoginForm;
+export default Form;
