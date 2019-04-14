@@ -40,7 +40,7 @@ const UserForm = props => {
               id="companyName"
               label="고객명"
               placeholder="(한글) 유청"
-              value={companyName}
+              value={companyName || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.companyName && errors.companyName}
@@ -53,7 +53,7 @@ const UserForm = props => {
               id="username"
               label="고객 아이디"
               placeholder="(영문) yucheong"
-              value={username}
+              value={username || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.username && errors.username}
@@ -67,7 +67,7 @@ const UserForm = props => {
               label="비밀번호"
               type="password"
               placeholder="(영문 or 숫자)"
-              value={password}
+              value={password || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.password && errors.password}
@@ -80,7 +80,7 @@ const UserForm = props => {
               id="confirmPassword"
               label="비밀번호 확인"
               type="password"
-              value={confirmPassword}
+              value={confirmPassword || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.confirmPassword && errors.confirmPassword}
@@ -95,7 +95,7 @@ const UserForm = props => {
               id="contactNumber"
               label="연락처"
               placeholder="0547450999"
-              value={contactNumber}
+              value={contactNumber || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.contactNumber && errors.contactNumber}
@@ -111,7 +111,7 @@ const UserForm = props => {
               id="mealPrice"
               label="식수가격"
               placeholder="5000"
-              value={mealPrice}
+              value={mealPrice || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.mealPrice && errors.mealPrice}
@@ -128,7 +128,7 @@ const UserForm = props => {
                 id="lunchQuantity"
                 label="중식 식수량"
                 placeholder="70"
-                value={lunchQuantity}
+                value={lunchQuantity || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 helperText={touched.lunchQuantity && errors.lunchQuantity}
@@ -140,7 +140,7 @@ const UserForm = props => {
                 id="dinnerQuantity"
                 label="석식 식수량"
                 placeholder="35"
-                value={dinnerQuantity}
+                value={dinnerQuantity || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 helperText={touched.dinnerQuantity && errors.dinnerQuantity}

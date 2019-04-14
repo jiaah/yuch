@@ -18,7 +18,7 @@ const Form = props => {
       <TextField
         id="username"
         label="Username"
-        value={username}
+        value={username || ''}
         onChange={handleChange}
         onBlur={handleBlur}
         helperText={touched.username && errors.username}
@@ -30,7 +30,7 @@ const Form = props => {
       <TextField
         id="password"
         label="Password"
-        value={password}
+        value={password || ''}
         onChange={handleChange}
         onBlur={handleBlur}
         helperText={touched.password && errors.password}

@@ -16,22 +16,26 @@ const validationSchema = Yup.object({
 });
 
 class Login extends React.Component {
-  handleUserLogin = async (values, actions) => {
+  handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
     if (isLoggedIn()) {
-      throw new Error('Already logged in');
+      // eslint-disable-next-line no-alert
+      alert('회원님은 이미 로그인 되어있습니다.');
+      setSubmitting(false);
+      resetForm({});
+      return this.props.history.push('/');
     }
     const userData = await this.props.userLogin(username, password);
-    await actions.setSubmitting(false);
+    setSubmitting(false);
 
     if (!userData || userData === undefined) {
       // eslint-disable-next-line no-alert
-      alert(
+      return alert(
         '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
       );
-      return null;
     }
     await saveUserNameAndToken(userData);
+    resetForm({});
     return this.props.history.push('/');
   };
 

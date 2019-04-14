@@ -48,7 +48,7 @@ class UsersContainer extends React.Component {
     this.props.modalActions.hideModal();
   };
 
-  handleCreateUser = async (values, actions) => {
+  handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const { confirmPassword, ...others } = values;
     const userInfo = {
       ...others,
@@ -57,24 +57,22 @@ class UsersContainer extends React.Component {
     // Input fields error's checked in the form,
     // this requires to prevent from making unnecessary http request
     const isInputFilledOut = await userAccountInputChecker(values);
-
-    if (isInputFilledOut === null) {
-      return actions.setSubmitting(false);
+    setSubmitting(false);
+    if (isInputFilledOut !== null) {
+      const userData = await this.props.authActions.createUser(userInfo);
+      if (!userData || userData === undefined) {
+        return alert(
+          `${
+            values.companyName
+          } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
+            this.props.errorMessage.data.detail
+          }`,
+        );
+      }
+      alert(`${userData} 고객정보가 등록되었습니다.`);
+      resetForm({});
+      return this.handleClose();
     }
-    const userData = await this.props.authActions.createUser(userInfo);
-    if (!userData || userData === undefined) {
-      alert(
-        `${
-          values.companyName
-        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
-          this.props.errorMessage.data.detail
-        }`,
-      );
-      return actions.setSubmitting(false);
-    }
-    await alert(`${userData} 고객정보가 등록되었습니다.`);
-    await actions.setSubmitting(false);
-    return this.handleClose();
   };
 
   render() {
