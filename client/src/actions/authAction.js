@@ -11,6 +11,7 @@ export const createUser = userInfo => async dispatch => {
     return companyName;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, error });
+    throw new Error(error);
   }
 };
 

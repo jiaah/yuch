@@ -29,7 +29,25 @@ const UserForm = props => {
     isSubmitting,
     handleBlur,
     handleClose,
+    setFieldValue,
   } = props;
+
+  const change = (e, name, shouldValidate) => {
+    // console.log('errors', errors);
+    e.persist();
+
+    let value;
+    if (
+      name === 'lunchQuantity' ||
+      name === 'dinnerQuantity' ||
+      name === 'mealPrice'
+    ) {
+      value = parseInt(e.target.value, 10) || 0;
+    }
+    value = e.target.value;
+
+    setFieldValue(name, value, shouldValidate);
+  };
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
@@ -94,15 +112,12 @@ const UserForm = props => {
             <TextField
               id="contactNumber"
               label="연락처"
-              placeholder="0547450999"
+              placeholder="054 - 745 - 0999"
               value={contactNumber || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'contactNumber', true)}
               onBlur={handleBlur}
               helperText={touched.contactNumber && errors.contactNumber}
-              error={
-                (contactNumber !== '' && isNaN(contactNumber)) ||
-                (touched.contactNumber && Boolean(errors.contactNumber))
-              }
+              error={touched.contactNumber && Boolean(errors.contactNumber)}
               required={true}
               margin="normal"
               fullWidth
@@ -112,13 +127,10 @@ const UserForm = props => {
               label="식수가격"
               placeholder="5000"
               value={mealPrice || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'mealPrice', true)}
               onBlur={handleBlur}
               helperText={touched.mealPrice && errors.mealPrice}
-              error={
-                (mealPrice !== '' && isNaN(mealPrice)) ||
-                (touched.mealPrice && Boolean(errors.mealPrice))
-              }
+              error={touched.mealPrice && Boolean(errors.mealPrice)}
               required={true}
               margin="normal"
               fullWidth
@@ -129,10 +141,10 @@ const UserForm = props => {
                 label="중식 식수량"
                 placeholder="70"
                 value={lunchQuantity || ''}
-                onChange={handleChange}
+                onChange={e => change(e, 'lunchQuantity', true)}
                 onBlur={handleBlur}
                 helperText={touched.lunchQuantity && errors.lunchQuantity}
-                error={lunchQuantity !== '' && isNaN(lunchQuantity)}
+                error={touched.lunchQuantity && Boolean(errors.lunchQuantity)}
                 margin="normal"
                 fullWidth
               />
@@ -141,10 +153,10 @@ const UserForm = props => {
                 label="석식 식수량"
                 placeholder="35"
                 value={dinnerQuantity || ''}
-                onChange={handleChange}
+                onChange={e => change(e, 'dinnerQuantity', true)}
                 onBlur={handleBlur}
                 helperText={touched.dinnerQuantity && errors.dinnerQuantity}
-                error={dinnerQuantity !== '' && isNaN(dinnerQuantity)}
+                error={touched.dinnerQuantity && Boolean(errors.dinnerQuantity)}
                 margin="normal"
                 fullWidth
               />
@@ -155,7 +167,7 @@ const UserForm = props => {
                 aria-label="bankAccount"
                 name="bankAccount"
                 value={bankAccount}
-                onChange={handleChange}
+                onChange={e => change(e, 'bankAccount', false)}
                 row
               >
                 <FormControlLabel

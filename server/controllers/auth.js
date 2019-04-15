@@ -8,14 +8,15 @@ exports.createUser = (req, res) => {
     companyName,
     contactNumber,
     mealPrice,
-    bankAccount,
     lunchQuantity,
     dinnerQuantity,
+    bankAccount,
   } = req.body.userInfo;
 
   // database does not accept empty string for the column with integer type
   const lunchQuantityValue = lunchQuantity === '' ? null : lunchQuantity;
   const dinnerQuantityValue = dinnerQuantity === '' ? null : dinnerQuantity;
+  const bankAccountValue = parseInt(bankAccount, 10);
 
   util
     .bcryptPassword(password)
@@ -27,9 +28,9 @@ exports.createUser = (req, res) => {
           password: hashedPassword.toLowerCase(),
           contact_no: contactNumber,
           meal_price: mealPrice,
-          bank_account_id: bankAccount,
           init_lunch_quantity: lunchQuantityValue,
           init_dinner_quantity: dinnerQuantityValue,
+          bank_account_id: bankAccountValue,
         })
         .returning('*'),
     )
