@@ -14,9 +14,11 @@ exports.createUser = (req, res) => {
   } = req.body.userInfo;
 
   // database does not accept empty string for the column with integer type
-  const lunchQuantityValue = lunchQuantity === '' ? null : lunchQuantity;
-  const dinnerQuantityValue = dinnerQuantity === '' ? null : dinnerQuantity;
-  const bankAccountValue = parseInt(bankAccount, 10);
+  const lunchQuantityValue = lunchQuantity === '' ? 0 : lunchQuantity;
+  const dinnerQuantityValue = dinnerQuantity === '' ? 0 : dinnerQuantity;
+  const bankAccountValue = isNaN(bankAccount)
+    ? parseInt(bankAccount, 10)
+    : bankAccount;
 
   util
     .bcryptPassword(password)
