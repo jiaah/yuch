@@ -1,19 +1,12 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
-import * as Yup from 'yup';
 /* --- Components --- */
 import Form from './loginForm';
 import { isLoggedIn, saveUserNameAndToken } from '../../../localStorage';
+import { loginValidation } from './formValidation';
 /* --- Actions --- */
 import { userLogin } from '../../actions/authAction';
-
-const validationSchema = Yup.object({
-  username: Yup.string('').required('아이디를 입력하세요.'),
-  password: Yup.string('')
-    .min(8, '비밀번호는 8자 이상이여야 합니다.')
-    .required('비밀번호를 입력하세요.'),
-});
 
 class Login extends React.Component {
   handleUserLogin = async (values, { setSubmitting, resetForm }) => {
@@ -47,7 +40,7 @@ class Login extends React.Component {
           initialValues={values}
           render={props => <Form {...props} />}
           onSubmit={this.handleUserLogin}
-          validationSchema={validationSchema}
+          validationSchema={loginValidation}
         />
       </React.Fragment>
     );
