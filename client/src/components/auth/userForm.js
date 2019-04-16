@@ -20,7 +20,7 @@ const UserForm = props => {
       mealPrice,
       lunchQuantity,
       dinnerQuantity,
-      bankAccount,
+      bankAccountOption,
     },
     errors,
     touched,
@@ -43,11 +43,12 @@ const UserForm = props => {
       name === 'mealPrice'
     ) {
       value = parseInt(e.target.value, 10) || 0;
+    } else {
+      value = e.target.value;
     }
-    value = e.target.value;
-
-    setFieldValue(name, value, shouldValidate);
+    return setFieldValue(name, value, shouldValidate);
   };
+
   return (
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
@@ -165,9 +166,9 @@ const UserForm = props => {
               <FormLabel className="mt3">입금 계좌번호</FormLabel>
               <RadioGroup
                 aria-label="bankAccount"
-                name="bankAccount"
-                value={bankAccount}
-                onChange={e => change(e, 'bankAccount', false)}
+                name="bankAccountOption"
+                value={bankAccountOption}
+                onChange={e => change(e, 'bankAccountOption', false)}
                 row
               >
                 <FormControlLabel

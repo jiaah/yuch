@@ -1,8 +1,6 @@
+require('dotenv').config();
+
 const { PG_USER, PG_HOST, PG_DATABASE, PG_PASSWORD, PG_PORT } = process.env;
-// PG_USER = postgres;
-// PG_HOST = localhost;
-// PG_DATABASE = yuchdb;
-// PG_PORT = 5432;
 
 module.exports = {
   development: {

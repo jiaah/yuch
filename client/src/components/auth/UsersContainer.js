@@ -36,17 +36,11 @@ const validationSchema = Yup.object({
     .required('연락처를 입력하세요.'),
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
-    .positive('1이상의 자연수만 입력하세요')
-    .integer('1이상의 자연수만 입력하세요')
+    // .positive('1이상의 자연수만 입력하세요')
+    // .integer('1이상의 자연수만 입력하세요')
     .required('식수가격을 입력하세요.'),
-  lunchQuantity: Yup.number()
-    .typeError('숫자만 입력하세요.')
-    .positive('1이상의 자연수만 입력하세요')
-    .integer('1이상의 자연수만 입력하세요'),
-  dinnerQuantity: Yup.number()
-    .typeError('숫자만 입력하세요.')
-    .positive('1이상의 자연수만 입력하세요')
-    .integer('1이상의 자연수만 입력하세요'),
+  lunchQuantity: Yup.number().typeError('숫자만 입력하세요.'),
+  dinnerQuantity: Yup.number().typeError('숫자만 입력하세요.'),
 });
 
 class UsersContainer extends React.Component {
@@ -61,8 +55,10 @@ class UsersContainer extends React.Component {
   };
 
   handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const { confirmPassword, ...others } = values;
+    const { confirmPassword, bankAccountOption, ...others } = values;
+    const bankAccount = parseInt(bankAccountOption, 10);
     const userInfo = {
+      bankAccount,
       ...others,
     };
 
@@ -90,11 +86,12 @@ class UsersContainer extends React.Component {
       confirmPassword: '',
       companyName: '',
       contactNumber: '',
-      mealPrice: '',
-      lunchQuantity: '',
-      dinnerQuantity: '',
-      bankAccount: '1',
+      mealPrice: 0,
+      lunchQuantity: 0,
+      dinnerQuantity: 0,
+      bankAccountOption: '1',
     };
+
     return (
       <div className="users-container">
         <h1>고객계정</h1>
