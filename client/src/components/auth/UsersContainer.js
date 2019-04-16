@@ -37,11 +37,17 @@ const validationSchema = Yup.object({
   email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
-    // .positive('1이상의 자연수만 입력하세요')
-    // .integer('1이상의 자연수만 입력하세요')
+    .positive('1이상의 자연수만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
     .required('식수가격을 입력하세요.'),
-  lunchQuantity: Yup.number().typeError('숫자만 입력하세요.'),
-  dinnerQuantity: Yup.number().typeError('숫자만 입력하세요.'),
+  lunchQuantity: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.'),
+  dinnerQuantity: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.'),
 });
 
 class UsersContainer extends React.Component {
@@ -88,9 +94,9 @@ class UsersContainer extends React.Component {
       companyName: '',
       contactNumber: '',
       email: '',
-      mealPrice: 0,
-      lunchQuantity: 0,
-      dinnerQuantity: 0,
+      mealPrice: '',
+      lunchQuantity: '',
+      dinnerQuantity: '',
       bankAccountOption: '1',
     };
 

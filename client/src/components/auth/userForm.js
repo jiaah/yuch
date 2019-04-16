@@ -34,18 +34,19 @@ const UserForm = props => {
   } = props;
 
   const change = (e, name, shouldValidate) => {
-    // console.log('errors', errors);
     e.persist();
-
+    const inputValue = e.target.value;
     let value;
     if (
       name === 'lunchQuantity' ||
       name === 'dinnerQuantity' ||
       name === 'mealPrice'
     ) {
-      value = parseInt(e.target.value, 10) || 0;
-    } else {
-      value = e.target.value;
+      // avoid isNaN('') === false -> parseInt('') -> NaN
+      if (inputValue !== '') {
+        value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
+      }
+      value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
   };
