@@ -34,6 +34,7 @@ const validationSchema = Yup.object({
       '전화 번호에 잘못된 문자를 입력하거나 잘못된 형식의 전화 번호입니다.',
     )
     .required('연락처를 입력하세요.'),
+  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
     // .positive('1이상의 자연수만 입력하세요')
@@ -86,6 +87,7 @@ class UsersContainer extends React.Component {
       confirmPassword: '',
       companyName: '',
       contactNumber: '',
+      email: '',
       mealPrice: 0,
       lunchQuantity: 0,
       dinnerQuantity: 0,

@@ -17,6 +17,7 @@ const UserForm = props => {
       password,
       confirmPassword,
       contactNumber,
+      email,
       mealPrice,
       lunchQuantity,
       dinnerQuantity,
@@ -120,6 +121,18 @@ const UserForm = props => {
               helperText={touched.contactNumber && errors.contactNumber}
               error={touched.contactNumber && Boolean(errors.contactNumber)}
               required={true}
+              margin="normal"
+              fullWidth
+            />
+            <TextField
+              id="email"
+              label="이메일"
+              placeholder="sleket12@hanmail.net"
+              value={email || ''}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.email && errors.email}
+              error={touched.email && Boolean(errors.email)}
               margin="normal"
               fullWidth
             />
