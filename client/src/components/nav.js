@@ -59,13 +59,11 @@ class Nav extends Component {
             </Link>
           )}
         </div>
-
-        <h1 className="tc">
+        <div className="tc">
           <Link className="td-none" to="/">
-            <img src={logo} alt="logo" />
+            <img className="yuch-logo" src={logo} alt="logo" />
           </Link>
-        </h1>
-
+        </div>
         <div className="bt">{isHomepage && <Ul anchor={data.nav} />}</div>
       </div>
     );

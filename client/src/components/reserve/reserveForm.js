@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField, FormControl, Input, InputLabel } from '@material-ui/core';
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
-import Buttons from '../../shared/buttons';
+import Button from '../../shared/button';
 
 const ReserveForm = ({
   reserveInfo,
@@ -25,8 +25,8 @@ const ReserveForm = ({
   );
 
   return (
-    <div className="reserve-form">
-      <div className="form">
+    <form className="modal-form">
+      <div className="mb2">
         <TextField
           id="name"
           label="이름"
@@ -37,7 +37,7 @@ const ReserveForm = ({
           error={submitBtnClicked && name === ''}
           onChange={ev => handleChange(ev)}
           required={true}
-          className="input-name"
+          data-test="input-name"
         />
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
@@ -49,7 +49,7 @@ const ReserveForm = ({
             error={submitBtnClicked && inValidContactValue}
             onChange={ev => handleChange(ev)}
             required={true}
-            className="input-contact"
+            data-test="input-contact"
           />
         </FormControl>
         <TextField
@@ -65,7 +65,7 @@ const ReserveForm = ({
           margin="normal"
           fullWidth
           required={true}
-          className="input-number"
+          data-test="input-number"
         />
         <TextField
           id="place"
@@ -79,7 +79,7 @@ const ReserveForm = ({
           helperText="경주시 내 전지역 배달 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
-          className="input-place"
+          data-test="input-place"
         />
         <TextField
           id="date"
@@ -92,7 +92,7 @@ const ReserveForm = ({
           helperText="최소 3일 전일 경우에만 예약 진행 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
-          className="input-date"
+          data-test="input-date"
         />
         <TextField
           id="time"
@@ -108,18 +108,24 @@ const ReserveForm = ({
           helperText="( 예약 가능 시간 )  11:00 - 20:00"
           onChange={ev => handleChange(ev)}
           required={true}
-          className="input-time"
+          data-test="input-time"
         />
       </div>
-      <div>
-        <Buttons
-          handleFirstButtonClick={handleSubmit}
-          handleSecondButtonClick={handleClose}
-          firstButtonName="예약완료"
-          secondButtonName="닫기"
-        />
-      </div>
-    </div>
+      <Button
+        typeValue="reset"
+        variantValue="contained"
+        buttonName="예약완료"
+        width="medium"
+        handleButtonClick={ev => handleSubmit(ev)}
+      />
+      <Button
+        typeValue="reset"
+        variantValue="outlined"
+        buttonName="닫기"
+        width="medium"
+        handleButtonClick={ev => handleClose(ev)}
+      />
+    </form>
   );
 };
 

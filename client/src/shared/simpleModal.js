@@ -11,9 +11,7 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 6,
     [theme.breakpoints.up('md')]: {
-      width: theme.spacing.unit * 80,
-      paddingLeft: theme.spacing.unit * 12,
-      paddingRight: theme.spacing.unit * 12,
+      width: '60vw',
     },
   },
 });

@@ -18,13 +18,11 @@
 .users-form-fields {
   @include for-desktop-up {
     display: flex;
-    // Not working
-    // justify-content: space-around;
   }
 }
 
 .users-form-fields div {
   @include for-desktop-up {
-    width: 90%
+    width: 95%
   }
 }

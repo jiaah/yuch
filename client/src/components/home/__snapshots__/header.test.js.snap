@@ -6,7 +6,7 @@ exports[`<Header /> renders correctly 1`] = `
   <div
     className="header-text--box"
   >
-    <h2>
+    <h1>
       <span
         className="point1 f-en lh-3"
       >
@@ -22,7 +22,7 @@ exports[`<Header /> renders correctly 1`] = `
         착한 가격의 집밥을
       </span>
       선물하세요.
-    </h2>
+    </h1>
   </div>
 </header>
 `;

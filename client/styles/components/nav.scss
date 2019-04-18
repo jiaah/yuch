@@ -74,3 +74,18 @@
     }
   }
 }
+
+.yuch-logo {
+  width: 235px;
+  height: auto;
+  margin-top: .8em;
+  margin-bottom: 1.2em;
+
+  @include for-tablet-landscape-up {
+    width: 350px;
+  }
+
+  @include for-big-desktop-up {
+    width: 420px;
+  }
+}

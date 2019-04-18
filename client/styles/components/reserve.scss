@@ -3,34 +3,7 @@
   padding: 2.2em;
   background-color: $c-point1;
 
-  h3 {
-    font-size: 1.75em;
-    margin-bottom: .5em;
-  }
-
   p {
     margin-bottom: 1.5em;
   }
-}
-
-
-.reserve-form {
-  overflow-y: scroll;
-
-  .form {
-    margin-top: 0;
-    margin-bottom: .2em;
-
-    @include for-tablet-portrait-up {
-      margin-bottom: .6em;
-    }
-
-    @include for-big-desktop-up {
-      margin-bottom: .8em;
-    }
-  }
-}
-
-#modal-title {
-  margin-bottom: .3em;
 }

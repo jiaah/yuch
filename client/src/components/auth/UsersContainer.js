@@ -69,7 +69,7 @@ class UsersContainer extends React.Component {
 
     return (
       <div className="users-container">
-        <h1>고객계정</h1>
+        <h2>고객계정</h2>
         <Button
           typeValue="button"
           buttonName="신규등록"

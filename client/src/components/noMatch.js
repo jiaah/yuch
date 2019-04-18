@@ -1,5 +1,5 @@
 import React from 'react';
 
-const FourOhFour = () => <h1>404</h1>;
+const FourOhFour = () => <h2>404</h2>;
 
 export default FourOhFour;

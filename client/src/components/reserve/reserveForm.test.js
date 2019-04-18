@@ -30,48 +30,48 @@ describe('<ReserveForm />', () => {
     });
 
     it('creates inputs', () => {
-      expect(wrapper.find('.input-name').exists()).toBe(true);
-      expect(wrapper.find('.input-contact').exists()).toBe(true);
-      expect(wrapper.find('.input-number').exists()).toBe(true);
-      expect(wrapper.find('.input-place').exists()).toBe(true);
-      expect(wrapper.find('.input-date').exists()).toBe(true);
-      expect(wrapper.find('.input-time').exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-name']`).exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-contact']`).exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-number']`).exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-place']`).exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-date']`).exists()).toBe(true);
+      expect(wrapper.find(`[data-test='input-time']`).exists()).toBe(true);
     });
 
     describe('when typeing into input, calls a callback function', () => {
       it('name', () => {
         const ev = { target: { id: 'name', value: 'Yuchung' } };
-        wrapper.find('.input-name').simulate('change', ev);
+        wrapper.find(`[data-test='input-name']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
 
       it('contact', () => {
         const ev = { target: { id: 'contact', value: '123123123' } };
-        wrapper.find('.input-contact').simulate('change', ev);
+        wrapper.find(`[data-test='input-contact']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
 
       it('number', () => {
         const ev = { target: { id: 'number', value: '100' } };
-        wrapper.find('.input-number').simulate('change', ev);
+        wrapper.find(`[data-test='input-number']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
 
       it('place', () => {
         const ev = { target: { id: 'place', value: 'Gyeongju' } };
-        wrapper.find('.input-place').simulate('change', ev);
+        wrapper.find(`[data-test='input-place']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
 
       it('date', () => {
         const ev = { target: { id: 'date', value: '2019-12-25' } };
-        wrapper.find('.input-date').simulate('change', ev);
+        wrapper.find(`[data-test='input-date']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
 
       it('time', () => {
         const ev = { target: { id: 'time', value: '2:30 PM' } };
-        wrapper.find('.input-time').simulate('change', ev);
+        wrapper.find(`[data-test='input-time']`).simulate('change', ev);
         expect(mockChange).toHaveBeenCalledWith(ev);
       });
     });
@@ -127,7 +127,7 @@ describe('<ReserveForm />', () => {
       it('when name field is empty', () => {
         expect(
           wrapper
-            .find('.input-name')
+            .find(`[data-test='input-name']`)
             .first()
             .props().error,
         ).toEqual(true);
@@ -136,7 +136,7 @@ describe('<ReserveForm />', () => {
       it('when number field is empty', () => {
         expect(
           wrapper
-            .find('.input-number')
+            .find(`[data-test='input-number']`)
             .first()
             .props().error,
         ).toEqual(true);
@@ -145,7 +145,7 @@ describe('<ReserveForm />', () => {
       it('when place field is empty', () => {
         expect(
           wrapper
-            .find('.input-place')
+            .find(`[data-test='input-place']`)
             .first()
             .props().error,
         ).toEqual(true);
@@ -154,7 +154,7 @@ describe('<ReserveForm />', () => {
       it('when time field is empty', () => {
         expect(
           wrapper
-            .find('.input-time')
+            .find(`[data-test='input-time']`)
             .first()
             .props().error,
         ).toEqual(true);
@@ -163,7 +163,7 @@ describe('<ReserveForm />', () => {
       it('when date field is empty', () => {
         expect(
           wrapper
-            .find('.input-date')
+            .find(`[data-test='input-date']`)
             .first()
             .props().error,
         ).toEqual(true);

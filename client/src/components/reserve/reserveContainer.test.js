@@ -22,7 +22,7 @@ describe('<ReserveContainer />', () => {
 
     describe('when clicking reserve button', () => {
       beforeEach(() => {
-        wrapper.find('.btn--reserve-modal').simulate('click');
+        wrapper.find(`[data-test='btn--reserve-modal']`).simulate('click');
         wrapper.setProps({ showModal: true });
       });
 

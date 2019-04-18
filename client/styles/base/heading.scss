@@ -1,21 +1,4 @@
 h1 {
-  img {
-    width: 235px;
-    height: auto;
-    margin-top: .8em;
-    margin-bottom: 1.2em;
-
-    @include for-tablet-landscape-up {
-      width: 350px;
-    }
-
-    @include for-big-desktop-up {
-      width: 420px;
-    }
-  }
-}
-
-h2 {
   font-size: 1.4em;
   margin-top: .3em;
   margin-bottom: .6em;
@@ -27,6 +10,17 @@ h2 {
   @include for-big-desktop-up {
     font-size: 1.7em;
     line-height: 1.25em;
+  }
+}
+
+h2 {
+  font-size: 1.55em;
+  // color: $c-text1;
+  margin-bottom: .75em;
+  line-height: 1.13636364em;
+
+  @include for-big-desktop-up {
+    font-size: 1.75em;
   }
 }
 

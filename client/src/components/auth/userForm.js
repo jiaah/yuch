@@ -5,9 +5,18 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import FormButton from '../../shared/formButton';
 import Button from '../../shared/button';
+
+const styles = theme => ({
+  formControl: {
+    float: 'left',
+    margin: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 4,
+  },
+});
 
 const UserForm = props => {
   const {
@@ -31,6 +40,7 @@ const UserForm = props => {
     handleBlur,
     handleClose,
     setFieldValue,
+    classes,
   } = props;
 
   const change = (e, name, shouldValidate) => {
@@ -47,7 +57,10 @@ const UserForm = props => {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
       }
       value = inputValue;
+    } else {
+      value = inputValue;
     }
+
     return setFieldValue(name, value, shouldValidate);
   };
 
@@ -55,7 +68,7 @@ const UserForm = props => {
     <React.Fragment>
       <h3 className="f-en b"> 신규업체 등록 </h3>
       <form className="mh1 " onSubmit={handleSubmit}>
-        <div className="users-form-fields mb4">
+        <div className="users-form-fields mb2">
           <div>
             <TextField
               id="companyName"
@@ -110,8 +123,6 @@ const UserForm = props => {
               margin="normal"
               fullWidth
             />
-          </div>
-          <div>
             <TextField
               id="contactNumber"
               label="연락처"
@@ -125,6 +136,8 @@ const UserForm = props => {
               margin="normal"
               fullWidth
             />
+          </div>
+          <div>
             <TextField
               id="email"
               label="이메일"
@@ -150,7 +163,7 @@ const UserForm = props => {
               margin="normal"
               fullWidth
             />
-            <div className="flex justify-between">
+            <div className="flex justify-between center">
               <TextField
                 id="lunchQuantity"
                 label="중식 식수량"
@@ -176,10 +189,14 @@ const UserForm = props => {
                 fullWidth
               />
             </div>
-            <FormControl>
-              <FormLabel className="mt3">입금 계좌번호</FormLabel>
+            <FormControl
+              component="fieldset"
+              required
+              className={classes.formControl}
+            >
+              <FormLabel>입금 계좌번호</FormLabel>
               <RadioGroup
-                aria-label="bankAccount"
+                aria-label="bankAccountOption"
                 name="bankAccountOption"
                 value={bankAccountOption}
                 onChange={e => change(e, 'bankAccountOption', false)}
@@ -220,4 +237,4 @@ const UserForm = props => {
   );
 };
 
-export default UserForm;
+export default withStyles(styles)(UserForm);

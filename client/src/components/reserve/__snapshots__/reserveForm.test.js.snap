@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
-<div
-  className="reserve-form"
+<form
+  className="modal-form"
 >
   <div
-    className="form"
+    className="mb2"
   >
     <TextField
       InputLabelProps={
@@ -13,7 +13,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
           "shrink": true,
         }
       }
-      className="input-name"
+      data-test="input-name"
       error={false}
       fullWidth={true}
       id="name"
@@ -35,7 +35,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
         연락처 *
       </WithStyles(InputLabel)>
       <WithStyles(Input)
-        className="input-contact"
+        data-test="input-contact"
         error={false}
         id="contact"
         inputComponent={[Function]}
@@ -51,7 +51,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
           "shrink": true,
         }
       }
-      className="input-number"
+      data-test="input-number"
       error={false}
       fullWidth={true}
       id="number"
@@ -70,7 +70,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
           "shrink": true,
         }
       }
-      className="input-place"
+      data-test="input-place"
       error={false}
       fullWidth={true}
       helperText="경주시 내 전지역 배달 가능합니다."
@@ -85,7 +85,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       variant="standard"
     />
     <TextField
-      className="input-date"
+      data-test="input-date"
       defaultValue="1970-01-04"
       error={false}
       fullWidth={true}
@@ -100,7 +100,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       variant="standard"
     />
     <TextField
-      className="input-time"
+      data-test="input-time"
       defaultValue="12:30"
       error={false}
       fullWidth={true}
@@ -120,13 +120,19 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       variant="standard"
     />
   </div>
-  <div>
-    <WithStyles(Buttons)
-      firstButtonName="예약완료"
-      handleFirstButtonClick={[MockFunction]}
-      handleSecondButtonClick={[MockFunction]}
-      secondButtonName="닫기"
-    />
-  </div>
-</div>
+  <WithStyles(button)
+    buttonName="예약완료"
+    handleButtonClick={[Function]}
+    typeValue="reset"
+    variantValue="contained"
+    width="medium"
+  />
+  <WithStyles(button)
+    buttonName="닫기"
+    handleButtonClick={[Function]}
+    typeValue="reset"
+    variantValue="outlined"
+    width="medium"
+  />
+</form>
 `;

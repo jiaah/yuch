@@ -6,7 +6,7 @@ describe('<Header />', () => {
   const wrapper = shallow(<Header />);
   it('renders correctly', () => {
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('h2').text()).toBe(
+    expect(wrapper.find('h1').text()).toBe(
       'NO MSG!오늘도 열심히 일한 당신에게 당신만을 위한 착한 가격의 집밥을선물하세요.',
     );
   });

@@ -28,7 +28,7 @@ describe('<reserveResolvedText />', () => {
   });
 
   it('should contain Button component', () => {
-    expect(wrapper.find('WithStyles(Button)').exists()).toBeTruthy();
+    expect(wrapper.find('WithStyles(button)').exists()).toBeTruthy();
   });
 
   describe('when reservation request is successfully made', () => {
@@ -54,17 +54,6 @@ describe('<reserveResolvedText />', () => {
         '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다. 상담전화  (054) 745 - 0999',
       );
       expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-  describe('when close button clicked, hanldeClose function should be called', () => {
-    beforeEach(() => {
-      wrapper.find('WithStyles(Button)').simulate('click');
-    });
-
-    it('click event should exists', () => {
-      expect(handleClose.mock.calls).toHaveLength(1);
-      expect(handleClose).toHaveBeenCalled();
     });
   });
 });

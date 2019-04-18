@@ -1,15 +1,17 @@
 module.exports = {
+  rootDir: process.cwd(),
   displayName: 'client',
-  modulePaths: ['<rootDir>/src', '<rootDir>/src/__tests__'],
+  modulePaths: ['<rootDir>/client/src', '<rootDir>/client/src/__tests__'],
   testMatch: ['**/*.test.js'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'scss'],
-  setupFiles: ['raf/polyfill', '<rootDir>/src/__tests__/setupTests'],
+  setupFiles: ['raf/polyfill', '<rootDir>/client/src/__tests__/setupTests'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$':
-      '<rootDir>/src/__tests__/__mocks__/fileMock.js',
+      '<rootDir>/client/src/__tests__/__mocks__/assetTransformer.js',
     '\\.(s?css|less)$': 'identity-obj-proxy',
   },
+  transform: { '^.+\\.js$': '<rootDir>/node_modules/babel-jest' },
   collectCoverageFrom: [
     '**/src/**/*.js',
     '!**/__tests__/**',

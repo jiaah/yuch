@@ -20,21 +20,13 @@ exports[`<reserveResolvedText /> when reservation request is failed should conta
   <div
     className="mt2"
   >
-    <WithStyles(Button)
-      className={
-        Object {
-          "margin": "",
-          "paddingBottom": "5px",
-          "paddingTop": "5px",
-          "width": "6em",
-        }
-      }
-      color="secondary"
-      onClick={[MockFunction]}
-      variant="outlined"
-    >
-      닫기
-    </WithStyles(Button)>
+    <WithStyles(button)
+      buttonName="닫기"
+      handleButtonClick={[Function]}
+      typeValue="reset"
+      variantValue="contained"
+      width="medium"
+    />
   </div>
 </Fragment>
 `;
@@ -47,21 +39,13 @@ exports[`<reserveResolvedText /> when reservation request is successfully made s
   <div
     className="mt2"
   >
-    <WithStyles(Button)
-      className={
-        Object {
-          "margin": "",
-          "paddingBottom": "5px",
-          "paddingTop": "5px",
-          "width": "6em",
-        }
-      }
-      color="secondary"
-      onClick={[MockFunction]}
-      variant="outlined"
-    >
-      닫기
-    </WithStyles(Button)>
+    <WithStyles(button)
+      buttonName="닫기"
+      handleButtonClick={[Function]}
+      typeValue="reset"
+      variantValue="contained"
+      width="medium"
+    />
   </div>
 </Fragment>
 `;

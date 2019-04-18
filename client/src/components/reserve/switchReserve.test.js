@@ -16,8 +16,6 @@ describe('<switchReserve />', () => {
   it('render reserve request resolved text when api request is made', () => {
     wrapper.setProps({ apiRequest: 'success' });
     expect(wrapper).toMatchSnapshot();
-    expect(
-      wrapper.find('WithStyles(ReserveResolvedText)').exists(),
-    ).toBeTruthy();
+    expect(wrapper.find('ReserveResolvedText').exists()).toBeTruthy();
   });
 });

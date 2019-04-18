@@ -66,7 +66,6 @@ module.exports = {
     },
     test: {
       plugins: ['dynamic-import-node'],
-      presets: ['env', 'react'],
     },
   },
 };

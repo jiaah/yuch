@@ -91,6 +91,7 @@ class ReserveContainer extends Component {
     const { inThreeDays } = moment;
 
     return (
+      // id is for Nav Link
       <div id="reserve">
         <div className="tc white reserve-container">
           <h3 className="white f-en b">Reservation</h3>
@@ -99,7 +100,8 @@ class ReserveContainer extends Component {
             onClick={() => this.props.showModalAction()}
             variant="contained"
             color="secondary"
-            className={`btn--reserve-modal ${classes.bigButton}`}
+            className={classes.bigButton}
+            data-test="btn--reserve-modal"
           >
             예약하기
           </Button>
