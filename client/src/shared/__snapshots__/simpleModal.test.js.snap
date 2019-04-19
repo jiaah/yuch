@@ -8,7 +8,7 @@ exports[`<SimpleModal /> should not show the modal when showModal is true should
     open={true}
   >
     <div
-      className="tc modal [object Object]"
+      className="tc [object Object]"
       style={
         Object {
           "left": "50%",

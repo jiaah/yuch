@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, FormControl, Input, InputLabel } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
 import Button from '../../shared/button';
@@ -30,6 +31,7 @@ const ReserveForm = ({
         <TextField
           id="name"
           label="이름"
+          placeholder="유청"
           value={name}
           InputLabelProps={{ shrink: true }}
           margin="normal"
@@ -55,6 +57,7 @@ const ReserveForm = ({
         <TextField
           id="number"
           label="인원수"
+          placeholder="80"
           value={number}
           error={submitBtnClicked && number === ''}
           onChange={ev => handleChange(ev)}
@@ -66,10 +69,14 @@ const ReserveForm = ({
           fullWidth
           required={true}
           data-test="input-number"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">명</InputAdornment>,
+          }}
         />
         <TextField
           id="place"
           label="장소"
+          placeholder="경주시 황성동 1071-1번지 유청"
           value={place}
           InputLabelProps={{ shrink: true }}
           margin="normal"

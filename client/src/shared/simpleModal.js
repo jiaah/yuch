@@ -6,12 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: '80vw',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 6,
+    width: '80vw',
     [theme.breakpoints.up('md')]: {
-      width: '60vw',
+      width: '50vw',
     },
   },
 });
@@ -25,7 +25,7 @@ const SimpleModal = ({ showModal, classes, component }) => (
         open={showModal}
       >
         <div
-          className={`tc modal ${classes.paper}`}
+          className={`tc ${classes.paper}`}
           style={{
             top: '50%',
             left: '50%',

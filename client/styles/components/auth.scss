@@ -14,15 +14,3 @@
   min-width: 60em;
   width: 90vw;
 }
-
-.users-form-fields {
-  @include for-desktop-up {
-    display: flex;
-  }
-}
-
-.users-form-fields div {
-  @include for-desktop-up {
-    width: 95%
-  }
-}

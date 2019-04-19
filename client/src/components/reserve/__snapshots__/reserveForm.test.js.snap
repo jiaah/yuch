@@ -20,6 +20,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       label="이름"
       margin="normal"
       onChange={[Function]}
+      placeholder="유청"
       required={true}
       select={false}
       value=""
@@ -51,6 +52,15 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
           "shrink": true,
         }
       }
+      InputProps={
+        Object {
+          "endAdornment": <WithStyles(InputAdornment)
+            position="end"
+          >
+            명
+          </WithStyles(InputAdornment)>,
+        }
+      }
       data-test="input-number"
       error={false}
       fullWidth={true}
@@ -58,6 +68,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       label="인원수"
       margin="normal"
       onChange={[Function]}
+      placeholder="80"
       required={true}
       select={false}
       type="number"
@@ -79,6 +90,7 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
       margin="normal"
       multiline={true}
       onChange={[Function]}
+      placeholder="경주시 황성동 1071-1번지 유청"
       required={true}
       select={false}
       value=""
