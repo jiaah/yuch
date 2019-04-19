@@ -1,0 +1,174 @@
+/* ------ Header ------ */
+
+header {
+  background-image: linear-gradient(to top right, rgba(29, 28, 27, 0.6), rgba(39, 37, 35, 0.45)), url(./../assets/img/farm.jpeg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  z-index: 1;
+  position: relative;
+  height: 100vh;
+  min-height: 100%;
+  background-attachment: fixed;
+
+  @include for-ios-devices {
+    //background-attachment fixed doesn't work with background-size on iso devices
+    background-attachment: local;
+  }
+}
+
+.header-text--box {
+  position: absolute;
+  top: 52%;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  @include for-tablet-portrait-up {
+    top: 53%;
+    padding-left: 4em;
+    padding-right: 4em;
+  }
+
+  @include for-tablet-landscape-up {
+    top: 55%;
+    padding-left: 6em;
+  }
+
+  @include for-big-desktop-up {
+    left: 5%;
+  }
+
+  .point1 {
+    font-size: 1.7em;
+
+    @include for-big-desktop-up {
+      font-size: 2.5em;
+    }
+  }
+
+  .point2 {
+    color: #f8b37d;
+  }
+}
+
+
+/* ------ Home Main ------ */
+
+.home-main--container {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 400px;
+
+  @include for-desktop-up {
+    max-width: 900px;
+  }
+}
+
+.home-main--box {
+  margin-top: 5em;
+
+  @include for-desktop-up {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.home-main--img {
+  width: 80%;
+  height: 220px;
+  margin-bottom: 1.34em;
+
+  @include for-desktop-up {
+    width: 45%;
+    height: 320px;
+    margin-bottom: 0;
+  }
+}
+
+.home-main--text {
+  margin: auto 0;
+
+  @include for-desktop-up {
+    width: 45%;
+  }
+}
+
+.sesame-link {
+  color: #fab812;
+}
+
+.reverse {
+  @include for-desktop-up {
+    flex-direction: row-reverse;
+  }
+}
+
+
+/* ------ Reserve ------ */
+
+.reserve-container {
+  margin-top: 80px;
+  padding: 2.2em;
+  background-color: $c-point1;
+
+  p {
+    margin-bottom: 1.5em;
+  }
+}
+
+
+/* ------ Board ------ */
+
+.homeboard {
+  width: 80%;
+  margin: 60px auto;
+
+  @include for-desktop-up {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+#map {
+  height: 350px;
+  width: auto;
+
+  @include for-desktop-up {
+    height: 400px;
+    width: 40%;
+    margin: auto 0;
+  }
+}
+
+.homeboard--text {
+  padding-top: 50px;
+
+  h3 {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
+
+  @include for-desktop-up {
+    padding-top: 0;
+    margin: auto 0;
+  }
+}
+
+footer {
+  letter-spacing: .5px;
+}
+
+.contact-number {
+  border-top: 1px solid #c4c4c4;
+  width: 250px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  font-size: 1.2em;
+
+  @include for-desktop-up {
+    width: 300px;
+  }
+}
