@@ -2,29 +2,17 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
-export const showReserve = () => ({
-  type: types.SHOW_RESERVE,
-});
-
 export const resetReserve = () => ({
-  type: types.RESET_RESERVE,
+  type: types.HTTP_RESET,
 });
 
 export const reserve = reserveInfo => async dispatch => {
-  dispatch({
-    type: types.RESERVE_REQUEST,
-  });
+  dispatch({ type: types.HTTP_REQUEST, api: 'reserve' });
   try {
-    const response = await axios.post(`${API_HOST}/reserve`, reserveInfo);
-    dispatch({
-      type: types.RESERVE_SUCCESS,
-      response,
-    });
+    const res = await axios.post(`${API_HOST}/reserve`, reserveInfo);
+    dispatch({ type: types.HTTP_SUCCESS, api: 'reserve' });
+    return res;
   } catch (error) {
-    dispatch({
-      type: types.RESERVE_FAILURE,
-      error,
-    });
+    dispatch({ type: types.HTTP_FAILURE, api: 'reserve', error });
   }
-  return 'done';
 };

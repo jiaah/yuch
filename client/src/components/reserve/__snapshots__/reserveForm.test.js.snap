@@ -139,12 +139,5 @@ exports[`<ReserveForm /> with initial reserve info renders correctly 1`] = `
     variantValue="contained"
     width="medium"
   />
-  <WithStyles(button)
-    buttonName="닫기"
-    handleButtonClick={[Function]}
-    typeValue="reset"
-    variantValue="outlined"
-    width="medium"
-  />
 </form>
 `;

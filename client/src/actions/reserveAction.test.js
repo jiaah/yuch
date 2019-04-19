@@ -2,7 +2,6 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import * as types from './actionTypes';
-import * as mockData from '../__tests__/__mocks__/mockData';
 import * as actions from './reserveAction';
 
 // config store/ middleware & axios
@@ -11,7 +10,7 @@ const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
 test('should generate reset reserve info action', () => {
-  const expectedAction = { type: types.RESET_RESERVE };
+  const expectedAction = { type: types.HTTP_RESET };
   expect(actions.resetReserve()).toEqual(expectedAction);
 });
 
@@ -36,8 +35,8 @@ describe('async reserve request actions', () => {
     });
 
     const expectedActions = [
-      { type: types.RESERVE_REQUEST },
-      { type: types.RESERVE_SUCCESS },
+      { type: types.HTTP_REQUEST, api: 'reserve' },
+      { type: types.HTTP_SUCCESS, api: 'reserve' },
     ];
 
     await store.dispatch(actions.reserve()).then(() => {

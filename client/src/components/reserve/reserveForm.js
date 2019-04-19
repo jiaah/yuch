@@ -9,7 +9,6 @@ const ReserveForm = ({
   reserveInfo,
   inThreeDays,
   submitBtnClicked,
-  handleClose,
   handleChange,
   handleSubmit,
 }) => {
@@ -124,13 +123,6 @@ const ReserveForm = ({
         buttonName="예약완료"
         width="medium"
         handleButtonClick={ev => handleSubmit(ev)}
-      />
-      <Button
-        typeValue="reset"
-        variantValue="outlined"
-        buttonName="닫기"
-        width="medium"
-        handleButtonClick={ev => handleClose(ev)}
       />
     </form>
   );

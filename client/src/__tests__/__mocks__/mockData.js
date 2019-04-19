@@ -7,15 +7,17 @@ export const inThreeDays = moment()
 
 export const now = moment().format('MMMM Do YYYY, h:mm a');
 
-export const reserveInitState = {
-  loading: false,
-  apiRequest: null,
+export const httpInitState = {
+  api: '',
+  isLoading: false,
+  data: [],
   error: '',
 };
 
 export const reserveUpdatedState = {
-  loading: false,
-  apiRequest: 'success',
+  api: 'reserve',
+  isLoading: false,
+  data: [],
   error: '',
 };
 

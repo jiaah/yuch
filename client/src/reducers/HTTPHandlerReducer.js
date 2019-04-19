@@ -31,6 +31,14 @@ const httpHandler = (state = initialState, action) => {
         isLoading: false,
         error: action.error.response,
       };
+    case types.HTTP_RESET:
+      return {
+        ...state,
+        api: '',
+        isLoading: false,
+        data: [],
+        error: '',
+      };
     default:
       return state;
   }

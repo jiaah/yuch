@@ -18,15 +18,9 @@ const Modal = Loader({
     import('../../shared/modal' /* webpackChunkName: 'simpleModal' */),
 });
 class UsersContainer extends React.Component {
-  showModal = ev => {
-    ev.preventDefault();
+  showModal = () => this.props.modalActions.showModal();
 
-    return this.props.modalActions.showModal();
-  };
-
-  handleClose = () => {
-    this.props.modalActions.hideModal();
-  };
+  closeModal = () => this.props.modalActions.hideModal();
 
   handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const { confirmPassword, bankAccountOption, ...others } = values;
@@ -40,7 +34,7 @@ class UsersContainer extends React.Component {
       const userData = await this.props.authActions.createUser(userInfo);
       alert(`${userData} 고객정보가 등록되었습니다.`);
       resetForm({});
-      this.handleClose();
+      this.closeModal();
     } catch (error) {
       alert(
         `${
@@ -81,7 +75,7 @@ class UsersContainer extends React.Component {
           <Modal
             modal={this.props.modal}
             title="신규업체 등록"
-            handleClose={this.handleClose}
+            handleClose={this.closeModal}
             component={
               <Formik
                 initialValues={values}
