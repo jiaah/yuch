@@ -29,9 +29,9 @@ class Board extends React.Component {
       <React.Fragment>
         <div id="board" className="homeboard">
           {this.state.lastScrollY > 1000 && <Map />}
-          <div className="homeboard--text">
+          <div className="homeboard--text tc">
             <div className="mb4">
-              <h3 className="tc">&#45; Hours &#45;</h3>
+              <h3 className="c-text1">&#45; Hours &#45;</h3>
               <div className="flex justify-center">
                 <p className="mr3 float-left">
                   평일
@@ -51,8 +51,8 @@ class Board extends React.Component {
                 </p>
               </div>
             </div>
-            <div className="tc">
-              <h3>&#45; Contact &#45;</h3>
+            <div>
+              <h3 className="c-text1">&#45; Contact &#45;</h3>
               <p>
                 경주시 황성동 1071&#45;1번지
                 <br />

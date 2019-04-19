@@ -13,9 +13,9 @@ import { userValidation } from './formValidation';
 import * as authActions from '../../actions/authAction';
 import * as modalActions from '../../actions/modalAction';
 
-const SimpleModal = Loader({
+const Modal = Loader({
   loader: () =>
-    import('../../shared/simpleModal' /* webpackChunkName: 'simpleModal' */),
+    import('../../shared/modal' /* webpackChunkName: 'simpleModal' */),
 });
 class UsersContainer extends React.Component {
   showModal = ev => {
@@ -68,7 +68,7 @@ class UsersContainer extends React.Component {
     };
 
     return (
-      <div className="users-container">
+      <div className="container">
         <h2>고객계정</h2>
         <Button
           typeValue="button"
@@ -77,18 +77,15 @@ class UsersContainer extends React.Component {
           variantValue="contained"
           width="medium"
         />
-        {this.props.showModal && (
-          <SimpleModal
+        {this.props.modal && (
+          <Modal
+            modal={this.props.modal}
+            title="신규업체 등록"
+            handleClose={this.handleClose}
             component={
               <Formik
                 initialValues={values}
-                render={props => (
-                  <Form
-                    {...props}
-                    state={this.state}
-                    handleClose={this.handleClose}
-                  />
-                )}
+                render={props => <Form {...props} state={this.state} />}
                 onSubmit={this.handleCreateUser}
                 validationSchema={userValidation}
               />
@@ -101,7 +98,7 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  showModal: state.modal.show,
+  modal: state.modal.show,
   errorMessage: state.httpHandler.error,
 });
 

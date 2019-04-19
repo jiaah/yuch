@@ -11,7 +11,11 @@ exports[`<HomeMain /> renders correctly 1`] = `
     <img
       alt="신선한 음식 배달"
       className="home-main--img"
-      src="text-file-stub"
+      src={
+        Object {
+          "process": [Function],
+        }
+      }
     />
     <div
       className="home-main--text"
@@ -21,7 +25,9 @@ exports[`<HomeMain /> renders correctly 1`] = `
       >
         OUR RESTAURANT
       </p>
-      <h3>
+      <h3
+        className="c-text1"
+      >
         당신의 위한 유청 서비스
       </h3>
       <div
@@ -56,7 +62,11 @@ exports[`<HomeMain /> renders correctly 1`] = `
     <LazyImage
       alt="지역 농산품"
       classes="home-main--img"
-      src="text-file-stub"
+      src={
+        Object {
+          "process": [Function],
+        }
+      }
     />
     <div
       className="home-main--text"
@@ -66,7 +76,9 @@ exports[`<HomeMain /> renders correctly 1`] = `
       >
         HEALTHY FOOD
       </p>
-      <h3>
+      <h3
+        className="c-text1"
+      >
         신선한 지역 농산물
       </h3>
       <p>
@@ -80,7 +92,11 @@ exports[`<HomeMain /> renders correctly 1`] = `
     <LazyImage
       alt="참기름"
       classes="home-main--img"
-      src="text-file-stub"
+      src={
+        Object {
+          "process": [Function],
+        }
+      }
     />
     <div
       className="home-main--text"
@@ -90,7 +106,9 @@ exports[`<HomeMain /> renders correctly 1`] = `
       >
         OUR COMMUNITY
       </p>
-      <h3>
+      <h3
+        className="c-text1"
+      >
         경주시 지원사업 장려
         <br />
         100% 통참깨 참기름 사용
@@ -115,7 +133,11 @@ exports[`<HomeMain /> renders correctly 1`] = `
     <LazyImage
       alt="여성을 위한 기업"
       classes="home-main--img"
-      src="text-file-stub"
+      src={
+        Object {
+          "process": [Function],
+        }
+      }
     />
     <div
       className="home-main--text"
@@ -125,7 +147,9 @@ exports[`<HomeMain /> renders correctly 1`] = `
       >
         CAREER WOMEN
       </p>
-      <h3>
+      <h3
+        className="c-text1"
+      >
         여성이 일하기 좋은 기업
       </h3>
       <p>

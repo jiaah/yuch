@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import FormButton from '../../shared/formButton';
-import Button from '../../shared/button';
 
 const styles = theme => ({
   textField: {
@@ -51,7 +50,6 @@ const UserForm = props => {
     handleSubmit,
     isSubmitting,
     handleBlur,
-    handleClose,
     setFieldValue,
     classes,
   } = props;
@@ -80,7 +78,6 @@ const UserForm = props => {
 
   return (
     <React.Fragment>
-      <h3 className="f-en b"> 신규업체 등록 </h3>
       <form className="mh1 " onSubmit={handleSubmit}>
         <div className="mb2 flex justify-around">
           <div className="flex flex-column-m">
@@ -246,13 +243,6 @@ const UserForm = props => {
             buttonName="저장"
             width="medium"
             isSubmitting={isSubmitting}
-          />
-          <Button
-            typeValue="reset"
-            variantValue="contained"
-            buttonName="닫기"
-            width="medium"
-            handleButtonClick={ev => handleClose(ev)}
           />
         </div>
       </form>

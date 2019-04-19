@@ -13,7 +13,7 @@ const HomeMain = () => (
       <img className="home-main--img" src={delivery} alt="신선한 음식 배달" />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR RESTAURANT</p>
-        <h3>당신의 위한 유청 서비스</h3>
+        <h3 className="c-text1">당신의 위한 유청 서비스</h3>
         <div className="mb3">
           <h4 className="b">위탁급식</h4>
           <p>
@@ -32,7 +32,7 @@ const HomeMain = () => (
       <LazyImage classes="home-main--img" src={localfood} alt="지역 농산품" />
       <div className="home-main--text">
         <p className="f-mini lh-3">HEALTHY FOOD</p>
-        <h3>신선한 지역 농산물</h3>
+        <h3 className="c-text1">신선한 지역 농산물</h3>
         <p>
           지역 농산물 생산 &#183; 가공 &#183; 소비 활성화를 위하여&#44; 경주
           지역민들의 밭에서 공수해온 신선한 농산물들을 주재료로 사용합니다&#46;
@@ -43,7 +43,7 @@ const HomeMain = () => (
       <LazyImage classes="home-main--img" src={sesame} alt="참기름" />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR COMMUNITY</p>
-        <h3>
+        <h3 className="c-text1">
           경주시 지원사업 장려
           <br />
           100&#37; 통참깨 참기름 사용
@@ -67,7 +67,7 @@ const HomeMain = () => (
       <LazyImage classes="home-main--img" src={women} alt="여성을 위한 기업" />
       <div className="home-main--text">
         <p className="f-mini lh-3">CAREER WOMEN</p>
-        <h3>여성이 일하기 좋은 기업</h3>
+        <h3 className="c-text1">여성이 일하기 좋은 기업</h3>
         <p>
           2016년 여성이 일하기 좋은 기업으로 선정&#46;
           <br />
