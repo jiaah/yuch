@@ -1,7 +1,17 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Button from '../../shared/formButton';
+
+const styles = theme => ({
+  textField: {
+    width: 300,
+    [theme.breakpoints.up('md')]: {
+      width: 400,
+    },
+  },
+});
 
 const Form = props => {
   const {
@@ -12,42 +22,50 @@ const Form = props => {
     handleSubmit,
     isSubmitting,
     handleBlur,
+    classes,
   } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        id="username"
-        label="Username"
-        value={username || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        helperText={touched.username && errors.username}
-        error={touched.username && Boolean(errors.username)}
-        required={true}
-        margin="normal"
-        fullWidth
-      />
-      <TextField
-        id="password"
-        label="Password"
-        value={password || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        helperText={touched.password && errors.password}
-        error={touched.password && Boolean(errors.password)}
-        required={true}
-        margin="normal"
-        fullWidth
-      />
-      <Button
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="로그인"
-        width="medium"
-        isSubmitting={isSubmitting}
-      />
-    </form>
+    <div className="login-container">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-column-m center-center"
+      >
+        <TextField
+          id="username"
+          label="Username"
+          name="username"
+          value={username || ''}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          helperText={touched.username && errors.username}
+          error={touched.username && Boolean(errors.username)}
+          required={true}
+          margin="normal"
+          className={classes.textField}
+        />
+        <TextField
+          id="password"
+          label="Password"
+          name="password"
+          value={password || ''}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          helperText={touched.password && errors.password}
+          error={touched.password && Boolean(errors.password)}
+          required={true}
+          margin="normal"
+          className={classes.textField}
+        />
+        <Button
+          typeValue="submit"
+          variantValue="contained"
+          buttonName="로그인"
+          width="medium"
+          isSubmitting={isSubmitting}
+        />
+      </form>
+    </div>
   );
 };
 
-export default Form;
+export default withStyles(styles)(Form);

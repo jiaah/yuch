@@ -25,7 +25,7 @@ const ReserveForm = ({
   );
 
   return (
-    <form className="modal-form">
+    <form>
       <div className="mb2">
         <TextField
           id="name"

@@ -1,4 +1,9 @@
 .container {
-  margin: 3em 1em;
   text-align: center;
+  height: calc(100vh - 220px);
+  margin: 2em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

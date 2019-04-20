@@ -1,11 +1,7 @@
 .login-container {
-  height: 85vh;
-  position: relative;
-  width: 280px;
-  margin: 5em auto;
-
-  @include for-desktop-up {
-    width: 400px;
-    margin-top: 8em;
-  }
+  height: calc(100vh - 240px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
