@@ -33,9 +33,9 @@ const SimpleModal = ({ modal, classes, component, title, handleClose }) => (
           <div className="flex justify-end">
             <IconButton
               name="clear"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
               fill="none"
               handleClick={handleClose}
             />

@@ -1,8 +1,10 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Button from '../../shared/formButton';
+import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   textField: {
@@ -39,6 +41,19 @@ const Form = props => {
           required={true}
           margin="normal"
           className={classes.textField}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon
+                  name="user"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                />
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           id="password"
@@ -52,6 +67,19 @@ const Form = props => {
           required={true}
           margin="normal"
           className={classes.textField}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon
+                  name="lock"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                />
+              </InputAdornment>
+            ),
+          }}
         />
         <Button
           typeValue="submit"
