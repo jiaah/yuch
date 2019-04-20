@@ -26,10 +26,7 @@ const Form = props => {
   } = props;
   return (
     <div className="login-container">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-column-m center-center"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-column-m items-center">
         <TextField
           id="username"
           label="Username"

@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   button: {
     margin: '20px 14px',
-    paddingTop: '3px',
-    paddingBottom: '0',
-    fontSize: '14.5px',
+    paddingTop: '2px',
+    paddingBottom: '1px',
+    fontSize: '14px',
     lineHeight: '28px',
     [theme.breakpoints.up('md')]: {
       fontSize: '16px',

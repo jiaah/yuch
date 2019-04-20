@@ -64,13 +64,15 @@ class UsersContainer extends React.Component {
     return (
       <div className="container">
         <h2>고객계정</h2>
-        <Button
-          typeValue="button"
-          buttonName="신규등록"
-          handleButtonClick={this.showModal}
-          variantValue="contained"
-          width="medium"
-        />
+        <div className="float-right">
+          <Button
+            typeValue="button"
+            buttonName="신규등록"
+            handleButtonClick={this.showModal}
+            variantValue="contained"
+            width="small"
+          />
+        </div>
         {this.props.modal && (
           <Modal
             modal={this.props.modal}
