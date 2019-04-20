@@ -82,7 +82,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpe?g|png|gif|ico)$/,
+        test: /\.(jpe?g|png|gif|ico|svg)$/,
         loader: 'file-loader',
         options: {
           name: devMode ? '[name].[ext]' : '[name].[hash].[ext]',

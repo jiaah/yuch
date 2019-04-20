@@ -1,7 +1,9 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
-import Button from './button';
+
+/* --- Components --- */
+import IconButton from './iconButton';
 
 const styles = theme => ({
   paper: {
@@ -29,12 +31,13 @@ const SimpleModal = ({ modal, classes, component, title, handleClose }) => (
           }}
         >
           <div className="flex justify-end">
-            <Button
-              typeValue="reset"
-              variantValue="outlined"
-              buttonName="닫기"
-              width="medium"
-              handleButtonClick={ev => handleClose(ev)}
+            <IconButton
+              name="clear"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              handleClick={handleClose}
             />
           </div>
           <h3 variant="title" className="f-en">
