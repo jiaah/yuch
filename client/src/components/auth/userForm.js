@@ -23,7 +23,8 @@ const styles = theme => ({
     width: 118,
   },
   formControl: {
-    float: 'left',
+    display: 'flex',
+    justifyContent: 'center',
     margin: theme.spacing.unit * 3,
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing.unit * 5,
@@ -32,7 +33,11 @@ const styles = theme => ({
   formLabel: {
     marginLeft: '8px',
   },
-  formControlLabel: { marginRight: '50px' },
+  formControlLabel: {
+    [theme.breakpoints.up('md')]: {
+      marginRight: '50px',
+    },
+  },
 });
 
 const UserForm = props => {
@@ -84,8 +89,8 @@ const UserForm = props => {
   return (
     <React.Fragment>
       <form className="mh1 " onSubmit={handleSubmit}>
-        <div className="mb2 flex justify-around">
-          <div className="flex flex-column-m">
+        <div className="mb2 user-form">
+          <div className="user-form--left">
             <TextField
               id="companyName"
               label="고객명"
@@ -183,7 +188,7 @@ const UserForm = props => {
               className={classes.textField}
             />
           </div>
-          <div className="flex flex-column-m">
+          <div className="user-form--right">
             <TextField
               id="password"
               label="비밀번호"
@@ -262,7 +267,7 @@ const UserForm = props => {
                 ),
               }}
             />
-            <div className="flex ">
+            <div className="flex justify-center">
               <TextField
                 id="lunchQuantity"
                 label="중식 식수량"
@@ -316,7 +321,7 @@ const UserForm = props => {
             </div>
           </div>
         </div>
-        <div className="flex">
+        <div>
           <FormControl
             component="fieldset"
             required

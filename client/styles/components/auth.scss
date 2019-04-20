@@ -5,3 +5,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.user-form {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.user-form--left,
+.user-form--right {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: column;
+  }
+}
