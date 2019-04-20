@@ -45,7 +45,7 @@ const Form = props => {
             startAdornment: (
               <InputAdornment position="start">
                 <Icon
-                  name="user"
+                  name="filledUser"
                   width="30"
                   height="30"
                   viewBox="0 0 30 30"
@@ -71,7 +71,7 @@ const Form = props => {
             startAdornment: (
               <InputAdornment position="start">
                 <Icon
-                  name="lock"
+                  name="filledLock"
                   width="30"
                   height="30"
                   viewBox="0 0 30 30"

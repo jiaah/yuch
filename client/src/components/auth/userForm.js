@@ -9,17 +9,18 @@ import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import FormButton from '../../shared/formButton';
+import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 250,
   },
   textFieldB: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 94,
+    width: 118,
   },
   formControl: {
     float: 'left',
@@ -28,6 +29,10 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit * 5,
     },
   },
+  formLabel: {
+    marginLeft: '8px',
+  },
+  formControlLabel: { marginRight: '50px' },
 });
 
 const UserForm = props => {
@@ -93,6 +98,19 @@ const UserForm = props => {
               required={true}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="filledUser"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="username"
@@ -106,6 +124,19 @@ const UserForm = props => {
               required={true}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="user"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="contactNumber"
@@ -119,6 +150,19 @@ const UserForm = props => {
               required={true}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="phone"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="mealPrice"
@@ -153,6 +197,19 @@ const UserForm = props => {
               required={true}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="lock"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="confirmPassword"
@@ -166,6 +223,19 @@ const UserForm = props => {
               required={true}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="lock"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="email"
@@ -178,6 +248,19 @@ const UserForm = props => {
               error={touched.email && Boolean(errors.email)}
               margin="normal"
               className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="email"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
             />
             <div className="flex ">
               <TextField
@@ -191,6 +274,19 @@ const UserForm = props => {
                 error={touched.lunchQuantity && Boolean(errors.lunchQuantity)}
                 margin="normal"
                 className={classes.textFieldB}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Icon
+                        name="catering"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 25 25"
+                        fill="none"
+                      />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 id="dinnerQuantity"
@@ -203,6 +299,19 @@ const UserForm = props => {
                 error={touched.dinnerQuantity && Boolean(errors.dinnerQuantity)}
                 margin="normal"
                 className={classes.textFieldB}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Icon
+                        name="catering"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 25 25"
+                        fill="none"
+                      />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </div>
           </div>
@@ -213,7 +322,18 @@ const UserForm = props => {
             required
             className={`${classes.formControl} flex flex-column-m`}
           >
-            <FormLabel component="legend">입금 계좌번호</FormLabel>
+            <div className="flex">
+              <Icon
+                name="bankAccount"
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                fill="none"
+              />
+              <FormLabel component="legend" className={classes.formLabel}>
+                입금 계좌번호
+              </FormLabel>
+            </div>
             <RadioGroup
               aria-label="bankAccountOption"
               name="bankAccountOption"
@@ -226,6 +346,7 @@ const UserForm = props => {
                 control={<Radio color="primary" />}
                 label="김귀자&#8201;&#8201;&#8201;농협&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;7210xx-xx-xxxxxx"
                 labelPlacement="end"
+                className={classes.formControlLabel}
               />
               <FormControlLabel
                 value="2"
