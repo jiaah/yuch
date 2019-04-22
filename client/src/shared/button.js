@@ -23,6 +23,7 @@ const button = ({
   buttonName,
   width,
   classes,
+  className,
 }) => {
   const widthValue =
     width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
@@ -35,7 +36,7 @@ const button = ({
         color="secondary"
         size="small"
         style={{ width: widthValue }}
-        className={classes.button}
+        className={`${className} ${classes.button}`}
       >
         {buttonName}
       </Button>
