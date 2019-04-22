@@ -17,6 +17,7 @@ const Modal = Loader({
   loader: () =>
     import('../../shared/modal' /* webpackChunkName: 'simpleModal' */),
 });
+
 class UsersContainer extends React.Component {
   showModal = () => this.props.modalActions.showModal();
 
@@ -72,9 +73,9 @@ class UsersContainer extends React.Component {
           width="small"
           className="float-right"
         />
-        {this.props.modal && (
+        {this.props.show && (
           <Modal
-            modal={this.props.modal}
+            show={this.props.show}
             title="신규업체 등록"
             handleClose={this.closeModal}
             component={
@@ -93,7 +94,7 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal.show,
+  show: state.modal.show,
   errorMessage: state.httpHandler.error,
 });
 

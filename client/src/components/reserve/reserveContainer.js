@@ -114,7 +114,7 @@ class ReserveContainer extends Component {
   };
 
   render() {
-    const { modal, classes } = this.props;
+    const { show, classes } = this.props;
     const { submitBtnClicked } = this.state;
     const { inThreeDays } = moment;
 
@@ -134,9 +134,9 @@ class ReserveContainer extends Component {
             예약하기
           </Button>
         </div>
-        {modal && (
+        {show && (
           <Modal
-            modal={modal}
+            show={show}
             title="Reservation"
             handleClose={this.closeModal}
             component={
@@ -156,7 +156,7 @@ class ReserveContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal.show,
+  show: state.modal.show,
 });
 
 const mapDispatchToProps = dispatch => ({

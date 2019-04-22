@@ -2,6 +2,9 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
 
+// Modal can not use React Hooks as it needs to be able to handle close modal on HTTP Request success in a parent component.
+// ex) usersContainer
+
 /* --- Components --- */
 import IconButton from './iconButton';
 
@@ -14,13 +17,13 @@ const styles = theme => ({
   },
 });
 
-const SimpleModal = ({ modal, classes, component, title, handleClose }) => (
+const SimpleModal = ({ show, classes, component, title, handleClose }) => (
   <React.Fragment>
-    {modal && (
+    {show && (
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        open={modal}
+        open={show}
       >
         <div
           className={`tc modal-container ${classes.paper}`}
