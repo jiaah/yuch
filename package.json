@@ -107,6 +107,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
+    "shortid": "^2.2.14",
     "style-loader": "^0.22.1",
     "terser-webpack-plugin": "^1.1.0",
     "vanilla-lazyload": "^8.17.0",

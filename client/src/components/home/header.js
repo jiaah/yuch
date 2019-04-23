@@ -1,10 +1,7 @@
 import React from 'react';
-/* --- Components --- */
-import Nav from '../nav';
 
 const Header = () => (
   <header>
-    <Nav />
     <div className="header-text--box">
       <h1>
         <span className="point1 f-en lh-3">NO MSG&#33;</span>
