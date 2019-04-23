@@ -1,17 +1,9 @@
 import React from 'react';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { withStyles } from '@material-ui/core/styles';
-import InfoIcon from '../../assets/icons/catering';
-import WarningIcon from '../../assets/icons/filledUser';
-import ErrorIcon from '../../assets/icons/error';
-import CheckCircleIcon from '../../assets/icons/clear';
 
-const variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon,
-};
+/* --- SVG Icon Components --- */
+import Icon from '../../assets/icons';
 
 const color = {
   success: '#43A047',
@@ -43,12 +35,12 @@ const styles = theme => ({
   },
   icon: {
     opacity: 0.8,
-    marginRight: '15px',
+    marginRight: '10px',
+    marginTop: '.5px',
   },
 });
 
 const FlashMessage = ({ classes, variant, message }) => {
-  const Icon = variantIcon[variant];
   const iconColor = color[variant];
 
   return (
@@ -59,10 +51,10 @@ const FlashMessage = ({ classes, variant, message }) => {
         <span id="client-snackbar" className={classes.messageBox}>
           <div className={classes.icon}>
             <Icon
-              name={Icon}
-              width="27"
-              height="21"
-              viewBox="0 0 27 21"
+              name={variant}
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               fill={iconColor}
             />
           </div>

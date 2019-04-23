@@ -36,7 +36,7 @@ export const flashMessages = [
   {
     id: 2,
     status: 'isAlreadyLoggedIn',
-    variant: 'error',
+    variant: 'warning',
     message: '회원님은 이미 로그인 되어있습니다.',
   },
 ];
