@@ -14,8 +14,12 @@ class Login extends React.Component {
   handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
     const { addFlashMessage } = this.props;
+    const message1 =
+      '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.';
+    const message2 = '회원님은 이미 로그인 되어있습니다.';
+
     if (isLoggedIn()) {
-      addFlashMessage('isAlreadyLoggedIn');
+      addFlashMessage('error', message1);
       setSubmitting(false);
       resetForm({});
       return this.props.history.push('/');
@@ -24,7 +28,7 @@ class Login extends React.Component {
     setSubmitting(false);
 
     if (!userData || userData === undefined) {
-      return addFlashMessage('loginFailed');
+      return addFlashMessage('warning', message2);
     }
     await saveUserNameAndToken(userData);
     resetForm({});
@@ -49,7 +53,8 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   userLogin: (username, password) => dispatch(userLogin(username, password)),
-  addFlashMessage: status => dispatch(addFlashMessage(status)),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
 });
 
 export default connect(

@@ -12,6 +12,7 @@ import { userValidation } from './formValidation';
 /* --- Actions --- */
 import * as authActions from '../../actions/authAction';
 import * as modalActions from '../../actions/modalAction';
+import { addFlashMessage } from '../../actions/flashMessageAction';
 
 const Modal = Loader({
   loader: () =>
@@ -30,20 +31,21 @@ class UsersContainer extends React.Component {
       bankAccount,
       ...others,
     };
+    const { addFlashMessage } = this.props;
+    const message1 = `${userData} 고객정보가 등록되었습니다.`;
+    const message2 = `${
+      values.companyName
+    } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
+      this.props.errorMessage.data.detail
+    }`;
 
     try {
       const userData = await this.props.authActions.createUser(userInfo);
-      alert(`${userData} 고객정보가 등록되었습니다.`);
+      addFlashMessage('success', message1);
       resetForm({});
       this.closeModal();
     } catch (error) {
-      alert(
-        `${
-          values.companyName
-        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
-          this.props.errorMessage.data.detail
-        }`,
-      );
+      addFlashMessage('error', message2);
     }
     setSubmitting(false);
   };
@@ -101,6 +103,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   authActions: bindActionCreators(authActions, dispatch),
   modalActions: bindActionCreators(modalActions, dispatch),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
 });
 
 export default connect(

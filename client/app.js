@@ -1,13 +1,13 @@
 import React from 'react';
 /* --- Components --- */
 import Nav from './src/components/nav';
-import FlashMessagesList from './src/shared/flassMessagesList';
+import FlashMessagesContainer from './src/shared/flassMessagesContainer';
 import './styles/main.scss';
 
 const App = props => (
   <div id="app">
     <Nav />
-    <FlashMessagesList />
+    <FlashMessagesContainer />
     {props.children}
   </div>
 );
