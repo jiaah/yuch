@@ -3,7 +3,20 @@
   max-width: 650px;
   overflow-y: scroll;
 
+  background-color: #fff;
+
   @include for-desktop-up {
     width: 50vw;
   }
+}
+
+.hide-modal {
+  z-index: -1;
+  background-color: #949191;
+}
+
+.modal-flashMessage {
+  z-index: 9999999;
+  // to make 'flex align-items' work
+  height: 100vh;
 }

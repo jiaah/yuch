@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import FlashMessage from './flashMessage';
 
 const FlashMessagesList = ({ variant, message }) => (
-  <div>
+  <React.Fragment>
     {message !== '' && <FlashMessage variant={variant} message={message} />}
-  </div>
+  </React.Fragment>
 );
 
 const mapStateToProps = state => ({

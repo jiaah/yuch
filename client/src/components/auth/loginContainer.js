@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 /* --- Components --- */
+
 import Form from './loginForm';
 import { isLoggedIn, saveUserNameAndToken } from '../../../localStorage';
 import { loginValidation } from './formValidation';
@@ -14,25 +15,24 @@ class Login extends React.Component {
   handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
     const { addFlashMessage } = this.props;
-    const message1 =
-      '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.';
-    const message2 = '회원님은 이미 로그인 되어있습니다.';
+    const { loggedInUser, loginFailed } = data.message.auth;
 
     if (isLoggedIn()) {
-      addFlashMessage('error', message1);
-      setSubmitting(false);
+      await addFlashMessage('warning', loggedInUser);
       resetForm({});
-      return this.props.history.push('/');
+      this.props.history.push('/');
+      return setSubmitting(false);
     }
-    const userData = await this.props.userLogin(username, password);
-    setSubmitting(false);
 
-    if (!userData || userData === undefined) {
-      return addFlashMessage('warning', message2);
+    try {
+      const userData = await this.props.userLogin(username, password);
+      await saveUserNameAndToken(userData);
+      await resetForm({});
+      this.props.history.push('/');
+    } catch (error) {
+      await addFlashMessage('error', loginFailed);
     }
-    await saveUserNameAndToken(userData);
-    resetForm({});
-    return this.props.history.push('/');
+    return setSubmitting(false);
   };
 
   render() {

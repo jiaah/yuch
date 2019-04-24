@@ -3,7 +3,11 @@ import React from 'react';
 import Icon from '../../assets/icons';
 
 const IconButton = ({ handleClick, name, width, height, viewBox, fill }) => (
-  <button type="button" style={{ border: 'none' }} onClick={handleClick}>
+  <button
+    type="button"
+    style={{ border: 'none', backgroundColor: 'transparent' }}
+    onClick={handleClick}
+  >
     <Icon
       name={name}
       width={width}

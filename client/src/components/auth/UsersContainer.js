@@ -32,22 +32,23 @@ class UsersContainer extends React.Component {
       ...others,
     };
     const { addFlashMessage } = this.props;
-    const message1 = `${userData} 고객정보가 등록되었습니다.`;
-    const message2 = `${
-      values.companyName
-    } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
-      this.props.errorMessage.data.detail
-    }`;
 
     try {
       const userData = await this.props.authActions.createUser(userInfo);
-      addFlashMessage('success', message1);
+      await this.closeModal();
+      addFlashMessage('success', `${userData} 고객정보가 등록되었습니다.`);
       resetForm({});
-      this.closeModal();
     } catch (error) {
-      addFlashMessage('error', message2);
+      await addFlashMessage(
+        'error',
+        `${
+          values.companyName
+        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다. 서버로부터 받은 에러 메시지: ${
+          this.props.errorMessage.data.detail
+        }`,
+      );
     }
-    setSubmitting(false);
+    return setSubmitting(false);
   };
 
   render() {
@@ -63,7 +64,7 @@ class UsersContainer extends React.Component {
       dinnerQuantity: '',
       bankAccountOption: '1',
     };
-
+    const { show, flashVariant } = this.props;
     return (
       <div className="container">
         <h2>고객계정</h2>
@@ -75,9 +76,10 @@ class UsersContainer extends React.Component {
           width="small"
           className="float-right"
         />
-        {this.props.show && (
+        {show && (
           <Modal
-            show={this.props.show}
+            show={show}
+            flashVariant={flashVariant}
             title="신규업체 등록"
             handleClose={this.closeModal}
             component={
@@ -98,6 +100,7 @@ class UsersContainer extends React.Component {
 const mapStateToProps = state => ({
   show: state.modal.show,
   errorMessage: state.httpHandler.error,
+  flashVariant: state.flashMessage.variant,
 });
 
 const mapDispatchToProps = dispatch => ({

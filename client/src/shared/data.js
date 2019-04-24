@@ -24,3 +24,11 @@ export const reserveSuccessMessage =
 
 export const reserveErrorMessage =
   '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.';
+
+export const message = {
+  auth: {
+    loggedInUser: '회원님은 이미 로그인 되어있습니다.',
+    loginFailed:
+      '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+  },
+};
