@@ -50,8 +50,8 @@ const UserForm = props => {
       contactNumber,
       email,
       mealPrice,
-      lunchQuantity,
-      dinnerQuantity,
+      lunchQuantityValue,
+      dinnerQuantityValue,
       bankAccountOption,
     },
     errors,
@@ -69,16 +69,17 @@ const UserForm = props => {
     const inputValue = e.target.value;
     let value;
     if (
-      name === 'lunchQuantity' ||
-      name === 'dinnerQuantity' ||
+      name === 'lunchQuantityValue' ||
+      name === 'dinnerQuantityValue' ||
       name === 'mealPrice'
     ) {
       // avoid isNaN('') === false
       // -> parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
+      } else {
+        value = inputValue;
       }
-      value = inputValue;
     } else {
       value = inputValue;
     }
@@ -193,7 +194,7 @@ const UserForm = props => {
               id="password"
               label="비밀번호"
               type="password"
-              placeholder="(영문 or 숫자)"
+              placeholder="(영문, 숫자 포함)"
               value={password || ''}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -269,14 +270,19 @@ const UserForm = props => {
             />
             <div className="flex justify-center">
               <TextField
-                id="lunchQuantity"
+                id="lunchQuantityValue"
                 label="중식 식수량"
                 placeholder="70"
-                value={lunchQuantity || ''}
-                onChange={e => change(e, 'lunchQuantity', true)}
+                value={lunchQuantityValue || ''}
+                onChange={e => change(e, 'lunchQuantityValue', true)}
                 onBlur={handleBlur}
-                helperText={touched.lunchQuantity && errors.lunchQuantity}
-                error={touched.lunchQuantity && Boolean(errors.lunchQuantity)}
+                helperText={
+                  touched.lunchQuantityValue && errors.lunchQuantityValue
+                }
+                error={
+                  touched.lunchQuantityValue &&
+                  Boolean(errors.lunchQuantityValue)
+                }
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{
@@ -294,14 +300,19 @@ const UserForm = props => {
                 }}
               />
               <TextField
-                id="dinnerQuantity"
+                id="dinnerQuantityValue"
                 label="석식 식수량"
                 placeholder="35"
-                value={dinnerQuantity || ''}
-                onChange={e => change(e, 'dinnerQuantity', true)}
+                value={dinnerQuantityValue || ''}
+                onChange={e => change(e, 'dinnerQuantityValue', true)}
                 onBlur={handleBlur}
-                helperText={touched.dinnerQuantity && errors.dinnerQuantity}
-                error={touched.dinnerQuantity && Boolean(errors.dinnerQuantity)}
+                helperText={
+                  touched.dinnerQuantityValue && errors.dinnerQuantityValue
+                }
+                error={
+                  touched.dinnerQuantityValue &&
+                  Boolean(errors.dinnerQuantityValue)
+                }
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{

@@ -25,19 +25,34 @@ class UsersContainer extends React.Component {
   closeModal = () => this.props.modalActions.hideModal();
 
   handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const { confirmPassword, bankAccountOption, ...others } = values;
+    const {
+      confirmPassword,
+      bankAccountOption,
+      lunchQuantityValue,
+      dinnerQuantityValue,
+      ...others
+    } = values;
+    // to save values as number type in database
     const bankAccount = parseInt(bankAccountOption, 10);
+    const lunchQuantity = lunchQuantityValue === '' ? 0 : lunchQuantityValue;
+    const dinnerQuantity = dinnerQuantityValue === '' ? 0 : dinnerQuantityValue;
+
     const userInfo = {
       bankAccount,
+      lunchQuantity,
+      dinnerQuantity,
       ...others,
     };
     const { addFlashMessage } = this.props;
 
     try {
       const userData = await this.props.authActions.createUser(userInfo);
-      await this.closeModal();
-      addFlashMessage('success', `${userData} 고객정보가 등록되었습니다.`);
-      resetForm({});
+      await addFlashMessage(
+        'success',
+        `${userData} 고객정보가 등록되었습니다.`,
+      );
+      await resetForm({});
+      // calling 'closeModal action' will cause an error of 'can not perform a react state update on unmounted component.'
     } catch (error) {
       await addFlashMessage(
         'error',
@@ -60,10 +75,11 @@ class UsersContainer extends React.Component {
       contactNumber: '',
       email: '',
       mealPrice: '',
-      lunchQuantity: '',
-      dinnerQuantity: '',
+      lunchQuantityValue: '',
+      dinnerQuantityValue: '',
       bankAccountOption: '1',
     };
+
     const { show, flashVariant } = this.props;
     return (
       <div className="container">
