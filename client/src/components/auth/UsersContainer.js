@@ -43,16 +43,16 @@ class UsersContainer extends React.Component {
       dinnerQuantity,
       ...others,
     };
-    const { addFlashMessage } = this.props;
+    const {
+      addFlashMessage,
+      authActions: { createUser },
+    } = this.props;
 
     try {
-      const userData = await this.props.authActions.createUser(userInfo);
-      await addFlashMessage(
-        'success',
-        `${userData} 고객정보가 등록되었습니다.`,
-      );
+      const userData = await createUser(userInfo);
+      await alert(`${userData} 고객정보가 등록되었습니다.`);
       await resetForm({});
-      // calling 'closeModal action' will cause an error of 'can not perform a react state update on unmounted component.'
+      this.closeModal();
     } catch (error) {
       await addFlashMessage(
         'error',
@@ -84,6 +84,7 @@ class UsersContainer extends React.Component {
     return (
       <div className="container">
         <h2>고객계정</h2>
+        {/* auto complete search bar by client name (in korean) */}
         <Button
           typeValue="button"
           buttonName="신규등록"
@@ -92,6 +93,10 @@ class UsersContainer extends React.Component {
           width="small"
           className="float-right"
         />
+        {/* button dropdown list order by alphabet, updated_at(default) */}
+        {/*
+        map List of Clients with account information order by updated_at desc;
+        */}
         {show && (
           <Modal
             show={show}

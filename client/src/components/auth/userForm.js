@@ -194,7 +194,7 @@ const UserForm = props => {
               id="password"
               label="비밀번호"
               type="password"
-              placeholder="(영문, 숫자 포함)"
+              placeholder="(영문, 숫자 조합)"
               value={password || ''}
               onChange={handleChange}
               onBlur={handleBlur}
