@@ -1,5 +1,6 @@
 import React from 'react';
-
+/* --- Components --- */
+import * as data from '../../shared/data';
 import ReserveErrorMessage from './reserveErrorMessage';
 
 const ReserveMessage = ({ isReserved }) => (

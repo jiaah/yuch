@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 /* --- Components --- */
 import Nav from './src/components/nav';
 import Loader from './src/shared/loader';
@@ -9,24 +10,23 @@ const FlashMessagesContainer = Loader({
     import('./src/shared/flassMessagesContainer' /* webpackChunkName: 'FlashMessagesContainer' */),
 });
 
-const App = props => {
-  const { pathname } = props.history.location;
-  let isOnModal = false;
-  if (pathname === '/users/account') {
-    isOnModal = true;
-  }
+const App = (props, { isOnModal }) => (
+  <div id="app">
+    <Nav />
+    {!isOnModal && (
+      <div className="flex justify-center">
+        <FlashMessagesContainer />
+      </div>
+    )}
+    {props.children}
+  </div>
+);
 
-  return (
-    <div id="app">
-      <Nav />
-      {!isOnModal && (
-        <div className="flex justify-center">
-          <FlashMessagesContainer />
-        </div>
-      )}
-      {props.children}
-    </div>
-  );
-};
+const mapPropsToState = state => ({
+  isOnModal: state.modal.show,
+});
 
-export default App;
+export default connect(
+  mapPropsToState,
+  null,
+)(App);

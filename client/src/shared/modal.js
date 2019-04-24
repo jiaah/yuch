@@ -29,52 +29,42 @@ const SimpleModal = ({
   component,
   title,
   handleClose,
-}) => {
-  const modalStyle = flashVariant ? 'hide-modal' : '';
-
-  return (
-    <React.Fragment>
-      {show && (
-        <React.Fragment>
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={show}
-          >
-            <React.Fragment>
-              <div
-                className={`tc modal-container ${classes.paper} ${modalStyle}`}
-                style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                }}
-              >
-                <div className="flex justify-end">
-                  <IconButton
-                    name="close"
-                    width="30"
-                    height="30"
-                    viewBox="0 0 30 30"
-                    fill="none"
-                    handleClick={handleClose}
-                  />
-                </div>
-                <h3 variant="title" className="f-en">
-                  {title}
-                </h3>
-                {component}
-              </div>
-              <div className="modal-flashMessage flex center-center">
-                {flashVariant !== '' && <FlashMessagesContainer />}
-              </div>
-            </React.Fragment>
-          </Modal>
-        </React.Fragment>
-      )}
-    </React.Fragment>
-  );
-};
+}) => (
+  <React.Fragment>
+    {show && (
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={show}
+      >
+        <div
+          className={`tc modal-container ${classes.paper}`}
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <div className="flex justify-end">
+            <IconButton
+              name="close"
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              handleClick={handleClose}
+            />
+          </div>
+          <h3 variant="title" className="f-en">
+            {title}
+          </h3>
+          {component}
+          {flashVariant !== '' && <FlashMessagesContainer />}
+        </div>
+      </Modal>
+    )}
+  </React.Fragment>
+);
 
 export const Unwrapped = SimpleModal;
 export default withStyles(styles)(SimpleModal);
