@@ -11,6 +11,7 @@ import * as data from '../../shared/data';
 /* --- Actions --- */
 import * as reserveActions from '../../actions/reserveAction';
 import * as modalActions from '../../actions/modalAction';
+import { addFlashMessage } from '../../actions/flashMessageAction';
 
 /* react/no-unused-state: false */
 const Modal = Loader({
@@ -71,6 +72,8 @@ class ReserveContainer extends Component {
     await ev.preventDefault();
     await this.setState({ submitBtnClicked: true });
 
+    const { addFlashMessage, reserveActions } = this.props;
+    const { success, fail } = data.message.reserve;
     const { name, contact, number, place, date, time } = this.state;
     const reserveInfo = {
       name,
@@ -96,25 +99,17 @@ class ReserveContainer extends Component {
       return null;
     }
     try {
-      const res = await this.props.reserveActions.reserve(reserveInfo);
-      if (res) {
-        // eslint-disable-next-line no-alert
-        await alert(data.reserveSuccessMessage);
-        return this.closeModal();
-      }
+      await reserveActions.reserve(reserveInfo);
+      addFlashMessage('success', success);
+      reserveActions.resetReserve();
+      //   return this.closeModal();
     } catch (error) {
-      // eslint-disable-next-line no-alert
-      alert(data.reserveErrorMessage);
-
-      // <a className="b" href="tel:+82-54-745-0999">
-      //     상담전화&#8201;
-      //     <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
-      //   </a>
+      addFlashMessage('error', fail);
     }
   };
 
   render() {
-    const { show, classes } = this.props;
+    const { show, classes, flashVariant } = this.props;
     const { submitBtnClicked } = this.state;
     const { inThreeDays } = moment;
 
@@ -137,6 +132,7 @@ class ReserveContainer extends Component {
         {show && (
           <Modal
             show={show}
+            flashVariant={flashVariant}
             title="Reservation"
             handleClose={this.closeModal}
             component={
@@ -157,11 +153,14 @@ class ReserveContainer extends Component {
 
 const mapStateToProps = state => ({
   show: state.modal.show,
+  flashVariant: state.flashMessage.variant,
 });
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   reserveActions: bindActionCreators(reserveActions, dispatch),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
 });
 
 export const Unwrapped = ReserveContainer;
