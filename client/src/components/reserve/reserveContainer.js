@@ -7,11 +7,10 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import Loader from '../../shared/loader';
 import * as moment from '../../shared/moment';
-import * as data from '../../shared/data';
+import ReserveMessage from './reserveMessage';
 /* --- Actions --- */
 import * as reserveActions from '../../actions/reserveAction';
 import * as modalActions from '../../actions/modalAction';
-import { addFlashMessage } from '../../actions/flashMessageAction';
 
 /* react/no-unused-state: false */
 const Modal = Loader({
@@ -45,6 +44,7 @@ class ReserveContainer extends Component {
       place: '',
       date: moment.inThreeDays,
       time: '12:30',
+      isReserved: '',
     };
   }
 
@@ -61,6 +61,7 @@ class ReserveContainer extends Component {
       place: '',
       date: moment.inThreeDays,
       time: '12:30',
+      isReserved: '',
     });
   };
 
@@ -72,8 +73,7 @@ class ReserveContainer extends Component {
     await ev.preventDefault();
     await this.setState({ submitBtnClicked: true });
 
-    const { addFlashMessage, reserveActions } = this.props;
-    const { success, fail } = data.message.reserve;
+    const { reserveActions } = this.props;
     const { name, contact, number, place, date, time } = this.state;
     const reserveInfo = {
       name,
@@ -100,17 +100,15 @@ class ReserveContainer extends Component {
     }
     try {
       await reserveActions.reserve(reserveInfo);
-      addFlashMessage('success', success);
-      reserveActions.resetReserve();
-      //   return this.closeModal();
+      return this.setState({ isReserved: 'success' });
     } catch (error) {
-      addFlashMessage('error', fail);
+      return this.setState({ isReserved: 'error' });
     }
   };
 
   render() {
     const { show, classes, flashVariant } = this.props;
-    const { submitBtnClicked } = this.state;
+    const { submitBtnClicked, isReserved } = this.state;
     const { inThreeDays } = moment;
 
     return (
@@ -136,13 +134,17 @@ class ReserveContainer extends Component {
             title="Reservation"
             handleClose={this.closeModal}
             component={
-              <Form
-                reserveInfo={this.state}
-                inThreeDays={inThreeDays}
-                submitBtnClicked={submitBtnClicked}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-              />
+              isReserved === '' ? (
+                <Form
+                  reserveInfo={this.state}
+                  inThreeDays={inThreeDays}
+                  submitBtnClicked={submitBtnClicked}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              ) : (
+                <ReserveMessage isReserved={isReserved} />
+              )
             }
           />
         )}
@@ -159,8 +161,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   reserveActions: bindActionCreators(reserveActions, dispatch),
-  addFlashMessage: (variant, message) =>
-    dispatch(addFlashMessage(variant, message)),
 });
 
 export const Unwrapped = ReserveContainer;
