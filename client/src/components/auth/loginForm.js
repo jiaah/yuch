@@ -27,7 +27,7 @@ const Form = props => {
     classes,
   } = props;
   return (
-    <div className="login-container">
+    <div className="login-container" data-test="loginformComponent">
       <form onSubmit={handleSubmit} className="flex flex-column-m items-center">
         <TextField
           id="username"
@@ -54,6 +54,7 @@ const Form = props => {
               </InputAdornment>
             ),
           }}
+          data-test="username-input"
         />
         <TextField
           id="password"
@@ -80,6 +81,7 @@ const Form = props => {
               </InputAdornment>
             ),
           }}
+          data-test="password-input"
         />
         <Button
           typeValue="submit"
@@ -87,10 +89,12 @@ const Form = props => {
           buttonName="로그인"
           width="medium"
           isSubmitting={isSubmitting}
+          data-test="submit-btn"
         />
       </form>
     </div>
   );
 };
 
+export const Unwrapped = Form;
 export default withStyles(styles)(Form);

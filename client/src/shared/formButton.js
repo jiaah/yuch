@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const formButton = ({
+const FormButton = ({
   typeValue,
   variantValue,
   buttonName,
@@ -42,4 +42,6 @@ const formButton = ({
     </React.Fragment>
   );
 };
-export default withStyles(styles)(formButton);
+
+export const Unwrapped = FormButton;
+export default withStyles(styles)(FormButton);
