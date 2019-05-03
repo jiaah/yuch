@@ -1,5 +1,4 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React, { shallow } from '../../__tests__/setupTests';
 import { Unwrapped as UnwrappedLoginForm } from './loginForm';
 import { findByTestAttr } from '../../utils/test';
 
@@ -102,7 +101,7 @@ describe('Login Form Component', () => {
 
   describe('When submit button is clicked', () => {
     beforeEach(() => {
-      // wrapper.find('form').simulate('submit', { preventDefault() {} });
+      wrapper.find('form').simulate('submit', { preventDefault() {} });
     });
   });
 

@@ -167,6 +167,7 @@
     "react-hot-loader": "^4.5.3",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",
+    "sinon": "^7.3.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   },
