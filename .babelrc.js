@@ -22,7 +22,8 @@ module.exports = {
     'transform-runtime',
     'transform-class-properties',
     'transform-object-rest-spread',
-    'syntax-dynamic-import',
+    // 'syntax-dynamic-import',
+    'dynamic-import-node',
     [
       'import',
       {
