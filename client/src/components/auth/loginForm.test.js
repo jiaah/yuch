@@ -1,42 +1,48 @@
-import React, { shallow } from '../../__tests__/setupTests';
+import React, { shallow, sinon } from '../../__tests__/setupTests';
 import { Unwrapped as UnwrappedLoginForm } from './loginForm';
 import { findByTestAttr } from '../../utils/test';
 
-const mockChange = jest.fn();
-const mockSubmit = jest.fn();
 const mockBlur = jest.fn();
+/*
+use Sinon to test DOM interactions
+which allow you to test whether a function was called during a particular interaction.
+Sinon can also be used to provide DOM interaction testing with shallow rendering
+*/
+const mockChange = sinon.spy();
+const mockSubmit = sinon.spy();
+
+const defaultProps = {
+  values: { username: '', password: '' },
+  errors: { username: false, password: false },
+  touched: { username: false, password: false },
+  handleChange: mockChange,
+  handleSubmit: mockSubmit,
+  isSubmitting: false,
+  handleBlur: mockBlur,
+  classes: {
+    textField: '',
+  },
+};
 
 const setUp = (props = {}) => {
-  const component = shallow(<UnwrappedLoginForm {...props} />);
+  const setupProps = { ...defaultProps, ...props };
+  const component = shallow(<UnwrappedLoginForm {...setupProps} />);
   return component;
 };
 
 describe('Login Form Component', () => {
   let wrapper;
-  beforeEach(() => {
-    const props = {
-      values: { username: '', password: '' },
-      errors: { username: false, password: false },
-      touched: { username: false, password: false },
-      handleChange: mockChange,
-      handleSubmit: mockSubmit,
-      isSubmitting: false,
-      handleBlur: mockBlur,
-      classes: {
-        textField: '',
-      },
-    };
 
-    wrapper = setUp(props);
+  beforeEach(() => {
+    wrapper = setUp();
   });
 
-  it('It should render without errors', () => {
-    expect(wrapper).toMatchSnapshot();
+  it('renders without errors', () => {
     const loginformComponent = findByTestAttr(wrapper, 'loginformComponent');
     expect(loginformComponent).toHaveLength(1);
   });
 
-  it('It should render textfield and button', () => {
+  it('renders textfield and button', () => {
     const textfield = wrapper.find('TextField');
     expect(textfield).toHaveLength(2);
 
@@ -44,7 +50,7 @@ describe('Login Form Component', () => {
     expect(button).toHaveLength(1);
   });
 
-  describe('It should show helperText and error when errors and touched are true', () => {
+  describe('When errors and touched are true', () => {
     beforeEach(() => {
       wrapper.setProps({
         errors: { username: true, password: true },
@@ -52,19 +58,19 @@ describe('Login Form Component', () => {
       });
     });
 
-    it('username', () => {
-      const textField = wrapper.find(`[data-test='username-input']`);
-      // expect(textField.props().helperText).toEqual(true);
-      expect(textField.props().error).toEqual(true);
+    it('renders username helperText and error line', () => {
+      const input = wrapper.find('#username');
+      expect(input.props().helperText).not.toBe(0);
+      expect(input.props().error).toEqual(true);
     });
-    it('password', () => {
-      const textField = wrapper.find(`[data-test='password-input']`);
-      // expect(textField.props().helperText).toEqual(true);
-      expect(textField.props().error).toEqual(true);
+    it('renders password helperText and error line', () => {
+      const input = wrapper.find('#password');
+      expect(input.props().helperText).not.toBe(0);
+      expect(input.props().error).toEqual(true);
     });
   });
 
-  describe('It should NOT show helperText and error if one of errors and touched is not true', () => {
+  describe('When one of errors and touched is false', () => {
     beforeEach(() => {
       wrapper.setProps({
         errors: { username: false, password: true },
@@ -72,41 +78,43 @@ describe('Login Form Component', () => {
       });
     });
 
-    it('username', () => {
-      const textField = wrapper.find(`[data-test='username-input']`);
-      // expect(textField.props().helperText).toEqual(false);
-      expect(textField.props().error).toEqual(false);
+    it('renders NO username helperText and error line', () => {
+      const input = wrapper.find('#username');
+      expect(input.props().helperText).toEqual(false);
+      expect(input.props().error).toEqual(false);
     });
-    it('password', () => {
-      const textField = wrapper.find(`[data-test='password-input']`);
-      // expect(textField.props().helperText).toEqual(false);
-      expect(textField.props().error).toEqual(false);
-    });
-  });
-
-  describe('If the value is false or undefined', () => {
-    beforeEach(() => {
-      wrapper.setProps({
-        values: { username: false, password: undefined },
-      });
-    });
-
-    it('Value should have an empty string', () => {
-      const usernameTextField = findByTestAttr(wrapper, 'username-input');
-      const passwordTextField = findByTestAttr(wrapper, 'password-input');
-      expect(usernameTextField.props().value).toEqual('');
-      expect(passwordTextField.props().value).toEqual('');
+    it('renders NO password helperText and error line', () => {
+      const input = wrapper.find('#password');
+      expect(input.props().helperText).toEqual(false);
+      expect(input.props().error).toEqual(false);
     });
   });
 
-  describe('When submit button is clicked', () => {
-    beforeEach(() => {
-      wrapper.find('form').simulate('submit', { preventDefault() {} });
+  describe('When the input value is inserted', () => {
+    it('renders new username value', done => {
+      const input = wrapper.find('#username');
+      input.simulate('change', { target: { name: 'username', value: 'y' } });
+
+      // enzyme's change event is synchronous and Formik's handlers are asynchronous
+      setTimeout(() => {
+        wrapper.update();
+        expect(mockChange.calledOnce).toEqual(true);
+
+        done();
+      }, 1000);
     });
+    it('renders password value', () => {});
   });
 
-  it('call submit function', () => {
-    // expect(mockSubmit).toHaveBeenCalledTimes(1);
-    // expect(submitBtn.prop(isSubmitting)).toBe(true);
+  it('call submit function on click', done => {
+    const form = wrapper.find('form');
+    form.simulate('submit', {
+      preventDefault: () => {},
+    });
+    setTimeout(() => {
+      wrapper.update();
+      expect(mockSubmit.calledOnce).toEqual(true);
+      done();
+    }, 0);
   });
 });

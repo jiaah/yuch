@@ -1,10 +1,14 @@
 module.exports = {
   rootDir: process.cwd(),
   displayName: 'client',
+
   modulePaths: ['<rootDir>/client/src', '<rootDir>/client/src/__tests__'],
   testMatch: ['**/*.test.js'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'scss'],
-  setupFiles: ['raf/polyfill', '<rootDir>/client/src/__tests__/setupTests'],
+  setupFilesAfterEnv: [
+    'raf/polyfill',
+    '<rootDir>/client/src/__tests__/setupTests',
+  ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$':

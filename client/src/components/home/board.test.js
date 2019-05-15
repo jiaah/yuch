@@ -1,12 +1,14 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from '../../__tests__/setupTests';
 import Board from './board';
 
 describe('<Board />', () => {
-  const setup = (props = {}) => mount(<Board {...props} />);
+  const setup = (props = {}) => render(<Board {...props} />);
 
   it('should render successfully', () => {
     const component = setup();
+    component.debug();
     expect(component).toMatchSnapshot();
   });
 

@@ -54,7 +54,6 @@ const Form = props => {
               </InputAdornment>
             ),
           }}
-          data-test="username-input"
         />
         <TextField
           id="password"
@@ -81,7 +80,6 @@ const Form = props => {
               </InputAdornment>
             ),
           }}
-          data-test="password-input"
         />
         <Button
           typeValue="submit"

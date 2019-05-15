@@ -7,7 +7,7 @@ exports[`Login Form Component It should render without errors 1`] = `
 >
   <form
     className="flex flex-column-m items-center"
-    onSubmit={[MockFunction]}
+    onSubmit={[Function]}
   >
     <TextField
       InputProps={
