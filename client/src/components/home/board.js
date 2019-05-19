@@ -89,7 +89,7 @@ class Board extends React.Component {
           </div>
         </div>
         <footer className="bt tc ph f-mini f-en">
-          &#169; 2018 &#124; All right reserved &#124; YUCH
+          &#169; 2019 &#124; All right reserved &#124; YUCH
         </footer>
       </React.Fragment>
     );

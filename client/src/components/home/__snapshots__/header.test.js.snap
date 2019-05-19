@@ -2,13 +2,12 @@
 
 exports[`<Header /> renders correctly 1`] = `
 <header>
-  <withRouter(Connect(Nav)) />
   <div
-    className="header-text--box"
+    class="header-text--box"
   >
     <h1>
       <span
-        className="point1 f-en lh-3"
+        class="point1 f-en lh-3"
       >
         NO MSG!
       </span>
@@ -17,7 +16,7 @@ exports[`<Header /> renders correctly 1`] = `
       <br />
       당신만을 위한 
       <span
-        className="point2"
+        class="point2"
       >
         착한 가격의 집밥을
       </span>
