@@ -36,6 +36,7 @@ const SimpleModal = ({
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={show}
+        data-testid="modal"
       >
         <div
           className={`tc modal-container ${classes.paper}`}

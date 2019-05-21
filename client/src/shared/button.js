@@ -30,6 +30,7 @@ const button = ({
   return (
     <React.Fragment>
       <Button
+        data-testid="button"
         type={typeValue}
         onClick={ev => handleButtonClick(ev)}
         variant={variantValue}

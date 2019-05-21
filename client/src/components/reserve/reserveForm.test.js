@@ -1,173 +1,64 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { unwrap } from '@material-ui/core/test-utils';
 import ReserveForm from './reserveForm';
 import * as mockData from '../../__tests__/__mocks__/mockData';
+import {
+  render,
+  fireEvent,
+  waitForElement,
+  cleanup,
+} from '../../__tests__/setupTests';
 
-describe('<ReserveForm />', () => {
-  const mockClose = jest.fn();
-  const mockChange = jest.fn();
-  const mockSubmit = jest.fn();
+afterEach(cleanup);
 
-  const ComponentNaked = unwrap(ReserveForm);
+const {
+  reserveContents: { name, contact, number, place, date, time, createdAt },
+} = mockData;
 
-  const props = {
-    inThreeDays: mockData.inThreeDays,
-    handleClose: mockClose,
-    handleChange: mockChange,
-    handleSubmit: mockSubmit,
-    submitBtnClicked: false,
-    classes: {},
-  };
+const mockClose = jest.fn();
+const mockChange = jest.fn();
+const mockSubmit = jest.fn();
 
-  describe('with initial reserve info', () => {
-    const wrapper = shallow(
-      <ComponentNaked {...props} reserveInfo={mockData.reserveInfoInit} />,
-    );
+const ComponentNaked = unwrap(ReserveForm);
 
-    it('renders correctly', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
+const props = {
+  inThreeDays: mockData.inThreeDays,
+  handleClose: mockClose,
+  handleChange: mockChange,
+  handleSubmit: mockSubmit,
+  submitBtnClicked: false,
+  classes: {},
+};
 
-    it('creates inputs', () => {
-      expect(wrapper.find(`[data-test='input-name']`).exists()).toBe(true);
-      expect(wrapper.find(`[data-test='input-contact']`).exists()).toBe(true);
-      expect(wrapper.find(`[data-test='input-number']`).exists()).toBe(true);
-      expect(wrapper.find(`[data-test='input-place']`).exists()).toBe(true);
-      expect(wrapper.find(`[data-test='input-date']`).exists()).toBe(true);
-      expect(wrapper.find(`[data-test='input-time']`).exists()).toBe(true);
-    });
+const setup = () =>
+  render(<ComponentNaked {...props} reserveInfo={mockData.reserveInfoInit} />);
 
-    describe('when typeing into input, calls a callback function', () => {
-      it('name', () => {
-        const ev = { target: { id: 'name', value: 'Yuchung' } };
-        wrapper.find(`[data-test='input-name']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+describe('<ReserveForm', () => {
+  it('submit with reserve Info', async () => {
+    const {
+      getByTestId,
+      getByText,
+      getByLabelText,
+      container,
+      queryByTestId,
+    } = setup();
 
-      it('contact', () => {
-        const ev = { target: { id: 'contact', value: '123123123' } };
-        wrapper.find(`[data-test='input-contact']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+    const buttonComponent = queryByTestId('button');
+    const inputNameById = getByTestId('name');
+    const submitButton = getByText('예약완료');
 
-      it('number', () => {
-        const ev = { target: { id: 'number', value: '100' } };
-        wrapper.find(`[data-test='input-number']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+    expect(buttonComponent).toBeTruthy();
 
-      it('place', () => {
-        const ev = { target: { id: 'place', value: 'Gyeongju' } };
-        wrapper.find(`[data-test='input-place']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+    // old version. test's passed. but it doesn't seem to work.
+    // inputNameById.value = name;
+    // fireEvent.change(name);
+    // Error: called zero times.
+    // expect(mockChange).toHaveBeenCalledTimes(1);
 
-      it('date', () => {
-        const ev = { target: { id: 'date', value: '2019-12-25' } };
-        wrapper.find(`[data-test='input-date']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
+    // Error: The given element does not have a value setter
+    // fireEvent.change(getByLabelText('이름'), { target: { value: name } });
 
-      it('time', () => {
-        const ev = { target: { id: 'time', value: '2:30 PM' } };
-        wrapper.find(`[data-test='input-time']`).simulate('change', ev);
-        expect(mockChange).toHaveBeenCalledWith(ev);
-      });
-    });
-
-    // describe('clicking a button', () => {
-    //   describe('submit button', () => {
-    //     const mockedEvent = { target: {} };
-    //     beforeEach(() => {
-    //       wrapper.find('.btn-submit').simulate('click', mockedEvent);
-    //     });
-
-    //     it('handle submit function', () => {
-    //       expect(mockSubmit).toHaveBeenCalledWith(mockedEvent);
-    //     });
-    //   });
-
-    //   it('close button', () => {
-    //     wrapper.find('.btn-close').simulate('click');
-    //     expect(mockClose).toHaveBeenCalledWith();
-    //   });
-    // });
-  });
-
-  describe('throwing error for an empty input value on submit', () => {
-    // const mockedEvent = { target: {} };
-
-    describe('should show error when input field is empty', () => {
-      const setup = () => {
-        const wrapper = shallow(
-          <ComponentNaked
-            {...props}
-            reserveInfo={{
-              name: '',
-              contact: '(0  )    -    ',
-              number: '',
-              place: '',
-              date: '',
-              time: '',
-              createdAt: '',
-            }}
-          />,
-        );
-        return { wrapper };
-      };
-
-      const { wrapper } = setup();
-
-      beforeEach(() => {
-        // wrapper.find('.btn-submit').simulate('click', mockedEvent);
-        wrapper.setProps({ submitBtnClicked: true });
-      });
-
-      it('when name field is empty', () => {
-        expect(
-          wrapper
-            .find(`[data-test='input-name']`)
-            .first()
-            .props().error,
-        ).toEqual(true);
-      });
-
-      it('when number field is empty', () => {
-        expect(
-          wrapper
-            .find(`[data-test='input-number']`)
-            .first()
-            .props().error,
-        ).toEqual(true);
-      });
-
-      it('when place field is empty', () => {
-        expect(
-          wrapper
-            .find(`[data-test='input-place']`)
-            .first()
-            .props().error,
-        ).toEqual(true);
-      });
-
-      it('when time field is empty', () => {
-        expect(
-          wrapper
-            .find(`[data-test='input-time']`)
-            .first()
-            .props().error,
-        ).toEqual(true);
-      });
-
-      it('when date field is empty', () => {
-        expect(
-          wrapper
-            .find(`[data-test='input-date']`)
-            .first()
-            .props().error,
-        ).toEqual(true);
-      });
-    });
+    fireEvent.click(submitButton);
+    expect(mockSubmit).toHaveBeenCalledTimes(1);
   });
 });

@@ -9,7 +9,6 @@ module.exports = {
     'raf/polyfill',
     '<rootDir>/client/src/__tests__/setupTests',
   ],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$':
       '<rootDir>/client/src/__tests__/__mocks__/assetTransformer.js',

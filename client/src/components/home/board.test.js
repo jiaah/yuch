@@ -19,7 +19,7 @@ describe('<Board />', () => {
         map[event] = handler;
       });
       const wrapper = setup();
-      map.scroll({ scrollY: 200 });
+      map.scroll({ scrollY: 1200 });
       expect(global.window.addEventListener).toHaveBeenCalled();
     });
 

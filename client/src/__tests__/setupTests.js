@@ -6,17 +6,9 @@ import {
   cleanup,
   waitForElement,
 } from 'react-testing-library';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import sinon from 'sinon';
-import requestAnimationFrame from './tempPolyfills';
 
-// React 16 Enzyme adapter
-Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
-
-export { render, fireEvent, cleanup, waitForElement, shallow, mount, sinon };
+export { render, fireEvent, cleanup, waitForElement };
 export default React;
 
-HTMLCanvasElement.prototype.getContext = () => {
-  // return whatever getContext has to return
-};
+// Get rid off HTMLCanvasElement.prototype.getContext, and canvas errors.
+HTMLCanvasElement.prototype.getContext = jest.fn();

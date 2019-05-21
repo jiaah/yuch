@@ -115,14 +115,16 @@ class ReserveContainer extends Component {
       // id is for Nav Link
       <div id="reserve">
         <div className="tc white reserve-container">
-          <h3 className="white f-en b">Reservation</h3>
+          <h3 className="white f-en b" data-testid="reserve-title">
+            Reservation
+          </h3>
           <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
           <Button
             onClick={this.showModal}
             variant="contained"
             color="secondary"
             className={classes.bigButton}
-            data-test="btn--reserve-modal"
+            data-testid="reserve-modal--button"
           >
             예약하기
           </Button>

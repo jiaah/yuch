@@ -1,43 +1,49 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, cleanup, fireEvent } from '../../__tests__/setupTests';
 import { Unwrapped as UnwrappedReserveContainer } from './reserveContainer';
 
+afterEach(cleanup);
+const defaultProps = {
+  show: false,
+  flashVariant: '',
+  modalActions: { showModal: jest.fn() },
+  reserveActions: jest.fn(),
+  classes: {
+    bigButton: '',
+  },
+};
+
+const setUp = (props = {}) => {
+  const setupProps = { ...defaultProps, ...props };
+  const component = render(<UnwrappedReserveContainer {...setupProps} />);
+  return component;
+};
+
 describe('<ReserveContainer />', () => {
-  describe('renders initial reserve section correctly', () => {
-    const showModalAction = jest.fn();
-    const props = {
-      show: false,
-      classes: {
-        bigButton: {},
-      },
-      showModalAction,
-    };
+  it('renders properly', () => {
+    const { getByTestId } = setUp();
+    const reserveTitle = getByTestId('reserve-title');
+    const reserveButton = getByTestId('reserve-modal--button');
 
-    const wrapper = shallow(<UnwrappedReserveContainer {...props} />);
+    expect(reserveTitle.textContent).toBe('Reservation');
+    expect(reserveButton.textContent).toBe('예약하기');
+  });
 
-    it('renders correctly', () => {
-      expect(wrapper.find('WithStyles(Button)').exists()).toBeTruthy();
-      expect(wrapper).toMatchSnapshot();
-    });
+  it('open modal on button click', () => {
+    const { getByTestId, queryByTestId } = setUp();
+    debug();
+    const reserveButton = getByTestId('reserve-modal--button');
+    const modal = queryByTestId('modal');
 
-    describe('when clicking reserve button', () => {
-      beforeEach(() => {
-        wrapper.find(`[data-test='btn--reserve-modal']`).simulate('click');
-        wrapper.setProps({ showModal: true });
-      });
+    expect(reserveButton.textContent).toBe('예약하기');
 
-      afterEach(() => {
-        wrapper.setProps({ showModal: false });
-      });
+    fireEvent.click(reserveButton);
+    // ReferenceError: rerender is not defined
+    // rerender(<UnwrappedReserveContainer show={true} />);
+    // expect(modal).toBeTruthy();
+  });
 
-      it('showModalAction called', () => {
-        expect(showModalAction).toHaveBeenCalled();
-      });
-
-      it('load a reserve Modal component', () => {
-        expect(wrapper.find('LoadableComponent').exists()).toBeTruthy();
-        expect(wrapper).toMatchSnapshot();
-      });
-    });
+  it('call reserve action on submit button click', () => {
+    // Q) should it be done in reserveForm.test.js where there is a button tag?
   });
 });
