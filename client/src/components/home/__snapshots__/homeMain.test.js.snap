@@ -11,7 +11,8 @@ exports[`<HomeMain /> renders properly 1`] = `
     <img
       alt="신선한 음식 배달"
       class="home-main--img"
-      src="[object Object]"
+      data-testid="img-delivery"
+      src="delivery.jpg"
     />
     <div
       class="home-main--text"
@@ -58,7 +59,8 @@ exports[`<HomeMain /> renders properly 1`] = `
     <img
       alt="지역 농산품"
       class="lazy, home-main--img"
-      data-src="[object Object]"
+      data-src="localfood.jpg"
+      data-testid="img-localfood"
     />
     <div
       class="home-main--text"
@@ -84,7 +86,8 @@ exports[`<HomeMain /> renders properly 1`] = `
     <img
       alt="참기름"
       class="lazy, home-main--img"
-      data-src="[object Object]"
+      data-src="sesame.jpg"
+      data-testid="img-sesame"
     />
     <div
       class="home-main--text"
@@ -105,6 +108,7 @@ exports[`<HomeMain /> renders properly 1`] = `
         경주 시니어 클럽에서 주관하는 노인 일자리 창출 사업을 장려하기 위해 
         <a
           class="sesame-link td-none b"
+          data-testid="sesame-link"
           href="http://www.xn--0z2bz4lsqjfrj.com/"
           rel="noopener noreferrer"
           target="_blank"
@@ -121,7 +125,8 @@ exports[`<HomeMain /> renders properly 1`] = `
     <img
       alt="여성을 위한 기업"
       class="lazy, home-main--img"
-      data-src="[object Object]"
+      data-src="women.jpg"
+      data-testid="img-women"
     />
     <div
       class="home-main--text"

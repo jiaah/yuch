@@ -20,7 +20,16 @@ export class LazyImage extends React.Component {
 
   // Just render the image with data-src
   render() {
-    const { alt, classes, src, srcset, sizes, width, height } = this.props;
+    const {
+      alt,
+      classes,
+      src,
+      srcset,
+      sizes,
+      width,
+      height,
+      testName,
+    } = this.props;
     return (
       <img
         alt={alt}
@@ -30,6 +39,7 @@ export class LazyImage extends React.Component {
         data-sizes={sizes}
         width={width}
         height={height}
+        data-testid={`${testName}`}
       />
     );
   }

@@ -10,7 +10,12 @@ import women from '../../../assets/img/women.jpg';
 const HomeMain = () => (
   <div id="home-main" className="home-main--container">
     <div className="home-main--box">
-      <img className="home-main--img" src={delivery} alt="신선한 음식 배달" />
+      <img
+        className="home-main--img"
+        src={delivery}
+        alt="신선한 음식 배달"
+        data-testid="img-delivery"
+      />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR RESTAURANT</p>
         <h3 className="c-text1">당신의 위한 유청 서비스</h3>
@@ -29,7 +34,12 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <LazyImage classes="home-main--img" src={localfood} alt="지역 농산품" />
+      <LazyImage
+        classes="home-main--img"
+        src={localfood}
+        alt="지역 농산품"
+        testName="img-localfood"
+      />
       <div className="home-main--text">
         <p className="f-mini lh-3">HEALTHY FOOD</p>
         <h3 className="c-text1">신선한 지역 농산물</h3>
@@ -40,7 +50,12 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box">
-      <LazyImage classes="home-main--img" src={sesame} alt="참기름" />
+      <LazyImage
+        classes="home-main--img"
+        src={sesame}
+        alt="참기름"
+        testName="img-sesame"
+      />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR COMMUNITY</p>
         <h3 className="c-text1">
@@ -56,6 +71,7 @@ const HomeMain = () => (
             rel="noopener noreferrer"
             target="_blank"
             className="sesame-link td-none b"
+            data-testid="sesame-link"
           >
             착한손맛
           </a>
@@ -64,7 +80,12 @@ const HomeMain = () => (
       </div>
     </div>
     <div className="home-main--box reverse">
-      <LazyImage classes="home-main--img" src={women} alt="여성을 위한 기업" />
+      <LazyImage
+        classes="home-main--img"
+        src={women}
+        alt="여성을 위한 기업"
+        testName="img-women"
+      />
       <div className="home-main--text">
         <p className="f-mini lh-3">CAREER WOMEN</p>
         <h3 className="c-text1">여성이 일하기 좋은 기업</h3>
