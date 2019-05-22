@@ -33,32 +33,30 @@ const props = {
 const setup = () =>
   render(<ComponentNaked {...props} reserveInfo={mockData.reserveInfoInit} />);
 
-describe('<ReserveForm', () => {
-  it('submit with reserve Info', async () => {
-    const {
-      getByTestId,
-      getByText,
-      getByLabelText,
-      container,
-      queryByTestId,
-    } = setup();
+test('submit with reserve Info', async () => {
+  const {
+    getByTestId,
+    getByText,
+    getByLabelText,
+    container,
+    queryByTestId,
+  } = setup();
 
-    const buttonComponent = queryByTestId('button');
-    const inputNameById = getByTestId('name');
-    const submitButton = getByText('예약완료');
+  const buttonComponent = queryByTestId('button');
+  const inputNameById = getByTestId('name');
+  const submitButton = getByText('예약완료');
 
-    expect(buttonComponent).toBeTruthy();
+  expect(buttonComponent).toBeTruthy();
 
-    // old version. test's passed. but it doesn't seem to work.
-    // inputNameById.value = name;
-    // fireEvent.change(name);
-    // Error: called zero times.
-    // expect(mockChange).toHaveBeenCalledTimes(1);
+  // old version. test's passed. but it doesn't seem to work.
+  // inputNameById.value = name;
+  // fireEvent.change(name);
+  // Error: called zero times.
+  // expect(mockChange).toHaveBeenCalledTimes(1);
 
-    // Error: The given element does not have a value setter
-    // fireEvent.change(getByLabelText('이름'), { target: { value: name } });
+  // Error: The given element does not have a value setter
+  // fireEvent.change(getByLabelText('이름'), { target: { value: name } });
 
-    fireEvent.click(submitButton);
-    expect(mockSubmit).toHaveBeenCalledTimes(1);
-  });
+  fireEvent.click(submitButton);
+  expect(mockSubmit).toHaveBeenCalledTimes(1);
 });
