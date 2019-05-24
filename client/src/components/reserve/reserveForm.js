@@ -25,7 +25,7 @@ const ReserveForm = ({
   );
 
   return (
-    <form>
+    <form data-testid="reserve-form">
       <div className="mb2">
         <TextField
           id="name"

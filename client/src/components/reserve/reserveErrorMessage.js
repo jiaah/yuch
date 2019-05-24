@@ -3,7 +3,7 @@ import * as data from '../../shared/data';
 
 const ReserveErrorMessage = () => (
   <React.Fragment>
-    <p>{data.message.reserve.error}</p>
+    <p data-testid="reserve-message--error">{data.message.reserve.error}</p>
     <br />
     <a
       className="td-none c-point2"

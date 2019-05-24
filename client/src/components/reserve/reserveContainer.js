@@ -33,7 +33,7 @@ const styles = theme => ({
     },
   },
 });
-class ReserveContainer extends Component {
+export class ReserveContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -165,7 +165,6 @@ const mapDispatchToProps = dispatch => ({
   reserveActions: bindActionCreators(reserveActions, dispatch),
 });
 
-export const Unwrapped = ReserveContainer;
 export default compose(
   withStyles(styles),
   connect(

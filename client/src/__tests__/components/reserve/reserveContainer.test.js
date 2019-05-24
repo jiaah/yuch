@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent, waitForElement } from '../../setupTests';
-import { Unwrapped as UnwrappedReserveContainer } from '../../../components/reserve/reserveContainer';
+import { ReserveContainer } from '../../../components/reserve/reserveContainer';
 
 afterEach(cleanup);
 const defaultProps = {
@@ -11,11 +11,12 @@ const defaultProps = {
   classes: {
     bigButton: '',
   },
+  isReserved: '',
 };
 
 const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
-  const component = render(<UnwrappedReserveContainer {...setupProps} />);
+  const component = render(<ReserveContainer {...setupProps} />);
   return component;
 };
 
@@ -29,22 +30,17 @@ test('renders properly', () => {
 });
 
 test('open modal on button click', async () => {
-  const { getByTestId, queryByTestId } = setUp();
+  const { getByTestId, queryByTestId, container, rerender } = setUp();
   const reserveButton = getByTestId('reserve-modal--button');
-  const modal = queryByTestId('modal');
 
   expect(reserveButton.textContent).toBe('예약하기');
 
-  expect(modal).toBeFalsy();
   fireEvent.click(reserveButton);
 
-  defaultProps.show = true;
+  // defaultProps.show = true; // Error: does not update props.
+  // render(<ReserveContainer show={true} />, { container });
+  // rerender(<ReserveContainer show={true} />); // ERROR: TypeError: Cannot read property 'bigButton' of undefined
 
-  // ReferenceError: rerender is not defined
-  // Received : null
-  // expect(modal).toBeTruthy();
-});
-
-test('call reserve action on submit button click', () => {
-  // Q) should it be done in reserveForm.test.js where there is a button tag?
+  // const modal = await waitForElement(() => queryByTestId('modal'));
+  // expect(queryByTestId('reserve-form')).toBeTruthy();
 });

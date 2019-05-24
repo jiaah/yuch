@@ -4,13 +4,13 @@ import * as data from '../../shared/data';
 import ReserveErrorMessage from './reserveErrorMessage';
 
 const ReserveMessage = ({ isReserved }) => (
-  <React.Fragment>
+  <div data-testid="reserve-message">
     {isReserved === 'success' ? (
       data.message.reserve.success
     ) : isReserved === 'error' ? (
       <ReserveErrorMessage />
     ) : null}
-  </React.Fragment>
+  </div>
 );
 
 export default ReserveMessage;
