@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
-import { hideModal, showModal } from './modalAction';
+import * as types from '../../actions/actionTypes';
+import { hideModal, showModal } from '../../actions/modalAction';
 
 test('should generate hide modal action', () => {
   const expectedAction = { type: types.HIDE_MODAL };

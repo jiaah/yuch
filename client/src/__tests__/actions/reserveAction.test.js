@@ -1,8 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import * as types from './actionTypes';
-import * as actions from './reserveAction';
+import * as types from '../../actions/actionTypes';
+import * as actions from '../../actions/reserveAction';
 
 // config store/ middleware & axios
 const middleware = [thunk];

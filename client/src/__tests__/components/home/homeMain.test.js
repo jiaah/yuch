@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, cleanup } from '../../__tests__/setupTests';
-import HomeMain from './homeMain';
+import { render, cleanup } from '../../setupTests';
+import HomeMain from '../../../components/home/homeMain';
 
 afterEach(cleanup);
 

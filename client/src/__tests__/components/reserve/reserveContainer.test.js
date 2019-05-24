@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '../../__tests__/setupTests';
-import { Unwrapped as UnwrappedReserveContainer } from './reserveContainer';
+import { render, cleanup, fireEvent, waitForElement } from '../../setupTests';
+import { Unwrapped as UnwrappedReserveContainer } from '../../../components/reserve/reserveContainer';
 
 afterEach(cleanup);
 const defaultProps = {
@@ -28,16 +28,20 @@ test('renders properly', () => {
   expect(reserveButton.textContent).toBe('예약하기');
 });
 
-test('open modal on button click', () => {
+test('open modal on button click', async () => {
   const { getByTestId, queryByTestId } = setUp();
   const reserveButton = getByTestId('reserve-modal--button');
   const modal = queryByTestId('modal');
 
   expect(reserveButton.textContent).toBe('예약하기');
 
+  expect(modal).toBeFalsy();
   fireEvent.click(reserveButton);
+
+  defaultProps.show = true;
+
   // ReferenceError: rerender is not defined
-  // rerender(<UnwrappedReserveContainer show={true} />);
+  // Received : null
   // expect(modal).toBeTruthy();
 });
 

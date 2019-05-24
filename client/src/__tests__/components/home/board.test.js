@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, cleanup } from '../../__tests__/setupTests';
-import Board from './board';
+import { render, cleanup } from '../../setupTests';
+import Board from '../../../components/home/board';
 
 afterEach(cleanup);
 

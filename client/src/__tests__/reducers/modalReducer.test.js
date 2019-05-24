@@ -1,5 +1,5 @@
-import modal from './modalReducer';
-import * as types from '../actions/actionTypes';
+import modal from '../../reducers/modalReducer';
+import * as types from '../../actions/actionTypes';
 
 const initialState = {
   show: false,

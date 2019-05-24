@@ -1,13 +1,8 @@
 import React from 'react';
 import { unwrap } from '@material-ui/core/test-utils';
-import ReserveForm from './reserveForm';
-import * as mockData from '../../__tests__/__mocks__/mockData';
-import {
-  render,
-  fireEvent,
-  waitForElement,
-  cleanup,
-} from '../../__tests__/setupTests';
+import ReserveForm from '../../../components/reserve/reserveForm';
+import * as mockData from '../../__mocks__/mockData';
+import { render, fireEvent, waitForElement, cleanup } from '../../setupTests';
 
 afterEach(cleanup);
 
