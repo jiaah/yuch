@@ -1,14 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter as Router } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter as Router } from 'connected-react-router';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Store from './store';
+import configureStore, { history } from './store';
 import Routes from './routes';
 
-const root = document.createElement('div');
-document.body.appendChild(root);
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#AE9A65' },
@@ -20,10 +17,14 @@ const theme = createMuiTheme({
   },
 });
 
+const store = configureStore();
+const root = document.createElement('div');
+document.body.appendChild(root);
+
 render(
-  <Provider store={Store}>
+  <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <Router history={createHistory()}>
+      <Router history={history}>
         <Routes />
       </Router>
     </MuiThemeProvider>

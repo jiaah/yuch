@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Form Component It should render without errors 1`] = `
+<div
+  className="login-container"
+  data-test="loginformComponent"
+>
+  <form
+    className="flex flex-column-m items-center"
+    onSubmit={[Function]}
+  >
+    <TextField
+      InputProps={
+        Object {
+          "startAdornment": <WithStyles(InputAdornment)
+            position="start"
+          >
+            <Icon
+              fill="none"
+              height="30"
+              name="filledUser"
+              viewBox="0 0 30 30"
+              width="30"
+            />
+          </WithStyles(InputAdornment)>,
+        }
+      }
+      className=""
+      data-test="username-input"
+      error={false}
+      helperText={false}
+      id="username"
+      label="Username"
+      margin="normal"
+      name="username"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      required={true}
+      select={false}
+      value=""
+      variant="standard"
+    />
+    <TextField
+      InputProps={
+        Object {
+          "startAdornment": <WithStyles(InputAdornment)
+            position="start"
+          >
+            <Icon
+              fill="none"
+              height="30"
+              name="filledLock"
+              viewBox="0 0 30 30"
+              width="30"
+            />
+          </WithStyles(InputAdornment)>,
+        }
+      }
+      className=""
+      data-test="password-input"
+      error={false}
+      helperText={false}
+      id="password"
+      label="Password"
+      margin="normal"
+      name="password"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      required={true}
+      select={false}
+      value=""
+      variant="standard"
+    />
+    <WithStyles(FormButton)
+      buttonName="로그인"
+      data-test="submit-btn"
+      isSubmitting={false}
+      typeValue="submit"
+      variantValue="contained"
+      width="medium"
+    />
+  </form>
+</div>
+`;

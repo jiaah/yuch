@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
 /* --- Components --- */
 import modal from './modalReducer';
 import httpHandler from './httpHandlerReducer';
 import flashMessage from './flashMessageReducer';
 
-export default combineReducers({
-  modal,
-  httpHandler,
-  flashMessage,
-  routing: routerReducer,
-});
+export default history =>
+  combineReducers({
+    router: connectRouter(history),
+    modal,
+    httpHandler,
+    flashMessage,
+  });
