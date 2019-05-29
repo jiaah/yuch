@@ -18,7 +18,7 @@ const Login = Loader({
 
 const Users = Loader({
   loader: () =>
-    import('./src/components/auth/usersContainer' /* webpackChunkName: 'CreateUser' */),
+    import('./src/components/auth/UsersContainer' /* webpackChunkName: 'CreateUser' */),
 });
 
 const NoMatch = Loader({
