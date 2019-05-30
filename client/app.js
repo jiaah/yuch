@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import Navbar from './src/components/nav/navContainer';
+import Nav from './src/components/nav/navContainer';
 import Loader from './src/shared/loader';
 import './styles/main.scss';
 
@@ -12,7 +12,7 @@ const FlashMessagesContainer = Loader({
 
 const App = (props, { isOnModal }) => (
   <div id="app">
-    <Navbar />
+    <Nav />
     {!isOnModal && (
       <div className="flex justify-center">
         <FlashMessagesContainer />
