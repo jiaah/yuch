@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router';
 import modal from './modalReducer';
 import httpHandler from './HTTPHandlerReducer';
 import flashMessage from './flashMessageReducer';
+import auth from './authReducer';
 
 export default history =>
   combineReducers({
@@ -11,4 +12,5 @@ export default history =>
     modal,
     httpHandler,
     flashMessage,
+    auth,
   });

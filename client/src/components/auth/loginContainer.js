@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 
 import Form from './loginForm';
-import { isLoggedIn, saveUserNameAndToken } from '../../../localStorage';
+import { isLoggedIn, saveUserToken } from '../../../localStorage';
 import { loginValidation } from './formValidation';
 import * as data from '../../shared/data';
 /* --- Actions --- */
@@ -25,8 +25,8 @@ class Login extends React.Component {
     }
 
     try {
-      const userData = await this.props.userLogin(username, password);
-      await saveUserNameAndToken(userData);
+      const token = await this.props.userLogin(username, password);
+      await saveUserToken(token);
       await resetForm({});
       this.props.history.push('/');
     } catch (error) {

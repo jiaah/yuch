@@ -5,30 +5,25 @@ import { Link, withRouter } from 'react-router-dom';
 /* --- Components --- */
 import * as data from '../shared/data';
 import Ul from '../shared/ul';
-import {
-  isLoggedIn,
-  getCompanyName,
-  clearLocalStorage,
-} from '../../localStorage';
-/* --- Actions --- */
+import { clearLocalStorage } from '../../localStorage';
+/* --- images --- */
 import logo from '../../assets/img/yuch-logo.png';
+/* --- actions --- */
+import { userLogout } from '../actions/authAction';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.handleUserLogout = this.handleUserLogout.bind(this);
-  }
-
   handleUserLogout = async ev => {
     ev.preventDefault();
+    await this.props.userLogout();
     await clearLocalStorage();
     return this.props.history.push('/login');
   };
 
   render() {
     const isHomepage = this.props.history.location.pathname === '/';
+
     return (
       <div className="nav">
         <div className="flex justify-between nav--top">
@@ -39,10 +34,11 @@ class Nav extends Component {
             상담전화&#8201;
             <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
           </a>
-          {isLoggedIn() ? (
+          {/* calling isLoggedIn() directly from localStoragy does not re-render the component on router history change. */}
+          {this.props.isLoggedIn ? (
             <div className="flex">
               <p className="mr3 mt2">
-                안녕하세요. <span className="b">{getCompanyName()}</span>
+                안녕하세요. <span className="b">{this.props.userName}</span>
                 &#8201;님,
               </p>
               <button
@@ -70,11 +66,18 @@ class Nav extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  userName: state.auth.userName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  userLogout: () => dispatch(userLogout()),
+});
 
 export default withRouter(
   connect(
-    undefined,
+    mapStateToProps,
     mapDispatchToProps,
   )(Nav),
 );

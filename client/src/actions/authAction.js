@@ -23,9 +23,13 @@ export const userLogin = (username, password) => async dispatch => {
       password,
     });
     const userData = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'login' });
-    return userData;
+    dispatch({ type: types.HTTP_AUTH_SUCCESS, payload: userData.companyName });
+    return userData.token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
   }
 };
+
+export const userLogout = () => ({
+  type: types.USER_LOGOUT,
+});
