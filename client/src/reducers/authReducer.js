@@ -7,7 +7,7 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case types.HTTP_AUTH_SUCCESS:
+    case types.USER_LOGIN:
       return {
         ...state,
         isLoggedIn: true,

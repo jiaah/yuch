@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 /* --- Components --- */
-import * as data from '../shared/data';
-import Ul from '../shared/ul';
-import { clearLocalStorage } from '../../localStorage';
+import * as data from '../../shared/data';
+import Ul from '../../shared/ul';
+import { clearLocalStorage } from '../../../localStorage';
 /* --- images --- */
-import logo from '../../assets/img/yuch-logo.png';
+import logo from '../../../assets/img/yuch-logo.png';
 /* --- actions --- */
-import { userLogout } from '../actions/authAction';
+import { userLogout } from '../../actions/authAction';
 
 // Preload Nav Component on mouseover Login button when on Homepage
 // Use State to keep track of routes.
