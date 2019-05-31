@@ -1,10 +1,10 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 
-const Spinner = () =>
-  import('../components/spinner' /* webpackChunkName: 'Spinner' */);
+const Loading = () =>
+  import('../shared/loading' /* webpackChunkName: 'Spinner' */);
 
-const Loading = props => {
+const isLoading = props => {
   if (props.error) {
     return (
       <div>
@@ -26,7 +26,7 @@ const Loading = props => {
     );
   }
   if (props.pastDelay) {
-    Spinner();
+    Loading();
   }
   return null;
 };
@@ -35,7 +35,7 @@ const Loader = opts =>
   Loadable(
     Object.assign(
       {
-        loading: Loading,
+        loading: isLoading,
         delay: 200,
         timeout: 10000,
       },

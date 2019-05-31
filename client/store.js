@@ -4,25 +4,34 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'connected-react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createRootReducer from './src/reducers';
 
 export const history = createBrowserHistory();
 
-export default function configureStore(preloadedState) {
-  const store = createStore(
-    createRootReducer(history), // root reducer with router state
-    preloadedState,
-    composeWithDevTools(
-      applyMiddleware(
-        routerMiddleware(history), // for dispatching history actions
-        thunkMiddleware,
-        createLogger({
-          predicate: () => process.env.NODE_ENV === 'development',
-          collapsed: true,
-        }),
-      ),
-    ),
-  );
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+const persistedReducer = persistReducer(
+  persistConfig,
+  createRootReducer(history), // root reducer with router state
+);
 
-  return store;
-}
+const store = createStore(
+  persistedReducer,
+  composeWithDevTools(
+    applyMiddleware(
+      routerMiddleware(history), // for dispatching history actions
+      thunkMiddleware,
+      createLogger({
+        predicate: () => process.env.NODE_ENV === 'development',
+        collapsed: true,
+      }),
+    ),
+  ),
+);
+
+export const persistor = persistStore(store);
+export default store;
