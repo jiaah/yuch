@@ -19,7 +19,7 @@ class NavContainer extends Component {
   };
 
   render() {
-    const { isLoggedIn, userName } = this.props;
+    const { isLoggedIn, userName, routerLocation } = this.props;
 
     return (
       <div className="nav">
@@ -39,7 +39,7 @@ class NavContainer extends Component {
             &#8201;님,
           </p>
         )}
-        <NavMenu />
+        <NavMenu routerLocation={routerLocation} />
       </div>
     );
   }
@@ -48,6 +48,7 @@ class NavContainer extends Component {
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   userName: state.auth.userName,
+  routerLocation: state.router.location.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({
