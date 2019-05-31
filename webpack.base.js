@@ -129,7 +129,7 @@ module.exports = {
       chunkFilename: devMode ? '[id].css' : '[id].[chunkhash].css',
     }),
     // Bug: Does not match Nav path... weird.
-    // new CaseSensitivePathsPlugin(),
+    new CaseSensitivePathsPlugin(),
     new CopyWebpackPlugin([
       { from: `${__dirname}/static`, to: `${__dirname}/public/dist` },
     ]),

@@ -379,9 +379,7 @@
 }
 
 .bb {
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(221, 234, 250);
+  border-bottom: 1px solid $c-point1;
 }
 
 .bt {

@@ -159,7 +159,7 @@
     "nodemon": "^1.18.3",
     "prettier": "^1.14.2",
     "prettier-eslint": "^8.8.2",
-    "react-hot-loader": "^4.5.3",
+    "react-hot-loader": "^4.8.8",
     "react-testing-library": "^7.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",

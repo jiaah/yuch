@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { hot, setConfig } from 'react-hot-loader';
+import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
 import App from './app';
@@ -39,10 +39,10 @@ const routes = props => (
 );
 
 // enable to use react-hot-loader with React Hooks
-setConfig({
-  // set this flag to support SFC if patch is not landed
-  pureSFC: true,
-});
+// setConfig({
+//   // set this flag to support SFC if patch is not landed
+//   pureSFC: true,
+// });
 
 const Routes =
   !module.hot || process.env.NODE_ENV === 'production'

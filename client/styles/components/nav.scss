@@ -2,17 +2,7 @@
   z-index: 10000;
   background-color: #ffffff;
   letter-spacing: 1.2px;
-  padding: .5em .7em .5em .7em;
-
-  .nav-bar {
-    float: right;
-
-    @include for-tablet-landscape-up {
-      float: none;
-      display: flex;
-      justify-content: space-between
-    }
-  }
+  padding: .5em .7em 0 .7em;
 
   .contact {
     background-color: $c-point2;
@@ -22,14 +12,7 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    padding: 5.6px 16px 3.2px 16px;
-
-    display: none;
-
-    @include for-tablet-landscape-up {
-      display: flex;
-      padding: 5.6px 18px 3.4px 18px;
-    }
+    padding: 5.6px 18px 3.4px 18px;
 
     @include for-big-desktop-up {
       padding-top: 8px;
