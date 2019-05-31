@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 /* --- Components --- */
-import * as data from '../../shared/data';
-import Ul from '../../shared/ul';
 import { clearLocalStorage } from '../../../localStorage';
 import Navbar from './navbar';
+import NavMenu from './navMenu';
 /* --- actions --- */
 import { userLogout } from '../../actions/authAction';
 /* --- images --- */
@@ -20,9 +19,7 @@ class NavContainer extends Component {
   };
 
   render() {
-    const { isLoggedIn, userName, history } = this.props;
-    const isHomepage = history.location.pathname === '/';
-    const addBorderBottom = isHomepage ? '' : 'bb';
+    const { isLoggedIn, userName } = this.props;
 
     return (
       <div className="nav">
@@ -42,9 +39,7 @@ class NavContainer extends Component {
             &#8201;님,
           </p>
         )}
-        <div className={`bt ${addBorderBottom}`}>
-          <Ul anchor={data.nav} />
-        </div>
+        <NavMenu />
       </div>
     );
   }
