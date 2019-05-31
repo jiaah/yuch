@@ -20,10 +20,9 @@ class NavContainer extends Component {
   };
 
   render() {
-    const isHomepage = this.props.history.location.pathname === '/';
-
+    const { isLoggedIn, userName, history } = this.props;
+    const isHomepage = history.location.pathname === '/';
     const addBorderBottom = isHomepage ? '' : 'bb';
-    const { isLoggedIn, userName } = this.props;
 
     return (
       <div className="nav">
