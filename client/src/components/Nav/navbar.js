@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ isLoggedIn, userName, handleUserLogout }) => (
+const Navbar = ({ isLoggedIn, handleUserLogout }) => (
   <div className="flex justify-between">
     <a
       className="contact mh-auto f-mini td-none white"
