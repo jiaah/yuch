@@ -11,7 +11,7 @@ export const createUser = userInfo => async dispatch => {
     return companyName;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'createUser', error });
-    throw new Error(error);
+    throw new Error('Creating a user failed');
   }
 };
 
@@ -27,6 +27,7 @@ export const userLogin = (username, password) => async dispatch => {
     return userData.token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
+    throw new Error('Login failed');
   }
 };
 

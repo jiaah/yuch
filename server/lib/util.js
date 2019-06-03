@@ -21,7 +21,7 @@ exports.comparePassword = function comparePassword(
   userPassword,
   databasePassword,
 ) {
-  return bcrypt.compareSync(userPassword, databasePassword);
+  return bcrypt.compare(userPassword, databasePassword);
 };
 
 exports.bcryptPassword = function bcryptPassword(password) {
