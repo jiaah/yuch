@@ -45,9 +45,21 @@ exports.loginUser = (req, res) => {
       if (!user) {
         return res.status(401).json('Auth failed');
       }
-      if (!util.comparePassword(password, user.password)) {
-        return res.status(409).json('Auth failed');
+
+      if (!!user && user.username !== 'yuch') {
+        if (!util.comparePassword(password, user.password)) {
+          return res.status(409).json('Auth failed');
+        }
       }
+
+      // Sync hashed password (DB) !== Async hashed password (BE)
+      // could not save hashed password from Async function in DB.
+      if (!!user && user.username === 'yuch') {
+        if (!util.compareAdminPassword(password, user.password)) {
+          return res.status(409).json('Auth failed');
+        }
+      }
+
       companyName = user.company_name;
       return util.getRandomToken(user);
     })
