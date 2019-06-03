@@ -40,6 +40,33 @@ export const navClient = [
   },
 ];
 
+export const navAdmin = [
+  {
+    id: 1,
+    name: '식수현황',
+    to: '/',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 2,
+    name: '지불현황',
+    to: '/',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 3,
+    name: '매출현황',
+    to: '/user/account',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 3,
+    name: '계정',
+    to: '/user/account',
+    className: 'anchor td-none c-text',
+  },
+];
+
 export const message = {
   auth: {
     loggedInUser: '회원님은 이미 로그인 되어있습니다.',

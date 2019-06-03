@@ -1,9 +1,9 @@
 import React from 'react';
 
 /* --- Components --- */
-import { Link } from 'react-router-dom';
 import * as data from '../../shared/data';
 import Ul from '../../shared/ul';
+import ToggleMenuBox from './toggleMenuBox';
 
 const NavMenu = ({ routerLocation, isLoggedIn, userName }) => {
   const isHomepage = routerLocation === '/';
@@ -15,7 +15,7 @@ const NavMenu = ({ routerLocation, isLoggedIn, userName }) => {
       {isHomepage && !isLoggedIn && <Ul anchor={data.navHome} />}
       {isLoggedIn ? (
         userName === 'yuchung' ? (
-          <Link to="/signup">CREATE USER</Link>
+          <ToggleMenuBox links={data.navAdmin} />
         ) : (
           <Ul links={data.navClient} />
         )
