@@ -16,9 +16,14 @@ const Login = Loader({
     import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
-const Users = Loader({
+const Signup = Loader({
   loader: () =>
-    import('./src/components/auth/UsersContainer' /* webpackChunkName: 'CreateUser' */),
+    import('./src/components/auth/signupContainer' /* webpackChunkName: 'CreateUser' */),
+});
+
+const UserAccount = Loader({
+  loader: () =>
+    import('./src/components/user/userAccount' /* webpackChunkName: 'CreateUser' */),
 });
 
 const NoMatch = Loader({
@@ -32,7 +37,8 @@ const routes = props => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/users/account" component={Users} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/user/account" component={UserAccount} />
       <Route component={NoMatch} />
     </Switch>
   </div>

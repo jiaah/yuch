@@ -19,7 +19,7 @@ const Modal = Loader({
     import('../../shared/modal' /* webpackChunkName: 'simpleModal' */),
 });
 
-class UsersContainer extends React.Component {
+class SignupContainer extends React.Component {
   showModal = () => this.props.modalActions.showModal();
 
   closeModal = () => this.props.modalActions.hideModal();
@@ -134,4 +134,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UsersContainer);
+)(SignupContainer);

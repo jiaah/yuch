@@ -23,19 +23,19 @@ export const navClient = [
   {
     id: 1,
     name: '금일식수',
-    to: '/catering/dd/client',
+    to: '/',
     className: 'anchor td-none c-text',
   },
   {
     id: 2,
     name: '식수현황',
-    to: '/catering/mm/client',
+    to: '/',
     className: 'anchor td-none c-text',
   },
   {
     id: 3,
     name: '계정',
-    to: '/account',
+    to: '/user/account',
     className: 'anchor td-none c-text',
   },
 ];
