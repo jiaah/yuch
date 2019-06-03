@@ -35,7 +35,7 @@ export const navClient = [
   {
     id: 3,
     name: '계정',
-    to: '/accoun',
+    to: '/account',
     className: 'anchor td-none c-text',
   },
 ];
