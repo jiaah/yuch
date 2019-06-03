@@ -79,8 +79,8 @@ class UsersContainer extends React.Component {
       dinnerQuantityValue: '',
       bankAccountOption: '1',
     };
-
     const { show, flashVariant } = this.props;
+
     return (
       <div className="container">
         <h2>고객계정</h2>

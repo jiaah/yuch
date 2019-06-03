@@ -39,7 +39,11 @@ class NavContainer extends Component {
             &#8201;님,
           </p>
         )}
-        <NavMenu routerLocation={routerLocation} />
+        <NavMenu
+          routerLocation={routerLocation}
+          isLoggedIn={isLoggedIn}
+          userName={userName}
+        />
       </div>
     );
   }

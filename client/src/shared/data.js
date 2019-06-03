@@ -1,4 +1,4 @@
-export const nav = [
+export const navHome = [
   {
     id: 1,
     name: '위탁급식/식당',
@@ -15,6 +15,27 @@ export const nav = [
     id: 3,
     name: '위치/오픈시간',
     to: '#board',
+    className: 'anchor td-none c-text',
+  },
+];
+
+export const navClient = [
+  {
+    id: 1,
+    name: '금일식수',
+    to: '/catering/dd/client',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 2,
+    name: '식수현황',
+    to: '/catering/mm/client',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 3,
+    name: '계정',
+    to: '/accoun',
     className: 'anchor td-none c-text',
   },
 ];
