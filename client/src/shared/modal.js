@@ -9,9 +9,9 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from './iconButton';
 import Loader from './loader';
 
-const FlashMessagesContainer = Loader({
+const FlashMessageBox = Loader({
   loader: () =>
-    import('./flassMessagesContainer' /* webpackChunkName: 'FlashMessagesContainer' */),
+    import('./flashMessageBox' /* webpackChunkName: 'FlashMessageBoxr' */),
 });
 
 const styles = theme => ({
@@ -60,7 +60,7 @@ const SimpleModal = ({
             {title}
           </h3>
           {component}
-          {flashVariant !== '' && <FlashMessagesContainer />}
+          {flashVariant !== '' && <FlashMessageBox />}
         </div>
       </Modal>
     )}

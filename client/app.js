@@ -5,9 +5,9 @@ import NavContainer from './src/components/nav/navContainer';
 import Loader from './src/shared/loader';
 import './styles/main.scss';
 
-const FlashMessagesContainer = Loader({
+const FlashMessageBox = Loader({
   loader: () =>
-    import('./src/shared/flassMessagesContainer' /* webpackChunkName: 'FlashMessagesContainer' */),
+    import('./src/shared/flashMessageBox' /* webpackChunkName: 'FlashMessageBox' */),
 });
 
 const App = (props, { isOnModal }) => (
@@ -15,7 +15,7 @@ const App = (props, { isOnModal }) => (
     <NavContainer />
     {!isOnModal && (
       <div className="flex justify-center">
-        <FlashMessagesContainer />
+        <FlashMessageBox />
       </div>
     )}
     {props.children}
