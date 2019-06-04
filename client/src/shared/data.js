@@ -60,7 +60,34 @@ export const navAdmin = [
     className: 'anchor td-none c-text',
   },
   {
-    id: 3,
+    id: 4,
+    name: '계정',
+    to: '/user/account',
+    className: 'anchor td-none c-text',
+  },
+];
+
+export const navAdminListA = [
+  {
+    id: 11,
+    name: '식수현황',
+    to: '/',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 12,
+    name: '지불현황',
+    to: '/',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 13,
+    name: '매출현황',
+    to: '/user/account',
+    className: 'anchor td-none c-text',
+  },
+  {
+    id: 14,
     name: '계정',
     to: '/user/account',
     className: 'anchor td-none c-text',

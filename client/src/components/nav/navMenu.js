@@ -15,7 +15,7 @@ const NavMenu = ({ routerLocation, isLoggedIn, userName }) => {
       {isHomepage && !isLoggedIn && <Ul anchor={data.navHome} />}
       {isLoggedIn ? (
         userName === 'yuchung' ? (
-          <ToggleMenuBox links={data.navAdmin} />
+          <ToggleMenuBox data={data} />
         ) : (
           <Ul links={data.navClient} />
         )

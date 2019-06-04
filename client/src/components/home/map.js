@@ -13,6 +13,7 @@ class Map extends Component {
     };
 
     const map = new naver.maps.Map(mapDiv, mapOptions);
+    // eslint-disable-next-line no-unused-vars
     const marker = new naver.maps.Marker({
       map,
       position: new naver.maps.LatLng(35.87543, 129.2203883),

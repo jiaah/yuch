@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as types from './actionTypes';
 
 export const addFlashMessage = (variant, message) => async dispatch => {
