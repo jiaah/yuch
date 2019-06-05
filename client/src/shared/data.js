@@ -40,59 +40,99 @@ export const navClient = [
   },
 ];
 
-export const navAdmin = [
+export const navAdminList = [
   {
     id: 1,
     name: '식수현황',
     to: '/',
-    className: 'anchor td-none c-text',
   },
   {
     id: 2,
     name: '지불현황',
     to: '/',
-    className: 'anchor td-none c-text',
   },
   {
     id: 3,
     name: '매출현황',
     to: '/user/account',
-    className: 'anchor td-none c-text',
   },
   {
     id: 4,
     name: '계정',
     to: '/user/account',
-    className: 'anchor td-none c-text',
   },
 ];
 
-export const navAdminListA = [
-  {
-    id: 11,
-    name: '식수현황',
-    to: '/',
-    className: 'anchor td-none c-text',
-  },
-  {
-    id: 12,
-    name: '지불현황',
-    to: '/',
-    className: 'anchor td-none c-text',
-  },
-  {
-    id: 13,
-    name: '매출현황',
-    to: '/user/account',
-    className: 'anchor td-none c-text',
-  },
-  {
-    id: 14,
-    name: '계정',
-    to: '/user/account',
-    className: 'anchor td-none c-text',
-  },
-];
+export const navAdminItems = {
+  1: [
+    {
+      id: 11,
+      name: '금일 위탁급식 식수현황',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 12,
+      name: '금일 유청식당 식수현황',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 13,
+      name: '월별 식수현황',
+      to: '/user/account',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 14,
+      name: '회사별 식수현황',
+      to: '/user/account',
+      className: 'anchor td-none c-text',
+    },
+  ],
+  2: [
+    {
+      id: 11,
+      name: '지불현황',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 12,
+      name: '지불관리',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+  ],
+  3: [
+    {
+      id: 11,
+      name: '매출현황',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+  ],
+  4: [
+    {
+      id: 11,
+      name: '유청 입급 계좌',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 12,
+      name: '식수 가격',
+      to: '/',
+      className: 'anchor td-none c-text',
+    },
+    {
+      id: 13,
+      name: '고객 계정',
+      to: '/user/account',
+      className: 'anchor td-none c-text',
+    },
+  ],
+};
 
 export const message = {
   auth: {

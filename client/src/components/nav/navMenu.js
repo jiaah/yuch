@@ -3,7 +3,7 @@ import React from 'react';
 /* --- Components --- */
 import * as data from '../../shared/data';
 import Ul from '../../shared/ul';
-import ToggleMenuBox from './toggleMenuBox';
+import ToggleMenuList from './toggleMenuList';
 
 const NavMenu = ({ routerLocation, isLoggedIn, userName }) => {
   const isHomepage = routerLocation === '/';
@@ -15,7 +15,10 @@ const NavMenu = ({ routerLocation, isLoggedIn, userName }) => {
       {isHomepage && !isLoggedIn && <Ul anchor={data.navHome} />}
       {isLoggedIn ? (
         userName === 'yuchung' ? (
-          <ToggleMenuBox data={data} />
+          <ToggleMenuList
+            navAdminList={data.navAdminList}
+            navAdminItems={data.navAdminItems}
+          />
         ) : (
           <Ul links={data.navClient} />
         )
