@@ -3,19 +3,19 @@ export const navHome = [
     id: 1,
     name: '위탁급식/식당',
     to: '#home-main',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
   {
     id: 2,
     name: '온라인 예약',
     to: '#reserve',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
   {
     id: 3,
     name: '위치/오픈시간',
     to: '#board',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
 ];
 
@@ -24,19 +24,19 @@ export const navClient = [
     id: 1,
     name: '금일식수',
     to: '/',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
   {
     id: 2,
     name: '식수현황',
     to: '/',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
   {
     id: 3,
     name: '계정',
     to: '/user/account',
-    className: 'anchor td-none c-text',
+    className: 'c-text',
   },
 ];
 
@@ -69,25 +69,21 @@ export const navAdminItems = {
       id: 11,
       name: '금일 위탁급식 식수현황',
       to: '/',
-      className: 'anchor td-none c-text',
     },
     {
       id: 12,
       name: '금일 유청식당 식수현황',
       to: '/',
-      className: 'anchor td-none c-text',
     },
     {
       id: 13,
       name: '월별 식수현황',
       to: '/user/account',
-      className: 'anchor td-none c-text',
     },
     {
       id: 14,
       name: '회사별 식수현황',
       to: '/user/account',
-      className: 'anchor td-none c-text',
     },
   ],
   2: [
@@ -95,13 +91,11 @@ export const navAdminItems = {
       id: 11,
       name: '지불현황',
       to: '/',
-      className: 'anchor td-none c-text',
     },
     {
       id: 12,
       name: '지불관리',
       to: '/',
-      className: 'anchor td-none c-text',
     },
   ],
   3: [
@@ -109,7 +103,6 @@ export const navAdminItems = {
       id: 11,
       name: '매출현황',
       to: '/',
-      className: 'anchor td-none c-text',
     },
   ],
   4: [
@@ -117,19 +110,16 @@ export const navAdminItems = {
       id: 11,
       name: '유청 입급 계좌',
       to: '/',
-      className: 'anchor td-none c-text',
     },
     {
       id: 12,
       name: '식수 가격',
       to: '/',
-      className: 'anchor td-none c-text',
     },
     {
       id: 13,
       name: '고객 계정',
       to: '/user/account',
-      className: 'anchor td-none c-text',
     },
   ],
 };

@@ -74,6 +74,17 @@
     display: flex;
     justify-content: space-around;
     background-color: #ffffff;
+    padding-bottom: 250px;
+  }
+
+  .toggle-menu {
+    width: 220px;
+    padding: .5em 0 .5em .5em;
+    margin-left: -68px;
+  }
+
+  .toggle-menu--link {
+    font-size: 15.5px;
   }
 }
 

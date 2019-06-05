@@ -22,22 +22,25 @@ const ToggleMenuItems = ({ id, activeId, handleClose, anchorRef, items }) => {
         <Grow
           {...TransitionProps}
           style={{
-            width: '230px',
-            paddingTop: '.3em',
-            paddingBottom: '.3em',
             transformOrigin:
               placement === 'bottom' ? 'center top' : 'center bottom',
           }}
+          className="toggle-menu"
         >
           <Paper id="menu-list-grow">
-            <ClickAwayListener onClickAway={() => handleClose(id)}>
+            <ClickAwayListener onClickAway={ev => handleClose(ev, id)}>
               <MenuList>
                 {items.map(e => (
-                  <MenuItem key={e.id} onClick={() => handleClose(id)}>
-                    <Link to={e.to} className={e.className}>
-                      {e.name}
-                    </Link>
-                  </MenuItem>
+                  <React.Fragment>
+                    <MenuItem key={e.id} onClick={ev => handleClose(ev, id)}>
+                      <Link
+                        to={e.to}
+                        className="anchor td-none c-text1 toggle-menu--link"
+                      >
+                        {e.name}
+                      </Link>
+                    </MenuItem>
+                  </React.Fragment>
                 ))}
               </MenuList>
             </ClickAwayListener>

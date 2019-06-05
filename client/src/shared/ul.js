@@ -6,7 +6,7 @@ const Ul = ({ anchor, links }) => (
     {links &&
       links.map(e => (
         <li key={e.id}>
-          <Link className={e.className} to={e.to}>
+          <Link className={`anchor td-none ${e.className}`} to={e.to}>
             {e.name}
           </Link>
         </li>
@@ -14,7 +14,7 @@ const Ul = ({ anchor, links }) => (
     {anchor &&
       anchor.map(e => (
         <li key={e.id}>
-          <a className={e.className} href={e.to}>
+          <a className={`anchor td-none ${e.className}`} href={e.to}>
             {e.name}
           </a>
         </li>
