@@ -89,19 +89,19 @@ export const navAdminItems = {
   2: [
     {
       id: 11,
-      name: '지불현황',
+      name: '지불 현황',
       to: '/',
     },
     {
       id: 12,
-      name: '지불관리',
+      name: '지불 관리',
       to: '/',
     },
   ],
   3: [
     {
       id: 11,
-      name: '매출현황',
+      name: '매출 현황',
       to: '/',
     },
   ],
