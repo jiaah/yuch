@@ -34,7 +34,7 @@ class NavContainer extends Component {
         </div>
         {isLoggedIn &&
           userName !== 'yuchung' && (
-            <p className="mr3 pb2 flex justify-end">
+            <p className="mr3 pb2 flex justify-end f-mini">
               안녕하세요. &#8201;
               <span className="b">{userName}</span>
               &#8201;님,
