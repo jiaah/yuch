@@ -32,13 +32,14 @@ class NavContainer extends Component {
             <img className="yuch-logo" src={logo} alt="logo" />
           </Link>
         </div>
-        {isLoggedIn && (
-          <p className="mr3 pb2 flex justify-end">
-            안녕하세요. &#8201;
-            <span className="b">{userName}</span>
-            &#8201;님,
-          </p>
-        )}
+        {isLoggedIn &&
+          userName !== 'yuchung' && (
+            <p className="mr3 pb2 flex justify-end">
+              안녕하세요. &#8201;
+              <span className="b">{userName}</span>
+              &#8201;님,
+            </p>
+          )}
         <NavMenu
           routerLocation={routerLocation}
           isLoggedIn={isLoggedIn}
