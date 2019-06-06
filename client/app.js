@@ -11,7 +11,7 @@ const FlashMessageBox = Loader({
 });
 
 const App = (props, { isOnModal }) => (
-  <div id="app">
+  <div id="app absolute">
     <NavContainer />
     {!isOnModal && (
       <div className="flex justify-center">

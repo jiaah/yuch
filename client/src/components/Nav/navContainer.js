@@ -22,7 +22,7 @@ class NavContainer extends Component {
     const { isLoggedIn, userName, routerLocation } = this.props;
 
     return (
-      <div className="nav">
+      <div className="nav relative">
         <Navbar
           isLoggedIn={isLoggedIn}
           handleUserLogout={this.handleUserLogout}

@@ -89,12 +89,12 @@ export const navAdminItems = {
   2: [
     {
       id: 11,
-      name: '지불 현황',
+      name: '지불 관리',
       to: '/',
     },
     {
       id: 12,
-      name: '지불 관리',
+      name: '지불 현황',
       to: '/',
     },
   ],
@@ -108,7 +108,7 @@ export const navAdminItems = {
   4: [
     {
       id: 11,
-      name: '유청 입급 계좌',
+      name: '고객 계정',
       to: '/',
     },
     {
@@ -118,7 +118,7 @@ export const navAdminItems = {
     },
     {
       id: 13,
-      name: '고객 계정',
+      name: '유청 입급 계좌',
       to: '/user/account',
     },
   ],

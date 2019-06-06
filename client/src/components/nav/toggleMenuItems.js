@@ -7,8 +7,14 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const ToggleMenuItems = ({ id, activeId, handleClose, anchorRef, items }) => {
-  const isOpen = activeId === id;
+const ToggleMenuItems = ({
+  listId,
+  activeId,
+  handleClose,
+  anchorRef,
+  items,
+}) => {
+  const isOpen = activeId === listId;
 
   return (
     <Popper
@@ -28,19 +34,17 @@ const ToggleMenuItems = ({ id, activeId, handleClose, anchorRef, items }) => {
           className="toggle-menu"
         >
           <Paper id="menu-list-grow">
-            <ClickAwayListener onClickAway={ev => handleClose(ev, id)}>
+            <ClickAwayListener onClickAway={ev => handleClose(ev)}>
               <MenuList>
                 {items.map(e => (
-                  <React.Fragment>
-                    <MenuItem key={e.id} onClick={ev => handleClose(ev, id)}>
-                      <Link
-                        to={e.to}
-                        className="anchor td-none c-text1 toggle-menu--link"
-                      >
-                        {e.name}
-                      </Link>
-                    </MenuItem>
-                  </React.Fragment>
+                  <MenuItem key={e.id} onClick={ev => handleClose(ev)}>
+                    <Link
+                      to={e.to}
+                      className="anchor td-none c-text1 toggle-menu--link"
+                    >
+                      {e.name}
+                    </Link>
+                  </MenuItem>
                 ))}
               </MenuList>
             </ClickAwayListener>

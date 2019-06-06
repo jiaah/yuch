@@ -25,11 +25,11 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
   const handleToggle = id => {
     setActiveId(id);
   };
-  const handleClose = (event, id) => {
-    // if (anchorRef.current && anchorRef.current.include(event.target)) {
+  const handleClose = event => {
+    // if (anchorRef.current && anchorRef.current.contains(event.target)) {
     //   return;
     // }
-    if (activeId === id) setActiveId(null);
+    setActiveId(null);
   };
 
   return (
@@ -47,7 +47,7 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
             </Button>
             {activeId === e.id && (
               <ToggleMenuItems
-                id={e.id}
+                listId={e.id}
                 activeId={activeId}
                 handleClose={handleClose}
                 anchorRef={anchorRef}
