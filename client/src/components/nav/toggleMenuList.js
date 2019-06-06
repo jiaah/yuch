@@ -10,12 +10,9 @@ const ToggleMenuItems = Loader({
     import('./toggleMenuItems' /* webpackChunkName: 'ToggleMenuItems' */),
 });
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing.unit * 2,
   },
 });
 
@@ -26,7 +23,11 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
     setActiveId(id);
   };
   const handleClose = event => {
+    console.log('event: ', event.target);
+    console.log('anchorRef.current: ', anchorRef.current);
+
     // if (anchorRef.current && anchorRef.current.contains(event.target)) {
+
     //   return;
     // }
     setActiveId(null);
@@ -42,6 +43,7 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
               aria-owns={activeId === e.id ? 'menu-list-grow' : undefined}
               aria-haspopup="true"
               onClick={() => handleToggle(e.id)}
+              className="nav-menu--btn"
             >
               {e.name}
             </Button>
