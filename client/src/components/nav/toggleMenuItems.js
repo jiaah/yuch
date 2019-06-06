@@ -15,6 +15,7 @@ const ToggleMenuItems = ({
   items,
 }) => {
   const isOpen = activeId === listId;
+  const leftSideMenu = activeId === 3 || activeId === 4 ? 'leftSideMenu' : '';
 
   return (
     <Popper
@@ -31,7 +32,7 @@ const ToggleMenuItems = ({
             transformOrigin:
               placement === 'bottom' ? 'center top' : 'center bottom',
           }}
-          className="toggle-menu"
+          className={`toggle-menu ${leftSideMenu}`}
         >
           <Paper id="menu-list-grow">
             <ClickAwayListener onClickAway={ev => handleClose(ev)}>

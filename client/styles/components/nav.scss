@@ -70,6 +70,10 @@
     }
   }
 
+  .nav-menu--btn {
+    width: 8em;
+  }
+
   .nav-menu--btn:focus,
   .nav-menu--btn:hover {
     background-color: #ee910515;
@@ -82,12 +86,15 @@
   }
 
   .toggle-menu {
-    width: 220px;
+    width: 13em;
     padding: .5em;
-    margin-left: -70px;
   }
 
-  .toggle-menu--link {
+  .leftSideMenu {
+    margin-left: -8em;
+  }
+
+  .toggle-menu .toggle-menu--link {
     font-size: 15.5px;
   }
 

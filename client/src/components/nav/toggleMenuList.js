@@ -23,9 +23,6 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
     setActiveId(id);
   };
   const handleClose = event => {
-    console.log('event: ', event.target);
-    console.log('anchorRef.current: ', anchorRef.current);
-
     // if (anchorRef.current && anchorRef.current.contains(event.target)) {
 
     //   return;
