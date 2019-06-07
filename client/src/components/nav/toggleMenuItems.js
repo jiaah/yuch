@@ -35,13 +35,13 @@ const ToggleMenuItems = ({
           className={`toggle-menu ${leftSideMenu}`}
         >
           <Paper id="menu-list-grow">
-            <ClickAwayListener onClickAway={ev => handleClose(ev)}>
+            <ClickAwayListener onClickAway={handleClose}>
               <MenuList className="toggle-menu--list">
                 {items.map(e => (
                   <MenuItem
                     key={e.id}
                     className="toggle-menu--item"
-                    onClick={ev => handleClose(ev)}
+                    onClick={handleClose}
                   >
                     <Link
                       to={e.to}

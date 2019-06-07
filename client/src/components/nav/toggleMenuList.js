@@ -19,16 +19,8 @@ const styles = () => ({
 const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
   const [activeId, setActiveId] = useState(null);
   const anchorRef = useRef(null);
-  const handleToggle = id => {
-    setActiveId(id);
-  };
-  const handleClose = event => {
-    // if (anchorRef.current && anchorRef.current.contains(event.target)) {
-
-    //   return;
-    // }
-    setActiveId(null);
-  };
+  const handleToggle = id => setActiveId(id);
+  const handleClose = () => setActiveId(null);
 
   return (
     <React.Fragment>
