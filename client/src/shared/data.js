@@ -23,19 +23,19 @@ export const navClient = [
   {
     id: 1,
     name: '금일식수',
-    to: '/',
+    to: 'client/catering/dd',
     className: 'c-text',
   },
   {
     id: 2,
     name: '식수현황',
-    to: '/',
+    to: 'client/catering/mm',
     className: 'c-text',
   },
   {
     id: 3,
     name: '계정',
-    to: '/user/account',
+    to: 'client/account',
     className: 'c-text',
   },
 ];
@@ -44,22 +44,18 @@ export const navAdminList = [
   {
     id: 1,
     name: '식수현황',
-    to: '/',
   },
   {
     id: 2,
     name: '지불현황',
-    to: '/',
   },
   {
     id: 3,
     name: '매출현황',
-    to: '/user/account',
   },
   {
     id: 4,
     name: '계정',
-    to: '/user/account',
   },
 ];
 
@@ -68,58 +64,58 @@ export const navAdminItems = {
     {
       id: 11,
       name: '금일 위탁급식 식수현황',
-      to: '/',
+      to: 'admin/catering/dd',
     },
     {
       id: 12,
       name: '금일 유청식당 식수현황',
-      to: '/',
+      to: 'admin/restaurant/dd',
     },
     {
       id: 13,
       name: '월별 식수현황',
-      to: '/user/account',
+      to: 'admin/company/mm',
     },
     {
       id: 14,
       name: '회사별 식수현황',
-      to: '/user/account',
+      to: 'admin/company/clientlist',
     },
   ],
   2: [
     {
       id: 11,
       name: '지불 관리',
-      to: '/',
+      to: 'admin/payment/management',
     },
     {
       id: 12,
       name: '지불 현황',
-      to: '/',
+      to: 'admin/payment/status',
     },
   ],
   3: [
     {
       id: 11,
       name: '매출 현황',
-      to: '/',
+      to: 'admin/revenue',
     },
   ],
   4: [
     {
       id: 11,
-      name: '고객 계정',
-      to: '/',
+      name: '고객 관리',
+      to: 'admin/account/clientlist',
     },
     {
       id: 12,
       name: '식수 가격',
-      to: '/',
+      to: 'admin/mealprices',
     },
     {
       id: 13,
       name: '유청 입급 계좌',
-      to: '/user/account',
+      to: 'admin/bankaccount',
     },
   ],
 };
