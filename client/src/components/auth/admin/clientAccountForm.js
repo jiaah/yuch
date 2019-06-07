@@ -1,10 +1,15 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
-import FormButton from '../../shared/formButton';
-import Icon from '../../../assets/icons';
+import FormButton from '../../../shared/formButton';
+import Icon from '../../../../assets/icons';
 
 const styles = theme => ({
   textField: {
@@ -35,7 +40,7 @@ const styles = theme => ({
   },
 });
 
-const UserForm = props => {
+const ClientAccountForm = props => {
   const {
     values: {
       companyName,
@@ -47,6 +52,7 @@ const UserForm = props => {
       mealPrice,
       lunchQuantityValue,
       dinnerQuantityValue,
+      bankAccountOption,
     },
     errors,
     touched,
@@ -326,6 +332,47 @@ const UserForm = props => {
             </div>
           </div>
         </div>
+        <div>
+          <FormControl
+            component="fieldset"
+            required
+            className={`${classes.formControl} flex flex-column-m`}
+          >
+            <div className="flex">
+              <Icon
+                name="bankAccount"
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                fill="none"
+              />
+              <FormLabel component="legend" className={classes.formLabel}>
+                입금 계좌번호
+              </FormLabel>
+            </div>
+            <RadioGroup
+              aria-label="bankAccountOption"
+              name="bankAccountOption"
+              value={bankAccountOption}
+              onChange={e => change(e, 'bankAccountOption', false)}
+              row
+            >
+              <FormControlLabel
+                value="1"
+                control={<Radio color="primary" />}
+                label="김귀자&#8201;&#8201;&#8201;농협&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;7210xx-xx-xxxxxx"
+                labelPlacement="end"
+                className={classes.formControlLabel}
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio color="primary" />}
+                label="이상환&#8201;&#8201;&#8201;농협&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;7211xx-xx-xxxxxx"
+                labelPlacement="end"
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
         <div className="justify-center">
           <FormButton
             typeValue="submit"
@@ -340,4 +387,4 @@ const UserForm = props => {
   );
 };
 
-export default withStyles(styles)(UserForm);
+export default withStyles(styles)(ClientAccountForm);

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-export const userValidation = Yup.object({
+export const clientAccountValidation = Yup.object({
   companyName: Yup.string('').required('업체 상호명을 한글로 입력하세요.'),
   username: Yup.string('').required('고객 로그인 아이디를 입력하세요.'),
   password: Yup.string('')

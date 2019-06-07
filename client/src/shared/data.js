@@ -64,34 +64,34 @@ export const navAdminItems = {
     {
       id: 11,
       name: '금일 위탁급식 식수현황',
-      to: 'admin/catering/dd',
+      to: 'admin/count/catering/dd',
     },
     {
       id: 12,
       name: '금일 유청식당 식수현황',
-      to: 'admin/restaurant/dd',
+      to: 'admin/count/restaurant/dd',
     },
     {
       id: 13,
       name: '월별 식수현황',
-      to: 'admin/company/mm',
+      to: 'admin/count/company/mm',
     },
     {
       id: 14,
       name: '회사별 식수현황',
-      to: 'admin/company/clientlist',
+      to: 'admin/count/company/clientlist',
     },
   ],
   2: [
     {
       id: 11,
       name: '지불 관리',
-      to: 'admin/payment/management',
+      to: 'admin/revenue/payment/management',
     },
     {
       id: 12,
       name: '지불 현황',
-      to: 'admin/payment/status',
+      to: 'admin/revenue/payment/status',
     },
   ],
   3: [
@@ -104,18 +104,23 @@ export const navAdminItems = {
   4: [
     {
       id: 11,
-      name: '고객 관리',
-      to: 'admin/account/clientlist',
+      name: '식수 가격',
+      to: 'admin/account/catering/rates',
     },
     {
       id: 12,
-      name: '식수 가격',
-      to: 'admin/mealprices',
+      name: '고객 계정',
+      to: 'admin/account/clientlist',
     },
     {
       id: 13,
+      name: '유청 계정',
+      to: 'admin/account',
+    },
+    {
+      id: 14,
       name: '유청 입급 계좌',
-      to: 'admin/bankaccount',
+      to: 'admin/account/bankaccount',
     },
   ],
 };

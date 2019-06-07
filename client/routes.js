@@ -16,9 +16,9 @@ const Login = Loader({
     import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
-const Signup = Loader({
+const clientAccount = Loader({
   loader: () =>
-    import('./src/components/auth/signupContainer' /* webpackChunkName: 'CreateUser' */),
+    import('./src/components/auth/admin/clientAccountContainer.js' /* webpackChunkName: 'CreateUser' */),
 });
 
 const NoMatch = Loader({
@@ -32,7 +32,7 @@ const routes = props => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/admin/account/clientlist" component={Signup} />
+      <Route path="/admin/account/clientlist" component={clientAccount} />
       <Route component={NoMatch} />
     </Switch>
   </div>
