@@ -39,11 +39,11 @@ const ToggleMenuItems = ({
               <MenuList className="toggle-menu--list">
                 {items.map(e => (
                   <Link
+                    key={e.id}
                     to={e.to}
                     className="anchor td-none c-text1 toggle-menu--link"
                   >
                     <MenuItem
-                      key={e.id}
                       className="toggle-menu--item"
                       onClick={handleClose}
                     >
