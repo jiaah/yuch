@@ -138,3 +138,30 @@ export const message = {
       '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.',
   },
 };
+
+export const userAccountTableHeadRows = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: '2',
+    numeric: true,
+    disablePadding: false,
+    label: '업체명',
+  },
+  { id: '3', numeric: true, disablePadding: false, label: '아이디' },
+  { id: '4', numeric: true, disablePadding: false, label: '연락처' },
+  {
+    id: '5',
+    numeric: true,
+    disablePadding: false,
+    label: 'e-mail',
+  },
+  { id: '6', numeric: true, disablePadding: false, label: '식수가격' },
+  { id: '7', numeric: true, disablePadding: false, label: '중식 식수량' },
+  { id: '8', numeric: true, disablePadding: false, label: '저녁 식수량' },
+  { id: '9', numeric: true, disablePadding: false, label: '결제계좌' },
+];

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Form from './clientAccountForm';
+import Form from './userAccountForm';
 import Loader from '../../../shared/loader';
 import { clientAccountValidation } from '../formValidation';
 
@@ -11,7 +11,7 @@ const Modal = Loader({
     import('../../../shared/modal' /* webpackChunkName: 'simpleModal' */),
 });
 
-class ClientAccountModal extends React.Component {
+class UserAccountModal extends React.Component {
   handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
       confirmPassword,
@@ -87,4 +87,4 @@ class ClientAccountModal extends React.Component {
   }
 }
 
-export default ClientAccountModal;
+export default UserAccountModal;

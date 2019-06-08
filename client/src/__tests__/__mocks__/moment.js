@@ -1,3 +1,3 @@
-const moment = require.requireActual('moment');
+const moment = require.requireActual('');
 
-export default (timestamp = 0) => moment(timestamp);
+export default (timestamp = 0) => timestamp;

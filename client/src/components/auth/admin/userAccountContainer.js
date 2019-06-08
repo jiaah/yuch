@@ -5,17 +5,18 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import Button from '../../../shared/button';
 import Loader from '../../../shared/loader';
+import UserTable from './userTable';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/flashMessageAction';
 
-const ClientAccount = Loader({
+const CreateUserModal = Loader({
   loader: () =>
-    import('./clientAccountModal' /* webpackChunkName: './clientAccountModal' */),
+    import('./createUserModal' /* webpackChunkName: 'UserAccountModal' */),
 });
 
-class ClientAccountContainer extends React.Component {
+class UserAccountContainer extends React.Component {
   showModal = () => this.props.modalActions.showModal();
 
   closeModal = () => this.props.modalActions.hideModal();
@@ -30,23 +31,27 @@ class ClientAccountContainer extends React.Component {
     } = this.props;
 
     return (
-      <div className="container">
+      <div className="container flex flex-column-m">
         <h2>고객 계정</h2>
         {/* auto complete search bar by client name (in korean) */}
-        <Button
-          typeValue="button"
-          buttonName="신규등록"
-          handleButtonClick={this.showModal}
-          variantValue="contained"
-          width="small"
-          className="float-right"
-        />
+        <div>
+          {/* change this to '+' icon */}
+          <Button
+            typeValue="button"
+            buttonName="신규등록"
+            handleButtonClick={this.showModal}
+            variantValue="contained"
+            width="small"
+            className="float-right"
+          />
+        </div>
+
         {/* button dropdown list order by alphabet, updated_at(default) */}
         {/*
         map List of Clients with account information order by updated_at desc;
         */}
         {show && (
-          <ClientAccount
+          <CreateUserModal
             show={show}
             errorMessage={errorMessage}
             flashVariant={flashVariant}
@@ -55,6 +60,9 @@ class ClientAccountContainer extends React.Component {
             addFlashMessage={addFlashMessage}
           />
         )}
+        <div className="center">
+          <UserTable />
+        </div>
       </div>
     );
   }
@@ -76,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ClientAccountContainer);
+)(UserAccountContainer);
