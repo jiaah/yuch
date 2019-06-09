@@ -1,5 +1,21 @@
 .container {
   height: calc(100vh - 220px);
-  margin: 3em;
+  width: 90vw;
+  margin: 3em auto;
   text-align: center;
+
+  @include for-desktop-up {
+    max-width: 1500;
+  }
+}
+
+.paper-label--box {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.paper-padding {
+  padding: 1em 2em;
 }

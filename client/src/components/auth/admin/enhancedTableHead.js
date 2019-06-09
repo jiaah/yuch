@@ -3,27 +3,40 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import * as data from '../../../shared/data';
 
+const styles = theme => ({
+  resize: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '14px',
+    },
+  },
+});
+
 const EnhancedTableHead = props => {
-  const { order, orderBy, onRequestSort } = props;
+  const {
+    order,
+    orderBy,
+    onRequestSort,
+    classes: { resize },
+  } = props;
 
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
 
-  const { userAccountTableHeadRows } = data;
-
   return (
     <TableHead>
       <TableRow>
-        {userAccountTableHeadRows.map(row => (
+        {data.userAccountTableHeadRows.map(row => (
           <TableCell
             key={`tr-${row.id}`}
             align={row.numeric ? 'right' : 'left'}
             padding={row.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === row.id ? order : false}
+            className={resize}
           >
             <TableSortLabel
               active={orderBy === row.id}
@@ -39,4 +52,4 @@ const EnhancedTableHead = props => {
   );
 };
 
-export default EnhancedTableHead;
+export default withStyles(styles)(EnhancedTableHead);

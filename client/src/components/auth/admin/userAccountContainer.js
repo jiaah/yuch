@@ -2,10 +2,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
-import Button from '../../../shared/button';
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
+import Icon from '../../../../assets/icons';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -21,6 +22,14 @@ class UserAccountContainer extends React.Component {
 
   closeModal = () => this.props.modalActions.hideModal();
 
+  handleEditBtnClick = (event, username) => {
+    console.log(`open modal with ${username} data from local storage`);
+  };
+
+  componentDidMount = () => {
+    // retrieve user data which will be saved in local storage
+  };
+
   render() {
     const {
       show,
@@ -31,25 +40,27 @@ class UserAccountContainer extends React.Component {
     } = this.props;
 
     return (
-      <div className="container flex flex-column-m">
+      <div className="container">
+        {/* auto complete search bar by companyName */}
         <h2>고객 계정</h2>
-        {/* auto complete search bar by client name (in korean) */}
-        <div>
-          {/* change this to '+' icon */}
-          <Button
-            typeValue="button"
-            buttonName="신규등록"
-            handleButtonClick={this.showModal}
-            variantValue="contained"
-            width="small"
-            className="float-right"
-          />
+        <div className="paper-label--box">
+          <p className="f-mini">
+            총 고객 수&#8201;&#8201;
+            <span className="b">100</span>
+          </p>
+          <div onClick={this.showModal}>
+            <Icon
+              name="add"
+              width="25"
+              height="25"
+              viewBox="0 0 25 25"
+              fill="none"
+            />
+          </div>
         </div>
-
-        {/* button dropdown list order by alphabet, updated_at(default) */}
-        {/*
-        map List of Clients with account information order by updated_at desc;
-        */}
+        <Paper className="mt2 paper-padding">
+          <UserTable handleEditBtnClick={this.handleEditBtnClick} />
+        </Paper>
         {show && (
           <CreateUserModal
             show={show}
@@ -60,9 +71,6 @@ class UserAccountContainer extends React.Component {
             addFlashMessage={addFlashMessage}
           />
         )}
-        <div className="center">
-          <UserTable />
-        </div>
       </div>
     );
   }

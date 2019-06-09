@@ -14,6 +14,8 @@ import Error from './error';
 import Info from './info';
 import Success from './success';
 import Warning from './warning';
+import Edit from './edit';
+import Add from './add';
 
 const Icon = props => {
   switch (props.name) {
@@ -43,6 +45,10 @@ const Icon = props => {
       return <Success {...props} />;
     case 'warning':
       return <Warning {...props} />;
+    case 'edit':
+      return <Edit {...props} />;
+    case 'add':
+      return <Add {...props} />;
     default:
       return <div />;
   }
