@@ -1,15 +1,10 @@
 const router = require('express').Router();
+const userController = require('../controllers/user');
+const onlyLoggedIn = require('../lib/only-logged-in');
 
 module.exports = () => {
-  // GET usrs listing
-  router.get('/', (req, res, next) => {
-    res.send(res);
-  });
-
-  // GET user profile
-  router.get('/profile', (req, res, next) => {
-    res.send(req.user);
-  });
+  // GET users list
+  router.get('/users', onlyLoggedIn, userController.getUsersList);
 
   return router;
 };
