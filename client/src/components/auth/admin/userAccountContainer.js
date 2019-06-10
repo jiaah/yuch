@@ -11,6 +11,7 @@ import Icon from '../../../../assets/icons';
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/flashMessageAction';
+import { getUsers } from '../../../actions/userAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -27,7 +28,7 @@ class UserAccountContainer extends React.Component {
   };
 
   componentDidMount = () => {
-    // retrieve user data which will be saved in local storage
+    const users = this.props.getUsers();
   };
 
   render() {
@@ -38,7 +39,6 @@ class UserAccountContainer extends React.Component {
       authActions: { createUser },
       addFlashMessage,
     } = this.props;
-
     return (
       <div className="container">
         {/* auto complete search bar by companyName */}
@@ -87,6 +87,7 @@ const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  getUsers: () => dispatch(getUsers()),
 });
 
 export default connect(

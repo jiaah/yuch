@@ -22,7 +22,7 @@ const httpHandler = (state = initialState, action) => {
         ...state,
         api: action.api,
         isLoading: false,
-        data: action.data,
+        data: action.payload,
       };
     case types.HTTP_FAILURE:
       return {
