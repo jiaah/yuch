@@ -63,6 +63,9 @@ exports.loginUser = (req, res) => {
       companyName = user.company_name;
       return util.getRandomToken(user);
     })
-    .then(token => res.status(200).json({ token, companyName }))
+    .then(token => {
+      res.status(200).json({ token, companyName });
+      res.header('Authorization', `Bearer + ${token}`);
+    })
     .catch(err => res.status(500).json(err));
 };

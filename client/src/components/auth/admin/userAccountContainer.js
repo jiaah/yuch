@@ -29,6 +29,7 @@ class UserAccountContainer extends React.Component {
 
   componentDidMount = () => {
     const users = this.props.getUsers();
+    console.log('users: ', users);
   };
 
   render() {

@@ -1,11 +1,20 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
+import { getToken } from '../../localStorage';
+
+const token = getToken();
 
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/register`, { userInfo });
+    const res = await axios.post(
+      `${API_HOST}/auth/register`,
+      { userInfo },
+      {
+        headers: { authorization: token },
+      },
+    );
     const companyName = res.data;
     dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
     return companyName;
