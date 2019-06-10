@@ -154,7 +154,7 @@ export const userAccountTableHeadRows = [
   },
   { id: 'username', numeric: true, disablePadding: false, label: '아이디' },
   {
-    id: 'contactNumber',
+    id: 'contactNo',
     numeric: true,
     disablePadding: false,
     label: '연락처',
@@ -172,19 +172,19 @@ export const userAccountTableHeadRows = [
     label: '식수가격',
   },
   {
-    id: 'lunchQuantity',
+    id: 'lunchQty',
     numeric: true,
     disablePadding: false,
     label: '중식 식수량',
   },
   {
-    id: 'dinnerQuantity',
+    id: 'dinnerQty',
     numeric: true,
     disablePadding: false,
     label: '저녁 식수량',
   },
   {
-    id: 'bankAccount',
+    id: 'bankAccountId',
     numeric: true,
     disablePadding: false,
     label: '결제계좌',

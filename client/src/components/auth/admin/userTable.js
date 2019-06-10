@@ -22,55 +22,18 @@ const styles = theme => ({
   },
 });
 
-const createData = (
-  companyName,
-  username,
-  contactNumber,
-  email,
-  mealPrice,
-  lunchQuantity,
-  dinnerQuantity,
-  bankAccount,
-) => ({
-  companyName,
-  username,
-  contactNumber,
-  email,
-  mealPrice,
-  lunchQuantity,
-  dinnerQuantity,
-  bankAccount,
-});
-
-const rows = [
-  createData('Honeycomb', 408, 3.2, 87, 6.5, 408, 3.2, 87),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 408, 3.2, 87),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0, 408, 3.2, 87),
-  createData('KitKat', 518, 26.0, 65, 7.0, 408, 3.2, 87),
-  createData('Lollipop', 392, 0.2, 98, 0.0, 408, 3.2, 87),
-  createData('Marshmallow', 318, 0, 81, 2.0, 408, 3.2, 87),
-  createData('Nougart', 360, 19.0, 9, 37.0, 408, 3.2, 87),
-  createData('Orefo', 4337, 18.0, 63, 4.0, 408, 3.2, 87),
-  createData('Honevycomb', 4068, 3.2, 87, 6.5, 408, 3.2, 87),
-  createData('Ice crfeam sandwich', 2327, 9.0, 37, 4.3, 408, 3.2, 87),
-  createData('Jelly rBean', 3755, 0.0, 94, 0.0, 408, 3.2, 87),
-  createData('KitKaft', 5138, 26.0, 65, 7.0, 408, 3.2, 87),
-  createData('Lollipoxp', 3922, 0.2, 98, 0.0, 408, 3.2, 87),
-  createData('Marshmcallow', 3148, 0, 81, 2.0, 408, 3.2, 87),
-  createData('Nouegat', 3603, 19.0, 9, 37.0, 408, 3.2, 87),
-  createData('Oreod', 4374, 18.0, 63, 4.0, 408, 3.2, 87),
-];
-
 const UserTable = ({
   classes: { tableWrapper, table, resize },
   handleEditBtnClick,
+  rows,
 }) => {
-  // Table columns
+  // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('companyName');
-  // Table rows
+  // selected column
+  const [orderBy, setOrderBy] = React.useState('company_name');
+  // selected row
   const [selected, setSelected] = React.useState('');
-  // Pages
+  // page
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -101,6 +64,8 @@ const UserTable = ({
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 const labelId = `enhanced-table-checkbox-${index}`;
+                const bankAccountInfo =
+                  row.bankAccountId === 1 ? '김귀자 농협' : '이상환 농협';
                 return (
                   <TableRow
                     hover
@@ -135,7 +100,7 @@ const UserTable = ({
                       {row.username}
                     </TableCell>
                     <TableCell align="right" className={resize}>
-                      {row.contactNumber}
+                      {row.contactNo}
                     </TableCell>
                     <TableCell align="right" className={resize}>
                       {row.email}
@@ -144,13 +109,13 @@ const UserTable = ({
                       {row.mealPrice}
                     </TableCell>
                     <TableCell align="right" className={resize}>
-                      {row.lunchQuantity}
+                      {row.lunchQty}
                     </TableCell>
                     <TableCell align="right" className={resize}>
-                      {row.dinnerQuantity}
+                      {row.dinnerQty}
                     </TableCell>
                     <TableCell align="right" className={resize}>
-                      {row.bankAccount}
+                      {bankAccountInfo}
                     </TableCell>
                   </TableRow>
                 );

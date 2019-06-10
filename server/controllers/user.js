@@ -5,14 +5,14 @@ exports.getUsersList = (req, res) => {
     .whereNot('username', 'yuch')
     .select(
       'id',
-      'company_name',
+      'companyName',
       'username',
-      'contact_no',
+      'contactNo',
       'email',
-      'meal_price',
-      'init_lunch_quantity',
-      'init_dinner_quantity',
-      'bank_account_id',
+      'mealPrice',
+      'lunchQty',
+      'dinnerQty',
+      'bankAccountId',
     )
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));

@@ -23,19 +23,19 @@ const UserAccountModal = ({
     const {
       confirmPassword,
       bankAccountOption,
-      lunchQuantityValue,
-      dinnerQuantityValue,
+      lunchQtyValue,
+      dinnerQtyValue,
       ...others
     } = values;
     // to save values as number type in database
     const bankAccount = parseInt(bankAccountOption, 10);
-    const lunchQuantity = lunchQuantityValue === '' ? 0 : lunchQuantityValue;
-    const dinnerQuantity = dinnerQuantityValue === '' ? 0 : dinnerQuantityValue;
+    const lunchQty = lunchQtyValue === '' ? 0 : lunchQtyValue;
+    const dinnerQty = dinnerQtyValue === '' ? 0 : dinnerQtyValue;
 
     const userInfo = {
       bankAccount,
-      lunchQuantity,
-      dinnerQuantity,
+      lunchQty,
+      dinnerQty,
       ...others,
     };
 
@@ -63,11 +63,11 @@ const UserAccountModal = ({
     password: '',
     confirmPassword: '',
     companyName: '',
-    contactNumber: '',
+    contactNo: '',
     email: '',
     mealPrice: '',
-    lunchQuantityValue: '',
-    dinnerQuantityValue: '',
+    lunchQtyValue: '',
+    dinnerQtyValue: '',
     bankAccountOption: '1',
   };
 

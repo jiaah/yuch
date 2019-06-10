@@ -18,12 +18,12 @@ exports.seed = (knex, Promise) =>
       const hash = bcrypt.hashSync(PASSWORD, salt);
       return Promise.join(
         knex('users').insert({
-          company_name: COMPANY_NAME,
+          companyName: COMPANY_NAME,
           username: USERNAME,
           password: hash,
-          contact_no: CONTACT_NO,
+          contactNo: CONTACT_NO,
           email: EMAIL,
-          is_admin: IS_ADMIN,
+          isAdmin: IS_ADMIN,
         }),
       );
     });

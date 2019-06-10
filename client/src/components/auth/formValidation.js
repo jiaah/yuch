@@ -12,7 +12,7 @@ export const clientAccountValidation = Yup.object({
   confirmPassword: Yup.string('')
     .required('비밀번호를 입력하세요.')
     .oneOf([Yup.ref('password')], '비밀번호가 일치하지 않습니다.'),
-  contactNumber: Yup.string()
+  contactNo: Yup.string()
     .matches(
       phoneRegExp,
       '전화 번호에 잘못된 문자를 입력하거나 잘못된 형식의 전화 번호입니다.',
@@ -24,11 +24,11 @@ export const clientAccountValidation = Yup.object({
     .positive('1이상의 자연수만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .required('식수가격을 입력하세요.'),
-  lunchQuantity: Yup.number()
+  lunchQty: Yup.number()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
-  dinnerQuantity: Yup.number()
+  dinnerQty: Yup.number()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),

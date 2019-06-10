@@ -47,11 +47,11 @@ const ClientAccountForm = props => {
       username,
       password,
       confirmPassword,
-      contactNumber,
+      contactNo,
       email,
       mealPrice,
-      lunchQuantityValue,
-      dinnerQuantityValue,
+      lunchQtyValue,
+      dinnerQtyValue,
       bankAccountOption,
     },
     errors,
@@ -69,8 +69,8 @@ const ClientAccountForm = props => {
     const inputValue = e.target.value;
     let value;
     if (
-      name === 'lunchQuantityValue' ||
-      name === 'dinnerQuantityValue' ||
+      name === 'lunchQtyValue' ||
+      name === 'dinnerQtyValue' ||
       name === 'mealPrice'
     ) {
       // avoid isNaN('') === false
@@ -145,14 +145,14 @@ const ClientAccountForm = props => {
               }}
             />
             <TextField
-              id="contactNumber"
+              id="contactNo"
               label="연락처"
               placeholder="054 - 745 - 0999"
-              value={contactNumber || ''}
-              onChange={e => change(e, 'contactNumber', true)}
+              value={contactNo || ''}
+              onChange={e => change(e, 'contactNo', true)}
               onBlur={handleBlur}
-              helperText={touched.contactNumber && errors.contactNumber}
-              error={touched.contactNumber && Boolean(errors.contactNumber)}
+              helperText={touched.contactNo && errors.contactNo}
+              error={touched.contactNo && Boolean(errors.contactNo)}
               required={true}
               margin="normal"
               className={classes.textField}
@@ -270,19 +270,14 @@ const ClientAccountForm = props => {
             />
             <div className="flex justify-center">
               <TextField
-                id="lunchQuantityValue"
+                id="lunchQtyValue"
                 label="중식 식수량"
                 placeholder="70"
-                value={lunchQuantityValue || ''}
-                onChange={e => change(e, 'lunchQuantityValue', true)}
+                value={lunchQtyValue || ''}
+                onChange={e => change(e, 'lunchQtyValue', true)}
                 onBlur={handleBlur}
-                helperText={
-                  touched.lunchQuantityValue && errors.lunchQuantityValue
-                }
-                error={
-                  touched.lunchQuantityValue &&
-                  Boolean(errors.lunchQuantityValue)
-                }
+                helperText={touched.lunchQtyValue && errors.lunchQtyValue}
+                error={touched.lunchQtyValue && Boolean(errors.lunchQtyValue)}
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{
@@ -300,19 +295,14 @@ const ClientAccountForm = props => {
                 }}
               />
               <TextField
-                id="dinnerQuantityValue"
+                id="dinnerQtyValue"
                 label="석식 식수량"
                 placeholder="35"
-                value={dinnerQuantityValue || ''}
-                onChange={e => change(e, 'dinnerQuantityValue', true)}
+                value={dinnerQtyValue || ''}
+                onChange={e => change(e, 'dinnerQtyValue', true)}
                 onBlur={handleBlur}
-                helperText={
-                  touched.dinnerQuantityValue && errors.dinnerQuantityValue
-                }
-                error={
-                  touched.dinnerQuantityValue &&
-                  Boolean(errors.dinnerQuantityValue)
-                }
+                helperText={touched.dinnerQtyValue && errors.dinnerQtyValue}
+                error={touched.dinnerQtyValue && Boolean(errors.dinnerQtyValue)}
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{

@@ -19,7 +19,7 @@ class NavContainer extends Component {
   };
 
   render() {
-    const { isLoggedIn, userName, routerLocation } = this.props;
+    const { isLoggedIn, companyName, routerLocation } = this.props;
 
     return (
       <div className="nav relative">
@@ -33,17 +33,17 @@ class NavContainer extends Component {
           </Link>
         </div>
         {isLoggedIn &&
-          userName !== 'yuchung' && (
+          companyName !== '유청' && (
             <p className="mr3 pb2 flex justify-end f-mini">
               안녕하세요. &#8201;
-              <span className="b">{userName}</span>
+              <span className="b">{companyName}</span>
               &#8201;님,
             </p>
           )}
         <NavMenu
           routerLocation={routerLocation}
           isLoggedIn={isLoggedIn}
-          userName={userName}
+          companyName={companyName}
         />
       </div>
     );
@@ -52,7 +52,7 @@ class NavContainer extends Component {
 
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
-  userName: state.auth.userName,
+  companyName: state.auth.companyName,
   routerLocation: state.router.location.pathname,
 });
 

@@ -8,7 +8,7 @@ exports.up = knex =>
         .notNullable()
         .defaultTo(knex.raw('uuid_generate_v4()'));
       table
-        .string('company_name')
+        .string('companyName')
         .unique()
         .notNullable();
       table
@@ -16,25 +16,25 @@ exports.up = knex =>
         .unique()
         .notNullable();
       table.string('password').notNullable();
-      table.string('contact_no').notNullable();
+      table.string('contactNo').notNullable();
       table.string('email');
       table
-        .boolean('is_admin')
+        .boolean('isAdmin')
         .notNullable()
         .defaultTo(false);
-      table.smallint('meal_price');
-      table.smallint('init_lunch_quantity');
-      table.smallint('init_dinner_quantity');
-      table.smallint('bank_account_id').unsigned();
+      table.smallint('mealPrice');
+      table.smallint('lunchQty');
+      table.smallint('dinnerQty');
+      table.smallint('bankAccountId').unsigned();
       table
-        .foreign('bank_account_id')
+        .foreign('bankAccountId')
         .references('id')
-        .inTable('bank_account');
+        .inTable('bankAccount');
       table
-        .timestamp('created_at')
+        .timestamp('createdAt')
         .notNullable()
         .defaultTo(knex.fn.now());
-      table.timestamp('updated_at').defaultTo(knex.fn.now());
+      table.timestamp('updatedAt').defaultTo(knex.fn.now());
     });
 
 exports.down = knex => knex.schema.dropTable('users');

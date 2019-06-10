@@ -6,11 +6,11 @@ exports.createUser = (req, res) => {
     username,
     password,
     companyName,
-    contactNumber,
+    contactNo,
     email,
     mealPrice,
-    lunchQuantity,
-    dinnerQuantity,
+    lunchQty,
+    dinnerQty,
     bankAccount,
   } = req.body.userInfo;
 
@@ -19,15 +19,15 @@ exports.createUser = (req, res) => {
     .then(hashedPassword =>
       knex('users')
         .insert({
-          company_name: companyName.toLowerCase(),
+          companyName: companyName.toLowerCase(),
           username: username.toLowerCase(),
           password: hashedPassword.toLowerCase(),
-          contact_no: contactNumber,
+          contactNo,
           email,
-          meal_price: mealPrice,
-          init_lunch_quantity: lunchQuantity,
-          init_dinner_quantity: dinnerQuantity,
-          bank_account_id: bankAccount,
+          mealPrice,
+          lunchQty,
+          dinnerQty,
+          bankAccountId: bankAccount,
         })
         .returning('*'),
     )
@@ -60,7 +60,7 @@ exports.loginUser = (req, res) => {
         }
       }
 
-      companyName = user.company_name;
+      companyName = user.companyName;
       return util.getRandomToken(user);
     })
     .then(token => {
