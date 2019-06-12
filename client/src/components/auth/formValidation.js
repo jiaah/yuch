@@ -25,10 +25,12 @@ export const addUserAccountValidation = Yup.object({
     .integer('1이상의 자연수만 입력하세요.')
     .required('식수가격을 입력하세요.'),
   lunchQty: Yup.number()
+    .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
   dinnerQty: Yup.number()
+    .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
@@ -57,10 +59,12 @@ export const editUserAccountValidation = Yup.object({
     .integer('1이상의 자연수만 입력하세요.')
     .required('식수가격을 입력하세요.'),
   lunchQty: Yup.number()
+    .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
   dinnerQty: Yup.number()
+    .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),

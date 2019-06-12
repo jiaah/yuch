@@ -70,8 +70,7 @@ const ClientAccountForm = props => {
     const inputValue = e.target.value;
     let value;
     if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
-      // avoid isNaN('') === false
-      // -> parseInt('') // output: NaN
+      // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
       } else {
