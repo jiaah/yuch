@@ -9,28 +9,80 @@ exports.createUser = (req, res) => {
     contactNo,
     email,
     mealPrice,
-    lunchQty,
-    dinnerQty,
+    lunchQtyValue,
+    dinnerQtyValue,
     bankAccount,
   } = req.body.userInfo;
 
-  util
-    .bcryptPassword(password)
+  return util
+    .bcryptPassword(password.toLowerCase())
     .then(hashedPassword =>
       knex('users')
         .insert({
           companyName: companyName.toLowerCase(),
           username: username.toLowerCase(),
-          password: hashedPassword.toLowerCase(),
+          password: hashedPassword,
           contactNo,
           email,
           mealPrice,
-          lunchQty,
-          dinnerQty,
+          lunchQty: lunchQtyValue,
+          dinnerQty: dinnerQtyValue,
           bankAccountId: bankAccount,
         })
         .returning('*'),
     )
+    .then(() => res.status(200).json(companyName))
+    .catch(err => res.status(409).json(err));
+};
+
+exports.editUser = (req, res) => {
+  const {
+    username,
+    password,
+    companyName,
+    contactNo,
+    email,
+    mealPrice,
+    lunchQtyValue,
+    dinnerQtyValue,
+    bankAccount,
+  } = req.body.userInfo;
+
+  const lunchQty = lunchQtyValue;
+  const dinnerQty = dinnerQtyValue;
+  let hashedPassword;
+  if (password !== undefined && password !== '') {
+    const passwordToLowercase = password.toLowerCase();
+    hashedPassword = util.bcryptPassword(passwordToLowercase);
+  }
+
+  return knex('users')
+    .where({ username })
+    .update(
+      password !== undefined && password !== ''
+        ? {
+            companyName: companyName.toLowerCase(),
+            username: username.toLowerCase(),
+            password: hashedPassword,
+            contactNo,
+            email,
+            mealPrice,
+            lunchQty,
+            dinnerQty,
+            bankAccountId: bankAccount,
+          }
+        : {
+            companyName,
+            username,
+            contactNo,
+            email,
+            mealPrice,
+            lunchQty,
+            dinnerQty,
+            bankAccountId: bankAccount,
+          },
+    )
+    .returning('*')
     .then(() => res.status(200).json(companyName))
     .catch(err => res.status(409).json(err));
 };

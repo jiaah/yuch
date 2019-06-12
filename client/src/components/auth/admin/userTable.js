@@ -24,7 +24,7 @@ const styles = theme => ({
 
 const UserTable = ({
   classes: { tableWrapper, table, resize },
-  handleEditBtnClick,
+  handleEditUserBtnClick,
   rows,
 }) => {
   // order by 'desc' / 'asc'
@@ -77,7 +77,9 @@ const UserTable = ({
                     selected={selected === row.username}
                   >
                     <TableCell padding="checkbox">
-                      <div onClick={e => handleEditBtnClick(e, row.username)}>
+                      <div
+                        onClick={e => handleEditUserBtnClick(e, row.username)}
+                      >
                         <Icon
                           name="edit"
                           width="18"

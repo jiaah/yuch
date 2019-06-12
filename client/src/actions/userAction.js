@@ -6,7 +6,6 @@ import { getToken } from '../../localStorage';
 const token = getToken();
 
 export const getUsers = () => async dispatch => {
-  console.log('getUsers Action is called !! ##');
   dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });
   try {
     const res = await axios.get(`${API_HOST}/user/users`, {

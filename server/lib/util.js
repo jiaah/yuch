@@ -32,6 +32,8 @@ exports.compareAdminPassword = function comparePassword(
 };
 
 exports.bcryptPassword = function bcryptPassword(password) {
+  console.log('password: ', password);
+  console.log('bcryptPassword util function is called');
   return new Promise((resolve, reject) => {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {

@@ -18,17 +18,22 @@ const CreateUserModal = Loader({
     import('./createUserModal' /* webpackChunkName: 'UserAccountModal' */),
 });
 
+const EditUserModal = Loader({
+  loader: () =>
+    import('./editUserModal' /* webpackChunkName: 'EditAccountModal' */),
+});
+
 const UserAccountContainer = ({
   modalActions,
   show,
-  errorMessage,
   flashVariant,
-  authActions: { createUser },
+  authActions: { createUser, editUser },
   getUsers,
   addFlashMessage,
 }) => {
   const [rows, setRows] = useState([]);
-
+  const [clickedBtn, setClickedBtn] = useState(null);
+  const [clickedUserData, setClickedUserData] = useState(null);
   const fetchUsersData = async () => {
     const users = await getUsers();
     return setRows(users);
@@ -39,11 +44,28 @@ const UserAccountContainer = ({
   }, []);
 
   const showModal = () => modalActions.showModal();
-
-  const closeModal = () => modalActions.hideModal();
-
-  const handleEditBtnClick = (event, username) => {
-    console.log(`open modal with ${username} data from local storage`);
+  const closeModal = () => {
+    if (clickedBtn === 'edit') setClickedUserData(null);
+    modalActions.hideModal();
+  };
+  const handleCreateUserBtnClick = () => {
+    setClickedBtn('create');
+    return showModal();
+  };
+  const getClickedUserData = async clickedUsername => {
+    const userData = await rows.filter(
+      user => user.username === clickedUsername,
+    );
+    // convert the bankAccount value from number to string.
+    const bankIdToString = await userData[0].bankAccountId.toString();
+    userData[0].bankAccountId = await bankIdToString;
+    return userData;
+  };
+  const handleEditUserBtnClick = async (event, clickedUsername) => {
+    await setClickedBtn('edit');
+    const userData = await getClickedUserData(clickedUsername);
+    await setClickedUserData(userData);
+    return showModal();
   };
 
   return (
@@ -53,9 +75,9 @@ const UserAccountContainer = ({
       <div className="paper-label--box">
         <p className="f-mini">
           총 고객 수&#8201;&#8201;
-          <span className="b">100</span>
+          <span className="b">{rows.length}</span>
         </p>
-        <div onClick={showModal}>
+        <div onClick={handleCreateUserBtnClick}>
           <Icon
             name="add"
             width="25"
@@ -66,16 +88,29 @@ const UserAccountContainer = ({
         </div>
       </div>
       <Paper className="mt2 paper-padding">
-        <UserTable handleEditBtnClick={handleEditBtnClick} rows={rows} />
+        <UserTable
+          handleEditUserBtnClick={handleEditUserBtnClick}
+          rows={rows}
+        />
       </Paper>
-      {show && (
+      {show && clickedBtn === 'create' ? (
         <CreateUserModal
           show={show}
-          errorMessage={errorMessage}
           flashVariant={flashVariant}
           handleCloseModal={closeModal}
           createUser={createUser}
           addFlashMessage={addFlashMessage}
+          clickedBtn={clickedBtn}
+        />
+      ) : (
+        <EditUserModal
+          show={show}
+          flashVariant={flashVariant}
+          handleCloseModal={closeModal}
+          editUser={editUser}
+          addFlashMessage={addFlashMessage}
+          clickedBtn={clickedBtn}
+          data={clickedUserData}
         />
       )}
     </div>
@@ -84,7 +119,6 @@ const UserAccountContainer = ({
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  errorMessage: state.httpHandler.error,
   flashVariant: state.flashMessage.variant,
 });
 

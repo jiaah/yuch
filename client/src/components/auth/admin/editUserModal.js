@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './userAccountForm';
 import Loader from '../../../shared/loader';
-import { addUserAccountValidation } from '../formValidation';
+import { editUserAccountValidation } from '../formValidation';
 
 const Modal = Loader({
   loader: () =>
@@ -13,9 +13,11 @@ const Modal = Loader({
 
 const UserAccountModal = ({
   show,
+  clickedBtn,
+  data,
   flashVariant,
   handleCloseModal,
-  createUser,
+  editUser,
   addFlashMessage,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
@@ -39,8 +41,8 @@ const UserAccountModal = ({
     };
 
     try {
-      const userData = await createUser(userInfo);
-      await alert(`${userData} 고객정보가 등록되었습니다.`);
+      const userData = await editUser(userInfo);
+      await alert(`${userData} 고객정보가 수정되었습니다.`);
       await resetForm({});
       handleCloseModal();
       return window.location.reload(true);
@@ -49,38 +51,26 @@ const UserAccountModal = ({
         'error',
         `${
           values.companyName
-        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다.`,
+        } 고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );
     }
     return setSubmitting(false);
   };
 
-  const values = {
-    username: '',
-    password: '',
-    confirmPassword: '',
-    companyName: '',
-    contactNo: '',
-    email: '',
-    mealPrice: '',
-    lunchQty: '',
-    dinnerQty: '',
-    bankAccountId: '1',
-  };
-
+  const values = data ? data[0] : [];
   return (
     <div className="container">
       <Modal
         show={show}
         flashVariant={flashVariant}
-        title="신규업체 등록"
+        title="고객 계정"
         handleClose={handleCloseModal}
         component={
           <Formik
             initialValues={values}
-            render={props => <Form {...props} />}
+            render={props => <Form {...props} clickedBtn={clickedBtn} />}
             onSubmit={handleCreateUser}
-            validationSchema={addUserAccountValidation}
+            validationSchema={editUserAccountValidation}
           />
         }
       />

@@ -24,6 +24,24 @@ export const createUser = userInfo => async dispatch => {
   }
 };
 
+export const editUser = userInfo => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
+  try {
+    const res = await axios.post(
+      `${API_HOST}/auth/edit`,
+      { userInfo },
+      {
+        headers: { authorization: token },
+      },
+    );
+    const companyName = res.data;
+    dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
+    return companyName;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
+    throw new Error('Editing a user failed');
+  }
+};
 export const userLogin = (username, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {

@@ -50,9 +50,9 @@ const ClientAccountForm = props => {
       contactNo,
       email,
       mealPrice,
-      lunchQtyValue,
-      dinnerQtyValue,
-      bankAccountOption,
+      lunchQty,
+      dinnerQty,
+      bankAccountId,
     },
     errors,
     touched,
@@ -62,17 +62,14 @@ const ClientAccountForm = props => {
     handleBlur,
     setFieldValue,
     classes,
+    clickedBtn,
   } = props;
 
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
     let value;
-    if (
-      name === 'lunchQtyValue' ||
-      name === 'dinnerQtyValue' ||
-      name === 'mealPrice'
-    ) {
+    if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
       // avoid isNaN('') === false
       // -> parseInt('') // output: NaN
       if (inputValue !== '') {
@@ -194,13 +191,13 @@ const ClientAccountForm = props => {
               id="password"
               label="비밀번호"
               type="password"
-              placeholder="(영문, 숫자 조합)"
+              placeholder="(특수문자 사용불가)"
               value={password || ''}
               onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.password && errors.password}
               error={touched.password && Boolean(errors.password)}
-              required={true}
+              required={clickedBtn === 'create'}
               margin="normal"
               className={classes.textField}
               InputProps={{
@@ -226,7 +223,7 @@ const ClientAccountForm = props => {
               onBlur={handleBlur}
               helperText={touched.confirmPassword && errors.confirmPassword}
               error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-              required={true}
+              required={clickedBtn === 'create'}
               margin="normal"
               className={classes.textField}
               InputProps={{
@@ -270,14 +267,14 @@ const ClientAccountForm = props => {
             />
             <div className="flex justify-center">
               <TextField
-                id="lunchQtyValue"
+                id="lunchQty"
                 label="중식 식수량"
                 placeholder="70"
-                value={lunchQtyValue || ''}
-                onChange={e => change(e, 'lunchQtyValue', true)}
+                value={lunchQty || ''}
+                onChange={e => change(e, 'lunchQty', true)}
                 onBlur={handleBlur}
-                helperText={touched.lunchQtyValue && errors.lunchQtyValue}
-                error={touched.lunchQtyValue && Boolean(errors.lunchQtyValue)}
+                helperText={touched.lunchQty && errors.lunchQty}
+                error={touched.lunchQty && Boolean(errors.lunchQty)}
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{
@@ -295,14 +292,14 @@ const ClientAccountForm = props => {
                 }}
               />
               <TextField
-                id="dinnerQtyValue"
+                id="dinnerQty"
                 label="석식 식수량"
                 placeholder="35"
-                value={dinnerQtyValue || ''}
-                onChange={e => change(e, 'dinnerQtyValue', true)}
+                value={dinnerQty || ''}
+                onChange={e => change(e, 'dinnerQty', true)}
                 onBlur={handleBlur}
-                helperText={touched.dinnerQtyValue && errors.dinnerQtyValue}
-                error={touched.dinnerQtyValue && Boolean(errors.dinnerQtyValue)}
+                helperText={touched.dinnerQty && errors.dinnerQty}
+                error={touched.dinnerQty && Boolean(errors.dinnerQty)}
                 margin="normal"
                 className={classes.textFieldB}
                 InputProps={{
@@ -341,10 +338,10 @@ const ClientAccountForm = props => {
               </FormLabel>
             </div>
             <RadioGroup
-              aria-label="bankAccountOption"
-              name="bankAccountOption"
-              value={bankAccountOption}
-              onChange={e => change(e, 'bankAccountOption', false)}
+              aria-label="bankAccountId"
+              name="bankAccountId"
+              value={bankAccountId}
+              onChange={e => change(e, 'bankAccountId', false)}
               row
             >
               <FormControlLabel
