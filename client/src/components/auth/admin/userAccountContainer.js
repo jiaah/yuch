@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
-import Icon from '../../../../assets/icons';
+import IconButton from '../../../shared/iconButton';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -77,15 +77,14 @@ const UserAccountContainer = ({
           총 고객 수&#8201;&#8201;
           <span className="b">{rows.length}</span>
         </p>
-        <div onClick={handleCreateUserBtnClick}>
-          <Icon
-            name="add"
-            width="25"
-            height="25"
-            viewBox="0 0 25 25"
-            fill="none"
-          />
-        </div>
+        <IconButton
+          handleClick={handleCreateUserBtnClick}
+          name="add"
+          width="25"
+          height="25"
+          viewBox="0 0 25 25"
+          fill="none"
+        />
       </div>
       <Paper className="mt2 paper-padding">
         <UserTable
@@ -100,7 +99,6 @@ const UserAccountContainer = ({
           handleCloseModal={closeModal}
           createUser={createUser}
           addFlashMessage={addFlashMessage}
-          clickedBtn={clickedBtn}
         />
       ) : (
         <EditUserModal

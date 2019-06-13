@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Form from './userAccountForm';
+import Form from './editUserForm';
 import Loader from '../../../shared/loader';
 import { editUserAccountValidation } from '../formValidation';
 
@@ -13,28 +13,22 @@ const Modal = Loader({
 
 const UserAccountModal = ({
   show,
-  clickedBtn,
   data,
   flashVariant,
   handleCloseModal,
   editUser,
   addFlashMessage,
 }) => {
-  const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const {
-      confirmPassword,
-      bankAccountId,
-      lunchQty,
-      dinnerQty,
-      ...others
-    } = values;
-
+  const handleEditUser = async (values, { setSubmitting, resetForm }) => {
+    const { bankAccountId, lunchQty, dinnerQty, ...others } = values;
     // to save values as number type in database
     const bankAccount = parseInt(bankAccountId, 10);
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
+    const id = data[0].id;
 
     const userInfo = {
+      id,
       bankAccount,
       lunchQtyValue,
       dinnerQtyValue,
@@ -69,8 +63,8 @@ const UserAccountModal = ({
         component={
           <Formik
             initialValues={values}
-            render={props => <Form {...props} clickedBtn={clickedBtn} />}
-            onSubmit={handleCreateUser}
+            render={props => <Form {...props} />}
+            onSubmit={handleEditUser}
             validationSchema={editUserAccountValidation}
           />
         }

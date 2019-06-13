@@ -40,7 +40,7 @@ const styles = theme => ({
   },
 });
 
-const ClientAccountForm = props => {
+const CreateUserForm = props => {
   const {
     values: {
       companyName,
@@ -62,9 +62,7 @@ const ClientAccountForm = props => {
     handleBlur,
     setFieldValue,
     classes,
-    clickedBtn,
   } = props;
-
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
@@ -140,6 +138,62 @@ const ClientAccountForm = props => {
                 ),
               }}
             />
+
+            <TextField
+              id="password"
+              label="비밀번호"
+              type="password"
+              placeholder="(특수문자 사용불가)"
+              value={password || ''}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.password && errors.password}
+              error={touched.password && Boolean(errors.password)}
+              required={true}
+              margin="normal"
+              className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="lock"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              id="confirmPassword"
+              label="비밀번호 확인"
+              type="password"
+              value={confirmPassword || ''}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.confirmPassword && errors.confirmPassword}
+              error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+              required={true}
+              margin="normal"
+              className={classes.textField}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon
+                      name="lock"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <div className="user-form--right">
             <TextField
               id="contactNo"
               label="연락처"
@@ -183,61 +237,6 @@ const ClientAccountForm = props => {
               }}
               margin="normal"
               className={classes.textField}
-            />
-          </div>
-          <div className="user-form--right">
-            <TextField
-              id="password"
-              label="비밀번호"
-              type="password"
-              placeholder="(특수문자 사용불가)"
-              value={password || ''}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.password && errors.password}
-              error={touched.password && Boolean(errors.password)}
-              required={clickedBtn === 'create'}
-              margin="normal"
-              className={classes.textField}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon
-                      name="lock"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 25 25"
-                      fill="none"
-                    />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              id="confirmPassword"
-              label="비밀번호 확인"
-              type="password"
-              value={confirmPassword || ''}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              helperText={touched.confirmPassword && errors.confirmPassword}
-              error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-              required={clickedBtn === 'create'}
-              margin="normal"
-              className={classes.textField}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon
-                      name="lock"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 25 25"
-                      fill="none"
-                    />
-                  </InputAdornment>
-                ),
-              }}
             />
             <TextField
               id="email"
@@ -373,4 +372,4 @@ const ClientAccountForm = props => {
   );
 };
 
-export default withStyles(styles)(ClientAccountForm);
+export default withStyles(styles)(CreateUserForm);

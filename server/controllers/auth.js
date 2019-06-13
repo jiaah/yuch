@@ -31,14 +31,14 @@ exports.createUser = (req, res) => {
         })
         .returning('*'),
     )
-    .then(() => res.status(200).json(companyName))
+    .then(user => res.status(200).json(user[0].companyName))
     .catch(err => res.status(409).json(err));
 };
 
 exports.editUser = (req, res) => {
   const {
+    id,
     username,
-    password,
     companyName,
     contactNo,
     email,
@@ -50,40 +50,21 @@ exports.editUser = (req, res) => {
 
   const lunchQty = lunchQtyValue;
   const dinnerQty = dinnerQtyValue;
-  let hashedPassword;
-  if (password !== undefined && password !== '') {
-    const passwordToLowercase = password.toLowerCase();
-    hashedPassword = util.bcryptPassword(passwordToLowercase);
-  }
 
   return knex('users')
-    .where({ username })
-    .update(
-      password !== undefined && password !== ''
-        ? {
-            companyName: companyName.toLowerCase(),
-            username: username.toLowerCase(),
-            password: hashedPassword,
-            contactNo,
-            email,
-            mealPrice,
-            lunchQty,
-            dinnerQty,
-            bankAccountId: bankAccount,
-          }
-        : {
-            companyName,
-            username,
-            contactNo,
-            email,
-            mealPrice,
-            lunchQty,
-            dinnerQty,
-            bankAccountId: bankAccount,
-          },
-    )
+    .where('id', id)
+    .update({
+      companyName: companyName.toLowerCase(),
+      username: username.toLowerCase(),
+      contactNo,
+      email,
+      mealPrice,
+      lunchQty,
+      dinnerQty,
+      bankAccountId: bankAccount,
+    })
     .returning('*')
-    .then(() => res.status(200).json(companyName))
+    .then(user => res.status(200).json(user[0].companyName))
     .catch(err => res.status(409).json(err));
 };
 

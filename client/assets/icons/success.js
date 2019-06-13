@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Error = ({ name, width, height, viewBox, fill }) => (
+const Success = ({ name, width, height, viewBox, fill }) => (
   <svg
     width={width}
     height={height}
@@ -19,4 +19,4 @@ const Error = ({ name, width, height, viewBox, fill }) => (
     </g>
   </svg>
 );
-export default Error;
+export default Success;

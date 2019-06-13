@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Form from './userAccountForm';
+import Form from './createUserForm';
 import Loader from '../../../shared/loader';
 import { addUserAccountValidation } from '../formValidation';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BankAccount = ({ name, width, height, viewBox, fill }) => (
+const Edit = ({ name, width, height, viewBox, fill }) => (
   <svg
     width={width}
     height={height}
@@ -12,4 +12,4 @@ const BankAccount = ({ name, width, height, viewBox, fill }) => (
     <path d="M0 0h24v24H0z" fill={fill} />
   </svg>
 );
-export default BankAccount;
+export default Edit;

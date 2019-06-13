@@ -16,6 +16,7 @@ import Success from './success';
 import Warning from './warning';
 import Edit from './edit';
 import Add from './add';
+import Delete from './delete';
 
 const Icon = props => {
   switch (props.name) {
@@ -49,6 +50,8 @@ const Icon = props => {
       return <Edit {...props} />;
     case 'add':
       return <Add {...props} />;
+    case 'delete':
+      return <Delete {...props} />;
     default:
       return <div />;
   }
