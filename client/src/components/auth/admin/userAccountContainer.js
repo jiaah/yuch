@@ -80,10 +80,10 @@ const UserAccountContainer = ({
         <IconButton
           handleClick={handleCreateUserBtnClick}
           name="add"
-          width="25"
-          height="25"
+          width="35"
+          height="35"
           viewBox="0 0 25 25"
-          fill="none"
+          fillOuter="none"
         />
       </div>
       <Paper className="mt2 paper-padding">

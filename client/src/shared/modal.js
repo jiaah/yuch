@@ -15,6 +15,10 @@ const FlashMessageBox = Loader({
 });
 
 const styles = theme => ({
+  modal: {
+    overflowX: 'scroll',
+    overflowY: 'scroll',
+  },
   paper: {
     position: 'absolute',
     boxShadow: theme.shadows[5],
@@ -36,6 +40,7 @@ const SimpleModal = ({
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={show}
+        className={classes.modal}
       >
         <div
           className={`tc modal-container ${classes.paper}`}
@@ -49,10 +54,10 @@ const SimpleModal = ({
           <div className="flex justify-end">
             <IconButton
               name="close"
-              width="30"
-              height="30"
+              width="40"
+              height="40"
               viewBox="0 0 30 30"
-              fill="none"
+              fillOuter="none"
               handleClick={handleClose}
             />
           </div>

@@ -20,3 +20,54 @@
     flex-direction: column;
   }
 }
+
+.user-form--bankaccount {
+  margin-left: 3em;
+
+  @include for-desktop-up {
+    margin-left: .5em;
+  }
+}
+
+.edit-userform--bottom {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.edit-userform--bottom-delete {
+  display: flex;
+  justify-content: center;
+
+  @include for-desktop-up {
+    flex-direction: column;
+    margin-left: 1.9em;
+    margin-top: 1.4em;
+  }
+}
+
+.edit-userform--bottom-delete-icon {
+  margin-top: -19px;
+  margin-right: -7px;
+
+  @include for-desktop-up {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -23px;
+  }
+}
+
+.edit-userform--bottom-delete-message {
+  margin-top: 5px;
+
+  @include for-desktop-up {
+    margin-top: 8px;
+  }
+}
+
+.edit-userform--bottom-delete-message--p {
+  font-size: 14px;
+  margin-top: -1px;
+}

@@ -2,10 +2,23 @@ import React from 'react';
 /* --- Components --- */
 import Icon from '../../assets/icons';
 
-const IconButton = ({ handleClick, name, width, height, viewBox, fill }) => (
+const IconButton = ({
+  handleClick,
+  name,
+  width,
+  height,
+  viewBox,
+  fillInner,
+  fillOuter,
+}) => (
   <button
     type="button"
-    style={{ border: 'none', backgroundColor: 'transparent' }}
+    style={{
+      border: 'none',
+      backgroundColor: 'transparent',
+      paddingTop: '0',
+      paddingBottom: '0',
+    }}
     onClick={handleClick}
   >
     <Icon
@@ -13,7 +26,8 @@ const IconButton = ({ handleClick, name, width, height, viewBox, fill }) => (
       width={width}
       height={height}
       viewBox={viewBox}
-      fill={fill}
+      fillInner={fillInner}
+      fillOuter={fillOuter}
     />
   </button>
 );

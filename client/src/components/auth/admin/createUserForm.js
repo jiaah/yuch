@@ -317,7 +317,7 @@ const CreateUserForm = props => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="user-form--bankaccount">
           <FormControl
             component="fieldset"
             required

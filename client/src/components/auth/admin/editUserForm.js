@@ -265,7 +265,7 @@ const EditUserForm = props => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="user-form--bankaccount">
           <FormControl
             component="fieldset"
             required
@@ -306,36 +306,7 @@ const EditUserForm = props => {
             </RadioGroup>
           </FormControl>
         </div>
-        <div className="flex justify-between">
-          <div className="mt3">
-            <div className="flex justify-start">
-              <IconButton
-                // handleClick={}
-                name="delete"
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-              />
-            </div>
-            <div className="flex">
-              <div>
-                <Icon
-                  name="warning"
-                  width="25"
-                  height="25"
-                  viewBox="0 0 25 25"
-                  fillOuter="#ed4337"
-                  fillInner="#ffffff"
-                />
-              </div>
-              <React.Fragment>
-                <p style={{ color: '#ed4337' }} className="f-mini">
-                  고객에 관한 모든 정보가 삭제됩니다.
-                </p>
-              </React.Fragment>
-            </div>
-          </div>
+        <div className="edit-userform--bottom">
           <div>
             <Button
               typeValue="submit"
@@ -351,6 +322,37 @@ const EditUserForm = props => {
               width="medium"
               isSubmitting={isSubmitting}
             />
+          </div>
+          <div className="edit-userform--bottom-delete">
+            <div className="edit-userform--bottom-delete-icon">
+              <IconButton
+                // handleClick={}
+                name="delete"
+                width="47"
+                height="47"
+                viewBox="0 0 128 128"
+                fillOuter="#866586"
+                fillInner="#E6FFA8"
+              />
+            </div>
+            <div className="flex edit-userform--bottom-delete-message">
+              <Icon
+                name="warning"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fillOuter="#ed4337"
+                fillInner="#ffffff"
+              />
+              <React.Fragment>
+                <p
+                  style={{ color: '#ed4337' }}
+                  className="edit-userform--bottom-delete-message--p"
+                >
+                  고객에 관한 모든 정보가 삭제됩니다.
+                </p>
+              </React.Fragment>
+            </div>
           </div>
         </div>
       </form>
