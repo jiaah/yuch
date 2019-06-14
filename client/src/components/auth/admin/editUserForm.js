@@ -319,13 +319,16 @@ const EditUserForm = props => {
               />
             </div>
             <div className="flex">
-              <Icon
-                name="warning"
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-              />
+              <div>
+                <Icon
+                  name="warning"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 25 25"
+                  fillOuter="#ed4337"
+                  fillInner="#ffffff"
+                />
+              </div>
               <React.Fragment>
                 <p style={{ color: '#ed4337' }} className="f-mini">
                   고객에 관한 모든 정보가 삭제됩니다.

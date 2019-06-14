@@ -55,7 +55,8 @@ const FlashMessage = ({ classes, variant, message }) => {
               width="20"
               height="20"
               viewBox="0 0 20 20"
-              fill={iconColor}
+              fillOuter="#ffffff"
+              fillInner={iconColor}
             />
           </div>
           {message}
