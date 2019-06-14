@@ -10,8 +10,8 @@ import Loading from './src/shared/loading';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#AE9A65' },
-    secondary: { main: '#ee9105' },
+    primary: { main: '#ee9105' },
+    secondary: { main: '#D164E8' },
     success: { main: '#43A047' },
     warning: { main: '#FFA000' },
     error: { main: '#ed4337' },

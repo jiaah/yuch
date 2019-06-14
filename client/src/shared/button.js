@@ -34,7 +34,7 @@ const button = ({
         type={typeValue}
         onClick={ev => handleButtonClick(ev)}
         variant={variantValue}
-        color="secondary"
+        color="primary"
         size="small"
         style={{ width: widthValue }}
         className={`${className} ${classes.button}`}

@@ -122,7 +122,7 @@ export class ReserveContainer extends Component {
           <Button
             onClick={this.showModal}
             variant="contained"
-            color="secondary"
+            color="primary"
             className={classes.bigButton}
             data-testid="reserve-modal--button"
           >

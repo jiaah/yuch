@@ -32,7 +32,7 @@ const FormButton = ({
       <Button
         type={typeValue}
         variant={variantValue}
-        color="secondary"
+        color="primary"
         size="small"
         style={{ width: widthValue }}
         className={classes.button}
