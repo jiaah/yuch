@@ -9,6 +9,7 @@ const styles = theme => ({
     paddingBottom: '1px',
     fontSize: '14px',
     lineHeight: '28px',
+    color: '#ffffff',
     [theme.breakpoints.up('md')]: {
       fontSize: '16px',
       lineHeight: '31px',

@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import EnhancedTableHead from './enhancedTableHead';
 import { stableSort, getSorting } from '../../../utils/sort';
-import Icon from '../../../../assets/icons';
+import IconButton from '../../../shared/iconButton';
 
 const styles = theme => ({
   tableWrapper: {
@@ -77,17 +77,16 @@ const UserTable = ({
                     selected={selected === row.username}
                   >
                     <TableCell padding="checkbox">
-                      <div
-                        onClick={e => handleEditUserBtnClick(e, row.username)}
-                      >
-                        <Icon
-                          name="edit"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 25 25"
-                          fill="none"
-                        />
-                      </div>
+                      <IconButton
+                        name="edit"
+                        width="19"
+                        height="19"
+                        viewBox="0 0 24 24"
+                        fillOuter="#D164E8"
+                        handleClick={e =>
+                          handleEditUserBtnClick(e, row.username)
+                        }
+                      />
                     </TableCell>
                     <TableCell
                       component="th"

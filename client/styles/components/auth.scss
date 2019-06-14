@@ -1,9 +1,16 @@
+/* ------ Login ------ */
 .login-container {
   height: calc(100vh - 240px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* ------ User Account ------ */
+/* Common */
+.user-account--user-number {
+  margin-top: .85em;
 }
 
 .user-form {
@@ -29,6 +36,7 @@
   }
 }
 
+/* Edit User Account */
 .edit-userform--bottom {
   @include for-desktop-up {
     display: flex;
@@ -44,18 +52,18 @@
   @include for-desktop-up {
     flex-direction: column;
     margin-left: 1.9em;
-    margin-top: 1.4em;
+    margin-top: 1.6em;
   }
 }
 
 .edit-userform--bottom-delete-icon {
-  margin-top: -19px;
+  margin-top: -7.5px;
   margin-right: -7px;
 
   @include for-desktop-up {
     display: flex;
     justify-content: flex-start;
-    margin-left: -23px;
+    margin-left: -17px;
   }
 }
 

@@ -73,17 +73,17 @@ const UserAccountContainer = ({
       {/* auto complete search bar by companyName */}
       <h2>고객 계정</h2>
       <div className="paper-label--box">
-        <p className="f-mini">
+        <p className="f-mini user-account--user-number">
           총 고객 수&#8201;&#8201;
           <span className="b">{rows.length}</span>
         </p>
         <IconButton
           handleClick={handleCreateUserBtnClick}
-          name="add"
-          width="35"
-          height="35"
-          viewBox="0 0 25 25"
-          fillOuter="none"
+          name="personAdd"
+          width="36"
+          height="36"
+          viewBox="0 0 24 24"
+          fillOuter="#D164E8"
         />
       </div>
       <Paper className="mt2 paper-padding">

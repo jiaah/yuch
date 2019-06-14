@@ -328,11 +328,11 @@ const EditUserForm = props => {
               <IconButton
                 // handleClick={}
                 name="delete"
-                width="47"
-                height="47"
-                viewBox="0 0 128 128"
-                fillOuter="#866586"
-                fillInner="#E6FFA8"
+                width="35"
+                height="35"
+                viewBox="0 0 24 24"
+                fillOuter="#D164E8"
+                fillInner="#ffffff"
               />
             </div>
             <div className="flex edit-userform--bottom-delete-message">
