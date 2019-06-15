@@ -83,7 +83,6 @@ const UserAccountContainer = ({
           width="36"
           height="36"
           viewBox="0 0 24 24"
-          fillOuter="#D164E8"
         />
       </div>
       <Paper className="mt2 paper-padding">

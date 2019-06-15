@@ -82,7 +82,6 @@ const UserTable = ({
                         width="19"
                         height="19"
                         viewBox="0 0 24 24"
-                        fillOuter="#D164E8"
                         handleClick={e =>
                           handleEditUserBtnClick(e, row.username)
                         }

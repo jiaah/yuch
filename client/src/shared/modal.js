@@ -57,7 +57,6 @@ const SimpleModal = ({
               width="40"
               height="40"
               viewBox="0 0 30 30"
-              fillOuter="none"
               handleClick={handleClose}
             />
           </div>

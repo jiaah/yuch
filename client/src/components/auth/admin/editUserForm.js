@@ -331,8 +331,6 @@ const EditUserForm = props => {
                 width="33"
                 height="33"
                 viewBox="0 0 24 24"
-                fillOuter="#D164E8"
-                fillInner="#ffffff"
               />
             </div>
             <div className="flex edit-userform--bottom-delete-message">
