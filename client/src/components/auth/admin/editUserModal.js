@@ -1,14 +1,14 @@
 /* eslint-disable no-alert */
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './editUserForm';
 import Loader from '../../../shared/loader';
 import { editUserAccountValidation } from '../formValidation';
+import Modal from '../../../shared/modal';
 
-const Modal = Loader({
-  loader: () =>
-    import('../../../shared/modal' /* webpackChunkName: 'simpleModal' */),
+const PasswordForm = Loader({
+  loader: () => import('./passwordForm' /* webpackChunkName: 'passwordForm' */),
 });
 
 const UserAccountModal = ({
@@ -18,7 +18,11 @@ const UserAccountModal = ({
   handleCloseModal,
   editUser,
   addFlashMessage,
+  openPasswordModal,
+  handleOpenPasswordModal,
 }) => {
+  console.log('openPasswordModal: ', openPasswordModal);
+
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
     const { bankAccountId, lunchQty, dinnerQty, ...others } = values;
     // to save values as number type in database
@@ -51,22 +55,38 @@ const UserAccountModal = ({
     }
     return setSubmitting(false);
   };
-
+  const title = openPasswordModal ? '비밀번호 변경' : '고객 계정';
   const values = data ? data[0] : [];
+  const passwordValues = {
+    password: '',
+    newPassword: '',
+    confirmPassword: '',
+  };
+
   return (
     <div className="container">
       <Modal
         show={show}
         flashVariant={flashVariant}
-        title="고객 계정"
+        title={title}
         handleClose={handleCloseModal}
         component={
-          <Formik
-            initialValues={values}
-            render={props => <Form {...props} />}
-            onSubmit={handleEditUser}
-            validationSchema={editUserAccountValidation}
-          />
+          openPasswordModal ? (
+            <Formik
+              initialValues={passwordValues}
+              render={props => <PasswordForm {...props} />}
+              // onSubmit={handleEditUser}
+              // validationSchema={editUserAccountValidation}
+            />
+          ) : (
+            <Formik
+              initialValues={values}
+              render={props => <Form {...props} />}
+              onSubmit={handleEditUser}
+              validationSchema={editUserAccountValidation}
+              handleOpenPasswordModal={handleOpenPasswordModal}
+            />
+          )
         }
       />
     </div>

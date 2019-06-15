@@ -45,10 +45,9 @@ const styles = theme => ({
 const EditUserForm = props => {
   const {
     values: {
+      id,
       companyName,
       username,
-      password,
-      confirmPassword,
       contactNo,
       email,
       mealPrice,
@@ -64,7 +63,9 @@ const EditUserForm = props => {
     handleBlur,
     setFieldValue,
     classes,
+    handleOpenPasswordModal,
   } = props;
+
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
@@ -309,11 +310,11 @@ const EditUserForm = props => {
         <div className="edit-userform--bottom">
           <div>
             <Button
-              typeValue="submit"
+              typeValue="button"
               variantValue="outlined"
               buttonName="비밀번호 변경"
               width="medium"
-              // handleButtonClick={}
+              handleButtonClick={() => handleOpenPasswordModal(id)}
             />
             <FormButton
               typeValue="submit"
