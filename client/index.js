@@ -11,7 +11,7 @@ import Loading from './src/shared/loading';
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#ee9105' },
-    secondary: { main: '#D164E8' },
+    secondary: { main: '#E8716F' },
     success: { main: '#43A047' },
     warning: { main: '#FFA000' },
     error: { main: '#ed4337' },
