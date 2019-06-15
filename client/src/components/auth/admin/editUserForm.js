@@ -328,8 +328,8 @@ const EditUserForm = props => {
               <IconButton
                 // handleClick={}
                 name="delete"
-                width="35"
-                height="35"
+                width="33"
+                height="33"
                 viewBox="0 0 24 24"
                 fillOuter="#D164E8"
                 fillInner="#ffffff"
