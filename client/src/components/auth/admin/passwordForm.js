@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Icon from '../../../../assets/icons';
+import FormButton from '../../../shared/formButton';
 
 const styles = theme => ({
   textField: {
@@ -36,20 +37,22 @@ const styles = theme => ({
 
 const PasswordForm = props => {
   const {
-    values: { id, password, newPassword, confirmPassword },
+    values: { password, newPassword, confirmPassword },
+    userId,
     errors,
     touched,
     handleChange,
-    // handleSubmit,
-    // isSubmitting,
+    handleSubmit,
+    isSubmitting,
     handleBlur,
-    // setFieldValue,
     classes,
-    // handleChangePasswordBtnClick,
   } = props;
 
   return (
-    <div className="flex flex-column-m">
+    <form
+      className="mh1 flex flex-column-m items-center"
+      onSubmit={handleSubmit}
+    >
       <TextField
         id="password"
         label="현재 비밀번호"
@@ -130,7 +133,14 @@ const PasswordForm = props => {
           ),
         }}
       />
-    </div>
+      <FormButton
+        typeValue="submit"
+        variantValue="contained"
+        buttonName="저장"
+        width="medium"
+        isSubmitting={isSubmitting}
+      />
+    </form>
   );
 };
 

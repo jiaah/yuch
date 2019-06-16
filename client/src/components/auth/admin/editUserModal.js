@@ -4,7 +4,10 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './editUserForm';
 import Loader from '../../../shared/loader';
-import { editUserAccountValidation } from '../formValidation';
+import {
+  editUserAccountValidation,
+  changePasswordValidation,
+} from '../formValidation';
 import Modal from '../../../shared/modal';
 
 const PasswordForm = Loader({
@@ -57,8 +60,12 @@ const UserAccountModal = ({
   const handleShowPasswordModal = () => setShowPasswordModal(true);
   const handleClosePasswordModal = () => setShowPasswordModal(false);
 
+  const handleChangePassword = () => {
+    console.log('handleChangeUserPassword is called');
+  };
   const title = showPasswordModal ? '비밀번호 변경' : '고객 계정';
   const values = data ? data[0] : [];
+  const userId = data && data[0].id;
   const passwordValues = {
     password: '',
     newPassword: '',
@@ -79,9 +86,9 @@ const UserAccountModal = ({
           showPasswordModal ? (
             <Formik
               initialValues={passwordValues}
-              render={props => <PasswordForm {...props} />}
-              // onSubmit={handleEditUser}
-              // validationSchema={editUserAccountValidation}
+              render={props => <PasswordForm {...props} userId={userId} />}
+              onSubmit={handleChangePassword}
+              validationSchema={changePasswordValidation}
             />
           ) : (
             <Formik

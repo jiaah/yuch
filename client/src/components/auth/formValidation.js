@@ -76,3 +76,16 @@ export const loginValidation = Yup.object({
     .min(8, '비밀번호는 8자 이상이여야 합니다.')
     .required('비밀번호를 입력하세요.'),
 });
+
+export const changePasswordValidation = Yup.object({
+  password: Yup.string('')
+    .min(8, '비밀번호는 8자 이상이여야 합니다.')
+    .required('비밀번호를 입력하세요.'),
+  newPassword: Yup.string('')
+    .min(8, '비밀번호는 숫자를 포함한 최소 8자 이상이어야 합니다.')
+    .matches(/(?=.*[0-9])/, '숫자를 포함하여야 합니다.'),
+  confirmPassword: Yup.string('').oneOf(
+    [Yup.ref('newPassword')],
+    '비밀번호가 일치하지 않습니다.',
+  ),
+});

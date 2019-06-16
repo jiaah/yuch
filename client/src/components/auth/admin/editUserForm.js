@@ -45,7 +45,6 @@ const styles = theme => ({
 const EditUserForm = props => {
   const {
     values: {
-      id,
       companyName,
       username,
       contactNo,
@@ -80,13 +79,12 @@ const EditUserForm = props => {
     } else {
       value = inputValue;
     }
-
     return setFieldValue(name, value, shouldValidate);
   };
 
   return (
     <React.Fragment>
-      <form className="mh1 " onSubmit={handleSubmit}>
+      <form className="mh1" onSubmit={handleSubmit}>
         <div className="mb2 user-form">
           <div className="user-form--left">
             <TextField
