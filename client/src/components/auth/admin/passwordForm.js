@@ -12,33 +12,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 250,
   },
-  textFieldB: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 118,
-  },
-  formControl: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing.unit * 3,
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing.unit * 5,
-    },
-  },
-  formLabel: {
-    marginLeft: '8px',
-  },
-  formControlLabel: {
-    [theme.breakpoints.up('md')]: {
-      marginRight: '50px',
-    },
-  },
 });
 
 const PasswordForm = props => {
   const {
     values: { password, newPassword, confirmPassword },
-    userId,
     errors,
     touched,
     handleChange,
@@ -83,7 +61,7 @@ const PasswordForm = props => {
       <TextField
         id="newPassword"
         label="새 비밀번호"
-        type="newPassword"
+        type="Password"
         placeholder="(특수문자 사용불가)"
         value={newPassword || ''}
         onChange={handleChange}

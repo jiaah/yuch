@@ -68,6 +68,30 @@ exports.editUser = (req, res) => {
     .catch(err => res.status(409).json(err));
 };
 
+exports.changePassword = (req, res) => {
+  const { id, password, newPassword } = req.body;
+
+  knex('users')
+    .where({ id })
+    .first()
+    .then(user => {
+      if (!user) {
+        return res.status(401).json('Auth failed');
+      }
+      if (!util.comparePassword(password, user.password)) {
+        return res.status(409).json('Auth failed');
+      }
+    });
+
+  return knex('users')
+    .update({
+      password: newPassword.toLowerCase(),
+    })
+    .returning('*')
+    .then(user => res.status(200).json(user[0].companyName))
+    .catch(err => res.status(409).json(err));
+};
+
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
   let companyName;
@@ -78,13 +102,11 @@ exports.loginUser = (req, res) => {
       if (!user) {
         return res.status(401).json('Auth failed');
       }
-
       if (!!user && user.username !== 'yuch') {
         if (!util.comparePassword(password, user.password)) {
           return res.status(409).json('Auth failed');
         }
       }
-
       // Sync hashed password (DB) !== Async hashed password (BE)
       // could not save hashed password from Async function in DB.
       if (!!user && user.username === 'yuch') {
@@ -92,7 +114,6 @@ exports.loginUser = (req, res) => {
           return res.status(409).json('Auth failed');
         }
       }
-
       companyName = user.companyName;
       return util.getRandomToken(user);
     })

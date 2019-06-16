@@ -27,7 +27,7 @@ const UserAccountContainer = ({
   modalActions,
   show,
   flashVariant,
-  authActions: { createUser, editUser },
+  authActions: { createUser, editUser, changePassword },
   getUsers,
   addFlashMessage,
 }) => {
@@ -109,6 +109,7 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           clickedBtn={clickedBtn}
           data={clickedUserData}
+          changePassword={changePassword}
         />
       )}
     </div>

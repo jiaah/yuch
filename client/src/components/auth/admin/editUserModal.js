@@ -21,11 +21,18 @@ const UserAccountModal = ({
   handleCloseModal,
   editUser,
   addFlashMessage,
+  changePassword,
 }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    const { bankAccountId, lunchQty, dinnerQty, ...others } = values;
+    const {
+      companyName,
+      bankAccountId,
+      lunchQty,
+      dinnerQty,
+      ...others
+    } = values;
     // to save values as number type in database
     const bankAccount = parseInt(bankAccountId, 10);
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
@@ -34,6 +41,7 @@ const UserAccountModal = ({
 
     const userInfo = {
       id,
+      companyName,
       bankAccount,
       lunchQtyValue,
       dinnerQtyValue,
@@ -49,9 +57,7 @@ const UserAccountModal = ({
     } catch (error) {
       await addFlashMessage(
         'error',
-        `${
-          values.companyName
-        } 고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
+        `${companyName} 고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );
     }
     return setSubmitting(false);
@@ -60,12 +66,25 @@ const UserAccountModal = ({
   const handleShowPasswordModal = () => setShowPasswordModal(true);
   const handleClosePasswordModal = () => setShowPasswordModal(false);
 
-  const handleChangePassword = () => {
-    console.log('handleChangeUserPassword is called');
+  const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
+    const { id, companyName, password, newPassword } = values;
+
+    try {
+      const userData = await changePassword(id, password, newPassword);
+      await alert(`${userData} 고객정보가 수정되었습니다.`);
+      await resetForm({});
+      return handleClosePasswordModal();
+    } catch (error) {
+      await addFlashMessage(
+        'error',
+        `${companyName} 고객 계정 비밀번호 수정에 실패하였습니다. 다시 시도해 주세요.`,
+      );
+    }
+    return setSubmitting(false);
   };
+
   const title = showPasswordModal ? '비밀번호 변경' : '고객 계정';
   const values = data ? data[0] : [];
-  const userId = data && data[0].id;
   const passwordValues = {
     password: '',
     newPassword: '',
@@ -86,7 +105,7 @@ const UserAccountModal = ({
           showPasswordModal ? (
             <Formik
               initialValues={passwordValues}
-              render={props => <PasswordForm {...props} userId={userId} />}
+              render={props => <PasswordForm {...props} />}
               onSubmit={handleChangePassword}
               validationSchema={changePasswordValidation}
             />

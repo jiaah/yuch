@@ -20,7 +20,7 @@ export const createUser = userInfo => async dispatch => {
     return companyName;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'createUser', error });
-    throw new Error('Creating a user failed');
+    throw new Error('Creating a user failed.');
   }
 };
 
@@ -39,9 +39,29 @@ export const editUser = userInfo => async dispatch => {
     return companyName;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
-    throw new Error('Editing a user failed');
+    throw new Error('Editing a user failed.');
   }
 };
+
+export const changePassword = (id, password, newPassword) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
+  try {
+    const res = await axios.post(
+      `${API_HOST}/auth/password`,
+      { id, password, newPassword },
+      {
+        headers: { authorization: token },
+      },
+    );
+    const companyName = res.data;
+    dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+    return companyName;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
+  }
+};
+
 export const userLogin = (username, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
@@ -54,7 +74,7 @@ export const userLogin = (username, password) => async dispatch => {
     return userData.token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
-    throw new Error('Login failed');
+    throw new Error('Login failed.');
   }
 };
 
