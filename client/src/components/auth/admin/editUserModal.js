@@ -18,10 +18,8 @@ const UserAccountModal = ({
   handleCloseModal,
   editUser,
   addFlashMessage,
-  openPasswordModal,
-  handleOpenPasswordModal,
 }) => {
-  console.log('openPasswordModal: ', openPasswordModal);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
     const { bankAccountId, lunchQty, dinnerQty, ...others } = values;
@@ -55,7 +53,11 @@ const UserAccountModal = ({
     }
     return setSubmitting(false);
   };
-  const title = openPasswordModal ? '비밀번호 변경' : '고객 계정';
+
+  const handleShowPasswordModal = () => setShowPasswordModal(true);
+  const handleClosePasswordModal = () => setShowPasswordModal(false);
+
+  const title = showPasswordModal ? '비밀번호 변경' : '고객 계정';
   const values = data ? data[0] : [];
   const passwordValues = {
     password: '',
@@ -69,9 +71,12 @@ const UserAccountModal = ({
         show={show}
         flashVariant={flashVariant}
         title={title}
-        handleClose={handleCloseModal}
+        handleClose={() => {
+          if (showPasswordModal) handleClosePasswordModal();
+          return handleCloseModal();
+        }}
         component={
-          openPasswordModal ? (
+          showPasswordModal ? (
             <Formik
               initialValues={passwordValues}
               render={props => <PasswordForm {...props} />}
@@ -81,10 +86,14 @@ const UserAccountModal = ({
           ) : (
             <Formik
               initialValues={values}
-              render={props => <Form {...props} />}
+              render={props => (
+                <Form
+                  {...props}
+                  handleShowPasswordModal={handleShowPasswordModal}
+                />
+              )}
               onSubmit={handleEditUser}
               validationSchema={editUserAccountValidation}
-              handleOpenPasswordModal={handleOpenPasswordModal}
             />
           )
         }

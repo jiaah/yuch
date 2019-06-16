@@ -63,7 +63,7 @@ const EditUserForm = props => {
     handleBlur,
     setFieldValue,
     classes,
-    handleOpenPasswordModal,
+    handleShowPasswordModal,
   } = props;
 
   const change = (e, name, shouldValidate) => {
@@ -314,7 +314,7 @@ const EditUserForm = props => {
               variantValue="outlined"
               buttonName="비밀번호 변경"
               width="medium"
-              handleButtonClick={() => handleOpenPasswordModal(id)}
+              handleButtonClick={handleShowPasswordModal}
             />
             <FormButton
               typeValue="submit"

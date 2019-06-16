@@ -28,19 +28,17 @@ const FormButton = ({
   const widthValue =
     width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
   return (
-    <React.Fragment>
-      <Button
-        type={typeValue}
-        variant={variantValue}
-        color="primary"
-        size="small"
-        style={{ width: widthValue }}
-        className={classes.button}
-        disabled={isSubmitting}
-      >
-        {buttonName}
-      </Button>
-    </React.Fragment>
+    <Button
+      type={typeValue}
+      variant={variantValue}
+      color="primary"
+      size="small"
+      style={{ width: widthValue }}
+      className={classes.button}
+      disabled={isSubmitting}
+    >
+      {buttonName}
+    </Button>
   );
 };
 

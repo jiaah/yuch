@@ -28,20 +28,18 @@ const button = ({
   const widthValue =
     width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
   return (
-    <React.Fragment>
-      <Button
-        data-testid="button"
-        type={typeValue}
-        onClick={ev => handleButtonClick(ev)}
-        variant={variantValue}
-        color="primary"
-        size="small"
-        style={{ width: widthValue }}
-        className={`${className} ${classes.button}`}
-      >
-        {buttonName}
-      </Button>
-    </React.Fragment>
+    <Button
+      data-testid="button"
+      type={typeValue}
+      onClick={ev => handleButtonClick(ev)}
+      variant={variantValue}
+      color="primary"
+      size="small"
+      style={{ width: widthValue }}
+      className={`${className} ${classes.button}`}
+    >
+      {buttonName}
+    </Button>
   );
 };
 export default withStyles(styles)(button);

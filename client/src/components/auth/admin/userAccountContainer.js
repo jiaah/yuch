@@ -34,7 +34,7 @@ const UserAccountContainer = ({
   const [rows, setRows] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
   const [clickedUserData, setClickedUserData] = useState(null);
-  const [openPasswordModal, setOpenPasswordModal] = useState(false);
+
   const fetchUsersData = async () => {
     const users = await getUsers();
     return setRows(users);
@@ -47,11 +47,8 @@ const UserAccountContainer = ({
   const showModal = () => modalActions.showModal();
   const closeModal = () => {
     if (clickedBtn === 'edit') setClickedUserData(null);
-    if (openPasswordModal) setOpenPasswordModal(false);
     return modalActions.hideModal();
   };
-  // Bug: handleOpenPasswordModal is not a function
-  const handleOpenPasswordModal = () => setOpenPasswordModal(true);
   const handleCreateUserBtnClick = () => {
     setClickedBtn('create');
     return showModal();
@@ -112,8 +109,6 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           clickedBtn={clickedBtn}
           data={clickedUserData}
-          openPasswordModal={openPasswordModal}
-          handleOpenPasswordModal={handleOpenPasswordModal}
         />
       )}
     </div>
