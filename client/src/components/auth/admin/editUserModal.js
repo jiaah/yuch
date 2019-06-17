@@ -37,7 +37,7 @@ const UserAccountModal = ({
     const bankAccount = parseInt(bankAccountId, 10);
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-    const id = data[0].id;
+    const id = data.id;
 
     const userInfo = {
       id,
@@ -71,8 +71,9 @@ const UserAccountModal = ({
     try {
       const userData = await changePassword(id, password, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);
-      await resetForm({});
-      return handleClosePasswordModal();
+      resetForm({});
+      handleClosePasswordModal();
+      return handleCloseModal();
     } catch (error) {
       await addFlashMessage(
         'error',
@@ -83,7 +84,7 @@ const UserAccountModal = ({
   };
 
   const title = showPasswordModal ? '비밀번호 변경' : '고객 계정';
-  const values = data ? data[0] : [];
+  const values = data || [];
   const passwordValues = {
     password: '',
     newPassword: '',

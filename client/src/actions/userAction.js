@@ -23,3 +23,12 @@ export const getUsers = () => async dispatch => {
     throw new Error('Getting users list is failed');
   }
 };
+
+export const saveClickedUserData = userData => ({
+  type: types.SAVE_CLICKED_USER_DATA,
+  payload: userData,
+});
+
+export const resetClickedUserData = () => ({
+  type: types.RESET_CLICKED_USER_DATA,
+});

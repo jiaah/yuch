@@ -11,7 +11,7 @@ import IconButton from '../../../shared/iconButton';
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/flashMessageAction';
-import { getUsers } from '../../../actions/userAction';
+import * as userActions from '../../../actions/userAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -28,12 +28,12 @@ const UserAccountContainer = ({
   show,
   flashVariant,
   authActions: { createUser, editUser, changePassword },
-  getUsers,
+  userActions: { getUsers, saveClickedUserData, resetClickedUserData },
   addFlashMessage,
+  clickedUserData,
 }) => {
   const [rows, setRows] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
-  const [clickedUserData, setClickedUserData] = useState(null);
 
   const fetchUsersData = async () => {
     const users = await getUsers();
@@ -46,13 +46,15 @@ const UserAccountContainer = ({
 
   const showModal = () => modalActions.showModal();
   const closeModal = () => {
-    if (clickedBtn === 'edit') setClickedUserData(null);
+    if (clickedBtn === 'edit') resetClickedUserData();
     return modalActions.hideModal();
   };
+
   const handleCreateUserBtnClick = () => {
     setClickedBtn('create');
     return showModal();
   };
+
   const getClickedUserData = async clickedUsername => {
     const userData = await rows.filter(
       user => user.username === clickedUsername,
@@ -60,12 +62,13 @@ const UserAccountContainer = ({
     // convert the bankAccount value from number to string.
     const bankIdToString = await userData[0].bankAccountId.toString();
     userData[0].bankAccountId = await bankIdToString;
-    return userData;
+    return userData[0];
   };
+
   const handleEditUserBtnClick = async (event, clickedUsername) => {
     await setClickedBtn('edit');
     const userData = await getClickedUserData(clickedUsername);
-    await setClickedUserData(userData);
+    await saveClickedUserData(userData);
     return showModal();
   };
 
@@ -119,6 +122,7 @@ const UserAccountContainer = ({
 const mapStateToProps = state => ({
   show: state.modal.show,
   flashVariant: state.flashMessage.variant,
+  clickedUserData: state.user.userData,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -126,7 +130,7 @@ const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
-  getUsers: () => dispatch(getUsers()),
+  userActions: bindActionCreators(userActions, dispatch),
 });
 
 export default connect(
