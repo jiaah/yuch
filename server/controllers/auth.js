@@ -70,7 +70,6 @@ exports.editUser = (req, res) => {
 
 exports.changePassword = (req, res) => {
   const { id, password, newPassword } = req.body;
-
   knex('users')
     .where({ id })
     .first()
@@ -78,48 +77,51 @@ exports.changePassword = (req, res) => {
       if (!user) {
         return res.status(401).json('Auth failed');
       }
-      if (!util.comparePassword(password, user.password)) {
-        return res.status(409).json('Auth failed');
-      }
+      util.comparePassword(password, newPassword).then(isMatch => {
+        if (isMatch) {
+          return util
+            .bcryptPassword(newPassword.toLowerCase())
+            .then(hashedPassword =>
+              knex('users')
+                .where({ id })
+                .first()
+                .update({
+                  password: hashedPassword,
+                })
+                .returning('*')
+                .then(user => res.status(200).json(user[0].companyName))
+                .catch(err => res.status(409).json(err)),
+            );
+        }
+      });
     });
-
-  return knex('users')
-    .update({
-      password: newPassword.toLowerCase(),
-    })
-    .returning('*')
-    .then(user => res.status(200).json(user[0].companyName))
-    .catch(err => res.status(409).json(err));
 };
 
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
   let companyName;
+  let userData;
   return knex('users')
     .where({ username })
     .first()
     .then(user => {
-      if (!user) {
-        return res.status(401).json('Auth failed');
-      }
-      if (!!user && user.username !== 'yuch') {
-        if (!util.comparePassword(password, user.password)) {
-          return res.status(409).json('Auth failed');
-        }
-      }
-      // Sync hashed password (DB) !== Async hashed password (BE)
-      // could not save hashed password from Async function in DB.
-      if (!!user && user.username === 'yuch') {
-        if (!util.compareAdminPassword(password, user.password)) {
-          return res.status(409).json('Auth failed');
-        }
-      }
+      userData = user;
       companyName = user.companyName;
-      return util.getRandomToken(user);
+      if (!user) {
+        return res.status(404).json('User not found');
+      }
+      return util.comparePassword(password, user.password);
+    })
+    .then(isMatch => {
+      if (isMatch) {
+        const token = util.getRandomToken(userData);
+        return token;
+      }
+      return res.status(409).json('Auth failed');
     })
     .then(token => {
-      res.status(200).json({ token, companyName });
       res.header('Authorization', `Bearer + ${token}`);
+      return res.status(200).json({ token, companyName });
     })
     .catch(err => res.status(500).json(err));
 };

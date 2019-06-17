@@ -14,7 +14,7 @@ exports.seed = (knex, Promise) =>
   knex('users')
     .del()
     .then(() => {
-      const salt = bcrypt.genSaltSync();
+      const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(PASSWORD, salt);
       return Promise.join(
         knex('users').insert({

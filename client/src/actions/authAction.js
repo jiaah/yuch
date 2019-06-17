@@ -44,6 +44,7 @@ export const editUser = userInfo => async dispatch => {
 };
 
 export const changePassword = (id, password, newPassword) => async dispatch => {
+  console.log('id, password, newPassword: ', id, password, newPassword);
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
     const res = await axios.post(
@@ -69,9 +70,9 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
-    const userData = res.data;
-    dispatch({ type: types.USER_LOGIN, payload: userData.companyName });
-    return userData.token;
+    const { companyName, token } = res.data;
+    dispatch({ type: types.USER_LOGIN, payload: companyName });
+    return token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
     throw new Error('Login failed.');

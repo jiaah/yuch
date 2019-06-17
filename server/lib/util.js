@@ -24,13 +24,6 @@ exports.comparePassword = function comparePassword(
   return bcrypt.compare(userPassword, databasePassword);
 };
 
-exports.compareAdminPassword = function comparePassword(
-  userPassword,
-  databasePassword,
-) {
-  return bcrypt.compareSync(userPassword, databasePassword);
-};
-
 exports.bcryptPassword = function bcryptPassword(password) {
   return new Promise((resolve, reject) => {
     bcrypt.genSalt(10, (err, salt) => {
