@@ -28,6 +28,7 @@ const UserAccountModal = ({
   editUser,
   addFlashMessage,
   changePassword,
+  deleteUser,
 }) => {
   const [subModal, setSubModal] = useState(null);
 
@@ -71,10 +72,7 @@ const UserAccountModal = ({
 
   const showSubModal = sub => setSubModal(sub);
 
-  const closeSubModal = () => {
-    console.log('closeSubModal fn is called');
-    setSubModal(null);
-  };
+  const closeSubModal = () => setSubModal(null);
 
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { id, companyName, password, newPassword } = values;
@@ -93,7 +91,11 @@ const UserAccountModal = ({
     return setSubmitting(false);
   };
 
-  const handleDeleteUser = () => console.log('delele user is submit');
+  const handleDeleteUser = async (values, { setSubmitting, resetForm }) => {
+    const { id, password } = values;
+    // pass userId to be deleted & admin user password
+    return deleteUser(id, password);
+  };
 
   const title =
     subModal === 'password'

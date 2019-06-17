@@ -27,11 +27,12 @@ const UserAccountContainer = ({
   modalActions,
   show,
   flashVariant,
-  authActions: { createUser, editUser, changePassword },
+  authActions: { createUser, editUser, changePassword, deleteUser },
   userActions: { getUsers, saveClickedUserData, resetClickedUserData },
   addFlashMessage,
   clickedUserData,
 }) => {
+  console.log('deleteUser: ', deleteUser);
   const [rows, setRows] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
@@ -113,6 +114,7 @@ const UserAccountContainer = ({
           clickedBtn={clickedBtn}
           data={clickedUserData}
           changePassword={changePassword}
+          deleteUser={deleteUser}
         />
       )}
     </div>

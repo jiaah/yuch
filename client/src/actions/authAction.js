@@ -81,3 +81,18 @@ export const userLogin = (username, password) => async dispatch => {
 export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
+
+export const deleteUser = (userId, password) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
+  try {
+    const res = await axios.post(`${API_HOST}/auth/delete`, password, {
+      headers: { authorization: token },
+    });
+    const companyName = res.data;
+    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
+    return companyName;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
+    throw new Error('Deleting the user failed.');
+  }
+};
