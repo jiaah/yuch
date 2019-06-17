@@ -35,6 +35,7 @@ const DeleteUserForm = props => {
         id="password"
         label="비밀번호"
         value={password || ''}
+        type="password"
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder="유청님의 비밀번호를 입력해주세요."
