@@ -2,16 +2,22 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Form from './editUserForm';
+import EditUserForm from './editUserForm';
 import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
   changePasswordValidation,
+  passwordValidation,
 } from '../formValidation';
 import Modal from '../../../shared/modal';
 
 const PasswordForm = Loader({
   loader: () => import('./passwordForm' /* webpackChunkName: 'passwordForm' */),
+});
+
+const DeleteUserForm = Loader({
+  loader: () =>
+    import('./deleteUserForm' /* webpackChunkName: 'deleteUserFrom' */),
 });
 
 const UserAccountModal = ({
@@ -23,7 +29,7 @@ const UserAccountModal = ({
   addFlashMessage,
   changePassword,
 }) => {
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [subModal, setSubModal] = useState(null);
 
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -63,8 +69,12 @@ const UserAccountModal = ({
     return setSubmitting(false);
   };
 
-  const handleShowPasswordModal = () => setShowPasswordModal(true);
-  const handleClosePasswordModal = () => setShowPasswordModal(false);
+  const showSubModal = sub => setSubModal(sub);
+
+  const closeSubModal = () => {
+    console.log('closeSubModal fn is called');
+    setSubModal(null);
+  };
 
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { id, companyName, password, newPassword } = values;
@@ -72,7 +82,7 @@ const UserAccountModal = ({
       const userData = await changePassword(id, password, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);
       resetForm({});
-      handleClosePasswordModal();
+      closeSubModal();
       return handleCloseModal();
     } catch (error) {
       await addFlashMessage(
@@ -83,14 +93,23 @@ const UserAccountModal = ({
     return setSubmitting(false);
   };
 
-  const title = showPasswordModal ? '비밀번호 변경' : '고객 계정';
+  const handleDeleteUser = () => console.log('delele user is submit');
+
+  const title =
+    subModal === 'password'
+      ? '비밀번호 변경'
+      : subModal === 'delete'
+        ? ''
+        : '고객 계정';
   const values = data || [];
   const passwordValues = {
     password: '',
     newPassword: '',
     confirmPassword: '',
   };
-
+  const deleteValues = {
+    password: '',
+  };
   return (
     <div className="container">
       <Modal
@@ -98,25 +117,29 @@ const UserAccountModal = ({
         flashVariant={flashVariant}
         title={title}
         handleClose={() => {
-          if (showPasswordModal) handleClosePasswordModal();
+          if (subModal) closeSubModal();
           return handleCloseModal();
         }}
         component={
-          showPasswordModal ? (
+          subModal === 'password' ? (
             <Formik
               initialValues={passwordValues}
               render={props => <PasswordForm {...props} />}
               onSubmit={handleChangePassword}
               validationSchema={changePasswordValidation}
             />
+          ) : subModal === 'delete' ? (
+            <Formik
+              initialValues={deleteValues}
+              render={props => <DeleteUserForm {...props} />}
+              onSubmit={handleDeleteUser}
+              validationSchema={passwordValidation}
+            />
           ) : (
             <Formik
               initialValues={values}
               render={props => (
-                <Form
-                  {...props}
-                  handleShowPasswordModal={handleShowPasswordModal}
-                />
+                <EditUserForm {...props} showSubModal={showSubModal} />
               )}
               onSubmit={handleEditUser}
               validationSchema={editUserAccountValidation}
