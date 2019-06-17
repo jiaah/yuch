@@ -68,9 +68,6 @@ const UserAccountModal = ({
 
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { id, companyName, password, newPassword } = values;
-    console.log('values: ', values);
-    console.log('id: ', id);
-
     try {
       const userData = await changePassword(id, password, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);

@@ -77,7 +77,7 @@ exports.changePassword = (req, res) => {
       if (!user) {
         return res.status(401).json('Auth failed');
       }
-      util.comparePassword(password, newPassword).then(isMatch => {
+      util.comparePassword(password, user.password).then(isMatch => {
         if (isMatch) {
           return util
             .bcryptPassword(newPassword.toLowerCase())
