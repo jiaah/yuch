@@ -31,8 +31,8 @@ const DeleteUserForm = props => {
       <div className="flex justify-center mb3">
         <Icon
           name="warning"
-          width="30"
-          height="30"
+          width="28"
+          height="28"
           viewBox="0 0 25 25"
           fillOuter="#ed4337"
           fillInner="#ffffff"
@@ -45,8 +45,12 @@ const DeleteUserForm = props => {
       <p>
         정말 삭제하시겠습니다?
         <br />
-        삭제하시려면, {data.admin.companyName}
-        님의 비밀번호를 입력해주세요.
+        삭제하시려면,{' '}
+        <span className="c-point2">
+          {data.admin.companyName}
+          님의 비밀번호
+        </span>
+        를 입력해주세요.
       </p>
 
       <div className="flex justify-center mt4">
