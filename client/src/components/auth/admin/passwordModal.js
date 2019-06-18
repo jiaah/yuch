@@ -16,13 +16,9 @@ const PasswordModal = ({
   clickedUserId,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, password, newPassword } = values;
+    const { companyName, newPassword } = values;
     try {
-      const userData = await changePassword(
-        clickedUserId,
-        password,
-        newPassword,
-      );
+      const userData = await changePassword(clickedUserId, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);
       await Promise.all([resetForm({}), closeSubModal(), handleCloseModal()]);
       return window.location.reload(true);
@@ -36,7 +32,6 @@ const PasswordModal = ({
   };
 
   const passwordValues = {
-    password: '',
     newPassword: '',
     confirmPassword: '',
   };

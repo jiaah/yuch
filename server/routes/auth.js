@@ -6,6 +6,10 @@ module.exports = () => {
   router.post('/register', authController.createUser);
   router.patch('/edit/:id', authController.editUser);
   router.patch('/edit/password/:id', authController.changePassword);
+  router.patch(
+    '/edit/password/:id/admin',
+    authController.changePasswordByAdmin,
+  );
   router.post('/login/admin', authController.checkAdminUser);
   router.delete('/delete/:id', authController.deleteUser);
   router.post('/login', authController.loginUser);

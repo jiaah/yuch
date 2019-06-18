@@ -1,6 +1,35 @@
 const knex = require('../database');
 const util = require('../lib/util');
 
+exports.loginUser = (req, res) => {
+  const { username, password } = req.body;
+  let companyName;
+  let userData;
+  return knex('users')
+    .where({ username })
+    .first()
+    .then(user => {
+      userData = user;
+      companyName = user.companyName;
+      if (!user) {
+        return res.status(404).json('User not found');
+      }
+      return util.comparePassword(password, user.password);
+    })
+    .then(isMatch => {
+      if (isMatch) {
+        const token = util.getRandomToken(userData);
+        return token;
+      }
+      return res.status(409).json('Auth failed');
+    })
+    .then(token => {
+      res.header('Authorization', `Bearer + ${token}`);
+      return res.status(200).json({ token, companyName });
+    })
+    .catch(err => res.status(500).json(err));
+};
+
 exports.createUser = (req, res) => {
   const {
     username,
@@ -100,33 +129,21 @@ exports.changePassword = (req, res) => {
     });
 };
 
-exports.loginUser = (req, res) => {
-  const { username, password } = req.body;
-  let companyName;
-  let userData;
-  return knex('users')
-    .where({ username })
-    .first()
-    .then(user => {
-      userData = user;
-      companyName = user.companyName;
-      if (!user) {
-        return res.status(404).json('User not found');
-      }
-      return util.comparePassword(password, user.password);
-    })
-    .then(isMatch => {
-      if (isMatch) {
-        const token = util.getRandomToken(userData);
-        return token;
-      }
-      return res.status(409).json('Auth failed');
-    })
-    .then(token => {
-      res.header('Authorization', `Bearer + ${token}`);
-      return res.status(200).json({ token, companyName });
-    })
-    .catch(err => res.status(500).json(err));
+exports.changePasswordByAdmin = (req, res) => {
+  const userId = req.params.id;
+  const { newPassword } = req.body;
+
+  util.bcryptPassword(newPassword.toLowerCase()).then(hashedPassword =>
+    knex('users')
+      .where({ id: userId })
+      .first()
+      .update({
+        password: hashedPassword,
+      })
+      .returning('*')
+      .then(user => res.status(200).json(user[0].companyName))
+      .catch(err => res.status(409).json(err)),
+  );
 };
 
 exports.deleteUser = (req, res) => {

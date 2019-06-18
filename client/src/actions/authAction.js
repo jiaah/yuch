@@ -5,6 +5,26 @@ import { getToken } from '../../localStorage';
 
 const token = getToken();
 
+export const userLogin = (username, password) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'login' });
+  try {
+    const res = await axios.post(`${API_HOST}/auth/login`, {
+      username,
+      password,
+    });
+    const { companyName, token } = res.data;
+    dispatch({ type: types.USER_LOGIN, payload: companyName });
+    return token;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
+    throw new Error('Login failed.');
+  }
+};
+
+export const userLogout = () => ({
+  type: types.USER_LOGOUT,
+});
+
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
@@ -62,25 +82,24 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
   }
 };
 
-export const userLogin = (username, password) => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'login' });
+export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/login`, {
-      username,
-      password,
-    });
-    const { companyName, token } = res.data;
-    dispatch({ type: types.USER_LOGIN, payload: companyName });
-    return token;
+    const res = await axios.patch(
+      `${API_HOST}/auth/edit/password/${id}/admin`,
+      { id, newPassword },
+      {
+        headers: { authorization: token },
+      },
+    );
+    const companyName = res.data;
+    dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+    return companyName;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
-    throw new Error('Login failed.');
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
   }
 };
-
-export const userLogout = () => ({
-  type: types.USER_LOGOUT,
-});
 
 export const deleteUser = (userId, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });

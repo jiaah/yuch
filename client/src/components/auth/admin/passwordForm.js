@@ -16,7 +16,7 @@ const styles = theme => ({
 
 const PasswordForm = props => {
   const {
-    values: { password, newPassword, confirmPassword },
+    values: { newPassword, confirmPassword },
     errors,
     touched,
     handleChange,
@@ -31,33 +31,6 @@ const PasswordForm = props => {
       className="mh1 flex flex-column-m items-center"
       onSubmit={handleSubmit}
     >
-      <TextField
-        id="password"
-        label="현재 비밀번호"
-        type="password"
-        placeholder=""
-        value={password || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        helperText={touched.password && errors.password}
-        error={touched.password && Boolean(errors.password)}
-        required={true}
-        margin="normal"
-        className={classes.textField}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Icon
-                name="lock"
-                width="20"
-                height="20"
-                viewBox="0 0 25 25"
-                fill="none"
-              />
-            </InputAdornment>
-          ),
-        }}
-      />
       <TextField
         id="newPassword"
         label="새 비밀번호"
