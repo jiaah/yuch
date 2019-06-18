@@ -25,7 +25,7 @@ const PasswordModal = ({
     } catch (error) {
       await addFlashMessage(
         'error',
-        `${companyName} 고객 계정 비밀번호 수정에 실패하였습니다. 다시 시도해 주세요.`,
+        `${companyName} 고객 계정 비밀번호 수정에 실패하였습니다. 비밀번호를 확인해주세요.`,
       );
     }
     return setSubmitting(false);

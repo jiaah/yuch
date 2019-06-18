@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-import EnhancedTableHead from './enhancedTableHead';
+import EnhancedTableHead from './userTableHead';
 import { stableSort, getSorting } from '../../../utils/sort';
 import IconButton from '../../../shared/iconButton';
 

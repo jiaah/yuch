@@ -126,6 +126,6 @@ export const changePasswordByAdminValidation = Yup.object({
 
 export const passwordValidation = Yup.object({
   password: Yup.string('')
-    .min(8, '비밀번호는 8자 이상이여야 합니다.')
+    .lowercase('소문자로 입력해주세요.')
     .required('비밀번호를 입력하세요.'),
 });
