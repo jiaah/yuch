@@ -92,9 +92,23 @@ const UserAccountModal = ({
   };
 
   const handleDeleteUser = async (values, { setSubmitting, resetForm }) => {
-    const { id, password } = values;
-    // pass userId to be deleted & admin user password
-    return deleteUser(id, password);
+    const { id, companyName, password } = values;
+
+    try {
+      // pass userId to be deleted & admin user password
+      await deleteUser(id, password);
+      await alert(`${companyName} 고객 계정이 삭제되었습니다.`);
+      resetForm({});
+      closeSubModal();
+      handleCloseModal();
+      return window.location.reload(true);
+    } catch (err) {
+      await addFlashMessage(
+        'error',
+        `${companyName} 고객 계정 삭제에 실패하였습니다. 다시 시도해 주세요.`,
+      );
+    }
+    return setSubmitting(false);
   };
 
   const title =

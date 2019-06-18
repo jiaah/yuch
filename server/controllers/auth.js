@@ -127,7 +127,9 @@ exports.loginUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-  const { userId, password } = req.body;
+  const userId = req.params.id;
+  const { password } = req.body;
+
   return knex('users')
     .where({ username: 'yuch' })
     .first()

@@ -27,7 +27,7 @@ export const createUser = userInfo => async dispatch => {
 export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
-    const res = await axios.post(
+    const res = await axios.patch(
       `${API_HOST}/auth/edit`,
       { userInfo },
       {
@@ -46,7 +46,7 @@ export const editUser = userInfo => async dispatch => {
 export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    const res = await axios.post(
+    const res = await axios.patch(
       `${API_HOST}/auth/password`,
       { id, password, newPassword },
       {
@@ -85,16 +85,14 @@ export const userLogout = () => ({
 export const deleteUser = (userId, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    const res = await axios.post(
-      `${API_HOST}/auth/delete`,
-      { userId, password },
+    await axios.post(
+      `${API_HOST}/auth/delete/${userId}`,
+      { password },
       {
         headers: { authorization: token },
       },
     );
-    const companyName = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
-    return companyName;
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
     throw new Error('Deleting the user failed.');
