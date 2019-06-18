@@ -27,7 +27,7 @@ const DeleteUserForm = props => {
   } = props;
 
   return (
-    <form className="mh1 lh-3" onSubmit={handleSubmit}>
+    <form className="mh3 lh-3 mh-auto" onSubmit={handleSubmit}>
       <div className="flex justify-center mb3">
         <Icon
           name="warning"
@@ -49,7 +49,7 @@ const DeleteUserForm = props => {
         님의 비밀번호를 입력해주세요.
       </p>
 
-      <div className="flex justify-center mt3">
+      <div className="flex justify-center mt4">
         <TextField
           id="password"
           label="비밀번호"

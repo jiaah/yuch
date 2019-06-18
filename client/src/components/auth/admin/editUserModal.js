@@ -11,18 +11,19 @@ import {
 } from '../formValidation';
 import Modal from '../../../shared/modal';
 
-const PasswordForm = Loader({
-  loader: () => import('./passwordForm' /* webpackChunkName: 'passwordForm' */),
+const PasswordModal = Loader({
+  loader: () =>
+    import('./passwordModal' /* webpackChunkName: 'passwordModal' */),
 });
 
-const DeleteUserForm = Loader({
+const DeleteUserModal = Loader({
   loader: () =>
-    import('./deleteUserForm' /* webpackChunkName: 'deleteUserFrom' */),
+    import('./deleteUserModal' /* webpackChunkName: 'deleteUserModal' */),
 });
 
 const UserAccountModal = ({
   show,
-  data,
+  clickedUserData,
   flashVariant,
   handleCloseModal,
   editUser,
@@ -30,7 +31,7 @@ const UserAccountModal = ({
   changePassword,
   deleteUser,
 }) => {
-  const [subModal, setSubModal] = useState(null);
+  const [subModal, setSubModal] = useState({ id: null, show: false });
 
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -44,7 +45,7 @@ const UserAccountModal = ({
     const bankAccount = parseInt(bankAccountId, 10);
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-    const id = data.id;
+    const id = clickedUserData.id;
 
     const userInfo = {
       id,
@@ -70,100 +71,52 @@ const UserAccountModal = ({
     return setSubmitting(false);
   };
 
-  const showSubModal = sub => setSubModal(sub);
+  const showSubModal = sub => setSubModal({ id: sub, show: true });
+  const closeSubModal = () => setSubModal({ id: null, show: false });
 
-  const closeSubModal = () => setSubModal(null);
+  const values = clickedUserData || [];
 
-  const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
-    const { id, companyName, password, newPassword } = values;
-    try {
-      const userData = await changePassword(id, password, newPassword);
-      await alert(`${userData} 고객정보가 수정되었습니다.`);
-      await resetForm({});
-      await closeSubModal();
-      await handleCloseModal();
-      return window.location.reload(true);
-    } catch (error) {
-      await addFlashMessage(
-        'error',
-        `${companyName} 고객 계정 비밀번호 수정에 실패하였습니다. 다시 시도해 주세요.`,
-      );
-    }
-    return setSubmitting(false);
-  };
-
-  const handleDeleteUser = async (values, { setSubmitting, resetForm }) => {
-    const { id, companyName, password } = values;
-
-    try {
-      // pass userId to be deleted & admin user password
-      await deleteUser(id, password);
-      await alert(`${companyName} 고객 계정이 삭제되었습니다.`);
-      resetForm({});
-      closeSubModal();
-      handleCloseModal();
-      return window.location.reload(true);
-    } catch (err) {
-      await addFlashMessage(
-        'error',
-        `${companyName} 고객 계정 삭제에 실패하였습니다. 다시 시도해 주세요.`,
-      );
-    }
-    return setSubmitting(false);
-  };
-
-  const title =
-    subModal === 'password'
-      ? '비밀번호 변경'
-      : subModal === 'delete'
-        ? ''
-        : '고객 계정';
-  const values = data || [];
-  const passwordValues = {
-    password: '',
-    newPassword: '',
-    confirmPassword: '',
-  };
-  const deleteValues = {
-    password: '',
-  };
   return (
     <div className="container">
       <Modal
         show={show}
         flashVariant={flashVariant}
-        title={title}
-        handleClose={() => {
-          if (subModal) closeSubModal();
-          return handleCloseModal();
-        }}
+        title="고객 계정"
+        handleClose={() => handleCloseModal()}
         component={
-          subModal === 'password' ? (
-            <Formik
-              initialValues={passwordValues}
-              render={props => <PasswordForm {...props} />}
-              onSubmit={handleChangePassword}
-              validationSchema={changePasswordValidation}
-            />
-          ) : subModal === 'delete' ? (
-            <Formik
-              initialValues={deleteValues}
-              render={props => <DeleteUserForm {...props} />}
-              onSubmit={handleDeleteUser}
-              validationSchema={passwordValidation}
-            />
-          ) : (
-            <Formik
-              initialValues={values}
-              render={props => (
-                <EditUserForm {...props} showSubModal={showSubModal} />
-              )}
-              onSubmit={handleEditUser}
-              validationSchema={editUserAccountValidation}
-            />
-          )
+          <Formik
+            initialValues={values}
+            render={props => (
+              <EditUserForm {...props} showSubModal={showSubModal} />
+            )}
+            onSubmit={handleEditUser}
+            validationSchema={editUserAccountValidation}
+          />
         }
       />
+      {subModal.id === 'password' ? (
+        <PasswordModal
+          show={subModal.show}
+          closeSubModal={closeSubModal}
+          handleCloseModal={handleCloseModal}
+          flashVariant={flashVariant}
+          addFlashMessage={addFlashMessage}
+          clickedUserId={clickedUserData.id}
+          changePasswordValidation={changePasswordValidation}
+          changePassword={changePassword}
+        />
+      ) : (
+        <DeleteUserModal
+          show={subModal.show}
+          closeSubModal={closeSubModal}
+          handleCloseModal={handleCloseModal}
+          flashVariant={flashVariant}
+          addFlashMessage={addFlashMessage}
+          clickedUserData={clickedUserData}
+          passwordValidation={passwordValidation}
+          deleteUser={deleteUser}
+        />
+      )}{' '}
     </div>
   );
 };

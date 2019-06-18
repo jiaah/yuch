@@ -111,7 +111,7 @@ const UserAccountContainer = ({
           editUser={editUser}
           addFlashMessage={addFlashMessage}
           clickedBtn={clickedBtn}
-          data={clickedUserData}
+          clickedUserData={clickedUserData}
           changePassword={changePassword}
           deleteUser={deleteUser}
         />
