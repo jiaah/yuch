@@ -6,7 +6,7 @@ import EditUserForm from './editUserForm';
 import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
-  changePasswordValidation,
+  changePasswordByAdminValidation,
   passwordValidation,
 } from '../formValidation';
 import Modal from '../../../shared/modal';
@@ -21,14 +21,14 @@ const DeleteUserModal = Loader({
     import('./deleteUserModal' /* webpackChunkName: 'deleteUserModal' */),
 });
 
-const UserAccountModal = ({
+const EditUserModal = ({
   show,
   clickedUserData,
   flashVariant,
   handleCloseModal,
   editUser,
   addFlashMessage,
-  changePassword,
+  changePasswordByAdmin,
   deleteUser,
 }) => {
   const [subModal, setSubModal] = useState({ id: null, show: false });
@@ -102,8 +102,8 @@ const UserAccountModal = ({
           flashVariant={flashVariant}
           addFlashMessage={addFlashMessage}
           clickedUserId={clickedUserData.id}
-          changePasswordValidation={changePasswordValidation}
-          changePassword={changePassword}
+          changePasswordByAdminValidation={changePasswordByAdminValidation}
+          changePasswordByAdmin={changePasswordByAdmin}
         />
       ) : (
         <DeleteUserModal
@@ -121,4 +121,4 @@ const UserAccountModal = ({
   );
 };
 
-export default UserAccountModal;
+export default EditUserModal;

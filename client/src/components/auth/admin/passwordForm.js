@@ -28,7 +28,7 @@ const PasswordForm = props => {
 
   return (
     <form
-      className="mh1 flex flex-column-m items-center"
+      className="mh3 flex flex-column-m items-center"
       onSubmit={handleSubmit}
     >
       <TextField

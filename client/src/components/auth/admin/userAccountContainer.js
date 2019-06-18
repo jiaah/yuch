@@ -27,7 +27,7 @@ const UserAccountContainer = ({
   modalActions,
   show,
   flashVariant,
-  authActions: { createUser, editUser, changePassword, deleteUser },
+  authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
   userActions: { getUsers, saveClickedUserData, resetClickedUserData },
   addFlashMessage,
   clickedUserData,
@@ -112,7 +112,7 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
-          changePassword={changePassword}
+          changePasswordByAdmin={changePasswordByAdmin}
           deleteUser={deleteUser}
         />
       )}

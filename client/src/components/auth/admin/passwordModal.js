@@ -10,15 +10,15 @@ const PasswordModal = ({
   flashVariant,
   handleCloseModal,
   addFlashMessage,
-  changePassword,
+  changePasswordByAdmin,
   closeSubModal,
-  changePasswordValidation,
+  changePasswordByAdminValidation,
   clickedUserId,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { companyName, newPassword } = values;
     try {
-      const userData = await changePassword(clickedUserId, newPassword);
+      const userData = await changePasswordByAdmin(clickedUserId, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);
       await Promise.all([resetForm({}), closeSubModal(), handleCloseModal()]);
       return window.location.reload(true);
@@ -42,13 +42,13 @@ const PasswordModal = ({
         show={show}
         flashVariant={flashVariant}
         title="비밀번호 변경"
-        handleClose={() => closeSubModal()}
+        handleClose={closeSubModal}
         component={
           <Formik
             initialValues={passwordValues}
             render={props => <PasswordForm {...props} />}
             onSubmit={handleChangePassword}
-            validationSchema={changePasswordValidation}
+            validationSchema={changePasswordByAdminValidation}
           />
         }
       />
