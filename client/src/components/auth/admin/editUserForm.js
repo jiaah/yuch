@@ -341,10 +341,7 @@ const EditUserForm = props => {
               fillInner="#ffffff"
             />
             <React.Fragment>
-              <p
-                style={{ color: '#ed4337' }}
-                className="edit-userform--bottom-delete-message--p"
-              >
+              <p className="c-red edit-userform--bottom-delete-message--p">
                 고객에 관한 모든 정보가 삭제됩니다.
               </p>
             </React.Fragment>

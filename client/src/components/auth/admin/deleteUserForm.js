@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
+import Icon from '../../../../assets/icons';
 
 const styles = theme => ({
   textField: {
@@ -25,37 +26,56 @@ const DeleteUserForm = props => {
   } = props;
 
   return (
-    <form className="mh1" onSubmit={handleSubmit}>
+    <form className="mh1 lh-3" onSubmit={handleSubmit}>
+      <div className="flex justify-center mb3">
+        <Icon
+          name="warning"
+          width="30"
+          height="30"
+          viewBox="0 0 25 25"
+          fillOuter="#ed4337"
+          fillInner="#ffffff"
+        />
+        <p className="c-red waring-icon--p">
+          고객님의 정보가 시스템에서 삭제 됩니다. 삭제된 데이터는 복구할수
+          없습니다.
+        </p>
+      </div>
       <p>
-        고객님의 정보가 시스템에서 삭제 됩니다. 삭제된 데이터는 복구할수
-        없습니다.
+        정말 삭제하시겠습니다?
+        <br />
+        삭제하시려면, 유청님의 비밀번호를 입력해주세요.
       </p>
-      <p>정말 삭제하시겠습니다? 삭제하시려면, 비밀번호를 입력해주세요.</p>
-      <TextField
-        id="password"
-        label="비밀번호"
-        value={password || ''}
-        type="password"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        placeholder="유청님의 비밀번호를 입력해주세요."
-        helperText={touched.password && errors.password}
-        error={touched.password && Boolean(errors.password)}
-        required={true}
-        margin="normal"
-        className={classes.textField}
-        variant="outlined"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="삭제"
-        width="medium"
-        isSubmitting={isSubmitting}
-      />
+
+      <div className="flex justify-center mt3">
+        <TextField
+          id="password"
+          label="비밀번호"
+          value={password || ''}
+          type="password"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="유청님의 비밀번호를 입력해주세요."
+          helperText={touched.password && errors.password}
+          error={touched.password && Boolean(errors.password)}
+          required={true}
+          margin="normal"
+          className={classes.textField}
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <div className="ml3 mt2">
+          <FormButton
+            typeValue="submit"
+            variantValue="contained"
+            buttonName="삭제"
+            width="medium"
+            isSubmitting={isSubmitting}
+          />
+        </div>
+      </div>
     </form>
   );
 };
