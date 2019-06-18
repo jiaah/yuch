@@ -32,7 +32,6 @@ const UserAccountContainer = ({
   addFlashMessage,
   clickedUserData,
 }) => {
-  console.log('deleteUser: ', deleteUser);
   const [rows, setRows] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 

@@ -85,9 +85,13 @@ export const userLogout = () => ({
 export const deleteUser = (userId, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/delete`, password, {
-      headers: { authorization: token },
-    });
+    const res = await axios.post(
+      `${API_HOST}/auth/delete`,
+      { userId, password },
+      {
+        headers: { authorization: token },
+      },
+    );
     const companyName = res.data;
     dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
     return companyName;
