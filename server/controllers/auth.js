@@ -36,8 +36,8 @@ exports.createUser = (req, res) => {
 };
 
 exports.editUser = (req, res) => {
+  const userId = req.params.id;
   const {
-    id,
     username,
     companyName,
     contactNo,
@@ -52,7 +52,8 @@ exports.editUser = (req, res) => {
   const dinnerQty = dinnerQtyValue;
 
   return knex('users')
-    .where('id', id)
+    .where({ id: userId })
+    .first()
     .update({
       companyName: companyName.toLowerCase(),
       username: username.toLowerCase(),
@@ -69,9 +70,10 @@ exports.editUser = (req, res) => {
 };
 
 exports.changePassword = (req, res) => {
-  const { id, password, newPassword } = req.body;
+  const userId = req.params.id;
+  const { password, newPassword } = req.body;
   knex('users')
-    .where({ id })
+    .where({ id: userId })
     .first()
     .then(user => {
       if (!user) {
@@ -83,7 +85,7 @@ exports.changePassword = (req, res) => {
             .bcryptPassword(newPassword.toLowerCase())
             .then(hashedPassword =>
               knex('users')
-                .where({ id })
+                .where({ id: userId })
                 .first()
                 .update({
                   password: hashedPassword,
@@ -93,6 +95,7 @@ exports.changePassword = (req, res) => {
                 .catch(err => res.status(409).json(err)),
             );
         }
+        return res.status(409).json('Auth failed');
       });
     });
 };
@@ -128,6 +131,16 @@ exports.loginUser = (req, res) => {
 
 exports.deleteUser = (req, res) => {
   const userId = req.params.id;
+
+  return knex('users')
+    .where({ id: userId })
+    .first()
+    .del()
+    .then(() => res.status(200).json())
+    .catch(err => res.status(500).json(err));
+};
+
+exports.checkAdminUser = (req, res) => {
   const { password } = req.body;
 
   return knex('users')
@@ -136,13 +149,9 @@ exports.deleteUser = (req, res) => {
     .then(user => util.comparePassword(password, user.password))
     .then(isMatch => {
       if (isMatch) {
-        return knex('users')
-          .where({ id: userId })
-          .first()
-          .del();
+        return res.status(200).json();
       }
       return res.status(409).json('Auth failed');
     })
-    .then(() => res.status(200).json())
     .catch(err => res.status(500).json(err));
 };

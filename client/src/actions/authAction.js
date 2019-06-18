@@ -28,7 +28,7 @@ export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
     const res = await axios.patch(
-      `${API_HOST}/auth/edit`,
+      `${API_HOST}/auth/edit/${userInfo.id}`,
       { userInfo },
       {
         headers: { authorization: token },
@@ -47,7 +47,7 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
     const res = await axios.patch(
-      `${API_HOST}/auth/password`,
+      `${API_HOST}/auth/edit/password/${id}`,
       { id, password, newPassword },
       {
         headers: { authorization: token },
@@ -85,13 +85,11 @@ export const userLogout = () => ({
 export const deleteUser = (userId, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    await axios.post(
-      `${API_HOST}/auth/delete/${userId}`,
-      { password },
-      {
-        headers: { authorization: token },
-      },
-    );
+    // double check if the request is made by the admin user -> delete user
+    await axios.post(`${API_HOST}/auth/login/admin`, { password });
+    await axios.delete(`${API_HOST}/auth/delete/${userId}`, {
+      headers: { authorization: token },
+    });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });

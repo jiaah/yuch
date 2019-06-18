@@ -79,9 +79,10 @@ const UserAccountModal = ({
     try {
       const userData = await changePassword(id, password, newPassword);
       await alert(`${userData} 고객정보가 수정되었습니다.`);
-      resetForm({});
-      closeSubModal();
-      return handleCloseModal();
+      await resetForm({});
+      await closeSubModal();
+      await handleCloseModal();
+      return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(
         'error',

@@ -4,13 +4,10 @@ const onlyLoggedIn = require('../lib/only-logged-in');
 
 module.exports = () => {
   router.post('/register', authController.createUser);
-  router.patch('/edit', authController.editUser);
-  router.patch('/password', authController.changePassword);
-  router.post('/delete/:id', authController.deleteUser);
+  router.patch('/edit/:id', authController.editUser);
+  router.patch('/edit/password/:id', authController.changePassword);
+  router.post('/login/admin', authController.checkAdminUser);
+  router.delete('/delete/:id', authController.deleteUser);
   router.post('/login', authController.loginUser);
-  router.get('/current_user', onlyLoggedIn, (req, res) => {
-    console.log(req);
-    res.send(req.userData);
-  });
   return router;
 };
