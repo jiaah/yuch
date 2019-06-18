@@ -76,6 +76,9 @@ const EditUserForm = props => {
       } else {
         value = inputValue;
       }
+    }
+    if (name === 'companyName' || name === 'username') {
+      value = inputValue.toLowerCase();
     } else {
       value = inputValue;
     }
@@ -91,7 +94,7 @@ const EditUserForm = props => {
             label="고객명"
             placeholder="(한글) 유청"
             value={companyName || ''}
-            onChange={handleChange}
+            onChange={e => change(e, 'companyName', true)}
             onBlur={handleBlur}
             helperText={touched.companyName && errors.companyName}
             error={touched.companyName && Boolean(errors.companyName)}
@@ -117,7 +120,7 @@ const EditUserForm = props => {
             label="고객 아이디"
             placeholder="(영문) yucheong"
             value={username || ''}
-            onChange={handleChange}
+            onChange={e => change(e, 'username', true)}
             onBlur={handleBlur}
             helperText={touched.username && errors.username}
             error={touched.username && Boolean(errors.username)}

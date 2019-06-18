@@ -19,12 +19,19 @@ const PasswordForm = props => {
     values: { newPassword, confirmPassword },
     errors,
     touched,
-    handleChange,
     handleSubmit,
     isSubmitting,
     handleBlur,
     classes,
+    setFieldValue,
   } = props;
+
+  const change = (e, name, shouldValidate) => {
+    e.persist();
+    const inputValue = e.target.value;
+    const value = inputValue.toLowerCase();
+    return setFieldValue(name, value, shouldValidate);
+  };
 
   return (
     <form
@@ -34,10 +41,9 @@ const PasswordForm = props => {
       <TextField
         id="newPassword"
         label="새 비밀번호"
-        type="Password"
-        placeholder="(특수문자 사용불가)"
+        placeholder="( 숫자 or 숫자+영문 조합 )"
         value={newPassword || ''}
-        onChange={handleChange}
+        onChange={e => change(e, 'newPassword', true)}
         onBlur={handleBlur}
         helperText={touched.newPassword && errors.newPassword}
         error={touched.newPassword && Boolean(errors.newPassword)}
@@ -61,9 +67,8 @@ const PasswordForm = props => {
       <TextField
         id="confirmPassword"
         label="비밀번호 확인"
-        type="password"
         value={confirmPassword || ''}
-        onChange={handleChange}
+        onChange={e => change(e, 'confirmPassword', true)}
         onBlur={handleBlur}
         helperText={touched.confirmPassword && errors.confirmPassword}
         error={touched.confirmPassword && Boolean(errors.confirmPassword)}

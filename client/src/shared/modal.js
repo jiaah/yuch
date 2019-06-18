@@ -51,6 +51,7 @@ const SimpleModal = ({
           }}
           data-testid="modal"
         >
+          {flashVariant !== '' && <FlashMessageBox />}
           <div className="flex justify-end">
             <IconButton
               name="close"
@@ -60,11 +61,11 @@ const SimpleModal = ({
               handleClick={handleClose}
             />
           </div>
+
           <h3 variant="title" className="f-en">
             {title}
           </h3>
           {component}
-          {flashVariant !== '' && <FlashMessageBox />}
         </div>
       </Modal>
     )}

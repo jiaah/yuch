@@ -42,7 +42,7 @@ const UserAccountModal = ({
       const userData = await createUser(userInfo);
       await alert(`${userData} 고객정보가 등록되었습니다.`);
       await resetForm({});
-      handleCloseModal();
+      await handleCloseModal();
       return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(

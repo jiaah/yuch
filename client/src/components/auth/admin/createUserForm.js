@@ -67,6 +67,7 @@ const CreateUserForm = props => {
     e.persist();
     const inputValue = e.target.value;
     let value;
+
     if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
@@ -74,10 +75,15 @@ const CreateUserForm = props => {
       } else {
         value = inputValue;
       }
-    } else {
-      value = inputValue;
     }
-
+    if (
+      name === 'companyName' ||
+      name === 'username' ||
+      name === 'password' ||
+      name === 'confirmPassword'
+    ) {
+      value = inputValue.toLowerCase();
+    }
     return setFieldValue(name, value, shouldValidate);
   };
 
@@ -91,7 +97,7 @@ const CreateUserForm = props => {
               label="고객명"
               placeholder="(한글) 유청"
               value={companyName || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'companyName', true)}
               onBlur={handleBlur}
               helperText={touched.companyName && errors.companyName}
               error={touched.companyName && Boolean(errors.companyName)}
@@ -117,7 +123,7 @@ const CreateUserForm = props => {
               label="고객 아이디"
               placeholder="(영문) yucheong"
               value={username || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'username', true)}
               onBlur={handleBlur}
               helperText={touched.username && errors.username}
               error={touched.username && Boolean(errors.username)}
@@ -141,10 +147,9 @@ const CreateUserForm = props => {
             <TextField
               id="password"
               label="비밀번호"
-              type="password"
-              placeholder="(특수문자 사용불가)"
+              placeholder="( 숫자 or 숫자+영문 조합 )"
               value={password || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'password', true)}
               onBlur={handleBlur}
               helperText={touched.password && errors.password}
               error={touched.password && Boolean(errors.password)}
@@ -168,9 +173,8 @@ const CreateUserForm = props => {
             <TextField
               id="confirmPassword"
               label="비밀번호 확인"
-              type="password"
               value={confirmPassword || ''}
-              onChange={handleChange}
+              onChange={e => change(e, 'confirmPassword', true)}
               onBlur={handleBlur}
               helperText={touched.confirmPassword && errors.confirmPassword}
               error={touched.confirmPassword && Boolean(errors.confirmPassword)}
@@ -198,7 +202,7 @@ const CreateUserForm = props => {
               label="연락처"
               placeholder="054 - 745 - 0999"
               value={contactNo || ''}
-              onChange={e => change(e, 'contactNo', true)}
+              onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.contactNo && errors.contactNo}
               error={touched.contactNo && Boolean(errors.contactNo)}

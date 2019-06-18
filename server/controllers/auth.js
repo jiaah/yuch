@@ -44,12 +44,12 @@ exports.createUser = (req, res) => {
   } = req.body.userInfo;
 
   return util
-    .bcryptPassword(password.toLowerCase())
+    .bcryptPassword(password)
     .then(hashedPassword =>
       knex('users')
         .insert({
-          companyName: companyName.toLowerCase(),
-          username: username.toLowerCase(),
+          companyName,
+          username,
           password: hashedPassword,
           contactNo,
           email,
@@ -84,8 +84,8 @@ exports.editUser = (req, res) => {
     .where({ id: userId })
     .first()
     .update({
-      companyName: companyName.toLowerCase(),
-      username: username.toLowerCase(),
+      companyName,
+      username,
       contactNo,
       email,
       mealPrice,
@@ -110,19 +110,17 @@ exports.changePassword = (req, res) => {
       }
       util.comparePassword(password, user.password).then(isMatch => {
         if (isMatch) {
-          return util
-            .bcryptPassword(newPassword.toLowerCase())
-            .then(hashedPassword =>
-              knex('users')
-                .where({ id: userId })
-                .first()
-                .update({
-                  password: hashedPassword,
-                })
-                .returning('*')
-                .then(user => res.status(200).json(user[0].companyName))
-                .catch(err => res.status(409).json(err)),
-            );
+          return util.bcryptPassword(newPassword).then(hashedPassword =>
+            knex('users')
+              .where({ id: userId })
+              .first()
+              .update({
+                password: hashedPassword,
+              })
+              .returning('*')
+              .then(user => res.status(200).json(user[0].companyName))
+              .catch(err => res.status(409).json(err)),
+          );
         }
         return res.status(409).json('Auth failed');
       });
@@ -133,7 +131,7 @@ exports.changePasswordByAdmin = (req, res) => {
   const userId = req.params.id;
   const { newPassword } = req.body;
 
-  util.bcryptPassword(newPassword.toLowerCase()).then(hashedPassword =>
+  util.bcryptPassword(newPassword).then(hashedPassword =>
     knex('users')
       .where({ id: userId })
       .first()

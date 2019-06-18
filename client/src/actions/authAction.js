@@ -83,7 +83,6 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
 };
 
 export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
-  console.log('id, newPassword: ', id, newPassword);
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
     const res = await axios.patch(
