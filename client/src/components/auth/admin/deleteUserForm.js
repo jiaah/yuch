@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
 import Icon from '../../../../assets/icons';
+import * as data from '../../../shared/data';
 
 const styles = theme => ({
   textField: {
@@ -44,7 +45,8 @@ const DeleteUserForm = props => {
       <p>
         정말 삭제하시겠습니다?
         <br />
-        삭제하시려면, 유청님의 비밀번호를 입력해주세요.
+        삭제하시려면, {data.admin.companyName}
+        님의 비밀번호를 입력해주세요.
       </p>
 
       <div className="flex justify-center mt3">

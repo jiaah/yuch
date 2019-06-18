@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { clearLocalStorage } from '../../../localStorage';
 import Navbar from './navbar';
 import NavMenu from './navMenu';
+import * as data from '../../shared/data';
 /* --- actions --- */
 import { userLogout } from '../../actions/authAction';
 /* --- images --- */
@@ -20,7 +21,6 @@ class NavContainer extends Component {
 
   render() {
     const { isLoggedIn, companyName, routerLocation } = this.props;
-
     return (
       <div className="nav relative">
         <Navbar
@@ -33,7 +33,7 @@ class NavContainer extends Component {
           </Link>
         </div>
         {isLoggedIn &&
-          companyName !== '유청' && (
+          companyName !== data.admin.companyName && (
             <p className="mr3 pb2 flex justify-end f-mini">
               안녕하세요. &#8201;
               <span className="b">{companyName}</span>
@@ -44,6 +44,7 @@ class NavContainer extends Component {
           routerLocation={routerLocation}
           isLoggedIn={isLoggedIn}
           companyName={companyName}
+          data={data}
         />
       </div>
     );

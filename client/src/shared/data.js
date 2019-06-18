@@ -1,3 +1,5 @@
+export const admin = { companyName: '유청', username: 'yuch' };
+
 export const navHome = [
   {
     id: 1,
