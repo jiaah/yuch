@@ -29,7 +29,6 @@ const UserAccountContainer = ({
   authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
   userActions: { getUsers, saveClickedUserData, resetClickedUserData },
   addFlashMessage,
-  addButtonMessage,
   messageShow,
   clickedUserData,
 }) => {
