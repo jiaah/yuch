@@ -10,10 +10,10 @@ const FlashMessageBox = Loader({
     import('./src/shared/flashMessageBox' /* webpackChunkName: 'FlashMessageBox' */),
 });
 
-const App = (props, { isOnModal }) => (
+const App = props => (
   <div id="app absolute">
     <NavContainer />
-    {!isOnModal && (
+    {!props.isOnModal && (
       <div className="flex justify-center">
         <FlashMessageBox />
       </div>

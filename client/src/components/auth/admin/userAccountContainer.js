@@ -10,7 +10,7 @@ import IconButton from '../../../shared/iconButton';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
-import { addFlashMessage } from '../../../actions/flashMessageAction';
+import { addFlashMessage } from '../../../actions/messageAction';
 import * as userActions from '../../../actions/userAction';
 
 const CreateUserModal = Loader({
@@ -122,7 +122,7 @@ const UserAccountContainer = ({
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  flashVariant: state.flashMessage.variant,
+  flashVariant: state.message.variant,
   clickedUserData: state.user.userData,
 });
 

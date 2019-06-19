@@ -30,16 +30,15 @@ const EditUserModal = ({
   changePasswordByAdmin,
   deleteUser,
 }) => {
-  const [subModal, setSubModal] = useState({ id: null, show: false });
+  const [subModal, setSubModal] = useState(null);
 
-  const showSubModal = sub => setSubModal({ id: sub, show: true });
-  const closeSubModal = () => setSubModal({ id: null, show: false });
+  const showSubModal = sub => setSubModal(sub);
+  const closeSubModal = () => setSubModal(null);
 
-  const subModalId = subModal.id;
   const title =
-    subModalId === 'password'
+    subModal === 'password'
       ? '비밀번호 변경'
-      : subModalId === 'delete'
+      : subModal === 'delete'
         ? ''
         : '고객 계정';
 
@@ -50,13 +49,13 @@ const EditUserModal = ({
         flashVariant={flashVariant}
         title={title}
         handleClose={() => {
-          if (subModalId === null) {
+          if (subModal === null) {
             return handleCloseModal();
           }
           return closeSubModal();
         }}
         component={
-          subModalId === 'password' ? (
+          subModal === 'password' ? (
             <PasswordFormBox
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
@@ -65,7 +64,7 @@ const EditUserModal = ({
               changePasswordByAdminValidation={changePasswordByAdminValidation}
               changePasswordByAdmin={changePasswordByAdmin}
             />
-          ) : subModalId === 'delete' ? (
+          ) : subModal === 'delete' ? (
             <DeleteUserFormBox
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}

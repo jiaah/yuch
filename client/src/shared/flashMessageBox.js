@@ -10,8 +10,8 @@ const FlashMessagesList = ({ variant, message }) => (
 );
 
 const mapStateToProps = state => ({
-  variant: state.flashMessage.variant,
-  message: state.flashMessage.message,
+  variant: state.message.variant,
+  message: state.message.message,
 });
 
 export default connect(

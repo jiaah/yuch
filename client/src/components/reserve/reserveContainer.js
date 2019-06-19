@@ -157,7 +157,7 @@ export class ReserveContainer extends Component {
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  flashVariant: state.flashMessage.variant,
+  flashVariant: state.message.variant,
 });
 
 const mapDispatchToProps = dispatch => ({

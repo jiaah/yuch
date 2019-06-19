@@ -9,7 +9,7 @@ import { loginValidation } from './formValidation';
 import * as data from '../../shared/data';
 /* --- Actions --- */
 import { userLogin } from '../../actions/authAction';
-import { addFlashMessage } from '../../actions/flashMessageAction';
+import { addFlashMessage } from '../../actions/messageAction';
 
 class Login extends React.Component {
   handleUserLogin = async (values, { setSubmitting, resetForm }) => {

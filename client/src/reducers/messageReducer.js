@@ -5,7 +5,7 @@ const initialState = {
   message: '',
 };
 
-const flashMessage = (state = initialState, action) => {
+const message = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_FLASH_MESSAGE:
       return {
@@ -24,4 +24,4 @@ const flashMessage = (state = initialState, action) => {
   }
 };
 
-export default flashMessage;
+export default message;
