@@ -26,10 +26,11 @@ const EditUserModal = Loader({
 const UserAccountContainer = ({
   modalActions,
   show,
-  flashVariant,
   authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
   userActions: { getUsers, saveClickedUserData, resetClickedUserData },
   addFlashMessage,
+  addButtonMessage,
+  messageShow,
   clickedUserData,
 }) => {
   const [rows, setRows] = useState([]);
@@ -98,22 +99,22 @@ const UserAccountContainer = ({
       {show && clickedBtn === 'create' ? (
         <CreateUserModal
           show={show}
-          flashVariant={flashVariant}
           handleCloseModal={closeModal}
           createUser={createUser}
           addFlashMessage={addFlashMessage}
+          messageShow={messageShow}
         />
       ) : (
         <EditUserModal
           show={show}
-          flashVariant={flashVariant}
           handleCloseModal={closeModal}
           editUser={editUser}
-          addFlashMessage={addFlashMessage}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
           changePasswordByAdmin={changePasswordByAdmin}
           deleteUser={deleteUser}
+          addFlashMessage={addFlashMessage}
+          messageShow={messageShow}
         />
       )}
     </div>
@@ -122,7 +123,7 @@ const UserAccountContainer = ({
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  flashVariant: state.message.variant,
+  messageShow: state.message.show,
   clickedUserData: state.user.userData,
 });
 

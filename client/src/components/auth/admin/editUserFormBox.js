@@ -33,8 +33,7 @@ const DeleteUserFormBox = ({
       ...others,
     };
     try {
-      const userData = await editUser(userInfo);
-      await alert(`${userData} 고객정보가 수정되었습니다.`);
+      await editUser(userInfo);
       await resetForm({});
       handleCloseModal();
       return window.location.reload(true);

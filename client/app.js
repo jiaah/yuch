@@ -5,25 +5,27 @@ import NavContainer from './src/components/nav/navContainer';
 import Loader from './src/shared/loader';
 import './styles/main.scss';
 
-const FlashMessageBox = Loader({
+const MessageBox = Loader({
   loader: () =>
-    import('./src/shared/flashMessageBox' /* webpackChunkName: 'FlashMessageBox' */),
+    import('./src/shared/messageBox' /* webpackChunkName: 'MessageBox' */),
 });
 
 const App = props => (
   <div id="app absolute">
     <NavContainer />
-    {!props.isOnModal && (
-      <div className="flex justify-center">
-        <FlashMessageBox />
-      </div>
-    )}
+    {props.messageShow !== null &&
+      !props.isOnModal && (
+        <div className="flex justify-center">
+          <MessageBox />
+        </div>
+      )}
     {props.children}
   </div>
 );
 
 const mapPropsToState = state => ({
   isOnModal: state.modal.show,
+  messageShow: state.message.show,
 });
 
 export default connect(

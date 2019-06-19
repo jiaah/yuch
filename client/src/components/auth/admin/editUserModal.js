@@ -23,10 +23,10 @@ const DeleteUserFormBox = Loader({
 const EditUserModal = ({
   show,
   clickedUserData,
-  flashVariant,
   handleCloseModal,
   editUser,
   addFlashMessage,
+  messageShow,
   changePasswordByAdmin,
   deleteUser,
 }) => {
@@ -46,7 +46,7 @@ const EditUserModal = ({
     <div className="container">
       <Modal
         show={show}
-        flashVariant={flashVariant}
+        messageShow={messageShow}
         title={title}
         handleClose={() => {
           if (subModal === null) {

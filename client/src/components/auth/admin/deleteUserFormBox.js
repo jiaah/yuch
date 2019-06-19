@@ -18,7 +18,6 @@ const DeleteUserFormBox = ({
     try {
       // pass userId to be deleted & admin user password
       await deleteUser(id, password);
-      await alert(`${companyName} 고객 계정이 삭제되었습니다.`);
       await Promise.all([resetForm({}), closeSubModal(), handleCloseModal()]);
       return window.location.reload(true);
     } catch (err) {

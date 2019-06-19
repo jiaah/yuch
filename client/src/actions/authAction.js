@@ -28,16 +28,14 @@ export const userLogout = () => ({
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
-    const res = await axios.post(
+    await axios.post(
       `${API_HOST}/auth/register`,
       { userInfo },
       {
         headers: { authorization: token },
       },
     );
-    const companyName = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
-    return companyName;
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'createUser', error });
     throw new Error('Creating a user failed.');
@@ -47,16 +45,14 @@ export const createUser = userInfo => async dispatch => {
 export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
-    const res = await axios.patch(
+    await axios.patch(
       `${API_HOST}/auth/edit/${userInfo.id}`,
       { userInfo },
       {
         headers: { authorization: token },
       },
     );
-    const companyName = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
-    return companyName;
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
     throw new Error('Editing a user failed.');
@@ -66,16 +62,14 @@ export const editUser = userInfo => async dispatch => {
 export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    const res = await axios.patch(
+    await axios.patch(
       `${API_HOST}/auth/edit/password/${id}`,
       { id, password, newPassword },
       {
         headers: { authorization: token },
       },
     );
-    const companyName = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
-    return companyName;
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
     throw new Error('Changing the password failed.');
@@ -85,16 +79,14 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
 export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    const res = await axios.patch(
+    await axios.patch(
       `${API_HOST}/auth/edit/password/${id}/admin`,
       { id, newPassword },
       {
         headers: { authorization: token },
       },
     );
-    const companyName = res.data;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
-    return companyName;
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
     throw new Error('Changing the password failed.');

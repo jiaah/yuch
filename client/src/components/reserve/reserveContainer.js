@@ -132,7 +132,7 @@ export class ReserveContainer extends Component {
         {show && (
           <Modal
             show={show}
-            flashVariant={flashVariant}
+            messageShow={false}
             title="Reservation"
             handleClose={this.closeModal}
             component={
@@ -157,7 +157,6 @@ export class ReserveContainer extends Component {
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  flashVariant: state.message.variant,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import FlashMessage from './flashMessage';
 
-const FlashMessagesList = ({ variant, message }) => (
+const MessagesList = ({ show, variant, message }) => (
   <React.Fragment>
-    {message !== '' && <FlashMessage variant={variant} message={message} />}
+    {show && <FlashMessage variant={variant} message={message} />}
   </React.Fragment>
 );
 
 const mapStateToProps = state => ({
+  show: state.message.show,
   variant: state.message.variant,
   message: state.message.message,
 });
@@ -17,4 +18,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null,
-)(FlashMessagesList);
+)(MessagesList);

@@ -46,21 +46,19 @@ exports.createUser = (req, res) => {
   return util
     .bcryptPassword(password)
     .then(hashedPassword =>
-      knex('users')
-        .insert({
-          companyName,
-          username,
-          password: hashedPassword,
-          contactNo,
-          email,
-          mealPrice,
-          lunchQty: lunchQtyValue,
-          dinnerQty: dinnerQtyValue,
-          bankAccountId: bankAccount,
-        })
-        .returning('*'),
+      knex('users').insert({
+        companyName,
+        username,
+        password: hashedPassword,
+        contactNo,
+        email,
+        mealPrice,
+        lunchQty: lunchQtyValue,
+        dinnerQty: dinnerQtyValue,
+        bankAccountId: bankAccount,
+      }),
     )
-    .then(user => res.status(200).json(user[0].companyName))
+    .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
 };
 
@@ -90,8 +88,7 @@ exports.editUser = (req, res) => {
       dinnerQty,
       bankAccountId,
     })
-    .returning('*')
-    .then(user => res.status(200).json(user[0].companyName))
+    .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
 };
 
@@ -114,8 +111,7 @@ exports.changePassword = (req, res) => {
               .update({
                 password: hashedPassword,
               })
-              .returning('*')
-              .then(user => res.status(200).json(user[0].companyName))
+              .then(() => res.status(200).json())
               .catch(err => res.status(409).json(err)),
           );
         }
@@ -135,8 +131,7 @@ exports.changePasswordByAdmin = (req, res) => {
       .update({
         password: hashedPassword,
       })
-      .returning('*')
-      .then(user => res.status(200).json(user[0].companyName))
+      .then(() => res.status(200).json())
       .catch(err => res.status(409).json(err)),
   );
 };

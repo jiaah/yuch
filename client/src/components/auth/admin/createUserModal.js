@@ -13,10 +13,10 @@ const Modal = Loader({
 
 const UserAccountModal = ({
   show,
-  flashVariant,
   handleCloseModal,
   createUser,
   addFlashMessage,
+  messageShow,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -39,8 +39,7 @@ const UserAccountModal = ({
     };
 
     try {
-      const userData = await createUser(userInfo);
-      await alert(`${userData} 고객정보가 등록되었습니다.`);
+      await createUser(userInfo);
       await resetForm({});
       await handleCloseModal();
       return window.location.reload(true);
@@ -72,7 +71,7 @@ const UserAccountModal = ({
     <div className="container">
       <Modal
         show={show}
-        flashVariant={flashVariant}
+        messageShow={messageShow}
         title="신규업체 등록"
         handleClose={handleCloseModal}
         component={

@@ -15,8 +15,7 @@ const PasswordFormBox = ({
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { companyName, newPassword } = values;
     try {
-      const userData = await changePasswordByAdmin(clickedUserId, newPassword);
-      await alert(`${userData} 고객정보가 수정되었습니다.`);
+      await changePasswordByAdmin(clickedUserId, newPassword);
       await Promise.all([resetForm({}), closeSubModal(), handleCloseModal()]);
       return window.location.reload(true);
     } catch (error) {
