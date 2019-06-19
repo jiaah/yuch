@@ -1,8 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
-import { Formik } from 'formik';
 /* --- Components --- */
-import EditUserForm from './editUserForm';
 import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
@@ -10,15 +8,16 @@ import {
   passwordValidation,
 } from '../formValidation';
 import Modal from '../../../shared/modal';
+import EditUserFormBox from './editUserFormBox';
 
-const PasswordModal = Loader({
+const PasswordFormBox = Loader({
   loader: () =>
-    import('./passwordModal' /* webpackChunkName: 'passwordModal' */),
+    import('./passwordFormBox' /* webpackChunkName: 'passwordFormBox' */),
 });
 
-const DeleteUserModal = Loader({
+const DeleteUserFormBox = Loader({
   loader: () =>
-    import('./deleteUserModal' /* webpackChunkName: 'deleteUserModal' */),
+    import('./deleteUserFormBox' /* webpackChunkName: 'deleteUserFormBox' */),
 });
 
 const EditUserModal = ({
@@ -33,90 +32,60 @@ const EditUserModal = ({
 }) => {
   const [subModal, setSubModal] = useState({ id: null, show: false });
 
-  const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    const {
-      companyName,
-      bankAccountId,
-      lunchQty,
-      dinnerQty,
-      ...others
-    } = values;
-    // to save values as number type in database
-    const bankAccount = parseInt(bankAccountId, 10);
-    const lunchQtyValue = lunchQty === '' ? null : lunchQty;
-    const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-    const id = clickedUserData.id;
-
-    const userInfo = {
-      id,
-      companyName,
-      bankAccount,
-      lunchQtyValue,
-      dinnerQtyValue,
-      ...others,
-    };
-
-    try {
-      const userData = await editUser(userInfo);
-      await alert(`${userData} 고객정보가 수정되었습니다.`);
-      await resetForm({});
-      handleCloseModal();
-      return window.location.reload(true);
-    } catch (error) {
-      await addFlashMessage(
-        'error',
-        `${companyName} 고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
-      );
-    }
-    return setSubmitting(false);
-  };
-
   const showSubModal = sub => setSubModal({ id: sub, show: true });
   const closeSubModal = () => setSubModal({ id: null, show: false });
 
-  const values = clickedUserData || [];
+  const subModalId = subModal.id;
+  const title =
+    subModalId === 'password'
+      ? '비밀번호 변경'
+      : subModalId === 'delete'
+        ? ''
+        : '고객 계정';
 
   return (
     <div className="container">
       <Modal
         show={show}
         flashVariant={flashVariant}
-        title="고객 계정"
-        handleClose={() => handleCloseModal()}
+        title={title}
+        handleClose={() => {
+          if (subModalId === null) {
+            return handleCloseModal();
+          }
+          return closeSubModal();
+        }}
         component={
-          <Formik
-            initialValues={values}
-            render={props => (
-              <EditUserForm {...props} showSubModal={showSubModal} />
-            )}
-            onSubmit={handleEditUser}
-            validationSchema={editUserAccountValidation}
-          />
+          subModalId === 'password' ? (
+            <PasswordFormBox
+              closeSubModal={closeSubModal}
+              handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
+              clickedUserId={clickedUserData.id}
+              changePasswordByAdminValidation={changePasswordByAdminValidation}
+              changePasswordByAdmin={changePasswordByAdmin}
+            />
+          ) : subModalId === 'delete' ? (
+            <DeleteUserFormBox
+              closeSubModal={closeSubModal}
+              handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
+              clickedUserData={clickedUserData}
+              passwordValidation={passwordValidation}
+              deleteUser={deleteUser}
+            />
+          ) : (
+            <EditUserFormBox
+              showSubModal={showSubModal}
+              handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
+              clickedUserData={clickedUserData}
+              editUserAccountValidation={editUserAccountValidation}
+              editUser={editUser}
+            />
+          )
         }
       />
-      {subModal.id === 'password' ? (
-        <PasswordModal
-          show={subModal.show}
-          closeSubModal={closeSubModal}
-          handleCloseModal={handleCloseModal}
-          flashVariant={flashVariant}
-          addFlashMessage={addFlashMessage}
-          clickedUserId={clickedUserData.id}
-          changePasswordByAdminValidation={changePasswordByAdminValidation}
-          changePasswordByAdmin={changePasswordByAdmin}
-        />
-      ) : (
-        <DeleteUserModal
-          show={subModal.show}
-          closeSubModal={closeSubModal}
-          handleCloseModal={handleCloseModal}
-          flashVariant={flashVariant}
-          addFlashMessage={addFlashMessage}
-          clickedUserData={clickedUserData}
-          passwordValidation={passwordValidation}
-          deleteUser={deleteUser}
-        />
-      )}{' '}
     </div>
   );
 };

@@ -3,11 +3,8 @@ import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
-import Modal from '../../../shared/modal';
 
-const PasswordModal = ({
-  show,
-  flashVariant,
+const PasswordFormBox = ({
   handleCloseModal,
   addFlashMessage,
   changePasswordByAdmin,
@@ -37,23 +34,13 @@ const PasswordModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        show={show}
-        flashVariant={flashVariant}
-        title="비밀번호 변경"
-        handleClose={closeSubModal}
-        component={
-          <Formik
-            initialValues={passwordValues}
-            render={props => <PasswordForm {...props} />}
-            onSubmit={handleChangePassword}
-            validationSchema={changePasswordByAdminValidation}
-          />
-        }
-      />
-    </div>
+    <Formik
+      initialValues={passwordValues}
+      render={props => <PasswordForm {...props} />}
+      onSubmit={handleChangePassword}
+      validationSchema={changePasswordByAdminValidation}
+    />
   );
 };
 
-export default PasswordModal;
+export default PasswordFormBox;

@@ -88,6 +88,7 @@ export const editUserAccountValidation = Yup.object({
 
 export const loginValidation = Yup.object({
   username: Yup.string('')
+    .trim()
     .lowercase('소문자로 입력하세요.')
     .required('아이디를 입력하세요.'),
   password: Yup.string('')

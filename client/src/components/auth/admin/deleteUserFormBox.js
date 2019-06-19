@@ -3,11 +3,8 @@ import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import DeleteUserForm from './deleteUserForm';
-import Modal from '../../../shared/modal';
 
-const DeleteUserModal = ({
-  show,
-  flashVariant,
+const DeleteUserFormBox = ({
   handleCloseModal,
   addFlashMessage,
   closeSubModal,
@@ -27,7 +24,7 @@ const DeleteUserModal = ({
     } catch (err) {
       await addFlashMessage(
         'error',
-        `${companyName} 고객 계정 삭제에 실패하였습니다. 다시 시도해 주세요.`,
+        `${companyName} 고객 계정 삭제에 실패하였습니다. 비밀번호를 확인해주세요.`,
       );
     }
     return setSubmitting(false);
@@ -38,23 +35,13 @@ const DeleteUserModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        show={show}
-        flashVariant={flashVariant}
-        title=""
-        handleClose={() => closeSubModal()}
-        component={
-          <Formik
-            initialValues={deleteValues}
-            render={props => <DeleteUserForm {...props} />}
-            onSubmit={handleDeleteUser}
-            validationSchema={passwordValidation}
-          />
-        }
-      />
-    </div>
+    <Formik
+      initialValues={deleteValues}
+      render={props => <DeleteUserForm {...props} />}
+      onSubmit={handleDeleteUser}
+      validationSchema={passwordValidation}
+    />
   );
 };
 
-export default DeleteUserModal;
+export default DeleteUserFormBox;

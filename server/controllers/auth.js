@@ -72,13 +72,10 @@ exports.editUser = (req, res) => {
     contactNo,
     email,
     mealPrice,
-    lunchQtyValue,
-    dinnerQtyValue,
-    bankAccount,
+    lunchQty,
+    dinnerQty,
+    bankAccountId,
   } = req.body.userInfo;
-
-  const lunchQty = lunchQtyValue;
-  const dinnerQty = dinnerQtyValue;
 
   return knex('users')
     .where({ id: userId })
@@ -91,7 +88,7 @@ exports.editUser = (req, res) => {
       mealPrice,
       lunchQty,
       dinnerQty,
-      bankAccountId: bankAccount,
+      bankAccountId,
     })
     .returning('*')
     .then(user => res.status(200).json(user[0].companyName))
