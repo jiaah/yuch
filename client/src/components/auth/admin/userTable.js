@@ -27,10 +27,11 @@ const UserTable = ({
   handleEditUserBtnClick,
   rows,
 }) => {
+  console.log('rows: ', rows);
   // order by 'desc' / 'asc'
-  const [order, setOrder] = React.useState('asc');
+  const [order, setOrder] = React.useState('desc');
   // selected column
-  const [orderBy, setOrderBy] = React.useState('company_name');
+  const [orderBy, setOrderBy] = React.useState('updated_at');
   // selected row
   const [selected, setSelected] = React.useState('');
   // page

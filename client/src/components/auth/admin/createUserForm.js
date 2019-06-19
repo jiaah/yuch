@@ -83,6 +83,8 @@ const CreateUserForm = props => {
       name === 'confirmPassword'
     ) {
       value = inputValue.toLowerCase();
+    } else {
+      value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
   };

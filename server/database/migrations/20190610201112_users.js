@@ -22,19 +22,28 @@ exports.up = knex =>
         .boolean('isAdmin')
         .notNullable()
         .defaultTo(false);
-      table.smallint('mealPrice');
-      table.smallint('lunchQty');
-      table.smallint('dinnerQty');
+      table.integer('mealPrice');
+      table.integer('lunchQty');
+      table.integer('dinnerQty');
       table.smallint('bankAccountId').unsigned();
       table
         .foreign('bankAccountId')
         .references('id')
         .inTable('bankAccount');
-      table
-        .timestamp('createdAt')
-        .notNullable()
-        .defaultTo(knex.fn.now());
-      table.timestamp('updatedAt').defaultTo(knex.fn.now());
+      // table
+      //   .smallint('bankAccountId')
+      //   .references('id')
+      //   .inTable('bankAccount')
+      //   .index();
+      table.timestamps(true, true);
+      // table
+      //   .timestamps('createdAt', { useTz: true })
+      //   .notNullable()
+      //   .defaultTo(knex.raw('now()'));
+      // table
+      //   .timestamp('updatedAt', { useTz: true })
+      //   .notNullable()
+      //   .defaultTo(knex.raw('now()'));
     });
 
 exports.down = knex => knex.schema.dropTable('users');

@@ -32,6 +32,7 @@ const DeleteUserFormBox = ({
       dinnerQty: dinnerQtyValue,
       ...others,
     };
+
     try {
       await editUser(userInfo);
       await resetForm({});

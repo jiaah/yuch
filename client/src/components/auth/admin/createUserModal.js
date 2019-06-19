@@ -20,6 +20,7 @@ const UserAccountModal = ({
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
+      companyName,
       confirmPassword,
       bankAccountId,
       lunchQty,
@@ -32,9 +33,10 @@ const UserAccountModal = ({
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
 
     const userInfo = {
-      bankAccount,
-      lunchQtyValue,
-      dinnerQtyValue,
+      companyName,
+      bankAccountId: bankAccount,
+      lunchQty: lunchQtyValue,
+      dinnerQty: dinnerQtyValue,
       ...others,
     };
 
@@ -46,9 +48,7 @@ const UserAccountModal = ({
     } catch (error) {
       await addFlashMessage(
         'error',
-        `${
-          values.companyName
-        } 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다.`,
+        `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다.`,
       );
     }
     return setSubmitting(false);

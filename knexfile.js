@@ -11,7 +11,15 @@ module.exports = {
       database: PG_DATABASE,
       password: PG_PASSWORD,
       port: PG_PORT,
+      timezone: 'ASIA/SEOUL',
     },
+    // pool: {
+    //   afterCreate: (conn, cb) => {
+    //     conn.query('SET time_zone = timezone', err => {
+    //       cb(err, conn);
+    //     });
+    //   },
+    // },
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
     },
