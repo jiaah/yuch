@@ -4,8 +4,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { withStyles } from '@material-ui/core/styles';
-/* --- Components --- */
-import * as data from '../../../shared/data';
 
 const styles = theme => ({
   resize: {
@@ -21,6 +19,7 @@ const EnhancedTableHead = props => {
     orderBy,
     onRequestSort,
     classes: { resize },
+    list,
   } = props;
 
   const createSortHandler = property => event => {
@@ -30,7 +29,7 @@ const EnhancedTableHead = props => {
   return (
     <TableHead>
       <TableRow>
-        {data.userAccountTableHeadRows.map(row => (
+        {list.map(row => (
           <TableCell
             key={`tr-${row.id}`}
             align={row.numeric ? 'right' : 'left'}

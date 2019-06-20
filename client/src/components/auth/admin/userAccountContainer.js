@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
-import SearchBar from '../../../shared/searchBar';
+import SearchBar from '../../../shared/searchBar/searchBar';
 import Icon from '../../../../assets/icons';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';

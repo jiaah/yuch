@@ -10,7 +10,8 @@ import IconButton from './iconButton';
 import Loader from './loader';
 
 const MessageBox = Loader({
-  loader: () => import('./messageBox' /* webpackChunkName: 'messageBox' */),
+  loader: () =>
+    import('./message/messageBox' /* webpackChunkName: 'messageBox' */),
 });
 
 const styles = theme => ({

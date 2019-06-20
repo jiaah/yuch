@@ -3,7 +3,7 @@ import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
 /* --- Components --- */
-import ClickableItems from './clickableItems';
+import SuggestionsList from './suggestionsList';
 
 const AutoCompletePaper = ({ anchorEl, suggestions, suggestionSelected }) => {
   const open = Boolean(anchorEl);
@@ -13,7 +13,7 @@ const AutoCompletePaper = ({ anchorEl, suggestions, suggestionSelected }) => {
       return null;
     }
     return (
-      <ClickableItems
+      <SuggestionsList
         suggestions={suggestions}
         suggestionSelected={suggestionSelected}
       />

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import EnhancedTableHead from './userTableHead';
 import { stableSort, getSorting } from '../../../utils/sort';
 import UserTableRow from './userTableRow';
+import * as data from '../../../shared/data';
 
 const styles = () => ({
   tableWrapper: {
@@ -55,6 +56,7 @@ const UserTable = ({
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
+            list={data.userAccountTableHeadRows}
           />
           <TableBody>
             {users.length !== 0 &&

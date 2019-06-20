@@ -3,7 +3,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { withStyles } from '@material-ui/core/styles';
 
 /* --- SVG Icon Components --- */
-import Icon from '../../assets/icons';
+import Icon from '../../../assets/icons';
 
 const color = {
   success: '#43A047',

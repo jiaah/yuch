@@ -4,10 +4,10 @@ import compose from 'recompose/compose';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import Icon from '../../assets/icons';
+import Icon from '../../../assets/icons';
 import AutoCompletePaper from './autoCompletePaper';
 /* --- Actions --- */
-import { addSelectedItem } from '../actions/selectedItemAction';
+import { addSelectedItem } from '../../actions/selectedItemAction';
 
 const styles = theme => ({
   search: {
