@@ -2,8 +2,10 @@ import React from 'react';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
+/* --- Components --- */
+import SelectItems from './selectItems';
 
-const AutoCompletePaper = ({ anchorEl, suggestions }) => {
+const AutoCompletePaper = ({ anchorEl, suggestions, suggestionSelected }) => {
   const open = Boolean(anchorEl);
 
   const renderSuggestions = () => {
@@ -11,11 +13,10 @@ const AutoCompletePaper = ({ anchorEl, suggestions }) => {
       return null;
     }
     return (
-      <ul>
-        {suggestions.map(u => (
-          <li key={u.id}>{u.companyName}</li>
-        ))}
-      </ul>
+      <SelectItems
+        suggestions={suggestions}
+        suggestionSelected={suggestionSelected}
+      />
     );
   };
 

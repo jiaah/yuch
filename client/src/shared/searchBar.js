@@ -58,6 +58,12 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
     if (value.length > 0) getSuggestions(value);
   };
 
+  const suggestionSelected = value => {
+    setInputValue(value);
+    setAnchorEl(null);
+    return setSuggestions([]);
+  };
+
   return (
     <React.Fragment>
       <div className={search} onKeyUp={handleOnKeyUp}>
@@ -79,7 +85,11 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
           value={inputValue || ''}
         />
       </div>
-      <AutoCompletePaper anchorEl={anchorEl} suggestions={suggestions} />
+      <AutoCompletePaper
+        anchorEl={anchorEl}
+        suggestions={suggestions}
+        suggestionSelected={suggestionSelected}
+      />
     </React.Fragment>
   );
 };
