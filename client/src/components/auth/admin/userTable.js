@@ -27,7 +27,6 @@ const UserTable = ({
   handleEditUserBtnClick,
   rows,
 }) => {
-  console.log('rows: ', rows);
   // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');
   // selected column

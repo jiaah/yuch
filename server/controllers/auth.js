@@ -38,9 +38,9 @@ exports.createUser = (req, res) => {
     contactNo,
     email,
     mealPrice,
-    lunchQtyValue,
-    dinnerQtyValue,
-    bankAccount,
+    lunchQty,
+    dinnerQty,
+    bankAccountId,
   } = req.body.userInfo;
 
   return util
@@ -53,9 +53,9 @@ exports.createUser = (req, res) => {
         contactNo,
         email,
         mealPrice,
-        lunchQty: lunchQtyValue,
-        dinnerQty: dinnerQtyValue,
-        bankAccountId: bankAccount,
+        lunchQty,
+        dinnerQty,
+        bankAccountId,
       }),
     )
     .then(() => res.status(200).json())

@@ -1,6 +1,13 @@
 require('dotenv').config();
 
-const { PG_USER, PG_HOST, PG_DATABASE, PG_PASSWORD, PG_PORT } = process.env;
+const {
+  PG_USER,
+  PG_HOST,
+  PG_DATABASE,
+  PG_PASSWORD,
+  PG_PORT,
+  DATABASE_URL,
+} = process.env;
 
 module.exports = {
   development: {
@@ -13,13 +20,6 @@ module.exports = {
       port: PG_PORT,
       timezone: 'ASIA/SEOUL',
     },
-    // pool: {
-    //   afterCreate: (conn, cb) => {
-    //     conn.query('SET time_zone = timezone', err => {
-    //       cb(err, conn);
-    //     });
-    //   },
-    // },
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
     },
@@ -29,13 +29,7 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection: {
-      user: PG_USER,
-      host: PG_HOST,
-      database: PG_DATABASE,
-      password: PG_PASSWORD,
-      port: PG_PORT,
-    },
+    connection: DATABASE_URL,
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
     },

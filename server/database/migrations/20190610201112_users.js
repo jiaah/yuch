@@ -25,16 +25,11 @@ exports.up = knex =>
       table.integer('mealPrice');
       table.integer('lunchQty');
       table.integer('dinnerQty');
-      table.smallint('bankAccountId').unsigned();
       table
-        .foreign('bankAccountId')
+        .integer('bankAccountId')
         .references('id')
-        .inTable('bankAccount');
-      // table
-      //   .smallint('bankAccountId')
-      //   .references('id')
-      //   .inTable('bankAccount')
-      //   .index();
+        .inTable('bankAccount')
+        .index();
       table.timestamps(true, true);
       // table
       //   .timestamps('createdAt', { useTz: true })
@@ -43,7 +38,7 @@ exports.up = knex =>
       // table
       //   .timestamp('updatedAt', { useTz: true })
       //   .notNullable()
-      //   .defaultTo(knex.raw('now()'));
+      //   .defaultTo(knex.fn.now());
     });
 
 exports.down = knex => knex.schema.dropTable('users');
