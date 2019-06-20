@@ -8,11 +8,13 @@ import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
 import SearchBar from '../../../shared/searchBar';
+import Icon from '../../../../assets/icons';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as userActions from '../../../actions/userAction';
+import { deleteSelectedItem } from '../../../actions/selectedItemAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -33,6 +35,7 @@ const UserAccountContainer = ({
   messageShow,
   clickedUserData,
   selectedSearchItem,
+  deleteSelectedItem,
 }) => {
   const [users, setUsers] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -48,7 +51,10 @@ const UserAccountContainer = ({
 
   const showModal = () => modalActions.showModal();
   const closeModal = () => {
-    if (clickedBtn === 'edit') resetClickedUserData();
+    if (clickedBtn === 'edit') {
+      resetClickedUserData();
+      return modalActions.hideModal();
+    }
     return modalActions.hideModal();
   };
 
@@ -57,27 +63,30 @@ const UserAccountContainer = ({
     return showModal();
   };
 
-  const getClickedUserData = async clickedUsername => {
-    const userData = await users.filter(
-      user => user.username === clickedUsername,
-    );
+  const getClickedUserData = async userId => {
+    const userData = await users.filter(user => user.id === userId);
     // convert the bankAccount value from number to string.
     const bankIdToString = await userData[0].bankAccountId.toString();
     userData[0].bankAccountId = await bankIdToString;
     return userData[0];
   };
 
-  const handleEditUserBtnClick = async (event, clickedUsername) => {
+  const handleEditUserBtnClick = async (event, userId) => {
     await setClickedBtn('edit');
-    const userData = await getClickedUserData(clickedUsername);
+    const userData = await getClickedUserData(userId);
     await saveClickedUserData(userData);
     return showModal();
+  };
+
+  // Render all users from a selected user row in List
+  const renderAllUsers = () => {
+    if (selectedSearchItem !== 0) deleteSelectedItem();
   };
 
   return (
     <div className="container">
       {/* auto complete search bar by companyName */}
-      <h2>고객 계정</h2>
+      <h2 onClick={renderAllUsers}>고객 계정</h2>
       <div className="paper-label--box">
         <div className="flex">
           <SearchBar users={users} />
@@ -101,6 +110,19 @@ const UserAccountContainer = ({
           selectedSearchItem={selectedSearchItem}
         />
       </Paper>
+      <div className="flex justify-end mt3 pw1">
+        <Icon
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+        />
+        <p className="ml2" style={{ marginTop: '-.91px' }}>
+          모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요.
+        </p>
+      </div>
       {show && clickedBtn === 'create' ? (
         <CreateUserModal
           show={show}
@@ -139,6 +161,7 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   userActions: bindActionCreators(userActions, dispatch),
+  deleteSelectedItem: () => dispatch(deleteSelectedItem()),
 });
 
 export default connect(

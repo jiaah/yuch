@@ -9,22 +9,16 @@ import TableRow from '@material-ui/core/TableRow';
 import EnhancedTableHead from './userTableHead';
 import { stableSort, getSorting } from '../../../utils/sort';
 import UserTableRow from './userTableRow';
-import IconButton from '../../../shared/iconButton';
 
-const styles = theme => ({
+const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
   table: { minWidth: 800 },
-  resize: {
-    [theme.breakpoints.up('md')]: {
-      fontSize: '15.5px',
-    },
-  },
 });
 
 const UserTable = ({
-  classes: { tableWrapper, table, resize },
+  classes: { tableWrapper, table },
   handleEditUserBtnClick,
   users,
   selectedSearchItem,
@@ -45,7 +39,7 @@ const UserTable = ({
     setOrderBy(property);
   };
 
-  const handleTableRowClick = username => setSelected(username);
+  const handleTableRowClick = id => setSelected(id);
   const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = event => setRowsPerPage(+event.target.value);
 
@@ -79,7 +73,6 @@ const UserTable = ({
                       bankAccountInfo={bankAccountInfo}
                       selected={selected}
                       labelId={labelId}
-                      index={index}
                     />
                   );
                 })}
@@ -96,7 +89,6 @@ const UserTable = ({
                     bankAccountInfo={bankAccountInfo}
                     selected={selected}
                     labelId={labelId}
-                    index={index}
                   />
                 );
               })}

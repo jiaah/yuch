@@ -25,12 +25,12 @@ const UserTableRow = ({
   <React.Fragment>
     <TableRow
       hover
-      onClick={() => handleTableRowClick(row.username)}
+      onClick={() => handleTableRowClick(row.id)}
       role="checkbox"
-      aria-checked={selected === row.username}
+      aria-checked={selected === row.id}
       tabIndex={-1}
-      key={row.username}
-      selected={selected === row.username}
+      key={row.id}
+      selected={selected === row.id}
     >
       <TableCell padding="checkbox">
         <IconButton
@@ -38,7 +38,7 @@ const UserTableRow = ({
           width="19"
           height="19"
           viewBox="0 0 24 24"
-          handleClick={e => handleEditUserBtnClick(e, row.username)}
+          handleClick={e => handleEditUserBtnClick(e, row.id)}
         />
       </TableCell>
       <TableCell

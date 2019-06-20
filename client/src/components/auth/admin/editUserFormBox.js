@@ -36,7 +36,7 @@ const DeleteUserFormBox = ({
     try {
       await editUser(userInfo);
       await resetForm({});
-      handleCloseModal();
+      await handleCloseModal();
       return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(
