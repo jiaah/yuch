@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../assets/icons';
+import AutoCompletePaper from './autoCompletePaper';
 
 const styles = theme => ({
   search: {
@@ -27,33 +28,45 @@ const styles = theme => ({
     },
   },
   inputInput: {
-    padding: '1px 1px 1px 25px',
+    padding: '1px 0 1px 0',
     transition: theme.transitions.create('width'),
-    width: '80%',
-    [theme.breakpoints.up('sm')]: {
-      padding: '1px 1px 1px 20px',
-    },
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {},
   },
 });
 
-const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => (
-  <div className={search}>
-    <div className={searchIcon}>
-      <Icon
-        name="search"
-        width="20"
-        height="20"
-        viewBox="0 0 25 25"
-        fill="none"
-        fillOuter="#E8716F"
-      />
-    </div>
-    <InputBase
-      placeholder="Search…"
-      className={inputInput}
-      inputProps={{ 'aria-label': 'Search' }}
-    />
-  </div>
-);
+const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
+  const [inputValue, setInputValue] = useState(inputValue);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleChange = ({ target: { value } }) => setInputValue(value);
+  const handleOnKeyUp = e => setAnchorEl(anchorEl ? null : e.currentTarget);
+
+  return (
+    <React.Fragment>
+      <div className={search}>
+        <div className={searchIcon}>
+          <Icon
+            name="search"
+            width="20"
+            height="20"
+            viewBox="0 0 25 25"
+            fill="none"
+            fillOuter="#E8716F"
+          />
+        </div>
+        <InputBase
+          placeholder="Search…"
+          className={inputInput}
+          inputProps={{ 'aria-label': 'Search' }}
+          onKeyUp={handleOnKeyUp}
+          onChange={e => handleChange(e)}
+          value={inputValue || ''}
+        />
+      </div>
+      <AutoCompletePaper anchorEl={anchorEl} />
+    </React.Fragment>
+  );
+};
 
 export default withStyles(styles)(SearchBar);
