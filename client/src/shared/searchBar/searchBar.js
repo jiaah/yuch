@@ -5,9 +5,14 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
-import AutoCompletePaper from './autoCompletePaper';
+import Loader from '../loader';
 /* --- Actions --- */
 import { addSelectedItem } from '../../actions/selectedItemAction';
+
+const AutoCompletePaper = Loader({
+  loader: () =>
+    import('./autoCompletePaper' /* webpackChunkName: 'AutoCompletePaper' */),
+});
 
 const styles = theme => ({
   search: {
@@ -73,6 +78,8 @@ const SearchBar = ({
     return addSelectedItem(value);
   };
 
+  const open = Boolean(anchorEl);
+
   return (
     <React.Fragment>
       <div className={search} onKeyUp={handleOnKeyUp}>
@@ -94,11 +101,14 @@ const SearchBar = ({
           value={inputValue || ''}
         />
       </div>
-      <AutoCompletePaper
-        anchorEl={anchorEl}
-        suggestions={suggestions}
-        suggestionSelected={suggestionSelected}
-      />
+      {open && (
+        <AutoCompletePaper
+          open={open}
+          anchorEl={anchorEl}
+          suggestions={suggestions}
+          suggestionSelected={suggestionSelected}
+        />
+      )}
     </React.Fragment>
   );
 };

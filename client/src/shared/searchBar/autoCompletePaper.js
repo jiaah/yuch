@@ -5,9 +5,12 @@ import Fade from '@material-ui/core/Fade';
 /* --- Components --- */
 import SuggestionsList from './suggestionsList';
 
-const AutoCompletePaper = ({ anchorEl, suggestions, suggestionSelected }) => {
-  const open = Boolean(anchorEl);
-
+const AutoCompletePaper = ({
+  open,
+  anchorEl,
+  suggestions,
+  suggestionSelected,
+}) => {
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
       return null;
