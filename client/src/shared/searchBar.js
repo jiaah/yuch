@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../assets/icons';
 import AutoCompletePaper from './autoCompletePaper';
+/* --- Actions --- */
+import { addSelectedItem } from '../actions/selectedItemAction';
 
 const styles = theme => ({
   search: {
@@ -34,7 +38,11 @@ const styles = theme => ({
   },
 });
 
-const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
+const SearchBar = ({
+  classes: { search, searchIcon, inputInput },
+  data,
+  addSelectedItem,
+}) => {
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
@@ -61,7 +69,8 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
   const suggestionSelected = value => {
     setInputValue(value);
     setAnchorEl(null);
-    return setSuggestions([]);
+    setSuggestions([]);
+    return addSelectedItem(value);
   };
 
   return (
@@ -94,4 +103,14 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
   );
 };
 
-export default withStyles(styles)(SearchBar);
+const mapDispatchToProps = dispatch => ({
+  addSelectedItem: value => dispatch(addSelectedItem(value)),
+});
+
+export default compose(
+  withStyles(styles),
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+)(SearchBar);

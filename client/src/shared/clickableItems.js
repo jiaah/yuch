@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectItems = ({ suggestions, suggestionSelected }) => (
+const ClickableItems = ({ suggestions, suggestionSelected }) => (
   <ul>
     {suggestions.map(u => (
       <li key={u.id} onClick={() => suggestionSelected(u.companyName)}>
@@ -10,4 +10,4 @@ const SelectItems = ({ suggestions, suggestionSelected }) => (
   </ul>
 );
 
-export default SelectItems;
+export default ClickableItems;

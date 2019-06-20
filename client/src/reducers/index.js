@@ -6,6 +6,7 @@ import httpHandler from './HTTPHandlerReducer';
 import message from './messageReducer';
 import auth from './authReducer';
 import user from './userReducer';
+import selectedItem from './selectedItemReducer';
 
 export default history =>
   combineReducers({
@@ -15,4 +16,5 @@ export default history =>
     message,
     auth,
     user,
+    selectedItem,
   });

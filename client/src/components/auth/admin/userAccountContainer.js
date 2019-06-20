@@ -32,6 +32,7 @@ const UserAccountContainer = ({
   addFlashMessage,
   messageShow,
   clickedUserData,
+  selectedSearchItem,
 }) => {
   const [rows, setRows] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -72,7 +73,7 @@ const UserAccountContainer = ({
     await saveClickedUserData(userData);
     return showModal();
   };
-
+  console.log(selectedSearchItem);
   return (
     <div className="container">
       {/* auto complete search bar by companyName */}
@@ -128,6 +129,7 @@ const mapStateToProps = state => ({
   show: state.modal.show,
   messageShow: state.message.show,
   clickedUserData: state.user.userData,
+  selectedSearchItem: state.selectedItem.value,
 });
 
 const mapDispatchToProps = dispatch => ({
