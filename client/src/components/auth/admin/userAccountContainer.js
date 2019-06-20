@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
+import SearchBar from '../../../shared/searchBar';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -77,10 +78,13 @@ const UserAccountContainer = ({
       {/* auto complete search bar by companyName */}
       <h2>고객 계정</h2>
       <div className="paper-label--box">
-        <p className="f-mini user-account--user-number">
-          총 고객 수&#8201;&#8201;
-          <span className="b">{rows.length}</span>
-        </p>
+        <div className="flex">
+          <SearchBar />
+          <p className="f-mini ml3 user-account--user-number">
+            총 고객 수&#8201;&#8201;
+            <span className="b">{rows.length}</span>
+          </p>
+        </div>
         <IconButton
           handleClick={handleCreateUserBtnClick}
           name="personAdd"
