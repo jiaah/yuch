@@ -13,7 +13,7 @@ const AutoCompletePaper = ({
 }) => {
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
-      return null;
+      return <p className="f-mini pa3">일치하는 검색결과가 없습니다.</p>;
     }
     return (
       <SuggestionsList
@@ -28,7 +28,7 @@ const AutoCompletePaper = ({
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
           <Paper
-            className="pa3 mt1 f-mini"
+            className="mt1 f-mini"
             style={{ width: anchorEl ? anchorEl.clientWidth : undefined }}
           >
             {renderSuggestions()}
