@@ -11,7 +11,7 @@ const AutoCompletePaper = ({ anchorEl }) => {
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
           <Paper
-            className="pa3 mt2 f-mini"
+            className="pa3 mt1 f-mini"
             style={{ width: anchorEl ? anchorEl.clientWidth : undefined }}
           >
             The content of the Popper.

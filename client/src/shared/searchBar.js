@@ -16,7 +16,7 @@ const styles = theme => ({
     },
   },
   searchIcon: {
-    width: '30px',
+    width: '20px',
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -31,7 +31,6 @@ const styles = theme => ({
     padding: '1px 0 1px 0',
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {},
   },
 });
 
@@ -44,7 +43,7 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
 
   return (
     <React.Fragment>
-      <div className={search}>
+      <div className={search} onKeyUp={handleOnKeyUp}>
         <div className={searchIcon}>
           <Icon
             name="search"
@@ -57,9 +56,8 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
         </div>
         <InputBase
           placeholder="Search…"
-          className={inputInput}
+          className={{ input: inputInput }}
           inputProps={{ 'aria-label': 'Search' }}
-          onKeyUp={handleOnKeyUp}
           onChange={e => handleChange(e)}
           value={inputValue || ''}
         />
