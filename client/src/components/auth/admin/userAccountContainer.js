@@ -34,12 +34,12 @@ const UserAccountContainer = ({
   clickedUserData,
   selectedSearchItem,
 }) => {
-  const [rows, setRows] = useState([]);
+  const [users, setUsers] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchUsersData = async () => {
     const users = await getUsers();
-    return setRows(users);
+    return setUsers(users);
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const UserAccountContainer = ({
   };
 
   const getClickedUserData = async clickedUsername => {
-    const userData = await rows.filter(
+    const userData = await users.filter(
       user => user.username === clickedUsername,
     );
     // convert the bankAccount value from number to string.
@@ -73,17 +73,17 @@ const UserAccountContainer = ({
     await saveClickedUserData(userData);
     return showModal();
   };
-  console.log(selectedSearchItem);
+
   return (
     <div className="container">
       {/* auto complete search bar by companyName */}
       <h2>고객 계정</h2>
       <div className="paper-label--box">
         <div className="flex">
-          <SearchBar data={rows} />
+          <SearchBar users={users} />
           <p className="f-mini ml3 user-account--user-number">
             총 고객 수&#8201;&#8201;
-            <span className="b">{rows.length}</span>
+            <span className="b">{users.length}</span>
           </p>
         </div>
         <IconButton
@@ -97,7 +97,8 @@ const UserAccountContainer = ({
       <Paper className="mt2 paper-padding">
         <UserTable
           handleEditUserBtnClick={handleEditUserBtnClick}
-          rows={rows}
+          users={users}
+          selectedSearchItem={selectedSearchItem}
         />
       </Paper>
       {show && clickedBtn === 'create' ? (
