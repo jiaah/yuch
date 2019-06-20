@@ -18,6 +18,7 @@ import Edit from './edit';
 import Add from './add';
 import Delete from './delete';
 import PersonAdd from './personAdd';
+import Search from './search';
 
 const Icon = props => {
   switch (props.name) {
@@ -55,6 +56,8 @@ const Icon = props => {
       return <PersonAdd {...props} />;
     case 'delete':
       return <Delete {...props} />;
+    case 'search':
+      return <Search {...props} />;
     default:
       return <div />;
   }

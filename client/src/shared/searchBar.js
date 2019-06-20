@@ -1,6 +1,6 @@
 import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
-import { withStyles, fade } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../assets/icons';
 
@@ -8,7 +8,7 @@ const styles = theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    border: '1px solid #ee91054a',
+    border: '2px solid #ee91054a',
     width: '160px',
     [theme.breakpoints.up('sm')]: {
       width: '250px',
@@ -36,20 +36,21 @@ const styles = theme => ({
   },
 });
 
-const SearchBar = ({ classes }) => (
-  <div className={classes.search}>
-    <div className={classes.searchIcon}>
+const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => (
+  <div className={search}>
+    <div className={searchIcon}>
       <Icon
-        name="filledUser"
+        name="search"
         width="20"
         height="20"
         viewBox="0 0 25 25"
         fill="none"
+        fillOuter="#E8716F"
       />
     </div>
     <InputBase
       placeholder="Search…"
-      className={classes.inputInput}
+      className={inputInput}
       inputProps={{ 'aria-label': 'Search' }}
     />
   </div>
