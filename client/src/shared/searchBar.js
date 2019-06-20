@@ -39,7 +39,11 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = ({ target: { value } }) => setInputValue(value);
-  const handleOnKeyUp = e => setAnchorEl(anchorEl ? null : e.currentTarget);
+  const handleOnKeyUp = e => {
+    // these conditions are to keep the popper open while user is typing
+    if (!anchorEl || e.target.value === '')
+      setAnchorEl(anchorEl ? null : e.currentTarget);
+  };
 
   return (
     <React.Fragment>
@@ -58,7 +62,7 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
           placeholder="Search…"
           className={{ input: inputInput }}
           inputProps={{ 'aria-label': 'Search' }}
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           value={inputValue || ''}
         />
       </div>
