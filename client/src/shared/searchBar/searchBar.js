@@ -58,7 +58,7 @@ const SearchBar = ({
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
     const suggestions = await users
       .sort()
-      .filter(u => u.companyName.match(regex));
+      .filter(u => u.companyName.match(regex) || u.username.match(regex));
 
     return setSuggestions(suggestions);
   };

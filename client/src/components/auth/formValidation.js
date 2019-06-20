@@ -6,7 +6,6 @@ export const addUserAccountValidation = Yup.object({
   companyName: Yup.string('')
     .lowercase('소문자로 입력해주세요.')
     .matches(/^\S+$/, '글자를 붙여쓰세요.')
-    .matches(/^[a-zA-Z0-9]+$/, '특수문자는 사용할 수 없습니다.')
     .max(12, '12글자 아래로 입력해주세요.')
     .required('업체 상호명을 한글로 입력하세요.'),
   username: Yup.string('')
@@ -55,7 +54,6 @@ export const editUserAccountValidation = Yup.object({
   companyName: Yup.string('')
     .lowercase('소문자로 입력해주세요.')
     .matches(/^\S+$/, '글자를 붙여쓰세요.')
-    .matches(/^[a-zA-Z0-9]+$/, '특수문자는 사용할 수 없습니다.')
     .max(12, '12글자 아래로 입력해주세요.')
     .required('업체 상호명을 한글로 입력하세요.'),
   username: Yup.string('')
