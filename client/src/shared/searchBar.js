@@ -34,15 +34,28 @@ const styles = theme => ({
   },
 });
 
-const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
+const SearchBar = ({ classes: { search, searchIcon, inputInput }, data }) => {
   const [inputValue, setInputValue] = useState(inputValue);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleChange = ({ target: { value } }) => setInputValue(value);
+
+  const getSuggestions = async wordToMatch => {
+    const regex = await new RegExp(`^${wordToMatch}`, 'gi');
+    const suggestions = await data
+      .sort()
+      .filter(u => u.companyName.match(regex));
+
+    return setSuggestions(suggestions);
+  };
+
   const handleOnKeyUp = e => {
+    const value = e.target.value;
     // these conditions are to keep the popper open while user is typing
-    if (!anchorEl || e.target.value === '')
+    if (!anchorEl || value.length === 0)
       setAnchorEl(anchorEl ? null : e.currentTarget);
+    if (value.length > 0) getSuggestions(value);
   };
 
   return (
@@ -66,7 +79,7 @@ const SearchBar = ({ classes: { search, searchIcon, inputInput } }) => {
           value={inputValue || ''}
         />
       </div>
-      <AutoCompletePaper anchorEl={anchorEl} />
+      <AutoCompletePaper anchorEl={anchorEl} suggestions={suggestions} />
     </React.Fragment>
   );
 };

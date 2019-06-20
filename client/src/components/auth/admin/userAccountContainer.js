@@ -79,7 +79,7 @@ const UserAccountContainer = ({
       <h2>고객 계정</h2>
       <div className="paper-label--box">
         <div className="flex">
-          <SearchBar />
+          <SearchBar data={rows} />
           <p className="f-mini ml3 user-account--user-number">
             총 고객 수&#8201;&#8201;
             <span className="b">{rows.length}</span>
