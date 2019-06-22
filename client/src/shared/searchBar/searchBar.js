@@ -72,10 +72,10 @@ const SearchBar = ({
   };
 
   const suggestionSelected = value => {
-    setInputValue(value);
-    setAnchorEl(null);
-    setSuggestions([]);
-    return addSelectedItem(value);
+    setInputValue(value); // render selected value in search bar
+    setAnchorEl(null); // close autocomplete popper
+    setSuggestions([]); // reset autoComplete matching suggestions
+    return addSelectedItem(value); // make the selected value accesible in a parents component via redux
   };
 
   const open = Boolean(anchorEl);

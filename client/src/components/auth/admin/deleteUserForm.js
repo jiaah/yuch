@@ -38,19 +38,19 @@ const DeleteUserForm = props => {
           fillInner="#ffffff"
         />
         <p className="c-red waring-icon--p">
-          고객님의 정보가 시스템에서 삭제 됩니다. 삭제된 데이터는 복구할수
-          없습니다.
+          고객님의 정보가 시스템에서 삭제 됩니다&#46; 삭제된 데이터는 복구할수
+          없습니다&#46;
         </p>
       </div>
       <p>
         정말 삭제하시겠습니다?
         <br />
-        삭제하시려면,{' '}
+        삭제하시려면&#44;
         <span className="c-point2">
           {data.admin.companyName}
           님의 비밀번호
         </span>
-        를 입력해주세요.
+        를 입력해주세요&#46;
       </p>
 
       <div className="flex justify-center mt4">

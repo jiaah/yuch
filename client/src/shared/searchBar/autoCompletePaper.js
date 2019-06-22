@@ -13,7 +13,7 @@ const AutoCompletePaper = ({
 }) => {
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
-      return <p className="f-mini pa3">일치하는 검색결과가 없습니다.</p>;
+      return <p className="f-mini pa3">일치하는 검색결과가 없습니다&#46;</p>;
     }
     return (
       <SuggestionsList
