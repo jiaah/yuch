@@ -1,0 +1,9 @@
+.autoComplete-item {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.autoComplete-item:hover {
+  width: 100%;
+  background-color: $c-hover-bg
+}

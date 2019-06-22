@@ -76,7 +76,7 @@
 
   .nav-menu--btn:focus,
   .nav-menu--btn:hover {
-    background-color: #ee910515;
+    background-color: $c-hover-bg;
   }
 
   .nav-menu--admin {
@@ -104,12 +104,12 @@
 
   .toggle-menu--link:focus,
   .toggle-menu--link:hover {
-    color: #ee9105b3;
+    color: $c-hover-bg;
   }
 
   .toggle-menu--item:focus,
   .toggle-menu--item:hover {
-    background-color: #ee910515;
+    background-color: $c-hover-bg;
   }
 }
 
