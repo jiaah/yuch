@@ -36,11 +36,6 @@ const styles = theme => ({
       width: '40px',
     },
   },
-  inputInput: {
-    padding: '1px 0 1px 0',
-    transition: theme.transitions.create('width'),
-    width: '100%',
-  },
 });
 
 const SearchBar = ({
@@ -95,7 +90,6 @@ const SearchBar = ({
         </div>
         <InputBase
           placeholder="Search…"
-          className={{ input: inputInput }}
           inputProps={{ 'aria-label': 'Search' }}
           onChange={handleChange}
           value={inputValue || ''}
