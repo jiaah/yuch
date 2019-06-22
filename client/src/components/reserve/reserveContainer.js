@@ -107,7 +107,7 @@ export class ReserveContainer extends Component {
   };
 
   render() {
-    const { show, classes, flashVariant } = this.props;
+    const { show, classes } = this.props;
     const { submitBtnClicked, isReserved } = this.state;
     const { inThreeDays } = moment;
 
