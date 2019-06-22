@@ -12,9 +12,6 @@ const NODE_ENV = process.env.NODE_ENV;
 const devMode = NODE_ENV !== 'production';
 const isTest = NODE_ENV === 'test';
 
-// const ManifestPlugin = require('webpack-manifest-plugin');
-// const WebpackAssetsManifest = require('webpack-assets-manifest');
-// const AssetsPlugin = require('assets-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
 
 module.exports = {
@@ -98,11 +95,13 @@ module.exports = {
     ],
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
           priority: -10,
         },
         default: {
@@ -128,21 +127,11 @@ module.exports = {
       filename: devMode ? '[name].css' : '[name].[chunkhash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[chunkhash].css',
     }),
-    // Bug: Does not match Nav path... weird.
     new CaseSensitivePathsPlugin(),
     new CopyWebpackPlugin([
       { from: `${__dirname}/static`, to: `${__dirname}/public/dist` },
     ]),
-    // new ManifestPlugin({
-    //   basePath: `${__dirname}/static`,
-    //   fileName: 'manifest.json',
-    //   writeToFileEmit: true,
-    //   seed: {},
-    // }),
-    // new WebpackAssetsManifest({
-    //   publicPath: true,
-    // }),
-    // new AssetsPlugin({ includeManifest: 'manifest' }),
+
     isTest
       ? new BundleAnalyzerPlugin({
           generateStatsFile: true,
