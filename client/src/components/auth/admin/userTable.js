@@ -69,6 +69,7 @@ const UserTable = ({
                     row.bankAccountId === 1 ? '김귀자 농협' : '이상환 농협';
                   return (
                     <UserTableRow
+                      key={row.id}
                       handleTableRowClick={handleTableRowClick}
                       handleEditUserBtnClick={handleEditUserBtnClick}
                       row={row}
@@ -85,6 +86,7 @@ const UserTable = ({
                   row.bankAccountId === 1 ? '김귀자 농협' : '이상환 농협';
                 return (
                   <UserTableRow
+                    key={row.id}
                     handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
                     row={row}

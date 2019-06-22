@@ -39,7 +39,7 @@ const styles = theme => ({
 });
 
 const SearchBar = ({
-  classes: { search, searchIcon, inputInput },
+  classes: { search, searchIcon },
   users,
   addSelectedItem,
 }) => {

@@ -24,12 +24,12 @@ const UserTableRow = ({
 }) => (
   <React.Fragment>
     <TableRow
+      key={row.id}
       hover
       onClick={() => handleTableRowClick(row.id)}
       role="checkbox"
       aria-checked={selected === row.id}
       tabIndex={-1}
-      key={row.id}
       selected={selected === row.id}
     >
       <TableCell padding="checkbox">
