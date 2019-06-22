@@ -56,8 +56,6 @@
     -o-transition: font-weight .2s;
   }
 
-
-
   .nav-menu {
     padding: .32em 0;
     display: flex;
@@ -86,25 +84,25 @@
   }
 
   .toggle-menu {
-    width: 13em;
-    padding: .5em;
+    width: 15em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: 15.5px;
   }
 
-  .leftSideMenu {
+  .rightSideMenu {
     margin-left: -8em;
   }
 
-  .toggle-menu .toggle-menu--link {
+  .toggle-menu--item {
     font-size: 15.5px;
+    padding-left: .5em;
+    padding-right: .5em;
   }
 
   .toggle-menu--list {
     width: 100%;
-  }
-
-  .toggle-menu--link:focus,
-  .toggle-menu--link:hover {
-    color: $c-hover-bg;
+    padding: 0;
   }
 
   .toggle-menu--item:focus,

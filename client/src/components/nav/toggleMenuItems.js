@@ -15,7 +15,7 @@ const ToggleMenuItems = ({
   items,
 }) => {
   const isOpen = activeId === listId;
-  const leftSideMenu = activeId === 3 || activeId === 4 ? 'leftSideMenu' : '';
+  const leftSideMenu = activeId === 4 ? 'rightSideMenu' : '';
 
   return (
     <Popper
@@ -38,16 +38,12 @@ const ToggleMenuItems = ({
             <ClickAwayListener onClickAway={handleClose}>
               <MenuList className="toggle-menu--list">
                 {items.map(e => (
-                  <Link
-                    key={e.id}
-                    to={e.to}
-                    className="anchor td-none c-text1 toggle-menu--link"
-                  >
+                  <Link key={e.id} to={e.to} className="anchor td-none c-text1">
                     <MenuItem
                       className="toggle-menu--item"
                       onClick={handleClose}
                     >
-                      {e.name}
+                      <div className="pw1">{e.name}</div>
                     </MenuItem>
                   </Link>
                 ))}
