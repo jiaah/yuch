@@ -27,10 +27,10 @@ const EditUserModal = Loader({
 });
 
 const UserAccountContainer = ({
-  modalActions,
-  show,
+  modalActions: { showModal, hideModal },
   authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
   userActions: { getUsers, saveClickedUserData, resetClickedUserData },
+  show,
   addFlashMessage,
   messageShow,
   clickedUserData,
@@ -49,13 +49,12 @@ const UserAccountContainer = ({
     fetchUsersData();
   }, []);
 
-  const showModal = () => modalActions.showModal();
   const closeModal = () => {
     if (clickedBtn === 'edit') {
       resetClickedUserData();
-      return modalActions.hideModal();
+      return hideModal();
     }
-    return modalActions.hideModal();
+    return hideModal();
   };
 
   const handleCreateUserBtnClick = () => {

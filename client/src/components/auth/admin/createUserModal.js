@@ -3,13 +3,8 @@ import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './createUserForm';
-import Loader from '../../../shared/loader';
+import Modal from '../../../shared/modal';
 import { addUserAccountValidation } from '../formValidation';
-
-const Modal = Loader({
-  loader: () =>
-    import('../../../shared/modal' /* webpackChunkName: 'simpleModal' */),
-});
 
 const UserAccountModal = ({
   show,
