@@ -19,7 +19,7 @@ class Login extends React.Component {
 
     if (isLoggedIn()) {
       await addFlashMessage('warning', loggedInUser);
-      resetForm({});
+      await resetForm({});
       this.props.history.push('/');
       return setSubmitting(false);
     }

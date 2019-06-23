@@ -42,8 +42,7 @@ const UserAccountModal = ({
 
     try {
       await createUser(userInfo);
-      await resetForm({});
-      await handleCloseModal();
+      await Promise.all([resetForm({}), handleCloseModal()]);
       return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(
