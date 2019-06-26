@@ -7,7 +7,7 @@ exports.seed = knex =>
           id: 1,
           bankName: 'yuch',
           accountHolder: 'yuchung',
-          accountNo: '0547450999',
+          accountNo: '054 - 745 - 0999',
         },
       ]),
     );

@@ -7,8 +7,14 @@ export const getBankAccount = () => async dispatch => {
   try {
     const res = await axios.get(`${API_HOST}/admin/bankaccount`);
     const bankAccount = res.data;
-    console.log('bankAccount: ', bankAccount);
-  } catch (err) {
-    console.log(err);
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getBankAccount',
+      payload: { bankAccount },
+    });
+    return bankAccount;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'getBankAccount', error });
+    throw new Error('Getting bank account list is failed');
   }
 };

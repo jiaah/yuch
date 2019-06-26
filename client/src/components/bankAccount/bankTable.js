@@ -33,7 +33,8 @@ const BankTable = ({
             list={bankAccountTableHeadRows}
           />
           <TableBody>
-            {bankAccount.length !== 0 &&
+            {bankAccount &&
+              bankAccount.length !== 0 &&
               stableSort(bankAccount, getSorting('desc', 'accountHolder')).map(
                 (row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;

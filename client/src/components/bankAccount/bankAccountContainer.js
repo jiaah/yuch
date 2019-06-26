@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
@@ -15,22 +15,21 @@ const BankAccountContainer = ({
   bankActions: { getBankAccount },
   show,
 }) => {
+  const [bankAccount, setBankAccount] = useState(null);
+
   const closeModal = () => hideModal();
-  const fetchBankAccount = () => getBankAccount();
+  const fetchBankAccount = async () => {
+    const bankAccount = await getBankAccount();
+    setBankAccount(bankAccount);
+  };
+
   useEffect(() => {
     fetchBankAccount();
   }, []);
+
   const handleCreateBankAccountBtnClick = () => showModal();
   const handleEditBankBtnClick = () => console.log('edit user bank clicked');
 
-  const bankAccount = [
-    {
-      id: 1,
-      accountHolder: 'jiah',
-      bankName: 'bank',
-      accountNo: '010',
-    },
-  ];
   return (
     <div className="container">
       <h2>유청 은행 계좌</h2>
