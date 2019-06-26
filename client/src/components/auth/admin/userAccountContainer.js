@@ -141,7 +141,7 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           messageShow={messageShow}
           selectedSearchItem={selectedSearchItem}
-          resetClickedItemData={resetClickedItemData}
+          resetSelectedItemValue={resetSelectedItemValue}
         />
       ) : (
         <EditUserModal
