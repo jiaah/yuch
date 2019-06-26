@@ -68,10 +68,8 @@ const UserAccountContainer = ({
     return hideModal();
   };
 
-  const handleCreateUserBtnClick = () => {
-    setClickedBtn('create');
-    return showModal();
-  };
+  const handleButtonClick = sub =>
+    Promise.all([setClickedBtn(sub), showModal()]);
 
   const getClickedUserData = async userId => {
     const userData = await users.filter(user => user.id === userId);
@@ -82,12 +80,10 @@ const UserAccountContainer = ({
   };
 
   const handleEditUserBtnClick = async (event, userId) => {
-    await setClickedBtn('edit');
     const userData = await getClickedUserData(userId);
     await saveClickedItemData(userData);
-    return showModal();
+    return handleButtonClick('edit');
   };
-
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
     if (selectedSearchItem !== null) resetSelectedItemValue();
@@ -106,7 +102,7 @@ const UserAccountContainer = ({
           </p>
         </div>
         <IconButton
-          handleClick={handleCreateUserBtnClick}
+          handleClick={() => handleButtonClick('create')}
           name="personAdd"
           width="36"
           height="36"
@@ -143,7 +139,7 @@ const UserAccountContainer = ({
           selectedSearchItem={selectedSearchItem}
           resetSelectedItemValue={resetSelectedItemValue}
         />
-      ) : (
+      ) : show && clickedBtn === 'edit' ? (
         <EditUserModal
           show={show}
           handleCloseModal={closeModal}
@@ -155,7 +151,7 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           messageShow={messageShow}
         />
-      )}
+      ) : null}
     </div>
   );
 };

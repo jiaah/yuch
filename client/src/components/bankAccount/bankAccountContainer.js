@@ -4,17 +4,23 @@ import { bindActionCreators } from 'redux';
 import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import IconButton from '../../shared/iconButton';
-import CreateBankModal from './createBankModal';
 import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../shared/data';
+import Loader from '../../shared/loader';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
 import * as bankActions from '../../actions/bankAction';
+
+const CreateBankModal = Loader({
+  loader: () =>
+    import('./createBankModal' /* webpackChunkName: 'CreateBankModal' */),
+});
 
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
   bankActions: { getBankAccount },
   show,
+  messageShow,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -29,8 +35,10 @@ const BankAccountContainer = ({
     fetchBankAccount();
   }, []);
 
-  const handleButtonClick = sub =>
-    Promise.all([showModal(), setClickedBtn(sub)]);
+  const handleButtonClick = async sub => {
+    await setClickedBtn(sub);
+    return showModal();
+  };
 
   return (
     <div className="container">
@@ -45,20 +53,24 @@ const BankAccountContainer = ({
       <Paper className="mt2 paper-padding">
         <BankTable
           bankAccountTableHeadRows={bankAccountTableHeadRows}
-          handleEditBankBtnClick={handleButtonClick('edit')}
+          handleEditBankBtnClick={() => handleButtonClick('edit')}
           bankAccount={bankAccount}
         />
       </Paper>
-      {show &&
-        clickedBtn === 'create' && (
-          <CreateBankModal show={show} handleCloseModal={closeModal} />
-        )}
+      {show && clickedBtn === 'create' ? (
+        <CreateBankModal
+          show={show}
+          messageShow={messageShow}
+          handleCloseModal={closeModal}
+        />
+      ) : null}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   show: state.modal.show,
+  messageShow: state.message.show,
 });
 
 const mapDispatchToProps = dispatch => ({

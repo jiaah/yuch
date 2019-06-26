@@ -31,7 +31,6 @@ const EditUserModal = ({
   deleteUser,
 }) => {
   const [subModal, setSubModal] = useState(null);
-
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
 
@@ -41,7 +40,7 @@ const EditUserModal = ({
       : subModal === 'delete'
         ? ''
         : '고객 계정';
-
+  console.log('clickedUserData: ', clickedUserData);
   return (
     <div className="container">
       <Modal

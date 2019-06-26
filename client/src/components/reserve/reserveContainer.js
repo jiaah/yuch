@@ -10,7 +10,6 @@ import * as moment from '../../shared/moment';
 import ReserveMessage from './reserveMessage';
 /* --- Actions --- */
 import * as reserveActions from '../../actions/reserveAction';
-import * as modalActions from '../../actions/modalAction';
 
 /* react/no-unused-state: false */
 const Modal = Loader({
@@ -37,6 +36,7 @@ export class ReserveContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      show: false,
       submitBtnClicked: false,
       name: '',
       contact: '(0  )    -    ',
@@ -48,12 +48,12 @@ export class ReserveContainer extends Component {
     };
   }
 
-  showModal = () => this.props.modalActions.showModal();
+  showModal = () => this.setState({ show: true });
 
   closeModal = async () => {
-    await this.props.modalActions.hideModal();
     await this.props.reserveActions.resetReserve();
     return this.setState({
+      show: false,
       submitBtnClicked: false,
       name: '',
       contact: '(0  )    -    ',
@@ -107,8 +107,8 @@ export class ReserveContainer extends Component {
   };
 
   render() {
-    const { show, classes } = this.props;
-    const { submitBtnClicked, isReserved } = this.state;
+    const { classes } = this.props;
+    const { show, submitBtnClicked, isReserved } = this.state;
     const { inThreeDays } = moment;
 
     return (
@@ -155,19 +155,14 @@ export class ReserveContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  show: state.modal.show,
-});
-
 const mapDispatchToProps = dispatch => ({
-  modalActions: bindActionCreators(modalActions, dispatch),
   reserveActions: bindActionCreators(reserveActions, dispatch),
 });
 
 export default compose(
   withStyles(styles),
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
   ),
 )(ReserveContainer);
