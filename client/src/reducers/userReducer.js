@@ -7,9 +7,15 @@ const initialState = {
 const user = (state = initialState, action) => {
   switch (action.type) {
     case types.SAVE_CLICKED_USER_DATA:
-      return { ...state, userData: action.payload };
+      return {
+        ...state,
+        userData: [...state.userData, action.payload],
+      };
     case types.RESET_CLICKED_USER_DATA:
-      return { ...state, userData: [] };
+      return {
+        ...state,
+        userData: [],
+      };
     default:
       return state;
   }

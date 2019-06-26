@@ -47,6 +47,13 @@ const UserAccountContainer = ({
 
   useEffect(() => {
     fetchUsersData();
+    return () => {
+      Promise.all([
+        clickedUserData.length !== 0 ? resetClickedUserData() : null,
+        show === true ? hideModal() : null,
+        selectedSearchItem !== null ? deleteSelectedItem() : null,
+      ]);
+    };
   }, []);
 
   const closeModal = () => {
@@ -77,9 +84,9 @@ const UserAccountContainer = ({
     return showModal();
   };
 
-  // Render all users from a selected user row in List
+  // Render all users data from a selected user status [Search]
   const renderAllUsers = () => {
-    if (selectedSearchItem !== 0) deleteSelectedItem();
+    if (selectedSearchItem !== null) deleteSelectedItem();
   };
 
   return (
