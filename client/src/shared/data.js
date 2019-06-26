@@ -192,3 +192,25 @@ export const userAccountTableHeadRows = [
     label: '결제계좌',
   },
 ];
+
+export const bankAccountTableHeadRows = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+];
