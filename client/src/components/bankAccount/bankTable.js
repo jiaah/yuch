@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../shared/tableHead';
 import { stableSort, getSorting } from '../../utils/sort';
@@ -50,6 +52,9 @@ const BankTable = ({
                   );
                 },
               )}
+            <TableRow style={{ height: 49 * 5 }}>
+              <TableCell colSpan={6} />
+            </TableRow>
           </TableBody>
         </Table>
       </div>

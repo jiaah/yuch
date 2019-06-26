@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import IconButton from '../../shared/iconButton';
 import CreateBankModal from './createBankModal';
@@ -16,6 +17,7 @@ const BankAccountContainer = ({
   show,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
+  const [clickedBtn, setClickedBtn] = useState(null);
 
   const closeModal = () => hideModal();
   const fetchBankAccount = async () => {
@@ -27,25 +29,30 @@ const BankAccountContainer = ({
     fetchBankAccount();
   }, []);
 
-  const handleCreateBankAccountBtnClick = () => showModal();
-  const handleEditBankBtnClick = () => console.log('edit user bank clicked');
+  const handleButtonClick = sub =>
+    Promise.all([showModal(), setClickedBtn(sub)]);
 
   return (
     <div className="container">
       <h2>유청 은행 계좌</h2>
       <IconButton
-        handleClick={handleCreateBankAccountBtnClick}
+        handleClick={() => handleButtonClick('create')}
         name="personAdd"
         width="36"
         height="36"
         viewBox="0 0 24 24"
       />
-      <BankTable
-        bankAccountTableHeadRows={bankAccountTableHeadRows}
-        handleEditBankBtnClick={handleEditBankBtnClick}
-        bankAccount={bankAccount}
-      />
-      {show && <CreateBankModal show={show} handleCloseModal={closeModal} />}
+      <Paper className="mt2 paper-padding">
+        <BankTable
+          bankAccountTableHeadRows={bankAccountTableHeadRows}
+          handleEditBankBtnClick={handleButtonClick('edit')}
+          bankAccount={bankAccount}
+        />
+      </Paper>
+      {show &&
+        clickedBtn === 'create' && (
+          <CreateBankModal show={show} handleCloseModal={closeModal} />
+        )}
     </div>
   );
 };
