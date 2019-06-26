@@ -12,6 +12,8 @@ const UserAccountModal = ({
   createUser,
   addFlashMessage,
   messageShow,
+  selectedSearchItem,
+  resetClickedItemData,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -37,7 +39,11 @@ const UserAccountModal = ({
 
     try {
       await createUser(userInfo);
-      await Promise.all([resetForm({}), handleCloseModal()]);
+      await Promise.all([
+        resetForm({}),
+        handleCloseModal(),
+        selectedSearchItem !== null ? resetClickedItemData() : null, // to display all users list from a selected user list [Search]
+      ]);
       return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(

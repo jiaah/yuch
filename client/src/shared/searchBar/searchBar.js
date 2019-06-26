@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Icon from '../../../assets/icons';
 import Loader from '../loader';
 /* --- Actions --- */
-import { addSelectedItem } from '../../actions/selectedItemAction';
+import { saveSelectedItemValue } from '../../actions/selectedAction';
 
 const AutoCompletePaper = Loader({
   loader: () =>
@@ -41,7 +41,7 @@ const styles = theme => ({
 const SearchBar = ({
   classes: { search, searchIcon },
   users,
-  addSelectedItem,
+  saveSelectedItemValue,
 }) => {
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -70,7 +70,7 @@ const SearchBar = ({
     setInputValue(value); // render selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    return addSelectedItem(value); // make the selected value accesible in a parents component via redux
+    return saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux
   };
 
   const open = Boolean(anchorEl);
@@ -108,7 +108,7 @@ const SearchBar = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  addSelectedItem: value => dispatch(addSelectedItem(value)),
+  saveSelectedItemValue: value => dispatch(saveSelectedItemValue(value)),
 });
 
 export default compose(

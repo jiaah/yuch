@@ -14,7 +14,7 @@ import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as userActions from '../../../actions/userAction';
-import { deleteSelectedItem } from '../../../actions/selectedItemAction';
+import * as selectedActions from '../../../actions/selectedAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -29,13 +29,17 @@ const EditUserModal = Loader({
 const UserAccountContainer = ({
   modalActions: { showModal, hideModal },
   authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
-  userActions: { getUsers, saveClickedUserData, resetClickedUserData },
+  userActions: { getUsers },
+  selectedActions: {
+    resetSelectedItemValue,
+    saveClickedItemData,
+    resetClickedItemData,
+  },
   show,
   addFlashMessage,
   messageShow,
   clickedUserData,
   selectedSearchItem,
-  deleteSelectedItem,
 }) => {
   const [users, setUsers] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -49,16 +53,16 @@ const UserAccountContainer = ({
     fetchUsersData();
     return () => {
       Promise.all([
-        clickedUserData.length !== 0 ? resetClickedUserData() : null,
+        clickedUserData.length !== 0 ? resetClickedItemData() : null,
         show === true ? hideModal() : null,
-        selectedSearchItem !== null ? deleteSelectedItem() : null,
+        selectedSearchItem !== null ? resetSelectedItemValue() : null,
       ]);
     };
   }, []);
 
   const closeModal = () => {
     if (clickedBtn === 'edit') {
-      resetClickedUserData();
+      resetClickedItemData();
       return hideModal();
     }
     return hideModal();
@@ -80,13 +84,13 @@ const UserAccountContainer = ({
   const handleEditUserBtnClick = async (event, userId) => {
     await setClickedBtn('edit');
     const userData = await getClickedUserData(userId);
-    await saveClickedUserData(userData);
+    await saveClickedItemData(userData);
     return showModal();
   };
 
-  // Render all users data from a selected user status [Search]
+  // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
-    if (selectedSearchItem !== null) deleteSelectedItem();
+    if (selectedSearchItem !== null) resetSelectedItemValue();
   };
 
   return (
@@ -136,6 +140,8 @@ const UserAccountContainer = ({
           createUser={createUser}
           addFlashMessage={addFlashMessage}
           messageShow={messageShow}
+          selectedSearchItem={selectedSearchItem}
+          resetClickedItemData={resetClickedItemData}
         />
       ) : (
         <EditUserModal
@@ -143,7 +149,7 @@ const UserAccountContainer = ({
           handleCloseModal={closeModal}
           editUser={editUser}
           clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData}
+          clickedUserData={clickedUserData[0]}
           changePasswordByAdmin={changePasswordByAdmin}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
@@ -157,8 +163,8 @@ const UserAccountContainer = ({
 const mapStateToProps = state => ({
   show: state.modal.show,
   messageShow: state.message.show,
-  clickedUserData: state.user.userData,
-  selectedSearchItem: state.selectedItem.value,
+  clickedUserData: state.selected.data,
+  selectedSearchItem: state.selected.value,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -167,7 +173,7 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   userActions: bindActionCreators(userActions, dispatch),
-  deleteSelectedItem: () => dispatch(deleteSelectedItem()),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
 });
 
 export default connect(

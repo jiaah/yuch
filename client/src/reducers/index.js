@@ -5,8 +5,7 @@ import modal from './modalReducer';
 import httpHandler from './HTTPHandlerReducer';
 import message from './messageReducer';
 import auth from './authReducer';
-import user from './userReducer';
-import selectedItem from './selectedItemReducer';
+import selected from './selectedReducer';
 
 export default history =>
   combineReducers({
@@ -15,6 +14,5 @@ export default history =>
     httpHandler,
     message,
     auth,
-    user,
-    selectedItem,
+    selected,
   });
