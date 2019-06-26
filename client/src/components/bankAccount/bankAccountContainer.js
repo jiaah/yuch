@@ -8,14 +8,17 @@ import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../shared/data';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
+import * as bankActions from '../../actions/bankAction';
 
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
+  bankActions: { getBankAccount },
   show,
 }) => {
   const closeModal = () => hideModal();
+  const fetchBankAccount = () => getBankAccount();
   useEffect(() => {
-    // fetch bankAccountData
+    fetchBankAccount();
   }, []);
   const handleCreateBankAccountBtnClick = () => showModal();
   const handleEditBankBtnClick = () => console.log('edit user bank clicked');
@@ -54,6 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
+  bankActions: bindActionCreators(bankActions, dispatch),
 });
 
 export default connect(
