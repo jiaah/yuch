@@ -7,9 +7,11 @@ import IconButton from '../../shared/iconButton';
 import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../shared/data';
 import Loader from '../../shared/loader';
+import { bankAccountValidation } from '../../shared/formValidation';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
 import * as bankActions from '../../actions/bankAction';
+import * as selectedActions from '../../actions/selectedAction';
 import { addFlashMessage } from '../../actions/messageAction';
 
 const CreateBankModal = Loader({
@@ -17,15 +19,27 @@ const CreateBankModal = Loader({
     import('./createBankModal' /* webpackChunkName: 'CreateBankModal' */),
 });
 
+const EditBankModal = Loader({
+  loader: () =>
+    import('./EditBankModal' /* webpackChunkName: 'EditBankModal' */),
+});
+
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
-  bankActions: { getBankAccount, createBankAccount },
+  bankActions: { getBankAccount, createBankAccount, editBankAccount },
+  selectedActions: { saveClickedItemData, resetClickedItemData },
   addFlashMessage,
+  clickedUserData,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
-  const handleCloseModal = () => hideModal();
+  const handleCloseModal = () => {
+    if (clickedBtn === 'edit') {
+      return Promise.all([resetClickedItemData(), hideModal()]);
+    }
+    return hideModal();
+  };
   const fetchBankAccount = async () => {
     const bankAccount = await getBankAccount();
     setBankAccount(bankAccount);
@@ -35,16 +49,21 @@ const BankAccountContainer = ({
     fetchBankAccount();
   }, []);
 
+  const getClickedUserData = async bankId => {
+    const bankData = await bankAccount.filter(b => b.id === bankId);
+    return bankData[0];
+  };
   const handleButtonClick = sub => {
     Promise.all([setClickedBtn(sub), showModal()]);
   };
-
-  const handleEditBtnClick = async (id, sub) => {
-    await handleButtonClick(sub);
+  const handleEditBtnClick = async id => {
+    const bankData = await getClickedUserData(id);
+    await saveClickedItemData(bankData);
+    return handleButtonClick('edit');
   };
 
-  const handleDeleteBtnClick = async (id, sub) => {
-    await handleButtonClick(sub);
+  const handleDeleteBtnClick = async id => {
+    await handleButtonClick('delete');
   };
 
   return (
@@ -66,20 +85,32 @@ const BankAccountContainer = ({
           clickedBtn={clickedBtn}
         />
       </Paper>
-      <CreateBankModal
-        createBankAccount={createBankAccount}
-        handleCloseModal={handleCloseModal}
-        addFlashMessage={addFlashMessage}
-      />
+      {clickedBtn === 'create' ? (
+        <CreateBankModal
+          bankAccountValidation={bankAccountValidation}
+          createBankAccount={createBankAccount}
+          handleCloseModal={handleCloseModal}
+          addFlashMessage={addFlashMessage}
+        />
+      ) : clickedBtn === 'edit' ? (
+        <EditBankModal
+          bankAccountValidation={bankAccountValidation}
+          editBankAccount={editBankAccount}
+          handleCloseModal={handleCloseModal}
+          addFlashMessage={addFlashMessage}
+          clickedUserData={clickedUserData}
+        />
+      ) : null}
     </div>
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ clickedUserData: state.selected.data });
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   bankActions: bindActionCreators(bankActions, dispatch),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

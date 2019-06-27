@@ -22,10 +22,21 @@ export const getBankAccount = () => async dispatch => {
 export const createBankAccount = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createBankAccount' });
   try {
-    const res = await axios.post(`${API_HOST}/admin/bankaccount`, values);
-    return res;
+    await axios.post(`${API_HOST}/admin/bankaccount`, values);
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'createBankAccount' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'createBankAccount', error });
     throw new Error('Creating the bank account is failed.');
+  }
+};
+
+export const editBankAccount = values => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editBankAccount' });
+  try {
+    await axios.patch(`${API_HOST}/admin/bankaccount`, values);
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'editBankAccount' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'editBankAccount', error });
+    throw new Error('Editing the bank account is failed.');
   }
 };

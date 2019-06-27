@@ -38,14 +38,14 @@ const BankTableRow = ({
           width="19"
           height="19"
           viewBox="0 0 24 24"
-          handleClick={() => handleEditBtnClick(row.id, 'edit')}
+          handleClick={() => handleEditBtnClick(row.id)}
         />
         <IconButton
           name="delete"
           width="19"
           height="19"
           viewBox="0 0 24 24"
-          handleClick={() => handleDeleteBtnClick(row.id, 'delete')}
+          handleClick={() => handleDeleteBtnClick(row.id)}
         />
       </TableCell>
       <TableCell

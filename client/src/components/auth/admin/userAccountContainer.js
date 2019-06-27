@@ -75,7 +75,8 @@ const UserAccountContainer = ({
     return userData[0];
   };
 
-  const handleEditUserBtnClick = async (event, userId) => {
+  const handleEditUserBtnClick = async (e, userId) => {
+    e.preventDefault();
     const userData = await getClickedUserData(userId);
     await saveClickedItemData(userData);
     return handleButtonClick('edit');
