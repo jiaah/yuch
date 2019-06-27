@@ -20,7 +20,6 @@ export const getBankAccount = () => async dispatch => {
 };
 
 export const createBankAccount = values => async dispatch => {
-  console.log('values : ', values);
   dispatch({ type: types.HTTP_REQUEST, api: 'createBankAccount' });
   try {
     const res = await axios.post(`${API_HOST}/admin/bankaccount`, values);

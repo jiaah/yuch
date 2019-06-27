@@ -4,6 +4,7 @@ const onlyLoggedIn = require('../lib/only-logged-in');
 
 module.exports = () => {
   router.get('/bankaccount', adminController.getBankAccount);
+  router.post('/bankaccount', adminController.createBankAccount);
 
   return router;
 };
