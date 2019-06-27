@@ -40,7 +40,7 @@ const UserAccountModal = ({
       await Promise.all([
         resetForm({}),
         handleCloseModal(),
-        selectedSearchItem !== null ? resetSelectedItemValue() : null, // to display all users list from a selected user list [Search]
+        selectedSearchItem !== null ? resetSelectedItemValue() : null, // to ensure to display all users list when reload page
       ]);
       return window.location.reload(true);
     } catch (error) {

@@ -10,6 +10,7 @@ import Loader from '../../shared/loader';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
 import * as bankActions from '../../actions/bankAction';
+import { addFlashMessage } from '../../actions/messageAction';
 
 const CreateBankModal = Loader({
   loader: () =>
@@ -19,6 +20,7 @@ const CreateBankModal = Loader({
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
   bankActions: { getBankAccount, createBankAccount },
+  addFlashMessage,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -67,6 +69,7 @@ const BankAccountContainer = ({
       <CreateBankModal
         createBankAccount={createBankAccount}
         handleCloseModal={handleCloseModal}
+        addFlashMessage={addFlashMessage}
       />
     </div>
   );
@@ -77,6 +80,8 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   bankActions: bindActionCreators(bankActions, dispatch),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
 });
 
 export default connect(
