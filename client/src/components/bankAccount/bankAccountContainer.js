@@ -26,7 +26,12 @@ const EditBankModal = Loader({
 
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
-  bankActions: { getBankAccount, createBankAccount, editBankAccount },
+  bankActions: {
+    getBankAccount,
+    createBankAccount,
+    editBankAccount,
+    deleteBankAccount,
+  },
   selectedActions: { saveClickedItemData, resetClickedItemData },
   addFlashMessage,
   clickedUserData,
@@ -63,7 +68,9 @@ const BankAccountContainer = ({
   };
 
   const handleDeleteBtnClick = async id => {
+    await deleteBankAccount(id);
     await handleButtonClick('delete');
+    return window.location.reload(true);
   };
 
   return (

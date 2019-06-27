@@ -33,10 +33,21 @@ export const createBankAccount = values => async dispatch => {
 export const editBankAccount = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editBankAccount' });
   try {
-    await axios.patch(`${API_HOST}/admin/bankaccount`, values);
+    await axios.patch(`${API_HOST}/admin/bankaccount/${values.id}`, values);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'editBankAccount' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editBankAccount', error });
     throw new Error('Editing the bank account is failed.');
+  }
+};
+
+export const deleteBankAccount = id => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'deleteBankAccount' });
+  try {
+    await axios.delete(`${API_HOST}/admin/bankaccount/${id}`);
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteBankAccount' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'deleteBankAccount', error });
+    throw new Error('Deleting the bank account is failed.');
   }
 };
