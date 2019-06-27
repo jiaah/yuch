@@ -4,16 +4,14 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './createUserForm';
 import Modal from '../../../shared/modal';
-import { addUserAccountValidation } from '../formValidation';
+import { addUserAccountValidation } from '../../../shared/formValidation';
 
 const UserAccountModal = ({
-  show,
-  handleCloseModal,
   createUser,
   addFlashMessage,
-  messageShow,
   selectedSearchItem,
   resetSelectedItemValue,
+  handleCloseModal,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -70,8 +68,6 @@ const UserAccountModal = ({
   return (
     <div className="container">
       <Modal
-        show={show}
-        messageShow={messageShow}
         title="신규업체 등록"
         handleClose={handleCloseModal}
         component={

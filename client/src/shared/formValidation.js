@@ -132,3 +132,12 @@ export const passwordValidation = Yup.object({
     .lowercase('소문자로 입력해주세요.')
     .required('비밀번호를 입력하세요.'),
 });
+
+export const bankAccountValidation = Yup.object({
+  accountHolder: Yup.string('').required('예금주를 입력하세요.'),
+  bankName: Yup.string('').required('은행명을 입력하세요.'),
+  accountNo: Yup.number('')
+    .typeError('숫자만 입력하세요.')
+    .integer('숫수만 입력하세요.')
+    .required('계좌번호를 입력하세요.'),
+});

@@ -19,13 +19,11 @@ const CreateBankModal = Loader({
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
   bankActions: { getBankAccount },
-  show,
-  messageShow,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
-  const closeModal = () => hideModal();
+  const handleCloseModal = () => hideModal();
   const fetchBankAccount = async () => {
     const bankAccount = await getBankAccount();
     setBankAccount(bankAccount);
@@ -35,9 +33,16 @@ const BankAccountContainer = ({
     fetchBankAccount();
   }, []);
 
-  const handleButtonClick = async sub => {
-    await setClickedBtn(sub);
-    return showModal();
+  const handleButtonClick = sub => {
+    Promise.all([setClickedBtn(sub), showModal()]);
+  };
+
+  const handleEditBtnClick = async (id, sub) => {
+    await handleButtonClick(sub);
+  };
+
+  const handleDeleteBtnClick = async (id, sub) => {
+    await handleButtonClick(sub);
   };
 
   return (
@@ -53,25 +58,18 @@ const BankAccountContainer = ({
       <Paper className="mt2 paper-padding">
         <BankTable
           bankAccountTableHeadRows={bankAccountTableHeadRows}
-          handleEditBankBtnClick={() => handleButtonClick('edit')}
+          handleEditBtnClick={handleEditBtnClick}
+          handleDeleteBtnClick={handleDeleteBtnClick}
           bankAccount={bankAccount}
+          clickedBtn={clickedBtn}
         />
       </Paper>
-      {show && clickedBtn === 'create' ? (
-        <CreateBankModal
-          show={show}
-          messageShow={messageShow}
-          handleCloseModal={closeModal}
-        />
-      ) : null}
+      <CreateBankModal handleCloseModal={handleCloseModal} />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  show: state.modal.show,
-  messageShow: state.message.show,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),

@@ -19,12 +19,12 @@ const styles = () => ({
 const BankTable = ({
   classes: { tableWrapper, table },
   bankAccountTableHeadRows,
-  handleEditBankBtnClick,
+  handleEditBtnClick,
+  handleDeleteBtnClick,
   bankAccount,
 }) => {
   const [selected, setSelected] = React.useState('');
   const handleTableRowClick = id => setSelected(id);
-
   return (
     <React.Fragment>
       <div className={tableWrapper}>
@@ -44,7 +44,8 @@ const BankTable = ({
                     <BankTableRow
                       key={row.id}
                       handleTableRowClick={handleTableRowClick}
-                      handleEditBankBtnClick={handleEditBankBtnClick}
+                      handleEditBtnClick={handleEditBtnClick}
+                      handleDeleteBtnClick={handleDeleteBtnClick}
                       row={row}
                       selected={selected}
                       labelId={labelId}

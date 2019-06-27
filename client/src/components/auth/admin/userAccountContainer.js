@@ -35,9 +35,7 @@ const UserAccountContainer = ({
     saveClickedItemData,
     resetClickedItemData,
   },
-  show,
   addFlashMessage,
-  messageShow,
   clickedUserData,
   selectedSearchItem,
 }) => {
@@ -54,7 +52,6 @@ const UserAccountContainer = ({
     return () => {
       Promise.all([
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
-        show === true ? hideModal() : null,
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
       ]);
     };
@@ -62,8 +59,7 @@ const UserAccountContainer = ({
 
   const closeModal = () => {
     if (clickedBtn === 'edit') {
-      resetClickedItemData();
-      return hideModal();
+      return Promise.all([resetClickedItemData(), hideModal()]);
     }
     return hideModal();
   };
@@ -129,19 +125,16 @@ const UserAccountContainer = ({
           모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요.
         </p>
       </div>
-      {show && clickedBtn === 'create' ? (
+      {clickedBtn === 'create' ? (
         <CreateUserModal
-          show={show}
           handleCloseModal={closeModal}
           createUser={createUser}
           addFlashMessage={addFlashMessage}
-          messageShow={messageShow}
           selectedSearchItem={selectedSearchItem}
           resetSelectedItemValue={resetSelectedItemValue}
         />
-      ) : show && clickedBtn === 'edit' ? (
+      ) : clickedBtn === 'edit' ? (
         <EditUserModal
-          show={show}
           handleCloseModal={closeModal}
           editUser={editUser}
           clickedBtn={clickedBtn}
@@ -149,7 +142,6 @@ const UserAccountContainer = ({
           changePasswordByAdmin={changePasswordByAdmin}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
-          messageShow={messageShow}
         />
       ) : null}
     </div>
@@ -157,8 +149,6 @@ const UserAccountContainer = ({
 };
 
 const mapStateToProps = state => ({
-  show: state.modal.show,
-  messageShow: state.message.show,
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
 });

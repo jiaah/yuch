@@ -16,7 +16,8 @@ const styles = theme => ({
 const BankTableRow = ({
   classes: { resize },
   handleTableRowClick,
-  handleEditBankBtnClick,
+  handleEditBtnClick,
+  handleDeleteBtnClick,
   row,
   selected,
   labelId,
@@ -37,7 +38,14 @@ const BankTableRow = ({
           width="19"
           height="19"
           viewBox="0 0 24 24"
-          handleClick={e => handleEditBankBtnClick(e, row.id)}
+          handleClick={() => handleEditBtnClick(row.id, 'edit')}
+        />
+        <IconButton
+          name="delete"
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          handleClick={() => handleDeleteBtnClick(row.id, 'delete')}
         />
       </TableCell>
       <TableCell

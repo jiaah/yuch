@@ -2,6 +2,7 @@ import React from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -16,9 +17,14 @@ const EnhancedTableHead = props => {
   const {
     order,
     orderBy,
+    onRequestSort,
     classes: { resize },
     list,
   } = props;
+
+  const createSortHandler = property => event => {
+    onRequestSort(event, property);
+  };
 
   return (
     <TableHead>
@@ -31,7 +37,13 @@ const EnhancedTableHead = props => {
             sortDirection={orderBy === row.id ? order : false}
             className={resize}
           >
-            {row.label}
+            <TableSortLabel
+              active={orderBy === row.id}
+              direction={order}
+              onClick={createSortHandler(row.id)}
+            >
+              {row.label}
+            </TableSortLabel>
           </TableCell>
         ))}
       </TableRow>

@@ -6,7 +6,7 @@ import {
   editUserAccountValidation,
   changePasswordByAdminValidation,
   passwordValidation,
-} from '../formValidation';
+} from '../../../shared/formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 
@@ -21,31 +21,26 @@ const DeleteUserFormBox = Loader({
 });
 
 const EditUserModal = ({
-  show,
   clickedUserData,
-  handleCloseModal,
   editUser,
   addFlashMessage,
-  messageShow,
   changePasswordByAdmin,
   deleteUser,
+  handleCloseModal,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
-
   const title =
     subModal === 'password'
       ? '비밀번호 변경'
       : subModal === 'delete'
         ? ''
         : '고객 계정';
-  console.log('clickedUserData: ', clickedUserData);
+
   return (
     <div className="container">
       <Modal
-        show={show}
-        messageShow={messageShow}
         title={title}
         handleClose={() => {
           if (subModal === null) {

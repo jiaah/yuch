@@ -8,13 +8,10 @@ import { bindActionCreators } from 'redux';
 import Loader from '../../shared/loader';
 import * as moment from '../../shared/moment';
 import ReserveMessage from './reserveMessage';
+import Modal from '../../shared/modal';
 /* --- Actions --- */
 import * as reserveActions from '../../actions/reserveAction';
-
-/* react/no-unused-state: false */
-const Modal = Loader({
-  loader: () => import('../../shared/modal' /* webpackChunkName: 'modal' */),
-});
+import * as modalActions from '../../actions/modalAction';
 
 const Form = Loader({
   loader: () => import('./reserveForm' /* webpackChunkName: 'reserveForm' */),
@@ -36,7 +33,6 @@ export class ReserveContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
       submitBtnClicked: false,
       name: '',
       contact: '(0  )    -    ',
@@ -48,12 +44,12 @@ export class ReserveContainer extends Component {
     };
   }
 
-  showModal = () => this.setState({ show: true });
+  showModal = () => this.props.modalActions.showModal();
 
   closeModal = async () => {
+    this.props.modalActions.hideModal();
     await this.props.reserveActions.resetReserve();
     return this.setState({
-      show: false,
       submitBtnClicked: false,
       name: '',
       contact: '(0  )    -    ',
@@ -108,7 +104,7 @@ export class ReserveContainer extends Component {
 
   render() {
     const { classes } = this.props;
-    const { show, submitBtnClicked, isReserved } = this.state;
+    const { submitBtnClicked, isReserved } = this.state;
     const { inThreeDays } = moment;
 
     return (
@@ -129,33 +125,30 @@ export class ReserveContainer extends Component {
             예약하기
           </Button>
         </div>
-        {show && (
-          <Modal
-            show={show}
-            messageShow={false}
-            title="Reservation"
-            handleClose={this.closeModal}
-            component={
-              isReserved === '' ? (
-                <Form
-                  reserveInfo={this.state}
-                  inThreeDays={inThreeDays}
-                  submitBtnClicked={submitBtnClicked}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                />
-              ) : (
-                <ReserveMessage isReserved={isReserved} />
-              )
-            }
-          />
-        )}
+        <Modal
+          title="Reservation"
+          handleClose={this.closeModal}
+          component={
+            isReserved === '' ? (
+              <Form
+                reserveInfo={this.state}
+                inThreeDays={inThreeDays}
+                submitBtnClicked={submitBtnClicked}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            ) : (
+              <ReserveMessage isReserved={isReserved} />
+            )
+          }
+        />
       </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
+  modalActions: bindActionCreators(modalActions, dispatch),
   reserveActions: bindActionCreators(reserveActions, dispatch),
 });
 

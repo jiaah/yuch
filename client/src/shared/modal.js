@@ -1,14 +1,16 @@
 import React from 'react';
-import Modal from '@material-ui/core/Modal';
+// import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
-
-// Modal can not use React Hooks as it needs to be able to handle close modal on HTTP Request success in a parent component.
-// ex) usersContainer
-
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 /* --- Components --- */
 import IconButton from './iconButton';
 import Loader from './loader';
 
+const Modal = Loader({
+  loader: () =>
+    import('@material-ui/core/Modal' /* webpackChunkName: 'modal' */),
+});
 const MessageBox = Loader({
   loader: () =>
     import('./message/messageBox' /* webpackChunkName: 'messageBox' */),
@@ -33,9 +35,12 @@ const SimpleModal = ({
   component,
   title,
   handleClose,
-}) => (
-  <React.Fragment>
-    {show && (
+}) => {
+  if (!show) {
+    return null;
+  }
+  return (
+    <React.Fragment>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -67,9 +72,20 @@ const SimpleModal = ({
           {messageShow !== null && <MessageBox />}
         </div>
       </Modal>
-    )}
-  </React.Fragment>
-);
+    </React.Fragment>
+  );
+};
+
+const mapStateToProps = state => ({
+  show: state.modal.show,
+  messageShow: state.message.show,
+});
 
 export const Unwrapped = SimpleModal;
-export default withStyles(styles)(SimpleModal);
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    null,
+  ),
+)(SimpleModal);
