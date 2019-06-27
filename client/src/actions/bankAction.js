@@ -15,6 +15,18 @@ export const getBankAccount = () => async dispatch => {
     return bankAccount;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'getBankAccount', error });
-    throw new Error('Getting bank account list is failed');
+    throw new Error('Getting the bank account list is failed.');
+  }
+};
+
+export const createBankAccount = values => async dispatch => {
+  console.log('values : ', values);
+  dispatch({ type: types.HTTP_REQUEST, api: 'createBankAccount' });
+  try {
+    const res = await axios.post(`${API_HOST}/admin/bankaccount`, values);
+    return res;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'createBankAccount', error });
+    throw new Error('Creating the bank account is failed.');
   }
 };

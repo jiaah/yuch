@@ -5,8 +5,15 @@ import Modal from '../../shared/modal';
 import BankForm from './bankForm';
 import { bankAccountValidation } from '../../shared/formValidation';
 
-const CreateBankModal = ({ handleCloseModal }) => {
+const CreateBankModal = ({ createBankAccount, handleCloseModal }) => {
   const values = { accountHolder: '', bankName: '', accountNo: '' };
+  const handleCreateBankAccount = async (
+    values,
+    { setSubmitting, resetForm },
+  ) => {
+    const res = await createBankAccount(values);
+    console.log('res: ', res);
+  };
   return (
     <div className="container">
       <Modal
@@ -16,7 +23,7 @@ const CreateBankModal = ({ handleCloseModal }) => {
           <Formik
             initialValues={values}
             render={props => <BankForm {...props} />}
-            // onSubmit={handleCreateBankAccount}
+            onSubmit={handleCreateBankAccount}
             validationSchema={bankAccountValidation}
           />
         }

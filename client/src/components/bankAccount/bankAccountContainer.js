@@ -18,7 +18,7 @@ const CreateBankModal = Loader({
 
 const BankAccountContainer = ({
   modalActions: { showModal, hideModal },
-  bankActions: { getBankAccount },
+  bankActions: { getBankAccount, createBankAccount },
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -64,7 +64,10 @@ const BankAccountContainer = ({
           clickedBtn={clickedBtn}
         />
       </Paper>
-      <CreateBankModal handleCloseModal={handleCloseModal} />
+      <CreateBankModal
+        createBankAccount={createBankAccount}
+        handleCloseModal={handleCloseModal}
+      />
     </div>
   );
 };
