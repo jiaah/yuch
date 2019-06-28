@@ -1,10 +1,9 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Modal from '../../shared/modal';
 import BankForm from './bankForm';
 
-const CreateBankModal = ({
+const CreateBankFormBox = ({
   bankAccountValidation,
   createBankAccount,
   handleCloseModal,
@@ -30,21 +29,13 @@ const CreateBankModal = ({
     return setSubmitting(false);
   };
   return (
-    <div className="container">
-      <Modal
-        title="은행계좌 등록"
-        handleClose={handleCloseModal}
-        component={
-          <Formik
-            initialValues={values}
-            render={props => <BankForm {...props} />}
-            onSubmit={handleCreateBankAccount}
-            validationSchema={bankAccountValidation}
-          />
-        }
-      />
-    </div>
+    <Formik
+      initialValues={values}
+      render={props => <BankForm {...props} />}
+      onSubmit={handleCreateBankAccount}
+      validationSchema={bankAccountValidation}
+    />
   );
 };
 
-export default CreateBankModal;
+export default CreateBankFormBox;

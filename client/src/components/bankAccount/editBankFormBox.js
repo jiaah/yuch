@@ -1,17 +1,16 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import Modal from '../../shared/modal';
 import BankForm from './bankForm';
 
-const CreateBankModal = ({
+const EditBankFormBox = ({
   bankAccountValidation,
   editBankAccount,
   handleCloseModal,
   addFlashMessage,
   clickedUserData,
 }) => {
-  const handleCreateBankAccount = async (
+  const handleEditBankAccount = async (
     values,
     { setSubmitting, resetForm },
   ) => {
@@ -30,21 +29,13 @@ const CreateBankModal = ({
     return setSubmitting(false);
   };
   return (
-    <div className="container">
-      <Modal
-        title="은행계좌 수정"
-        handleClose={handleCloseModal}
-        component={
-          <Formik
-            initialValues={clickedUserData[0]}
-            render={props => <BankForm {...props} />}
-            onSubmit={handleCreateBankAccount}
-            validationSchema={bankAccountValidation}
-          />
-        }
-      />
-    </div>
+    <Formik
+      initialValues={clickedUserData[0]}
+      render={props => <BankForm {...props} />}
+      onSubmit={handleEditBankAccount}
+      validationSchema={bankAccountValidation}
+    />
   );
 };
 
-export default CreateBankModal;
+export default EditBankFormBox;

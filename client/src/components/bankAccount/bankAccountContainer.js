@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import IconButton from '../../shared/iconButton';
 import Paper from '../../shared/paper';
+import Loader from '../../shared/loader';
 import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../shared/data';
-import Loader from '../../shared/loader';
 import { bankAccountValidation } from '../../shared/formValidation';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
@@ -14,14 +14,8 @@ import * as bankActions from '../../actions/bankAction';
 import * as selectedActions from '../../actions/selectedAction';
 import { addFlashMessage } from '../../actions/messageAction';
 
-const CreateBankModal = Loader({
-  loader: () =>
-    import('./createBankModal' /* webpackChunkName: 'CreateBankModal' */),
-});
-
-const EditBankModal = Loader({
-  loader: () =>
-    import('./EditBankModal' /* webpackChunkName: 'EditBankModal' */),
+const BankModal = Loader({
+  loader: () => import('./bankModal' /* webpackChunkName: 'BankModal' */),
 });
 
 const BankAccountContainer = ({
@@ -39,12 +33,6 @@ const BankAccountContainer = ({
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
-  const handleCloseModal = () => {
-    if (clickedBtn === 'edit') {
-      return Promise.all([resetClickedItemData(), hideModal()]);
-    }
-    return hideModal();
-  };
   const fetchBankAccount = async () => {
     const bankAccount = await getBankAccount();
     setBankAccount(bankAccount);
@@ -54,23 +42,8 @@ const BankAccountContainer = ({
     fetchBankAccount();
   }, []);
 
-  const getClickedUserData = async bankId => {
-    const bankData = await bankAccount.filter(b => b.id === bankId);
-    return bankData[0];
-  };
   const handleButtonClick = sub => {
     Promise.all([setClickedBtn(sub), showModal()]);
-  };
-  const handleEditBtnClick = async id => {
-    const bankData = await getClickedUserData(id);
-    await saveClickedItemData(bankData);
-    return handleButtonClick('edit');
-  };
-
-  const handleDeleteBtnClick = async id => {
-    await deleteBankAccount(id);
-    await handleButtonClick('delete');
-    return window.location.reload(true);
   };
 
   return (
@@ -87,29 +60,26 @@ const BankAccountContainer = ({
         component={
           <BankTable
             bankAccountTableHeadRows={bankAccountTableHeadRows}
-            handleEditBtnClick={handleEditBtnClick}
-            handleDeleteBtnClick={handleDeleteBtnClick}
             bankAccount={bankAccount}
             clickedBtn={clickedBtn}
+            saveClickedItemData={saveClickedItemData}
+            deleteBankAccount={deleteBankAccount}
+            handleButtonClick={handleButtonClick}
           />
         }
       />
-      {clickedBtn === 'create' ? (
-        <CreateBankModal
+      {clickedBtn !== null && (
+        <BankModal
+          resetClickedItemData={resetClickedItemData}
+          hideModal={hideModal}
           bankAccountValidation={bankAccountValidation}
-          createBankAccount={createBankAccount}
-          handleCloseModal={handleCloseModal}
-          addFlashMessage={addFlashMessage}
-        />
-      ) : clickedBtn === 'edit' ? (
-        <EditBankModal
-          bankAccountValidation={bankAccountValidation}
-          editBankAccount={editBankAccount}
-          handleCloseModal={handleCloseModal}
-          addFlashMessage={addFlashMessage}
+          clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
+          createBankAccount={createBankAccount}
+          editBankAccount={editBankAccount}
+          addFlashMessage={addFlashMessage}
         />
-      ) : null}
+      )}
     </div>
   );
 };

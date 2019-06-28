@@ -19,47 +19,63 @@ const styles = () => ({
 const BankTable = ({
   classes: { tableWrapper, table },
   bankAccountTableHeadRows,
-  handleEditBtnClick,
-  handleDeleteBtnClick,
   bankAccount,
+  saveClickedItemData,
+  deleteBankAccount,
+  handleButtonClick,
 }) => {
   const [selected, setSelected] = React.useState('');
   const handleTableRowClick = id => setSelected(id);
+
+  const getClickedUserData = async bankId => {
+    const bankData = await bankAccount.filter(b => b.id === bankId);
+    return bankData[0];
+  };
+
+  const handleEditBtnClick = async id => {
+    const bankData = await getClickedUserData(id);
+    await saveClickedItemData(bankData);
+    return handleButtonClick('edit');
+  };
+
+  const handleDeleteBtnClick = async id => {
+    await deleteBankAccount(id);
+    await handleButtonClick('delete');
+    // return window.location.reload(true);
+  };
   return (
-    <React.Fragment>
-      <div className={tableWrapper}>
-        <Table className={table} aria-labelledby="tableTitle">
-          <EnhancedTableHead
-            order="desc"
-            orderBy="accountHolder"
-            list={bankAccountTableHeadRows}
-          />
-          <TableBody>
-            {bankAccount &&
-              bankAccount.length !== 0 &&
-              stableSort(bankAccount, getSorting('desc', 'accountHolder')).map(
-                (row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
-                  return (
-                    <BankTableRow
-                      key={row.id}
-                      handleTableRowClick={handleTableRowClick}
-                      handleEditBtnClick={handleEditBtnClick}
-                      handleDeleteBtnClick={handleDeleteBtnClick}
-                      row={row}
-                      selected={selected}
-                      labelId={labelId}
-                    />
-                  );
-                },
-              )}
-            <TableRow style={{ height: 49 * 5 }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
-    </React.Fragment>
+    <div className={tableWrapper}>
+      <Table className={table} aria-labelledby="tableTitle">
+        <EnhancedTableHead
+          order="desc"
+          orderBy="accountHolder"
+          list={bankAccountTableHeadRows}
+        />
+        <TableBody>
+          {bankAccount &&
+            bankAccount.length !== 0 &&
+            stableSort(bankAccount, getSorting('desc', 'accountHolder')).map(
+              (row, index) => {
+                const labelId = `enhanced-table-checkbox-${index}`;
+                return (
+                  <BankTableRow
+                    key={row.id}
+                    handleTableRowClick={handleTableRowClick}
+                    handleEditBtnClick={handleEditBtnClick}
+                    handleDeleteBtnClick={handleDeleteBtnClick}
+                    row={row}
+                    selected={selected}
+                    labelId={labelId}
+                  />
+                );
+              },
+            )}
+          <TableRow style={{ height: 49 * 5 }}>
+            <TableCell colSpan={6} />
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
