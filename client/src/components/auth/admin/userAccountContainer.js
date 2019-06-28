@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBar';
 import Icon from '../../../../assets/icons';
+import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -106,13 +106,15 @@ const UserAccountContainer = ({
           viewBox="0 0 24 24"
         />
       </div>
-      <Paper className="mt2 paper-padding">
-        <UserTable
-          handleEditUserBtnClick={handleEditUserBtnClick}
-          users={users}
-          selectedSearchItem={selectedSearchItem}
-        />
-      </Paper>
+      <Paper
+        component={
+          <UserTable
+            handleEditUserBtnClick={handleEditUserBtnClick}
+            users={users}
+            selectedSearchItem={selectedSearchItem}
+          />
+        }
+      />
       <div className="flex justify-end mt3 pw1">
         <Icon
           name="info"

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import IconButton from '../../shared/iconButton';
+import Paper from '../../shared/paper';
 import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../shared/data';
 import Loader from '../../shared/loader';
@@ -83,15 +83,17 @@ const BankAccountContainer = ({
         height="36"
         viewBox="0 0 24 24"
       />
-      <Paper className="mt2 paper-padding">
-        <BankTable
-          bankAccountTableHeadRows={bankAccountTableHeadRows}
-          handleEditBtnClick={handleEditBtnClick}
-          handleDeleteBtnClick={handleDeleteBtnClick}
-          bankAccount={bankAccount}
-          clickedBtn={clickedBtn}
-        />
-      </Paper>
+      <Paper
+        component={
+          <BankTable
+            bankAccountTableHeadRows={bankAccountTableHeadRows}
+            handleEditBtnClick={handleEditBtnClick}
+            handleDeleteBtnClick={handleDeleteBtnClick}
+            bankAccount={bankAccount}
+            clickedBtn={clickedBtn}
+          />
+        }
+      />
       {clickedBtn === 'create' ? (
         <CreateBankModal
           bankAccountValidation={bankAccountValidation}
