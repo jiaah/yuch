@@ -8,7 +8,6 @@ const DeleteBankFormBox = ({
   handleCloseModal,
   bankAccount,
 }) => {
-  console.log('bankAccount: ', bankAccount.length);
   const handleDeleteUser = async () => {
     try {
       await deleteBankAccount(selectedSearchItem);
