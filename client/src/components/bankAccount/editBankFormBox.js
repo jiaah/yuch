@@ -26,7 +26,7 @@ const EditBankFormBox = ({
         'error',
         `${
           values.accountHolder
-        } 님의 은행계좌 수정에 실패하였습니다. 다시 시도해주세요.`,
+        } 님의 은행계좌 수정에 실패하였습니다. 이미 등록한 계좌정보인지 확인하신후, 다시 시도해주세요.`,
       );
     }
     return setSubmitting(false);
