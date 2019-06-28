@@ -55,13 +55,17 @@ const BankAccountContainer = ({
   return (
     <div className="container">
       <h2>유청 은행 계좌</h2>
-      <IconButton
-        handleClick={() => handleButtonClick('create')}
-        name="personAdd"
-        width="36"
-        height="36"
-        viewBox="0 0 24 24"
-      />
+      <div className="paper-label--box justify-end">
+        <div className="flex">
+          <IconButton
+            handleClick={() => handleButtonClick('create')}
+            name="add"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+          />
+        </div>
+      </div>
       <Paper
         component={
           <BankTable

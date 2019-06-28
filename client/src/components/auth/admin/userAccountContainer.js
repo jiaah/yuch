@@ -90,7 +90,7 @@ const UserAccountContainer = ({
     <div className="container">
       {/* auto complete search bar by companyName */}
       <h2 onClick={renderAllUsers}>고객 계정</h2>
-      <div className="paper-label--box">
+      <div className="paper-label--box justify-between ">
         <div className="flex">
           <SearchBar users={users} />
           <p className="f-mini ml3 user-account--user-number">
@@ -101,8 +101,8 @@ const UserAccountContainer = ({
         <IconButton
           handleClick={() => handleButtonClick('create')}
           name="personAdd"
-          width="36"
-          height="36"
+          width="30"
+          height="30"
           viewBox="0 0 24 24"
         />
       </div>
