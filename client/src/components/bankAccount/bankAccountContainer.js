@@ -26,9 +26,15 @@ const BankAccountContainer = ({
     editBankAccount,
     deleteBankAccount,
   },
-  selectedActions: { saveClickedItemData, resetClickedItemData },
+  selectedActions: {
+    saveClickedItemData,
+    resetClickedItemData,
+    saveSelectedItemValue,
+    resetSelectedItemValue,
+  },
   addFlashMessage,
   clickedUserData,
+  selectedSearchItem,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -63,7 +69,7 @@ const BankAccountContainer = ({
             bankAccount={bankAccount}
             clickedBtn={clickedBtn}
             saveClickedItemData={saveClickedItemData}
-            deleteBankAccount={deleteBankAccount}
+            saveSelectedItemValue={saveSelectedItemValue}
             handleButtonClick={handleButtonClick}
           />
         }
@@ -75,16 +81,22 @@ const BankAccountContainer = ({
           bankAccountValidation={bankAccountValidation}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
+          selectedSearchItem={selectedSearchItem}
           createBankAccount={createBankAccount}
           editBankAccount={editBankAccount}
+          deleteBankAccount={deleteBankAccount}
           addFlashMessage={addFlashMessage}
+          resetSelectedItemValue={resetSelectedItemValue}
         />
       )}
     </div>
   );
 };
 
-const mapStateToProps = state => ({ clickedUserData: state.selected.data });
+const mapStateToProps = state => ({
+  clickedUserData: state.selected.data,
+  selectedSearchItem: state.selected.value,
+});
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),

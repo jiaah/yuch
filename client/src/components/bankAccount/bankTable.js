@@ -21,7 +21,7 @@ const BankTable = ({
   bankAccountTableHeadRows,
   bankAccount,
   saveClickedItemData,
-  deleteBankAccount,
+  saveSelectedItemValue,
   handleButtonClick,
 }) => {
   const [selected, setSelected] = React.useState('');
@@ -39,9 +39,8 @@ const BankTable = ({
   };
 
   const handleDeleteBtnClick = async id => {
-    await deleteBankAccount(id);
-    await handleButtonClick('delete');
-    // return window.location.reload(true);
+    await saveSelectedItemValue(id);
+    return handleButtonClick('delete');
   };
   return (
     <div className={tableWrapper}>

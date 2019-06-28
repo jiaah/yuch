@@ -13,22 +13,31 @@ const EditBankFormBox = Loader({
     import('./editBankFormBox' /* webpackChunkName: 'EditBankFormBox' */),
 });
 
+const DeleteBankFormBox = Loader({
+  loader: () =>
+    import('./deleteBankFormBox' /* webpackChunkName: 'DeleteBankFormBox' */),
+});
+
 const BankModal = ({
   bankAccountValidation,
   clickedBtn,
   clickedUserData,
+  selectedSearchItem,
   hideModal,
   resetClickedItemData,
-  editBankAccount,
+  resetSelectedItemValue,
   createBankAccount,
+  editBankAccount,
+  deleteBankAccount,
   addFlashMessage,
 }) => {
   const title = clickedBtn === 'edit' ? '은행계좌 수정' : '은행계좌 등록';
 
-  const handleCloseModal = () => {
-    if (clickedBtn === 'edit') {
-      return Promise.all([resetClickedItemData(), hideModal()]);
-    }
+  const handleCloseModal = async () => {
+    await Promise.all([
+      clickedUserData.length !== 0 ? resetClickedItemData() : null,
+      selectedSearchItem !== null ? resetSelectedItemValue() : null,
+    ]);
     return hideModal();
   };
 
@@ -53,7 +62,13 @@ const BankModal = ({
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
             />
-          ) : null
+          ) : (
+            <DeleteBankFormBox
+              deleteBankAccount={deleteBankAccount}
+              selectedSearchItem={selectedSearchItem}
+              handleCloseModal={handleCloseModal}
+            />
+          )
         }
       />
     </div>
