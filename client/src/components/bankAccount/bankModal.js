@@ -30,6 +30,7 @@ const BankModal = ({
   editBankAccount,
   deleteBankAccount,
   addFlashMessage,
+  bankAccount,
 }) => {
   const title =
     clickedBtn === 'edit'
@@ -72,6 +73,7 @@ const BankModal = ({
               deleteBankAccount={deleteBankAccount}
               selectedSearchItem={selectedSearchItem}
               handleCloseModal={handleCloseModal}
+              bankAccount={bankAccount}
             />
           )
         }

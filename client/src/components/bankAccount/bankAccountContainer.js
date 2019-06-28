@@ -91,6 +91,7 @@ const BankAccountContainer = ({
           deleteBankAccount={deleteBankAccount}
           addFlashMessage={addFlashMessage}
           resetSelectedItemValue={resetSelectedItemValue}
+          bankAccount={bankAccount}
         />
       )}
     </div>

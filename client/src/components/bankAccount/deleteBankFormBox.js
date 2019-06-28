@@ -6,7 +6,9 @@ const DeleteBankFormBox = ({
   deleteBankAccount,
   selectedSearchItem,
   handleCloseModal,
+  bankAccount,
 }) => {
+  console.log('bankAccount: ', bankAccount.length);
   const handleDeleteUser = async () => {
     try {
       await deleteBankAccount(selectedSearchItem);
@@ -21,10 +23,25 @@ const DeleteBankFormBox = ({
   };
 
   return (
-    <AdminConfirmContainer
-      handleButtonClick={handleDeleteUser}
-      confirmType="delete"
-    />
+    <React.Fragment>
+      {bankAccount.length < 2 ? (
+        <div className="mb3">
+          <p className="mb3">
+            계좌가 <span className="c-point2">최소한 하나</span>는
+            등록되어있어야 합니다.
+          </p>
+          <p>
+            변경을 원하신다면, 새로운 계좌를{' '}
+            <span className="c-point2">등록하거나 수정을 해주세요</span>.
+          </p>
+        </div>
+      ) : (
+        <AdminConfirmContainer
+          handleButtonClick={handleDeleteUser}
+          confirmType="delete"
+        />
+      )}
+    </React.Fragment>
   );
 };
 
