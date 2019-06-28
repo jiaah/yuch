@@ -33,9 +33,9 @@ const AdminConfirmForm = ({ type }) => (
         </p>
       </React.Fragment>
     )}
-    {type === 'edit' && (
+    {(type === 'edit' || type === 'create') && (
       <p>
-        변경하시려면&#44;&#8201; 보안을 위해&#8201;
+        계속 진행하시려면&#44;&#8201; 보안을 위해&#8201;
         <span className="c-point2">
           {data.admin.companyName}
           님의 비밀번호
