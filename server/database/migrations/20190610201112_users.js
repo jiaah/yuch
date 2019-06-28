@@ -29,8 +29,7 @@ exports.up = knex =>
         .integer('bankAccountId')
         .references('id')
         .inTable('bankAccount')
-        .index()
-        .defaultTo(1);
+        .index();
       table.timestamps(true, true);
       // table
       //   .timestamps('createdAt', { useTz: true })

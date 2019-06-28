@@ -46,14 +46,14 @@ const BankTable = ({
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
         <EnhancedTableHead
-          order="desc"
-          orderBy="accountHolder"
+          order="asc"
+          orderBy="id"
           list={bankAccountTableHeadRows}
         />
         <TableBody>
           {bankAccount &&
             bankAccount.length !== 0 &&
-            stableSort(bankAccount, getSorting('desc', 'accountHolder')).map(
+            stableSort(bankAccount, getSorting('asc', 'id')).map(
               (row, index) => {
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (

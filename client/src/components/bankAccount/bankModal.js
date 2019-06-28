@@ -46,7 +46,7 @@ const BankModal = ({
     ]);
     return hideModal();
   };
-
+  console.log('selectedSearchItem: ', selectedSearchItem);
   return (
     <div className="container">
       <Modal
@@ -73,6 +73,7 @@ const BankModal = ({
               deleteBankAccount={deleteBankAccount}
               selectedSearchItem={selectedSearchItem}
               handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
               bankAccount={bankAccount}
             />
           )
