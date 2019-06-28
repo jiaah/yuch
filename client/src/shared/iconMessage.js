@@ -11,7 +11,7 @@ const IconMessage = (
   fillOuter,
   text,
 ) => (
-  <div className="flex justify-end">
+  <div className="flex">
     <Icon
       name={name}
       width={width}

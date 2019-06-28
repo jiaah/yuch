@@ -2,9 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import FormButton from '../../../shared/formButton';
-import Icon from '../../../../assets/icons';
-import * as data from '../../../shared/data';
+import FormButton from '../formButton';
+import ConfirmMessage from './confirmMessage';
 
 const styles = theme => ({
   textField: {
@@ -14,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-const DeleteUserForm = props => {
+const AdminConfirmForm = props => {
   const {
     values: { password },
     errors,
@@ -24,35 +23,12 @@ const DeleteUserForm = props => {
     isSubmitting,
     handleBlur,
     classes,
+    confirmType,
   } = props;
 
   return (
     <form className="mh3 lh-3 mh-auto" onSubmit={handleSubmit}>
-      <div className="flex justify-center mb3">
-        <Icon
-          name="warning"
-          width="28"
-          height="28"
-          viewBox="0 0 25 25"
-          fillOuter="#ed4337"
-          fillInner="#ffffff"
-        />
-        <p className="c-red waring-icon--p">
-          고객님의 정보가 시스템에서 삭제 됩니다&#46; 삭제된 데이터는 복구할수
-          없습니다&#46;
-        </p>
-      </div>
-      <p>
-        정말 삭제하시겠습니다?
-        <br />
-        삭제하시려면&#44;
-        <span className="c-point2">
-          {data.admin.companyName}
-          님의 비밀번호
-        </span>
-        를 입력해주세요&#46;
-      </p>
-
+      <ConfirmMessage type={confirmType} />
       <div className="flex justify-center mt4">
         <TextField
           id="password"
@@ -86,4 +62,4 @@ const DeleteUserForm = props => {
   );
 };
 
-export default withStyles(styles)(DeleteUserForm);
+export default withStyles(styles)(AdminConfirmForm);

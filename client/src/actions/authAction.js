@@ -93,11 +93,9 @@ export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   }
 };
 
-export const deleteUser = (userId, password) => async dispatch => {
+export const deleteUser = userId => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    // double check if the request is made by the admin user -> delete user
-    await axios.post(`${API_HOST}/auth/login/admin`, { password });
     await axios.delete(`${API_HOST}/auth/delete/${userId}`, {
       headers: { authorization: token },
     });
@@ -105,5 +103,16 @@ export const deleteUser = (userId, password) => async dispatch => {
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
     throw new Error('Deleting the user failed.');
+  }
+};
+
+export const confirmAdminUser = password => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
+  try {
+    await axios.post(`${API_HOST}/auth/login/admin`, { password });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
+    throw new Error('Failed admin user authentication.');
   }
 };

@@ -5,7 +5,6 @@ import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
   changePasswordByAdminValidation,
-  passwordValidation,
 } from '../../../shared/formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
@@ -15,9 +14,8 @@ const PasswordFormBox = Loader({
     import('./passwordFormBox' /* webpackChunkName: 'passwordFormBox' */),
 });
 
-const DeleteUserFormBox = Loader({
-  loader: () =>
-    import('./deleteUserFormBox' /* webpackChunkName: 'deleteUserFormBox' */),
+const DeleteUser = Loader({
+  loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
 });
 
 const EditUserModal = ({
@@ -59,12 +57,11 @@ const EditUserModal = ({
               changePasswordByAdmin={changePasswordByAdmin}
             />
           ) : subModal === 'delete' ? (
-            <DeleteUserFormBox
+            <DeleteUser
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               clickedUserData={clickedUserData}
-              passwordValidation={passwordValidation}
               deleteUser={deleteUser}
             />
           ) : (
