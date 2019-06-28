@@ -31,7 +31,12 @@ const BankModal = ({
   deleteBankAccount,
   addFlashMessage,
 }) => {
-  const title = clickedBtn === 'edit' ? '은행계좌 수정' : '은행계좌 등록';
+  const title =
+    clickedBtn === 'edit'
+      ? '은행계좌 수정'
+      : clickedBtn === 'create'
+        ? '은행계좌 등록'
+        : null;
 
   const handleCloseModal = async () => {
     await Promise.all([
