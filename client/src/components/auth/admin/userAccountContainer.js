@@ -15,6 +15,7 @@ import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as userActions from '../../../actions/userAction';
 import * as selectedActions from '../../../actions/selectedAction';
+import { getBankAccount } from '../../../actions/bankAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -36,15 +37,18 @@ const UserAccountContainer = ({
     resetClickedItemData,
   },
   addFlashMessage,
+  getBankAccount,
   clickedUserData,
   selectedSearchItem,
 }) => {
   const [users, setUsers] = useState([]);
+  const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchUsersData = async () => {
     const users = await getUsers();
-    return setUsers(users);
+    const bankAccount = await getBankAccount();
+    return Promise.all([setUsers(users), setBankAccount(bankAccount)]);
   };
 
   useEffect(() => {
@@ -70,8 +74,8 @@ const UserAccountContainer = ({
   const getClickedUserData = async userId => {
     const userData = await users.filter(user => user.id === userId);
     // convert the bankAccount value from number to string.
-    const bankIdToString = await userData[0].bankAccountId.toString();
-    userData[0].bankAccountId = await bankIdToString;
+    // const bankIdToString = await userData[0].bankAccountId.toString();
+    // userData[0].bankAccountId = await bankIdToString;
     return userData[0];
   };
 
@@ -112,6 +116,7 @@ const UserAccountContainer = ({
             handleEditUserBtnClick={handleEditUserBtnClick}
             users={users}
             selectedSearchItem={selectedSearchItem}
+            bankAccount={bankAccount}
           />
         }
       />
@@ -135,6 +140,7 @@ const UserAccountContainer = ({
           addFlashMessage={addFlashMessage}
           selectedSearchItem={selectedSearchItem}
           resetSelectedItemValue={resetSelectedItemValue}
+          bankAccount={bankAccount}
         />
       ) : clickedBtn === 'edit' ? (
         <EditUserModal
@@ -163,6 +169,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addFlashMessage(variant, message)),
   userActions: bindActionCreators(userActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
+  getBankAccount: () => dispatch(getBankAccount()),
 });
 
 export default connect(

@@ -18,61 +18,84 @@ const UserTableRow = ({
   handleTableRowClick,
   handleEditUserBtnClick,
   row,
-  bankAccountInfo,
   selected,
+  bankAccount,
   labelId,
-}) => (
-  <React.Fragment>
-    <TableRow
-      key={row.id}
-      hover
-      onClick={() => handleTableRowClick(row.id)}
-      role="checkbox"
-      aria-checked={selected === row.id}
-      tabIndex={-1}
-      selected={selected === row.id}
-    >
-      <TableCell padding="checkbox">
-        <IconButton
-          name="edit"
-          width="19"
-          height="19"
-          viewBox="0 0 24 24"
-          handleClick={e => handleEditUserBtnClick(e, row.id)}
-        />
-      </TableCell>
-      <TableCell
-        component="th"
-        id={labelId}
-        scope="row"
-        padding="none"
-        className={resize}
+}) => {
+  const emptyAccount = [{ accountHolder: '', bankName: '', accountNo: '' }];
+  let bankAccountInfo;
+  if (bankAccount.length !== 0) {
+    bankAccount.forEach(b => {
+      if (b.id === row.bankAccountId) {
+        bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
+      } else {
+        bankAccountInfo = emptyAccount;
+      }
+      return bankAccountInfo;
+    });
+  } else {
+    bankAccountInfo = emptyAccount;
+  }
+
+  const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
+  const slicedAccountNo = accountNo.slice(0, 8);
+  return (
+    <React.Fragment>
+      <TableRow
+        key={row.id}
+        hover
+        onClick={() => handleTableRowClick(row.id)}
+        role="checkbox"
+        aria-checked={selected === row.id}
+        tabIndex={-1}
+        selected={selected === row.id}
       >
-        {row.companyName}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.username}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.contactNo}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.email}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.mealPrice}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.lunchQty}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.dinnerQty}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {bankAccountInfo}
-      </TableCell>
-    </TableRow>
-  </React.Fragment>
-);
+        <TableCell padding="checkbox">
+          <IconButton
+            name="edit"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={e => handleEditUserBtnClick(e, row.id)}
+          />
+        </TableCell>
+        <TableCell
+          component="th"
+          id={labelId}
+          scope="row"
+          padding="none"
+          className={resize}
+        >
+          {row.companyName}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.username}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.contactNo}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.email}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.mealPrice}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.lunchQty}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.dinnerQty}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {accountHolder}
+          &#8201;&#8201;&#8201;
+          {bankName}
+          &#8201;&#8201;&#8201;
+          {slicedAccountNo}
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+};
 
 export default withStyles(styles)(UserTableRow);

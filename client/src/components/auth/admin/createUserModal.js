@@ -12,24 +12,22 @@ const UserAccountModal = ({
   selectedSearchItem,
   resetSelectedItemValue,
   handleCloseModal,
+  bankAccount,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
       companyName,
       confirmPassword,
-      bankAccountId,
       lunchQty,
       dinnerQty,
       ...others
     } = values;
     // to save values as number type in database
-    const bankAccount = parseInt(bankAccountId, 10);
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
 
     const userInfo = {
       companyName,
-      bankAccountId: bankAccount,
       lunchQty: lunchQtyValue,
       dinnerQty: dinnerQtyValue,
       ...others,
@@ -62,7 +60,7 @@ const UserAccountModal = ({
     mealPrice: '',
     lunchQty: '',
     dinnerQty: '',
-    bankAccountId: '1',
+    bankAccountId: bankAccount[0].id,
   };
 
   return (
@@ -73,7 +71,7 @@ const UserAccountModal = ({
         component={
           <Formik
             initialValues={values}
-            render={props => <Form {...props} />}
+            render={props => <Form {...props} bankAccount={bankAccount} />}
             onSubmit={handleCreateUser}
             validationSchema={addUserAccountValidation}
           />

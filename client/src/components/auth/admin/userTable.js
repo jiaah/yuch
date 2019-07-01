@@ -23,6 +23,7 @@ const UserTable = ({
   handleEditUserBtnClick,
   users,
   selectedSearchItem,
+  bankAccount,
 }) => {
   // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');
@@ -65,16 +66,14 @@ const UserTable = ({
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
-                  const bankAccountInfo =
-                    row.bankAccountId === 1 ? '김귀자 농협' : '이상환 농협';
                   return (
                     <UserTableRow
                       key={row.id}
                       handleTableRowClick={handleTableRowClick}
                       handleEditUserBtnClick={handleEditUserBtnClick}
                       row={row}
-                      bankAccountInfo={bankAccountInfo}
                       selected={selected}
+                      bankAccount={bankAccount}
                       labelId={labelId}
                     />
                   );

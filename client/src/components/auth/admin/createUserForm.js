@@ -1,15 +1,11 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
 import Icon from '../../../../assets/icons';
+import BankAccountForm from './bankAccountForm';
 
 const styles = theme => ({
   textField: {
@@ -21,22 +17,6 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 118,
-  },
-  formControl: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing.unit * 3,
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing.unit * 5,
-    },
-  },
-  formLabel: {
-    marginLeft: '8px',
-  },
-  formControlLabel: {
-    [theme.breakpoints.up('md')]: {
-      marginRight: '50px',
-    },
   },
 });
 
@@ -54,6 +34,7 @@ const CreateUserForm = props => {
       dinnerQty,
       bankAccountId,
     },
+    bankAccount,
     errors,
     touched,
     handleChange,
@@ -322,47 +303,11 @@ const CreateUserForm = props => {
             </div>
           </div>
         </div>
-        <div className="user-form--bankaccount">
-          <FormControl
-            component="fieldset"
-            required
-            className={`${classes.formControl} flex flex-column-m`}
-          >
-            <div className="flex">
-              <Icon
-                name="bankAccount"
-                width="20"
-                height="20"
-                viewBox="0 0 25 25"
-                fill="none"
-              />
-              <FormLabel component="legend" className={classes.formLabel}>
-                입금 계좌번호
-              </FormLabel>
-            </div>
-            <RadioGroup
-              aria-label="bankAccountId"
-              name="bankAccountId"
-              value={bankAccountId}
-              onChange={e => change(e, 'bankAccountId', false)}
-              row
-            >
-              <FormControlLabel
-                value="1"
-                control={<Radio color="primary" />}
-                label="김귀자&#8201;&#8201;&#8201;농협&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;7210xx-xx-xxxxxx"
-                labelPlacement="end"
-                className={classes.formControlLabel}
-              />
-              <FormControlLabel
-                value="2"
-                control={<Radio color="primary" />}
-                label="이상환&#8201;&#8201;&#8201;농협&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;7211xx-xx-xxxxxx"
-                labelPlacement="end"
-              />
-            </RadioGroup>
-          </FormControl>
-        </div>
+        <BankAccountForm
+          bankAccountId={bankAccountId}
+          bankAccount={bankAccount}
+          change={change}
+        />
         <div className="justify-center">
           <FormButton
             typeValue="submit"
