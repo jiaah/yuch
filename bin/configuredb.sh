@@ -14,6 +14,7 @@ dropdb -U postgres yuchdb
 createdb -U postgres yuchdb
 
 # knex migrate:make file_name
+
 # knex migrate:rollback
 # knex migrate:latest
 # knex seed:run

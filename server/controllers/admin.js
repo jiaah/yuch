@@ -1,14 +1,14 @@
 const knex = require('../database');
 
 exports.getBankAccount = (req, res) =>
-  knex('bankAccount')
+  knex('bank_account')
     .select('*')
     .then(bankAccount => res.status(200).json(bankAccount))
     .catch(err => res.status(500).json(err));
 
 exports.createBankAccount = (req, res) => {
   const { accountHolder, bankName, accountNo } = req.body;
-  knex('bankAccount')
+  knex('bank_account')
     .insert({ accountHolder, bankName, accountNo })
     .then(() => res.status(200).json())
     .catch(err => res.status(500).json(err));
@@ -17,7 +17,7 @@ exports.createBankAccount = (req, res) => {
 exports.editBankAccount = (req, res) => {
   const bankId = req.params.id;
   const { accountHolder, bankName, accountNo } = req.body;
-  knex('bankAccount')
+  knex('bank_account')
     .where({ id: bankId })
     .first()
     .update({
@@ -31,7 +31,7 @@ exports.editBankAccount = (req, res) => {
 
 exports.deleteBankAccount = (req, res) => {
   const bankId = req.params.id;
-  knex('bankAccount')
+  knex('bank_account')
     .where({ id: bankId })
     .first()
     .del()

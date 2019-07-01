@@ -37,6 +37,7 @@ const BankAccountContainer = ({
   selectedSearchItem,
 }) => {
   const [bankAccount, setBankAccount] = useState(null);
+  console.log('bankAccount: ', bankAccount);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchBankAccount = async () => {

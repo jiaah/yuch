@@ -26,10 +26,20 @@ exports.up = knex =>
       table.integer('lunchQty');
       table.integer('dinnerQty');
       table
-        .integer('bankAccountId')
+        .uuid('bankAccountId')
         .references('id')
-        .inTable('bankAccount')
+        .inTable('bank_account')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
         .index();
+      // .foreign('bankAccountId')
+      // .references('id')
+      // .inTable('bankAccount');
+      // Error when delete bankAccount : Key (id)=(2) is still referenced from table "users".
+      // .integer('bankAccountId')
+      // .references('id')
+      // .inTable('bankAccount')
+      // .index();
       table.timestamps(true, true);
       // table
       //   .timestamps('createdAt', { useTz: true })

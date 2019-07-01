@@ -46,7 +46,7 @@ const BankModal = ({
     ]);
     return hideModal();
   };
-  console.log('selectedSearchItem: ', selectedSearchItem);
+
   return (
     <div className="container">
       <Modal
