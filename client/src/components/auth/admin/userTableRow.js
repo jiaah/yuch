@@ -24,15 +24,14 @@ const UserTableRow = ({
 }) => {
   const emptyAccount = [{ accountHolder: '', bankName: '', accountNo: '' }];
   let bankAccountInfo;
+
   if (bankAccount.length !== 0) {
-    bankAccount.forEach(b => {
-      if (b.id === row.bankAccountId)
-        bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
-    });
-  } else {
+    bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
+    // when there is no matching bank account
+    if (bankAccountInfo.length === 0) bankAccountInfo = emptyAccount;
+  } else if (bankAccount.length === 0) {
     bankAccountInfo = emptyAccount;
   }
-
   const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
   const slicedAccountNo = accountNo.slice(0, 8);
   return (

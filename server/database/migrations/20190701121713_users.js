@@ -29,8 +29,8 @@ exports.up = knex =>
         .uuid('bankAccountId')
         .references('id')
         .inTable('bank_account')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
+        .onDelete('SET NULL')
+        .onUpdate('RESTRICT')
         .index();
       // .foreign('bankAccountId')
       // .references('id')
