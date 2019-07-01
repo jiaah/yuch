@@ -9,6 +9,7 @@ import Lock from './lock';
 import Phone from './phone';
 import Email from './email';
 import Catering from './catering';
+import Bank from './bank';
 import BankAccount from './bankAccount';
 import Error from './error';
 import Info from './info';
@@ -38,6 +39,8 @@ const Icon = props => {
       return <Email {...props} />;
     case 'catering':
       return <Catering {...props} />;
+    case 'bank':
+      return <Bank {...props} />;
     case 'bankAccount':
       return <BankAccount {...props} />;
     case 'error':

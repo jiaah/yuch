@@ -70,7 +70,7 @@ const BankForm = props => {
             startAdornment: (
               <InputAdornment position="start">
                 <Icon
-                  name="catering"
+                  name="bank"
                   width="20"
                   height="20"
                   viewBox="0 0 25 25"
@@ -92,7 +92,17 @@ const BankForm = props => {
           margin="normal"
           className={classes.textField}
           InputProps={{
-            startAdornment: <InputAdornment position="start">₩</InputAdornment>,
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon
+                  name="bankAccount"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                />
+              </InputAdornment>
+            ),
           }}
         />
       </div>
