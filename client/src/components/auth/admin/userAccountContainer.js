@@ -73,9 +73,6 @@ const UserAccountContainer = ({
 
   const getClickedUserData = async userId => {
     const userData = await users.filter(user => user.id === userId);
-    // convert the bankAccount value from number to string.
-    // const bankIdToString = await userData[0].bankAccountId.toString();
-    // userData[0].bankAccountId = await bankIdToString;
     return userData[0];
   };
 
@@ -89,7 +86,6 @@ const UserAccountContainer = ({
   const renderAllUsers = () => {
     if (selectedSearchItem !== null) resetSelectedItemValue();
   };
-
   return (
     <div className="container">
       {/* auto complete search bar by companyName */}
@@ -151,6 +147,7 @@ const UserAccountContainer = ({
           changePasswordByAdmin={changePasswordByAdmin}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
+          bankAccount={bankAccount}
         />
       ) : null}
     </div>

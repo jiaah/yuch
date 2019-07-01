@@ -25,6 +25,7 @@ const EditUserModal = ({
   changePasswordByAdmin,
   deleteUser,
   handleCloseModal,
+  bankAccount,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
@@ -72,6 +73,7 @@ const EditUserModal = ({
               clickedUserData={clickedUserData}
               editUserAccountValidation={editUserAccountValidation}
               editUser={editUser}
+              bankAccount={bankAccount}
             />
           )
         }

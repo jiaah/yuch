@@ -11,23 +11,14 @@ const DeleteUserFormBox = ({
   clickedUserData,
   editUserAccountValidation,
   editUser,
+  bankAccount,
 }) => {
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    const {
-      companyName,
-      bankAccountId,
-      lunchQty,
-      dinnerQty,
-      ...others
-    } = values;
-    // to save values as number type in database
-    const bankAccount = parseInt(bankAccountId, 10);
+    const { companyName, lunchQty, dinnerQty, ...others } = values;
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-
     const userInfo = {
       companyName,
-      bankAccountId: bankAccount,
       lunchQty: lunchQtyValue,
       dinnerQty: dinnerQtyValue,
       ...others,
@@ -46,12 +37,16 @@ const DeleteUserFormBox = ({
     return setSubmitting(false);
   };
 
-  const values = clickedUserData || [];
-
   return (
     <Formik
-      initialValues={values}
-      render={props => <EditUserForm {...props} showSubModal={showSubModal} />}
+      initialValues={clickedUserData}
+      render={props => (
+        <EditUserForm
+          {...props}
+          showSubModal={showSubModal}
+          bankAccount={bankAccount}
+        />
+      )}
       onSubmit={handleEditUser}
       validationSchema={editUserAccountValidation}
     />
