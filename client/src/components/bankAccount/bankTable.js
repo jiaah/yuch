@@ -42,6 +42,9 @@ const BankTable = ({
     await saveSelectedItemValue(id);
     return handleButtonClick('delete');
   };
+
+  const emptyRows = bankAccount && 5 - bankAccount.length;
+
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
@@ -69,7 +72,7 @@ const BankTable = ({
                 );
               },
             )}
-          <TableRow style={{ height: 49 * 5 }}>
+          <TableRow style={{ height: 49 * emptyRows }}>
             <TableCell colSpan={6} />
           </TableRow>
         </TableBody>

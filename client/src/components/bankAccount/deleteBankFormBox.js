@@ -31,8 +31,8 @@ const DeleteBankFormBox = ({
             등록되어있어야 합니다.
           </p>
           <p>
-            변경을 원하신다면, 새로운 계좌를
-            <span className="c-point2">등록하거나 수정을 해주세요</span>.
+            변경을 원하신다면, 새로운 계좌를 등록하거나
+            <span className="c-point2">&#8201;수정을 해주세요</span>.
           </p>
         </div>
       ) : (

@@ -67,6 +67,7 @@ const BankModal = ({
               createBankAccount={createBankAccount}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
+              bankAccount={bankAccount}
             />
           ) : (
             <DeleteBankFormBox

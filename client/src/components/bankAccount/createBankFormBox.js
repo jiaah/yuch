@@ -9,6 +9,7 @@ const CreateBankFormBox = ({
   createBankAccount,
   handleCloseModal,
   addFlashMessage,
+  bankAccount,
 }) => {
   const values = { accountHolder: '', bankName: '', accountNo: '' };
   const [confirmMsg, setConfirmMesg] = useState(true);
@@ -33,7 +34,18 @@ const CreateBankFormBox = ({
   };
   return (
     <React.Fragment>
-      {confirmMsg ? (
+      {bankAccount.length >= 4 ? (
+        <div className="mb3">
+          <p className="mb3">
+            계좌를&#8201;
+            <span className="c-point2">5개 이상</span> 등록할 수 없습니다.
+          </p>
+          <p>
+            등록한 계좌 중 사용하지 않는 계좌를 삭제하거나
+            <span className="c-point2">&#8201;수정을 해주세요</span>.
+          </p>
+        </div>
+      ) : confirmMsg ? (
         <AdminConfirmContainer
           handleButtonClick={checkIfUserIsAdmin}
           confirmType="edit"

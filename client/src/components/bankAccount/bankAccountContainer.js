@@ -6,8 +6,9 @@ import IconButton from '../../shared/iconButton';
 import Paper from '../../shared/paper';
 import Loader from '../../shared/loader';
 import BankTable from './bankTable';
-import { bankAccountTableHeadRows } from '../../shared/data';
+import { admin, bankAccountTableHeadRows } from '../../shared/data';
 import { bankAccountValidation } from '../../shared/formValidation';
+import Icon from '../../../assets/icons';
 /* --- Actions --- */
 import * as modalActions from '../../actions/modalAction';
 import * as bankActions from '../../actions/bankAction';
@@ -78,6 +79,42 @@ const BankAccountContainer = ({
           />
         }
       />
+      <div className="flex justify-end mt3 pw1">
+        <Icon
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+        />
+        <p className="ml2" style={{ marginTop: '-.91px' }}>
+          {admin.companyName} 고객 업체에게&#8201;
+          <span className="c-point2">
+            등록되어있는 계좌 그룹을 유지하고&#44;&#8201;
+          </span>
+          &#8201;계좌 정보 변경만 원하시면&#44;&#8201;&#8201;
+          <span className="c-point2">계좌를 수정 해주세요&#46;</span>
+        </p>
+      </div>
+      <div className="flex justify-end mt2 pw1">
+        <Icon
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+        />
+        <p className="ml2" style={{ marginTop: '-.91px' }}>
+          <span className="c-point2">새로운 계좌 등록 혹은 삭제 시&#44;</span>
+          &#8201;&#8201;&#39;계정 &#62; 고객계정&#39; 으로
+          이동하여&#44;&#8201;&#8201;
+          <span className="c-point2">
+            반드시 새로운 계좌를 고객 업체에 등록해주세요&#46;
+          </span>
+        </p>
+      </div>
       {clickedBtn !== null && (
         <BankModal
           resetClickedItemData={resetClickedItemData}
