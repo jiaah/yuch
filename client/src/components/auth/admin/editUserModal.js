@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React, { useState } from 'react';
 /* --- Components --- */
 import Loader from '../../../shared/loader';

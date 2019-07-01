@@ -121,7 +121,7 @@ export const navAdminItems = {
     },
     {
       id: 14,
-      name: '유청 입급계좌',
+      name: '유청 계좌',
       to: 'admin/account/bankaccount',
     },
   ],

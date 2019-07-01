@@ -32,14 +32,6 @@ exports.up = knex =>
         .onDelete('SET NULL')
         .onUpdate('RESTRICT')
         .index();
-      // .foreign('bankAccountId')
-      // .references('id')
-      // .inTable('bankAccount');
-      // Error when delete bankAccount : Key (id)=(2) is still referenced from table "users".
-      // .integer('bankAccountId')
-      // .references('id')
-      // .inTable('bankAccount')
-      // .index();
       table.timestamps(true, true);
       // table
       //   .timestamps('createdAt', { useTz: true })

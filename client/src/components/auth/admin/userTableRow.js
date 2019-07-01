@@ -32,6 +32,7 @@ const UserTableRow = ({
   } else if (bankAccount.length === 0) {
     bankAccountInfo = emptyAccount;
   }
+
   const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
   const slicedAccountNo = accountNo.slice(0, 8);
   return (

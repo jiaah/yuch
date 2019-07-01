@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
