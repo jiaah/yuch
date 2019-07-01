@@ -26,12 +26,8 @@ const UserTableRow = ({
   let bankAccountInfo;
   if (bankAccount.length !== 0) {
     bankAccount.forEach(b => {
-      if (b.id === row.bankAccountId) {
+      if (b.id === row.bankAccountId)
         bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
-      } else {
-        bankAccountInfo = emptyAccount;
-      }
-      return bankAccountInfo;
     });
   } else {
     bankAccountInfo = emptyAccount;
