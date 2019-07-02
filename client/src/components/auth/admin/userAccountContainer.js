@@ -8,7 +8,6 @@ import IconButton from '../../../shared/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBar';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
-import { userAccountPageInfo } from '../../../shared/data';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -124,7 +123,7 @@ const UserAccountContainer = ({
           viewBox="0 0 20 20"
           fillOuter="#2196F3"
           fillInner="#ffffff"
-          text={userAccountPageInfo}
+          text="모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요."
           classes="icon-message--info"
         />
       </div>

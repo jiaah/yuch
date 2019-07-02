@@ -1,7 +1,19 @@
 import React from 'react';
 /* --- Components --- */
 import IconMessage from '../iconMessage';
-import { adminConfirmIconWarning, adminConfirmMessage } from '../data';
+
+const adminConfirmMessage = (
+  <p>
+    정말 삭제하시겠습니까?
+    <br />
+    진행하시려면&#44;&#8201; 보안을 위해&#8201;
+    <span className="c-point2">
+      {admin.companyName}
+      님의 비밀번호
+    </span>
+    를 입력해주세요&#46;
+  </p>
+);
 
 const AdminConfirmForm = ({ type }) => (
   <React.Fragment>
@@ -15,7 +27,7 @@ const AdminConfirmForm = ({ type }) => (
             viewBox="0 0 25 25"
             fillOuter="#ed4337"
             fillInner="#ffffff"
-            text={adminConfirmIconWarning}
+            text="데이터가 시스템에서 삭제 됩니다. 삭제된 데이터는 복구할수없습니다."
             classes="icon-message--warning"
           />
         </div>

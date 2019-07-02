@@ -6,11 +6,11 @@ import IconButton from '../../shared/iconButton';
 import Paper from '../../shared/paper';
 import Loader from '../../shared/loader';
 import BankTable from './bankTable';
+import { bankAccountTableHeadRows } from '../../shared/data';
 import {
-  bankAccountTableHeadRows,
   bankAccountPageInfoA,
   bankAccountPageInfoB,
-} from '../../shared/data';
+} from './bankAccountMessages';
 import { bankAccountValidation } from '../../shared/formValidation';
 import IconMessage from '../../shared/iconMessage';
 /* --- Actions --- */
