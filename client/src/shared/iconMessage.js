@@ -2,7 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import Icon from '../../assets/icons';
 
-const IconMessage = (
+const IconMessage = ({
   name,
   width,
   height,
@@ -10,8 +10,9 @@ const IconMessage = (
   fillInner,
   fillOuter,
   text,
-) => (
-  <div className="flex">
+  classes,
+}) => (
+  <React.Fragment>
     <Icon
       name={name}
       width={width}
@@ -20,8 +21,8 @@ const IconMessage = (
       fillOuter={fillOuter}
       fillInner={fillInner}
     />
-    <p style={{ marginTop: '-.91px' }}>{text}</p>
-  </div>
+    <p className={`ml2 ${classes}`}>{text}</p>
+  </React.Fragment>
 );
 
 export default IconMessage;

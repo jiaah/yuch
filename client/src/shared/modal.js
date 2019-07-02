@@ -28,6 +28,12 @@ const styles = theme => ({
   },
 });
 
+const styleModal = {
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+};
+
 const SimpleModal = ({
   show,
   messageShow,
@@ -49,11 +55,7 @@ const SimpleModal = ({
       >
         <div
           className={`tc modal-container ${classes.paper}`}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
+          style={styleModal}
           data-testid="modal"
         >
           <div className="flex justify-end">

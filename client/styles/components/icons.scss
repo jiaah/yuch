@@ -8,3 +8,16 @@
   top: -2px;
   left: 2px;
 }
+
+.icon-message--warning {
+  margin-top: -.15em;
+  color: $c-red;
+
+  @include for-desktop-up {
+    margin-top: -.35em;
+  }
+}
+
+.icon-message--info {
+  margin-top: -.91px;
+}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const admin = { companyName: '유청' };
 
 export const navHome = [
@@ -134,10 +136,12 @@ export const message = {
       '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
   },
   reserve: {
-    success:
-      '예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, 유청으로 연락주시길 바랍니다.',
-    error:
-      '프로그램 오류로 예약신청이 전송되지 않았습니다. 유청으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.',
+    success: `예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, ${
+      admin.companyName
+    }으로 연락주시길 바랍니다.`,
+    error: `프로그램 오류로 예약신청이 전송되지 않았습니다. ${
+      admin.companyName
+    }으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.`,
   },
 };
 
@@ -214,3 +218,46 @@ export const bankAccountTableHeadRows = [
     label: '계좌번호',
   },
 ];
+
+export const bankAccountPageInfoA = (
+  <React.Fragment>
+    {admin.companyName} 고객 업체에게&#8201;
+    <span className="c-point2">
+      등록되어있는 계좌 그룹을 유지하고&#44;&#8201;
+    </span>
+    &#8201;계좌 정보 변경만 원하시면&#44;&#8201;&#8201;
+    <span className="c-point2">계좌를 수정 해주세요&#46;</span>
+  </React.Fragment>
+);
+
+export const bankAccountPageInfoB = (
+  <React.Fragment>
+    <span className="c-point2">새로운 계좌 등록 혹은 삭제 시&#44;</span>
+    &#8201;&#8201;&#39;계정 &#62; 고객계정&#39; 으로 이동하여&#44;&#8201;&#8201;
+    <span className="c-point2">
+      반드시 새로운 계좌를 고객 업체에 등록해주세요&#46;
+    </span>
+  </React.Fragment>
+);
+
+export const userAccountPageInfo = (
+  <React.Fragment>
+    모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요.
+  </React.Fragment>
+);
+
+export const adminConfirmIconWarning =
+  '데이터가 시스템에서 삭제 됩니다. 삭제된 데이터는 복구할수없습니다.';
+
+export const adminConfirmMessage = (
+  <p>
+    정말 삭제하시겠습니까?
+    <br />
+    진행하시려면&#44;&#8201; 보안을 위해&#8201;
+    <span className="c-point2">
+      {admin.companyName}
+      님의 비밀번호
+    </span>
+    를 입력해주세요&#46;
+  </p>
+);

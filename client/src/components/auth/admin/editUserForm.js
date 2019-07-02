@@ -7,6 +7,7 @@ import FormButton from '../../../shared/formButton';
 import Button from '../../../shared/button';
 import IconButton from '../../../shared/iconButton';
 import Icon from '../../../../assets/icons';
+import IconMessage from '../../../shared/iconMessage';
 import BankAccountForm from './bankAccountForm';
 
 const styles = theme => ({
@@ -279,19 +280,16 @@ const EditUserForm = props => {
             />
           </div>
           <div className="flex edit-userform--bottom-delete-message">
-            <Icon
+            <IconMessage
               name="warning"
               width="25"
               height="25"
               viewBox="0 0 25 25"
               fillOuter="#ed4337"
               fillInner="#ffffff"
+              text="고객에 관한 모든 정보가 삭제됩니다."
+              classes="icon-message--warning edit-userform--bottom-delete-message--p"
             />
-            <React.Fragment>
-              <p className="c-red edit-userform--bottom-delete-message--p">
-                고객에 관한 모든 정보가 삭제됩니다.
-              </p>
-            </React.Fragment>
           </div>
         </div>
       </div>

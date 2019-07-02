@@ -6,8 +6,9 @@ import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBar';
-import Icon from '../../../../assets/icons';
+import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
+import { userAccountPageInfo } from '../../../shared/data';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -116,17 +117,16 @@ const UserAccountContainer = ({
         }
       />
       <div className="flex justify-end mt3 pw1">
-        <Icon
+        <IconMessage
           name="info"
           width="20"
           height="20"
           viewBox="0 0 20 20"
           fillOuter="#2196F3"
           fillInner="#ffffff"
+          text={userAccountPageInfo}
+          classes="icon-message--info"
         />
-        <p className="ml2" style={{ marginTop: '-.91px' }}>
-          모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요.
-        </p>
       </div>
       {clickedBtn === 'create' ? (
         <CreateUserModal
