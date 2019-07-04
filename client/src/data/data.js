@@ -112,12 +112,12 @@ export const navAdminItems = {
     {
       id: 12,
       name: '고객 계정',
-      to: 'admin/account/clientlist',
+      to: 'admin/account/users',
     },
     {
       id: 13,
       name: '유청 계정',
-      to: 'admin/account',
+      to: 'admin/account/me',
     },
     {
       id: 14,
