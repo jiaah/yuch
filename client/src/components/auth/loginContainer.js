@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Form from './loginForm';
 import { isLoggedIn, saveUserToken } from '../../../localStorage';
 import { loginValidation } from '../../shared/formValidation';
-import * as data from '../../shared/data';
+import * as data from '../../data/data';
 /* --- Actions --- */
 import { userLogin } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';

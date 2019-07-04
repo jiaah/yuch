@@ -6,7 +6,7 @@ import IconButton from '../../shared/iconButton';
 import Paper from '../../shared/paper';
 import Loader from '../../shared/loader';
 import BankTable from './bankTable';
-import { bankAccountTableHeadRows } from '../../shared/data';
+import { bankAccountTableHeadRows } from '../../data/data';
 import {
   bankAccountPageInfoA,
   bankAccountPageInfoB,

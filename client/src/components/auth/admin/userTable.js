@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import { stableSort, getSorting } from '../../../utils/sort';
 import UserTableRow from './userTableRow';
-import * as data from '../../../shared/data';
+import * as data from '../../../data/data';
 
 const styles = () => ({
   tableWrapper: {

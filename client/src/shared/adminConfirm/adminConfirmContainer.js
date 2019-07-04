@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 /* --- Components --- */
 import AdminConfirmForm from './adminConfirmForm';
-import * as data from '../data';
+import * as data from '../../data/data';
 /* --- Actions --- */
 import { confirmAdminUser } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';

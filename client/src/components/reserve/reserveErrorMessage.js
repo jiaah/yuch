@@ -1,9 +1,9 @@
 import React from 'react';
-import * as data from '../../shared/data';
+import { message } from '../../data/data';
 
 const ReserveErrorMessage = () => (
   <React.Fragment>
-    <p data-testid="reserve-message--error">{data.message.reserve.error}</p>
+    <p data-testid="reserve-message--error">{message.reserve.error}</p>
     <br />
     <a
       className="td-none c-point2"

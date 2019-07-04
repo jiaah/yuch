@@ -1,5 +1,5 @@
 import React from 'react';
-import { admin } from '../../shared/data';
+import { admin } from '../../data/data';
 
 export const bankAccountPageInfoA = (
   <React.Fragment>

@@ -83,6 +83,7 @@
     "jsonwebtoken": "^8.5.0",
     "knex": "^0.16.3",
     "knex-populate": "^2.1.2",
+    "markdown-to-jsx": "^6.10.2",
     "mini-css-extract-plugin": "^0.4.1",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",

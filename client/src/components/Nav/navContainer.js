@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { clearLocalStorage } from '../../../localStorage';
 import Navbar from './navbar';
 import NavMenu from './navMenu';
-import * as data from '../../shared/data';
+import * as data from '../../data/data';
 /* --- actions --- */
 import { userLogout } from '../../actions/authAction';
 /* --- images --- */
