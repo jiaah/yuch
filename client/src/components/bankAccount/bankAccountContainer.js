@@ -7,10 +7,7 @@ import Paper from '../../shared/paper';
 import Loader from '../../shared/loader';
 import BankTable from './bankTable';
 import { bankAccountTableHeadRows } from '../../data/data';
-import {
-  bankAccountPageInfoA,
-  bankAccountPageInfoB,
-} from './bankAccountMessages';
+import { bankAccountPageInfoA, bankAccountPageInfoB } from '../../data/message';
 import { bankAccountValidation } from '../../shared/formValidation';
 import IconMessage from '../../shared/iconMessage';
 /* --- Actions --- */

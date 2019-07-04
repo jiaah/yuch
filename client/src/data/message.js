@@ -1,5 +1,5 @@
 import React from 'react';
-import { admin } from '../../data/data';
+import { admin } from './data';
 
 export const bankAccountPageInfoA = (
   <React.Fragment>
@@ -19,5 +19,29 @@ export const bankAccountPageInfoB = (
     <span className="c-point2">
       반드시 새로운 계좌를 고객 업체에 등록해주세요&#46;
     </span>
+  </React.Fragment>
+);
+
+export const adminConfirmMessage = (
+  <React.Fragment>
+    계속 진행하시려면&#44;&#8201; 보안을 위해&#8201;
+    <span className="c-point2">
+      {admin.companyName}
+      님의 비밀번호
+    </span>
+    를 입력해주세요&#46;
+  </React.Fragment>
+);
+
+export const adminConfirmMessageOnDelete = (
+  <React.Fragment>
+    정말 삭제하시겠습니까?
+    <br />
+    진행하시려면&#44;&#8201; 보안을 위해&#8201;
+    <span className="c-point2">
+      {admin.companyName}
+      님의 비밀번호
+    </span>
+    를 입력해주세요&#46;
   </React.Fragment>
 );

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const admin = { companyName: '유청' };
 
 export const navHome = [
