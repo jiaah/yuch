@@ -1,5 +1,8 @@
 import React from 'react';
+import { Formik } from 'formik';
+/* --- Components --- */
+import FormBox from './adminFormBox';
 
-const AdminAccountContainer = () => <h1>hello</h1>;
+const AdminAccountContainer = () => <FormBox />;
 
 export default AdminAccountContainer;

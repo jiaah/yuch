@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Form from './loginForm';
 import { isLoggedIn, saveUserToken } from '../../../localStorage';
-import { loginValidation } from '../../shared/formValidation';
+import { loginValidation } from './formValidation';
 import * as data from '../../data/data';
 /* --- Actions --- */
 import { userLogin } from '../../actions/authAction';

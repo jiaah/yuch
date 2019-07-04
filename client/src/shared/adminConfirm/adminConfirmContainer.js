@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 /* --- Components --- */
 import AdminConfirmForm from './adminConfirmForm';
-import * as data from '../../data/data';
+import { passwordValidation } from '../../components/auth/formValidation';
 /* --- Actions --- */
 import { confirmAdminUser } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -37,7 +37,7 @@ const AdminConfirmContainer = ({
         <AdminConfirmForm {...props} confirmType={confirmType} />
       )}
       onSubmit={handleConfirm}
-      validationSchema={data.passwordValidation}
+      validationSchema={passwordValidation}
     />
   );
 };

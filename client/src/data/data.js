@@ -116,12 +116,12 @@ export const navAdminItems = {
     },
     {
       id: 13,
-      name: '유청 계정',
+      name: `${admin.companyName} 계정`,
       to: 'admin/account/me',
     },
     {
       id: 14,
-      name: '유청 계좌',
+      name: `${admin.companyName} 계좌`,
       to: 'admin/account/bankaccount',
     },
   ],
