@@ -13,9 +13,9 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
-    const { token, companyName, username } = res.data;
+    const { token, companyName, isAdmin } = res.data;
 
-    dispatch({ type: types.USER_LOGIN, payload: { companyName, username } });
+    dispatch({ type: types.USER_LOGIN, payload: { companyName, isAdmin } });
     return token;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'login', error });

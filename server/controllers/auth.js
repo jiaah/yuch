@@ -6,12 +6,14 @@ exports.loginUser = (req, res) => {
   const { username, password } = req.body;
   let companyName;
   let userData;
+  let isAdmin;
   return knex('users')
     .where({ username })
     .first()
     .then(user => {
       userData = user;
       companyName = user.companyName;
+      isAdmin = user.isAdmin;
       if (!user) {
         return res.status(404).json('User not found');
       }
@@ -26,8 +28,7 @@ exports.loginUser = (req, res) => {
     })
     .then(token => {
       res.header('Authorization', `Bearer + ${token}`);
-      console.log(token, companyName, username);
-      return res.status(200).json({ token, companyName, username });
+      return res.status(200).json({ token, companyName, isAdmin });
     })
     .catch(err => res.status(500).json(err));
 };

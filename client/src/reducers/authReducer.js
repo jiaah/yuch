@@ -3,7 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   isLoggedIn: false,
   companyName: '',
-  username: '',
+  isAdmin: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         companyName: action.payload.companyName,
-        username: action.payload.username,
+        isAdmin: action.payload.isAdmin,
       };
     case types.USER_LOGOUT:
       return {
@@ -21,6 +21,7 @@ const auth = (state = initialState, action) => {
         isLoggedIn: false,
         companyName: '',
         username: '',
+        isAdmin: false,
       };
     default:
       return state;
