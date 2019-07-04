@@ -26,7 +26,8 @@ exports.loginUser = (req, res) => {
     })
     .then(token => {
       res.header('Authorization', `Bearer + ${token}`);
-      return res.status(200).json({ token, companyName });
+      console.log(token, companyName, username);
+      return res.status(200).json({ token, companyName, username });
     })
     .catch(err => res.status(500).json(err));
 };
@@ -209,7 +210,6 @@ exports.deleteBankAccount = (req, res) => {
 
 // admin account
 exports.getAdminAccount = (req, res) => {
-  console.log('req: ', req.params);
   const username = req.params.username;
   knex('users')
     .where({ username })
