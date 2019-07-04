@@ -1,6 +1,7 @@
 const knex = require('../database');
 const util = require('../lib/util');
 
+/* --- Login --- */
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
   let companyName;
@@ -30,6 +31,25 @@ exports.loginUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+/* --- Admin --- */
+// check admin password for security
+exports.checkAdminUser = (req, res) => {
+  const { username, password } = req.body;
+
+  return knex('users')
+    .where({ username })
+    .first()
+    .then(user => util.comparePassword(password, user.password))
+    .then(isMatch => {
+      if (isMatch) {
+        return res.status(200).json();
+      }
+      return res.status(409).json('Auth failed');
+    })
+    .catch(err => res.status(500).json(err));
+};
+
+// user account
 exports.createUser = (req, res) => {
   const {
     username,
@@ -147,18 +167,54 @@ exports.deleteUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
-exports.checkAdminUser = (req, res) => {
-  const { password } = req.body;
+// bank account
+exports.getBankAccount = (req, res) =>
+  knex('bank_account')
+    .select('*')
+    .then(bankAccount => res.status(200).json(bankAccount))
+    .catch(err => res.status(500).json(err));
 
-  return knex('users')
-    .where({ username: 'yuch' })
+exports.createBankAccount = (req, res) => {
+  const { accountHolder, bankName, accountNo } = req.body;
+  knex('bank_account')
+    .insert({ accountHolder, bankName, accountNo })
+    .then(() => res.status(200).json())
+    .catch(err => res.status(500).json(err));
+};
+
+exports.editBankAccount = (req, res) => {
+  const bankId = req.params.id;
+  const { accountHolder, bankName, accountNo } = req.body;
+  knex('bank_account')
+    .where({ id: bankId })
     .first()
-    .then(user => util.comparePassword(password, user.password))
-    .then(isMatch => {
-      if (isMatch) {
-        return res.status(200).json();
-      }
-      return res.status(409).json('Auth failed');
+    .update({
+      accountHolder,
+      bankName,
+      accountNo,
     })
+    .then(() => res.status(200).json())
+    .catch(err => res.status(500).json(err));
+};
+
+exports.deleteBankAccount = (req, res) => {
+  const bankId = req.params.id;
+  knex('bank_account')
+    .where({ id: bankId })
+    .first()
+    .del()
+    .then(() => res.status(200).json())
+    .catch(err => res.status(500).json(err));
+};
+
+// admin account
+exports.getAdminAccount = (req, res) => {
+  console.log('req: ', req.params);
+  const username = req.params.username;
+  knex('users')
+    .where({ username })
+    .first()
+    .select('companyName', 'contactNo', 'email')
+    .then(admin => res.status(200).json(admin))
     .catch(err => res.status(500).json(err));
 };

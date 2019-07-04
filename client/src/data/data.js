@@ -1,4 +1,4 @@
-export const admin = { companyName: '유청' };
+export const admin = { companyName: '유청', username: 'yuch' };
 
 export const navHome = [
   {

@@ -5,6 +5,7 @@ import { getToken } from '../../localStorage';
 
 const token = getToken();
 
+/* --- Login --- */
 export const userLogin = (username, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
@@ -25,6 +26,20 @@ export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
 
+/* --- Admin --- */
+// check admin password for security
+export const confirmAdminUser = (companyName, password) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
+  try {
+    await axios.post(`${API_HOST}/auth/login/admin`, { companyName, password });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
+    throw new Error('Failed admin user authentication.');
+  }
+};
+
+// user account
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
@@ -76,6 +91,7 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
   }
 };
 
+// user's current password is not required.
 export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
@@ -106,13 +122,22 @@ export const deleteUser = userId => async dispatch => {
   }
 };
 
-export const confirmAdminUser = password => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
+// admin account
+export const getAdminAccount = username => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getAdminAccount' });
   try {
-    await axios.post(`${API_HOST}/auth/login/admin`, { password });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
+    const res = await axios.get(`${API_HOST}/auth/admin/account/${username}`, {
+      headers: { authorization: token },
+    });
+    const adminData = res.data;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getAdminAccount',
+      payload: { adminData },
+    });
+    return adminData;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
-    throw new Error('Failed admin user authentication.');
+    dispatch({ type: types.HTTP_FAILURE, api: 'getAdminAccount', error });
+    throw new Error('Getting the admin account is failed');
   }
 };
