@@ -29,7 +29,7 @@ module.exports = () => {
   router.delete('/admin/bankaccount/:id', authController.deleteBankAccount);
 
   // Admin Account
-  router.get('/admin/account/:username', authController.getAdminAccount);
+  router.get('/admin/account', authController.getAdminAccount);
 
   return router;
 };

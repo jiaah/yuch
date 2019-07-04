@@ -4,7 +4,7 @@ import React from 'react';
 import Ul from '../../shared/ul';
 import ToggleMenuList from './toggleMenuList';
 
-const NavMenu = ({ routerLocation, isLoggedIn, companyName, data }) => {
+const NavMenu = ({ routerLocation, isLoggedIn, data, isAdmin }) => {
   const isHomepage = routerLocation === '/';
   const loginPage = routerLocation === '/login';
   const addBorderBottom = isHomepage || loginPage ? '' : 'bb';
@@ -13,7 +13,7 @@ const NavMenu = ({ routerLocation, isLoggedIn, companyName, data }) => {
     <div className={`bt ${addBorderBottom}`}>
       {isHomepage && !isLoggedIn && <Ul anchor={data.navHome} />}
       {isLoggedIn ? (
-        companyName === data.admin.companyName ? (
+        isAdmin ? (
           <ToggleMenuList
             navAdminList={data.navAdminList}
             navAdminItems={data.navAdminItems}

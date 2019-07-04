@@ -4,7 +4,6 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import AdminConfirmForm from './adminConfirmForm';
 import { passwordValidation } from '../../components/auth/formValidation';
-import { admin } from '../../data/data';
 /* --- Actions --- */
 import { confirmAdminUser } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -22,7 +21,7 @@ const AdminConfirmContainer = ({
   const handleConfirm = async (values, { setSubmitting, resetForm }) => {
     const { password } = values;
     try {
-      await confirmAdminUser(admin.username, password);
+      await confirmAdminUser(password);
       await Promise.all([resetForm({}), setSubmitting(false)]);
       return handleButtonClick();
     } catch (err) {
@@ -44,8 +43,7 @@ const AdminConfirmContainer = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  confirmAdminUser: (username, password) =>
-    dispatch(confirmAdminUser(username, password)),
+  confirmAdminUser: password => dispatch(confirmAdminUser(password)),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

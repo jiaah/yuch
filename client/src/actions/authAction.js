@@ -29,10 +29,10 @@ export const userLogout = () => ({
 
 /* --- Admin --- */
 // check admin password for security
-export const confirmAdminUser = (companyName, password) => async dispatch => {
+export const confirmAdminUser = password => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
   try {
-    await axios.post(`${API_HOST}/auth/login/admin`, { companyName, password });
+    await axios.post(`${API_HOST}/auth/login/admin`, { password });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
@@ -124,10 +124,10 @@ export const deleteUser = userId => async dispatch => {
 };
 
 // admin account
-export const getAdminAccount = username => async dispatch => {
+export const getAdminAccount = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getAdminAccount' });
   try {
-    const res = await axios.get(`${API_HOST}/auth/admin/account/${username}`, {
+    const res = await axios.get(`${API_HOST}/auth/admin/account`, {
       headers: { authorization: token },
     });
     const adminData = res.data;

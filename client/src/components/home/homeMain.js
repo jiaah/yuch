@@ -1,6 +1,7 @@
 import React from 'react';
 /* --- Component --- */
 import LazyImage from '../../shared/lazyImage';
+import { admin } from '../../data/data';
 /* --- Images --- */
 import delivery from '../../../assets/img/delivery.jpg';
 import localfood from '../../../assets/img/localfood.jpg';
@@ -18,7 +19,7 @@ const HomeMain = () => (
       />
       <div className="home-main--text">
         <p className="f-mini lh-3">OUR RESTAURANT</p>
-        <h3 className="c-text1">당신의 위한 유청 서비스</h3>
+        <h3 className="c-text1">당신의 위한 {admin.companyName} 서비스</h3>
         <div className="mb3">
           <h4 className="b">위탁급식</h4>
           <p>
@@ -92,7 +93,7 @@ const HomeMain = () => (
         <p>
           2016년 여성이 일하기 좋은 기업으로 선정&#46;
           <br />
-          유청은 나이와 국적에 제한을 두지 않고 채용합니다&#46;
+          {admin.companyName}은 나이와 국적에 제한을 두지 않고 채용합니다&#46;
         </p>
       </div>
     </div>

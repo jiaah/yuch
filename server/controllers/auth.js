@@ -1,6 +1,8 @@
 const knex = require('../database');
 const util = require('../lib/util');
 
+const adminId = '30905e44-f9fc-4c23-bc66-7f6142564d89';
+
 /* --- Login --- */
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
@@ -36,10 +38,9 @@ exports.loginUser = (req, res) => {
 /* --- Admin --- */
 // check admin password for security
 exports.checkAdminUser = (req, res) => {
-  const { username, password } = req.body;
-
+  const { password } = req.body;
   return knex('users')
-    .where({ username })
+    .where({ id: adminId })
     .first()
     .then(user => util.comparePassword(password, user.password))
     .then(isMatch => {
@@ -211,11 +212,10 @@ exports.deleteBankAccount = (req, res) => {
 
 // admin account
 exports.getAdminAccount = (req, res) => {
-  const username = req.params.username;
   knex('users')
-    .where({ username })
+    .where({ id: adminId })
     .first()
-    .select('companyName', 'contactNo', 'email')
+    .select('companyName', 'username', 'contactNo', 'email')
     .then(admin => res.status(200).json(admin))
     .catch(err => res.status(500).json(err));
 };

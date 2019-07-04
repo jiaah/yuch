@@ -20,7 +20,6 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
         companyName: '',
-        username: '',
         isAdmin: false,
       };
     default:

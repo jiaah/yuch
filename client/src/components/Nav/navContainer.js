@@ -20,7 +20,8 @@ class NavContainer extends Component {
   };
 
   render() {
-    const { isLoggedIn, companyName, routerLocation } = this.props;
+    const { isLoggedIn, companyName, isAdmin, routerLocation } = this.props;
+
     return (
       <div className="nav relative">
         <Navbar
@@ -33,7 +34,7 @@ class NavContainer extends Component {
           </Link>
         </div>
         {isLoggedIn &&
-          companyName !== data.admin.companyName && (
+          !isAdmin && (
             <p className="mr3 pb2 flex justify-end f-mini">
               안녕하세요. &#8201;
               <span className="b">{companyName}</span>
@@ -45,6 +46,7 @@ class NavContainer extends Component {
           isLoggedIn={isLoggedIn}
           companyName={companyName}
           data={data}
+          isAdmin={isAdmin}
         />
       </div>
     );
@@ -54,6 +56,7 @@ class NavContainer extends Component {
 const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   companyName: state.auth.companyName,
+  isAdmin: state.auth.isAdmin,
   routerLocation: state.router.location.pathname,
 });
 
