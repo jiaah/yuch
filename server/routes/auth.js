@@ -6,30 +6,31 @@ module.exports = () => {
   /* --- Login --- */
   router.post('/login', authController.loginUser);
 
+  /* --- Admin & User --- */
+  router.patch('/password/:id', authController.changePassword);
+
   /* --- Admin --- */
   // Simple Admin Password Check for Security
-  router.post('/login/admin', authController.checkAdminUser);
-
+  router.post('/admin/login', authController.checkAdminUser);
   // User Account
-  router.post('/register', authController.createUser);
-  router.patch('/edit/:id', authController.editUser);
-  router.patch('/edit/password/:id', authController.changePassword);
-  router.delete('/delete/:id', authController.deleteUser);
-
+  router.post('/admin/user/register', authController.createUser);
+  router.patch('/admin/user/edit/:id', authController.editUserByAdmin);
+  router.delete('/admin/user/delete/:id', authController.deleteUser);
   // Change User Password By Admin (Current Password Check is Not Required)
   router.patch(
-    '/edit/password/:id/admin',
+    '/admin/user/password/:id',
     authController.changePasswordByAdmin,
   );
-
   // Admin Bank Account
   router.get('/admin/bankaccount', authController.getBankAccount);
   router.post('/admin/bankaccount', authController.createBankAccount);
   router.patch('/admin/bankaccount/:id', authController.editBankAccount);
   router.delete('/admin/bankaccount/:id', authController.deleteBankAccount);
-
   // Admin Account
-  router.patch('/admin/account/:id', authController.editAdminAccount);
+  router.patch('/admin/edit/:id', authController.editAdminAccount);
 
+  /* --- User --- */
+  // User Account
+  router.patch('/user/edit/:id', authController.editUser);
   return router;
 };

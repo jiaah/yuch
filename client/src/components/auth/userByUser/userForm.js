@@ -50,6 +50,14 @@ const UserForm = ({
     e.persist();
     const inputValue = e.target.value;
     let value;
+    if (name === 'lunchQty' || name === 'dinnerQty') {
+      // to avoid isNaN('') === false, use parseInt('') // output: NaN
+      if (inputValue !== '') {
+        value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
+      } else {
+        value = inputValue;
+      }
+    }
     if (name === 'username') {
       value = inputValue.toLowerCase();
     } else {
@@ -68,7 +76,7 @@ const UserForm = ({
         label="고객명"
         placeholder="(한글) 유청"
         value={companyName || ''}
-        onChange={e => change(e, 'companyName', true)}
+        onChange={handleChange}
         onBlur={handleBlur}
         helperText={touched.companyName && errors.companyName}
         error={touched.companyName && Boolean(errors.companyName)}
@@ -120,7 +128,7 @@ const UserForm = ({
         label="연락처"
         placeholder="054 - 745 - 0999"
         value={contactNo || ''}
-        onChange={e => change(e, 'contactNo', true)}
+        onChange={handleChange}
         onBlur={handleBlur}
         helperText={touched.contactNo && errors.contactNo}
         error={touched.contactNo && Boolean(errors.contactNo)}
@@ -140,23 +148,6 @@ const UserForm = ({
             </InputAdornment>
           ),
         }}
-      />
-
-      <TextField
-        id="mealPrice"
-        label="식수가격"
-        placeholder="5000"
-        value={mealPrice || ''}
-        onChange={e => change(e, 'mealPrice', true)}
-        onBlur={handleBlur}
-        helperText={touched.mealPrice && errors.mealPrice}
-        error={touched.mealPrice && Boolean(errors.mealPrice)}
-        required={true}
-        InputProps={{
-          startAdornment: <InputAdornment position="start">₩</InputAdornment>,
-        }}
-        margin="normal"
-        className={classes.textField}
       />
       <TextField
         id="email"
@@ -235,6 +226,18 @@ const UserForm = ({
           }}
         />
       </div>
+      <TextField
+        id="mealPrice"
+        label="식수가격"
+        placeholder="5000"
+        value={mealPrice || ''}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">₩</InputAdornment>,
+        }}
+        margin="normal"
+        className={classes.textField}
+        disabled={true}
+      />
       <div>
         <Button
           typeValue="button"

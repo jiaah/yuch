@@ -6,14 +6,23 @@ import UserForm from './userForm';
 const UserFormBox = ({
   userData,
   editUserAccountValidation,
-  editAdminAccount,
+  editUserAccount,
   addFlashMessage,
   openPasswordForm,
 }) => {
   const handleEditAdmin = async (values, { setSubmitting }) => {
     const { id, companyName } = userData;
+
+    const { lunchQty, dinnerQty, ...others } = values;
+    const lunchQtyValue = lunchQty === '' ? null : lunchQty;
+    const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
+    const userInfo = {
+      lunchQty: lunchQtyValue,
+      dinnerQty: dinnerQtyValue,
+      ...others,
+    };
     try {
-      await editAdminAccount(id, values);
+      await editUserAccount(id, userInfo);
       await addFlashMessage(
         'success',
         `${companyName}님의 계정이 수정되었습니다.`,

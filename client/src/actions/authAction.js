@@ -32,7 +32,7 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
     await axios.patch(
-      `${API_HOST}/auth/edit/password/${id}`,
+      `${API_HOST}/auth/password/${id}`,
       { id, password, newPassword },
       {
         headers: { authorization: token },
@@ -50,7 +50,7 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
 export const confirmAdminUser = password => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
   try {
-    await axios.post(`${API_HOST}/auth/login/admin`, { password });
+    await axios.post(`${API_HOST}/auth/admin/login`, { password });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
@@ -63,7 +63,7 @@ export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
     await axios.post(
-      `${API_HOST}/auth/register`,
+      `${API_HOST}/auth/admin/user/register`,
       { userInfo },
       {
         headers: { authorization: token },
@@ -80,7 +80,7 @@ export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
     await axios.patch(
-      `${API_HOST}/auth/edit/${userInfo.id}`,
+      `${API_HOST}/auth/admin/user/edit/${userInfo.id}`,
       { userInfo },
       {
         headers: { authorization: token },
@@ -93,12 +93,25 @@ export const editUser = userInfo => async dispatch => {
   }
 };
 
+export const deleteUser = userId => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
+  try {
+    await axios.delete(`${API_HOST}/auth/admin/user/delete/${userId}`, {
+      headers: { authorization: token },
+    });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
+    throw new Error('Deleting the user failed.');
+  }
+};
+
 // user's current password is not required.
 export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
     await axios.patch(
-      `${API_HOST}/auth/edit/password/${id}/admin`,
+      `${API_HOST}/auth/admin/user/password/${id}/admin`,
       { id, newPassword },
       {
         headers: { authorization: token },
@@ -111,39 +124,44 @@ export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   }
 };
 
-export const deleteUser = userId => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
-  try {
-    await axios.delete(`${API_HOST}/auth/delete/${userId}`, {
-      headers: { authorization: token },
-    });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
-    throw new Error('Deleting the user failed.');
-  }
-};
-
 // admin account
 export const editAdminAccount = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
   try {
-    const res = await axios.patch(
-      `${API_HOST}/auth/admin/account/${id}`,
+    await axios.patch(
+      `${API_HOST}/auth/admin/edit/${id}`,
       { values },
       {
         headers: { authorization: token },
       },
     );
-    const adminData = res.data;
-    dispatch({
+    return dispatch({
       type: types.HTTP_SUCCESS,
       api: 'editAdminAccount',
-      payload: { adminData },
     });
-    return adminData;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editAdminAccount', error });
     throw new Error('Updating the admin account failed.');
+  }
+};
+
+/* --- Users --- */
+export const editUserAccount = (id, userInfo) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editUserAccount' });
+  try {
+    await axios.patch(
+      `${API_HOST}/auth/user/edit/${id}`,
+      { userInfo },
+      {
+        headers: { authorization: token },
+      },
+    );
+    return dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'editUserAccount',
+    });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'editUserAccount', error });
+    throw new Error('Updating the user account failed.');
   }
 };

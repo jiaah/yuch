@@ -9,13 +9,13 @@ import {
 import PasswordFormBox from '../password/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { editAdminAccount, changePassword } from '../../../actions/authAction';
+import { editUserAccount, changePassword } from '../../../actions/authAction';
 import { getMe } from '../../../actions/userAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
   getMe,
-  editAdminAccount,
+  editUserAccount,
   changePassword,
   addFlashMessage,
   id,
@@ -51,7 +51,7 @@ const AdminAccountContainer = ({
                 <UserFormBox
                   userData={userData}
                   editUserAccountValidation={editUserAccountValidation}
-                  editAdminAccount={editAdminAccount}
+                  editUserAccount={editUserAccount}
                   addFlashMessage={addFlashMessage}
                   openPasswordForm={openPasswordForm}
                 />
@@ -75,7 +75,7 @@ const AdminAccountContainer = ({
 const mapStateToPorps = state => ({ id: state.auth.id });
 const mapDispatchToProps = dispatch => ({
   getMe: id => dispatch(getMe(id)),
-  editAdminAccount: (id, values) => dispatch(editAdminAccount(id, values)),
+  editUserAccount: (id, values) => dispatch(editUserAccount(id, values)),
   changePassword: (id, password, newPassword) =>
     dispatch(changePassword(id, password, newPassword)),
   addFlashMessage: (variant, message) =>
