@@ -2,9 +2,12 @@ import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import AdminForm from './adminForm';
-import { adminAccountValidation } from '../formValidation';
 
-const AdminFormBox = ({ adminData, editAdminAccount }) => {
+const AdminFormBox = ({
+  adminData,
+  editAdminAccount,
+  adminAccountValidation,
+}) => {
   console.log('adminData::: ', adminData);
   const handleEditAdmin = async (values, { setSubmitting, resetForm }) => {
     console.log('values:', values);
@@ -12,6 +15,8 @@ const AdminFormBox = ({ adminData, editAdminAccount }) => {
     const res = await editAdminAccount(id, values);
     console.log('res: ', res);
   };
+
+  const values = { companyName: '', username: '', contactNo: '', email: '' };
   return (
     <Formik
       initialValues={adminData}

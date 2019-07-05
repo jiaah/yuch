@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import FormBox from './adminFormBox';
+import { adminAccountValidation } from '../formValidation';
 /* --- Actions --- */
 import { getAdminAccount, editAdminAccount } from '../../../actions/authAction';
 
@@ -16,7 +17,18 @@ const AdminAccountContainer = ({ getAdminAccount, editAdminAccount }) => {
     fetchAdminData();
   }, []);
 
-  return <FormBox adminData={adminData} editAdminAccount={editAdminAccount} />;
+  return (
+    <React.Fragment>
+      {/* 'adminData' condition is needed as 'formik form values' render before receiving 'the retrieved admin data' */}
+      {adminData && (
+        <FormBox
+          adminData={adminData}
+          editAdminAccount={editAdminAccount}
+          adminAccountValidation={adminAccountValidation}
+        />
+      )}
+    </React.Fragment>
+  );
 };
 
 const mapDispatchToProps = dispatch => ({
