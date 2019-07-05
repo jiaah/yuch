@@ -22,6 +22,7 @@ const UserAccountModal = ({
       ...others
     } = values;
     // to save values as number type in database
+    // No need for 'mealPrice' as it's required field.
     const lunchQtyValue = lunchQty === '' ? null : lunchQty;
     const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
 

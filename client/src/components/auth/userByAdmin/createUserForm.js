@@ -53,19 +53,17 @@ const CreateUserForm = props => {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      } else {
+      }
+      if (inputValue === '') {
         value = inputValue;
       }
     }
     if (
-      name === 'companyName' ||
       name === 'username' ||
       name === 'password' ||
       name === 'confirmPassword'
     ) {
       value = inputValue.toLowerCase();
-    } else {
-      value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
   };
@@ -80,7 +78,7 @@ const CreateUserForm = props => {
               label="고객명"
               placeholder="(한글) 유청"
               value={companyName || ''}
-              onChange={e => change(e, 'companyName', true)}
+              onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.companyName && errors.companyName}
               error={touched.companyName && Boolean(errors.companyName)}

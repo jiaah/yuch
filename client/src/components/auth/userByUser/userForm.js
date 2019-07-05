@@ -54,14 +54,13 @@ const UserForm = ({
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      } else {
+      }
+      if (inputValue === '') {
         value = inputValue;
       }
     }
     if (name === 'username') {
       value = inputValue.toLowerCase();
-    } else {
-      value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
   };
