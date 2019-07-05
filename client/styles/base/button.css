@@ -1,0 +1,22 @@
+button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button--large {
+  font-size: 2em;
+}
+
+.button--medium {
+  font-size: 1.5em;
+}
+
+.button--small {
+  font-size: 1em;
+}
+
+.button-mini {
+  font-size: 0.8em;
+}
+/*# sourceMappingURL=button.css.map */

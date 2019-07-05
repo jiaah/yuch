@@ -16,7 +16,7 @@ const Login = Loader({
     import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
-const UserAccount = Loader({
+const UserAccountForAdmin = Loader({
   loader: () =>
     import('./src/components/auth/userByAdmin/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
@@ -31,6 +31,11 @@ const AdminAccount = Loader({
     import('./src/components/auth/admin/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
 });
 
+const UserAccount = Loader({
+  loader: () =>
+    import('./src/components/auth/userByUser/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+});
+
 const NoMatch = Loader({
   loader: () =>
     import('./src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
@@ -42,9 +47,10 @@ const routes = props => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/admin/account/users" component={UserAccount} />
+      <Route path="/admin/account/users" component={UserAccountForAdmin} />
       <Route path="/admin/account/bankaccount" component={BankAccount} />
       <Route path="/admin/account/me" component={AdminAccount} />
+      <Route path="/user/account/me" component={UserAccount} />
       <Route component={NoMatch} />
     </Switch>
   </div>

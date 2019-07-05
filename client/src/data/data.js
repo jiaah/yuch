@@ -27,19 +27,19 @@ export const navClient = [
   {
     id: 1,
     name: '금일식수',
-    to: 'client/catering/dd',
+    to: 'user/catering/dd',
     className: 'c-text',
   },
   {
     id: 2,
     name: '식수현황',
-    to: 'client/catering/mm',
+    to: 'user/catering/mm',
     className: 'c-text',
   },
   {
     id: 3,
     name: '계정',
-    to: 'client/account',
+    to: 'user/account/me',
     className: 'c-text',
   },
 ];
