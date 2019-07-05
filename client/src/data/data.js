@@ -109,7 +109,7 @@ export const navAdminItems = {
     {
       id: 11,
       name: '식수 가격',
-      to: 'admin/account/catering/rates',
+      to: 'admin/account/rates',
     },
     {
       id: 12,

@@ -61,3 +61,22 @@ export const getAdmin = id => async dispatch => {
     throw new Error('Getting the admin account failed.');
   }
 };
+
+export const getCateringRates = () => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getCateringRates' });
+  try {
+    const res = await axios.get(`${API_HOST}/user/users/catering/rates`, {
+      headers: { authorization: token },
+    });
+    const rates = res.data;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getCateringRates',
+      payload: { rates },
+    });
+    return rates;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'getCateringRates', error });
+    throw new Error('Getting users list is failed');
+  }
+};

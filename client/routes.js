@@ -26,6 +26,11 @@ const BankAccount = Loader({
     import('./src/components/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
 });
 
+const CateringRatesAccount = Loader({
+  loader: () =>
+    import('./src/components/auth/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
+});
+
 const AdminAccount = Loader({
   loader: () =>
     import('./src/components/auth/admin/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
@@ -50,6 +55,7 @@ const routes = props => (
       <Route path="/admin/account/users" component={UserAccountForAdmin} />
       <Route path="/admin/account/bankaccount" component={BankAccount} />
       <Route path="/admin/account/me" component={AdminAccount} />
+      <Route path="/admin/account/rates" component={CateringRatesAccount} />
       <Route path="/user/account/me" component={UserAccount} />
       <Route component={NoMatch} />
     </Switch>

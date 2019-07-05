@@ -20,6 +20,15 @@ exports.getUsersList = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+// get catering meal prices of all clients
+exports.getCateringRates = (req, res) => {
+  knex('users')
+    .whereNot('username', 'yuch')
+    .select('id', 'companyName', 'mealPrice')
+    .then(users => res.status(200).json(users))
+    .catch(err => res.status(500).json(err));
+};
+
 // get admin profile
 exports.getAdmin = (req, res) => {
   const userId = req.params.id;
