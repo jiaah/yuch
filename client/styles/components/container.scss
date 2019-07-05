@@ -21,14 +21,13 @@
 }
 
 .paper-small {
-  width: 80%;
+  width: 300px;
   margin-right: auto;
   margin-left: auto;
   padding-top: 2em;
   padding-bottom: 2em;
 
   @include for-desktop-up {
-    max-width: 750px;
-    width: 60%
+    width: 750px;
   }
 }

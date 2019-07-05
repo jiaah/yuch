@@ -104,7 +104,6 @@ const BankAccountContainer = ({
           classes="icon-message--info"
         />
       </div>
-
       {clickedBtn !== null && (
         <BankModal
           resetClickedItemData={resetClickedItemData}

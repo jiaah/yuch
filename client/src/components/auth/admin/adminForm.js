@@ -11,9 +11,9 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: '90%',
+    width: 260,
     [theme.breakpoints.up('md')]: {
-      width: '60%',
+      width: 460,
     },
   },
 });
