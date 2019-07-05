@@ -23,3 +23,41 @@ export const getUsers = () => async dispatch => {
     throw new Error('Getting users list is failed');
   }
 };
+
+export const getMe = id => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getMyAccount' });
+  try {
+    const res = await axios.get(`${API_HOST}/user/me/${id}`, {
+      headers: { authorization: token },
+    });
+    const data = res.data;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getMyAccount',
+      payload: { data },
+    });
+    return data;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'getMyAccount', error });
+    throw new Error('Getting the user account failed.');
+  }
+};
+
+export const getAdmin = id => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getAdmin' });
+  try {
+    const res = await axios.get(`${API_HOST}/user/admin/me/${id}`, {
+      headers: { authorization: token },
+    });
+    const data = res.data;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getAdmin',
+      payload: { data },
+    });
+    return data;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'getAdmin', error });
+    throw new Error('Getting the admin account failed.');
+  }
+};

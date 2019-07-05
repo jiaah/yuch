@@ -9,23 +9,21 @@ import {
 import PasswordFormBox from '../password/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import {
-  getAdminAccount,
-  editAdminAccount,
-  changePassword,
-} from '../../../actions/authAction';
+import { editAdminAccount, changePassword } from '../../../actions/authAction';
+import { getAdmin } from '../../../actions/userAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
-  getAdminAccount,
+  getAdmin,
   editAdminAccount,
   changePassword,
   addFlashMessage,
+  id,
 }) => {
   const [adminData, setAdminData] = useState(null);
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchAdminData = async () => {
-    const data = await getAdminAccount();
+    const data = await getAdmin(id);
     setAdminData(data);
   };
 
@@ -73,9 +71,9 @@ const AdminAccountContainer = ({
     </div>
   );
 };
-
+const mapStateToPorps = state => ({ id: state.auth.id });
 const mapDispatchToProps = dispatch => ({
-  getAdminAccount: companyName => dispatch(getAdminAccount(companyName)),
+  getAdmin: id => dispatch(getAdmin(id)),
   editAdminAccount: (id, values) => dispatch(editAdminAccount(id, values)),
   changePassword: (id, password, newPassword) =>
     dispatch(changePassword(id, password, newPassword)),
@@ -84,6 +82,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToPorps,
   mapDispatchToProps,
 )(AdminAccountContainer);

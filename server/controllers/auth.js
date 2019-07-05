@@ -213,15 +213,6 @@ exports.deleteBankAccount = (req, res) => {
 };
 
 // admin account
-exports.getAdminAccount = (req, res) => {
-  knex('users')
-    .where({ id: adminId })
-    .first()
-    .select('id', 'companyName', 'username', 'contactNo', 'email')
-    .then(admin => res.status(200).json(admin))
-    .catch(err => res.status(500).json(err));
-};
-
 exports.editAdminAccount = (req, res) => {
   const userId = req.params.id;
   const { username, companyName, contactNo, email } = req.body.values;

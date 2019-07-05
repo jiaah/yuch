@@ -125,25 +125,6 @@ export const deleteUser = userId => async dispatch => {
 };
 
 // admin account
-export const getAdminAccount = () => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getAdminAccount' });
-  try {
-    const res = await axios.get(`${API_HOST}/auth/admin/account`, {
-      headers: { authorization: token },
-    });
-    const adminData = res.data;
-    dispatch({
-      type: types.HTTP_SUCCESS,
-      api: 'getAdminAccount',
-      payload: { adminData },
-    });
-    return adminData;
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getAdminAccount', error });
-    throw new Error('Getting the admin account failed.');
-  }
-};
-
 export const editAdminAccount = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
   try {
