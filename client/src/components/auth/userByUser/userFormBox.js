@@ -4,14 +4,14 @@ import { Formik } from 'formik';
 import UserForm from './userForm';
 
 const UserFormBox = ({
-  adminData,
-  adminAccountValidation,
+  userData,
+  editUserAccountValidation,
   editAdminAccount,
   addFlashMessage,
   openPasswordForm,
 }) => {
   const handleEditAdmin = async (values, { setSubmitting }) => {
-    const { id, companyName } = adminData;
+    const { id, companyName } = userData;
     try {
       await editAdminAccount(id, values);
       await addFlashMessage(
@@ -28,12 +28,12 @@ const UserFormBox = ({
   };
   return (
     <Formik
-      initialValues={adminData}
+      initialValues={userData}
       render={props => (
         <UserForm {...props} openPasswordForm={openPasswordForm} />
       )}
       onSubmit={handleEditAdmin}
-      validationSchema={adminAccountValidation}
+      validationSchema={editUserAccountValidation}
     />
   );
 };

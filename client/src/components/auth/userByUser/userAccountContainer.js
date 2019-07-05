@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
 import {
-  adminAccountValidation,
+  editUserAccountValidation,
   changePasswordValidation,
 } from '../formValidation';
 import PasswordFormBox from '../password/passwordContainer';
@@ -20,15 +20,15 @@ const AdminAccountContainer = ({
   addFlashMessage,
   id,
 }) => {
-  const [adminData, setAdminData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [pwdOpen, setPwdOpen] = useState(false);
-  const fetchAdminData = async () => {
+  const fetchUserData = async () => {
     const data = await getMe(id);
-    setAdminData(data);
+    setUserData(data);
   };
 
   useEffect(() => {
-    fetchAdminData();
+    fetchUserData();
   }, []);
 
   const openPasswordForm = () => setPwdOpen(true);
@@ -46,11 +46,11 @@ const AdminAccountContainer = ({
             <h3 className="flex justify-start">Profile</h3>
             {/* 'adminData' condition is needed as 'formik form values' render
             before receiving 'the retrieved admin data' */}
-            {adminData &&
+            {userData &&
               !pwdOpen && (
                 <UserFormBox
-                  adminData={adminData}
-                  adminAccountValidation={adminAccountValidation}
+                  userData={userData}
+                  editUserAccountValidation={editUserAccountValidation}
                   editAdminAccount={editAdminAccount}
                   addFlashMessage={addFlashMessage}
                   openPasswordForm={openPasswordForm}
@@ -58,7 +58,7 @@ const AdminAccountContainer = ({
               )}
             {pwdOpen && (
               <PasswordFormBox
-                userData={adminData}
+                userData={userData}
                 changePasswordValidation={changePasswordValidation}
                 changePassword={changePassword}
                 addFlashMessage={addFlashMessage}
