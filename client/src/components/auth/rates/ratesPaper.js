@@ -33,9 +33,9 @@ const RatesPaper = ({ users }) => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex justify-center">
       <Paper
-        classes=""
+        classes="w-33"
         component={
           <RatesTable
             order={order}
@@ -46,7 +46,7 @@ const RatesPaper = ({ users }) => {
         }
       />
       <Paper
-        classes=""
+        classes="ml5 w-33"
         component={
           <RatesTable
             order={order}

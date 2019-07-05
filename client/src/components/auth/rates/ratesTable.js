@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import RatesTableRow from './ratesTableRow';
@@ -11,7 +13,7 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 800 },
+  table: { width: '100%' },
 });
 
 const RatesTable = ({
@@ -21,6 +23,9 @@ const RatesTable = ({
   sortedData,
   handleRequestSort,
 }) => (
+  // const emptyRows =
+  //   user.length <
+  //   15 ?  Math.min(sortedData.length, users.length - page * rowsPerPage);
   <React.Fragment>
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
@@ -43,6 +48,11 @@ const RatesTable = ({
                 />
               );
             })}
+          {/* {emptyRows > 0 && (
+              <TableRow style={{ height: 49 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )} */}
         </TableBody>
       </Table>
     </div>
