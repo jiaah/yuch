@@ -15,12 +15,12 @@ const AdminFormBox = ({
       await editAdminAccount(id, values);
       await addFlashMessage(
         'success',
-        `${companyName} 님 계정이 수정되었습니다.`,
+        `${companyName}님의 계정이 수정되었습니다.`,
       );
     } catch (error) {
       await addFlashMessage(
         'error',
-        `${companyName} 님 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
+        `${companyName}님의 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );
     }
     return setSubmitting(false);

@@ -40,7 +40,7 @@ const AdminForm = ({
 
   return (
     <form
-      className="container flex flex-column-m items-center justify-center"
+      className="flex flex-column-m items-center justify-center"
       onSubmit={handleSubmit}
     >
       <TextField

@@ -27,6 +27,24 @@ export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
 
+/* --- Admin & Users --- */
+export const changePassword = (id, password, newPassword) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
+  try {
+    await axios.patch(
+      `${API_HOST}/auth/edit/password/${id}`,
+      { id, password, newPassword },
+      {
+        headers: { authorization: token },
+      },
+    );
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
+  }
+};
+
 /* --- Admin --- */
 // check admin password for security
 export const confirmAdminUser = password => async dispatch => {
@@ -72,23 +90,6 @@ export const editUser = userInfo => async dispatch => {
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
     throw new Error('Editing a user failed.');
-  }
-};
-
-export const changePassword = (id, password, newPassword) => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
-  try {
-    await axios.patch(
-      `${API_HOST}/auth/edit/password/${id}`,
-      { id, password, newPassword },
-      {
-        headers: { authorization: token },
-      },
-    );
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
   }
 };
 
