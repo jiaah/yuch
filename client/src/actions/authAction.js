@@ -139,6 +139,29 @@ export const getAdminAccount = () => async dispatch => {
     return adminData;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'getAdminAccount', error });
-    throw new Error('Getting the admin account is failed');
+    throw new Error('Getting the admin account failed.');
+  }
+};
+
+export const editAdminAccount = (id, values) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
+  try {
+    const res = await axios.patch(
+      `${API_HOST}/auth/admin/account/${id}`,
+      { values },
+      {
+        headers: { authorization: token },
+      },
+    );
+    const adminData = res.data;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'editAdminAccount',
+      payload: { adminData },
+    });
+    return adminData;
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'editAdminAccount', error });
+    throw new Error('Updating the admin account failed.');
   }
 };

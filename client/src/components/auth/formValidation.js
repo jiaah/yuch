@@ -152,3 +152,23 @@ export const bankAccountValidation = Yup.object({
     .matches(bankRegExp, '유효한 계좌번호 형식이 아닙니다.')
     .required('' - '를 포함해서 계좌번호를 입력하세요.'),
 });
+
+export const adminAccountValidation = Yup.object({
+  companyName: Yup.string('')
+    .matches(
+      nameRegExp,
+      '한글.숫자, 특수문자 !@#)(* 만 입력가능합니다 (띄어쓰기 가능)',
+    )
+    .max(12, '12글자 아래로 입력해주세요.')
+    .required('업체명을 입력해주세요.'),
+  username: Yup.string('')
+    .lowercase('소문자로 입력해주세요.')
+    .matches(/^\S+$/, '글자를 붙여쓰세요.')
+    .matches(engNumRegExp, 'ID는 영숫자 조합만 사용하세요.')
+    .max(12, '12글자 아래로 입력해주세요.')
+    .required('고객 로그인 아이디를 입력하세요.'),
+  contactNo: Yup.string()
+    .matches(phoneRegExp, "' - '를 포함해서 번호를 입력해주세요.")
+    .required('연락처를 입력하세요.'),
+  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+});

@@ -30,6 +30,7 @@ module.exports = () => {
 
   // Admin Account
   router.get('/admin/account', authController.getAdminAccount);
+  router.patch('/admin/account/:id', authController.editAdminAccount);
 
   return router;
 };

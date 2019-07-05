@@ -15,17 +15,31 @@ const styles = theme => ({
   },
 });
 
-const AdminForm = props => {
-  const {
-    values: { companyName, username, contactNo, email },
-    errors,
-    touched,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
-    handleBlur,
-    classes,
-  } = props;
+const AdminForm = ({
+  values,
+  errors,
+  touched,
+  handleChange,
+  handleSubmit,
+  isSubmitting,
+  handleBlur,
+  setFieldValue,
+  classes,
+}) => {
+  console.log(values);
+  const { companyName, username, contactNo, email } = values;
+
+  const change = (e, name, shouldValidate) => {
+    e.persist();
+    const inputValue = e.target.value;
+    let value;
+    if (name === 'username') {
+      value = inputValue.toLowerCase();
+    } else {
+      value = inputValue;
+    }
+    return setFieldValue(name, value, shouldValidate);
+  };
 
   return (
     <form
@@ -63,7 +77,7 @@ const AdminForm = props => {
         label="고객 아이디"
         placeholder="(영문) yucheong"
         value={username || ''}
-        onChange={handleChange}
+        onChange={e => change(e, 'username', true)}
         onBlur={handleBlur}
         helperText={touched.username && errors.username}
         error={touched.username && Boolean(errors.username)}

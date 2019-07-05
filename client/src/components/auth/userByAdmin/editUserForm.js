@@ -23,29 +23,28 @@ const styles = theme => ({
   },
 });
 
-const EditUserForm = props => {
-  const {
-    values: {
-      companyName,
-      username,
-      contactNo,
-      email,
-      mealPrice,
-      lunchQty,
-      dinnerQty,
-      bankAccountId,
-    },
-    bankAccount,
-    errors,
-    touched,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
-    handleBlur,
-    setFieldValue,
-    classes,
-    showSubModal,
-  } = props;
+const EditUserForm = ({
+  values: {
+    companyName,
+    username,
+    contactNo,
+    email,
+    mealPrice,
+    lunchQty,
+    dinnerQty,
+    bankAccountId,
+  },
+  bankAccount,
+  errors,
+  touched,
+  handleChange,
+  handleSubmit,
+  isSubmitting,
+  handleBlur,
+  setFieldValue,
+  classes,
+  showSubModal,
+}) => {
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
