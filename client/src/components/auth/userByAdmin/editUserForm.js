@@ -61,6 +61,9 @@ const EditUserForm = ({
     if (name === 'username') {
       value = inputValue.toLowerCase();
     }
+    if (name === 'bankAccountId') {
+      value = inputValue;
+    }
     return setFieldValue(name, value, shouldValidate);
   };
 

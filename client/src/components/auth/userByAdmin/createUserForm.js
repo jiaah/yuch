@@ -65,6 +65,9 @@ const CreateUserForm = props => {
     ) {
       value = inputValue.toLowerCase();
     }
+    if (name === 'bankAccountId') {
+      value = inputValue;
+    }
     return setFieldValue(name, value, shouldValidate);
   };
 

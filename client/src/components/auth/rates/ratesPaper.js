@@ -18,28 +18,19 @@ const RatesPaper = ({ users }) => {
 
   let sortedDataA;
   let sortedDataB;
-  if (users && users.length <= 5) {
-    sortedDataA = users && stableSort(users, getSorting(order, orderBy));
+  if (users && users.length <= 10) {
+    sortedDataA = stableSort(users, getSorting(order, orderBy));
     sortedDataB = [];
   }
-  if (users && users.length > 5) {
-    const endA =
-      users.length % 2 === 0 ? users.length / 2 - 1 : users.length / 2;
-    const startB =
-      users.length % 2 === 0 ? user.lnegth / 2 : users.length / 2 + 1;
-    sortedDataA =
-      users && stableSort(users, getSorting(order, orderBy)).slice(0, endA);
-
-    sortedDataB =
-      users &&
-      stableSort(users, getSorting(order, orderBy)).slice(
-        startB,
-        users.length - 1,
-      );
+  if (users && users.length > 10) {
+    const line =
+      users.length % 2 === 0 ? users.length / 2 : users.length / 2 + 0.5;
+    sortedDataA = stableSort(users, getSorting(order, orderBy)).slice(0, line);
+    sortedDataB = stableSort(users, getSorting(order, orderBy)).slice(
+      line,
+      users.length,
+    );
   }
-
-  console.log('sortedDataA: ', sortedDataA);
-  console.log('sortedDataB : ', sortedDataB);
 
   return (
     <div className="flex">
