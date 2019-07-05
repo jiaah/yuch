@@ -1,8 +1,8 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 
-const PaperBox = ({ component }) => (
-  <Paper className="mt2 paper-padding">{component}</Paper>
+const PaperBox = ({ component, classes }) => (
+  <Paper className={`mt2 paper-padding ${classes}`}>{component}</Paper>
 );
 
 export default PaperBox;

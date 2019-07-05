@@ -9,6 +9,8 @@ const PasswordFormBox = ({
   // actions
   changePassword,
   addFlashMessage,
+  // close password form
+  closePasswordForm,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { password, newPassword } = values;
@@ -19,13 +21,14 @@ const PasswordFormBox = ({
         'success',
         `${companyName}님의 계정 비밀번호가 수정되었습니다.`,
       );
+      closePasswordForm();
+      resetForm();
     } catch (error) {
       await addFlashMessage(
         'error',
         `${companyName}님의 계정 비밀번호 수정에 실패하였습니다. 비밀번호를 확인해주세요.`,
       );
     }
-    resetForm();
     return setSubmitting(false);
   };
 
@@ -38,7 +41,9 @@ const PasswordFormBox = ({
   return (
     <Formik
       initialValues={passwordValues}
-      render={props => <PasswordForm {...props} />}
+      render={props => (
+        <PasswordForm {...props} closePasswordForm={closePasswordForm} />
+      )}
       onSubmit={handleChangePassword}
       validationSchema={changePasswordValidation}
     />

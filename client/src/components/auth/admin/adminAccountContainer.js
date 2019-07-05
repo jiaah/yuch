@@ -23,6 +23,7 @@ const AdminAccountContainer = ({
   addFlashMessage,
 }) => {
   const [adminData, setAdminData] = useState(null);
+  const [pwdOpen, setPwdOpen] = useState(false);
   const fetchAdminData = async () => {
     const data = await getAdminAccount();
     setAdminData(data);
@@ -32,27 +33,40 @@ const AdminAccountContainer = ({
     fetchAdminData();
   }, []);
 
+  const openPasswordForm = () => setPwdOpen(true);
+  const closePasswordForm = () => setPwdOpen(false);
   return (
-    <div className="container">
+    <div className="container pt4">
+      <h2>Personal Info</h2>
+      <p className="pb3 pt2 f-mini">
+        홈페이지 메인화면의 연락처와 예약받는 이메일 주소는 변경되지 않습니다.
+      </p>
       <Paper
+        classes="paper-small"
         component={
           <React.Fragment>
+            <h3 className="flex justify-start">Profile</h3>
             {/* 'adminData' condition is needed as 'formik form values' render
             before receiving 'the retrieved admin data' */}
-            {adminData && (
-              <FormBox
-                adminData={adminData}
-                adminAccountValidation={adminAccountValidation}
-                editAdminAccount={editAdminAccount}
+            {adminData &&
+              !pwdOpen && (
+                <FormBox
+                  adminData={adminData}
+                  adminAccountValidation={adminAccountValidation}
+                  editAdminAccount={editAdminAccount}
+                  addFlashMessage={addFlashMessage}
+                  openPasswordForm={openPasswordForm}
+                />
+              )}
+            {pwdOpen && (
+              <PasswordFormBox
+                userData={adminData}
+                changePasswordValidation={changePasswordValidation}
+                changePassword={changePassword}
                 addFlashMessage={addFlashMessage}
+                closePasswordForm={closePasswordForm}
               />
             )}
-            <PasswordFormBox
-              userData={adminData}
-              changePasswordValidation={changePasswordValidation}
-              changePassword={changePassword}
-              addFlashMessage={addFlashMessage}
-            />
           </React.Fragment>
         }
       />

@@ -11,7 +11,10 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 350,
+    width: '90%',
+    [theme.breakpoints.up('md')]: {
+      width: '60%',
+    },
   },
 });
 
@@ -25,6 +28,7 @@ const AdminForm = ({
   handleBlur,
   setFieldValue,
   classes,
+  openPasswordForm,
 }) => {
   const change = (e, name, shouldValidate) => {
     e.persist();
@@ -152,7 +156,7 @@ const AdminForm = ({
           variantValue="outlined"
           buttonName="비밀번호 변경"
           width="medium"
-          // handleButtonClick={}
+          handleButtonClick={openPasswordForm}
         />
         <FormButton
           typeValue="submit"

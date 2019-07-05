@@ -8,6 +8,7 @@ const AdminFormBox = ({
   adminAccountValidation,
   editAdminAccount,
   addFlashMessage,
+  openPasswordForm,
 }) => {
   const handleEditAdmin = async (values, { setSubmitting }) => {
     const { id, companyName } = adminData;
@@ -28,7 +29,9 @@ const AdminFormBox = ({
   return (
     <Formik
       initialValues={adminData}
-      render={props => <AdminForm {...props} />}
+      render={props => (
+        <AdminForm {...props} openPasswordForm={openPasswordForm} />
+      )}
       onSubmit={handleEditAdmin}
       validationSchema={adminAccountValidation}
     />

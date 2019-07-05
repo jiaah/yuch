@@ -5,12 +5,16 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Icon from '../../../../assets/icons';
 import FormButton from '../../../shared/formButton';
+import Button from '../../../shared/button';
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 350,
+    width: '90%',
+    [theme.breakpoints.up('md')]: {
+      width: '60%',
+    },
   },
 });
 
@@ -24,6 +28,7 @@ const PasswordForm = props => {
     handleBlur,
     classes,
     setFieldValue,
+    closePasswordForm,
   } = props;
 
   const change = (e, name, shouldValidate) => {
@@ -114,13 +119,22 @@ const PasswordForm = props => {
           ),
         }}
       />
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="비밀번호 변경"
-        width="medium"
-        isSubmitting={isSubmitting}
-      />
+      <div>
+        <Button
+          typeValue="button"
+          variantValue="outlined"
+          buttonName="취소"
+          width="medium"
+          handleButtonClick={closePasswordForm}
+        />
+        <FormButton
+          typeValue="submit"
+          variantValue="contained"
+          buttonName="변경"
+          width="medium"
+          isSubmitting={isSubmitting}
+        />
+      </div>
     </form>
   );
 };
