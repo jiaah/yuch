@@ -6,7 +6,7 @@ import IconButton from '../../shared/iconButton';
 import Paper from '../../shared/paper';
 import Loader from '../../shared/loader';
 import BankTable from './bankTable';
-import { bankAccountTableHeadRows } from '../../data/data';
+import { bankAccountTableHeadColumns } from '../../data/data';
 import { bankAccountPageInfoA, bankAccountPageInfoB } from '../../data/message';
 import { bankAccountValidation } from '../auth/formValidation';
 import IconMessage from '../../shared/iconMessage';
@@ -71,7 +71,7 @@ const BankAccountContainer = ({
       <Paper
         component={
           <BankTable
-            bankAccountTableHeadRows={bankAccountTableHeadRows}
+            bankAccountTableHeadColumns={bankAccountTableHeadColumns}
             bankAccount={bankAccount}
             clickedBtn={clickedBtn}
             saveClickedItemData={saveClickedItemData}

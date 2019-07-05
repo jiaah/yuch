@@ -57,7 +57,7 @@ const UserTable = ({
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
-            list={data.userAccountTableHeadRows}
+            list={data.userAccountTableHeadColumns}
           />
           <TableBody>
             {users.length !== 0 &&

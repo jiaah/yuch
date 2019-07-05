@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
+import RatesPaper from './ratesPaper';
 /* --- Actions --- */
 import { getCateringRates } from '../../../actions/userAction';
 
 const RatesContainer = ({ getCateringRates }) => {
   const [data, setData] = useState(null);
+
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
-    return setData(res);
+    setData(res);
   };
   useEffect(() => {
     fetchCateringRates();
@@ -16,7 +18,8 @@ const RatesContainer = ({ getCateringRates }) => {
 
   return (
     <div className="container">
-      <h2>Hello</h2>
+      <h2>식수가격</h2>
+      {data && <RatesPaper users={data} />}
     </div>
   );
 };

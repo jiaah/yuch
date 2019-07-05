@@ -145,7 +145,7 @@ export const message = {
   },
 };
 
-export const userAccountTableHeadRows = [
+export const userAccountTableHeadColumns = [
   {
     id: '1',
     numeric: true,
@@ -197,7 +197,7 @@ export const userAccountTableHeadRows = [
   },
 ];
 
-export const bankAccountTableHeadRows = [
+export const bankAccountTableHeadColumns = [
   {
     id: '1',
     numeric: true,
@@ -216,5 +216,26 @@ export const bankAccountTableHeadRows = [
     numeric: true,
     disablePadding: false,
     label: '계좌번호',
+  },
+];
+
+export const cateringRatesTableHeadColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '업체명',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
   },
 ];

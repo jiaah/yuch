@@ -18,7 +18,7 @@ const styles = () => ({
 
 const BankTable = ({
   classes: { tableWrapper, table },
-  bankAccountTableHeadRows,
+  bankAccountTableHeadColumns,
   bankAccount,
   saveClickedItemData,
   saveSelectedItemValue,
@@ -51,7 +51,7 @@ const BankTable = ({
         <EnhancedTableHead
           order="asc"
           orderBy="id"
-          list={bankAccountTableHeadRows}
+          list={bankAccountTableHeadColumns}
         />
         <TableBody>
           {bankAccount &&
