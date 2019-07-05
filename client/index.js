@@ -17,6 +17,11 @@ const theme = createMuiTheme({
     error: { main: '#ed4337' },
     info: { main: '#2196F3' },
   },
+  overrides: {
+    MuiInputBase: {
+      input: { paddingLeft: 10 },
+    },
+  },
 });
 
 const root = document.createElement('div');
