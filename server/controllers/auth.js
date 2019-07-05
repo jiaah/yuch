@@ -6,6 +6,7 @@ const adminId = '30905e44-f9fc-4c23-bc66-7f6142564d89';
 /* --- Login --- */
 exports.loginUser = (req, res) => {
   const { username, password } = req.body;
+  let id;
   let companyName;
   let userData;
   let isAdmin;
@@ -14,6 +15,7 @@ exports.loginUser = (req, res) => {
     .first()
     .then(user => {
       userData = user;
+      id = user.id;
       companyName = user.companyName;
       isAdmin = user.isAdmin;
       if (!user) {
@@ -30,7 +32,7 @@ exports.loginUser = (req, res) => {
     })
     .then(token => {
       res.header('Authorization', `Bearer + ${token}`);
-      return res.status(200).json({ token, companyName, isAdmin });
+      return res.status(200).json({ token, id, companyName, isAdmin });
     })
     .catch(err => res.status(500).json(err));
 };
