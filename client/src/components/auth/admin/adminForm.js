@@ -16,7 +16,7 @@ const styles = theme => ({
 });
 
 const AdminForm = ({
-  values,
+  values: { companyName, username, contactNo, email },
   errors,
   touched,
   handleChange,
@@ -26,9 +26,6 @@ const AdminForm = ({
   setFieldValue,
   classes,
 }) => {
-  console.log(values);
-  const { companyName, username, contactNo, email } = values;
-
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
