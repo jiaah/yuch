@@ -38,6 +38,7 @@ const RatesPaper = ({ users }) => {
         classes="w-33"
         component={
           <RatesTable
+            users={users}
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataA}
@@ -49,6 +50,7 @@ const RatesPaper = ({ users }) => {
         classes="ml5 w-33"
         component={
           <RatesTable
+            users={users}
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataB}
