@@ -43,7 +43,7 @@ const BankTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = bankAccount && 5 - bankAccount.length;
+  const emptyRows = bankAccount && 7 - bankAccount.length;
 
   return (
     <div className={tableWrapper}>

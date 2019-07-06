@@ -79,3 +79,21 @@
   font-size: 14px;
   margin-top: -1px;
 }
+
+/* ------ Admin Account ------ */
+/* Catering rates */
+.paper--rates {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.paper--rates-sec {
+  margin-top: 3em;
+
+  @include for-desktop-up {
+    margin-top: 0em;
+    margin-left: 3em;
+  }
+}

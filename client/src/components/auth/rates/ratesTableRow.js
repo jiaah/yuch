@@ -16,9 +16,23 @@ const styles = theme => ({
 
 const RatesTableRow = ({ classes: { resize }, row, labelId }) => (
   <React.Fragment>
-    <TableRow key={row.id} hover role="checkbox" tabIndex={-1}>
+    <TableRow
+      key={row.id}
+      hover
+      role="checkbox"
+      tabIndex={-1}
+      // aria-checked={selected === row.id}
+      // selected={selected === row.id}
+      // onClick={() => handleTableRowClick(row.id)}
+    >
       <TableCell padding="checkbox">
-        <IconButton name="edit" width="19" height="19" viewBox="0 0 24 24" />
+        <IconButton
+          name="edit"
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          // handleClick={e => handleEditUserBtnClick(e, row.id)}
+        />
       </TableCell>
       <TableCell
         component="th"

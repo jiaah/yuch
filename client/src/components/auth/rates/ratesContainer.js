@@ -17,7 +17,7 @@ const RatesContainer = ({ getCateringRates }) => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container r--w-70">
       <h2>식수가격</h2>
       {data && <RatesPaper users={data} />}
     </div>

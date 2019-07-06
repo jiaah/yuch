@@ -86,7 +86,7 @@ const UserAccountContainer = ({
     if (selectedSearchItem !== null) resetSelectedItemValue();
   };
   return (
-    <div className="container">
+    <div className="container w-90">
       {/* auto complete search bar by companyName */}
       <h2 onClick={renderAllUsers}>고객 계정</h2>
       <div className="paper-label--box justify-between ">

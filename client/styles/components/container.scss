@@ -1,6 +1,5 @@
 .container {
   height: calc(100vh - 220px);
-  width: 90vw;
   margin: 3em auto;
   text-align: center;
 
@@ -9,6 +8,33 @@
   }
 }
 
+// responsive width
+.r--w-70 {
+  width: 90vw;
+
+  @include for-desktop-up {
+    width: 70vw;
+  }
+}
+
+.r--w-50 {
+  width: 90vw;
+
+  @include for-desktop-up {
+    width: 50vw;
+  }
+}
+
+.r--w-20 {
+  width: 80vw;
+
+  @include for-desktop-up {
+    min-width: 400px;
+    width: 20vw;
+  }
+}
+
+// paper
 .paper-label--box {
   display: flex;
   padding-left: 1em;
@@ -20,6 +46,8 @@
   padding: 1em 2em;
 }
 
+// need fixed width not to break material ui textfield form
+// ex ) admin account page, a user account page
 .paper-small {
   width: 300px;
   margin-right: auto;

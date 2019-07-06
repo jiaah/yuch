@@ -33,9 +33,9 @@ const RatesPaper = ({ users }) => {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="paper--rates">
       <Paper
-        classes="w-33"
+        classes="r--w-20"
         component={
           <RatesTable
             users={users}
@@ -47,7 +47,7 @@ const RatesPaper = ({ users }) => {
         }
       />
       <Paper
-        classes="ml5 w-33"
+        classes="r--w-20 paper--rates-sec"
         component={
           <RatesTable
             users={users}
