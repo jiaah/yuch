@@ -20,6 +20,7 @@ import Add from './add';
 import Delete from './delete';
 import PersonAdd from './personAdd';
 import Search from './search';
+import Print from './print';
 
 const Icon = props => {
   switch (props.name) {
@@ -61,6 +62,8 @@ const Icon = props => {
       return <Delete {...props} />;
     case 'search':
       return <Search {...props} />;
+    case 'print':
+      return <Print {...props} />;
     default:
       return <div />;
   }

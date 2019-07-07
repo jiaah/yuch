@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import RatesPaper from './ratesPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Loader from '../../../shared/loader';
+import IconButton from '../../../shared/iconButton';
+import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
 import { getCateringRates } from '../../../actions/userAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -59,8 +61,15 @@ const RatesContainer = ({
   return (
     <div className="container r--w-80">
       <h2 onClick={renderAllUsers}>식수가격</h2>
-      <div className="paper-label-box paper-label-box--rates">
+      <div className="paper-label-box flex justify-between">
         <SearchBar users={data} />
+        <IconButton
+          name="print"
+          width="32"
+          height="32"
+          viewBox="0 0 25 25"
+          handleClick={() => printDiv('printRates')}
+        />
       </div>
       {data && (
         <RatesPaper

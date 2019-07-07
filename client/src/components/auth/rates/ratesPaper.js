@@ -33,7 +33,7 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
   }
 
   return (
-    <div className="paper-rates">
+    <div id="printRates" className="paper-rates">
       <Paper
         component={
           <RatesTable
