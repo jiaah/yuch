@@ -35,8 +35,7 @@ const EditUserForm = ({
   setFieldValue,
   classes,
 }) => {
-  const month = nextMonth === '13' ? '1' : nextMonth;
-  const [date, setDate] = React.useState(month);
+  const [date, setDate] = React.useState(nextMonth);
 
   const change = (e, name, shouldValidate) => {
     e.persist();

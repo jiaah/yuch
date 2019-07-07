@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const today = moment().format('YYYY-MM-DD');
-export const nextMonth = moment()
+export const nextMonth = moment('2021-12-23')
   .add(1, 'months')
   .format('M');
 export const inThreeDays = moment()
