@@ -47,7 +47,7 @@ const RatesPaper = ({ users }) => {
         }
       />
       <Paper
-        classes="r--w-20 paper--rates-sec"
+        classes="r--w-20 paper-sec--rates"
         component={
           <RatesTable
             users={users}

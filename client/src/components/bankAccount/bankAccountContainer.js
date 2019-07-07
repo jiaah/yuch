@@ -57,7 +57,7 @@ const BankAccountContainer = ({
   return (
     <div className="container r--w-50">
       <h2>유청 은행 계좌</h2>
-      <div className="paper-label--box justify-end">
+      <div className="paper-label-box justify-end">
         <div className="flex">
           <IconButton
             handleClick={() => handleButtonClick('create')}

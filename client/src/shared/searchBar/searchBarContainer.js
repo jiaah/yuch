@@ -43,6 +43,7 @@ const SearchBar = ({
   users,
   saveSelectedItemValue,
 }) => {
+  console.log(' users: ', users);
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
   const [suggestions, setSuggestions] = useState([]);

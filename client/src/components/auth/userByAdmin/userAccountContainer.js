@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/iconButton';
-import SearchBar from '../../../shared/searchBar/searchBar';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
@@ -89,7 +89,7 @@ const UserAccountContainer = ({
     <div className="container w-90">
       {/* auto complete search bar by companyName */}
       <h2 onClick={renderAllUsers}>고객 계정</h2>
-      <div className="paper-label--box justify-between ">
+      <div className="paper-label-box justify-between ">
         <div className="flex">
           <SearchBar users={users} />
           <p className="f-mini ml3 user-account--user-number">

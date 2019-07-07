@@ -89,11 +89,21 @@
   }
 }
 
-.paper--rates-sec {
+.paper-label-box--rates {
+  @include for-desktop-up {
+    margin-left: - 2.5em;
+  }
+}
+
+.paper-sec--rates {
   margin-top: 3em;
 
   @include for-desktop-up {
-    margin-top: 0em;
+    margin-top: 0;
     margin-left: 3em;
+  }
+
+  @include for-big-desktop-up {
+    margin-left: 5em;
   }
 }

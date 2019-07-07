@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import RatesPaper from './ratesPaper';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 /* --- Actions --- */
 import { getCateringRates } from '../../../actions/userAction';
 
@@ -17,8 +18,11 @@ const RatesContainer = ({ getCateringRates }) => {
   }, []);
 
   return (
-    <div className="container r--w-70">
+    <div className="container r--w-50">
       <h2>식수가격</h2>
+      <div className="paper-label-box paper-label-box--rates">
+        <SearchBar users={data} />
+      </div>
       {data && <RatesPaper users={data} />}
     </div>
   );

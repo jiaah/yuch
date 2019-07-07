@@ -24,7 +24,7 @@ exports.getUsersList = (req, res) => {
 exports.getCateringRates = (req, res) => {
   knex('users')
     .whereNot('username', 'yuch')
-    .select('id', 'companyName', 'mealPrice')
+    .select('id', 'companyName', 'username', 'mealPrice')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
