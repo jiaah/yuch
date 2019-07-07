@@ -82,20 +82,14 @@
 
 /* ------ Admin Account ------ */
 /* Catering rates */
-.paper--rates {
+.paper-rates {
   @include for-desktop-up {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 
-.paper-label-box--rates {
-  @include for-desktop-up {
-    margin-left: - 2.5em;
-  }
-}
-
-.paper-sec--rates {
+.paper-rates--sec {
   margin-top: 3em;
 
   @include for-desktop-up {
@@ -105,5 +99,19 @@
 
   @include for-big-desktop-up {
     margin-left: 5em;
+  }
+}
+
+.rate-edit-form {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.rate-edit-form--btn {
+  @include for-desktop-up {
+    margin-left: 2em;
+    margin-top: 9px;
   }
 }

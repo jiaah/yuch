@@ -238,4 +238,16 @@ export const cateringRatesTableHeadColumns = [
     disablePadding: false,
     label: '식수가격',
   },
+  {
+    id: 'priceToChange',
+    numeric: true,
+    disablePadding: false,
+    label: '변동 가격',
+  },
+  {
+    id: 'appliedDate',
+    numeric: true,
+    disablePadding: false,
+    label: '적용 달',
+  },
 ];

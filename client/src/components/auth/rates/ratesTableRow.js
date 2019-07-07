@@ -53,6 +53,24 @@ const RatesTableRow = ({
       <TableCell align="right" className={resize}>
         {row.mealPrice}
       </TableCell>
+      {/* <TableCell
+        component="th"
+        id={labelId}
+        scope="row"
+        padding="none"
+        className={resize}
+      >
+        {row.priceToChange}
+      </TableCell>
+      <TableCell
+        component="th"
+        id={labelId}
+        scope="row"
+        padding="none"
+        className={resize}
+      >
+        {row.appliedDate}
+      </TableCell> */}
     </TableRow>
   </React.Fragment>
 );

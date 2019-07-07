@@ -9,19 +9,19 @@
 }
 
 // responsive width
+.r--w-80 {
+  width: 90vw;
+
+  @include for-desktop-up {
+    width: 80vw;
+  }
+}
+
 .r--w-70 {
   width: 90vw;
 
   @include for-desktop-up {
     width: 70vw;
-  }
-}
-
-.r--w-50 {
-  width: 90vw;
-
-  @include for-desktop-up {
-    width: 50vw;
   }
 }
 

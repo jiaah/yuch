@@ -33,9 +33,8 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
   }
 
   return (
-    <div className="paper--rates">
+    <div className="paper-rates">
       <Paper
-        classes="r--w-20"
         component={
           <RatesTable
             users={users}
@@ -49,7 +48,7 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
         }
       />
       <Paper
-        classes="r--w-20 paper-sec--rates"
+        classes="paper-rates--sec"
         component={
           <RatesTable
             users={users}

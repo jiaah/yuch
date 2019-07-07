@@ -8,20 +8,21 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
-import { nextMonth } from '../../../shared/moment';
+import { thisMonth, nextMonth } from '../../../shared/moment';
+import IconMessage from '../../../shared/iconMessage';
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 150,
+    marginRight: theme.spacing.unit * 3,
+    width: 180,
   },
   formControl: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     marginTop: '16px',
     marginBottom: '8px',
-    minWidth: 150,
+    minWidth: 180,
   },
 });
 
@@ -53,52 +54,62 @@ const EditUserForm = ({
   const handleChange = e => setDate(e.target.value);
 
   return (
-    <form className="mh1" onSubmit={handleSubmit}>
-      <TextField
-        id="mealPrice"
-        label="식수가격"
-        placeholder="5000"
-        value={mealPrice || ''}
-        onChange={e => change(e, 'mealPrice', true)}
-        onBlur={handleBlur}
-        helperText={touched.mealPrice && errors.mealPrice}
-        error={touched.mealPrice && Boolean(errors.mealPrice)}
-        required={true}
-        InputProps={{
-          startAdornment: <InputAdornment position="start">₩</InputAdornment>,
-        }}
-        margin="normal"
-        className={classes.textField}
-      />
-      <FormControl className={classes.formControl}>
-        <InputLabel required={true}>가격변동 적용되는 달</InputLabel>
-        <Select
-          value={date}
-          onChange={handleChange}
-          renderValue={value => value}
-        >
-          <MenuItem value="1월">1</MenuItem>
-          <MenuItem value="2월">2</MenuItem>
-          <MenuItem value="3월">3</MenuItem>
-          <MenuItem value="4월">4</MenuItem>
-          <MenuItem value="5월">5</MenuItem>
-          <MenuItem value="6월">6</MenuItem>
-          <MenuItem value="7월">7</MenuItem>
-          <MenuItem value="8월">8</MenuItem>
-          <MenuItem value="9월">9</MenuItem>
-          <MenuItem value="10월">10</MenuItem>
-          <MenuItem value="11월">11</MenuItem>
-          <MenuItem value="12월">12</MenuItem>
-        </Select>
-      </FormControl>
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="수정"
-        width="medium"
-        isSubmitting={isSubmitting}
-      />
-    </form>
+    <React.Fragment>
+      <form className="mh2 rate-edit-form" onSubmit={handleSubmit}>
+        <div className="flex">
+          <TextField
+            id="mealPrice"
+            label="식수가격"
+            placeholder="5000"
+            value={mealPrice || ''}
+            onChange={e => change(e, 'mealPrice', true)}
+            onBlur={handleBlur}
+            helperText={touched.mealPrice && errors.mealPrice}
+            error={touched.mealPrice && Boolean(errors.mealPrice)}
+            required={true}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">₩</InputAdornment>
+              ),
+            }}
+            margin="normal"
+            className={classes.textField}
+          />
+          <FormControl className={classes.formControl}>
+            <InputLabel required={true}>날짜</InputLabel>
+            <Select
+              value={date}
+              onChange={handleChange}
+              renderValue={value => value}
+            >
+              <MenuItem value={thisMonth}>{thisMonth}</MenuItem>
+              <MenuItem value={nextMonth}>{nextMonth}</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className="rate-edit-form--btn">
+          <FormButton
+            typeValue="submit"
+            variantValue="contained"
+            buttonName="수정"
+            width="medium"
+            isSubmitting={isSubmitting}
+          />
+        </div>
+      </form>
+      <div className="flex justify-end pw3">
+        <IconMessage
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+          text="입력되는 달부터 가격변동이 적용됩니다."
+          classes="icon-message--info f-mini"
+        />
+      </div>
+    </React.Fragment>
   );
 };
 
