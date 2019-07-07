@@ -21,6 +21,7 @@ const RatesTableRow = ({
   selectedSearchItem,
   selected,
   handleTableRowClick,
+  handleEditUserBtnClick,
 }) => (
   <React.Fragment>
     <TableRow

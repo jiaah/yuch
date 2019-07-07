@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import RatesTableRow from './ratesTableRow';
@@ -27,9 +26,11 @@ const RatesTable = ({
 }) => {
   // selected row
   const [selected, setSelected] = React.useState('');
-  console.log('selected: ', selected);
   const emptyRows = users.length <= 10 ? 10 - users.length : 0;
   const handleTableRowClick = id => setSelected(id);
+  const handleEditUserBtnClick = (e, id) => {
+    e.preventDefault();
+  };
   return (
     <React.Fragment>
       <div className={tableWrapper}>
@@ -53,6 +54,7 @@ const RatesTable = ({
                     selectedSearchItem={selectedSearchItem}
                     selected={selected}
                     handleTableRowClick={handleTableRowClick}
+                    handleEditUserBtnClick={handleEditUserBtnClick}
                   />
                 );
               })}
