@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import RatesPaper from './ratesPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import Loader from '../../../shared/loader';
 /* --- Actions --- */
 import { getCateringRates } from '../../../actions/userAction';
-import { resetSelectedItemValue } from '../../../actions/selectedAction';
+import * as selectedActions from '../../../actions/selectedAction';
+import * as modalActions from '../../../actions/modalAction';
 
+const EditRateModal = Loader({
+  loader: () =>
+    import('./editRateModal' /* webpackChunkName: 'EditRateModal' */),
+});
 const RatesContainer = ({
   getCateringRates,
-  resetSelectedItemValue,
+  selectedActions: {
+    resetSelectedItemValue,
+    saveClickedItemData,
+    resetClickedItemData,
+  },
   selectedSearchItem,
+  clickedUserData,
+  show,
+  modalActions: { showModal, hideModal },
 }) => {
   const [data, setData] = useState(null);
 
@@ -22,12 +36,26 @@ const RatesContainer = ({
   useEffect(() => {
     fetchCateringRates();
     return () =>
-      Promise.all[
-        selectedSearchItem !== null ? resetSelectedItemValue() : null
-      ];
+      Promise.all([
+        selectedSearchItem !== null ? resetSelectedItemValue() : null,
+        clickedUserData.length !== 0 ? resetClickedItemData() : null,
+      ]);
   }, []);
 
+  const getClickedUserData = async id => {
+    const userData = await data.filter(user => user.id === id);
+    return userData[0];
+  };
+
+  const handleEditUserBtnClick = async (e, id) => {
+    e.preventDefault();
+    const userData = await getClickedUserData(id);
+    await saveClickedItemData(userData);
+    return showModal();
+  };
+
   const renderAllUsers = () => resetSelectedItemValue();
+
   return (
     <div className="container r--w-50">
       <h2 onClick={renderAllUsers}>식수가격</h2>
@@ -35,7 +63,18 @@ const RatesContainer = ({
         <SearchBar users={data} />
       </div>
       {data && (
-        <RatesPaper users={data} selectedSearchItem={selectedSearchItem} />
+        <RatesPaper
+          users={data}
+          selectedSearchItem={selectedSearchItem}
+          handleEditUserBtnClick={handleEditUserBtnClick}
+        />
+      )}
+      {show && (
+        <EditRateModal
+          clickedUserData={clickedUserData}
+          hideModal={hideModal}
+          resetClickedItemData={resetClickedItemData}
+        />
       )}
     </div>
   );
@@ -43,11 +82,14 @@ const RatesContainer = ({
 
 const mapStateToProps = state => ({
   selectedSearchItem: state.selected.value,
+  clickedUserData: state.selected.data,
+  show: state.modal.show,
 });
 
 const mapDispatchToProps = dispatch => ({
   getCateringRates: () => dispatch(getCateringRates()),
-  resetSelectedItemValue: () => dispatch(resetSelectedItemValue()),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
+  modalActions: bindActionCreators(modalActions, dispatch),
 });
 
 export default connect(

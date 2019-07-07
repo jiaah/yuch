@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-
 import IconButton from '../../../shared/iconButton';
 
 const styles = theme => ({
@@ -19,43 +18,47 @@ const RatesTableRow = ({
   row,
   labelId,
   selectedSearchItem,
-  selected,
-  handleTableRowClick,
   handleEditUserBtnClick,
-}) => (
-  <React.Fragment>
-    <TableRow
-      key={row.id}
-      hover
-      role="checkbox"
-      tabIndex={-1}
-      aria-checked={selected === row.id}
-      selected={selectedSearchItem === row.companyName || selected === row.id}
-      onClick={() => handleTableRowClick(row.id)}
-    >
-      <TableCell padding="checkbox">
-        <IconButton
-          name="edit"
-          width="19"
-          height="19"
-          viewBox="0 0 24 24"
-          handleClick={e => handleEditUserBtnClick(e, row.id)}
-        />
-      </TableCell>
-      <TableCell
-        component="th"
-        id={labelId}
-        scope="row"
-        padding="none"
-        className={resize}
+}) => {
+  // selected row
+  const [selected, setSelected] = React.useState('');
+  const handleTableRowClick = id => setSelected(id);
+
+  return (
+    <React.Fragment>
+      <TableRow
+        key={row.id}
+        hover
+        role="checkbox"
+        tabIndex={-1}
+        aria-checked={selected === row.id}
+        selected={selectedSearchItem === row.companyName || selected === row.id}
+        onClick={() => handleTableRowClick(row.id)}
       >
-        {row.companyName}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.mealPrice}
-      </TableCell>
-    </TableRow>
-  </React.Fragment>
-);
+        <TableCell padding="checkbox">
+          <IconButton
+            name="edit"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={e => handleEditUserBtnClick(e, row.id)}
+          />
+        </TableCell>
+        <TableCell
+          component="th"
+          id={labelId}
+          scope="row"
+          padding="none"
+          className={resize}
+        >
+          {row.companyName}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.mealPrice}
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+};
 
 export default withStyles(styles)(RatesTableRow);

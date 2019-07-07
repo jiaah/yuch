@@ -23,14 +23,9 @@ const RatesTable = ({
   sortedData,
   handleRequestSort,
   selectedSearchItem,
+  handleEditUserBtnClick,
 }) => {
-  // selected row
-  const [selected, setSelected] = React.useState('');
   const emptyRows = users.length <= 10 ? 10 - users.length : 0;
-  const handleTableRowClick = id => setSelected(id);
-  const handleEditUserBtnClick = (e, id) => {
-    e.preventDefault();
-  };
   return (
     <React.Fragment>
       <div className={tableWrapper}>
@@ -52,8 +47,6 @@ const RatesTable = ({
                     row={row}
                     labelId={labelId}
                     selectedSearchItem={selectedSearchItem}
-                    selected={selected}
-                    handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
                   />
                 );
