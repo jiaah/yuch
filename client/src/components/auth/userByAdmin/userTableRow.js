@@ -40,11 +40,11 @@ const UserTableRow = ({
       <TableRow
         key={row.id}
         hover
-        onClick={() => handleTableRowClick(row.id)}
         role="checkbox"
-        aria-checked={selected === row.id}
         tabIndex={-1}
+        aria-checked={selected === row.id}
         selected={selected === row.id}
+        onClick={() => handleTableRowClick(row.id)}
       >
         <TableCell padding="checkbox">
           <IconButton

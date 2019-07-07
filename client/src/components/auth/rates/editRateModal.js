@@ -1,25 +1,39 @@
 import React from 'react';
+import { Formik } from 'formik';
 /* --- Components --- */
-import Loader from '../../../shared/loader';
 import Modal from '../../../shared/modal';
+import Form from './editRateForm';
 
 const EditRateModal = ({
   clickedUserData,
   hideModal,
   resetClickedItemData,
 }) => {
+  const title = (
+    <React.Fragment>
+      <span className="b">{clickedUserData[0].companyName}</span> 식수가격
+    </React.Fragment>
+  );
   const closeModal = () => {
     if (clickedUserData.length !== 0) {
       return Promise.all([resetClickedItemData(), hideModal()]);
     }
     return hideModal();
   };
+  const mealPrice = clickedUserData[0].mealPrice;
+  const values = { mealPrice };
+
   return (
     <div className="container">
       <Modal
-        title="식수가격 수정"
+        title={title}
         handleClose={closeModal}
-        component={<h1>hello</h1>}
+        component={
+          <Formik
+            initialValues={values}
+            render={props => <Form {...props} />}
+          />
+        }
       />
     </div>
   );
