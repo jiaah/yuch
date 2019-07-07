@@ -5,14 +5,13 @@ export const saveSelectedItemValue = value => ({
   value,
 });
 
-export const resetSelectedItemValue = value => ({
+export const resetSelectedItemValue = () => ({
   type: types.RESET_SELECTED_ITEM_VALUE,
-  value,
 });
 
 export const saveClickedItemData = data => ({
   type: types.SAVE_CLICKED_ITEM_DATA,
-  payload: data,
+  data,
 });
 
 export const resetClickedItemData = () => ({

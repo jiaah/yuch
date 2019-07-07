@@ -43,7 +43,6 @@ const SearchBar = ({
   users,
   saveSelectedItemValue,
 }) => {
-  console.log(' users: ', users);
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
@@ -68,7 +67,7 @@ const SearchBar = ({
   };
 
   const suggestionSelected = value => {
-    setInputValue(value); // render selected value in search bar
+    setInputValue(value); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
     return saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux

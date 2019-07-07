@@ -14,7 +14,12 @@ const styles = theme => ({
   },
 });
 
-const RatesTableRow = ({ classes: { resize }, row, labelId }) => (
+const RatesTableRow = ({
+  classes: { resize },
+  row,
+  labelId,
+  selectedSearchItem,
+}) => (
   <React.Fragment>
     <TableRow
       key={row.id}
@@ -22,7 +27,10 @@ const RatesTableRow = ({ classes: { resize }, row, labelId }) => (
       role="checkbox"
       tabIndex={-1}
       // aria-checked={selected === row.id}
-      // selected={selected === row.id}
+      selected={
+        selectedSearchItem === row.companyName
+        // || selected === row.id
+      }
       // onClick={() => handleTableRowClick(row.id)}
     >
       <TableCell padding="checkbox">

@@ -150,7 +150,7 @@ export const editUserAccount = (id, userInfo) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUserAccount' });
   try {
     await axios.patch(
-      `${API_HOST}/auth/user/edit/${id}`,
+      `${API_HOST}/user/edit/${id}`,
       { userInfo },
       {
         headers: { authorization: token },

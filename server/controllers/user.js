@@ -1,5 +1,17 @@
 const knex = require('../database');
 
+// get admin profile
+exports.getAdmin = (req, res) => {
+  const userId = req.params.id;
+  knex('users')
+    .where({ id: userId })
+    .first()
+    .select('id', 'companyName', 'username', 'contactNo', 'email')
+    .then(admin => res.status(200).json(admin))
+    .catch(err => res.status(500).json(err));
+};
+
+/* --- User --- */
 // get users profile
 exports.getUsersList = (req, res) => {
   knex('users')
@@ -29,17 +41,6 @@ exports.getCateringRates = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
-// get admin profile
-exports.getAdmin = (req, res) => {
-  const userId = req.params.id;
-  knex('users')
-    .where({ id: userId })
-    .first()
-    .select('id', 'companyName', 'username', 'contactNo', 'email')
-    .then(admin => res.status(200).json(admin))
-    .catch(err => res.status(500).json(err));
-};
-
 // get a user profile
 exports.getMe = (req, res) => {
   const userId = req.params.id;
@@ -59,4 +60,31 @@ exports.getMe = (req, res) => {
     )
     .then(admin => res.status(200).json(admin))
     .catch(err => res.status(500).json(err));
+};
+
+// edit a user profile
+exports.editUser = (req, res) => {
+  const userId = req.params.id;
+  const {
+    username,
+    companyName,
+    contactNo,
+    email,
+    lunchQty,
+    dinnerQty,
+  } = req.body.userInfo;
+
+  return knex('users')
+    .where({ id: userId })
+    .first()
+    .update({
+      companyName,
+      username,
+      contactNo,
+      email,
+      lunchQty,
+      dinnerQty,
+    })
+    .then(() => res.status(200).json())
+    .catch(err => res.status(409).json(err));
 };

@@ -20,7 +20,7 @@ const selectedItem = (state = initialState, action) => {
     case types.SAVE_CLICKED_ITEM_DATA:
       return {
         ...state,
-        data: [...state.data, action.payload],
+        data: [...state.data, action.data],
       };
     case types.RESET_CLICKED_ITEM_DATA:
       return {

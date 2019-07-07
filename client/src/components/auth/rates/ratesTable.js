@@ -23,6 +23,7 @@ const RatesTable = ({
   orderBy,
   sortedData,
   handleRequestSort,
+  selectedSearchItem,
 }) => {
   const emptyRows = users.length <= 10 ? 10 - users.length : 0;
   return (
@@ -45,6 +46,7 @@ const RatesTable = ({
                     key={row.id}
                     row={row}
                     labelId={labelId}
+                    selectedSearchItem={selectedSearchItem}
                   />
                 );
               })}

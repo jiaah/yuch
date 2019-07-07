@@ -29,8 +29,5 @@ module.exports = () => {
   // Admin Account
   router.patch('/admin/edit/:id', authController.editAdminAccount);
 
-  /* --- User --- */
-  // User Account
-  router.patch('/user/edit/:id', authController.editUser);
   return router;
 };
