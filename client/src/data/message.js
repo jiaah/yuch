@@ -45,3 +45,11 @@ export const adminConfirmMessageOnDelete = (
     를 입력해주세요&#46;
   </React.Fragment>
 );
+
+export const updateRateMessage = (
+  <React.Fragment>
+    {' '}
+    <span className="c-point2">선택한 달 1일부터</span>
+    &#8201; 가격변동이 적용됩니다&#46;
+  </React.Fragment>
+);

@@ -173,8 +173,8 @@ export const adminAccountValidation = Yup.object({
   email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
 });
 
-export const mealPriceValidation = Yup.object({
-  mealPrice: Yup.number()
+export const reservePriceValidation = Yup.object({
+  reservePrice: Yup.number()
     .typeError('숫자만 입력하세요.')
     .min(1, '0이상의 숫자를 입력해 주세요.')
     .max(30000, '3만원 이하만 입력 가능합니다.')

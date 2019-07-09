@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
 import IconMessage from '../../../shared/iconMessage';
+import * as data from '../../../data/message';
 
 const styles = theme => ({
   textField: {
@@ -26,8 +27,8 @@ const styles = theme => ({
 });
 
 const EditUserForm = ({
-  values: { mealPrice },
-  date,
+  values: { reservePrice },
+  reserveDate,
   thisMonth,
   nextMonth,
   inTwoMonths,
@@ -58,14 +59,13 @@ const EditUserForm = ({
       <form className="mh2 rate-edit-form" onSubmit={handleSubmit}>
         <div className="flex">
           <TextField
-            id="mealPrice"
-            label="식수가격"
-            placeholder="5000"
-            value={mealPrice || ''}
-            onChange={e => change(e, 'mealPrice', true)}
+            id="reservePrice"
+            label="변동가격"
+            value={reservePrice || ''}
+            onChange={e => change(e, 'reservePrice', true)}
             onBlur={handleBlur}
-            helperText={touched.mealPrice && errors.mealPrice}
-            error={touched.mealPrice && Boolean(errors.mealPrice)}
+            helperText={touched.reservePrice && errors.reservePrice}
+            error={touched.reservePrice && Boolean(errors.reservePrice)}
             required={true}
             InputProps={{
               startAdornment: (
@@ -76,9 +76,9 @@ const EditUserForm = ({
             className={classes.textField}
           />
           <FormControl className={classes.formControl}>
-            <InputLabel required={true}>날짜</InputLabel>
+            <InputLabel required={true}>적용날짜 (YYYY/MM)</InputLabel>
             <Select
-              value={date}
+              value={reserveDate}
               onChange={handleSelectChange}
               renderValue={value => value}
             >
@@ -101,12 +101,12 @@ const EditUserForm = ({
       <div className="flex justify-end pw3">
         <IconMessage
           name="info"
-          width="20"
-          height="20"
+          width="18"
+          height="18"
           viewBox="0 0 20 20"
           fillOuter="#2196F3"
           fillInner="#ffffff"
-          text="입력되는 달부터 가격변동이 적용됩니다."
+          text={data.updateRateMessage}
           classes="icon-message--info f-mini"
         />
       </div>

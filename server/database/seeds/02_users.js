@@ -10,7 +10,8 @@ const createFakeUser = () => ({
   lunchQty: faker.random.number(),
   dinnerQty: faker.random.number(),
   mealPrice: faker.random.number(),
-  reservedPrice: { date: '', price: '' },
+  reservePrice: null,
+  reserveDate: '',
   email: faker.internet.email(),
 });
 

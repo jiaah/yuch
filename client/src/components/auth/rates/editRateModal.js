@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import Modal from '../../../shared/modal';
 import Form from './editRateForm';
 import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
-import { mealPriceValidation } from '../formValidation';
+import { reservePriceValidation } from '../formValidation';
 
 const EditRateModal = ({
   clickedUserData,
@@ -18,8 +18,9 @@ const EditRateModal = ({
       <span className="b">{clickedUserData[0].companyName}</span> 식수가격
     </React.Fragment>
   );
-  const [date, setDate] = React.useState(nextMonth);
-  const handleSelectChange = e => setDate(e.target.value);
+  const date = (clickedUserData && clickedUserData[0].reserveDate) || nextMonth;
+  const [reserveDate, setReserveDate] = React.useState(date);
+  const handleSelectChange = e => setReserveDate(e.target.value);
 
   const closeModal = async () => {
     if (clickedUserData.length !== 0) {
@@ -28,23 +29,16 @@ const EditRateModal = ({
     }
     return hideModal();
   };
-  const mealPrice = clickedUserData[0].mealPrice;
-  const values = { mealPrice };
 
-  const changeDateFormat = date => {
-    // 'YYYY 년 MM 월' -> 'YYYY / MM' for UX
-    const splitDate = date.split(' ').slice();
-    const reservedDate = `${splitDate[0]} / ${splitDate[2]} `;
-    return reservedDate;
-  };
+  const reservePrice = clickedUserData[0].reservePrice;
+  const values = { reservePrice };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const { mealPrice } = values;
+    const { reservePrice } = values;
     const id = clickedUserData[0].id;
 
     try {
-      const reservedDate = await changeDateFormat(date);
-      await updateReservedPrice(id, reservedDate, mealPrice);
+      await updateReservedPrice(id, reserveDate, reservePrice);
       await Promise.all([resetForm({}), closeModal()]);
       return window.location.reload(true);
     } catch (err) {
@@ -66,14 +60,14 @@ const EditRateModal = ({
             render={props => (
               <Form
                 {...props}
-                date={date}
+                reserveDate={reserveDate}
                 thisMonth={thisMonth}
                 nextMonth={nextMonth}
                 inTwoMonths={inTwoMonths}
                 handleSelectChange={handleSelectChange}
               />
             )}
-            validationSchema={mealPriceValidation}
+            validationSchema={reservePriceValidation}
             onSubmit={handleSubmit}
           />
         }

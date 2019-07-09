@@ -54,10 +54,10 @@ const RatesTableRow = ({
         {row.mealPrice}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.reservedPrice.price}
+        {row.reservePrice}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.reservedPrice.date}
+        {row.reserveDate}
       </TableCell>
     </TableRow>
   </React.Fragment>

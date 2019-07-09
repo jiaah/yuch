@@ -239,15 +239,15 @@ export const cateringRatesTableHeadColumns = [
     label: '식수가격',
   },
   {
-    id: 'priceToChange',
+    id: 'reservePrice',
     numeric: true,
     disablePadding: false,
-    label: '변동 가격',
+    label: '변동가격',
   },
   {
-    id: 'appliedDate',
+    id: 'reserveDate',
     numeric: true,
     disablePadding: false,
-    label: '적용 달',
+    label: '적용되는 날짜',
   },
 ];

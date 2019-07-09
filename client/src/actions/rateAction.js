@@ -27,14 +27,14 @@ export const getCateringRates = () => async dispatch => {
 
 export const updateReservedPrice = (
   id,
-  reservedDate,
+  reserveDate,
   mealPrice,
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateReservedPrice' });
   try {
     await axios.patch(
       `${API_HOST}/admin/users/catering/rates`,
-      { id, reservedDate, mealPrice },
+      { id, reserveDate, mealPrice },
       {
         headers: { authorization: token },
       },

@@ -22,10 +22,11 @@ exports.up = knex =>
         .boolean('isAdmin')
         .notNullable()
         .defaultTo(false);
-      table.integer('lunchQty');
-      table.integer('dinnerQty');
-      table.integer('mealPrice');
-      table.json('reservedPrice');
+      table.integer('lunchQty').defaultTo(null);
+      table.integer('dinnerQty').defaultTo(null);
+      table.integer('mealPrice').defaultTo(null);
+      table.integer('reservePrice').defaultTo(null);
+      table.string('reserveDate').defaultTo('');
       table
         .uuid('bankAccountId')
         .references('id')
