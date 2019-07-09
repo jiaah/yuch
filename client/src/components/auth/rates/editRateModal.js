@@ -21,9 +21,10 @@ const EditRateModal = ({
   const [date, setDate] = React.useState(nextMonth);
   const handleSelectChange = e => setDate(e.target.value);
 
-  const closeModal = () => {
+  const closeModal = async () => {
     if (clickedUserData.length !== 0) {
-      return Promise.all([resetClickedItemData(), hideModal()]);
+      await hideModal();
+      return resetClickedItemData();
     }
     return hideModal();
   };

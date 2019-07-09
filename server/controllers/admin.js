@@ -192,7 +192,6 @@ exports.getCateringRates = (req, res) => {
 
 exports.updateReservedPrice = (req, res) => {
   const { id, reservedDate, mealPrice } = req.body;
-
   return knex('users')
     .where({ id })
     .update({ reservedPrice: { date: reservedDate, price: mealPrice } })
