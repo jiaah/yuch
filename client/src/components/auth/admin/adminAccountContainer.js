@@ -9,8 +9,8 @@ import {
 import PasswordFormBox from '../password/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { editAdminAccount, changePassword } from '../../../actions/authAction';
-import { getAdmin } from '../../../actions/userAction';
+import { changePassword } from '../../../actions/userAction';
+import { getAdmin, editAdminAccount } from '../../../actions/adminAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({

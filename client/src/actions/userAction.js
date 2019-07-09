@@ -5,25 +5,27 @@ import { getToken } from '../../localStorage';
 
 const token = getToken();
 
-export const getUsers = () => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });
+/* --- Admin & Users --- */
+export const changePassword = (id, password, newPassword) => async dispatch => {
+  console.log('id, password, newPassword: ', id, password, newPassword);
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    const res = await axios.get(`${API_HOST}/user/users`, {
-      headers: { authorization: token },
-    });
-    const users = res.data;
-    dispatch({
-      type: types.HTTP_SUCCESS,
-      api: 'getUsers',
-      payload: { users },
-    });
-    return users;
+    await axios.patch(
+      `${API_HOST}/user/password`,
+      { id, password, newPassword },
+      {
+        headers: { authorization: token },
+      },
+    );
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getUsers', error });
-    throw new Error('Getting users list is failed');
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
   }
 };
 
+/* --- Users --- */
+// user account
 export const getMe = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getMyAccount' });
   try {
@@ -43,40 +45,22 @@ export const getMe = id => async dispatch => {
   }
 };
 
-export const getAdmin = id => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getAdmin' });
+export const editUserAccount = (id, userInfo) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editUserAccount' });
   try {
-    const res = await axios.get(`${API_HOST}/user/admin/me/${id}`, {
-      headers: { authorization: token },
-    });
-    const data = res.data;
-    dispatch({
+    await axios.patch(
+      `${API_HOST}/user/edit/${id}`,
+      { userInfo },
+      {
+        headers: { authorization: token },
+      },
+    );
+    return dispatch({
       type: types.HTTP_SUCCESS,
-      api: 'getAdmin',
-      payload: { data },
+      api: 'editUserAccount',
     });
-    return data;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getAdmin', error });
-    throw new Error('Getting the admin account failed.');
-  }
-};
-
-export const getCateringRates = () => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getCateringRates' });
-  try {
-    const res = await axios.get(`${API_HOST}/user/users/catering/rates`, {
-      headers: { authorization: token },
-    });
-    const rates = res.data;
-    dispatch({
-      type: types.HTTP_SUCCESS,
-      api: 'getCateringRates',
-      payload: { rates },
-    });
-    return rates;
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getCateringRates', error });
-    throw new Error('Getting users list is failed');
+    dispatch({ type: types.HTTP_FAILURE, api: 'editUserAccount', error });
+    throw new Error('Updating the user account failed.');
   }
 };

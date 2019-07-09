@@ -8,7 +8,7 @@ import Loader from '../../../shared/loader';
 import IconButton from '../../../shared/iconButton';
 import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
-import { getCateringRates } from '../../../actions/userAction';
+import { getCateringRates } from '../../../actions/adminAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import * as modalActions from '../../../actions/modalAction';
 

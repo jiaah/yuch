@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
 import {
@@ -9,14 +10,11 @@ import {
 import PasswordFormBox from '../password/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { editUserAccount, changePassword } from '../../../actions/authAction';
-import { getMe } from '../../../actions/userAction';
+import * as userActions from '../../../actions/userAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
-  getMe,
-  editUserAccount,
-  changePassword,
+  userActions: { getMe, editUserAccount, changePassword },
   addFlashMessage,
   id,
 }) => {
@@ -74,10 +72,7 @@ const AdminAccountContainer = ({
 
 const mapStateToPorps = state => ({ id: state.auth.id });
 const mapDispatchToProps = dispatch => ({
-  getMe: id => dispatch(getMe(id)),
-  editUserAccount: (id, values) => dispatch(editUserAccount(id, values)),
-  changePassword: (id, password, newPassword) =>
-    dispatch(changePassword(id, password, newPassword)),
+  userActions: bindActionCreators(userActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

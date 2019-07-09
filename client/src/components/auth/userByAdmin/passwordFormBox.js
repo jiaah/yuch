@@ -15,8 +15,11 @@ const PasswordFormBox = ({
     const { companyName, newPassword } = values;
     try {
       await changePasswordByAdmin(clickedUserId, newPassword);
+      await addFlashMessage(
+        'success',
+        `${companyName} 고객 비밀번호를 수정하였습니다.`,
+      );
       await Promise.all([resetForm({}), closeSubModal(), handleCloseModal()]);
-      return window.location.reload(true);
     } catch (error) {
       await addFlashMessage(
         'error',

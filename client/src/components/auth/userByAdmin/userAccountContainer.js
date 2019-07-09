@@ -9,10 +9,9 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import * as authActions from '../../../actions/authAction';
+import * as adminActions from '../../../actions/adminAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
-import * as userActions from '../../../actions/userAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { getBankAccount } from '../../../actions/bankAction';
 
@@ -28,8 +27,13 @@ const EditUserModal = Loader({
 
 const UserAccountContainer = ({
   modalActions: { showModal, hideModal },
-  authActions: { createUser, editUser, changePasswordByAdmin, deleteUser },
-  userActions: { getUsers },
+  adminActions: {
+    getUsers,
+    createUser,
+    editUser,
+    changePasswordByAdmin,
+    deleteUser,
+  },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
@@ -158,11 +162,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  authActions: bindActionCreators(authActions, dispatch),
+  adminActions: bindActionCreators(adminActions, dispatch),
   modalActions: bindActionCreators(modalActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
-  userActions: bindActionCreators(userActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
   getBankAccount: () => dispatch(getBankAccount()),
 });

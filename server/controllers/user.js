@@ -1,46 +1,36 @@
 const knex = require('../database');
+const util = require('../lib/util');
 
-// get admin profile
-exports.getAdmin = (req, res) => {
-  const userId = req.params.id;
+/* --- Admin & User --- */
+// Change Password
+exports.changePassword = (req, res) => {
+  const { id, password, newPassword } = req.body;
   knex('users')
-    .where({ id: userId })
+    .where({ id })
     .first()
-    .select('id', 'companyName', 'username', 'contactNo', 'email')
-    .then(admin => res.status(200).json(admin))
-    .catch(err => res.status(500).json(err));
+    .then(user => {
+      if (!user) {
+        return res.status(401).json('Auth failed');
+      }
+      util.comparePassword(password, user.password).then(isMatch => {
+        if (isMatch) {
+          return util.bcryptPassword(newPassword).then(hashedPassword =>
+            knex('users')
+              .where({ id })
+              .first()
+              .update({
+                password: hashedPassword,
+              })
+              .then(() => res.status(200).json())
+              .catch(err => res.status(409).json(err)),
+          );
+        }
+        return res.status(409).json('Auth failed');
+      });
+    });
 };
 
 /* --- User --- */
-// get users profile
-exports.getUsersList = (req, res) => {
-  knex('users')
-    .whereNot('username', 'yuch')
-    .select(
-      'id',
-      'companyName',
-      'username',
-      'contactNo',
-      'email',
-      'mealPrice',
-      'lunchQty',
-      'dinnerQty',
-      'bankAccountId',
-      'updated_at',
-    )
-    .then(users => res.status(200).json(users))
-    .catch(err => res.status(500).json(err));
-};
-
-// get catering meal prices of all clients
-exports.getCateringRates = (req, res) => {
-  knex('users')
-    .whereNot('username', 'yuch')
-    .select('id', 'companyName', 'username', 'mealPrice')
-    .then(users => res.status(200).json(users))
-    .catch(err => res.status(500).json(err));
-};
-
 // get a user profile
 exports.getMe = (req, res) => {
   const userId = req.params.id;
