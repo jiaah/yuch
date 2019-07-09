@@ -59,6 +59,7 @@ const Form = props => {
           id="password"
           label="Password"
           name="password"
+          type="password"
           value={password || ''}
           onChange={handleChange}
           onBlur={handleBlur}

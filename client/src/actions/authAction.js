@@ -29,7 +29,7 @@ export const userLogout = () => ({
 export const confirmAdminUser = password => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
   try {
-    await axios.post(`${API_HOST}/auth/admin/login`, { password });
+    await axios.post(`${API_HOST}/auth/login/admin`, { password });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });

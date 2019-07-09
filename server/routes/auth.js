@@ -7,7 +7,7 @@ module.exports = () => {
 
   /* --- Admin --- */
   // Simple Admin Password Check for Security
-  router.post('/admin/login', authController.checkAdminUser);
+  router.post('/login/admin', authController.checkAdminUser);
 
   return router;
 };
