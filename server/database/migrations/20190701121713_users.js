@@ -24,6 +24,7 @@ exports.up = knex =>
         .defaultTo(false);
       table.integer('lunchQty').defaultTo(null);
       table.integer('dinnerQty').defaultTo(null);
+      // Can not have a seperate meal_price table to be able to sort (desc,asc) them in the rates table.
       table.integer('mealPrice').defaultTo(null);
       table.integer('reservePrice').defaultTo(null);
       table.string('reserveDate').defaultTo('');
