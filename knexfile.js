@@ -20,6 +20,7 @@ module.exports = {
       port: PG_PORT,
       timezone: 'ASIA/SEOUL',
     },
+    // `postgres://localhost:${PG_PORT}/${PG_DATABASE}`
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
     },

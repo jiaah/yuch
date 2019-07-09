@@ -48,6 +48,7 @@ const EditUserForm = ({
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
+    console.log(' inputValue: ', inputValue);
     let value;
     if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
@@ -128,7 +129,7 @@ const EditUserForm = ({
             label="연락처"
             placeholder="054 - 745 - 0999"
             value={contactNo || ''}
-            onChange={e => change(e, 'contactNo', true)}
+            onChange={handleChange}
             onBlur={handleBlur}
             helperText={touched.contactNo && errors.contactNo}
             error={touched.contactNo && Boolean(errors.contactNo)}

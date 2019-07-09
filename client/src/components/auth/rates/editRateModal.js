@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import Form from './editRateForm';
-import { mealPriceValidation } from '../formValidation';
+// import { mealPriceValidation } from '../formValidation';
 
 const EditRateModal = ({
   clickedUserData,
@@ -33,7 +33,7 @@ const EditRateModal = ({
           <Formik
             initialValues={values}
             render={props => <Form {...props} />}
-            validationSchema={mealPriceValidation}
+            // validationSchema={mealPriceValidation}
           />
         }
       />
