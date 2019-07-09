@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
-import { thisMonth, nextMonth } from '../../../shared/moment';
+import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
 import IconMessage from '../../../shared/iconMessage';
 
 const styles = theme => ({
@@ -84,6 +84,7 @@ const EditUserForm = ({
             >
               <MenuItem value={thisMonth}>{thisMonth}</MenuItem>
               <MenuItem value={nextMonth}>{nextMonth}</MenuItem>
+              <MenuItem value={inTwoMonths}>{inTwoMonths}</MenuItem>
             </Select>
           </FormControl>
         </div>
