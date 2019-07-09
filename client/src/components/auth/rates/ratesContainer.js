@@ -8,21 +8,23 @@ import Loader from '../../../shared/loader';
 import IconButton from '../../../shared/iconButton';
 import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
-import { getCateringRates } from '../../../actions/adminAction';
+import * as rateActions from '../../../actions/rateAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import * as modalActions from '../../../actions/modalAction';
+import { addFlashMessage } from '../../../actions/messageAction';
 
 const EditRateModal = Loader({
   loader: () =>
     import('./editRateModal' /* webpackChunkName: 'EditRateModal' */),
 });
 const RatesContainer = ({
-  getCateringRates,
+  rateActions: { getCateringRates, updateReservedPrice },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
   },
+  addFlashMessage,
   selectedSearchItem,
   clickedUserData,
   show,
@@ -83,6 +85,8 @@ const RatesContainer = ({
           clickedUserData={clickedUserData}
           hideModal={hideModal}
           resetClickedItemData={resetClickedItemData}
+          updateReservedPrice={updateReservedPrice}
+          addFlashMessage={addFlashMessage}
         />
       )}
     </div>
@@ -96,9 +100,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCateringRates: () => dispatch(getCateringRates()),
+  rateActions: bindActionCreators(rateActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
   modalActions: bindActionCreators(modalActions, dispatch),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
 });
 
 export default connect(

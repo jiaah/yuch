@@ -30,6 +30,7 @@ const RatesTable = ({
   const emptyRows = users.length <= 10 ? 10 - users.length : 0;
 
   const handleTableRowClick = id => setSelected(id);
+
   return (
     <React.Fragment>
       <div className={tableWrapper}>

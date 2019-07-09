@@ -26,6 +26,6 @@ module.exports = () => {
   router.get('/users', adminController.getUsersList);
   // get catering meal prices of all clients
   router.get('/users/catering/rates', adminController.getCateringRates);
-
+  router.patch('/users/catering/rates', adminController.updateReservedPrice);
   return router;
 };

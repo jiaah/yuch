@@ -8,7 +8,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
 import FormButton from '../../../shared/formButton';
-import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
 import IconMessage from '../../../shared/iconMessage';
 
 const styles = theme => ({
@@ -28,6 +27,11 @@ const styles = theme => ({
 
 const EditUserForm = ({
   values: { mealPrice },
+  date,
+  thisMonth,
+  nextMonth,
+  inTwoMonths,
+  handleSelectChange,
   errors,
   touched,
   handleSubmit,
@@ -36,8 +40,6 @@ const EditUserForm = ({
   setFieldValue,
   classes,
 }) => {
-  const [date, setDate] = React.useState(nextMonth);
-
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
@@ -50,8 +52,6 @@ const EditUserForm = ({
     }
     return setFieldValue(name, value, shouldValidate);
   };
-
-  const handleChange = e => setDate(e.target.value);
 
   return (
     <React.Fragment>
@@ -79,7 +79,7 @@ const EditUserForm = ({
             <InputLabel required={true}>날짜</InputLabel>
             <Select
               value={date}
-              onChange={handleChange}
+              onChange={handleSelectChange}
               renderValue={value => value}
             >
               <MenuItem value={thisMonth}>{thisMonth}</MenuItem>

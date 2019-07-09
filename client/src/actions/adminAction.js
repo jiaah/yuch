@@ -4,6 +4,7 @@ import { API_HOST } from '../../config';
 import { getToken } from '../../localStorage';
 
 const token = getToken();
+
 /* --- Admin --- */
 // admin account
 export const getAdmin = id => async dispatch => {
@@ -62,26 +63,6 @@ export const getUsers = () => async dispatch => {
     return users;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'getUsers', error });
-    throw new Error('Getting users list is failed');
-  }
-};
-
-// get users catering meal prices
-export const getCateringRates = () => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getCateringRates' });
-  try {
-    const res = await axios.get(`${API_HOST}/admin/users/catering/rates`, {
-      headers: { authorization: token },
-    });
-    const rates = res.data;
-    dispatch({
-      type: types.HTTP_SUCCESS,
-      api: 'getCateringRates',
-      payload: { rates },
-    });
-    return rates;
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getCateringRates', error });
     throw new Error('Getting users list is failed');
   }
 };

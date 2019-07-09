@@ -189,3 +189,13 @@ exports.getCateringRates = (req, res) => {
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
+
+exports.updateReservedPrice = (req, res) => {
+  const { id, reservedDate, mealPrice } = req.body;
+
+  return knex('users')
+    .where({ id })
+    .update({ reservedPrice: { date: reservedDate, price: mealPrice } })
+    .then(() => res.status(200).json())
+    .catch(err => res.status(500).json(err));
+};
