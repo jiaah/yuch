@@ -95,6 +95,7 @@ exports.createUser = (req, res) => {
         contactNo,
         email,
         mealPrice,
+        reservedPrice: { date: '', price: '' },
         lunchQty,
         dinnerQty,
         bankAccountId,
@@ -184,7 +185,7 @@ exports.getUsersList = (req, res) => {
 exports.getCateringRates = (req, res) => {
   knex('users')
     .whereNot('username', 'yuch')
-    .select('id', 'companyName', 'username', 'mealPrice')
+    .select('id', 'companyName', 'username', 'mealPrice', 'reservedPrice')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };

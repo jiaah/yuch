@@ -4,7 +4,7 @@ import { API_HOST } from '../../config';
 import { getToken } from '../../localStorage';
 
 const token = getToken();
-
+/* --- Admin --- */
 // admin account
 export const getAdmin = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getAdmin' });
@@ -45,6 +45,7 @@ export const editAdminAccount = (id, values) => async dispatch => {
   }
 };
 
+/* --- Users --- */
 // get users account
 export const getUsers = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });
