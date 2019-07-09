@@ -59,7 +59,7 @@ const RatesContainer = ({
   const renderAllUsers = () => resetSelectedItemValue();
 
   return (
-    <div className="container r--w-80">
+    <div className="container r--w-70">
       <h2 onClick={renderAllUsers}>식수가격</h2>
       <div className="paper-label-box flex justify-between">
         <SearchBar users={data} />

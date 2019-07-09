@@ -135,7 +135,6 @@ exports.editUserByAdmin = (req, res) => {
 };
 
 exports.changePasswordByAdmin = (req, res) => {
-  // const userId = req.params.id;
   const { id, newPassword } = req.body;
 
   util.bcryptPassword(newPassword).then(hashedPassword =>
