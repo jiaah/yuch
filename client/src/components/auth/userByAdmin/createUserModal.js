@@ -57,6 +57,7 @@ const UserAccountModal = ({
     companyName: '',
     contactNo: '',
     email: '',
+    address: '',
     mealPrice: '',
     lunchQty: '',
     dinnerQty: '',

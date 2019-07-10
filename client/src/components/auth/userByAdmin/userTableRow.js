@@ -89,6 +89,9 @@ const UserTableRow = ({
           &#8201;&#8201;&#8201;
           {slicedAccountNo}
         </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.address}
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );

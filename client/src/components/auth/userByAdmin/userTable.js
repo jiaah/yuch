@@ -15,7 +15,9 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 800 },
+  table: {
+    minWidth: 800,
+  },
 });
 
 const UserTable = ({

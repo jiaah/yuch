@@ -187,13 +187,19 @@ export const userAccountTableHeadColumns = [
     id: 'dinnerQty',
     numeric: true,
     disablePadding: false,
-    label: '저녁 식수량',
+    label: '석식 식수량',
   },
   {
     id: 'bankAccountId',
     numeric: true,
     disablePadding: false,
     label: '결제계좌',
+  },
+  {
+    id: 'bankAccountId',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
   },
 ];
 

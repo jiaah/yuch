@@ -21,6 +21,14 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 118,
   },
+  textFieldC: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 250,
+    [theme.breakpoints.up('md')]: {
+      width: 604,
+    },
+  },
 });
 
 const EditUserForm = ({
@@ -29,6 +37,7 @@ const EditUserForm = ({
     username,
     contactNo,
     email,
+    address,
     mealPrice,
     lunchQty,
     dinnerQty,
@@ -48,7 +57,6 @@ const EditUserForm = ({
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
-    console.log(' inputValue: ', inputValue);
     let value;
     if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
@@ -159,7 +167,10 @@ const EditUserForm = ({
             value={mealPrice || ''}
             onChange={e => change(e, 'mealPrice', true)}
             onBlur={handleBlur}
-            helperText={touched.mealPrice && errors.mealPrice}
+            helperText={
+              touched.mealPrice &&
+              '변동된 식수가격은 다음달 1일부터 적용됩니다.'
+            }
             error={touched.mealPrice && Boolean(errors.mealPrice)}
             required={true}
             InputProps={{
@@ -249,6 +260,31 @@ const EditUserForm = ({
           </div>
         </div>
       </div>
+      <TextField
+        id="address"
+        label="주소"
+        placeholder="황성동 1071-1번지 강남골프장 맞은편"
+        value={address || ''}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        helperText={touched.address && errors.address}
+        error={touched.address && Boolean(errors.address)}
+        margin="normal"
+        className={classes.textFieldC}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Icon
+                name="user"
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                fill="none"
+              />
+            </InputAdornment>
+          ),
+        }}
+      />
       <BankAccountForm
         bankAccountId={bankAccountId}
         bankAccount={bankAccount}

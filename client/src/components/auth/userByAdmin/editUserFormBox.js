@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import EditUserForm from './editUserForm';
+import { nextMonth } from '../../../shared/moment';
 
 const DeleteUserFormBox = ({
   showSubModal,
@@ -21,6 +22,7 @@ const DeleteUserFormBox = ({
       lunchQty: lunchQtyValue,
       dinnerQty: dinnerQtyValue,
       ...others,
+      nextMonth,
     };
 
     try {

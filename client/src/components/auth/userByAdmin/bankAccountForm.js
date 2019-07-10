@@ -51,7 +51,6 @@ const BankAccountForm = ({ bankAccountId, bankAccount, classes, change }) => (
         name="bankAccountId"
         value={bankAccountId}
         onChange={e => change(e, 'bankAccountId', false)}
-        row
       >
         {bankAccount.length !== 0 &&
           bankAccount.map(row => (

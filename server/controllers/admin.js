@@ -74,36 +74,42 @@ exports.deleteBankAccount = (req, res) => {
 // user account
 exports.createUser = (req, res) => {
   const {
+    companyName,
     username,
     password,
-    companyName,
     contactNo,
     email,
-    mealPrice,
     lunchQty,
     dinnerQty,
     bankAccountId,
+    address,
+    mealPrice,
   } = req.body.userInfo;
 
-  return util
-    .bcryptPassword(password)
-    .then(hashedPassword =>
-      knex('users').insert({
+  return util.bcryptPassword(password).then(hashedPassword =>
+    knex('users')
+      .insert({
         companyName,
         username,
         password: hashedPassword,
         contactNo,
         email,
-        mealPrice,
-        reservePrice: null,
-        reserveDate: '',
         lunchQty,
         dinnerQty,
         bankAccountId,
-      }),
-    )
-    .then(() => res.status(200).json())
-    .catch(err => res.status(409).json(err));
+        address,
+      })
+      .returning('id')
+      .then(user => {
+        const userId = user[0];
+        return knex('meal_price').insert({
+          mealPrice,
+          userId,
+        });
+      })
+      .then(() => res.status(200).json())
+      .catch(err => res.status(409).json(err)),
+  );
 };
 
 exports.editUserByAdmin = (req, res) => {
@@ -117,6 +123,8 @@ exports.editUserByAdmin = (req, res) => {
     lunchQty,
     dinnerQty,
     bankAccountId,
+    address,
+    nextMonth,
   } = req.body.userInfo;
 
   return knex('users')
@@ -127,11 +135,20 @@ exports.editUserByAdmin = (req, res) => {
       username,
       contactNo,
       email,
-      mealPrice,
       lunchQty,
       dinnerQty,
       bankAccountId,
+      address,
     })
+    .then(() =>
+      knex('meal_price')
+        .where({ userId })
+        .first()
+        .update({
+          reservePrice: mealPrice,
+          reserveDate: nextMonth,
+        }),
+    )
     .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
 };
@@ -175,6 +192,7 @@ exports.getUsersList = (req, res) => {
       'users.lunchQty',
       'users.dinnerQty',
       'users.bankAccountId',
+      'users.address',
       'users.updated_at',
       'meal_price.mealPrice',
     )

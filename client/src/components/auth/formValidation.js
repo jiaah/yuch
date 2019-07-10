@@ -36,6 +36,7 @@ export const addUserAccountValidation = Yup.object({
     .matches(phoneRegExp, "' - '를 포함해서 번호를 입력해주세요.")
     .required('연락처를 입력하세요.'),
   email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+  address: Yup.string(''),
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
     .min(1, '0이상의 숫자를 입력해 주세요.')
@@ -90,6 +91,7 @@ export const editUserAccountValidation = Yup.object({
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
+  address: Yup.string(''),
 });
 
 export const loginValidation = Yup.object({
