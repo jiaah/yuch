@@ -162,9 +162,8 @@ exports.deleteUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
-// get users profile
+// get users profile, meal prices && bank accounts data
 exports.getUsersList = (req, res) => {
-  console.log('hello');
   knex()
     .whereNot('users.username', 'yuch')
     .select(
@@ -189,18 +188,20 @@ exports.getUsersList = (req, res) => {
     });
 };
 
-// get catering meal prices of all clients
+// get catering meal prices of all clients & users id, companyName*
 exports.getCateringRates = (req, res) => {
-  knex('users')
-    .whereNot('username', 'yuch')
+  knex()
+    .whereNot('users.isAdmin', true)
     .select(
-      'id',
-      'companyName',
-      'username',
-      'mealPrice',
-      'reservePrice',
-      'reserveDate',
+      'meal_price.userId',
+      'users.companyName',
+      'meal_price.mealPrice',
+      'meal_price.reservePrice',
+      'meal_price.reserveDate',
+      'meal_price.updated_at',
     )
+    .from('meal_price')
+    .leftJoin('users', 'meal_price.userId', 'users.id')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
