@@ -47,7 +47,7 @@ const RatesTable = ({
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (
                   <RatesTableRow
-                    key={row.id}
+                    key={row.userId}
                     row={row}
                     labelId={labelId}
                     selectedSearchItem={selectedSearchItem}

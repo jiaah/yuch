@@ -35,10 +35,10 @@ const EditRateModal = ({
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { reservePrice } = values;
-    const id = clickedUserData[0].id;
+    const userId = clickedUserData[0].userId;
 
     try {
-      await updateReservedPrice(id, reserveDate, reservePrice);
+      await updateReservedPrice(userId, reservePrice, reserveDate);
       await Promise.all([resetForm({}), closeModal()]);
       return window.location.reload(true);
     } catch (err) {

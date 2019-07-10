@@ -164,7 +164,7 @@ exports.deleteUser = (req, res) => {
 
 // get users profile, meal prices && bank accounts data
 exports.getUsersList = (req, res) => {
-  knex()
+  knex('users')
     .whereNot('users.username', 'yuch')
     .select(
       'users.id',
@@ -178,7 +178,6 @@ exports.getUsersList = (req, res) => {
       'users.updated_at',
       'meal_price.mealPrice',
     )
-    .from('users')
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
     .then(users => {
       knex('bank_account')
@@ -190,7 +189,7 @@ exports.getUsersList = (req, res) => {
 
 // get catering meal prices of all clients & users id, companyName*
 exports.getCateringRates = (req, res) => {
-  knex()
+  knex('meal_price')
     .whereNot('users.isAdmin', true)
     .select(
       'meal_price.userId',
@@ -200,17 +199,17 @@ exports.getCateringRates = (req, res) => {
       'meal_price.reserveDate',
       'meal_price.updated_at',
     )
-    .from('meal_price')
     .leftJoin('users', 'meal_price.userId', 'users.id')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
 
 exports.updateReservedPrice = (req, res) => {
-  const { id, reserveDate, mealPrice } = req.body;
-  return knex('users')
-    .where({ id })
-    .update({ reservePrice: mealPrice, reserveDate })
+  const { userId, reservePrice, reserveDate } = req.body;
+
+  return knex('meal_price')
+    .where({ userId })
+    .update({ reservePrice, reserveDate })
     .then(() => res.status(200).json())
     .catch(err => res.status(500).json(err));
 };

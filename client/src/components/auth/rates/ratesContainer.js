@@ -47,7 +47,7 @@ const RatesContainer = ({
   }, []);
 
   const getClickedUserData = async id => {
-    const userData = await data.filter(user => user.id === id);
+    const userData = await data.filter(user => user.userId === id);
     return userData[0];
   };
 
