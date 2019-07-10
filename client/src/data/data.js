@@ -196,7 +196,7 @@ export const userAccountTableHeadColumns = [
     label: '결제계좌',
   },
   {
-    id: 'bankAccountId',
+    id: 'address',
     numeric: true,
     disablePadding: false,
     label: '주소',
