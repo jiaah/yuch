@@ -33,22 +33,24 @@ exports.changePassword = (req, res) => {
 /* --- User --- */
 // get a user profile
 exports.getMe = (req, res) => {
-  const userId = req.params.id;
+  const id = req.params.id;
+
   knex('users')
-    .where({ id: userId })
-    .first()
+    .where({ 'users.id': id })
     .select(
-      'id',
-      'companyName',
-      'username',
-      'contactNo',
-      'email',
-      'mealPrice',
-      'lunchQty',
-      'dinnerQty',
-      'bankAccountId',
+      'users.id',
+      'users.companyName',
+      'users.username',
+      'users.contactNo',
+      'users.email',
+      'users.lunchQty',
+      'users.dinnerQty',
+      'users.bankAccountId',
+      'users.address',
+      'meal_price.mealPrice',
     )
-    .then(admin => res.status(200).json(admin))
+    .leftJoin('meal_price', 'users.id', 'meal_price.userId')
+    .then(user => res.status(200).json(user))
     .catch(err => res.status(500).json(err));
 };
 
@@ -62,6 +64,7 @@ exports.editUser = (req, res) => {
     email,
     lunchQty,
     dinnerQty,
+    address,
   } = req.body.userInfo;
 
   return knex('users')
@@ -74,6 +77,7 @@ exports.editUser = (req, res) => {
       email,
       lunchQty,
       dinnerQty,
+      address,
     })
     .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));

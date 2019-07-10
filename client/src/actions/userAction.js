@@ -31,7 +31,7 @@ export const getMe = id => async dispatch => {
     const res = await axios.get(`${API_HOST}/user/me/${id}`, {
       headers: { authorization: token },
     });
-    const data = res.data;
+    const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getMyAccount',

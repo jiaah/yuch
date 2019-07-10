@@ -22,7 +22,7 @@ const AdminAccountContainer = ({
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchUserData = async () => {
     const data = await getMe(id);
-    setUserData(data);
+    setUserData(data[0]);
   };
 
   useEffect(() => {

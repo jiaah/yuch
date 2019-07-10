@@ -35,6 +35,7 @@ const UserForm = ({
     mealPrice,
     lunchQty,
     dinnerQty,
+    address,
   },
   errors,
   touched,
@@ -236,6 +237,31 @@ const UserForm = ({
         margin="normal"
         className={classes.textField}
         disabled={true}
+      />
+      <TextField
+        id="address"
+        label="주소"
+        placeholder="황성동 1071-1번지 강남골프장 맞은편"
+        value={address || ''}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        helperText={touched.address && errors.address}
+        error={touched.address && Boolean(errors.address)}
+        margin="normal"
+        className={classes.textField}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Icon
+                name="user"
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                fill="none"
+              />
+            </InputAdornment>
+          ),
+        }}
       />
       <div>
         <Button
