@@ -17,17 +17,14 @@ exports.up = knex =>
         .notNullable();
       table.string('password').notNullable();
       table.string('contactNo').notNullable();
-      table.string('email');
+      table.string('email').defaultTo('');
+      table.string('address').defaultTo('');
       table
         .boolean('isAdmin')
         .notNullable()
         .defaultTo(false);
       table.integer('lunchQty').defaultTo(null);
       table.integer('dinnerQty').defaultTo(null);
-      // Can not have a seperate meal_price table to be able to sort (desc,asc) them in the rates table.
-      table.integer('mealPrice').defaultTo(null);
-      table.integer('reservePrice').defaultTo(null);
-      table.string('reserveDate').defaultTo('');
       table
         .uuid('bankAccountId')
         .references('id')

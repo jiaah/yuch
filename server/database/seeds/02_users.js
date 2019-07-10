@@ -3,15 +3,14 @@ require('dotenv').config();
 const faker = require('faker');
 
 const createFakeUser = () => ({
+  id: faker.random.uuid(),
   companyName: faker.company.companyName(),
   username: faker.internet.userName(),
   password: faker.internet.password(),
-  contactNo: faker.phone.phoneFormats(),
+  contactNo: faker.phone.phoneNumber(),
+  address: faker.address.streetAddress(),
   lunchQty: faker.random.number(),
   dinnerQty: faker.random.number(),
-  mealPrice: faker.random.number(),
-  reservePrice: null,
-  reserveDate: '',
   email: faker.internet.email(),
 });
 
@@ -28,6 +27,7 @@ exports.seed = (knex, Promise) =>
   knex('users')
     .del()
     .then(() => {
+      // WARNING !! DO NOT DELETE the initial Admin Account setup.
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(PASSWORD, salt);
       return Promise.join(
@@ -47,5 +47,19 @@ exports.seed = (knex, Promise) =>
       for (let i = 0; i < desiredFakeUsers; i++) {
         fakeUsers.push(createFakeUser());
       }
-      return knex('users').insert(fakeUsers);
+      return knex('users')
+        .insert(fakeUsers)
+        .returning('*');
+    })
+    .then(fakeUsers => {
+      const fakeMealPrices = [];
+      fakeUsers.forEach(user => {
+        const createUserMealPrice = () => ({
+          id: faker.random.uuid(),
+          userId: user.id,
+          mealPrice: faker.random.number(),
+        });
+        fakeMealPrices.push(createUserMealPrice());
+      });
+      return knex('meal_price').insert(fakeMealPrices);
     });

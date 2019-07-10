@@ -54,13 +54,13 @@ export const getUsers = () => async dispatch => {
     const res = await axios.get(`${API_HOST}/admin/users`, {
       headers: { authorization: token },
     });
-    const users = res.data;
+    const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getUsers',
-      payload: { users },
+      payload: data,
     });
-    return users;
+    return data;
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'getUsers', error });
     throw new Error('Getting users list is failed');

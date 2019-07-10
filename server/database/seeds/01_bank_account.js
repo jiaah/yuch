@@ -2,6 +2,7 @@ exports.seed = knex =>
   knex('bank_account')
     .del()
     .then(() =>
+      // WARNING !! DO NOT DELETE the initial Bank Account setup.
       knex('bank_account').insert([
         {
           bankName: '유청',

@@ -13,7 +13,6 @@ import * as adminActions from '../../../actions/adminAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
-import { getBankAccount } from '../../../actions/bankAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -40,7 +39,6 @@ const UserAccountContainer = ({
     resetClickedItemData,
   },
   addFlashMessage,
-  getBankAccount,
   clickedUserData,
   selectedSearchItem,
 }) => {
@@ -49,9 +47,9 @@ const UserAccountContainer = ({
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchUsersData = async () => {
-    const users = await getUsers();
-    const bankAccount = await getBankAccount();
-    return Promise.all([setUsers(users), setBankAccount(bankAccount)]);
+    const data = await getUsers();
+    const { users, bankAccounts } = data;
+    return Promise.all([setUsers(users), setBankAccount(bankAccounts)]);
   };
 
   useEffect(() => {
@@ -167,7 +165,6 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   selectedActions: bindActionCreators(selectedActions, dispatch),
-  getBankAccount: () => dispatch(getBankAccount()),
 });
 
 export default connect(
