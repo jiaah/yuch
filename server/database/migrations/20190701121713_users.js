@@ -17,8 +17,8 @@ exports.up = knex =>
         .notNullable();
       table.string('password').notNullable();
       table.string('contactNo').notNullable();
-      table.string('email').defaultTo('');
-      table.string('address').defaultTo('');
+      table.string('email').unique();
+      table.string('address');
       table
         .boolean('isAdmin')
         .notNullable()
@@ -33,14 +33,6 @@ exports.up = knex =>
         .onUpdate('RESTRICT')
         .index();
       table.timestamps(true, true);
-      // table
-      //   .timestamps('createdAt', { useTz: true })
-      //   .notNullable()
-      //   .defaultTo(knex.raw('now()'));
-      // table
-      //   .timestamp('updatedAt', { useTz: true })
-      //   .notNullable()
-      //   .defaultTo(knex.fn.now());
     });
 
 exports.down = knex => knex.schema.dropTable('users');

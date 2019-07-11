@@ -13,7 +13,7 @@ export const getAdmin = id => async dispatch => {
     const res = await axios.get(`${API_HOST}/admin/me/${id}`, {
       headers: { authorization: token },
     });
-    const data = res.data;
+    const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getAdmin',

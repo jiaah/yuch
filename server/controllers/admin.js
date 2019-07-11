@@ -4,9 +4,9 @@ const util = require('../lib/util');
 /* --- Admin --- */
 // admin profile
 exports.getAdmin = (req, res) => {
-  const userId = req.params.id;
+  const id = req.params.id;
   knex('users')
-    .where({ id: userId })
+    .where({ id })
     .first()
     .select('id', 'companyName', 'username', 'contactNo', 'email')
     .then(admin => res.status(200).json(admin))
