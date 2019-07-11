@@ -51,7 +51,7 @@ export const navAdminList = [
   },
   {
     id: 2,
-    name: '지불현황',
+    name: '인보이스',
   },
   {
     id: 3,
@@ -72,35 +72,30 @@ export const navAdminItems = {
     },
     {
       id: 12,
-      name: '금일 유청식당 식수현황',
+      name: '금일 식당 매출현황',
       to: 'admin/count/restaurant/dd',
     },
     {
       id: 13,
-      name: '월별 식수현황',
-      to: 'admin/count/company/mm',
-    },
-    {
-      id: 14,
-      name: '회사별 식수현황',
-      to: 'admin/count/company/clientlist',
+      name: '특식 등록',
+      to: 'admin/count/specialmeal',
     },
   ],
   2: [
     {
       id: 11,
-      name: '지불 관리',
-      to: 'admin/revenue/payment/management',
-    },
-    {
-      id: 12,
-      name: '지불 현황',
-      to: 'admin/revenue/payment/status',
+      name: '회사별 거래명세서',
+      to: 'admin/invoice/users',
     },
   ],
   3: [
     {
       id: 11,
+      name: '월별 매출 내역',
+      to: 'admin/revenue/mm',
+    },
+    {
+      id: 12,
       name: '매출 현황',
       to: 'admin/revenue',
     },
