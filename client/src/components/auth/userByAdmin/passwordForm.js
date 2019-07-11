@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Icon from '../../../../assets/icons';
 import FormButton from '../../../shared/formButton';
+import IconButton from '../../../shared/iconButton';
 
 const styles = theme => ({
   textField: {
@@ -14,17 +15,20 @@ const styles = theme => ({
   },
 });
 
-const PasswordForm = props => {
-  const {
-    values: { newPassword, confirmPassword },
-    errors,
-    touched,
-    handleSubmit,
-    isSubmitting,
-    handleBlur,
-    classes,
-    setFieldValue,
-  } = props;
+const PasswordForm = ({
+  values: { newPassword, confirmPassword },
+  errors,
+  touched,
+  handleSubmit,
+  isSubmitting,
+  handleBlur,
+  classes,
+  setFieldValue,
+}) => {
+  const [visible, setVisible] = useState(false);
+  const handleClickShowPassword = () => setVisible(!visible);
+  const type = visible ? 'text' : 'password';
+  const visibleIcon = visible ? 'visibility' : 'visibilityOff';
 
   const change = (e, name, shouldValidate) => {
     e.persist();
@@ -41,6 +45,7 @@ const PasswordForm = props => {
       <TextField
         id="newPassword"
         label="새 비밀번호"
+        type={type}
         placeholder="( 숫자 or 숫자+영문 조합 )"
         value={newPassword || ''}
         onChange={e => change(e, 'newPassword', true)}
@@ -62,11 +67,24 @@ const PasswordForm = props => {
               />
             </InputAdornment>
           ),
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="Toggle password visibility"
+                name={visibleIcon}
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                handleClick={handleClickShowPassword}
+              />
+            </InputAdornment>
+          ),
         }}
       />
       <TextField
         id="confirmPassword"
         label="비밀번호 확인"
+        type={type}
         value={confirmPassword || ''}
         onChange={e => change(e, 'confirmPassword', true)}
         onBlur={handleBlur}
@@ -84,6 +102,18 @@ const PasswordForm = props => {
                 height="20"
                 viewBox="0 0 25 25"
                 fill="none"
+              />
+            </InputAdornment>
+          ),
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="Toggle password visibility"
+                name={visibleIcon}
+                width="20"
+                height="20"
+                viewBox="0 0 25 25"
+                handleClick={handleClickShowPassword}
               />
             </InputAdornment>
           ),

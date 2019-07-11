@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Button from '../../shared/formButton';
 import Icon from '../../../assets/icons';
+import IconButton from '../../shared/iconButton';
 
 const styles = theme => ({
   textField: {
@@ -15,17 +16,21 @@ const styles = theme => ({
   },
 });
 
-const Form = props => {
-  const {
-    values: { username, password },
-    errors,
-    touched,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
-    handleBlur,
-    classes,
-  } = props;
+const Form = ({
+  values: { username, password },
+  errors,
+  touched,
+  handleChange,
+  handleSubmit,
+  isSubmitting,
+  handleBlur,
+  classes,
+}) => {
+  const [visible, setVisible] = useState(false);
+  const handleClickShowPassword = () => setVisible(!visible);
+  const type = visible ? 'text' : 'password';
+  const visibleIcon = visible ? 'visibility' : 'visibilityOff';
+
   return (
     <div className="login-container" data-test="loginformComponent">
       <form onSubmit={handleSubmit} className="flex flex-column-m items-center">
@@ -59,7 +64,7 @@ const Form = props => {
           id="password"
           label="Password"
           name="password"
-          type="password"
+          type={type}
           value={password || ''}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -77,6 +82,18 @@ const Form = props => {
                   height="30"
                   viewBox="0 0 30 30"
                   fill="none"
+                />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  name={visibleIcon}
+                  width="20"
+                  height="20"
+                  viewBox="0 0 25 25"
+                  handleClick={handleClickShowPassword}
                 />
               </InputAdornment>
             ),

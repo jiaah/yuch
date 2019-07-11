@@ -21,6 +21,8 @@ import Delete from './delete';
 import PersonAdd from './personAdd';
 import Search from './search';
 import Print from './print';
+import Visibility from './visibility';
+import VisibilityOff from './visibilityOff';
 
 const Icon = props => {
   switch (props.name) {
@@ -64,6 +66,10 @@ const Icon = props => {
       return <Search {...props} />;
     case 'print':
       return <Print {...props} />;
+    case 'visibility':
+      return <Visibility {...props} />;
+    case 'visibilityOff':
+      return <VisibilityOff {...props} />;
     default:
       return <div />;
   }
