@@ -12,6 +12,7 @@ import IconButton from '../../shared/iconButton';
 const styles = theme => ({
   textField: {
     width: 300,
+    margin: '20px 14px',
     [theme.breakpoints.up('md')]: {
       width: 400,
     },
@@ -40,7 +41,7 @@ const Form = ({
 
   return (
     <div className="login-container" data-test="loginformComponent">
-      <form onSubmit={handleSubmit} className="flex flex-column-m items-center">
+      <form onSubmit={handleSubmit} className="flex flex-column-m">
         <TextField
           id="username"
           label="Username"
@@ -116,7 +117,7 @@ const Form = ({
           data-test="submit-btn"
         />
       </form>
-      <div className="keep-me-logged-in">
+      <div className="keep-me-logged-in float-left">
         <FormControlLabel
           control={
             <Checkbox
@@ -125,7 +126,7 @@ const Form = ({
               value="keepLoggedIn"
             />
           }
-          label="로그인 유지"
+          label="로그인 상태 유지"
         />
       </div>
     </div>
