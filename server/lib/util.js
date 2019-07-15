@@ -7,7 +7,7 @@ exports.getRandomToken = function getRandomToken(user) {
       id: user.id,
       username: user.username,
     };
-    const token = jwt.sign(tokenDetails, process.env.JWT_KEY, {
+    const token = jwt.sign(tokenDetails, process.env.secret, {
       expiresIn: '1h',
     });
     if (token === '' || token === undefined) {

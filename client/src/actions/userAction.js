@@ -28,7 +28,6 @@ export const getMe = id => async dispatch => {
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getMyAccount',
-      payload: { data },
     });
     return data;
   } catch (error) {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 /* --- Components --- */
@@ -11,49 +11,50 @@ import { userLogout } from '../../actions/authAction';
 /* --- images --- */
 import logo from '../../../assets/img/yuch-logo.png';
 
-class NavContainer extends Component {
-  handleUserLogout = async ev => {
+const NavContainer = ({
+  isLoggedIn,
+  companyName,
+  isAdmin,
+  routerLocation,
+  userLogout,
+  history,
+}) => {
+  const handleUserLogout = async ev => {
     ev.preventDefault();
-    await this.props.userLogout();
+    await userLogout();
     await clearLocalStorage();
-    return this.props.history.push('/');
+    return history.push('/');
   };
 
-  render() {
-    const { isLoggedIn, companyName, isAdmin, routerLocation } = this.props;
-
-    return (
-      <div className="nav relative">
-        <Navbar
-          isLoggedIn={isLoggedIn}
-          handleUserLogout={this.handleUserLogout}
-        />
-        <div className="tc">
-          <Link className="td-none" to="/">
-            <img className="yuch-logo" src={logo} alt="logo" />
-          </Link>
-        </div>
-        {isLoggedIn &&
-          !isAdmin && (
-            <p className="mr3 pb2 flex justify-end f-mini">
-              안녕하세요. &#8201;
-              <span className="b">{companyName}</span>
-              &#8201;님,
-            </p>
-          )}
-        <NavMenu
-          routerLocation={routerLocation}
-          isLoggedIn={isLoggedIn}
-          companyName={companyName}
-          data={data}
-          isAdmin={isAdmin}
-        />
+  return (
+    <div className="nav relative">
+      <Navbar isLoggedIn={isLoggedIn} handleUserLogout={handleUserLogout} />
+      <div className="tc">
+        <Link className="td-none" to="/">
+          <img className="yuch-logo" src={logo} alt="logo" />
+        </Link>
       </div>
-    );
-  }
-}
+      {isLoggedIn &&
+        !isAdmin && (
+          <p className="mr3 pb2 flex justify-end f-mini">
+            안녕하세요. &#8201;
+            <span className="b">{companyName}</span>
+            &#8201;님,
+          </p>
+        )}
+      <NavMenu
+        routerLocation={routerLocation}
+        isLoggedIn={isLoggedIn}
+        companyName={companyName}
+        data={data}
+        isAdmin={isAdmin}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
+  // calling 'isLoggedIn' directly from localStorage won't re-render Nav component.
   isLoggedIn: state.auth.isLoggedIn,
   companyName: state.auth.companyName,
   isAdmin: state.auth.isAdmin,

@@ -17,7 +17,6 @@ export const getAdmin = id => async dispatch => {
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getAdmin',
-      payload: { data },
     });
     return data;
   } catch (error) {
@@ -50,7 +49,6 @@ export const getUsers = () => async dispatch => {
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getUsers',
-      payload: data,
     });
     return data;
   } catch (error) {

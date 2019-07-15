@@ -26,6 +26,7 @@ const Form = ({
   handleBlur,
   classes,
 }) => {
+  // hide & show password
   const [visible, setVisible] = useState(false);
   const handleClickShowPassword = () => setVisible(!visible);
   const type = visible ? 'text' : 'password';
@@ -38,6 +39,7 @@ const Form = ({
           id="username"
           label="Username"
           name="username"
+          type="text"
           value={username || ''}
           onChange={handleChange}
           onBlur={handleBlur}

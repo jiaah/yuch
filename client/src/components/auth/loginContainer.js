@@ -11,45 +11,42 @@ import * as data from '../../data/data';
 import { userLogin } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';
 
-class Login extends React.Component {
-  handleUserLogin = async (values, { setSubmitting, resetForm }) => {
+const Login = ({ history, userLogin, addFlashMessage }) => {
+  const handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
-    const { addFlashMessage } = this.props;
     const { loggedInUser, loginFailed } = data.message.auth;
 
     if (isLoggedIn()) {
       await addFlashMessage('warning', loggedInUser);
       await resetForm({});
-      this.props.history.push('/');
+      history.push('/');
       return setSubmitting(false);
     }
 
     try {
-      const token = await this.props.userLogin(username, password);
+      const token = await userLogin(username, password);
       await saveUserToken(token);
       await resetForm({});
-      this.props.history.push('/');
+      history.push('/');
     } catch (error) {
       await addFlashMessage('error', loginFailed);
     }
     return setSubmitting(false);
   };
 
-  render() {
-    const values = { username: '', password: '' };
+  const values = { username: '', password: '' };
 
-    return (
-      <React.Fragment>
-        <Formik
-          initialValues={values}
-          render={props => <Form {...props} />}
-          onSubmit={this.handleUserLogin}
-          validationSchema={loginValidation}
-        />
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <Formik
+        initialValues={values}
+        render={props => <Form {...props} />}
+        onSubmit={handleUserLogin}
+        validationSchema={loginValidation}
+      />
+    </React.Fragment>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   userLogin: (username, password) => dispatch(userLogin(username, password)),

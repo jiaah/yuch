@@ -10,7 +10,6 @@ export const getBankAccount = () => async dispatch => {
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'getBankAccount',
-      payload: { bankAccount },
     });
     return bankAccount;
   } catch (error) {
