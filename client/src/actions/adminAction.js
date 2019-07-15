@@ -29,13 +29,7 @@ export const getAdmin = id => async dispatch => {
 export const editAdminAccount = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
   try {
-    await axios.patch(
-      `${API_HOST}/admin/edit/${id}`,
-      { values },
-      {
-        headers: { authorization: token },
-      },
-    );
+    await axios.patch(`${API_HOST}/admin/edit/${id}`, { values });
     return dispatch({
       type: types.HTTP_SUCCESS,
       api: 'editAdminAccount',
@@ -51,9 +45,7 @@ export const editAdminAccount = (id, values) => async dispatch => {
 export const getUsers = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });
   try {
-    const res = await axios.get(`${API_HOST}/admin/users`, {
-      headers: { authorization: token },
-    });
+    const res = await axios.get(`${API_HOST}/admin/users`);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -71,13 +63,7 @@ export const getUsers = () => async dispatch => {
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
-    await axios.post(
-      `${API_HOST}/admin/user/register`,
-      { userInfo },
-      {
-        headers: { authorization: token },
-      },
-    );
+    await axios.post(`${API_HOST}/admin/user/register`, { userInfo });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'createUser', error });
@@ -88,13 +74,9 @@ export const createUser = userInfo => async dispatch => {
 export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
-    await axios.patch(
-      `${API_HOST}/admin/user/edit/${userInfo.id}`,
-      { userInfo },
-      {
-        headers: { authorization: token },
-      },
-    );
+    await axios.patch(`${API_HOST}/admin/user/edit/${userInfo.id}`, {
+      userInfo,
+    });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
@@ -105,9 +87,7 @@ export const editUser = userInfo => async dispatch => {
 export const deleteUser = userId => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    await axios.delete(`${API_HOST}/admin/user/delete/${userId}`, {
-      headers: { authorization: token },
-    });
+    await axios.delete(`${API_HOST}/admin/user/delete/${userId}`);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
@@ -119,13 +99,7 @@ export const deleteUser = userId => async dispatch => {
 export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    await axios.patch(
-      `${API_HOST}/admin/user/password`,
-      { id, newPassword },
-      {
-        headers: { authorization: token },
-      },
-    );
+    await axios.patch(`${API_HOST}/admin/user/password`, { id, newPassword });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
     dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
