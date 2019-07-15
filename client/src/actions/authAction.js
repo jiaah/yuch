@@ -36,3 +36,8 @@ export const confirmAdminUser = password => async dispatch => {
     throw new Error('Failed admin user authentication.');
   }
 };
+
+/* --- Keep me logged in --- */
+export const keepMeLoggedIn = () => ({
+  type: types.KEEP_ME_LOGGED_IN,
+});

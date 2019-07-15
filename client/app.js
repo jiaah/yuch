@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import NavContainer from './src/components/nav/navContainer';
@@ -11,29 +11,32 @@ const MessageBox = Loader({
     import('./src/shared/message/messageBox' /* webpackChunkName: 'MessageBox' */),
 });
 
-window.onbeforeunload = () => {
-  window.onunload = () => {
-    clearLocalStorage();
+const App = ({ messageShow, isOnModal, keepLoggedIn, children }) => {
+  window.onbeforeunload = () => {
+    window.onunload = () => {
+      if (!keepLoggedIn) return clearLocalStorage();
+    };
+    return undefined;
   };
-  return undefined;
-};
 
-const App = props => (
-  <div id="app absolute">
-    <NavContainer />
-    {props.messageShow !== null &&
-      !props.isOnModal && (
-        <div className="flex justify-center">
-          <MessageBox />
-        </div>
-      )}
-    {props.children}
-  </div>
-);
+  return (
+    <div id="app absolute">
+      <NavContainer />
+      {messageShow !== null &&
+        !isOnModal && (
+          <div className="flex justify-center">
+            <MessageBox />
+          </div>
+        )}
+      {children}
+    </div>
+  );
+};
 
 const mapPropsToState = state => ({
   isOnModal: state.modal.show,
   messageShow: state.message.show,
+  keepLoggedIn: state.auth.keepLoggedIn,
 });
 
 export default connect(

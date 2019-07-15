@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 /* --- Components --- */
 import Button from '../../shared/formButton';
 import Icon from '../../../assets/icons';
@@ -18,6 +20,8 @@ const styles = theme => ({
 
 const Form = ({
   values: { username, password },
+  keepMeLoggedIn,
+  keepLoggedIn,
   errors,
   touched,
   handleChange,
@@ -31,6 +35,8 @@ const Form = ({
   const handleClickShowPassword = () => setVisible(!visible);
   const type = visible ? 'text' : 'password';
   const visibleIcon = visible ? 'visibility' : 'visibilityOff';
+
+  const handleChangeCheckBox = () => keepMeLoggedIn();
 
   return (
     <div className="login-container" data-test="loginformComponent">
@@ -100,6 +106,16 @@ const Form = ({
               </InputAdornment>
             ),
           }}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={keepLoggedIn}
+              onChange={handleChangeCheckBox}
+              value="keepLoggedIn"
+            />
+          }
+          label="로그인 유지"
         />
         <Button
           typeValue="submit"

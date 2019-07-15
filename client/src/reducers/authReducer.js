@@ -5,6 +5,7 @@ const initialState = {
   id: '',
   companyName: '',
   isAdmin: false,
+  keepLoggedIn: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const auth = (state = initialState, action) => {
         id: '',
         companyName: '',
         isAdmin: false,
+      };
+    case types.KEEP_ME_LOGGED_IN:
+      return {
+        ...state,
+        keepLoggedIn: !state.keepLoggedIn,
       };
     default:
       return state;
