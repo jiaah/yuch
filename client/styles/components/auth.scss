@@ -35,7 +35,7 @@
   font-size: .885em;
 }
 
-/* ------ Login ------ */
+/* ------ Forgot Username/Password ------ */
 .forgot-container {
   height: calc(100vh - 240px);
   display: flex;
@@ -45,7 +45,7 @@
   margin: 0 auto;
 
   @include for-desktop-up {
-    width: 500px;
+    width: 650px;
   }
 }
 

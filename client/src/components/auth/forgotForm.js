@@ -8,8 +8,7 @@ import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    margin: '20px 14px 20px 0',
     width: 400,
     [theme.breakpoints.up('md')]: {
       width: 500,
@@ -18,7 +17,7 @@ const styles = theme => ({
 });
 
 const ForgotForm = ({
-  values: { contactNo, email },
+  values: { email },
   errors,
   touched,
   handleChange,
@@ -27,47 +26,17 @@ const ForgotForm = ({
   handleBlur,
   classes,
 }) => (
-  <form
-    className="flex flex-column-m items-center justify-center"
-    onSubmit={handleSubmit}
-  >
-    <TextField
-      id="contactNo"
-      label="연락처"
-      placeholder="054 - 745 - 0999"
-      value={contactNo || ''}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      helperText={touched.contactNo && errors.contactNo}
-      error={touched.contactNo && Boolean(errors.contactNo)}
-      required={true}
-      margin="normal"
-      className={classes.textField}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <Icon
-              name="phone"
-              width="20"
-              height="20"
-              viewBox="0 0 25 25"
-              fill="none"
-            />
-          </InputAdornment>
-        ),
-      }}
-    />
+  <form className="flex mt3" onSubmit={handleSubmit}>
     <TextField
       id="email"
-      label="이메일"
       placeholder="sleket12@hanmail.net"
       value={email || ''}
       onChange={handleChange}
       onBlur={handleBlur}
-      helperText={touched.email && errors.email}
       error={touched.email && Boolean(errors.email)}
       margin="normal"
       className={classes.textField}
+      variant="outlined"
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

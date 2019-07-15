@@ -107,7 +107,7 @@ export const loginValidation = Yup.object({
 export const forgotValidation = Yup.object({
   email: Yup.string()
     .email('이메일 주소가 유효하지 않습니다.')
-    .required(),
+    .required('이메일 주소를 입력하세요.'),
 });
 
 export const changePasswordValidation = Yup.object({
