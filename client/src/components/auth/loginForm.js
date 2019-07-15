@@ -107,6 +107,16 @@ const Form = ({
             ),
           }}
         />
+        <Button
+          typeValue="submit"
+          variantValue="contained"
+          buttonName="로그인"
+          className="login-btn"
+          isSubmitting={isSubmitting}
+          data-test="submit-btn"
+        />
+      </form>
+      <div className="keep-me-logged-in">
         <FormControlLabel
           control={
             <Checkbox
@@ -117,15 +127,7 @@ const Form = ({
           }
           label="로그인 유지"
         />
-        <Button
-          typeValue="submit"
-          variantValue="contained"
-          buttonName="로그인"
-          width="medium"
-          isSubmitting={isSubmitting}
-          data-test="submit-btn"
-        />
-      </form>
+      </div>
     </div>
   );
 };

@@ -14,13 +14,13 @@ const Navbar = ({ isLoggedIn, handleUserLogout }) => (
     {isLoggedIn ? (
       <button
         type="button"
-        className="login-btn td-none c-text br f-mini"
+        className="nav--login-btn td-none c-text br f-mini"
         onClick={handleUserLogout}
       >
         로그아웃
       </button>
     ) : (
-      <Link className="login-btn td-none c-text br f-mini" to="/login">
+      <Link className="nav--login-btn td-none c-text br f-mini" to="/login">
         로그인
       </Link>
     )}

@@ -24,17 +24,22 @@ const FormButton = ({
   width,
   isSubmitting,
   classes,
+  className,
 }) => {
-  const widthValue =
-    width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
+  let widthValue = '';
+  if (width === 'big') widthValue = '8em';
+  if (width === 'medium') widthValue = '7em';
+  if (width === 'small') widthValue = '5em';
+
+  const widthStyle = { width: widthValue };
   return (
     <Button
       type={typeValue}
       variant={variantValue}
       color="primary"
       size="small"
-      style={{ width: widthValue }}
-      className={classes.button}
+      style={widthStyle}
+      className={`${className} ${classes.button}`}
       disabled={isSubmitting}
     >
       {buttonName}
