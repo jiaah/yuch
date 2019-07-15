@@ -3,12 +3,20 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import NavContainer from './src/components/nav/navContainer';
 import Loader from './src/shared/loader';
+import { clearLocalStorage } from './localStorage';
 import './styles/main.scss';
 
 const MessageBox = Loader({
   loader: () =>
     import('./src/shared/message/messageBox' /* webpackChunkName: 'MessageBox' */),
 });
+
+window.onbeforeunload = () => {
+  window.onunload = () => {
+    clearLocalStorage();
+  };
+  return undefined;
+};
 
 const App = props => (
   <div id="app absolute">
