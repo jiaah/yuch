@@ -43,15 +43,37 @@ export const keepMeLoggedIn = () => ({
 });
 
 /* --- Forgot Username/Password --- */
+export const findUsername = email => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
+  try {
+    const res = await axios.post(`${API_HOST}/auth/forgot/username`, {
+      email,
+    });
+    const { data } = res;
+    await dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'sendVerificationCodeToEmail',
+    });
+    return data;
+  } catch (error) {
+    dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'sendVerificationCodeToEmail',
+      error,
+    });
+    throw new Error('Failed to send email.');
+  }
+};
+
 export const sendVerificationCodeToEmail = (
+  username,
   email,
-  valueToFind,
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
   try {
-    await axios.post(`${API_HOST}/auth/forgot`, {
+    await axios.post(`${API_HOST}/auth/forgot/password`, {
+      username,
       email,
-      valueToFind,
     });
     return dispatch({
       type: types.HTTP_SUCCESS,

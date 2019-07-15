@@ -8,15 +8,15 @@ import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   textField: {
-    margin: '20px 14px 20px 0',
-    width: 400,
+    margin: '5px 14px',
+    width: 300,
     [theme.breakpoints.up('md')]: {
-      width: 500,
+      width: 400,
     },
   },
 });
 
-const ForgotForm = ({
+const UsernameForm = ({
   values: { email },
   errors,
   touched,
@@ -26,7 +26,7 @@ const ForgotForm = ({
   handleBlur,
   classes,
 }) => (
-  <form className="flex mt3" onSubmit={handleSubmit}>
+  <form className="flex flex-column-m items-center mt4" onSubmit={handleSubmit}>
     <TextField
       id="email"
       placeholder="sleket12@hanmail.net"
@@ -55,10 +55,10 @@ const ForgotForm = ({
       typeValue="submit"
       variantValue="contained"
       buttonName="계속하기"
-      width="medium"
+      className="login-btn"
       isSubmitting={isSubmitting}
     />
   </form>
 );
 
-export default withStyles(styles)(ForgotForm);
+export default withStyles(styles)(UsernameForm);

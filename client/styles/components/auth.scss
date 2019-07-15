@@ -41,11 +41,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 400px;
+  text-align: center;
+  width: 350px;
   margin: 0 auto;
 
   @include for-desktop-up {
-    width: 650px;
+    width: 750px;
   }
 }
 

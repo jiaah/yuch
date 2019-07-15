@@ -51,3 +51,33 @@ exports.checkAdminUser = (req, res) => {
     })
     .catch(err => res.status(500).json(err));
 };
+
+/* --- Forgot username/password --- */
+exports.forgotUsername = (req, res) =>
+  knex('users')
+    .where({ email: req.body.email })
+    .first()
+    .then(user => {
+      if (!user || user === undefined) {
+        return res.status(409).json('Can not find user email');
+      }
+      if (user) {
+        return res.status(200).json(user.username);
+      }
+    });
+
+exports.forgotPassword = (req, res) => {
+  const { username, email } = req.body;
+
+  return knex('users')
+    .where({ username, email })
+    .first()
+    .then(user => {
+      if (!user || user === undefined) {
+        return res.status(409).json('Can not find user email');
+      }
+      if (user) {
+        return res.status(200).json();
+      }
+    });
+};
