@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
 /* --- Components --- */
-import { admin } from '../../data/data';
+import { admin } from '../../../data/data';
 import UsernameFormBox from './usernameFormBox';
 import PasswordFormBox from './passwordFormBox';
 import {
   forgotUsernameValidation,
   forgotPasswordValidation,
-} from './formValidation';
+} from '../formValidation';
 /* --- Actions --- */
-import * as authActions from '../../actions/authAction';
-import * as messageActions from '../../actions/messageAction';
+import * as authActions from '../../../actions/authAction';
+import * as messageActions from '../../../actions/messageAction';
 
 const ForgotContainer = ({
   authActions: { findUsername, sendVerificationCodeToEmail },

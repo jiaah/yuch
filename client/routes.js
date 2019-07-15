@@ -13,12 +13,12 @@ const Home = Loader({
 
 const Login = Loader({
   loader: () =>
-    import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
+    import('./src/components/auth/login/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
 const Forgot = Loader({
   loader: () =>
-    import('./src/components/auth/forgotContainer' /* webpackChunkName: 'Forgot' */),
+    import('./src/components/auth/login/forgotContainer' /* webpackChunkName: 'Forgot' */),
 });
 
 const UserAccountForAdmin = Loader({
