@@ -12,6 +12,7 @@ const MessageBox = Loader({
 });
 
 const App = ({ messageShow, isOnModal, keepLoggedIn, children }) => {
+  // keep me logged in when window/tab closed
   window.onbeforeunload = () => {
     window.onunload = () => {
       if (!keepLoggedIn) return clearLocalStorage();

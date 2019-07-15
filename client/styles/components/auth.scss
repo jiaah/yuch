@@ -21,8 +21,18 @@
 }
 
 .keep-me-logged-in {
-  margin-top: -20px;
-  margin-left: 14px;
+  margin: -20px 14px 20px 14px;
+  padding-bottom: 35px;
+  border-bottom: .5px solid $light-grey;
+  width: 300px;
+
+  @include for-desktop-up {
+    width: 400px;
+  }
+}
+
+.login-forgot {
+  font-size: .885em;
 }
 
 /* ------ User Account ------ */

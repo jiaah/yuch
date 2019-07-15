@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -117,7 +118,7 @@ const Form = ({
           data-test="submit-btn"
         />
       </form>
-      <div className="keep-me-logged-in float-left">
+      <div className="keep-me-logged-in">
         <FormControlLabel
           control={
             <Checkbox
@@ -128,6 +129,15 @@ const Form = ({
           }
           label="로그인 상태 유지"
         />
+      </div>
+      <div className="tc login-forgot">
+        <Link to="/auth/forgot" className="td-none c-text-grey">
+          아이디 찾기
+        </Link>
+        &#8201;&#8201;&#124;&#8201;&#8201;
+        <Link to="/auth/forgot" className="td-none c-text-grey">
+          비밀번호 찾기
+        </Link>
       </div>
     </div>
   );
