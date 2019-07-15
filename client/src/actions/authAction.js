@@ -41,3 +41,28 @@ export const confirmAdminUser = password => async dispatch => {
 export const keepMeLoggedIn = () => ({
   type: types.KEEP_ME_LOGGED_IN,
 });
+
+/* --- Forgot Username/Password --- */
+export const sendVerificationCodeToEmail = (
+  email,
+  valueToFind,
+) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
+  try {
+    await axios.post(`${API_HOST}/auth/forgot`, {
+      email,
+      valueToFind,
+    });
+    return dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'sendVerificationCodeToEmail',
+    });
+  } catch (error) {
+    dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'sendVerificationCodeToEmail',
+      error,
+    });
+    throw new Error('Failed to send email.');
+  }
+};

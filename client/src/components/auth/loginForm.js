@@ -131,11 +131,11 @@ const Form = ({
         />
       </div>
       <div className="tc login-forgot">
-        <Link to="/auth/forgot" className="td-none c-text-grey">
+        <Link to="/auth/forgot?value=username" className="td-none c-text-grey">
           아이디 찾기
         </Link>
         &#8201;&#8201;&#124;&#8201;&#8201;
-        <Link to="/auth/forgot" className="td-none c-text-grey">
+        <Link to="/auth/forgot?value=password" className="td-none c-text-grey">
           비밀번호 찾기
         </Link>
       </div>

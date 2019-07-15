@@ -1,14 +1,26 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import queryString from 'query-string';
 /* --- Components --- */
 import { admin } from '../../data/data';
 import ForgotForm from './forgotForm';
 import { forgotValidation } from './formValidation';
+/* --- Actions --- */
+import * as authActions from '../../actions/authAction';
 
-const ForgotContainer = () => {
-  const handleConfirmEmail = (values, { setSubmitting, resetForm }) =>
-    console.log(values);
+const ForgotContainer = ({
+  authActions: { sendVerificationCodeToEmail },
+  location,
+}) => {
+  const parsed = queryString.parse(location.search);
 
+  const handleConfirmEmail = (values, { setSubmitting, resetForm }) => {
+    const valueToFind = parsed.value;
+    const { email } = values;
+    sendVerificationCodeToEmail(email, valueToFind);
+  };
   const values = {
     email: '',
   };
@@ -33,4 +45,10 @@ const ForgotContainer = () => {
   );
 };
 
-export default ForgotContainer;
+const mapDispatchToProps = dispatch => ({
+  authActions: bindActionCreators(authActions, dispatch),
+});
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ForgotContainer);

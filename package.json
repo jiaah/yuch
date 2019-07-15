@@ -94,6 +94,7 @@
     "pg": "^7.8.0",
     "postcss": "^7.0.2",
     "postcss-loader": "^3.0.0",
+    "query-string": "^6.8.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loadable": "^5.5.0",
