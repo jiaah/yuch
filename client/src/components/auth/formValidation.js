@@ -104,6 +104,12 @@ export const loginValidation = Yup.object({
     .required('비밀번호를 입력하세요.'),
 });
 
+export const forgotValidation = Yup.object({
+  email: Yup.string()
+    .email('이메일 주소가 유효하지 않습니다.')
+    .required(),
+});
+
 export const changePasswordValidation = Yup.object({
   password: Yup.string('')
     .lowercase('소문자로 입력해주세요.')

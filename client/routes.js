@@ -16,6 +16,11 @@ const Login = Loader({
     import('./src/components/auth/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
+const Forgot = Loader({
+  loader: () =>
+    import('./src/components/auth/forgotContainer' /* webpackChunkName: 'Forgot' */),
+});
+
 const UserAccountForAdmin = Loader({
   loader: () =>
     import('./src/components/auth/userByAdmin/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
@@ -52,6 +57,7 @@ const routes = props => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <Login {...props} />} />
+      <Route path="/auth/forgot" render={props => <Forgot {...props} />} />
       <Route path="/admin/account/users" component={UserAccountForAdmin} />
       <Route path="/admin/account/bankaccount" component={BankAccount} />
       <Route path="/admin/account/me" component={AdminAccount} />

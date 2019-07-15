@@ -35,6 +35,20 @@
   font-size: .885em;
 }
 
+/* ------ Login ------ */
+.forgot-container {
+  height: calc(100vh - 240px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 0 auto;
+
+  @include for-desktop-up {
+    width: 500px;
+  }
+}
+
 /* ------ User Account ------ */
 /* Common */
 .user-account--user-number {
