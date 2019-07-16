@@ -11,7 +11,10 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 250,
+    width: 300,
+    [theme.breakpoints.up('md')]: {
+      width: 400,
+    },
   },
 });
 
@@ -122,7 +125,7 @@ const PasswordForm = ({
       <FormButton
         typeValue="submit"
         variantValue="contained"
-        buttonName="저장"
+        buttonName="변경"
         width="medium"
         isSubmitting={isSubmitting}
       />

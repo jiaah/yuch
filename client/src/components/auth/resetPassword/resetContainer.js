@@ -38,12 +38,15 @@ const ResetContainer = ({
   };
 
   return (
-    <Formik
-      initialValues={passwordValues}
-      render={props => <PasswordForm {...props} />}
-      onSubmit={handleResetPassword}
-      validationSchema={resetPasswordValidation}
-    />
+    <div className="forgot-container">
+      <h2>비밀번호 변경</h2>
+      <Formik
+        initialValues={passwordValues}
+        render={props => <PasswordForm {...props} />}
+        onSubmit={handleResetPassword}
+        validationSchema={resetPasswordValidation}
+      />
+    </div>
   );
 };
 
