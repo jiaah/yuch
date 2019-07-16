@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+// used for login & find password
 exports.getRandomToken = function getRandomToken(user) {
   return new Promise((resolve, reject) => {
     const tokenDetails = {
