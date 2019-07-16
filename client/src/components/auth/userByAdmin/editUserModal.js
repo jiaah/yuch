@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
-  changePasswordByAdminValidation,
+  resetPasswordValidation,
 } from '../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
@@ -21,7 +21,7 @@ const EditUserModal = ({
   clickedUserData,
   editUser,
   addFlashMessage,
-  changePasswordByAdmin,
+  resetPassword,
   deleteUser,
   handleCloseModal,
   bankAccount,
@@ -53,8 +53,8 @@ const EditUserModal = ({
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               clickedUserId={clickedUserData.id}
-              changePasswordByAdminValidation={changePasswordByAdminValidation}
-              changePasswordByAdmin={changePasswordByAdmin}
+              resetPasswordValidation={resetPasswordValidation}
+              resetPassword={resetPassword}
             />
           ) : subModal === 'delete' ? (
             <DeleteUser

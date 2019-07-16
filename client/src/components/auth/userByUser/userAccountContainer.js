@@ -7,14 +7,15 @@ import {
   editUserAccountValidation,
   changePasswordValidation,
 } from '../formValidation';
-import PasswordFormBox from '../password/passwordContainer';
+import PasswordFormBox from '../changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import * as userActions from '../../../actions/userAction';
+import { changePassword } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
-  userActions: { getMe, editUserAccount, changePassword },
+  userActions: { getMe, editUserAccount },
   addFlashMessage,
   id,
 }) => {
@@ -75,6 +76,8 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  changePassword: (id, password, newPassword) =>
+    dispatch(changePassword(id, password, newPassword)),
 });
 
 export default connect(

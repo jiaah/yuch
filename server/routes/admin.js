@@ -14,9 +14,6 @@ module.exports = () => {
   router.delete('/bankaccount/:id', adminController.deleteBankAccount);
 
   /* --- User --- */
-  // Change User Password By Admin (Current Password Check is Not Required)
-  router.patch('/user/password', adminController.changePasswordByAdmin);
-
   // User Account
   router.post('/user/register', adminController.createUser);
   router.patch('/user/edit/:id', adminController.editUserByAdmin);

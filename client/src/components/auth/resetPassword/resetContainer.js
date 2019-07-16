@@ -1,20 +1,20 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import PasswordForm from '../resetPassword/passwordForm';
+import PasswordForm from './passwordForm';
 
-const PasswordFormBox = ({
+const ResetContainer = ({
   handleCloseModal,
   addFlashMessage,
-  resetPassword,
+  changePasswordByAdmin,
   closeSubModal,
-  resetPasswordValidation,
+  changePasswordByAdminValidation,
   clickedUserId,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { companyName, newPassword } = values;
     try {
-      await resetPassword(clickedUserId, newPassword);
+      await changePasswordByAdmin(clickedUserId, newPassword);
       await addFlashMessage(
         'success',
         `${companyName} 고객 비밀번호를 수정하였습니다.`,
@@ -39,9 +39,9 @@ const PasswordFormBox = ({
       initialValues={passwordValues}
       render={props => <PasswordForm {...props} />}
       onSubmit={handleChangePassword}
-      validationSchema={resetPasswordValidation}
+      validationSchema={changePasswordByAdminValidation}
     />
   );
 };
 
-export default PasswordFormBox;
+export default ResetContainer;

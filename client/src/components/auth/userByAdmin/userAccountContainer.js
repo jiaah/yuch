@@ -13,6 +13,7 @@ import * as adminActions from '../../../actions/adminAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
+import { resetPassword } from '../../../actions/authAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -26,18 +27,13 @@ const EditUserModal = Loader({
 
 const UserAccountContainer = ({
   modalActions: { showModal, hideModal },
-  adminActions: {
-    getUsers,
-    createUser,
-    editUser,
-    changePasswordByAdmin,
-    deleteUser,
-  },
+  adminActions: { getUsers, createUser, editUser, deleteUser },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
   },
+  resetPassword,
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
@@ -144,7 +140,7 @@ const UserAccountContainer = ({
           editUser={editUser}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData[0]}
-          changePasswordByAdmin={changePasswordByAdmin}
+          resetPassword={resetPassword}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
           bankAccount={bankAccount}
@@ -165,6 +161,7 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   selectedActions: bindActionCreators(selectedActions, dispatch),
+  resetPassword: (id, newPassword) => dispatch(resetPassword(id, newPassword)),
 });
 
 export default connect(

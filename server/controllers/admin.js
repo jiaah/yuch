@@ -153,21 +153,6 @@ exports.editUserByAdmin = (req, res) => {
     .catch(err => res.status(409).json(err));
 };
 
-exports.changePasswordByAdmin = (req, res) => {
-  const { id, newPassword } = req.body;
-
-  util.bcryptPassword(newPassword).then(hashedPassword =>
-    knex('users')
-      .where({ id })
-      .first()
-      .update({
-        password: hashedPassword,
-      })
-      .then(() => res.status(200).json())
-      .catch(err => res.status(409).json(err)),
-  );
-};
-
 exports.deleteUser = (req, res) => {
   const userId = req.params.id;
 

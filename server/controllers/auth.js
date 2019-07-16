@@ -36,7 +36,7 @@ exports.loginUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
-/* --- Admin --- */
+/* --- Password --- */
 // check admin password for security
 exports.checkAdminUser = (req, res) => {
   const { password } = req.body;
@@ -51,6 +51,49 @@ exports.checkAdminUser = (req, res) => {
       return res.status(409).json('Auth failed');
     })
     .catch(err => res.status(500).json(err));
+};
+
+// Change Password
+exports.changePassword = (req, res) => {
+  const { id, password, newPassword } = req.body;
+  knex('users')
+    .where({ id })
+    .first()
+    .then(user => {
+      if (!user) {
+        return res.status(401).json('Auth failed');
+      }
+      util.comparePassword(password, user.password).then(isMatch => {
+        if (isMatch) {
+          return util.bcryptPassword(newPassword).then(hashedPassword =>
+            knex('users')
+              .where({ id })
+              .first()
+              .update({
+                password: hashedPassword,
+              })
+              .then(() => res.status(200).json())
+              .catch(err => res.status(409).json(err)),
+          );
+        }
+        return res.status(409).json('Auth failed');
+      });
+    });
+};
+
+exports.resetPassword = (req, res) => {
+  const { id, newPassword } = req.body;
+
+  util.bcryptPassword(newPassword).then(hashedPassword =>
+    knex('users')
+      .where({ id })
+      .first()
+      .update({
+        password: hashedPassword,
+      })
+      .then(() => res.status(200).json())
+      .catch(err => res.status(409).json(err)),
+  );
 };
 
 /* --- Forgot username/password --- */

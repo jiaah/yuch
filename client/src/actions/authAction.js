@@ -37,6 +37,34 @@ export const confirmAdminUser = password => async dispatch => {
   }
 };
 
+/* --- Password --- */
+export const changePassword = (id, password, newPassword) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
+  try {
+    await axios.patch(`${API_HOST}/auth/change/password`, {
+      id,
+      password,
+      newPassword,
+    });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
+  }
+};
+
+// user's current password is not required.
+export const resetPassword = (id, newPassword) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
+  try {
+    await axios.patch(`${API_HOST}/auth/reset/password`, { id, newPassword });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
+  }
+};
+
 /* --- Keep me logged in --- */
 export const keepMeLoggedIn = () => ({
   type: types.KEEP_ME_LOGGED_IN,

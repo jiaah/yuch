@@ -92,15 +92,3 @@ export const deleteUser = userId => async dispatch => {
     throw new Error('Deleting the user failed.');
   }
 };
-
-// user's current password is not required.
-export const changePasswordByAdmin = (id, newPassword) => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
-  try {
-    await axios.patch(`${API_HOST}/admin/user/password`, { id, newPassword });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
-  }
-};

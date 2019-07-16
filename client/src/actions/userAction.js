@@ -2,22 +2,6 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
 
-/* --- Admin & Users --- */
-export const changePassword = (id, password, newPassword) => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
-  try {
-    await axios.patch(`${API_HOST}/user/password`, {
-      id,
-      password,
-      newPassword,
-    });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
-  } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
-  }
-};
-
 /* --- Users --- */
 // user account
 export const getMe = id => async dispatch => {

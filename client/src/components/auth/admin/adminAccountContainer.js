@@ -6,10 +6,10 @@ import {
   adminAccountValidation,
   changePasswordValidation,
 } from '../formValidation';
-import PasswordFormBox from '../password/passwordContainer';
+import PasswordFormBox from '../changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { changePassword } from '../../../actions/userAction';
+import { changePassword } from '../../../actions/authAction';
 import { getAdmin, editAdminAccount } from '../../../actions/adminAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 

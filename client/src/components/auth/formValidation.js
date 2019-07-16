@@ -136,7 +136,7 @@ export const changePasswordValidation = Yup.object({
     .oneOf([Yup.ref('newPassword')], '비밀번호가 일치하지 않습니다.'),
 });
 
-export const changePasswordByAdminValidation = Yup.object({
+export const resetPasswordValidation = Yup.object({
   newPassword: Yup.string('')
     .lowercase('소문자로 입력해주세요.')
     .matches(/^\S+$/, '글자를 붙여쓰세요.')
