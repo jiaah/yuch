@@ -15,6 +15,9 @@ module.exports = () => {
   // reset password (user's current password is not required)
   router.patch('/reset/password', authController.resetPassword);
 
+  // reset password with access token
+  router.patch('/reset/password/:token', authController.resetPasswordWithToken);
+
   /* --- Forgot username/password --- */
   router.post('/forgot/username', authController.forgotUsername);
   router.post('/forgot/password', authController.forgotPassword);

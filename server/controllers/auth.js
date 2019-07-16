@@ -37,7 +37,6 @@ exports.loginUser = (req, res) => {
 };
 
 /* --- Password --- */
-// check admin password for security
 exports.checkAdminUser = (req, res) => {
   const { password } = req.body;
   return knex('users')
@@ -53,7 +52,6 @@ exports.checkAdminUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
-// Change Password
 exports.changePassword = (req, res) => {
   const { id, password, newPassword } = req.body;
   knex('users')
@@ -96,6 +94,31 @@ exports.resetPassword = (req, res) => {
   );
 };
 
+exports.resetPasswordWithToken = (req, res) => {
+  const { newPassword } = req.body;
+  const { token } = req.params;
+
+  knex('users')
+    .where({ resetPasswordToken: token })
+    .first()
+    // Check expired date !!
+    .then(user => {
+      if (user) {
+        return util.bcryptPassword(newPassword).then(hashedPassword =>
+          knex('users')
+            .where({ id: user.id })
+            .first()
+            .update({
+              password: hashedPassword,
+            })
+            .then(() => res.status(200).json())
+            .catch(err => res.status(409).json(err)),
+        );
+      }
+      return res.status(409).json('Access token is not valid');
+    });
+};
+
 /* --- Forgot username/password --- */
 exports.forgotUsername = (req, res) =>
   knex('users')
@@ -127,7 +150,7 @@ exports.forgotPassword = (req, res) => {
           subject: '비밀번호 변경 요청',
           html: `${username} 회원님의 유청 계정에 대한 비밀번호 변경 요청을 접수하였습니다. <br/><br/> 비밀번호를 재설정하기위해, 아래 링크를 클릭하거나 복사하여서 브라우저로 가세요.<br/> 링크는 1시간동안 활성 상태로 유지됩니다. <br/><br/> http://${
             req.headers.host
-          }/reset/${token} <br/><br/>만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
+          }/reset?token=${token} <br/><br/>만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
         };
 
         return knex('users')

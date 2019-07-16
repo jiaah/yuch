@@ -65,6 +65,22 @@ export const resetPassword = (id, newPassword) => async dispatch => {
   }
 };
 
+export const resetPasswordWithAccessToken = (
+  token,
+  newPassword,
+) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'password' });
+  try {
+    await axios.patch(`${API_HOST}/auth/reset/password/${token}`, {
+      newPassword,
+    });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
+  } catch (error) {
+    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
+    throw new Error('Changing the password failed.');
+  }
+};
+
 /* --- Keep me logged in --- */
 export const keepMeLoggedIn = () => ({
   type: types.KEEP_ME_LOGGED_IN,
