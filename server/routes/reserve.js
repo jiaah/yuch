@@ -1,9 +1,7 @@
 const router = require('express').Router();
-const sgMail = require('@sendgrid/mail');
+const sendEmail = require('../lib/send-email');
 
 module.exports = () => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   router.post('/', (req, res, next) => {
     const { name, contact, number, place, date, time } = req.body;
     const mailOptions = {
@@ -12,8 +10,8 @@ module.exports = () => {
       subject: '유청 급식 예약 from 유청 홈페이지',
       html: `<p>이름: ${name} <br/> 연락처: ${contact}<br/> 인원수:${number}<br/> 장소:${place}<br/> 날짜:${date}<br/> 예약시간${time}</p>`,
     };
-    sgMail
-      .send(mailOptions)
+
+    sendEmail(mailOptions)
       .then(() => {
         res.status(201).send('Reserve Email has been sent successfully!');
       })
