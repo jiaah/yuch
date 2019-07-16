@@ -76,6 +76,7 @@ exports.forgotPassword = (req, res) => {
     .then(async user => {
       if (user) {
         const token = await util.getRandomToken(user);
+        // const expiresDate = Date.now() + 3600000;
 
         const mailOptions = {
           from: process.env.GMAIL,
@@ -86,13 +87,24 @@ exports.forgotPassword = (req, res) => {
           }/reset/${token} <br/><br/>만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
         };
 
-        return sendEmail(mailOptions)
-          .then(() => {
-            res.status(201).send('Reserve Email has been sent successfully!');
+        return knex('users')
+          .where({ username })
+          .first()
+          .update({
+            resetPasswordToken: token,
+            // resetPasswordExpires: expiresDate,
           })
-          .catch(err => {
-            res.status(400).json(err);
-            next(err);
+          .then(() => {
+            sendEmail(mailOptions)
+              .then(() => {
+                res
+                  .status(201)
+                  .send('Reserve Email has been sent successfully!');
+              })
+              .catch(err => {
+                res.status(400).json(err);
+                next(err);
+              });
           });
       }
       return res.status(409).json('Can not find user email');

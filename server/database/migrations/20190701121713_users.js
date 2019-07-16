@@ -32,6 +32,8 @@ exports.up = knex =>
         .onDelete('SET NULL')
         .onUpdate('RESTRICT')
         .index();
+      table.string('resetPasswordToken');
+      // table.datetime('resetPasswordExpires');
       table.timestamps(true, true);
     });
 
