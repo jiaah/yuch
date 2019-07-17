@@ -14,9 +14,14 @@ export const inTwoMonths = moment()
   .format('YYYY / MM');
 
 export const inThreeDays = moment()
-  .startOf('day')
   .add(3, 'day')
   .format('YYYY-MM-DD');
 
 export const timeToNow = moment().toNow();
 export const timeStamp = moment().format('MMMM Do YYYY, h:mm a');
+
+// forgot password
+export const now = moment().format('MMMM Do YYYY, HH:mm:ss');
+export const inOneHour = moment()
+  .add(1, 'hours')
+  .format('MMMM Do YYYY, HH:mm:ss');

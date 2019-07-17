@@ -95,13 +95,13 @@ exports.resetPassword = (req, res) => {
 };
 
 exports.resetPasswordWithToken = (req, res) => {
-  const { newPassword } = req.body;
+  const { newPassword, now } = req.body;
   const { token } = req.params;
 
   knex('users')
     .where({ resetPasswordToken: token })
+    .andWhere('resetPasswordExpires', '<', now)
     .first()
-    // Check expired date !!
     .then(user => {
       if (user) {
         return util.bcryptPassword(newPassword).then(hashedPassword =>
@@ -134,7 +134,7 @@ exports.forgotUsername = (req, res) =>
     });
 
 exports.forgotPassword = (req, res) => {
-  const { username, email } = req.body;
+  const { username, email, inOneHour } = req.body;
 
   return knex('users')
     .where({ username, email })
@@ -142,7 +142,6 @@ exports.forgotPassword = (req, res) => {
     .then(async user => {
       if (user) {
         const token = await util.getRandomToken(user);
-        // const expiresDate = Date.now() + 3600000;
 
         const mailOptions = {
           from: process.env.GMAIL,
@@ -158,7 +157,7 @@ exports.forgotPassword = (req, res) => {
           .first()
           .update({
             resetPasswordToken: token,
-            // resetPasswordExpires: expiresDate,
+            resetPasswordExpires: inOneHour,
           })
           .then(() => {
             sendEmail(mailOptions)

@@ -33,7 +33,7 @@ exports.up = knex =>
         .onUpdate('RESTRICT')
         .index();
       table.string('resetPasswordToken');
-      // table.datetime('resetPasswordExpires');
+      table.datetime('resetPasswordExpires', { useTz: false });
       table.timestamps(true, true);
     });
 
