@@ -11,29 +11,29 @@ const MessageBox = Loader({
     import('./src/shared/message/messageBox' /* webpackChunkName: 'MessageBox' */),
 });
 
-const App = ({ messageShow, isOnModal, keepLoggedIn, children }) => {
+const App = ({ messageShow, isOnModal, keepLoggedIn, children }) => (
   // keep me logged in when window/tab closed
-  window.onbeforeunload = () => {
-    window.onunload = () => {
-      if (!keepLoggedIn) return clearLocalStorage();
-    };
-    return undefined;
-  };
 
-  return (
-    <div id="app absolute">
-      <NavContainer />
-      {messageShow !== null &&
-        !isOnModal && (
-          <div className="flex justify-center">
-            <MessageBox />
-          </div>
-        )}
-      {children}
-    </div>
-  );
-};
+  // window.onload = () => {};
 
+  // window.onbeforeunload = () => {
+  //   window.onunload = () => {
+  //     if (!keepLoggedIn) clearLocalStorage();
+  //   };
+  //   return undefined;
+  // };
+
+  <div id="app absolute">
+    <NavContainer />
+    {messageShow !== null &&
+      !isOnModal && (
+        <div className="flex justify-center">
+          <MessageBox />
+        </div>
+      )}
+    {children}
+  </div>
+);
 const mapPropsToState = state => ({
   isOnModal: state.modal.show,
   messageShow: state.message.show,

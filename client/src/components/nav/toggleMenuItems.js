@@ -38,7 +38,12 @@ const ToggleMenuItems = ({
             <ClickAwayListener onClickAway={handleClose}>
               <MenuList className="toggle-menu--list">
                 {items.map(e => (
-                  <Link key={e.id} to={e.to} className="anchor td-none c-text1">
+                  <Link
+                    replace
+                    key={e.id}
+                    to={e.to}
+                    className="anchor td-none c-text1"
+                  >
                     <MenuItem
                       className="toggle-menu--item"
                       onClick={handleClose}

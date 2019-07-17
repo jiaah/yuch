@@ -27,19 +27,19 @@ export const navClient = [
   {
     id: 1,
     name: '금일식수',
-    to: 'user/catering/dd',
+    to: '/user/catering/dd',
     className: 'c-text',
   },
   {
     id: 2,
     name: '식수현황',
-    to: 'user/catering/mm',
+    to: '/user/catering/mm',
     className: 'c-text',
   },
   {
     id: 3,
     name: '계정',
-    to: 'user/account/me',
+    to: '/user/account/me',
     className: 'c-text',
   },
 ];
@@ -68,58 +68,58 @@ export const navAdminItems = {
     {
       id: 11,
       name: '금일 위탁급식 식수현황',
-      to: 'admin/count/catering/dd',
+      to: '/admin/count/catering/dd',
     },
     {
       id: 12,
       name: '금일 식당 매출현황',
-      to: 'admin/count/restaurant/dd',
+      to: '/admin/count/restaurant/dd',
     },
     {
       id: 13,
       name: '특식 등록',
-      to: 'admin/count/specialmeal',
+      to: '/admin/count/specialmeal',
     },
   ],
   2: [
     {
       id: 11,
       name: '회사별 거래명세서',
-      to: 'admin/invoice/users',
+      to: '/admin/invoice/users',
     },
   ],
   3: [
     {
       id: 11,
       name: '월별 매출 내역',
-      to: 'admin/revenue/mm',
+      to: '/admin/revenue/mm',
     },
     {
       id: 12,
       name: '매출 현황',
-      to: 'admin/revenue',
+      to: '/admin/revenue',
     },
   ],
   4: [
     {
       id: 11,
       name: '식수 가격',
-      to: 'admin/account/rates',
+      to: '/admin/account/rates',
     },
     {
       id: 12,
       name: '고객 계정',
-      to: 'admin/account/users',
+      to: '/admin/account/users',
     },
     {
       id: 13,
       name: `${admin.companyName} 계정`,
-      to: 'admin/account/me',
+      to: '/admin/account/me',
     },
     {
       id: 14,
       name: `${admin.companyName} 계좌`,
-      to: 'admin/account/bankaccount',
+      to: '/admin/account/bankaccount',
     },
   ],
 };
