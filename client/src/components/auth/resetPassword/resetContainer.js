@@ -13,10 +13,12 @@ const ResetContainer = ({
   addFlashMessage,
   resetPasswordWithAccessToken,
   history,
+  location,
 }) => {
   const handleResetPassword = async (values, { setSubmitting, resetForm }) => {
     const parsed = queryString.parse(location.search);
     const token = parsed.token;
+
     const { newPassword } = values;
     try {
       await resetPasswordWithAccessToken(token, newPassword);

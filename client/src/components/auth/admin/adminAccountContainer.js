@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import FormBox from './adminFormBox';
-import {
-  adminAccountValidation,
-  changePasswordValidation,
-} from '../formValidation';
+import { adminAccountValidation } from '../formValidation';
 import PasswordFormBox from '../changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { changePassword } from '../../../actions/authAction';
 import { getAdmin, editAdminAccount } from '../../../actions/adminAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
   getAdmin,
   editAdminAccount,
-  changePassword,
   addFlashMessage,
   id,
 }) => {
@@ -59,9 +54,6 @@ const AdminAccountContainer = ({
             {pwdOpen && (
               <PasswordFormBox
                 userData={adminData}
-                changePasswordValidation={changePasswordValidation}
-                changePassword={changePassword}
-                addFlashMessage={addFlashMessage}
                 closePasswordForm={closePasswordForm}
               />
             )}
@@ -75,8 +67,6 @@ const mapStateToPorps = state => ({ id: state.auth.id });
 const mapDispatchToProps = dispatch => ({
   getAdmin: id => dispatch(getAdmin(id)),
   editAdminAccount: (id, values) => dispatch(editAdminAccount(id, values)),
-  changePassword: (id, password, newPassword) =>
-    dispatch(changePassword(id, password, newPassword)),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

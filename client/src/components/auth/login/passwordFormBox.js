@@ -9,12 +9,14 @@ const ForgotContainer = ({
   sendVerificationCodeToEmail,
   addFlashMessage,
 }) => {
-  const [emailSent, setEmailSent] = useState(false);
-  const handleForgotPassword = async (values, { setSubmitting }) => {
+  const [state, setState] = useState({ emailSent: false, email: '' });
+
+  const handleForgotPassword = async (values, { setSubmitting, resetForm }) => {
     const { username, email } = values;
     try {
       await sendVerificationCodeToEmail(username, email);
-      await setEmailSent(true);
+      await setState({ emailSent: true, email });
+      resetForm({});
     } catch (err) {
       await addFlashMessage(
         'error',
@@ -49,9 +51,9 @@ const ForgotContainer = ({
         onSubmit={handleForgotPassword}
         validationSchema={forgotPasswordValidation}
       />
-      {emailSent && (
+      {state.emailSent && (
         <p className="mt4 f-regular lh-2">
-          고객님의 이메일로 인증코드가 성공적으로 전송되었습니다. <br />
+          {state.email} 로 인증코드가 성공적으로 전송되었습니다. <br />
           <span className="c-point2">이메일을 확인해주세요.</span>
         </p>
       )}

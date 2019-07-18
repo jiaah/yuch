@@ -3,15 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
-import {
-  editUserAccountValidation,
-  changePasswordValidation,
-} from '../formValidation';
+import { editUserAccountValidation } from '../formValidation';
 import PasswordFormBox from '../changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import * as userActions from '../../../actions/userAction';
-import { changePassword } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
@@ -58,9 +54,6 @@ const AdminAccountContainer = ({
             {pwdOpen && (
               <PasswordFormBox
                 userData={userData}
-                changePasswordValidation={changePasswordValidation}
-                changePassword={changePassword}
-                addFlashMessage={addFlashMessage}
                 closePasswordForm={closePasswordForm}
               />
             )}
@@ -76,8 +69,6 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
-  changePassword: (id, password, newPassword) =>
-    dispatch(changePassword(id, password, newPassword)),
 });
 
 export default connect(

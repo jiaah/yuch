@@ -9,6 +9,6 @@ export const addFlashMessage = (variant, message) => async dispatch => {
 
   return window.setTimeout(
     () => dispatch({ type: types.DELETE_FLASH_MESSAGE }),
-    3500,
+    3000,
   );
 };

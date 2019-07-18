@@ -52,6 +52,20 @@ exports.checkAdminUser = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const setPassword = (id, newPassword) =>
+  new Promise((resolve, reject) => {
+    util.bcryptPassword(newPassword).then(hashedPassword =>
+      knex('users')
+        .where({ id })
+        .first()
+        .update({
+          password: hashedPassword,
+        })
+        .then(() => resolve())
+        .catch(() => reject(new Error('Auth failed'))),
+    );
+  });
+
 exports.changePassword = (req, res) => {
   const { id, password, newPassword } = req.body;
   knex('users')
@@ -63,37 +77,25 @@ exports.changePassword = (req, res) => {
       }
       util.comparePassword(password, user.password).then(isMatch => {
         if (isMatch) {
-          return util.bcryptPassword(newPassword).then(hashedPassword =>
-            knex('users')
-              .where({ id })
-              .first()
-              .update({
-                password: hashedPassword,
-              })
-              .then(() => res.status(200).json())
-              .catch(err => res.status(409).json(err)),
-          );
+          return setPassword(id, newPassword)
+            .then(() => res.status(200).json())
+            .catch(err => res.status(409).json(err));
         }
         return res.status(409).json('Auth failed');
       });
-    });
+    })
+    .catch(err => res.status(500).json(err));
 };
 
+// reset user's password by admin (password check is not required)
 exports.resetPassword = (req, res) => {
   const { id, newPassword } = req.body;
-
-  util.bcryptPassword(newPassword).then(hashedPassword =>
-    knex('users')
-      .where({ id })
-      .first()
-      .update({
-        password: hashedPassword,
-      })
-      .then(() => res.status(200).json())
-      .catch(err => res.status(409).json(err)),
-  );
+  setPassword(id, newPassword)
+    .then(() => res.status(200).json())
+    .catch(err => res.status(409).json(err));
 };
 
+// when user forgot password
 exports.resetPasswordWithToken = (req, res) => {
   const { newPassword, now } = req.body;
   const { token } = req.params;
@@ -104,18 +106,23 @@ exports.resetPasswordWithToken = (req, res) => {
     .first()
     .then(user => {
       if (user) {
-        return util.bcryptPassword(newPassword).then(hashedPassword =>
-          knex('users')
-            .where({ id: user.id })
-            .first()
-            .update({
-              password: hashedPassword,
-            })
-            .then(() => res.status(200).json())
-            .catch(err => res.status(409).json(err)),
-        );
+        const id = user.id;
+        setPassword(id, newPassword)
+          .then(() =>
+            knex('users')
+              .where({
+                id,
+              })
+              .first()
+              .update({
+                resetPasswordToken: null,
+                resetPasswordExpires: null,
+              }),
+          )
+          .then(() => res.status(200).json())
+          .catch(err => res.status(409).json(err));
       }
-      return res.status(409).json('Access token is not valid');
+      return res.status(409).json('Access token is invalid or has expired');
     });
 };
 
@@ -142,14 +149,13 @@ exports.forgotPassword = (req, res) => {
     .then(async user => {
       if (user) {
         const token = await util.getRandomToken(user);
-
         const mailOptions = {
           from: process.env.GMAIL,
           to: user.email,
           subject: '비밀번호 변경 요청',
-          html: `${username} 회원님의 유청 계정에 대한 비밀번호 변경 요청을 접수하였습니다. <br/><br/> 비밀번호를 재설정하기위해, 아래 링크를 클릭하거나 복사하여서 브라우저로 가세요.<br/> 링크는 1시간동안 활성 상태로 유지됩니다. <br/><br/> http://${
+          html: `${username} 회원님의 유청 계정에 대한 비밀번호 변경 요청을 접수하였습니다. <br/><br/> 비밀번호를 재설정하기위해, 아래 링크를 클릭하거나 복사하여서 브라우저로 가세요. <br/> 링크는 1시간동안 활성 상태로 유지됩니다. <br/><br/> http://${
             req.headers.host
-          }/reset?token=${token} <br/><br/>만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
+          }/reset?token=${token} <br/><br/> 만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
         };
 
         return knex('users')
@@ -157,14 +163,12 @@ exports.forgotPassword = (req, res) => {
           .first()
           .update({
             resetPasswordToken: token,
-            resetPasswordExpires: inOneHour,
+            // resetPasswordExpires: inOneHour,
           })
           .then(() => {
             sendEmail(mailOptions)
               .then(() => {
-                res
-                  .status(201)
-                  .send('Reserve Email has been sent successfully!');
+                res.status(201).send();
               })
               .catch(err => {
                 res.status(400).json(err);

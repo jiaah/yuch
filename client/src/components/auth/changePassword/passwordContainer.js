@@ -1,16 +1,22 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
+import { changePasswordValidation } from '../formValidation';
+/* --- Actions --- */
+/* --- Actions --- */
+import * as userActions from '../../../actions/userAction';
+import { changePassword } from '../../../actions/authAction';
+import { addFlashMessage } from '../../../actions/messageAction';
 
-const PasswordFormBox = ({
+const ChangePasswordContainer = ({
   userData,
-  changePasswordValidation,
+  // close password form
+  closePasswordForm,
   // actions
   changePassword,
   addFlashMessage,
-  // close password form
-  closePasswordForm,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
     const { password, newPassword } = values;
@@ -21,8 +27,8 @@ const PasswordFormBox = ({
         'success',
         `${companyName}님의 계정 비밀번호가 수정되었습니다.`,
       );
-      closePasswordForm();
       resetForm();
+      closePasswordForm();
     } catch (error) {
       await addFlashMessage(
         'error',
@@ -50,4 +56,14 @@ const PasswordFormBox = ({
   );
 };
 
-export default PasswordFormBox;
+const mapDispatchToProps = dispatch => ({
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
+  changePassword: (id, password, newPassword) =>
+    dispatch(changePassword(id, password, newPassword)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ChangePasswordContainer);
