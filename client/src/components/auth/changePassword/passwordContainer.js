@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import PasswordForm from './passwordForm';
 import { changePasswordValidation } from '../formValidation';
 /* --- Actions --- */
-/* --- Actions --- */
-import * as userActions from '../../../actions/userAction';
 import { changePassword } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
