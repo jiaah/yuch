@@ -53,7 +53,8 @@ const ForgotContainer = ({
       />
       {state.emailSent && (
         <p className="mt4 f-regular lh-2">
-          {state.email} 로 인증코드가 성공적으로 전송되었습니다. <br />
+          <span className="b">{state.email}</span> &#8201;로 인증코드가
+          성공적으로 전송되었습니다. <br />
           <span className="c-point2">이메일을 확인해주세요.</span>
         </p>
       )}

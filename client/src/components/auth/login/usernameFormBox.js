@@ -11,11 +11,12 @@ const ForgotContainer = ({
 }) => {
   const [username, setUsername] = useState('');
 
-  const handleForgotUsername = async (values, { setSubmitting }) => {
+  const handleForgotUsername = async (values, { setSubmitting, resetForm }) => {
     const { email } = values;
     try {
       const username = await findUsername(email);
       await setUsername(username);
+      resetForm({});
     } catch (err) {
       await addFlashMessage(
         'error',
@@ -47,9 +48,9 @@ const ForgotContainer = ({
       />
       {username !== '' && (
         <p className="mt4 f-regular">
-          &#91; &#8201;고객님의 아이디는 &#8201;
+          고객님의 아이디는 &#8201;
           <span className="c-point2 b">{username}</span>
-          &#8201;&#8201;입니다&#46; &#8201;&#93;
+          &#8201;&#8201;입니다&#46;
         </p>
       )}
     </div>
