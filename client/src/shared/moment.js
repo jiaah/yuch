@@ -18,10 +18,10 @@ export const inThreeDays = moment()
   .format('YYYY-MM-DD');
 
 export const timeToNow = moment().toNow();
-export const timeStamp = moment().format('MMMM Do YYYY, h:mm a');
+export const timeStamp = moment().format('MMMM DD YYYY, h:mm a');
 
 // forgot password
-export const now = moment().format('MMMM Do YYYY, HH:mm:ss');
+export const now = moment().format();
 export const inOneHour = moment()
   .add(1, 'hours')
-  .format('MMMM Do YYYY, HH:mm:ss');
+  .format();

@@ -100,14 +100,14 @@ exports.resetPasswordWithToken = (req, res) => {
   const { newPassword, now } = req.body;
   const { token } = req.params;
 
-  knex('users')
+  return knex('users')
     .where({ resetPasswordToken: token })
-    .andWhere('resetPasswordExpires', '<', now)
+    .andWhere('resetPasswordExpires', '>', now)
     .first()
     .then(user => {
       if (user) {
         const id = user.id;
-        setPassword(id, newPassword)
+        return setPassword(id, newPassword)
           .then(() =>
             knex('users')
               .where({
@@ -123,7 +123,8 @@ exports.resetPasswordWithToken = (req, res) => {
           .catch(err => res.status(409).json(err));
       }
       return res.status(409).json('Access token is invalid or has expired');
-    });
+    })
+    .catch(err => res.status(409).json(err));
 };
 
 /* --- Forgot username/password --- */
@@ -157,13 +158,12 @@ exports.forgotPassword = (req, res) => {
             req.headers.host
           }/reset?token=${token} <br/><br/> 만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
         };
-
         return knex('users')
           .where({ username })
           .first()
           .update({
             resetPasswordToken: token,
-            // resetPasswordExpires: inOneHour,
+            resetPasswordExpires: inOneHour,
           })
           .then(() => {
             sendEmail(mailOptions)
@@ -171,11 +171,19 @@ exports.forgotPassword = (req, res) => {
                 res.status(201).send();
               })
               .catch(err => {
-                res.status(400).json(err);
+                res.status(500).json(err);
                 next(err);
               });
+          })
+          .catch(err => {
+            res.status(500).json(err);
+            next(err);
           });
       }
       return res.status(409).json('Can not find user email');
+    })
+    .catch(err => {
+      res.status(409).json('Can not find user email');
+      next(err);
     });
 };

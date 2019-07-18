@@ -13,13 +13,12 @@ const ResetContainer = ({
   addFlashMessage,
   resetPasswordWithAccessToken,
   history,
-  location,
 }) => {
-  const parsed = queryString.parse(location.search);
-  const token = parsed.token;
-
   const handleResetPassword = async (values, { setSubmitting, resetForm }) => {
+    const parsed = queryString.parse(location.search);
+    const token = parsed.token;
     const { newPassword } = values;
+
     try {
       await resetPasswordWithAccessToken(token, newPassword);
       await addFlashMessage('success', `고객님의 비밀번호를 수정하였습니다.`);
