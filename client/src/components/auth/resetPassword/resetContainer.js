@@ -15,10 +15,10 @@ const ResetContainer = ({
   history,
   location,
 }) => {
-  const handleResetPassword = async (values, { setSubmitting, resetForm }) => {
-    const parsed = queryString.parse(location.search);
-    const token = parsed.token;
+  const parsed = queryString.parse(location.search);
+  const token = parsed.token;
 
+  const handleResetPassword = async (values, { setSubmitting, resetForm }) => {
     const { newPassword } = values;
     try {
       await resetPasswordWithAccessToken(token, newPassword);
