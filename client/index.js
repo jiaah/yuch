@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import store, { history, persistor } from './store';
+import configureStore, { history } from './store';
 import Routes from './routes';
 import Loading from './src/shared/loading';
 
@@ -23,6 +23,8 @@ const theme = createMuiTheme({
     },
   },
 });
+
+const { store, persistor } = configureStore();
 
 const root = document.createElement('div');
 document.body.appendChild(root);

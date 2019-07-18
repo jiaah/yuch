@@ -19,21 +19,25 @@ const middlewares = [
   }),
 ];
 
+const enhancers = [applyMiddleware(...middlewares)];
+
 const persistConfig = {
   key: 'root',
   storage,
 };
+
 const persistedReducer = persistReducer(
   persistConfig,
   rootReducer(history), // root reducer with router state
-  // rootReducer,
 );
 
-const store = createStore(
-  connectRouter(history)(persistedReducer),
-  // persistedReducer,
-  composeWithDevTools(applyMiddleware(...middlewares)),
-);
+export default preloadedState => {
+  const store = createStore(
+    persistedReducer,
+    preloadedState,
+    composeWithDevTools(...enhancers),
+  );
+  const persistor = persistStore(store);
 
-export const persistor = persistStore(store);
-export default store;
+  return { store, persistor };
+};
