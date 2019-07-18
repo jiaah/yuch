@@ -2,13 +2,22 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { routerMiddleware } from 'connected-react-router';
+import { routerMiddleware, connectRouter } from 'connected-react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import createRootReducer from './src/reducers';
+import rootReducer from './src/reducers';
 
 export const history = createBrowserHistory();
+
+const middlewares = [
+  routerMiddleware(history), // for dispatching history actions
+  thunkMiddleware,
+  createLogger({
+    predicate: () => process.env.NODE_ENV === 'development',
+    collapsed: true,
+  }),
+];
 
 const persistConfig = {
   key: 'root',
@@ -16,21 +25,14 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(
   persistConfig,
-  createRootReducer(history), // root reducer with router state
+  rootReducer(history), // root reducer with router state
+  // rootReducer,
 );
 
 const store = createStore(
-  persistedReducer,
-  composeWithDevTools(
-    applyMiddleware(
-      routerMiddleware(history), // for dispatching history actions
-      thunkMiddleware,
-      createLogger({
-        predicate: () => process.env.NODE_ENV === 'development',
-        collapsed: true,
-      }),
-    ),
-  ),
+  connectRouter(history)(persistedReducer),
+  // persistedReducer,
+  composeWithDevTools(applyMiddleware(...middlewares)),
 );
 
 export const persistor = persistStore(store);
