@@ -37,7 +37,6 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
       <Paper
         component={
           <RatesTable
-            users={users}
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataA}
@@ -51,7 +50,6 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
         classes="paper-rates--sec"
         component={
           <RatesTable
-            users={users}
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataB}

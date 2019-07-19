@@ -17,7 +17,6 @@ const styles = () => ({
 
 const RatesTable = ({
   classes: { tableWrapper, table },
-  users,
   order,
   orderBy,
   sortedData,
@@ -27,9 +26,15 @@ const RatesTable = ({
 }) => {
   // selected row
   const [selected, setSelected] = React.useState('');
-  const emptyRows = users.length <= 10 ? 10 - users.length : 0;
+  const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   const handleTableRowClick = id => setSelected(id);
+
+  // to render only one user on search.
+  const searchUser = sortedData.filter(
+    u => u.companyName === selectedSearchItem,
+  );
+  const userToDisplay = searchUser.length === 0 ? sortedData : searchUser;
 
   return (
     <React.Fragment>
@@ -43,7 +48,7 @@ const RatesTable = ({
           />
           <TableBody>
             {sortedData.length !== 0 &&
-              sortedData.map((row, index) => {
+              userToDisplay.map((row, index) => {
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (
                   <RatesTableRow

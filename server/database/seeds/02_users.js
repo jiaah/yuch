@@ -43,7 +43,7 @@ exports.seed = (knex, Promise) =>
     })
     .then(() => {
       const fakeUsers = [];
-      const desiredFakeUsers = 20;
+      const desiredFakeUsers = 15;
       for (let i = 0; i < desiredFakeUsers; i++) {
         fakeUsers.push(createFakeUser());
       }

@@ -48,12 +48,11 @@ const SearchBar = ({
   const [suggestions, setSuggestions] = useState([]);
 
   const handleChange = ({ target: { value } }) => setInputValue(value);
-
   const getSuggestions = async wordToMatch => {
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
     const suggestions = await users
       .sort()
-      .filter(u => u.companyName.match(regex) || u.username.match(regex));
+      .filter(u => u.companyName.match(regex));
 
     return setSuggestions(suggestions);
   };
