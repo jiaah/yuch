@@ -6,12 +6,12 @@ Issue Monthly bill.
 Track company’s monthly revenue.
 
 ## Features
-###Client
+### Client
 - Manage user's account
 - Make lunch & dinner request of the day
 - Invoice ( issue monthly )
 
-###Company
+### Company
 - Manage company's account
 - Manage company’s bank accounts
 - Manage a client accounts
