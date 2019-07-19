@@ -133,13 +133,12 @@ exports.forgotUsername = (req, res) =>
     .where({ email: req.body.email })
     .first()
     .then(user => {
-      if (!user || user === undefined) {
-        return res.status(409).json('Can not find user email');
-      }
       if (user) {
         return res.status(200).json(user.username);
       }
-    });
+      return res.status(409).json('Can not find user email');
+    })
+    .catch(() => res.status(500).json('Can not find user email'));
 
 exports.forgotPassword = (req, res) => {
   const { username, email, inOneHour } = req.body;

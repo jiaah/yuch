@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
@@ -10,6 +10,7 @@ import {
   forgotUsernameValidation,
   forgotPasswordValidation,
 } from '../formValidation';
+import FoundUsername from './foundUsername';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as messageActions from '../../../actions/messageAction';
@@ -23,16 +24,28 @@ const ForgotContainer = ({
   const valueToFind = parsed.value;
   const { companyName } = admin;
 
+  const [state, setState] = useState({ foundUser: false, data: '' });
+  const { foundUser, data } = state;
+
+  const saveUsername = (username, email) => {
+    setState({ foundUser: true, data: { username, email } });
+  };
+
   return (
     <div className="forgot-container">
-      {valueToFind === 'username' && (
-        <UsernameFormBox
-          companyName={companyName}
-          forgotUsernameValidation={forgotUsernameValidation}
-          findUsername={findUsername}
-          addFlashMessage={addFlashMessage}
-        />
-      )}
+      {valueToFind === 'username' ? (
+        !foundUser ? (
+          <UsernameFormBox
+            companyName={companyName}
+            forgotUsernameValidation={forgotUsernameValidation}
+            findUsername={findUsername}
+            addFlashMessage={addFlashMessage}
+            saveUsername={saveUsername}
+          />
+        ) : (
+          <FoundUsername data={data} />
+        )
+      ) : null}
       {valueToFind === 'password' && (
         <PasswordFormBox
           companyName={companyName}

@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import UsernameForm from './usernameForm';
 
-const ForgotContainer = ({
+const usernameFormBox = ({
   companyName,
   findUsername,
   addFlashMessage,
   forgotUsernameValidation,
+  saveUsername,
 }) => {
-  const [username, setUsername] = useState('');
-
   const handleForgotUsername = async (values, { setSubmitting, resetForm }) => {
     const { email } = values;
     try {
       const username = await findUsername(email);
-      await setUsername(username);
+      setSubmitting();
       resetForm({});
+      return saveUsername(username, email);
     } catch (err) {
       await addFlashMessage(
         'error',
         `${email}은 유청에 등록되어 있는 이메일이 아닙니다. 이메일 주소를 확인해주세요.`,
       );
+      return setSubmitting();
     }
-    return setSubmitting();
   };
 
   const usernameValues = {
@@ -46,15 +46,8 @@ const ForgotContainer = ({
         onSubmit={handleForgotUsername}
         validationSchema={forgotUsernameValidation}
       />
-      {username !== '' && (
-        <p className="mt4 f-regular">
-          고객님의 아이디는 &#8201;
-          <span className="c-point2 b">{username}</span>
-          &#8201;&#8201;입니다&#46;
-        </p>
-      )}
     </div>
   );
 };
 
-export default ForgotContainer;
+export default usernameFormBox;

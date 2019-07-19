@@ -12,10 +12,13 @@ import { addFlashMessage } from '../../../actions/messageAction';
 
 const Login = ({
   history,
+  // states
+  keepLoggedIn,
+  userData,
+  // actions
   userLogin,
   addFlashMessage,
   keepMeLoggedIn,
-  keepLoggedIn,
 }) => {
   const handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
@@ -39,7 +42,8 @@ const Login = ({
     return setSubmitting(false);
   };
 
-  const values = { username: '', password: '' };
+  const foundUsername = userData.length !== 0 ? userData[0].username : '';
+  const values = { username: foundUsername, password: '' };
 
   return (
     <React.Fragment>
@@ -61,6 +65,7 @@ const Login = ({
 
 const mapStateToProps = state => ({
   keepLoggedIn: state.auth.keepLoggedIn,
+  userData: state.httpHandler.data,
 });
 const mapDispatchToProps = dispatch => ({
   userLogin: (username, password) => dispatch(userLogin(username, password)),

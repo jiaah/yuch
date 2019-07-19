@@ -100,6 +100,7 @@ export const findUsername = email => async dispatch => {
     await dispatch({
       type: types.HTTP_SUCCESS,
       api: 'sendVerificationCodeToEmail',
+      payload: { username: data },
     });
     return data;
   } catch (error) {
