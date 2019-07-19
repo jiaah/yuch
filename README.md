@@ -14,15 +14,12 @@ Track company’s monthly revenue.
 ### Company
 - Manage company's account
 - Manage company’s bank accounts
-- Manage a client accounts
+- Manage client accounts
 - Manage a table of meal prices of all the clients
 
-- Manage a table of lunch & dinner requests of the day from all the clients
-- Manage Restaurant lunch & dinner income of the day
-- Register a special meal
+- (catering) Manage a table of lunch & dinner requests of the day from all the clients
+- (restaurant) Manage lunch & dinner income of the day
+- Manage special meals
 
-- Display a table of each the clients bill balance
-
-- Display a graph of restaurant monthly revenue
-- Display a graph of catering business monthly revenue
-- Display a graph of company’s total monthly revenue
+- Display a table of each client's bill balance
+- Display a graph of monthly revenue of restaurant, catering business and total
