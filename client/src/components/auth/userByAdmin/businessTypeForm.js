@@ -52,13 +52,13 @@ const BusinessTypeForm = ({ businessType, classes, change }) => (
         <FormControlLabel
           value="catering"
           control={<Radio color="primary" />}
-          label="catering"
+          label="위탁급식"
           labelPlacement="end"
         />
         <FormControlLabel
           value="restaurant"
           control={<Radio color="primary" />}
-          label="restaurant"
+          label="식당"
           labelPlacement="end"
         />
       </RadioGroup>

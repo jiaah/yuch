@@ -27,14 +27,24 @@ const UserTableRow = ({
 
   if (bankAccount.length !== 0) {
     bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
-    // when there is no matching bank account
+    // when admin deletes a bank account from bank_account table
+    // => no matching bank account => display empty string
     if (bankAccountInfo.length === 0) bankAccountInfo = emptyAccount;
   } else if (bankAccount.length === 0) {
     bankAccountInfo = emptyAccount;
   }
 
   const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
+  // shorten bank account number
   const slicedAccountNo = accountNo.slice(0, 8);
+  // translate businessType value to Korean
+  const businessType =
+    row.businessType === 'catering'
+      ? '위탁급식'
+      : row.businessType === 'restaurant'
+        ? '식당'
+        : null;
+
   return (
     <React.Fragment>
       <TableRow
@@ -93,7 +103,7 @@ const UserTableRow = ({
           {row.address}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {row.businessType}
+          {businessType}
         </TableCell>
       </TableRow>
     </React.Fragment>
