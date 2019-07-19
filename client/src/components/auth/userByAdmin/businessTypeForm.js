@@ -28,7 +28,7 @@ const styles = theme => ({
 });
 
 const BusinessTypeForm = ({ businessType, classes, change }) => (
-  <div className="user-form--bankaccount">
+  <div className="user-form--radioBtn">
     <FormControl component="fieldset" required className={classes.formControl}>
       <div className="flex">
         <Icon
@@ -47,16 +47,15 @@ const BusinessTypeForm = ({ businessType, classes, change }) => (
         name="businessType"
         value={businessType}
         onChange={e => change(e, 'businessType', false)}
+        row
       >
         <FormControlLabel
-          key="1"
           value="catering"
           control={<Radio color="primary" />}
           label="catering"
           labelPlacement="end"
         />
         <FormControlLabel
-          key="2"
           value="restaurant"
           control={<Radio color="primary" />}
           label="restaurant"

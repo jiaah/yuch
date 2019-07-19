@@ -28,7 +28,7 @@ const styles = theme => ({
 });
 
 const BankAccountForm = ({ bankAccountId, bankAccount, classes, change }) => (
-  <div className="user-form--bankaccount">
+  <div className="user-form--radioBtn">
     <FormControl
       component="fieldset"
       required
@@ -51,6 +51,7 @@ const BankAccountForm = ({ bankAccountId, bankAccount, classes, change }) => (
         name="bankAccountId"
         value={bankAccountId}
         onChange={e => change(e, 'bankAccountId', false)}
+        row
       >
         {bankAccount.length !== 0 &&
           bankAccount.map(row => (
