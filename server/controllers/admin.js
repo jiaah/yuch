@@ -84,8 +84,8 @@ exports.createUser = (req, res) => {
     bankAccountId,
     address,
     mealPrice,
+    businessType,
   } = req.body.userInfo;
-
   return util.bcryptPassword(password).then(hashedPassword =>
     knex('users')
       .insert({
@@ -98,6 +98,7 @@ exports.createUser = (req, res) => {
         dinnerQty,
         bankAccountId,
         address,
+        businessType,
       })
       .returning('id')
       .then(user => {
@@ -124,6 +125,7 @@ exports.editUserByAdmin = (req, res) => {
     dinnerQty,
     bankAccountId,
     address,
+    businessType,
     nextMonth,
   } = req.body.userInfo;
 
@@ -139,6 +141,7 @@ exports.editUserByAdmin = (req, res) => {
       dinnerQty,
       bankAccountId,
       address,
+      businessType,
     })
     .then(() =>
       knex('meal_price')
@@ -178,6 +181,7 @@ exports.getUsersList = (req, res) => {
       'users.dinnerQty',
       'users.bankAccountId',
       'users.address',
+      'users.businessType',
       'users.updated_at',
       'meal_price.mealPrice',
     )

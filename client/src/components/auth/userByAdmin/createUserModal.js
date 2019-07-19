@@ -62,6 +62,7 @@ const UserAccountModal = ({
     lunchQty: '',
     dinnerQty: '',
     bankAccountId: bankAccount[0].id,
+    businessType: 'catering',
   };
 
   return (

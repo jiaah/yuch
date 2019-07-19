@@ -9,6 +9,7 @@ import IconButton from '../../../shared/iconButton';
 import Icon from '../../../../assets/icons';
 import IconMessage from '../../../shared/iconMessage';
 import BankAccountForm from './bankAccountForm';
+import BusinessTypeForm from './businessTypeForm';
 
 const styles = theme => ({
   textField: {
@@ -42,6 +43,7 @@ const EditUserForm = ({
     lunchQty,
     dinnerQty,
     bankAccountId,
+    businessType,
   },
   bankAccount,
   errors,
@@ -70,7 +72,7 @@ const EditUserForm = ({
     if (name === 'username') {
       value = inputValue.toLowerCase();
     }
-    if (name === 'bankAccountId') {
+    if (name === 'bankAccountId' || name === 'businessType') {
       value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
@@ -285,6 +287,7 @@ const EditUserForm = ({
           ),
         }}
       />
+      <BusinessTypeForm businessType={businessType} change={change} />
       <BankAccountForm
         bankAccountId={bankAccountId}
         bankAccount={bankAccount}

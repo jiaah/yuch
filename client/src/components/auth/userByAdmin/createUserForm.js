@@ -6,6 +6,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormButton from '../../../shared/formButton';
 import Icon from '../../../../assets/icons';
 import BankAccountForm from './bankAccountForm';
+import BusinessTypeForm from './businessTypeForm';
 
 const styles = theme => ({
   textField: {
@@ -42,6 +43,7 @@ const CreateUserForm = props => {
       lunchQty,
       dinnerQty,
       bankAccountId,
+      businessType,
     },
     bankAccount,
     errors,
@@ -74,7 +76,7 @@ const CreateUserForm = props => {
     ) {
       value = inputValue.toLowerCase();
     }
-    if (name === 'bankAccountId') {
+    if (name === 'bankAccountId' || name === 'businessType') {
       value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);
@@ -337,6 +339,7 @@ const CreateUserForm = props => {
             ),
           }}
         />
+        <BusinessTypeForm businessType={businessType} change={change} />
         <BankAccountForm
           bankAccountId={bankAccountId}
           bankAccount={bankAccount}

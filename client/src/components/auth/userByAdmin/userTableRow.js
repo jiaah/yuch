@@ -92,6 +92,9 @@ const UserTableRow = ({
         <TableCell align="right" className={resize}>
           {row.address}
         </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.businessType}
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );

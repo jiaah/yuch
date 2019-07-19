@@ -23,6 +23,9 @@ exports.up = knex =>
         .boolean('isAdmin')
         .notNullable()
         .defaultTo(false);
+      table
+        .enum('businessType', ['catering', 'restaurant'])
+        .defaultTo('catering');
       table.integer('lunchQty').defaultTo(null);
       table.integer('dinnerQty').defaultTo(null);
       table

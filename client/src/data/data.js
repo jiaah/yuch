@@ -196,6 +196,12 @@ export const userAccountTableHeadColumns = [
     disablePadding: false,
     label: '주소',
   },
+  {
+    id: 'businessType',
+    numeric: true,
+    disablePadding: false,
+    label: '비지니스',
+  },
 ];
 
 export const bankAccountTableHeadColumns = [
