@@ -1,21 +1,3 @@
-/*
-on forgot username request success, save 'username' in http_success action ( to save it temprary ) and redirect to foundUsername page.
-
-<foundUsername Page>
-- Paper -
-email
-username
-----------
-로그인 / 비밀번호 찾기  (버튼)
-
-
-<login page>
-display username
-
-connect(state.httpHandler.data = username)
-
-* after http login request, 'state.httpHandler.data' should set to null.
-*/
 import React from 'react';
 import { withRouter } from 'react-router';
 /* --- Components --- */
