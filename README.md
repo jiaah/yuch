@@ -17,7 +17,7 @@
 - Manage client accounts
 - Manage a table of meal prices of all the clients
 
-- (catering) Manage a table of lunch & dinner requests of the day from all the clients
+- (catering & restaurant) Manage tables of lunch & dinner requests of the day from all the clients
 - (restaurant) Manage lunch & dinner income of the day
 - Manage special meals
 
