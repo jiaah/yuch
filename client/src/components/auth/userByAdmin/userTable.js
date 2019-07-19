@@ -49,7 +49,10 @@ const UserTable = ({
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
+
+  // to render only one user on search.
   const searchUser = users.filter(u => u.companyName === selectedSearchItem);
+  const usersToDisplay = searchUser.length === 0 ? users : searchUser;
 
   return (
     <React.Fragment>
@@ -63,8 +66,7 @@ const UserTable = ({
           />
           <TableBody>
             {users.length !== 0 &&
-              searchUser.length === 0 &&
-              stableSort(users, getSorting(order, orderBy))
+              stableSort(usersToDisplay, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
