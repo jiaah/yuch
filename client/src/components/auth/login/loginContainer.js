@@ -42,6 +42,9 @@ const Login = ({
     return setSubmitting(false);
   };
 
+  // when user found username from 'forgot ID'.
+  // userData[0].username state is purposly saved temporary.
+  // In order to achieve this, save it in 'HTTP_SUCCESS' action of 'forgotUsername'.
   const foundUsername = userData.length !== 0 ? userData[0].username : '';
   const values = { username: foundUsername, password: '' };
 
