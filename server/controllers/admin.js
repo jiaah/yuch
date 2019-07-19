@@ -195,6 +195,7 @@ exports.getCateringRates = (req, res) => {
   knex('meal_price')
     .whereNot('users.isAdmin', true)
     .select(
+      'meal_price.id',
       'meal_price.userId',
       'users.companyName',
       'meal_price.mealPrice',
