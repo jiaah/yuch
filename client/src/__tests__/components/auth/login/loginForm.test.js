@@ -1,5 +1,6 @@
 import React, { render, cleanup } from '../../../setupTests';
 import { Unwrapped as UnwrappedLoginForm } from '../../../../components/auth/login/loginForm';
+import { findByTestAttr } from '../../../util';
 
 afterEach(cleanup);
 
