@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { isLoggedIn } from './localStorage';
+/* --- Components --- */
+import { isLoggedIn } from '../localStorage';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

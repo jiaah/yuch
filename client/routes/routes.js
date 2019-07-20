@@ -3,59 +3,61 @@ import { Switch, Route } from 'react-router-dom';
 import { hot, setConfig } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
-import App from './app';
-import Loader from './src/shared/loader';
+import App from '../app';
+import Loader from '../src/shared/loader';
+/* --- Routes --- */
 import AuthGuards from './authGuards';
 import PrivateRoute from './privateRoute';
+import LoggedInRoute from './loggedInRoute';
 
 const Home = Loader({
   loader: () =>
-    import('./src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
+    import('../src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
 });
 
 const Login = Loader({
   loader: () =>
-    import('./src/components/auth/login/loginContainer' /* webpackChunkName: 'Login' */),
+    import('../src/components/auth/login/loginContainer' /* webpackChunkName: 'Login' */),
 });
 
 const Forgot = Loader({
   loader: () =>
-    import('./src/components/auth/login/forgotContainer' /* webpackChunkName: 'Forgot' */),
+    import('../src/components/auth/login/forgotContainer' /* webpackChunkName: 'Forgot' */),
 });
 
 const Reset = Loader({
   loader: () =>
-    import('./src/components/auth/resetPassword/resetContainer' /* webpackChunkName: 'Reset' */),
+    import('../src/components/auth/resetPassword/resetContainer' /* webpackChunkName: 'Reset' */),
 });
 
 const UserAccountForAdmin = Loader({
   loader: () =>
-    import('./src/components/admin/userAccounts/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/admin/userAccounts/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
 const BankAccount = Loader({
   loader: () =>
-    import('./src/components/admin/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
+    import('../src/components/admin/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
 });
 
 const CateringRates = Loader({
   loader: () =>
-    import('./src/components/admin/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
+    import('../src/components/admin/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
 });
 
 const AdminAccount = Loader({
   loader: () =>
-    import('./src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
+    import('../src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
 });
 
 const UserAccount = Loader({
   loader: () =>
-    import('./src/components/users/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/users/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
 const NoMatch = Loader({
   loader: () =>
-    import('./src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
+    import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
 const routes = props => (
@@ -63,30 +65,35 @@ const routes = props => (
     <App history={props.history} />
     <Switch>
       <Route exact path="/" component={AuthGuards(Home)} />
-      <Route path="/login" component={Login} />
-      <Route path="/auth/forgot" component={Forgot} />
+      <LoggedInRoute path="/login" component={Login} />
+      <LoggedInRoute path="/auth/forgot" component={Forgot} />
       <Route path="/reset" component={Reset} />
       <PrivateRoute
+        exact
         path="/admin/account/users"
         component={AuthGuards(UserAccountForAdmin)}
       />
       <PrivateRoute
+        exact
         path="/admin/account/bankaccount"
         component={AuthGuards(BankAccount)}
       />
       <PrivateRoute
+        exact
         path="/admin/account/me"
         component={AuthGuards(AdminAccount)}
       />
       <PrivateRoute
+        exact
         path="/admin/account/rates"
         component={AuthGuards(CateringRates)}
       />
       <PrivateRoute
+        exact
         path="/user/account/me"
         component={AuthGuards(UserAccount)}
       />
-      <PrivateRoute component={NoMatch} />
+      <Route component={NoMatch} />
     </Switch>
   </div>
 );

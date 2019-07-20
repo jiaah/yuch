@@ -27,20 +27,21 @@ const Login = ({
 
     if (isLoggedIn()) {
       await addFlashMessage('warning', loggedInUser);
-      await resetForm({});
-      history.push('/');
-      return setSubmitting(false);
+      resetForm({});
+      setSubmitting(false);
+      return history.push('/');
     }
 
     try {
       const token = await userLogin(username, password);
       await saveUserToken(token, keepLoggedIn);
       await resetForm({});
+      await setSubmitting(false);
       history.push('/');
     } catch (error) {
-      await addFlashMessage('error', loginFailed);
+      addFlashMessage('error', loginFailed);
+      return setSubmitting(false);
     }
-    return setSubmitting(false);
   };
 
   // when user found username from 'forgot ID'.
