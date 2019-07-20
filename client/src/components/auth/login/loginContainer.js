@@ -33,7 +33,7 @@ const Login = ({
 
     try {
       const token = await userLogin(username, password);
-      await saveUserToken(token);
+      await saveUserToken(token, keepLoggedIn);
       await resetForm({});
       history.push('/');
     } catch (error) {
