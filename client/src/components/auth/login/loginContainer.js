@@ -20,9 +20,10 @@ const Login = ({
   addFlashMessage,
   keepMeLoggedIn,
 }) => {
+  const { loggedInUser, loginFailed } = data.message.auth;
+
   const handleUserLogin = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
-    const { loggedInUser, loginFailed } = data.message.auth;
 
     if (isLoggedIn()) {
       await addFlashMessage('warning', loggedInUser);

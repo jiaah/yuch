@@ -12,7 +12,6 @@ export default Component => {
   class LoginAuth extends React.Component {
     componentWillMount() {
       const { keepLoggedIn, userLogout, history } = this.props;
-
       // when 'keepLoggedIn === false'
       // !keepLoggedIn === true
       // on refresh, !sessionStorage.getItem('keepLoggedIn') === false   ( !false === false )

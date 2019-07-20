@@ -129,6 +129,7 @@ export const message = {
     loggedInUser: '회원님은 이미 로그인 되어있습니다.',
     loginFailed:
       '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+    unauthenticated: '로그인을 해주세요.',
   },
   reserve: {
     success: `예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, ${
