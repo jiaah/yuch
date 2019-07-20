@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
-import { editUserAccountValidation } from '../formValidation';
-import PasswordFormBox from '../changePassword/passwordContainer';
+import { editUserAccountValidation } from '../../formValidation';
+import PasswordFormBox from '../../auth/changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import * as userActions from '../../../actions/userAction';

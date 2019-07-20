@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import IconButton from '../../shared/iconButton';
-import Paper from '../../shared/paper';
-import Loader from '../../shared/loader';
+import IconButton from '../../../shared/iconButton';
+import Paper from '../../../shared/paper';
+import Loader from '../../../shared/loader';
 import BankTable from './bankTable';
-import { bankAccountTableHeadColumns } from '../../data/data';
-import { bankAccountPageInfoA, bankAccountPageInfoB } from '../../data/message';
-import { bankAccountValidation } from '../auth/formValidation';
-import IconMessage from '../../shared/iconMessage';
+import { bankAccountTableHeadColumns } from '../../../data/data';
+import {
+  bankAccountPageInfoA,
+  bankAccountPageInfoB,
+} from '../../../data/message';
+import { bankAccountValidation } from '../../formValidation';
+import IconMessage from '../../../shared/iconMessage';
 /* --- Actions --- */
-import * as modalActions from '../../actions/modalAction';
-import * as bankActions from '../../actions/bankAction';
-import * as selectedActions from '../../actions/selectedAction';
-import { addFlashMessage } from '../../actions/messageAction';
+import * as modalActions from '../../../actions/modalAction';
+import * as bankActions from '../../../actions/bankAction';
+import * as selectedActions from '../../../actions/selectedAction';
+import { addFlashMessage } from '../../../actions/messageAction';
 
 const BankModal = Loader({
   loader: () => import('./bankModal' /* webpackChunkName: 'BankModal' */),

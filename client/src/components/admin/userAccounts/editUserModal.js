@@ -4,7 +4,7 @@ import Loader from '../../../shared/loader';
 import {
   editUserAccountValidation,
   resetPasswordValidation,
-} from '../formValidation';
+} from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 

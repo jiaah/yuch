@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
-import { changePasswordValidation } from '../formValidation';
+import { changePasswordValidation } from '../../formValidation';
 /* --- Actions --- */
 import { changePassword } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';

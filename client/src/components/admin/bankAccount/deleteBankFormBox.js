@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import AdminConfirmContainer from '../../shared/adminConfirm/adminConfirmContainer';
+import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
 
 const DeleteBankFormBox = ({
   deleteBankAccount,

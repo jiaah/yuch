@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import PasswordForm from '../resetPassword/passwordForm';
+import PasswordForm from '../../auth/resetPassword/passwordForm';
 
 const PasswordFormBox = ({
   handleCloseModal,

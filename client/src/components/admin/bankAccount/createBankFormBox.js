@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
 import BankForm from './bankForm';
-import AdminConfirmContainer from '../../shared/adminConfirm/adminConfirmContainer';
+import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
 
 const CreateBankFormBox = ({
   bankAccountValidation,

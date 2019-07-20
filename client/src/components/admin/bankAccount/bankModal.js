@@ -1,7 +1,7 @@
 import React from 'react';
 /* --- Components --- */
-import Modal from '../../shared/modal';
-import Loader from '../../shared/loader';
+import Modal from '../../../shared/modal';
+import Loader from '../../../shared/loader';
 
 const CreateBankFormBox = Loader({
   loader: () =>

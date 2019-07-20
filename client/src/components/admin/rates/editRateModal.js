@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import Modal from '../../../shared/modal';
 import Form from './editRateForm';
 import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
-import { reservePriceValidation } from '../formValidation';
+import { reservePriceValidation } from '../../formValidation';
 
 const EditRateModal = ({
   clickedUserData,

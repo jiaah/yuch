@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
-import { resetPasswordValidation } from '../formValidation';
+import { resetPasswordValidation } from '../../formValidation';
 /* --- Actions --- */
 import { resetPasswordWithAccessToken } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';

@@ -9,7 +9,7 @@ import PasswordFormBox from './passwordFormBox';
 import {
   forgotUsernameValidation,
   forgotPasswordValidation,
-} from '../formValidation';
+} from '../../formValidation';
 import FoundUsername from './foundUsername';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';

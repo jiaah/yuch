@@ -8,6 +8,9 @@ const initialState = {
 };
 
 const httpHandler = (state = initialState, action) => {
+  // to keep data as [], not undefined when nothing was passed from action.
+  const { payload } = action;
+  const contents = payload === undefined || payload === null ? [] : payload;
   switch (action.type) {
     case types.HTTP_REQUEST:
       return {
@@ -22,7 +25,7 @@ const httpHandler = (state = initialState, action) => {
         ...state,
         api: action.api,
         isLoading: false,
-        data: [...state.data, action.payload],
+        data: [...state.data, contents],
       };
     case types.HTTP_FAILURE:
       return {

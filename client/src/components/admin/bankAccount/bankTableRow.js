@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-import IconButton from '../../shared/iconButton';
+import IconButton from '../../../shared/iconButton';
 
 const styles = theme => ({
   resize: {

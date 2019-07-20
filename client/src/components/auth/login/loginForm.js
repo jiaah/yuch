@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-const Form = ({
+const LoginForm = ({
   values: { username, password },
   keepMeLoggedIn,
   keepLoggedIn,
@@ -143,5 +143,5 @@ const Form = ({
   );
 };
 
-export const Unwrapped = Form;
-export default withStyles(styles)(Form);
+export const Unwrapped = LoginForm;
+export default withStyles(styles)(LoginForm);

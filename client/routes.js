@@ -28,27 +28,27 @@ const Reset = Loader({
 
 const UserAccountForAdmin = Loader({
   loader: () =>
-    import('./src/components/auth/userByAdmin/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('./src/components/admin/userAccounts/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
 const BankAccount = Loader({
   loader: () =>
-    import('./src/components/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
+    import('./src/components/admin/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
 });
 
-const CateringRatesAccount = Loader({
+const CateringRates = Loader({
   loader: () =>
-    import('./src/components/auth/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
+    import('./src/components/admin/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
 });
 
 const AdminAccount = Loader({
   loader: () =>
-    import('./src/components/auth/admin/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
+    import('./src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
 });
 
 const UserAccount = Loader({
   loader: () =>
-    import('./src/components/auth/userByUser/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('./src/components/users/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
 const NoMatch = Loader({
@@ -67,7 +67,7 @@ const routes = props => (
       <Route path="/admin/account/users" component={UserAccountForAdmin} />
       <Route path="/admin/account/bankaccount" component={BankAccount} />
       <Route path="/admin/account/me" component={AdminAccount} />
-      <Route path="/admin/account/rates" component={CateringRatesAccount} />
+      <Route path="/admin/account/rates" component={CateringRates} />
       <Route path="/user/account/me" component={UserAccount} />
       <Route component={NoMatch} />
     </Switch>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import FormBox from './adminFormBox';
-import { adminAccountValidation } from '../formValidation';
-import PasswordFormBox from '../changePassword/passwordContainer';
+import { adminAccountValidation } from '../../formValidation';
+import PasswordFormBox from '../../auth/changePassword/passwordContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import { getAdmin, editAdminAccount } from '../../../actions/adminAction';

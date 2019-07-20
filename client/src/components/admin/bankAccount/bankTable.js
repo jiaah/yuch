@@ -5,8 +5,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
-import EnhancedTableHead from '../../shared/tableHead';
-import { stableSort, getSorting } from '../../utils/sort';
+import EnhancedTableHead from '../../../shared/tableHead';
+import { stableSort, getSorting } from '../../../utils/sort';
 import BankTableRow from './bankTableRow';
 
 const styles = () => ({

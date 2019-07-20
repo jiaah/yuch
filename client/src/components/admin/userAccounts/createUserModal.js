@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 /* --- Components --- */
 import Form from './createUserForm';
 import Modal from '../../../shared/modal';
-import { addUserAccountValidation } from '../formValidation';
+import { addUserAccountValidation } from '../../formValidation';
 
 const UserAccountModal = ({
   createUser,
