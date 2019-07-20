@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 /* --- Components --- */
 import App from './app';
 import Loader from './src/shared/loader';
+import AuthGuards from './authGuards';
 
 const Home = Loader({
   loader: () =>
@@ -60,15 +61,26 @@ const routes = props => (
   <div>
     <App history={props.history} />
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={AuthGuards(Home)} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/auth/forgot" render={props => <Forgot {...props} />} />
       <Route path="/reset" render={props => <Reset {...props} />} />
-      <Route path="/admin/account/users" component={UserAccountForAdmin} />
-      <Route path="/admin/account/bankaccount" component={BankAccount} />
-      <Route path="/admin/account/me" component={AdminAccount} />
-      <Route path="/admin/account/rates" component={CateringRates} />
-      <Route path="/user/account/me" component={UserAccount} />
+      {/* <Route path="/auth/forgot" render={AuthGuards(Forgot)} />
+      <Route path="/reset" render={AuthGuards(Reset)} /> */}
+      <Route
+        path="/admin/account/users"
+        component={AuthGuards(UserAccountForAdmin)}
+      />
+      <Route
+        path="/admin/account/bankaccount"
+        component={AuthGuards(BankAccount)}
+      />
+      <Route path="/admin/account/me" component={AuthGuards(AdminAccount)} />
+      <Route
+        path="/admin/account/rates"
+        component={AuthGuards(CateringRates)}
+      />
+      <Route path="/user/account/me" component={AuthGuards(UserAccount)} />
       <Route component={NoMatch} />
     </Switch>
   </div>

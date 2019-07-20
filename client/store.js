@@ -2,11 +2,10 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { routerMiddleware, connectRouter } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import storageSession from 'redux-persist/lib/storage/session';
 import rootReducer from './src/reducers';
 
 export const history = createBrowserHistory();
@@ -24,6 +23,7 @@ const enhancers = [applyMiddleware(...middlewares)];
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['router'],
 };
 const persistedReducer = persistReducer(
   persistConfig,
