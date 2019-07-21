@@ -25,7 +25,9 @@ exports[`<HomeMain /> renders properly 1`] = `
       <h3
         class="c-text1"
       >
-        당신의 위한 유청 서비스
+        당신의 위한 
+        유청
+         서비스
       </h3>
       <div
         class="mb3"
@@ -144,7 +146,8 @@ exports[`<HomeMain /> renders properly 1`] = `
       <p>
         2016년 여성이 일하기 좋은 기업으로 선정.
         <br />
-        유청은 나이와 국적에 제한을 두지 않고 채용합니다.
+        유청
+        은 나이와 국적에 제한을 두지 않고 채용합니다.
       </p>
     </div>
   </div>

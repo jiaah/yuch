@@ -7,18 +7,16 @@ import { clearStorage } from '../localStorage';
 // -> on refresh : prevent from logging out user
 // -> on reopen  : force logging out user
 
-export default Component => {
+const AdminGuards = Component => {
   class LoginAuth extends React.Component {
     componentWillMount() {
-      const { keepLoggedIn, userLogout, history } = this.props;
-      // ERROR: can not redirect from '/login' to '/' for logged out user -> 'userLoggout()' gets called.
-      // const onLoginPage = history.location.pathname;
+      const { keepLoggedIn, userLogout, isAdmin, history } = this.props;
+      // if (!isAdmin) {
+      //   return history.push('/login');
+      // }
       if (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) {
         userLogout();
         clearStorage();
-        // if (onLoginPage) {
-        //   return history.push('/');
-        // }
         return history.push('/login');
       }
     }
@@ -30,6 +28,7 @@ export default Component => {
 
   const mapPropsToState = state => ({
     keepLoggedIn: state.auth.keepLoggedIn,
+    isAdmin: state.auth.isAdmin,
   });
   return connect(
     mapPropsToState,
@@ -37,7 +36,4 @@ export default Component => {
   )(LoginAuth);
 };
 
-// when 'keepLoggedIn === false'
-// !keepLoggedIn === true
-// on refresh, !sessionStorage.getItem('keepLoggedIn') === false   ( !false === false )
-// on reopen,  !sessionStorage.getItem('keepLoggedIn') === true    ( !null  === true  )
+export default AdminGuards;

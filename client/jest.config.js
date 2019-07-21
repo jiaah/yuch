@@ -1,7 +1,6 @@
 module.exports = {
   rootDir: process.cwd(),
   displayName: 'client',
-
   modulePaths: ['<rootDir>/client/src', '<rootDir>/client/src/__tests__'],
   testMatch: ['**/*.test.js'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'scss'],

@@ -23,7 +23,8 @@
     "configure": "./bin/configuredb.sh",
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
     "test:client": "cross-env NODE_ENV=test jest --config ./client/jest.config.js --coverage --watch",
-    "test:server": "jest --config ./server/jest.config.js --coverage --watch"
+    "test:server": "jest --config ./server/jest.config.js --coverage --watch",
+    "coverage": "jest -u --maxWorkers=2 --coverage"
   },
   "lint-staged": {
     "linters": {

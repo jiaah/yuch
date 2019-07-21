@@ -6,9 +6,9 @@ import { withRouter } from 'react-router';
 import App from '../app';
 import Loader from '../src/shared/loader';
 /* --- Routes --- */
-import AuthGuards from './authGuards';
-import PrivateRoute from './privateRoute';
-import LoggedInRoute from './loggedInRoute';
+import UserGuards from './userGuards';
+import AdminGuards from './adminGuards';
+import LoggedOutRoute from './loggedOutRoute';
 
 const Home = Loader({
   loader: () =>
@@ -64,34 +64,34 @@ const routes = props => (
   <div>
     <App history={props.history} />
     <Switch>
-      <Route exact path="/" component={AuthGuards(Home)} />
-      <LoggedInRoute path="/login" component={Login} />
-      <LoggedInRoute path="/auth/forgot" component={Forgot} />
+      <Route exact path="/" component={Home} />
+      <LoggedOutRoute path="/login" component={Login} />
+      <LoggedOutRoute path="/auth/forgot" component={Forgot} />
       <Route path="/reset" component={Reset} />
-      <PrivateRoute
+      <Route
         exact
         path="/admin/account/users"
-        component={AuthGuards(UserAccountForAdmin)}
+        component={AdminGuards(UserAccountForAdmin)}
       />
-      <PrivateRoute
+      <Route
         exact
         path="/admin/account/bankaccount"
-        component={AuthGuards(BankAccount)}
+        component={AdminGuards(BankAccount)}
       />
-      <PrivateRoute
+      <Route
         exact
         path="/admin/account/me"
-        component={AuthGuards(AdminAccount)}
+        component={AdminGuards(AdminAccount)}
       />
-      <PrivateRoute
+      <Route
         exact
         path="/admin/account/rates"
-        component={AuthGuards(CateringRates)}
+        component={AdminGuards(CateringRates)}
       />
-      <PrivateRoute
+      <Route
         exact
         path="/user/account/me"
-        component={AuthGuards(UserAccount)}
+        component={UserGuards(UserAccount)}
       />
       <Route component={NoMatch} />
     </Switch>

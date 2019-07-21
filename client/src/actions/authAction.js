@@ -1,7 +1,6 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
-import { now, inOneHour } from '../shared/moment';
 
 /* --- Login --- */
 export const userLogin = (username, password) => async dispatch => {
@@ -75,7 +74,6 @@ export const resetPasswordWithAccessToken = (
   try {
     await axios.patch(`${API_HOST}/auth/reset/password/${token}`, {
       newPassword,
-      now,
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
@@ -123,7 +121,6 @@ export const sendVerificationCodeToEmail = (
     await axios.post(`${API_HOST}/auth/forgot/password`, {
       username,
       email,
-      inOneHour,
     });
     return dispatch({
       type: types.HTTP_SUCCESS,

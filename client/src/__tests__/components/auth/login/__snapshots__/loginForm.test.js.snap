@@ -1,0 +1,468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Form Component renders without errors 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="login-container"
+        data-test="loginformComponent"
+      >
+        <form
+          class="flex flex-column-m"
+        >
+          <div
+            class="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
+          >
+            <label
+              class="MuiFormLabel-root-12 MuiFormLabel-required-17 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+              data-shrink="true"
+              for="username"
+            >
+              Username
+              <span
+                class="MuiFormLabel-asterisk-18"
+              >
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root-32 MuiInput-root-19 MuiInput-underline-23 MuiInputBase-formControl-33 MuiInput-formControl-20 MuiInputBase-adornedStart-36"
+            >
+              <div
+                class="MuiInputAdornment-root-49 MuiInputAdornment-positionStart-51"
+              >
+                <svg
+                  class="svg-icon icon-filledUser || ''"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  width="30"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input-42 MuiInput-input-27 MuiInputBase-inputAdornedStart-47"
+                id="username"
+                name="username"
+                required=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
+          >
+            <label
+              class="MuiFormLabel-root-12 MuiFormLabel-required-17 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+              data-shrink="true"
+              for="password"
+            >
+              Password
+              <span
+                class="MuiFormLabel-asterisk-18"
+              >
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root-32 MuiInput-root-19 MuiInput-underline-23 MuiInputBase-formControl-33 MuiInput-formControl-20 MuiInputBase-adornedStart-36 MuiInputBase-adornedEnd-37"
+            >
+              <div
+                class="MuiInputAdornment-root-49 MuiInputAdornment-positionStart-51"
+              >
+                <svg
+                  class="svg-icon icon-filledLock || ''"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  width="30"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                  />
+                </svg>
+              </div>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input-42 MuiInput-input-27 MuiInputBase-inputType-45 MuiInput-inputType-30 MuiInputBase-inputAdornedStart-47 MuiInputBase-inputAdornedEnd-48"
+                id="password"
+                name="password"
+                required=""
+                type="password"
+                value=""
+              />
+              <div
+                class="MuiInputAdornment-root-49 MuiInputAdornment-positionEnd-52"
+              >
+                <button
+                  style="background-color: transparent; padding-top: 0px; padding-bottom: 0px;"
+                  type="button"
+                >
+                  <svg
+                    class="svg-icon icon-visibilityOff || ''"
+                    height="20"
+                    viewBox="0 0 25 25"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z"
+                      fill="#E8716F"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            class="MuiButtonBase-root-80 MuiButton-root-54 MuiButton-contained-65 MuiButton-containedPrimary-66 MuiButton-raised-68 MuiButton-raisedPrimary-69 MuiButton-sizeSmall-77 login-btn FormButton-button-53"
+            tabindex="0"
+            type="submit"
+          >
+            <span
+              class="MuiButton-label-55"
+            >
+              로그인
+            </span>
+            <span
+              class="MuiTouchRipple-root-83"
+            />
+          </button>
+        </form>
+        <div
+          class="keep-me-logged-in"
+        >
+          <label
+            class="MuiFormControlLabel-root-90"
+          >
+            <span
+              class="MuiButtonBase-root-80 MuiIconButton-root-104 MuiSwitchBase-root-100 MuiCheckbox-root-94 MuiCheckbox-colorSecondary-99"
+            >
+              <span
+                class="MuiIconButton-label-109"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root-110"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+                <input
+                  class="MuiSwitchBase-input-103"
+                  data-indeterminate="false"
+                  type="checkbox"
+                  value="keepLoggedIn"
+                />
+              </span>
+              <span
+                class="MuiTouchRipple-root-83"
+              />
+            </span>
+            <span
+              class="MuiTypography-root-119 MuiTypography-body1-128 MuiFormControlLabel-label-93"
+            >
+              로그인 상태 유지
+            </span>
+          </label>
+        </div>
+        <div
+          class="tc login-forgot"
+        >
+          <a
+            class="td-none c-text-grey"
+            href="/auth/forgot?value=username"
+          >
+            아이디 찾기
+          </a>
+            |  
+          <a
+            class="td-none c-text-grey"
+            href="/auth/forgot?value=password"
+          >
+            비밀번호 찾기
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="login-container"
+      data-test="loginformComponent"
+    >
+      <form
+        class="flex flex-column-m"
+      >
+        <div
+          class="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
+        >
+          <label
+            class="MuiFormLabel-root-12 MuiFormLabel-required-17 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+            data-shrink="true"
+            for="username"
+          >
+            Username
+            <span
+              class="MuiFormLabel-asterisk-18"
+            >
+               *
+            </span>
+          </label>
+          <div
+            class="MuiInputBase-root-32 MuiInput-root-19 MuiInput-underline-23 MuiInputBase-formControl-33 MuiInput-formControl-20 MuiInputBase-adornedStart-36"
+          >
+            <div
+              class="MuiInputAdornment-root-49 MuiInputAdornment-positionStart-51"
+            >
+              <svg
+                class="svg-icon icon-filledUser || ''"
+                height="30"
+                viewBox="0 0 30 30"
+                width="30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"
+                />
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+              </svg>
+            </div>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input-42 MuiInput-input-27 MuiInputBase-inputAdornedStart-47"
+              id="username"
+              name="username"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
+        >
+          <label
+            class="MuiFormLabel-root-12 MuiFormLabel-required-17 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+            data-shrink="true"
+            for="password"
+          >
+            Password
+            <span
+              class="MuiFormLabel-asterisk-18"
+            >
+               *
+            </span>
+          </label>
+          <div
+            class="MuiInputBase-root-32 MuiInput-root-19 MuiInput-underline-23 MuiInputBase-formControl-33 MuiInput-formControl-20 MuiInputBase-adornedStart-36 MuiInputBase-adornedEnd-37"
+          >
+            <div
+              class="MuiInputAdornment-root-49 MuiInputAdornment-positionStart-51"
+            >
+              <svg
+                class="svg-icon icon-filledLock || ''"
+                height="30"
+                viewBox="0 0 30 30"
+                width="30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                />
+              </svg>
+            </div>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input-42 MuiInput-input-27 MuiInputBase-inputType-45 MuiInput-inputType-30 MuiInputBase-inputAdornedStart-47 MuiInputBase-inputAdornedEnd-48"
+              id="password"
+              name="password"
+              required=""
+              type="password"
+              value=""
+            />
+            <div
+              class="MuiInputAdornment-root-49 MuiInputAdornment-positionEnd-52"
+            >
+              <button
+                style="background-color: transparent; padding-top: 0px; padding-bottom: 0px;"
+                type="button"
+              >
+                <svg
+                  class="svg-icon icon-visibilityOff || ''"
+                  height="20"
+                  viewBox="0 0 25 25"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z"
+                    fill="#E8716F"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root-80 MuiButton-root-54 MuiButton-contained-65 MuiButton-containedPrimary-66 MuiButton-raised-68 MuiButton-raisedPrimary-69 MuiButton-sizeSmall-77 login-btn FormButton-button-53"
+          tabindex="0"
+          type="submit"
+        >
+          <span
+            class="MuiButton-label-55"
+          >
+            로그인
+          </span>
+          <span
+            class="MuiTouchRipple-root-83"
+          />
+        </button>
+      </form>
+      <div
+        class="keep-me-logged-in"
+      >
+        <label
+          class="MuiFormControlLabel-root-90"
+        >
+          <span
+            class="MuiButtonBase-root-80 MuiIconButton-root-104 MuiSwitchBase-root-100 MuiCheckbox-root-94 MuiCheckbox-colorSecondary-99"
+          >
+            <span
+              class="MuiIconButton-label-109"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root-110"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                />
+              </svg>
+              <input
+                class="MuiSwitchBase-input-103"
+                data-indeterminate="false"
+                type="checkbox"
+                value="keepLoggedIn"
+              />
+            </span>
+            <span
+              class="MuiTouchRipple-root-83"
+            />
+          </span>
+          <span
+            class="MuiTypography-root-119 MuiTypography-body1-128 MuiFormControlLabel-label-93"
+          >
+            로그인 상태 유지
+          </span>
+        </label>
+      </div>
+      <div
+        class="tc login-forgot"
+      >
+        <a
+          class="td-none c-text-grey"
+          href="/auth/forgot?value=username"
+        >
+          아이디 찾기
+        </a>
+          |  
+        <a
+          class="td-none c-text-grey"
+          href="/auth/forgot?value=password"
+        >
+          비밀번호 찾기
+        </a>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

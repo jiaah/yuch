@@ -97,32 +97,36 @@ exports.resetPassword = (req, res) => {
 
 // when user forgot password
 exports.resetPasswordWithToken = (req, res) => {
-  const { newPassword, now } = req.body;
+  const { newPassword } = req.body;
   const { token } = req.params;
 
   return knex('users')
     .where({ resetPasswordToken: token })
-    .andWhere('resetPasswordExpires', '>', now)
     .first()
     .then(user => {
       if (user) {
         const id = user.id;
-        return setPassword(id, newPassword)
-          .then(() =>
-            knex('users')
-              .where({
-                id,
-              })
-              .first()
-              .update({
-                resetPasswordToken: null,
-                resetPasswordExpires: null,
-              }),
-          )
-          .then(() => res.status(200).json())
-          .catch(err => res.status(409).json(err));
+
+        try {
+          util.isValidToken(token);
+          return setPassword(id, newPassword)
+            .then(() =>
+              knex('users')
+                .where({
+                  id,
+                })
+                .first()
+                .update({
+                  resetPasswordToken: null,
+                }),
+            )
+            .then(() => res.status(200).json())
+            .catch(err => res.status(409).json(err));
+        } catch (err) {
+          return res.status(409).json('Access token has expired');
+        }
       }
-      return res.status(409).json('Access token is invalid or has expired');
+      return res.status(409).json('Access token is invalid');
     })
     .catch(err => res.status(409).json(err));
 };
@@ -141,7 +145,7 @@ exports.forgotUsername = (req, res) =>
     .catch(() => res.status(500).json('Can not find user email'));
 
 exports.forgotPassword = (req, res) => {
-  const { username, email, inOneHour } = req.body;
+  const { username, email } = req.body;
 
   return knex('users')
     .where({ username, email })
@@ -162,7 +166,6 @@ exports.forgotPassword = (req, res) => {
           .first()
           .update({
             resetPasswordToken: token,
-            resetPasswordExpires: inOneHour,
           })
           .then(() => {
             sendEmail(mailOptions)

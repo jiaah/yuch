@@ -34,15 +34,9 @@ const setUp = props => {
 };
 
 describe('Login Form Component', () => {
-  let wrapper;
-
-  beforeEach(() => {
-    // wrapper = setUp({});
-    // const { container } = setUp({});
-  });
-
   it('renders without errors', () => {
-    const { component, getAllByTestId } = setUp({});
+    const component = setUp({});
+    expect(component).toMatchSnapshot();
     // const loginformComponent = findByTestAttr(component, 'loginformComponent');
     // expect(loginformComponent).toHaveLength(1);
   });

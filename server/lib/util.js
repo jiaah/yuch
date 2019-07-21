@@ -18,6 +18,20 @@ exports.getRandomToken = function getRandomToken(user) {
   });
 };
 
+// check if reset password token is valid
+exports.isValidToken = function isValidToken(token) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+      if (err) {
+        reject(new Error('Unauthorized access'));
+      }
+      req.userData = decoded;
+      console.log('decoded: ', decoded);
+      resolve(true);
+    });
+  });
+};
+
 exports.comparePassword = function comparePassword(
   userPassword,
   databasePassword,
