@@ -11,10 +11,10 @@ const AdminGuards = Component => {
   class LoginAuth extends React.Component {
     componentWillMount() {
       const { keepLoggedIn, userLogout, isAdmin, history } = this.props;
-      // if (!isAdmin) {
-      //   return history.push('/login');
-      // }
-      if (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) {
+      if (
+        (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) || // when user reopen the browser ( keepLoggedIn is false)
+        !isAdmin // if logged in user is not admin
+      ) {
         userLogout();
         clearStorage();
         return history.push('/login');

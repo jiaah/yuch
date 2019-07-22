@@ -3,18 +3,22 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import { userLogout } from '../src/actions/authAction';
 import { clearStorage } from '../localStorage';
-// when 'keepLoggedIn === false'
-// -> on refresh : prevent from logging out user
-// -> on reopen  : force logging out user
 
 const UserGuards = Component => {
   class LoginAuth extends React.Component {
     componentWillMount() {
-      const { keepLoggedIn, userLogout, isLoggedIn, history } = this.props;
-      // if (!isLoggedIn) {
-      //   return history.push('/login');
-      // }
-      if (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) {
+      const {
+        keepLoggedIn,
+        userLogout,
+        isLoggedIn,
+        isAdmin,
+        history,
+      } = this.props;
+      if (
+        (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) || // if user reopen the browser ( keepLoggedIn is false)
+        !isLoggedIn || // if user is not logged in
+        isAdmin // if logged in user is admin
+      ) {
         userLogout();
         clearStorage();
         return history.push('/login');
@@ -29,6 +33,7 @@ const UserGuards = Component => {
   const mapPropsToState = state => ({
     keepLoggedIn: state.auth.keepLoggedIn,
     isLoggedIn: state.auth.isLoggedIn,
+    isAdmin: state.auth.isAdmin,
   });
   return connect(
     mapPropsToState,
