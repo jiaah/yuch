@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import IconButton from '../../../shared/iconButton';
+import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Loader from '../../../shared/loader';
 import BankTable from './bankTable';

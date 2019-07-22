@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import Icon from '../../../../assets/icons';
-import FormButton from '../../../shared/formButton';
-import IconButton from '../../../shared/iconButton';
+import FormButton from '../../../shared/form/formButton';
+import IconButton from '../../../shared/form/iconButton';
 
 const styles = theme => ({
   textField: {

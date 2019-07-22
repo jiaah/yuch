@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
-import FormButton from '../../../shared/formButton';
+import FormButton from '../../../shared/form/formButton';
 import Icon from '../../../../assets/icons';
 import BankAccountForm from './bankAccountForm';
 import BusinessTypeForm from './businessTypeForm';

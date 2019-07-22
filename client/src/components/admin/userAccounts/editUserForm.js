@@ -3,9 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
-import FormButton from '../../../shared/formButton';
-import Button from '../../../shared/button';
-import IconButton from '../../../shared/iconButton';
+import FormButton from '../../../shared/form/formButton';
+import Button from '../../../shared/form/button';
+import IconButton from '../../../shared/form/iconButton';
 import Icon from '../../../../assets/icons';
 import IconMessage from '../../../shared/iconMessage';
 import BankAccountForm from './bankAccountForm';

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import Loader from '../../../shared/loader';
 import UserTable from './userTable';
-import IconButton from '../../../shared/iconButton';
+import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';

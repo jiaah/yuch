@@ -3,7 +3,7 @@ import { TextField, FormControl, Input, InputLabel } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
 import TextMaskCustom from './textMaskCustom';
-import Button from '../../shared/button';
+import Button from '../../shared/form/button';
 
 const ReserveForm = ({
   reserveInfo,

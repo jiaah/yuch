@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import RatesPaper from './ratesPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Loader from '../../../shared/loader';
-import IconButton from '../../../shared/iconButton';
+import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';

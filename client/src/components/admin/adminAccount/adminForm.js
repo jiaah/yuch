@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
-import FormButton from '../../../shared/formButton';
-import Button from '../../../shared/button';
+import FormButton from '../../../shared/form/formButton';
+import Button from '../../../shared/form/button';
 import Icon from '../../../../assets/icons';
 
 const styles = theme => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 /* --- Components --- */
 import Paper from '../../../shared/paper';
-import Button from '../../../shared/button';
+import Button from '../../../shared/form/button';
 
 const FoundUsername = ({ data, history }) => {
   const redirectToLogin = () => history.push('/login');

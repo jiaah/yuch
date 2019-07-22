@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 /* --- Components --- */
-import Icon from '../../assets/icons';
+import Icon from '../../../assets/icons';
 
 const IconButton = ({ handleClick, name, width, height, viewBox }) => {
   const [isHovered, setIsHovered] = useState(false);

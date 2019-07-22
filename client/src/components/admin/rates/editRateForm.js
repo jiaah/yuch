@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
-import FormButton from '../../../shared/formButton';
+import FormButton from '../../../shared/form/formButton';
 import IconMessage from '../../../shared/iconMessage';
 import * as data from '../../../data/message';
 

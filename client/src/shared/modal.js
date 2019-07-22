@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 /* --- Components --- */
-import IconButton from './iconButton';
+import IconButton from './form/iconButton';
 import Loader from './loader';
 
 const Modal = Loader({

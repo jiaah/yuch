@@ -6,9 +6,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 /* --- Components --- */
-import Button from '../../../shared/formButton';
+import Button from '../../../shared/form/formButton';
+import IconButton from '../../../shared/form/iconButton';
 import Icon from '../../../../assets/icons';
-import IconButton from '../../../shared/iconButton';
 
 const styles = theme => ({
   textField: {

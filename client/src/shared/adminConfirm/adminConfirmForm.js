@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import FormButton from '../formButton';
+import FormButton from '../form/formButton';
 import ConfirmMessage from './confirmMessage';
 
 const styles = theme => ({
