@@ -5,13 +5,24 @@ import { Field } from 'formik';
 import Input from './input';
 import Icon from '../../../assets/icons';
 
-const FormikField = ({ label, name, type, required, icon, styleName }) => (
+const FormikField = ({
+  label,
+  name,
+  type,
+  placeholder,
+  icon,
+  styleName,
+  variant,
+  required,
+}) => (
   <Field
     label={label}
     name={name}
     type={type}
     component={Input}
+    placeholder={placeholder}
     styleName={styleName}
+    variant={variant}
     required={!!required}
     margin="normal"
     InputProps={{

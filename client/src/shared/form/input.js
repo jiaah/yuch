@@ -47,6 +47,7 @@ const Input = ({
     if (name === 'bankAccountId' || name === 'businessType') {
       value = inputValue;
     }
+    value = inputValue;
     return setFieldValue(name, value, shouldValidate);
   };
 
