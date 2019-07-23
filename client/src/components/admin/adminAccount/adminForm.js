@@ -115,7 +115,7 @@ const AdminForm = ({
           startAdornment: (
             <InputAdornment position="start">
               <Icon
-                name="phone"
+                name="user"
                 width="20"
                 height="20"
                 viewBox="0 0 25 25"

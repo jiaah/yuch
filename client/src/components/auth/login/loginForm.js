@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Field, Form } from 'formik';
 /* --- Components --- */
 import Button from '../../../shared/form/formButton';
 import IconButton from '../../../shared/form/iconButton';
 import Icon from '../../../../assets/icons';
+import Input from '../../../shared/form/input';
 
 const styles = theme => ({
   textField: {
@@ -20,18 +21,7 @@ const styles = theme => ({
   },
 });
 
-const LoginForm = ({
-  values: { username, password },
-  keepMeLoggedIn,
-  keepLoggedIn,
-  errors,
-  touched,
-  handleChange,
-  handleSubmit,
-  isSubmitting,
-  handleBlur,
-  classes,
-}) => {
+const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting, classes }) => {
   // hide & show password
   const [visible, setVisible] = useState(false);
   const handleClickShowPassword = () => setVisible(!visible);
@@ -42,17 +32,12 @@ const LoginForm = ({
 
   return (
     <div className="login-container" data-test="loginformComponent">
-      <form onSubmit={handleSubmit} className="flex flex-column-m">
-        <TextField
-          id="username"
+      <Form className="flex flex-column-m">
+        <Field
           label="Username"
           name="username"
           type="text"
-          value={username || ''}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.username && errors.username}
-          error={touched.username && Boolean(errors.username)}
+          component={Input}
           required={true}
           margin="normal"
           className={classes.textField}
@@ -70,16 +55,11 @@ const LoginForm = ({
             ),
           }}
         />
-        <TextField
-          id="password"
+        <Field
           label="Password"
           name="password"
           type={type}
-          value={password || ''}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.password && errors.password}
-          error={touched.password && Boolean(errors.password)}
+          component={Input}
           required={true}
           margin="normal"
           className={classes.textField}
@@ -117,7 +97,7 @@ const LoginForm = ({
           isSubmitting={isSubmitting}
           data-test="submit-btn"
         />
-      </form>
+      </Form>
       <div className="keep-me-logged-in">
         <FormControlLabel
           control={
