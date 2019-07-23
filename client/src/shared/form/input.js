@@ -1,8 +1,21 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { getIn } from 'formik';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  textField: {
+    width: 300,
+    margin: '20px 14px',
+    [theme.breakpoints.up('md')]: {
+      width: 400,
+    },
+  },
+});
 
 const Input = ({
+  classes,
+  styleName,
   field: { name, value, onBlur },
   form: { errors, touched, setFieldValue },
   ...props
@@ -45,6 +58,7 @@ const Input = ({
         onChange={e => change(e, name, true)}
         onBlur={onBlur}
         {...props}
+        className={classes[styleName]}
         helperText={isTouched && errorMessage}
         error={isTouched && Boolean(errorMessage)}
       />
@@ -52,4 +66,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default withStyles(styles)(Input);

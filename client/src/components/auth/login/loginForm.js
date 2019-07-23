@@ -1,94 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Field, Form } from 'formik';
+import { Form } from 'formik';
 /* --- Components --- */
+import FormikField from '../../../shared/form/formikField';
+import Password from '../../../shared/form/password';
 import Button from '../../../shared/form/formButton';
-import IconButton from '../../../shared/form/iconButton';
-import Icon from '../../../../assets/icons';
-import Input from '../../../shared/form/input';
 
-const styles = theme => ({
-  textField: {
-    width: 300,
-    margin: '20px 14px',
-    [theme.breakpoints.up('md')]: {
-      width: 400,
-    },
-  },
-});
-
-const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting, classes }) => {
-  // hide & show password
-  const [visible, setVisible] = useState(false);
-  const handleClickShowPassword = () => setVisible(!visible);
-  const type = visible ? 'text' : 'password';
-  const visibleIcon = visible ? 'visibility' : 'visibilityOff';
-
+const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting }) => {
   const handleChangeCheckBox = () => keepMeLoggedIn();
 
   return (
     <div className="login-container" data-test="loginformComponent">
       <Form className="flex flex-column-m">
-        <Field
-          label="Username"
+        <FormikField
+          label="아이디"
           name="username"
           type="text"
-          component={Input}
-          required={true}
-          margin="normal"
-          className={classes.textField}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Icon
-                  name="filledUser"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                />
-              </InputAdornment>
-            ),
-          }}
+          icon="filledUser"
+          styleName="textField"
+          required
         />
-        <Field
-          label="Password"
-          name="password"
-          type={type}
-          component={Input}
-          required={true}
-          margin="normal"
-          className={classes.textField}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Icon
-                  name="filledLock"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  name={visibleIcon}
-                  width="20"
-                  height="20"
-                  viewBox="0 0 25 25"
-                  handleClick={handleClickShowPassword}
-                />
-              </InputAdornment>
-            ),
-          }}
-        />
+        <Password label="비밀번호" name="password" styleName="textField" />
         <Button
           typeValue="submit"
           variantValue="contained"
@@ -123,5 +57,4 @@ const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting, classes }) => {
   );
 };
 
-export const Unwrapped = LoginForm;
-export default withStyles(styles)(LoginForm);
+export default LoginForm;
