@@ -1,17 +1,17 @@
 import React from 'react';
-import { Form } from 'formik';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
 const PasswordForm = ({ isSubmitting }) => (
-  <Form className="flex flex-column-m items-center mt4">
+  <React.Fragment>
     <FormikField
       label="아이디"
       name="username"
       type="text"
       icon="filledUser"
       styleName="textField"
+      variant="outlined"
       placeholder="( 아이디 ) yucheong"
       required
     />
@@ -34,7 +34,7 @@ const PasswordForm = ({ isSubmitting }) => (
         isSubmitting={isSubmitting}
       />
     </div>
-  </Form>
+  </React.Fragment>
 );
 
 export default PasswordForm;

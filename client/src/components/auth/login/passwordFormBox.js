@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
 
@@ -47,7 +47,11 @@ const ForgotContainer = ({
       </p>
       <Formik
         initialValues={passwordValues}
-        render={props => <PasswordForm {...props} />}
+        render={props => (
+          <Form className="flex flex-column-m items-center mt4">
+            <PasswordForm {...props} />
+          </Form>
+        )}
         onSubmit={handleForgotPassword}
         validationSchema={forgotPasswordValidation}
       />

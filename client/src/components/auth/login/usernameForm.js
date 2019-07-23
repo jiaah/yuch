@@ -1,20 +1,18 @@
 import React from 'react';
-import { Form } from 'formik';
-
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
 const UsernameForm = ({ isSubmitting }) => (
-  <Form className="flex flex-column-m items-center mt4">
+  <React.Fragment>
     <FormikField
       label="이메일"
       name="email"
       type="email"
       icon="email"
       styleName="textField"
-      placeholder="sleket12@hanmail.net"
       variant="outlined"
+      placeholder="sleket12@hanmail.net"
       required
     />
     <FormButton
@@ -24,7 +22,7 @@ const UsernameForm = ({ isSubmitting }) => (
       className="login-btn"
       isSubmitting={isSubmitting}
     />
-  </Form>
+  </React.Fragment>
 );
 
 export default UsernameForm;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import UsernameForm from './usernameForm';
 
@@ -42,7 +42,11 @@ const usernameFormBox = ({
       </p>
       <Formik
         initialValues={usernameValues}
-        render={props => <UsernameForm {...props} />}
+        render={props => (
+          <Form className="flex flex-column-m items-center mt4">
+            <UsernameForm {...props} />
+          </Form>
+        )}
         onSubmit={handleForgotUsername}
         validationSchema={forgotUsernameValidation}
       />
