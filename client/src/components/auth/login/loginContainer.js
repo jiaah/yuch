@@ -51,7 +51,7 @@ const Login = ({
   const values = { username: foundUsername, password: '' };
 
   return (
-    <React.Fragment>
+    <div className="login-container">
       <Formik
         initialValues={values}
         render={props => (
@@ -64,7 +64,7 @@ const Login = ({
         onSubmit={handleUserLogin}
         validationSchema={loginValidation}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

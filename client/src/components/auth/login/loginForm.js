@@ -12,7 +12,7 @@ const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting }) => {
   const handleChangeCheckBox = () => keepMeLoggedIn();
 
   return (
-    <div className="login-container" data-test="loginformComponent">
+    <div data-test="loginformComponent">
       <Form className="flex flex-column-m">
         <FormikField
           label="아이디"

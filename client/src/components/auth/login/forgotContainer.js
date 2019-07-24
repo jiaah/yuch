@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import queryString from 'query-string';
 /* --- Components --- */
 import { admin } from '../../../data/data';
-import UsernameFormBox from './usernameFormBox';
-import PasswordFormBox from './passwordFormBox';
+import UsernameFormBox from './forgotUsernamePage';
+import PasswordFormBox from './forgotPasswordPage';
 import {
   forgotUsernameValidation,
   forgotPasswordValidation,
