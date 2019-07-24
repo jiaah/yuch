@@ -1,9 +1,9 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 /* --- Components --- */
-import PasswordForm from './passwordForm';
+import ResetPwForm from './resetPwForm';
 import { resetPasswordValidation } from '../../formValidation';
 /* --- Actions --- */
 import { resetPasswordWithAccessToken } from '../../../actions/authAction';
@@ -43,7 +43,11 @@ const ResetContainer = ({
       <h2>비밀번호 변경</h2>
       <Formik
         initialValues={passwordValues}
-        render={props => <PasswordForm {...props} />}
+        render={props => (
+          <Form>
+            <ResetPwForm {...props} />
+          </Form>
+        )}
         onSubmit={handleResetPassword}
         validationSchema={resetPasswordValidation}
       />

@@ -5,7 +5,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { Form } from 'formik';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
-import Password from '../../../shared/form/password';
+import PasswordField from '../../../shared/form/passwordField';
 import Button from '../../../shared/form/formButton';
 
 const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting }) => {
@@ -22,7 +22,7 @@ const LoginForm = ({ keepMeLoggedIn, keepLoggedIn, isSubmitting }) => {
           styleName="textField"
           required
         />
-        <Password label="비밀번호" name="password" styleName="textField" />
+        <PasswordField label="비밀번호" name="password" styleName="textField" />
         <Button
           typeValue="submit"
           variantValue="contained"

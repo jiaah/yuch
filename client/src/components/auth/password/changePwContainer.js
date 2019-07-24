@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import PasswordForm from './passwordForm';
+import ChangePwForm from './changePwForm';
 import { changePasswordValidation } from '../../formValidation';
 /* --- Actions --- */
 import { changePassword } from '../../../actions/authAction';
@@ -46,7 +46,9 @@ const ChangePasswordContainer = ({
     <Formik
       initialValues={passwordValues}
       render={props => (
-        <PasswordForm {...props} closePasswordForm={closePasswordForm} />
+        <Form className="flex flex-column-m items-center">
+          <ChangePwForm {...props} closePasswordForm={closePasswordForm} />
+        </Form>
       )}
       onSubmit={handleChangePassword}
       validationSchema={changePasswordValidation}

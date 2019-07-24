@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import UsernameForm from './usernameForm';
 
-const usernameFormBox = ({
+const ForgotUsernamePage = ({
   companyName,
   findUsername,
   addFlashMessage,
@@ -54,4 +54,4 @@ const usernameFormBox = ({
   );
 };
 
-export default usernameFormBox;
+export default ForgotUsernamePage;

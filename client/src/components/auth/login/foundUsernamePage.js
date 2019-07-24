@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import Paper from '../../../shared/paper';
 import Button from '../../../shared/form/button';
 
-const FoundUsername = ({ data, history }) => {
+const FoundUsernamePage = ({ data, history }) => {
   const redirectToLogin = () => history.push('/login');
   const redirectToForgotPassword = () =>
     history.push('/auth/forgot?value=password');
@@ -52,4 +52,4 @@ const FoundUsername = ({ data, history }) => {
   );
 };
 
-export default withRouter(FoundUsername);
+export default withRouter(FoundUsernamePage);

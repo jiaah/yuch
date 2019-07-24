@@ -6,7 +6,7 @@ import Input from './input';
 import IconButton from './iconButton';
 import Icon from '../../../assets/icons';
 
-const Username = ({ label, name, styleName }) => {
+const PasswordField = ({ label, name, styleName, placeholder }) => {
   // hide & show password
   const [visible, setVisible] = useState(false);
   const handleClickShowPassword = () => setVisible(!visible);
@@ -19,6 +19,7 @@ const Username = ({ label, name, styleName }) => {
       name={name}
       component={Input}
       styleName={styleName}
+      placeholder={placeholder}
       type={type}
       required={true}
       margin="normal"
@@ -51,4 +52,4 @@ const Username = ({ label, name, styleName }) => {
   );
 };
 
-export default Username;
+export default PasswordField;

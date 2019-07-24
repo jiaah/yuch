@@ -38,8 +38,17 @@ const Input = ({
       }
     }
     if (
+      name === 'companyName' ||
+      name === 'contactNo' ||
+      name === 'address' ||
+      name === 'email'
+    ) {
+      value = inputValue;
+    }
+    if (
       name === 'username' ||
       name === 'password' ||
+      name === 'newPassword' ||
       name === 'confirmPassword'
     ) {
       value = inputValue.toLowerCase();
@@ -47,7 +56,6 @@ const Input = ({
     if (name === 'bankAccountId' || name === 'businessType') {
       value = inputValue;
     }
-    value = inputValue;
     return setFieldValue(name, value, shouldValidate);
   };
 

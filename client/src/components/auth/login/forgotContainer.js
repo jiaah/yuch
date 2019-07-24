@@ -10,7 +10,7 @@ import {
   forgotUsernameValidation,
   forgotPasswordValidation,
 } from '../../formValidation';
-import FoundUsername from './foundUsername';
+import FoundUsername from './foundUsernamePage';
 /* --- Actions --- */
 import * as authActions from '../../../actions/authAction';
 import * as messageActions from '../../../actions/messageAction';

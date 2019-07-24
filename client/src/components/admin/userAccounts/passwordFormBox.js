@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 /* --- Components --- */
-import PasswordForm from '../../auth/resetPassword/passwordForm';
+import ResetPwForm from '../../auth/password/resetPwForm';
 
 const PasswordFormBox = ({
   handleCloseModal,
@@ -37,7 +37,7 @@ const PasswordFormBox = ({
   return (
     <Formik
       initialValues={passwordValues}
-      render={props => <PasswordForm {...props} />}
+      render={props => <ResetPwForm {...props} />}
       onSubmit={handleChangePassword}
       validationSchema={resetPasswordValidation}
     />

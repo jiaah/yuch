@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import FormBox from './adminFormBox';
 import { adminAccountValidation } from '../../formValidation';
-import PasswordFormBox from '../../auth/changePassword/passwordContainer';
+import ChangePwContainer from '../../auth/password/changePwContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
 import { getAdmin, editAdminAccount } from '../../../actions/adminAction';
@@ -52,7 +52,7 @@ const AdminAccountContainer = ({
                 />
               )}
             {pwdOpen && (
-              <PasswordFormBox
+              <ChangePwContainer
                 userData={adminData}
                 closePasswordForm={closePasswordForm}
               />

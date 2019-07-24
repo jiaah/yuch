@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   width: 300px;
-  margin: auto;
+  margin: 0 auto;
 
   @include for-desktop-up {
     width: 400px;

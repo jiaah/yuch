@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import Form from './loginForm';
+import LoginForm from './loginForm';
 import { isLoggedIn, saveUserToken } from '../../../../localStorage';
 import { loginValidation } from '../../formValidation';
 import * as data from '../../../data/data';
@@ -55,7 +55,7 @@ const Login = ({
       <Formik
         initialValues={values}
         render={props => (
-          <Form
+          <LoginForm
             {...props}
             keepMeLoggedIn={keepMeLoggedIn}
             keepLoggedIn={keepLoggedIn}

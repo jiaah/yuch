@@ -27,7 +27,7 @@ const Forgot = Loader({
 
 const Reset = Loader({
   loader: () =>
-    import('../src/components/auth/resetPassword/resetContainer' /* webpackChunkName: 'Reset' */),
+    import('../src/components/auth/password/resetPwContainer' /* webpackChunkName: 'Reset' */),
 });
 
 const UserAccountForAdmin = Loader({

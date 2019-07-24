@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import PasswordForm from './passwordForm';
 
-const ForgotContainer = ({
+const ForgotPasswordPage = ({
   companyName,
   forgotPasswordValidation,
   sendVerificationCodeToEmail,
@@ -66,4 +66,4 @@ const ForgotContainer = ({
   );
 };
 
-export default ForgotContainer;
+export default ForgotPasswordPage;
