@@ -11,7 +11,7 @@ import * as userActions from '../../../actions/userAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
-  userActions: { getMe, editUserAccount },
+  userActions: { getMe, editUserAccount, updateCompanyName },
   addFlashMessage,
   id,
 }) => {
@@ -47,6 +47,7 @@ const AdminAccountContainer = ({
                   userData={userData}
                   editUserAccountValidation={editUserAccountValidation}
                   editUserAccount={editUserAccount}
+                  updateCompanyName={updateCompanyName}
                   addFlashMessage={addFlashMessage}
                   openPasswordForm={openPasswordForm}
                 />

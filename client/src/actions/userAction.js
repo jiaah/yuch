@@ -33,3 +33,8 @@ export const editUserAccount = (id, userInfo) => async dispatch => {
     throw new Error('Updating the user account failed.');
   }
 };
+
+export const updateCompanyName = (id, companyName) => ({
+  type: types.USER_LOGIN,
+  payload: { id, companyName, isAdmin: false },
+});

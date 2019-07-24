@@ -1,5 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import MealPriceField from '../../../shared/form/mealPriceField';
