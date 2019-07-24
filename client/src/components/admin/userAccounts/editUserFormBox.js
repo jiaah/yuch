@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import EditUserForm from './editUserForm';
 import { nextMonth } from '../../../shared/moment';
@@ -42,11 +42,13 @@ const DeleteUserFormBox = ({
     <Formik
       initialValues={clickedUserData}
       render={props => (
-        <EditUserForm
-          {...props}
-          showSubModal={showSubModal}
-          bankAccount={bankAccount}
-        />
+        <Form>
+          <EditUserForm
+            {...props}
+            showSubModal={showSubModal}
+            bankAccount={bankAccount}
+          />
+        </Form>
       )}
       onSubmit={handleEditUser}
       validationSchema={editUserAccountValidation}

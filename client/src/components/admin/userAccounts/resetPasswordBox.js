@@ -1,9 +1,10 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import ResetPwForm from '../../auth/password/resetPwForm';
+// don't use auth/password/resetPwContainer as it calls a different action function(which access token is not required) and it also has 'closeSubModal' function.
 
-const PasswordFormBox = ({
+const ResetPasswordBox = ({
   handleCloseModal,
   addFlashMessage,
   resetPassword,
@@ -37,11 +38,15 @@ const PasswordFormBox = ({
   return (
     <Formik
       initialValues={passwordValues}
-      render={props => <ResetPwForm {...props} />}
+      render={props => (
+        <Form>
+          <ResetPwForm {...props} />
+        </Form>
+      )}
       onSubmit={handleChangePassword}
       validationSchema={resetPasswordValidation}
     />
   );
 };
 
-export default PasswordFormBox;
+export default ResetPasswordBox;

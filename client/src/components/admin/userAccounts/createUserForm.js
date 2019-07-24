@@ -67,6 +67,14 @@ const CreateUserForm = props => {
             placeholder="054 - 745 - 0999"
             required
           />
+          <MealPriceField
+            label="식수가격"
+            name="mealPrice"
+            type="text"
+            icon="user"
+            styleName="textFieldC"
+            placeholder="5000"
+          />
           <FormikField
             label="이메일"
             name="email"
@@ -75,14 +83,6 @@ const CreateUserForm = props => {
             styleName="textFieldC"
             placeholder="sleket12@hanmail.net"
             required
-          />
-          <MealPriceField
-            label="식수가격"
-            name="mealPrice"
-            type="text"
-            icon="user"
-            styleName="textFieldC"
-            placeholder="5000"
           />
           <div className="flex justify-center">
             <FormikField

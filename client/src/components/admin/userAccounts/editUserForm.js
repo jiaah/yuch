@@ -1,77 +1,25 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
-import InputAdornment from '@material-ui/core/InputAdornment';
 /* --- Components --- */
+import FormikField from '../../../shared/form/formikField';
+import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
 import Button from '../../../shared/form/button';
 import IconButton from '../../../shared/form/iconButton';
-import Icon from '../../../../assets/icons';
 import IconMessage from '../../../shared/iconMessage';
 import BankAccountForm from './bankAccountForm';
 import BusinessTypeForm from './businessTypeForm';
 
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 250,
-  },
-  textFieldB: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 118,
-  },
-  textFieldC: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 250,
-    [theme.breakpoints.up('md')]: {
-      width: 604,
-    },
-  },
-});
-
 const EditUserForm = ({
-  values: {
-    companyName,
-    username,
-    contactNo,
-    email,
-    address,
-    mealPrice,
-    lunchQty,
-    dinnerQty,
-    bankAccountId,
-    businessType,
-  },
+  values: { bankAccountId, businessType },
   bankAccount,
-  errors,
-  touched,
-  handleChange,
-  handleSubmit,
   isSubmitting,
-  handleBlur,
   setFieldValue,
-  classes,
   showSubModal,
 }) => {
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
     let value;
-    if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
-      // to avoid isNaN('') === false, use parseInt('') // output: NaN
-      if (inputValue !== '') {
-        value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      }
-      if (inputValue === '') {
-        value = inputValue;
-      }
-    }
-    if (name === 'username') {
-      value = inputValue.toLowerCase();
-    }
     if (name === 'bankAccountId' || name === 'businessType') {
       value = inputValue;
     }
@@ -79,213 +27,82 @@ const EditUserForm = ({
   };
 
   return (
-    <form className="mh1" onSubmit={handleSubmit}>
-      <div className="mb2 user-form">
+    <React.Fragment>
+      <div className="mh1 mb2 user-form">
         <div className="user-form--left">
-          <TextField
-            id="companyName"
+          <FormikField
             label="고객명"
+            name="companyName"
+            type="text"
+            icon="filledUser"
+            styleName="textFieldC"
             placeholder="(한글) 유청"
-            value={companyName || ''}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.companyName && errors.companyName}
-            error={touched.companyName && Boolean(errors.companyName)}
-            required={true}
-            margin="normal"
-            className={classes.textField}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Icon
-                    name="filledUser"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                  />
-                </InputAdornment>
-              ),
-            }}
+            required
           />
-          <TextField
-            id="username"
+          <FormikField
             label="고객 아이디"
+            name="username"
+            type="text"
+            icon="user"
+            styleName="textFieldC"
             placeholder="(영문) yucheong"
-            value={username || ''}
-            onChange={e => change(e, 'username', true)}
-            onBlur={handleBlur}
-            helperText={touched.username && errors.username}
-            error={touched.username && Boolean(errors.username)}
-            required={true}
-            margin="normal"
-            className={classes.textField}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Icon
-                    name="user"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                  />
-                </InputAdornment>
-              ),
-            }}
+            required
           />
-          <TextField
-            id="contactNo"
+          <FormikField
             label="연락처"
+            name="contactNo"
+            type="text"
+            icon="phone"
+            styleName="textFieldC"
             placeholder="054 - 745 - 0999"
-            value={contactNo || ''}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.contactNo && errors.contactNo}
-            error={touched.contactNo && Boolean(errors.contactNo)}
-            required={true}
-            margin="normal"
-            className={classes.textField}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Icon
-                    name="phone"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                  />
-                </InputAdornment>
-              ),
-            }}
+            required
           />
         </div>
         <div className="user-form--right">
-          <TextField
-            id="mealPrice"
+          <MealPriceField
             label="식수가격"
+            name="mealPrice"
+            type="text"
+            icon="user"
+            styleName="textFieldC"
             placeholder="5000"
-            value={mealPrice || ''}
-            onChange={e => change(e, 'mealPrice', true)}
-            onBlur={handleBlur}
-            helperText={
-              touched.mealPrice &&
-              '변동된 식수가격은 다음달 1일부터 적용됩니다.'
-            }
-            error={touched.mealPrice && Boolean(errors.mealPrice)}
-            required={true}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">₩</InputAdornment>
-              ),
-            }}
-            margin="normal"
-            className={classes.textField}
           />
-          <TextField
-            id="email"
+          <FormikField
             label="이메일"
+            name="email"
+            type="email"
+            icon="email"
+            styleName="textFieldC"
             placeholder="sleket12@hanmail.net"
-            value={email || ''}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.email && errors.email}
-            error={touched.email && Boolean(errors.email)}
-            margin="normal"
-            className={classes.textField}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Icon
-                    name="email"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                  />
-                </InputAdornment>
-              ),
-            }}
+            required
           />
           <div className="flex justify-center">
-            <TextField
-              id="lunchQty"
+            <FormikField
               label="중식 식수량"
+              name="lunchQty"
+              type="text"
+              icon="catering"
+              styleName="textFieldD"
               placeholder="70"
-              value={lunchQty || ''}
-              onChange={e => change(e, 'lunchQty', true)}
-              onBlur={handleBlur}
-              helperText={touched.lunchQty && errors.lunchQty}
-              error={touched.lunchQty && Boolean(errors.lunchQty)}
-              margin="normal"
-              className={classes.textFieldB}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon
-                      name="catering"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 25 25"
-                      fill="none"
-                    />
-                  </InputAdornment>
-                ),
-              }}
             />
-            <TextField
-              id="dinnerQty"
+            <FormikField
               label="석식 식수량"
+              name="dinnerQty"
+              type="text"
+              icon="catering"
+              styleName="textFieldD"
               placeholder="35"
-              value={dinnerQty || ''}
-              onChange={e => change(e, 'dinnerQty', true)}
-              onBlur={handleBlur}
-              helperText={touched.dinnerQty && errors.dinnerQty}
-              error={touched.dinnerQty && Boolean(errors.dinnerQty)}
-              margin="normal"
-              className={classes.textFieldB}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon
-                      name="catering"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 25 25"
-                      fill="none"
-                    />
-                  </InputAdornment>
-                ),
-              }}
             />
           </div>
         </div>
       </div>
-      <TextField
-        id="address"
+      <FormikField
         label="주소"
+        name="address"
+        type="text"
+        icon="address"
+        styleName="textFieldE"
         placeholder="황성동 1071-1번지 강남골프장 맞은편"
-        value={address || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        helperText={touched.address && errors.address}
-        error={touched.address && Boolean(errors.address)}
-        margin="normal"
-        className={classes.textFieldC}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Icon
-                name="user"
-                width="20"
-                height="20"
-                viewBox="0 0 25 25"
-                fill="none"
-              />
-            </InputAdornment>
-          ),
-        }}
       />
       <BusinessTypeForm businessType={businessType} change={change} />
       <BankAccountForm
@@ -334,8 +151,8 @@ const EditUserForm = ({
           </div>
         </div>
       </div>
-    </form>
+    </React.Fragment>
   );
 };
 
-export default withStyles(styles)(EditUserForm);
+export default EditUserForm;

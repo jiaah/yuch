@@ -8,9 +8,9 @@ import {
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 
-const PasswordFormBox = Loader({
+const ResetPasswordBox = Loader({
   loader: () =>
-    import('./passwordFormBox' /* webpackChunkName: 'passwordFormBox' */),
+    import('./resetPasswordBox' /* webpackChunkName: 'resetPassword' */),
 });
 
 const DeleteUser = Loader({
@@ -48,7 +48,7 @@ const EditUserModal = ({
         }}
         component={
           subModal === 'password' ? (
-            <PasswordFormBox
+            <ResetPasswordBox
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
