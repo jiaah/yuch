@@ -36,7 +36,7 @@ const AdminForm = ({ isSubmitting, openPasswordForm }) => (
     <FormikField
       label="이메일"
       name="email"
-      type="text"
+      type="email"
       icon="email"
       styleName="textField"
       placeholder="sleket12@hanmail.net"

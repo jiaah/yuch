@@ -23,6 +23,7 @@ import Search from './search';
 import Print from './print';
 import Visibility from './visibility';
 import VisibilityOff from './visibilityOff';
+import Address from './address';
 
 const Icon = props => {
   switch (props.name) {
@@ -70,6 +71,8 @@ const Icon = props => {
       return <Visibility {...props} />;
     case 'visibilityOff':
       return <VisibilityOff {...props} />;
+    case 'address':
+      return <Address {...props} />;
     default:
       return <div />;
   }

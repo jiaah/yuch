@@ -11,6 +11,13 @@ const styles = theme => ({
       width: 400,
     },
   },
+  textFieldB: {
+    width: 138,
+    margin: '20px 14px',
+    [theme.breakpoints.up('md')]: {
+      width: 188,
+    },
+  },
 });
 
 const Input = ({

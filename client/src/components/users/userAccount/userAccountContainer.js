@@ -35,7 +35,7 @@ const AdminAccountContainer = ({
         유청 서비스를 이용하시는 고객님의 기본정보와 식수량 설정
       </p>
       <Paper
-        classes="paper-small"
+        classes="box-container"
         component={
           <React.Fragment>
             <h3 className="flex justify-start">Profile</h3>

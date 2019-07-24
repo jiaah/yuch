@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import UserForm from './userForm';
 
@@ -39,7 +39,9 @@ const UserFormBox = ({
     <Formik
       initialValues={userData}
       render={props => (
-        <UserForm {...props} openPasswordForm={openPasswordForm} />
+        <Form className="flex flex-column-m items-center justify-center">
+          <UserForm {...props} openPasswordForm={openPasswordForm} />
+        </Form>
       )}
       onSubmit={handleEditAdmin}
       validationSchema={editUserAccountValidation}

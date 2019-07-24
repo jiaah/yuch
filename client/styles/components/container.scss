@@ -51,16 +51,16 @@
   padding: 1em 2em;
 }
 
-// need fixed width not to break material ui textfield form
-// ex ) admin account page, a user account page
-.paper-small {
-  width: 300px;
-  margin-right: auto;
+// modal && paper
+.box-container {
+  width: 80vw;
+  max-width: 400px;
   margin-left: auto;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  margin-right: auto;
+  background-color: #fff;
 
   @include for-desktop-up {
-    width: 750px;
+    width: 50vw;
+    min-width: 700px;
   }
 }
