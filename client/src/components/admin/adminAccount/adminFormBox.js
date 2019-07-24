@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import AdminForm from './adminForm';
 
@@ -30,7 +30,9 @@ const AdminFormBox = ({
     <Formik
       initialValues={adminData}
       render={props => (
-        <AdminForm {...props} openPasswordForm={openPasswordForm} />
+        <Form className="flex flex-column-m items-center justify-center">
+          <AdminForm {...props} openPasswordForm={openPasswordForm} />
+        </Form>
       )}
       onSubmit={handleEditAdmin}
       validationSchema={adminAccountValidation}

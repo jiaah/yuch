@@ -35,7 +35,7 @@ const AdminAccountContainer = ({
         홈페이지 메인화면의 연락처와 예약받는 이메일 주소는 변경되지 않습니다.
       </p>
       <Paper
-        classes="paper-small"
+        classes="box-container"
         component={
           <React.Fragment>
             <h3 className="flex justify-start">Profile</h3>

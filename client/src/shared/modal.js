@@ -54,7 +54,7 @@ const SimpleModal = ({
         className={classes.modal}
       >
         <div
-          className={`tc modal-container ${classes.paper}`}
+          className={`tc box-container ${classes.paper}`}
           style={styleModal}
           data-testid="modal"
         >
