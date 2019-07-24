@@ -11,11 +11,31 @@ const styles = theme => ({
       width: 400,
     },
   },
+  // lunchQty, dinnerQty
   textFieldB: {
     width: 138,
     margin: '20px 14px',
     [theme.breakpoints.up('md')]: {
       width: 188,
+    },
+  },
+  // create/edit user account forms
+  textFieldC: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 250,
+  },
+  textFieldD: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 118,
+  },
+  textFieldE: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 250,
+    [theme.breakpoints.up('md')]: {
+      width: 604,
     },
   },
 });

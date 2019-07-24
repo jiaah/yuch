@@ -1,7 +1,7 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
-import Form from './createUserForm';
+import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
 import { addUserAccountValidation } from '../../formValidation';
 
@@ -73,7 +73,11 @@ const UserAccountModal = ({
         component={
           <Formik
             initialValues={values}
-            render={props => <Form {...props} bankAccount={bankAccount} />}
+            render={props => (
+              <Form>
+                <CreateUserForm {...props} bankAccount={bankAccount} />
+              </Form>
+            )}
             onSubmit={handleCreateUser}
             validationSchema={addUserAccountValidation}
           />
