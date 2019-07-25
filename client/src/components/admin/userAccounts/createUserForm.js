@@ -4,26 +4,13 @@ import FormikField from '../../../shared/form/formikField';
 import PasswordField from '../../../shared/form/passwordField';
 import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
-import BankAccountForm from './bankAccountForm';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
+import BankAccountOptions from './bankAccountOtions';
 
 const CreateUserForm = props => {
-  const {
-    values: { bankAccountId, businessType },
-    bankAccount,
-    isSubmitting,
-    setFieldValue,
-  } = props;
-  const change = (e, name, shouldValidate) => {
-    e.persist();
-    const inputValue = e.target.value;
-    let value;
-    if (name === 'bankAccountId' || name === 'businessType') {
-      value = inputValue;
-    }
-    return setFieldValue(name, value, shouldValidate);
-  };
+  const { bankAccount, isSubmitting } = props;
+
   return (
     <React.Fragment>
       <div className="mh1 mb2 user-form">
@@ -117,18 +104,17 @@ const CreateUserForm = props => {
       />
       <RadioButtonFormControl
         label="비지니스 타입"
-        name="businessType"
-        value={businessType}
+        icon="bankAccount"
+        className="user-form--radioBtn"
+        component={<BusinessTypeOptions name="businessType" />}
+      />
+      <RadioButtonFormControl
+        label="입금 계좌번호"
         icon="bankAccount"
         className="user-form--radioBtn"
         component={
-          <BusinessTypeOptions name="businessType" value={businessType} />
+          <BankAccountOptions name="bankAccountId" bankAccount={bankAccount} />
         }
-      />
-      <BankAccountForm
-        bankAccountId={bankAccountId}
-        bankAccount={bankAccount}
-        change={change}
       />
       <div className="justify-center">
         <FormButton

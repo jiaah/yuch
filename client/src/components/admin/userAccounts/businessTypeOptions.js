@@ -5,13 +5,8 @@ import { Field } from 'formik';
 /* --- Components --- */
 import RadioButtonGroup from '../../../shared/form/radioButtonGroup';
 
-const BusinessTypeOptions = ({ name, value }) => (
-  <Field
-    aria-label={name}
-    name={name}
-    value={value}
-    component={RadioButtonGroup}
-  >
+const BusinessTypeOptions = ({ name }) => (
+  <Field aria-label={name} name={name} component={RadioButtonGroup}>
     <FormControlLabel
       value="catering"
       control={<Radio color="primary" />}
