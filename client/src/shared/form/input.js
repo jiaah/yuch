@@ -19,7 +19,8 @@ const styles = theme => ({
       width: 188,
     },
   },
-  // create/edit user account forms
+  // [C,D,E] create/edit user account forms
+  // [C] bank account
   textFieldC: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -65,14 +66,6 @@ const Input = ({
       }
     }
     if (
-      name === 'companyName' ||
-      name === 'contactNo' ||
-      name === 'address' ||
-      name === 'email'
-    ) {
-      value = inputValue;
-    }
-    if (
       name === 'username' ||
       name === 'password' ||
       name === 'newPassword' ||
@@ -80,7 +73,17 @@ const Input = ({
     ) {
       value = inputValue.toLowerCase();
     }
-    if (name === 'bankAccountId' || name === 'businessType') {
+    if (
+      name === 'companyName' ||
+      name === 'contactNo' ||
+      name === 'address' ||
+      name === 'email' ||
+      name === 'bankAccountId' ||
+      name === 'businessType' ||
+      name === 'accountHolder' ||
+      name === 'bankName' ||
+      name === 'accountNo'
+    ) {
       value = inputValue;
     }
     return setFieldValue(name, value, shouldValidate);

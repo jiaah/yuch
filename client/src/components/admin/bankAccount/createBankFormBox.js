@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import BankForm from './bankForm';
 import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
@@ -53,7 +53,11 @@ const CreateBankFormBox = ({
       ) : (
         <Formik
           initialValues={values}
-          render={props => <BankForm {...props} />}
+          render={props => (
+            <Form className="mh1">
+              <BankForm {...props} />
+            </Form>
+          )}
           onSubmit={handleCreateBankAccount}
           validationSchema={bankAccountValidation}
         />
