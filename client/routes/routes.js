@@ -9,11 +9,7 @@ import Loader from '../src/shared/loader';
 import UserGuards from './userGuards';
 import AdminGuards from './adminGuards';
 import LoggedOutRoute from './loggedOutRoute';
-
-const Home = Loader({
-  loader: () =>
-    import('../src/components/home/homeContainer' /* webpackChunkName: 'Home' */),
-});
+import Home from '../src/components/home/homeContainer';
 
 const Login = Loader({
   loader: () =>
