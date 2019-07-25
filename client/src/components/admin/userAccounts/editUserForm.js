@@ -7,7 +7,8 @@ import Button from '../../../shared/form/button';
 import IconButton from '../../../shared/form/iconButton';
 import IconMessage from '../../../shared/iconMessage';
 import BankAccountForm from './bankAccountForm';
-import BusinessTypeForm from './businessTypeForm';
+import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
+import BusinessTypeOptions from './businessTypeOptions';
 
 const EditUserForm = ({
   values: { bankAccountId, businessType },
@@ -66,6 +67,7 @@ const EditUserForm = ({
             icon="user"
             styleName="textFieldC"
             placeholder="5000"
+            required
           />
           <FormikField
             label="이메일"
@@ -74,7 +76,6 @@ const EditUserForm = ({
             icon="email"
             styleName="textFieldC"
             placeholder="sleket12@hanmail.net"
-            required
           />
           <div className="flex justify-center">
             <FormikField
@@ -104,7 +105,16 @@ const EditUserForm = ({
         styleName="textFieldE"
         placeholder="황성동 1071-1번지 강남골프장 맞은편"
       />
-      <BusinessTypeForm businessType={businessType} change={change} />
+      <RadioButtonFormControl
+        label="비지니스 타입"
+        name="businessType"
+        value={businessType}
+        icon="bankAccount"
+        className="user-form--radioBtn"
+        component={
+          <BusinessTypeOptions name="businessType" value={businessType} />
+        }
+      />
       <BankAccountForm
         bankAccountId={bankAccountId}
         bankAccount={bankAccount}

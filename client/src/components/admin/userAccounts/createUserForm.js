@@ -5,7 +5,8 @@ import PasswordField from '../../../shared/form/passwordField';
 import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
 import BankAccountForm from './bankAccountForm';
-import BusinessTypeForm from './businessTypeForm';
+import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
+import BusinessTypeOptions from './businessTypeOptions';
 
 const CreateUserForm = props => {
   const {
@@ -50,11 +51,13 @@ const CreateUserForm = props => {
             name="password"
             styleName="textFieldC"
             placeholder="( 숫자 or 숫자+영문 조합 )"
+            required
           />
           <PasswordField
             label="비밀번호 확인"
             name="confirmPassword"
             styleName="textFieldC"
+            required
           />
         </div>
         <div className="user-form--right">
@@ -74,6 +77,7 @@ const CreateUserForm = props => {
             icon="user"
             styleName="textFieldC"
             placeholder="5000"
+            required
           />
           <FormikField
             label="이메일"
@@ -82,7 +86,6 @@ const CreateUserForm = props => {
             icon="email"
             styleName="textFieldC"
             placeholder="sleket12@hanmail.net"
-            required
           />
           <div className="flex justify-center">
             <FormikField
@@ -112,7 +115,16 @@ const CreateUserForm = props => {
         styleName="textFieldE"
         placeholder="황성동 1071-1번지 강남골프장 맞은편"
       />
-      <BusinessTypeForm businessType={businessType} change={change} />
+      <RadioButtonFormControl
+        label="비지니스 타입"
+        name="businessType"
+        value={businessType}
+        icon="bankAccount"
+        className="user-form--radioBtn"
+        component={
+          <BusinessTypeOptions name="businessType" value={businessType} />
+        }
+      />
       <BankAccountForm
         bankAccountId={bankAccountId}
         bankAccount={bankAccount}
