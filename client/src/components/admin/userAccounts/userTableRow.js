@@ -44,7 +44,9 @@ const UserTableRow = ({
       : row.businessType === 'restaurant'
         ? '식당'
         : null;
-
+  // display reservePrice if it exists.
+  const reservePriceView =
+    row.reservePrice === null ? '' : `${row.reservePrice}`;
   return (
     <React.Fragment>
       <TableRow
@@ -84,13 +86,16 @@ const UserTableRow = ({
           {row.email}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {row.mealPrice}
-        </TableCell>
-        <TableCell align="right" className={resize}>
           {row.lunchQty}
         </TableCell>
         <TableCell align="right" className={resize}>
           {row.dinnerQty}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {row.mealPrice}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {reservePriceView}
         </TableCell>
         <TableCell align="right" className={resize}>
           {accountHolder}

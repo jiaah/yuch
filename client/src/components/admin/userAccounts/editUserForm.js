@@ -50,7 +50,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           icon="user"
           styleName="textFieldC"
           placeholder="5000"
-          required
+          disabled
         />
         <FormikField
           label="이메일"

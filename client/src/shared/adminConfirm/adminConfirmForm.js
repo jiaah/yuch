@@ -18,7 +18,7 @@ const AdminConfirmForm = ({ isSubmitting, confirmType }) => (
         <FormButton
           typeValue="submit"
           variantValue="contained"
-          buttonName="삭제"
+          buttonName="확인"
           width="medium"
           isSubmitting={isSubmitting}
         />

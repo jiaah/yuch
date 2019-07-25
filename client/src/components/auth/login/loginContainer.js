@@ -1,5 +1,4 @@
 import React from 'react';
-import { Formik } from 'formik';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
@@ -47,24 +46,15 @@ const Login = ({
   // when user found username from 'forgot ID'.
   // userData[0].username state is purposly saved temporary.
   // In order to achieve this, save it in 'HTTP_SUCCESS' action of 'forgotUsername'.
-  const foundUsername = userData.length !== 0 ? userData[0].username : '';
-  const values = { username: foundUsername, password: '' };
 
   return (
-    <div className="login-container">
-      <Formik
-        initialValues={values}
-        render={props => (
-          <LoginForm
-            {...props}
-            keepMeLoggedIn={keepMeLoggedIn}
-            keepLoggedIn={keepLoggedIn}
-          />
-        )}
-        onSubmit={handleUserLogin}
-        validationSchema={loginValidation}
-      />
-    </div>
+    <LoginForm
+      keepMeLoggedIn={keepMeLoggedIn}
+      keepLoggedIn={keepLoggedIn}
+      userData={userData}
+      handleUserLogin={handleUserLogin}
+      loginValidation={loginValidation}
+    />
   );
 };
 

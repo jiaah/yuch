@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+/* --- Components --- */
 import { admin } from './data';
 
 export const bankAccountPageInfoA = (
@@ -50,5 +52,24 @@ export const updateRateMessage = (
   <React.Fragment>
     <span className="c-point2">선택한 달 1일부터</span>
     &#8201; 가격변동이 적용됩니다&#46;
+  </React.Fragment>
+);
+
+export const ratesPageInfoA = (
+  <React.Fragment>
+    <span className="c-point2">모든 고객 계정을 보기</span>를 원하신다면 상단의
+    페이지 제목 &#8201;
+    <span className="c-point2">&#39;고객 계정&#39;</span>
+    &#8201;을 클릭해 주세요&#46;
+  </React.Fragment>
+);
+
+export const ratesPageInfoB = (
+  <React.Fragment>
+    <span className="c-point2">식수가격 변동</span>은 상단의 메뉴&#8201;&#8201;
+    <Link className="c-point2 td-none" to="/admin/account/rates">
+      계정/식수가격 페이지
+    </Link>
+    &#8201; 에서 할 수 있습니다&#46;
   </React.Fragment>
 );

@@ -184,6 +184,8 @@ exports.getUsersList = (req, res) => {
       'users.businessType',
       'users.updated_at',
       'meal_price.mealPrice',
+      'meal_price.reservePrice',
+      'meal_price.reserveDate',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
     .then(users => {

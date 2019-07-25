@@ -8,6 +8,7 @@ import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
+import { ratesPageInfoA, ratesPageInfoB } from '../../../data/message';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -121,7 +122,19 @@ const UserAccountContainer = ({
           viewBox="0 0 20 20"
           fillOuter="#2196F3"
           fillInner="#ffffff"
-          text="모든 고객 계정을 보길 원하신다면 상단의 고객 계정을 클릭해 주세요."
+          text={ratesPageInfoA}
+          classes="icon-message--info"
+        />
+      </div>
+      <div className="flex justify-end mt3 pw1 pb4">
+        <IconMessage
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+          text={ratesPageInfoB}
           classes="icon-message--info"
         />
       </div>

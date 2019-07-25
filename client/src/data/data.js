@@ -168,12 +168,6 @@ export const userAccountTableHeadColumns = [
     label: 'e-mail',
   },
   {
-    id: 'mealPrice',
-    numeric: true,
-    disablePadding: false,
-    label: '식수가격',
-  },
-  {
     id: 'lunchQty',
     numeric: true,
     disablePadding: false,
@@ -184,6 +178,18 @@ export const userAccountTableHeadColumns = [
     numeric: true,
     disablePadding: false,
     label: '석식 식수량',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'reservePrice',
+    numeric: true,
+    disablePadding: false,
+    label: '변동가격',
   },
   {
     id: 'bankAccountId',

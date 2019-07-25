@@ -1,24 +1,10 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 /* --- Components --- */
 import MealPriceField from '../../../shared/form/mealPriceField';
+import ExpireDateSelect from './expireDateSelect';
 import FormButton from '../../../shared/form/formButton';
 import IconMessage from '../../../shared/iconMessage';
 import * as data from '../../../data/message';
-
-const styles = theme => ({
-  formControl: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    marginTop: '16px',
-    marginBottom: '8px',
-    minWidth: 180,
-  },
-});
 
 const EditUserForm = ({
   reserveDate,
@@ -27,11 +13,10 @@ const EditUserForm = ({
   inTwoMonths,
   handleSelectChange,
   isSubmitting,
-  classes,
 }) => (
   <React.Fragment>
     <div className="mh2 rate-edit-form">
-      <div className="flex">
+      <div className="flex justify-center">
         <MealPriceField
           label="변동가격"
           name="reservePrice"
@@ -40,18 +25,13 @@ const EditUserForm = ({
           placeholder="8000"
           required
         />
-        <FormControl className={classes.formControl}>
-          <InputLabel required={true}>적용날짜 (YYYY/MM)</InputLabel>
-          <Select
-            value={reserveDate}
-            onChange={handleSelectChange}
-            renderValue={value => value}
-          >
-            <MenuItem value={thisMonth}>{thisMonth}</MenuItem>
-            <MenuItem value={nextMonth}>{nextMonth}</MenuItem>
-            <MenuItem value={inTwoMonths}>{inTwoMonths}</MenuItem>
-          </Select>
-        </FormControl>
+        <ExpireDateSelect
+          reserveDate={reserveDate}
+          thisMonth={thisMonth}
+          nextMonth={nextMonth}
+          inTwoMonths={inTwoMonths}
+          handleSelectChange={handleSelectChange}
+        />
       </div>
       <div className="rate-edit-form--btn">
         <FormButton
@@ -78,4 +58,4 @@ const EditUserForm = ({
   </React.Fragment>
 );
 
-export default withStyles(styles)(EditUserForm);
+export default EditUserForm;

@@ -1,7 +1,7 @@
 // import { ConnectedRouter as Router } from 'connected-react-router';
 import { MemoryRouter as Router } from 'react-router-dom';
-import React, { render, cleanup } from '../../../setupTests';
-import { Unwrapped as UnwrappedLoginForm } from '../../../../components/auth/login/loginForm';
+import React, { render, cleanup, fireEvent } from '../../../setupTests';
+import LoginForm from '../../../../components/auth/login/loginForm';
 import { findByTestAttr } from '../../../util';
 
 afterEach(cleanup);
@@ -21,13 +21,15 @@ const defaultProps = {
   classes: {
     textField: '',
   },
+  userData: [{ username: 'jiahlee', password: '' }],
+  keepMeLoggedIn: jest.fn(),
 };
 
 const setUp = props => {
   const setupProps = { ...defaultProps, ...props };
   const component = render(
     <Router>
-      <UnwrappedLoginForm {...setupProps} />
+      <LoginForm {...setupProps} />
     </Router>,
   );
   return component;
@@ -37,8 +39,19 @@ describe('Login Form Component', () => {
   it('renders without errors', () => {
     const component = setUp({});
     expect(component).toMatchSnapshot();
-    // const loginformComponent = findByTestAttr(component, 'loginformComponent');
-    // expect(loginformComponent).toHaveLength(1);
+  });
+
+  it('test', () => {
+    const component = setUp({});
+    expect(defaultProps.keepMeLoggedIn).not.toHaveBeenCalled();
+    fireEvent.click(component.getByTestId('checkbox-login'));
+    expect(defaultProps.keepMeLoggedIn).toHaveBeenCalled();
+  });
+
+  it('test1', () => {
+    // const component = setUp({});
+    // const { container, getByTestId } = component;
+    // console.log(container.getByTestId('formik'));
   });
 
   // it('renders textfield and button', () => {
