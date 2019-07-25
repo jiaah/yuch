@@ -6,7 +6,7 @@ import Input from './input';
 import IconButton from './iconButton';
 import Icon from '../../../assets/icons';
 
-const PasswordField = ({ label, name, styleName, placeholder }) => {
+const PasswordField = ({ label, name, styleName, placeholder, variant }) => {
   // hide & show password
   const [visible, setVisible] = useState(false);
   const handleClickShowPassword = () => setVisible(!visible);
@@ -22,14 +22,15 @@ const PasswordField = ({ label, name, styleName, placeholder }) => {
       placeholder={placeholder}
       type={type}
       required={true}
+      variant={variant}
       margin="normal"
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
             <Icon
               name="filledLock"
-              width="30"
-              height="30"
+              width="28"
+              height="28"
               viewBox="0 0 30 30"
               fill="none"
             />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import AdminConfirmForm from './adminConfirmForm';
 import { passwordValidation } from '../../components/formValidation';
@@ -34,7 +34,9 @@ const AdminConfirmContainer = ({
     <Formik
       initialValues={values}
       render={props => (
-        <AdminConfirmForm {...props} confirmType={confirmType} />
+        <Form>
+          <AdminConfirmForm {...props} confirmType={confirmType} />
+        </Form>
       )}
       onSubmit={handleConfirm}
       validationSchema={passwordValidation}
