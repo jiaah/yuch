@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
-import Form from './editRateForm';
+import RateForm from './editRateForm';
 import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
 import { reservePriceValidation } from '../../formValidation';
 
@@ -58,14 +58,16 @@ const EditRateModal = ({
           <Formik
             initialValues={values}
             render={props => (
-              <Form
-                {...props}
-                reserveDate={reserveDate}
-                thisMonth={thisMonth}
-                nextMonth={nextMonth}
-                inTwoMonths={inTwoMonths}
-                handleSelectChange={handleSelectChange}
-              />
+              <Form>
+                <RateForm
+                  {...props}
+                  reserveDate={reserveDate}
+                  thisMonth={thisMonth}
+                  nextMonth={nextMonth}
+                  inTwoMonths={inTwoMonths}
+                  handleSelectChange={handleSelectChange}
+                />
+              </Form>
             )}
             validationSchema={reservePriceValidation}
             onSubmit={handleSubmit}

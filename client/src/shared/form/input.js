@@ -39,6 +39,12 @@ const styles = theme => ({
       width: 604,
     },
   },
+  // rate form : reservePrice
+  textFieldF: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit * 3,
+    width: 180,
+  },
 });
 
 const Input = ({
@@ -56,7 +62,12 @@ const Input = ({
     const inputValue = e.target.value;
     let value;
 
-    if (name === 'lunchQty' || name === 'dinnerQty' || name === 'mealPrice') {
+    if (
+      name === 'lunchQty' ||
+      name === 'dinnerQty' ||
+      name === 'mealPrice' ||
+      name === 'reservePrice'
+    ) {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);

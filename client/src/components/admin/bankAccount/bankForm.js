@@ -1,16 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
-
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 250,
-  },
-});
 
 const BankForm = ({ isSubmitting }) => (
   <React.Fragment>
@@ -55,4 +46,4 @@ const BankForm = ({ isSubmitting }) => (
   </React.Fragment>
 );
 
-export default withStyles(styles)(BankForm);
+export default BankForm;
