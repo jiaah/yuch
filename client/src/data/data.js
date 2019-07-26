@@ -171,25 +171,19 @@ export const userAccountTableHeadColumns = [
     id: 'lunchQty',
     numeric: true,
     disablePadding: false,
-    label: '중식 식수량',
+    label: '중식식수량',
   },
   {
     id: 'dinnerQty',
     numeric: true,
     disablePadding: false,
-    label: '석식 식수량',
+    label: '석식식수량',
   },
   {
     id: 'mealPrice',
     numeric: true,
     disablePadding: false,
-    label: '식수가격',
-  },
-  {
-    id: 'reservePrice',
-    numeric: true,
-    disablePadding: false,
-    label: '변동가격',
+    label: '식수가격[변동가]',
   },
   {
     id: 'bankAccountId',

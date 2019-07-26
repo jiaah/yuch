@@ -40,13 +40,13 @@ const UserTableRow = ({
   // translate businessType value to Korean
   const businessType =
     row.businessType === 'catering'
-      ? '위탁급식'
+      ? '위탁'
       : row.businessType === 'restaurant'
         ? '식당'
         : null;
   // display reservePrice if it exists.
   const reservePriceView =
-    row.reservePrice === null ? '' : `${row.reservePrice}`;
+    row.reservePrice === null ? '' : `[${row.reservePrice}]`;
   return (
     <React.Fragment>
       <TableRow
@@ -93,10 +93,11 @@ const UserTableRow = ({
         </TableCell>
         <TableCell align="right" className={resize}>
           {row.mealPrice}
-        </TableCell>
-        <TableCell align="right" className={resize}>
           {reservePriceView}
         </TableCell>
+        {/* <TableCell align="right" className={resize}>
+          {reservePriceView}
+        </TableCell> */}
         <TableCell align="right" className={resize}>
           {accountHolder}
           &#8201;&#8201;&#8201;
