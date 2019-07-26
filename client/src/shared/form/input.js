@@ -111,6 +111,7 @@ const Input = ({
         className={classes[styleName]}
         helperText={isTouched && errorMessage}
         error={isTouched && Boolean(errorMessage)}
+        data-testid={`${name}-input`}
       />
     </React.Fragment>
   );

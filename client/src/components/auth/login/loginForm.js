@@ -43,7 +43,6 @@ const LoginForm = ({
               buttonName="로그인"
               className="login-btn"
               isSubmitting={isSubmitting}
-              data-test="submit-btn"
             />
           </Form>
           <div className="keep-me-logged-in">
