@@ -29,7 +29,7 @@ const AdminAccountContainer = ({
   const openPasswordForm = () => setPwdOpen(true);
   const closePasswordForm = () => setPwdOpen(false);
   return (
-    <div className="container pt2">
+    <div className="container">
       <h2>Personal Info</h2>
       <p className="pb3 pt2 f-mini">
         홈페이지 메인화면의 연락처와 예약받는 이메일 주소는 변경되지 않습니다.

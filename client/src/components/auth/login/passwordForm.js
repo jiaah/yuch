@@ -25,15 +25,13 @@ const PasswordForm = ({ isSubmitting }) => (
       placeholder="sleket12@hanmail.net"
       required
     />
-    <div className="forgot--password-box--btn">
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="계속하기"
-        className="login-btn"
-        isSubmitting={isSubmitting}
-      />
-    </div>
+    <FormButton
+      typeValue="submit"
+      variantValue="contained"
+      buttonName="계속하기"
+      className="login-btn"
+      isSubmitting={isSubmitting}
+    />
   </React.Fragment>
 );
 

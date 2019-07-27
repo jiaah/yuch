@@ -23,7 +23,7 @@ const LoginForm = ({
       initialValues={values}
       render={() => (
         <div className="login-container">
-          <Form className="flex flex-column-m">
+          <Form className="flex flex-column-m center">
             <FormikField
               label="아이디"
               name="username"

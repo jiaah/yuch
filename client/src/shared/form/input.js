@@ -8,7 +8,7 @@ const styles = theme => ({
     width: 300,
     margin: '20px 14px',
     [theme.breakpoints.up('md')]: {
-      width: 400,
+      width: 500,
     },
   },
   // lunchQty, dinnerQty
@@ -16,7 +16,7 @@ const styles = theme => ({
     width: 138,
     margin: '20px 14px',
     [theme.breakpoints.up('md')]: {
-      width: 188,
+      width: 238,
     },
   },
   // [C,D,E] create/edit user account forms

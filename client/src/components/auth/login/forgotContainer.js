@@ -32,7 +32,7 @@ const ForgotContainer = ({
   };
 
   return (
-    <div className="forgot-container">
+    <div className="login-container">
       {valueToFind === 'username' ? (
         !foundUser ? (
           <UsernameFormBox

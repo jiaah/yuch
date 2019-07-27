@@ -5,10 +5,10 @@
   flex-direction: column;
   justify-content: center;
   width: 300px;
-  margin: 0 auto;
+  margin: 3em auto;
 
   @include for-desktop-up {
-    width: 400px;
+    width: 700px;
   }
 }
 
@@ -16,7 +16,7 @@
   width: 300px;
 
   @include for-desktop-up {
-    width: 400px;
+    width: 500px;
   }
 }
 
@@ -26,28 +26,16 @@
   border-bottom: .5px solid $light-grey;
   width: 300px;
 
+
   @include for-desktop-up {
-    width: 400px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 .login-forgot {
   font-size: .885em;
-}
-
-/* ------ Forgot Username/Password ------ */
-.forgot-container {
-  height: calc(100vh - 240px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 350px;
-  margin: 0 auto;
-
-  @include for-desktop-up {
-    width: 750px;
-  }
 }
 
 /* ------ User Account ------ */
