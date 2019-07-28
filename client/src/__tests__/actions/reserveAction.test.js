@@ -23,10 +23,10 @@ describe('async reserve request actions', () => {
   });
 
   it('creates RESERVE_SUCCESS after successfully sending reserve request', async done => {
-    const url = `${API_HOST}/reserve`;
+    const API_URL = `${API_HOST}/reserve`;
     store.dispatch(actions.reserve());
 
-    moxios.stubRequest(url, {
+    moxios.stubRequest(API_URL, {
       status: 200,
     });
 

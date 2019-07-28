@@ -1,11 +1,6 @@
-import moment from './moment';
+export const inThreeDays = '2020-11-06';
 
-export const inThreeDays = moment()
-  .startOf('day')
-  .add(3, 'day')
-  .format('YYYY-MM-DD');
-
-export const now = moment().format('MMMM Do YYYY, h:mm a');
+export const now = '11 06 2020, 11:35 20';
 
 export const httpInitState = {
   api: '',

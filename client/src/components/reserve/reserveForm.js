@@ -5,7 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextMaskCustom from './textMaskCustom';
 import Button from '../../shared/form/button';
 
-const ReserveForm = ({
+export const ReserveForm = ({
   reserveInfo,
   inThreeDays,
   submitBtnClicked,
@@ -38,7 +38,6 @@ const ReserveForm = ({
           error={submitBtnClicked && name === ''}
           onChange={ev => handleChange(ev)}
           required={true}
-          data-testid="name"
         />
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="formatted-text-mask-input">연락처 *</InputLabel>
@@ -50,7 +49,6 @@ const ReserveForm = ({
             error={submitBtnClicked && inValidContactValue}
             onChange={ev => handleChange(ev)}
             required={true}
-            data-testid="contact"
           />
         </FormControl>
         <TextField
@@ -67,7 +65,6 @@ const ReserveForm = ({
           margin="normal"
           fullWidth
           required={true}
-          data-testid="number"
           InputProps={{
             endAdornment: <InputAdornment position="end">명</InputAdornment>,
           }}
@@ -85,7 +82,6 @@ const ReserveForm = ({
           helperText="경주시 내 전지역 배달 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
-          data-testid="place"
         />
         <TextField
           id="date"
@@ -98,7 +94,6 @@ const ReserveForm = ({
           helperText="최소 3일 전일 경우에만 예약 진행 가능합니다."
           onChange={ev => handleChange(ev)}
           required={true}
-          data-testid="date"
         />
         <TextField
           id="time"
@@ -114,7 +109,6 @@ const ReserveForm = ({
           helperText="( 예약 가능 시간 )  11:00 - 20:00"
           onChange={ev => handleChange(ev)}
           required={true}
-          data-testid="time"
         />
       </div>
       <Button

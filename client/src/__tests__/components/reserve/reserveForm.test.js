@@ -1,6 +1,6 @@
 import React from 'react';
-import { unwrap } from '@material-ui/core/test-utils';
-import ReserveForm from '../../../components/reserve/reserveForm';
+import { queryByAttribute } from 'react-testing-library';
+import { ReserveForm } from '../../../components/reserve/reserveForm';
 import * as mockData from '../../__mocks__/mockData';
 import { render, fireEvent, waitForElement, cleanup } from '../../setupTests';
 
@@ -14,8 +14,6 @@ const mockClose = jest.fn();
 const mockChange = jest.fn();
 const mockSubmit = jest.fn();
 
-const ComponentNaked = unwrap(ReserveForm);
-
 const props = {
   inThreeDays: mockData.inThreeDays,
   handleClose: mockClose,
@@ -26,33 +24,18 @@ const props = {
 };
 
 const setup = () =>
-  render(<ComponentNaked {...props} reserveInfo={mockData.reserveInfoInit} />);
+  render(<ReserveForm {...props} reserveInfo={mockData.reserveInfoInit} />);
 
 test('submit with reserve Info', async () => {
-  const {
-    getByTestId,
-    getByText,
-    getByLabelText,
-    container,
-    queryByTestId,
-  } = setup();
+  const { container } = setup();
 
-  const buttonComponent = queryByTestId('button');
-  const inputNameById = getByTestId('name');
-  const submitButton = getByText('예약완료');
+  const getById = queryByAttribute.bind(null, 'id');
+  const nameInput = getById(container, 'name');
 
-  expect(buttonComponent).toBeTruthy();
-
-  // old version. test's passed. but it doesn't seem to work.
-  // inputNameById.value = name;
-  // fireEvent.change(name);
-  // Error: called zero times.
-  // expect(mockChange).toHaveBeenCalledTimes(1);
-
-  // Error: The given element does not have a value setter
-  // fireEvent.change(getByLabelText('이름'), { target: { value: name } });
-
-  fireEvent.click(submitButton);
-  expect(mockSubmit).toHaveBeenCalledTimes(1);
+  fireEvent.change(nameInput, { target: { value: 'yuch' } });
+  expect(nameInput.value).toBe('yuch');
+  // fireEvent.click(submitButton);
+  // expect(mockSubmit).toHaveBeenCalledTimes(1);
   // expect(mockSubmit).toHaveBeenCalledWith({...});
+  // const submitButton = getByText('예약완료');
 });
