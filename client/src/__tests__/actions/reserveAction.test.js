@@ -1,14 +1,10 @@
 import moxios from 'moxios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/reserveAction';
-import { mockStore } from '../../../setupTests';
+import { mockStore } from '../setupTests';
+import { API_HOST } from '../../../config';
 
 const store = mockStore({});
-
-test('should generate reset reserve info action', () => {
-  const expectedAction = { type: types.HTTP_RESET };
-  expect(actions.resetReserve()).toEqual(expectedAction);
-});
 
 describe('async reserve request actions', () => {
   beforeEach(() => {
@@ -20,14 +16,18 @@ describe('async reserve request actions', () => {
     moxios.uninstall();
   });
 
-  it('creates RESERVE_SUCCESS after successfully sending reserve request', async () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      expect(request.config.method).toEqual('post');
+  it('should generate reset reserve info action', () => {
+    store.dispatch(actions.resetReserve());
+    const expectedActions = [{ type: types.HTTP_RESET }];
+    expect(store.getActions()).toEqual(expectedActions);
+  });
 
-      request.respondWith({
-        status: 200,
-      });
+  it('creates RESERVE_SUCCESS after successfully sending reserve request', async done => {
+    const url = `${API_HOST}/reserve`;
+    store.dispatch(actions.reserve());
+
+    moxios.stubRequest(url, {
+      status: 200,
     });
 
     const expectedActions = [
@@ -35,8 +35,9 @@ describe('async reserve request actions', () => {
       { type: types.HTTP_SUCCESS, api: 'reserve' },
     ];
 
-    await store.dispatch(actions.reserve()).then(() => {
+    moxios.wait(async () => {
       expect(store.getActions()).toEqual(expectedActions);
+      done();
     });
   });
 });

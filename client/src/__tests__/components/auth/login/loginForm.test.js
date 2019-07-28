@@ -33,8 +33,6 @@ const defaultProps = {
   keepMeLoggedIn: mockKeepMeLoggedIn,
 };
 
-// const store = mockStore({});
-
 const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
   const component = render(
@@ -97,7 +95,7 @@ describe('Login Form Component', () => {
 
   // it('show error message when login fails on submit button click', () => {
   //   const { submitButton, component } = setUp({
-  //     username: 'yuch',
+  //     username: 'yuchung',
   //     password: 'falsepassword12',
   //   });
   //   const { getByText } = component;
