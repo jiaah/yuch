@@ -12,20 +12,23 @@ const LoginForm = ({
   keepMeLoggedIn,
   keepLoggedIn,
   userData,
-  isSubmitting,
-  handleUserLogin,
+  handleSubmit,
   loginValidation,
 }) => {
+  // when user found username from 'forgot ID', userData[0].username state is saved temporary on 'HTTP_SUCCESS' action of 'forgotUsername'.
   const foundUsername = userData.length !== 0 ? userData[0].username : '';
   const values = { username: foundUsername, password: '' };
   return (
     <Formik
       initialValues={values}
-      render={() => (
+      validationSchema={loginValidation}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, isSubmitting }) => (
         <div className="login-container">
           <form
             className="flex flex-column-m center"
-            onSubmit={handleUserLogin}
+            onSubmit={handleSubmit}
             data-testid="form"
           >
             <FormikField
@@ -79,9 +82,7 @@ const LoginForm = ({
           </div>
         </div>
       )}
-      onSubmit={handleUserLogin}
-      validationSchema={loginValidation}
-    />
+    </Formik>
   );
 };
 

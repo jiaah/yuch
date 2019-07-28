@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Formik } from 'formik';
 /* --- Components --- */
 import LoginForm from './loginForm';
 import { isLoggedIn, saveUserToken } from '../../../../localStorage';
@@ -22,7 +21,7 @@ const Login = ({
 }) => {
   const { loggedInUser, loginFailed } = data.message.auth;
 
-  const handleUserLogin = async (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
 
     if (isLoggedIn()) {
@@ -44,27 +43,14 @@ const Login = ({
     }
   };
 
-  // when user found username from 'forgot ID'.
-  // userData[0].username state is purposly saved temporary.
-  // In order to achieve this, save it in 'HTTP_SUCCESS' action of 'forgotUsername'.
-  const foundUsername = userData.length !== 0 ? userData[0].username : '';
-  const values = { username: foundUsername, password: '' };
-
   return (
-    // <Formik
-    //   initialValues={values}
-    //   render={() => (
     <LoginForm
       keepMeLoggedIn={keepMeLoggedIn}
       keepLoggedIn={keepLoggedIn}
       userData={userData}
-      handleUserLogin={handleUserLogin}
+      handleSubmit={handleSubmit}
       loginValidation={loginValidation}
     />
-    // )}
-    //   onSubmit={handleUserLogin}
-    //   validationSchema={loginValidation}
-    // />
   );
 };
 

@@ -1,12 +1,8 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/reserveAction';
+import { mockStore } from '../../../setupTests';
 
-// config store/ middleware & axios
-const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
 test('should generate reset reserve info action', () => {

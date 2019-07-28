@@ -10,7 +10,7 @@ const MessageBox = Loader({
     import('./src/shared/message/messageBox' /* webpackChunkName: 'MessageBox' */),
 });
 
-const App = ({ messageShow, isOnModal, children }) => (
+export const App = ({ messageShow, isOnModal, children }) => (
   <div id="app absolute">
     <NavContainer />
     {messageShow !== null &&

@@ -158,7 +158,6 @@
     "jest": "^23.5.0",
     "jest-canvas-mock": "^2.1.0",
     "jest-dom": "^3.2.2",
-    "jsdom": "^15.1.1",
     "lint-staged": "^8.0.4",
     "mock-knex": "^0.4.4",
     "nodemon": "^1.18.3",
