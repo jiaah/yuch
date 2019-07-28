@@ -41,7 +41,6 @@ const FormButton = ({
       style={widthStyle}
       className={`${className} ${classes.button}`}
       disabled={isSubmitting}
-      data-testid="submit-button"
     >
       {buttonName}
     </Button>

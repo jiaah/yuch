@@ -1,94 +1,79 @@
 // import { ConnectedRouter as Router } from 'connected-react-router';
 import { MemoryRouter as Router } from 'react-router-dom';
+import { queryByAttribute } from 'react-testing-library';
 import React, { render, cleanup, fireEvent } from '../../../setupTests';
 import LoginForm from '../../../../components/auth/login/loginForm';
-import { findByTestAttr } from '../../../util';
 
 afterEach(cleanup);
 
-const mockChange = jest.fn();
 const mockSubmit = jest.fn();
+const mockKeepMeLoggedIn = jest.fn();
 
 const defaultProps = {
-  handleChange: mockChange,
-  handleSubmit: mockSubmit,
+  handleUserLogin: mockSubmit,
   isSubmitting: false,
-  userData: [{ username: '', password: '' }],
-  keepMeLoggedIn: jest.fn(),
+  userData: [],
+  keepMeLoggedIn: mockKeepMeLoggedIn,
 };
 
 const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
   const component = render(
     <Router>
-      <LoginForm {...setupProps} />
+      <LoginForm {...setupProps} onSubmit={mockSubmit} />
     </Router>,
   );
-  return component;
+  const { container } = component;
+  const getByName = queryByAttribute.bind(null, 'name');
+  const usernameInput = getByName(container, 'username');
+  const passwordInput = getByName(container, 'password');
+  return { component, usernameInput, passwordInput };
 };
 
 describe('Login Form Component', () => {
   it('renders without errors', () => {
-    const component = setUp();
+    const { component } = setUp();
     expect(component).toMatchSnapshot();
   });
 
   it("calls an action on 'keepMeLoggedIn' checkbox click", () => {
-    const component = setUp();
+    const { component } = setUp();
     const { getByTestId } = component;
     const checkbox = getByTestId('checkbox-login').querySelector(
       'input[type="checkbox"]',
     );
-    expect(defaultProps.keepMeLoggedIn).not.toHaveBeenCalled();
+    expect(mockKeepMeLoggedIn).not.toHaveBeenCalled();
     fireEvent.click(checkbox);
-    expect(defaultProps.keepMeLoggedIn).toHaveBeenCalled();
+    expect(mockKeepMeLoggedIn).toHaveBeenCalled();
     expect(checkbox).toHaveProperty('checked', true);
   });
 
-  it('calls handleChange on input change', () => {
-    const component = setUp();
-    const { queryAllByTestId } = component;
-    const usernameInput = queryAllByTestId('username-input');
-    const passwordInput = queryAllByTestId('password-input');
-    expect(usernameInput).toBeTruthy();
-    expect(passwordInput).toBeTruthy();
-
-    // usernameInput.value = 'test';
-    // passwordInput.value = 'test1234';
-
-    // fireEvent.change(usernameInput);
-    // usernameInput.simulate('change', {
-    //   target: { name: 'username', value: ' test' },
-    // });
-
-    // enzyme's change event is synchronous and Formik's handlers are asynchronous
-    // setTimeout(() => {
-    //   component.update();
-    //   expect(mockChange.calledOnce).toEqual(true);
-    //   done();
-    // }, 1000);
+  it('renders empty string in username input when userData is empty', () => {
+    const { usernameInput } = setUp();
+    expect(usernameInput.value).toBe('');
   });
 
-  // it('calls handleSubmit on submit button click', done => {
-  // const component = setUp();
-  // const { queryAllByTestId } = component;
-  // const submitButton = queryAllByTestId('submit-button');
-  // fireEvent.submit(submitButton, {
-  //   preventDefault: () => {},
-  // });
-  // setTimeout(() => {
-  //   wrapper.update();
-  //   expect(mockSubmit.calledOnce).toEqual(true);
-  //   done();
-  // }, 0);
-  // });
+  it('renders username in username input when userData is not empty', () => {
+    const { usernameInput } = setUp({
+      userData: [{ username: 'yuch', password: '' }],
+    });
+    expect(usernameInput.value).toBe('yuch');
+  });
 
-  it('renders username in username inpu when it exists', () => {
-    const component = setUp({ userData: [{ username: 'test', password: '' }] });
-    const { queryAllByTestId } = component;
-    const usernameInput = queryAllByTestId('username-input')[0].querySelector(
-      'input[type="text"]',
-    );
-    // console.log(usernameInput);
+  it('calls handleChange on input change', () => {
+    const { usernameInput } = setUp();
+    fireEvent.change(usernameInput, { target: { value: 'yuch' } });
+    expect(usernameInput.value).toBe('yuch');
+  });
+
+  it('calls handleSubmit on submit button click', () => {
+    const { component } = setUp();
+    const { getByTestId } = component;
+    const submitButton = getByTestId('form');
+    fireEvent.submit(submitButton);
+    expect(mockSubmit).toHaveBeenCalled();
+    // check route changes to '/'
+    // expect(getAllByTestId('homepage').textContent).toBe('NO MSG');
+    // renderWithRouter(<Homepage />, { initialEntries: ['/'] });
   });
 });

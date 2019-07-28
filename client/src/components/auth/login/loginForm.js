@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import PasswordField from '../../../shared/form/passwordField';
@@ -23,7 +23,11 @@ const LoginForm = ({
       initialValues={values}
       render={() => (
         <div className="login-container">
-          <Form className="flex flex-column-m center">
+          <form
+            className="flex flex-column-m center"
+            onSubmit={handleUserLogin}
+            data-testid="form"
+          >
             <FormikField
               label="아이디"
               name="username"
@@ -44,7 +48,7 @@ const LoginForm = ({
               className="login-btn"
               isSubmitting={isSubmitting}
             />
-          </Form>
+          </form>
           <div className="keep-me-logged-in">
             <FormControlLabel
               control={

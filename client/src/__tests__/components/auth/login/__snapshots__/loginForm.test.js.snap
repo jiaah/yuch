@@ -9,11 +9,11 @@ Object {
         class="login-container"
       >
         <form
-          class="flex flex-column-m"
+          class="flex flex-column-m center"
+          data-testid="form"
         >
           <div
             class="MuiFormControl-root-7 MuiFormControl-marginNormal-8 Input-textField-1"
-            data-testid="username-input"
           >
             <label
               class="MuiFormLabel-root-18 MuiFormLabel-required-23 MuiInputLabel-root-11 MuiInputLabel-formControl-12 MuiInputLabel-animated-15 MuiInputLabel-shrink-14"
@@ -60,7 +60,6 @@ Object {
           </div>
           <div
             class="MuiFormControl-root-7 MuiFormControl-marginNormal-8 Input-textField-1"
-            data-testid="password-input"
           >
             <label
               class="MuiFormLabel-root-18 MuiFormLabel-required-23 MuiInputLabel-root-11 MuiInputLabel-formControl-12 MuiInputLabel-animated-15 MuiInputLabel-shrink-14"
@@ -132,7 +131,6 @@ Object {
           </div>
           <button
             class="MuiButtonBase-root-86 MuiButton-root-60 MuiButton-contained-71 MuiButton-containedPrimary-72 MuiButton-raised-74 MuiButton-raisedPrimary-75 MuiButton-sizeSmall-83 login-btn FormButton-button-59"
-            data-testid="submit-button"
             tabindex="0"
             type="submit"
           >
@@ -213,11 +211,11 @@ Object {
       class="login-container"
     >
       <form
-        class="flex flex-column-m"
+        class="flex flex-column-m center"
+        data-testid="form"
       >
         <div
           class="MuiFormControl-root-7 MuiFormControl-marginNormal-8 Input-textField-1"
-          data-testid="username-input"
         >
           <label
             class="MuiFormLabel-root-18 MuiFormLabel-required-23 MuiInputLabel-root-11 MuiInputLabel-formControl-12 MuiInputLabel-animated-15 MuiInputLabel-shrink-14"
@@ -264,7 +262,6 @@ Object {
         </div>
         <div
           class="MuiFormControl-root-7 MuiFormControl-marginNormal-8 Input-textField-1"
-          data-testid="password-input"
         >
           <label
             class="MuiFormLabel-root-18 MuiFormLabel-required-23 MuiInputLabel-root-11 MuiInputLabel-formControl-12 MuiInputLabel-animated-15 MuiInputLabel-shrink-14"
@@ -336,7 +333,6 @@ Object {
         </div>
         <button
           class="MuiButtonBase-root-86 MuiButton-root-60 MuiButton-contained-71 MuiButton-containedPrimary-72 MuiButton-raised-74 MuiButton-raisedPrimary-75 MuiButton-sizeSmall-83 login-btn FormButton-button-59"
-          data-testid="submit-button"
           tabindex="0"
           type="submit"
         >
