@@ -7,24 +7,22 @@ import './styles/main.scss';
 
 const MessageBox = Loader({
   loader: () =>
-    import('./src/shared/message/messageBox' /* webpackChunkName: 'MessageBox' */),
+    import('./src/shared/message/messageContainer' /* webpackChunkName: 'MessageBox' */),
 });
 
-export const App = ({ messageShow, isOnModal, children }) => (
+export const App = ({ messageShow, children }) => (
   <div id="app absolute">
     <NavContainer />
-    {messageShow !== null &&
-      !isOnModal && (
-        <div className="flex justify-center">
-          <MessageBox />
-        </div>
-      )}
+    {messageShow !== null && (
+      <div className="flex justify-center">
+        <MessageBox />
+      </div>
+    )}
     {children}
   </div>
 );
 
 const mapPropsToState = state => ({
-  isOnModal: state.modal.show,
   messageShow: state.message.show,
 });
 

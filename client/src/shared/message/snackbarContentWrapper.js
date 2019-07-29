@@ -1,9 +1,9 @@
 import React from 'react';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { withStyles } from '@material-ui/core/styles';
-
-/* --- SVG Icon Components --- */
+/* --- Components --- */
 import Icon from '../../../assets/icons';
+import IconButton from '../form/iconButton';
 
 const color = {
   success: '#43A047',
@@ -40,9 +40,8 @@ const styles = theme => ({
   },
 });
 
-const FlashMessage = ({ classes, variant, message }) => {
+const SnackbarContentWrapper = ({ classes, message, variant, onClose }) => {
   const iconColor = color[variant];
-
   return (
     <SnackbarContent
       className={`${classes[variant]} ${classes.container}`}
@@ -62,8 +61,18 @@ const FlashMessage = ({ classes, variant, message }) => {
           {message}
         </span>
       }
+      action={[
+        <IconButton
+          name="close"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          type="client-msg"
+          handleClick={onClose}
+        />,
+      ]}
     />
   );
 };
 
-export default withStyles(styles)(FlashMessage);
+export default withStyles(styles)(SnackbarContentWrapper);

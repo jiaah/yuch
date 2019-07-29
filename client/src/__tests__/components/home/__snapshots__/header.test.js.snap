@@ -4,6 +4,7 @@ exports[`<Header /> renders correctly 1`] = `
 <header>
   <div
     class="header-text--box"
+    data-testid="homepage"
   >
     <h1>
       <span

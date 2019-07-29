@@ -6,9 +6,8 @@ export const addFlashMessage = (variant, message) => async dispatch => {
     variant,
     message,
   });
-
-  return window.setTimeout(
-    () => dispatch({ type: types.DELETE_FLASH_MESSAGE }),
-    3000,
-  );
 };
+
+export const removeFlashMessage = () => ({
+  type: types.DELETE_FLASH_MESSAGE,
+});

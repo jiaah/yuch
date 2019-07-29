@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
 
-const IconButton = ({ handleClick, name, width, height, viewBox }) => {
+const IconButton = ({ handleClick, name, width, height, viewBox, type }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
   const outerColor = isHovered ? '#ed6802' : '#E8716F';
+  const msgColor = '#ffffff';
+  const selectedColor = type === 'client-msg' ? msgColor : outerColor;
 
   return (
     <button
@@ -29,7 +31,7 @@ const IconButton = ({ handleClick, name, width, height, viewBox }) => {
         height={height}
         viewBox={viewBox}
         fillInner="#ffffff"
-        fillOuter={outerColor}
+        fillOuter={selectedColor}
       />
     </button>
   );

@@ -80,33 +80,34 @@ describe('Login Form Component', () => {
     expect(usernameInput.value).toBe('yuch');
   });
 
-  it('input handle change and submit login', async () => {
-    const { usernameInput, passwordInput, submitButton } = setUp();
+  it('renders input value on input change event', async () => {
+    const { usernameInput, passwordInput } = setUp();
 
     fireEvent.change(usernameInput, { target: { value: 'yuch' } });
     expect(usernameInput.value).toBe('yuch');
     fireEvent.change(passwordInput, { target: { value: 'testpwd1234' } });
     expect(passwordInput.value).toBe('testpwd1234');
+  });
 
+  it('calls handleSubmit function on submit button click', async () => {
+    const { submitButton } = setUp();
     fireEvent.click(submitButton);
-
     await wait(() => {
       expect(mockSubmit).toHaveBeenCalledTimes(1);
     });
   });
 
-  // it('show error message when login fails on submit button click', () => {
-  //   const { submitButton, component } = setUp({
-  //     username: 'yuchung',
-  //     password: 'falsepassword12',
-  //   });
-  //   const { getByText } = component;
-  //   fireEvent.submit(submitButton);
-  //   expect(mockSubmit).toHaveBeenCalled();
-  //   expect(
-  //     getByText(
-  //       '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
-  //     ),
-  //   ).toBeDefined();
-  // });
+  it('show error message when login fails on submit button click', () => {
+    const { usernameInput, passwordInput, component } = setUp();
+    const { getByTestId } = component;
+    // const errorMsg = getByTestId('error-msg');
+    // console.log('errorMsg: ', errorMsg);
+    fireEvent.change(usernameInput, { target: { value: 'yuch!&?' } });
+    fireEvent.change(passwordInput, { target: { value: 'testpwd1234' } });
+    // expect(
+    //   getByText(
+    //     '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+    //   ),
+    // ).toBeDefined();
+  });
 });

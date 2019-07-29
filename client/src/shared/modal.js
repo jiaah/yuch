@@ -1,5 +1,4 @@
 import React from 'react';
-// import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
@@ -10,10 +9,6 @@ import Loader from './loader';
 const Modal = Loader({
   loader: () =>
     import('@material-ui/core/Modal' /* webpackChunkName: 'modal' */),
-});
-const MessageBox = Loader({
-  loader: () =>
-    import('./message/messageBox' /* webpackChunkName: 'messageBox' */),
 });
 
 const styles = theme => ({
@@ -34,14 +29,7 @@ const styleModal = {
   transform: 'translate(-50%, -50%)',
 };
 
-const SimpleModal = ({
-  show,
-  messageShow,
-  classes,
-  component,
-  title,
-  handleClose,
-}) => {
+const SimpleModal = ({ show, classes, component, title, handleClose }) => {
   if (!show) {
     return null;
   }
@@ -71,7 +59,6 @@ const SimpleModal = ({
             {title}
           </h3>
           {component}
-          {messageShow !== null && <MessageBox />}
         </div>
       </Modal>
     </React.Fragment>
@@ -80,7 +67,6 @@ const SimpleModal = ({
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  messageShow: state.message.show,
 });
 
 export const Unwrapped = SimpleModal;
