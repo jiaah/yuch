@@ -6,13 +6,23 @@ import {
   render,
   fireEvent,
   cleanup,
+  queryByAttribute,
   waitForElement,
+  wait,
 } from 'react-testing-library';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-export { render, fireEvent, cleanup, waitForElement, mockStore };
+export {
+  render,
+  fireEvent,
+  cleanup,
+  queryByAttribute,
+  waitForElement,
+  wait,
+  mockStore,
+};
 export default React;
 
 // Get rid off HTMLCanvasElement.prototype.getContext, and canvas errors.

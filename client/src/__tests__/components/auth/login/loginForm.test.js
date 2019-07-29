@@ -1,7 +1,12 @@
 import { Router, MemoryRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { queryByAttribute } from 'react-testing-library';
-import React, { render, cleanup, fireEvent } from '../../../setupTests';
+import React, {
+  render,
+  cleanup,
+  fireEvent,
+  queryByAttribute,
+  wait,
+} from '../../../setupTests';
 import LoginForm from '../../../../components/auth/login/loginForm';
 // import { App } from '../../../../../app';
 
@@ -35,14 +40,12 @@ const setUp = (props = {}) => {
       <LoginForm {...setupProps} onSubmit={mockSubmit} />
     </MemoryRouter>,
   );
-  const { container, getByTestId, getByText } = component;
+  const { container } = component;
   const getByName = queryByAttribute.bind(null, 'name');
   const usernameInput = getByName(container, 'username');
   const passwordInput = getByName(container, 'password');
-  // const getByType = queryByAttribute.bind(null, 'type');
-  // const submitButton = getByType(container, 'submit');
-  const submitButton = getByText('로그인');
-  // const submitButton = getByTestId('form');
+  const getByType = queryByAttribute.bind(null, 'type');
+  const submitButton = getByType(container, 'submit');
 
   return { component, usernameInput, passwordInput, submitButton };
 };
@@ -77,7 +80,7 @@ describe('Login Form Component', () => {
     expect(usernameInput.value).toBe('yuch');
   });
 
-  it('calls handleChange on input change', () => {
+  it('input handle change and submit login', async () => {
     const { usernameInput, passwordInput, submitButton } = setUp();
 
     fireEvent.change(usernameInput, { target: { value: 'yuch' } });
@@ -85,8 +88,11 @@ describe('Login Form Component', () => {
     fireEvent.change(passwordInput, { target: { value: 'testpwd1234' } });
     expect(passwordInput.value).toBe('testpwd1234');
 
-    // fireEvent.click(submitButton);
-    // expect(mockSubmit).toHaveBeenCalledTimes(1);
+    fireEvent.click(submitButton);
+
+    await wait(() => {
+      expect(mockSubmit).toHaveBeenCalledTimes(1);
+    });
   });
 
   // it('show error message when login fails on submit button click', () => {

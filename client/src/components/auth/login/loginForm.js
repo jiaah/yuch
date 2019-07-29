@@ -26,11 +26,7 @@ const LoginForm = ({
     >
       {({ isSubmitting }) => (
         <div className="login-container">
-          <Form
-            className="flex flex-column-m center"
-            // onSubmit={handleSubmit}
-            data-testid="form"
-          >
+          <Form className="flex flex-column-m center">
             <FormikField
               label="아이디"
               name="username"
