@@ -42,9 +42,8 @@ describe('async reserve request actions', () => {
   });
 
   it('creates HTTP_FAILURE when sending reserve request failed', async done => {
-    await store.clearActions();
     const API_URL = `${API_HOST}/reserve`;
-    const error = 'failed';
+    const error = 'server error';
     await store.dispatch(actions.reserve());
 
     moxios.stubRequest(API_URL, {
