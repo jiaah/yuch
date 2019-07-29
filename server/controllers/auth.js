@@ -138,7 +138,8 @@ exports.forgotUsername = (req, res) =>
     .first()
     .then(user => {
       if (user) {
-        return res.status(200).json(user.username);
+        const username = user.username;
+        return res.status(200).json({ username });
       }
       return res.status(409).json('Can not find user email');
     })

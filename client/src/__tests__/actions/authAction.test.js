@@ -6,6 +6,15 @@ import { API_HOST } from '../../../config';
 
 const store = mockStore({});
 
+const username = 'yuchung';
+const password = 'testingpwd12';
+const newPassword = 'newPwd1234';
+const id = '8f5af680-973e-11e4-ad43-a13a6';
+const token = '8f5af680-973e-11e4-ad43-4ee58e9a13a6';
+const companyName = 'yuchung';
+const isAdmin = true;
+const email = 'yuchung@gmail.com';
+
 describe('async auth request actions', () => {
   beforeEach(() => {
     store.clearActions();
@@ -16,41 +25,137 @@ describe('async auth request actions', () => {
     moxios.uninstall();
   });
 
-  it('calls login axios and returns user info object', async done => {
+  it('calls login action and returns user info object', async () => {
     const API_URL = `${API_HOST}/auth/login`;
-    const userInfo = {
-      token: '8f5af680-973e-11e4-ad43-4ee58e9a13a6',
-      id: '8f5af680-973e-11e4-ad43-a13a6',
-      companyName: 'yuchung',
-      isAdmin: 'true',
+    const user = { username, password };
+    const expectedData = {
+      token,
+      id,
+      companyName,
+      isAdmin,
     };
 
-    store.dispatch(actions.userLogin('yuchung', 'testPw1234'));
+    await store.dispatch(actions.userLogin(user));
     moxios.stubRequest(API_URL, {
       status: 200,
-      response: { data: { userInfo } },
+      response: expectedData,
     });
+
     const expectedActions = [
       { type: types.HTTP_REQUEST, api: 'login' },
       {
         type: types.USER_LOGIN,
         payload: {
-          id: '8f5af680-973e-11e4-ad43-a13a6',
-          companyName: 'yuchung',
-          isAdmin: 'true',
+          id,
+          companyName,
+          isAdmin,
         },
       },
     ];
 
     moxios.wait(async () => {
+      await expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
+
+  it('calls logout action', () => {
+    store.dispatch(actions.userLogout());
+    const expectedActions = [{ type: types.USER_LOGOUT }];
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+
+  it('calls confirmAdminUser action', done => {
+    const API_URL = `${API_HOST}/auth/login/admin`;
+    store.dispatch(actions.confirmAdminUser(password));
+    moxios.stubRequest(API_URL, { status: 200 });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'confirmAdminUser' },
+      { type: types.HTTP_SUCCESS, api: 'confirmAdminUser' },
+    ];
+    moxios.wait(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     });
   });
 
-  it('calls logout axios', () => {
-    store.dispatch(actions.userLogout());
-    const expectedActions = [{ type: types.USER_LOGOUT }];
+  it('calls changePassword action', done => {
+    const API_URL = `${API_HOST}/auth/change/password`;
+    store.dispatch(actions.changePassword(id, password, newPassword));
+    moxios.stubRequest(API_URL, { status: 200 });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'password' },
+      { type: types.HTTP_SUCCESS, api: 'password' },
+    ];
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
+
+  it('calls resetPassword action', done => {
+    const API_URL = `${API_HOST}/auth/reset/password`;
+    store.dispatch(actions.resetPassword(id, newPassword));
+    moxios.stubRequest(API_URL, { status: 200 });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'password' },
+      { type: types.HTTP_SUCCESS, api: 'password' },
+    ];
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
+
+  it('calls resetPasswordWithAccessToken action', done => {
+    const API_URL = `${API_HOST}/auth/reset/password/${token}`;
+    store.dispatch(actions.resetPasswordWithAccessToken(newPassword));
+    moxios.stubRequest(API_URL, { status: 200 });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'password' },
+      { type: types.HTTP_SUCCESS, api: 'password' },
+    ];
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
+
+  it('calls keepMeLoggedIn action', () => {
+    store.dispatch(actions.keepMeLoggedIn());
+    const expectedActions = [{ type: types.KEEP_ME_LOGGED_IN }];
     expect(store.getActions()).toEqual(expectedActions);
+  });
+
+  // it('calls findUsername action', done => {
+  //   const API_URL = `${API_HOST}/auth/forgot/username`;
+  //   store.dispatch(actions.findUsername(email));
+  //   moxios.stubRequest(API_URL, { status: 200 });
+  //   const expectedActions = [
+  //     { type: types.HTTP_REQUEST, api: 'findUsername' },
+  //     {
+  //       type: types.HTTP_SUCCESS,
+  //       api: 'findUsername',
+  //       payload: { username },
+  //     },
+  //   ];
+  //   moxios.wait(() => {
+  //     expect(store.getActions()).toEqual(expectedActions);
+  //     done();
+  //   });
+  // });
+
+  it('calls sendVerificationCodeToEmail action', done => {
+    const API_URL = `${API_HOST}/auth/forgot/password`;
+    store.dispatch(actions.sendVerificationCodeToEmail(username, email));
+    moxios.stubRequest(API_URL, { status: 200 });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' },
+      { type: types.HTTP_SUCCESS, api: 'sendVerificationCodeToEmail' },
+    ];
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
   });
 });

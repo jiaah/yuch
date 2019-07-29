@@ -10,8 +10,6 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
-
-    console.log(res);
     const { token, id, companyName, isAdmin } = res.data;
 
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
@@ -91,7 +89,7 @@ export const keepMeLoggedIn = () => ({
 
 /* --- Forgot Username/Password --- */
 export const findUsername = email => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
+  dispatch({ type: types.HTTP_REQUEST, api: 'findUsername' });
   try {
     const res = await axios.post(`${API_HOST}/auth/forgot/username`, {
       email,
@@ -99,17 +97,17 @@ export const findUsername = email => async dispatch => {
     const { data } = res;
     await dispatch({
       type: types.HTTP_SUCCESS,
-      api: 'sendVerificationCodeToEmail',
-      payload: { username: data },
+      api: 'findUsername',
+      payload: data,
     });
-    return data;
+    return data.username;
   } catch (error) {
     dispatch({
       type: types.HTTP_FAILURE,
-      api: 'sendVerificationCodeToEmail',
+      api: 'findUsername',
       error,
     });
-    throw new Error('Failed to send email.');
+    throw new Error('Failed to find user.');
   }
 };
 

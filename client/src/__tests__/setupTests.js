@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-dom/extend-expect';
-import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {
   render,
@@ -10,7 +10,7 @@ import {
 } from 'react-testing-library';
 
 const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
+const mockStore = configureMockStore(middlewares);
 
 export { render, fireEvent, cleanup, waitForElement, mockStore };
 export default React;
