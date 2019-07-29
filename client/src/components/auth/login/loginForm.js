@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import PasswordField from '../../../shared/form/passwordField';
@@ -24,11 +24,11 @@ const LoginForm = ({
       validationSchema={loginValidation}
       onSubmit={handleSubmit}
     >
-      {({ handleSubmit, isSubmitting }) => (
+      {({ isSubmitting }) => (
         <div className="login-container">
-          <form
+          <Form
             className="flex flex-column-m center"
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             data-testid="form"
           >
             <FormikField
@@ -51,7 +51,7 @@ const LoginForm = ({
               className="login-btn"
               isSubmitting={isSubmitting}
             />
-          </form>
+          </Form>
           <div className="keep-me-logged-in">
             <FormControlLabel
               control={
