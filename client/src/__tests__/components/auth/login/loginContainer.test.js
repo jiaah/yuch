@@ -1,4 +1,5 @@
 import { MemoryRouter } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import * as authAction from '../../../../actions/authAction';
 import { Login } from '../../../../components/auth/login/loginContainer';
 import React, {
@@ -7,7 +8,6 @@ import React, {
   fireEvent,
   queryByAttribute,
   wait,
-  waitForElement,
 } from '../../../setupTests';
 import * as data from '../../../__mocks__/mockData';
 
@@ -29,7 +29,8 @@ const mockUserLogin = jest
     }),
   );
 
-const history = jest.fn();
+const history = createMemoryHistory();
+history.push('/login');
 const keepMeLoggedIn = jest.fn();
 const addFlashMessage = jest.fn();
 
@@ -46,7 +47,7 @@ const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
   const component = render(
     <MemoryRouter>
-      <Login {...setupProps} />
+      <Login {...setupProps} history={history} />
     </MemoryRouter>,
   );
   const { container } = component;
@@ -59,25 +60,19 @@ const setUp = (props = {}) => {
 };
 
 it('redirects to homepage on login submit success', async () => {
-  const { component, submitButton, usernameInput, passwordInput } = setUp();
-  const { getByTestId, getByText, container } = component;
+  const { submitButton, usernameInput, passwordInput } = setUp();
 
   fireEvent.change(usernameInput, { target: { value: username } });
   fireEvent.change(passwordInput, { target: { value: password } });
 
   fireEvent.click(submitButton);
-  await setTimeout(() => {
+  await wait(() => {
     expect(mockUserLogin).toHaveBeenCalledTimes(1);
   });
 
-  // const hoempage = getByTestId('homepage');
-  // const homepage = getByText('NO MSG');
-  // const getById = queryByAttribute.bind(null, 'id');
-  // const homepage = getById(container, 'homepage');
-  // console.log('hoempage: ', hoempage);
-  // await waitForElement(() => {});
-  // expect(homepage).toBeTruthy();
-  // expect(homepage).toHaveTextContent('NO MSG');
+  const location = history.location;
+  const unlisten = history.listen(expect(location.pathname).toMatch('/'));
+  unlisten();
 });
 
 it('display error message on login submit failure', async () => {

@@ -20,7 +20,7 @@ export const Login = ({
   keepMeLoggedIn,
 }) => {
   const { loggedInUser, loginFailed } = data.message.auth;
-
+  console.log(history);
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { username, password } = values;
 

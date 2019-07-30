@@ -734,6 +734,10 @@ body {
   text-transform: lowercase;
 }
 
+.ts {
+  text-align: start;
+}
+
 .tc {
   text-align: center;
 }
@@ -776,6 +780,10 @@ body {
   color: #ed6802;
 }
 
+.c-text-grey {
+  color: #8e8e8e;
+}
+
 .c-point1 {
   color: #333;
 }
@@ -794,6 +802,10 @@ body {
 
 .c-red {
   color: #ed4337;
+}
+
+.c-blue {
+  color: #2196F3;
 }
 
 .c-hover-bg {
@@ -1022,7 +1034,7 @@ h4 {
   }
 }
 
-.nav .login-btn {
+.nav .nav--login-btn {
   padding: 4.2px 17px 1.4px 18px;
   margin: 5px 0;
   border: 1.48px solid #333;
@@ -1031,19 +1043,19 @@ h4 {
 }
 
 @media (min-width: 900px) {
-  .nav .login-btn {
+  .nav .nav--login-btn {
     padding: 4.3px 19px 1.8px 20px;
   }
 }
 
 @media (min-width: 1480px) {
-  .nav .login-btn {
+  .nav .nav--login-btn {
     padding-top: 6px;
     padding-bottom: 3px;
   }
 }
 
-.nav .login-btn:hover {
+.nav .nav--login-btn:hover {
   color: #c4c4c4;
   transition: color .2s;
   -webkit-transition: color .2s;
@@ -1344,7 +1356,6 @@ footer {
 }
 
 .container {
-  height: calc(100vh - 220px);
   margin: 3em auto;
   text-align: center;
 }
@@ -1353,6 +1364,10 @@ footer {
   .container {
     max-width: 1500;
   }
+}
+
+.w-95 {
+  width: 95vw;
 }
 
 .r--w-80 {
@@ -1400,21 +1415,7 @@ footer {
   padding: 1em 2em;
 }
 
-.paper-small {
-  width: 300px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-
-@media (min-width: 1000px) {
-  .paper-small {
-    width: 750px;
-  }
-}
-
-.modal-container {
+.box-container {
   width: 80vw;
   max-width: 400px;
   margin-left: auto;
@@ -1423,7 +1424,7 @@ footer {
 }
 
 @media (min-width: 1000px) {
-  .modal-container {
+  .box-container {
     width: 50vw;
     min-width: 700px;
   }
@@ -1442,9 +1443,43 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  width: 300px;
+  margin: 3em auto;
+}
+
+@media (min-width: 1000px) {
+  .login-container {
+    width: 700px;
+  }
+}
+
+.login-btn {
+  width: 300px;
+}
+
+@media (min-width: 1000px) {
+  .login-btn {
+    width: 500px;
+  }
+}
+
+.keep-me-logged-in {
+  margin: -20px 14px 20px 14px;
+  padding-bottom: 35px;
+  border-bottom: 0.5px solid #e2e2e2;
+  width: 300px;
+}
+
+@media (min-width: 1000px) {
+  .keep-me-logged-in {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.login-forgot {
+  font-size: .885em;
 }
 
 /* ------ User Account ------ */
@@ -1476,12 +1511,12 @@ footer {
   }
 }
 
-.user-form--bankaccount {
+.user-form--radioBtn {
   margin-left: 3em;
 }
 
 @media (min-width: 1000px) {
-  .user-form--bankaccount {
+  .user-form--radioBtn {
     margin-left: .5em;
   }
 }

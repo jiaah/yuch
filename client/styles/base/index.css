@@ -734,6 +734,10 @@ body {
   text-transform: lowercase;
 }
 
+.ts {
+  text-align: start;
+}
+
 .tc {
   text-align: center;
 }
@@ -776,6 +780,10 @@ body {
   color: #ed6802;
 }
 
+.c-text-grey {
+  color: #8e8e8e;
+}
+
 .c-point1 {
   color: #333;
 }
@@ -794,6 +802,10 @@ body {
 
 .c-red {
   color: #ed4337;
+}
+
+.c-blue {
+  color: #2196F3;
 }
 
 .c-hover-bg {

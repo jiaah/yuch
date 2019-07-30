@@ -78,9 +78,7 @@ describe('Login Form Component', () => {
   it('calls handleSubmit function on submit button click', async () => {
     const { submitButton } = setUp();
 
-    expect(submitButton).toBeEnabled();
     fireEvent.click(submitButton);
-    expect(submitButton).toBeDisabled();
     await wait(() => {
       expect(mockSubmit).toHaveBeenCalledTimes(1);
     });
