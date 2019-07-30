@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
   <header>
-    <div className="header-text--box" data-testid="homepage">
+    <div className="header-text--box" id="homepage">
       <h1>
         <span className="point1 f-en lh-3">NO MSG&#33;</span>
         <br />

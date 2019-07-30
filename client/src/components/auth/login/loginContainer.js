@@ -9,7 +9,7 @@ import * as data from '../../../data/data';
 import { userLogin, keepMeLoggedIn } from '../../../actions/authAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
-const Login = ({
+export const Login = ({
   history,
   // states
   keepLoggedIn,

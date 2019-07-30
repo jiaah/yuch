@@ -3,17 +3,20 @@ import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/authAction';
 import { mockStore } from '../setupTests';
 import { API_HOST } from '../../../config';
+import * as data from '../__mocks__/mockData';
+
+const {
+  username,
+  password,
+  newPassword,
+  id,
+  token,
+  companyName,
+  isAdmin,
+  email,
+} = data;
 
 const store = mockStore({});
-
-const username = 'yuchung';
-const password = 'testingpwd12';
-const newPassword = 'newPwd1234';
-const id = '8f5af680-973e-11e4-ad43-a13a6';
-const token = '8f5af680-973e-11e4-ad43-4ee58e9a13a6';
-const companyName = 'yuchung';
-const isAdmin = true;
-const email = 'yuchung@gmail.com';
 
 describe('async auth request actions', () => {
   beforeEach(() => {
@@ -144,6 +147,8 @@ describe('async auth request actions', () => {
   //     done();
   //   });
   // });
+
+  // ISSUE !!!! test does not fail when function params missing.
 
   it('calls sendVerificationCodeToEmail action', done => {
     const API_URL = `${API_HOST}/auth/forgot/password`;

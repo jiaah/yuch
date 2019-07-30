@@ -1,5 +1,4 @@
-import { Router, MemoryRouter } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { MemoryRouter } from 'react-router-dom';
 import React, {
   render,
   cleanup,
@@ -8,24 +7,11 @@ import React, {
   wait,
 } from '../../../setupTests';
 import LoginForm from '../../../../components/auth/login/loginForm';
-// import { App } from '../../../../../app';
-
-const renderWithRouter = (
-  ui,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) => ({
-  ...render(<Router history={history}>{ui}</Router>),
-  history,
-});
 
 afterEach(cleanup);
 
-const mockSubmit = jest.fn();
 const mockKeepMeLoggedIn = jest.fn();
-
+const mockSubmit = jest.fn();
 const defaultProps = {
   handleSubmit: mockSubmit,
   isSubmitting: false,
@@ -91,23 +77,12 @@ describe('Login Form Component', () => {
 
   it('calls handleSubmit function on submit button click', async () => {
     const { submitButton } = setUp();
+
+    expect(submitButton).toBeEnabled();
     fireEvent.click(submitButton);
+    expect(submitButton).toBeDisabled();
     await wait(() => {
       expect(mockSubmit).toHaveBeenCalledTimes(1);
     });
-  });
-
-  it('show error message when login fails on submit button click', () => {
-    const { usernameInput, passwordInput, component } = setUp();
-    const { getByTestId } = component;
-    // const errorMsg = getByTestId('error-msg');
-    // console.log('errorMsg: ', errorMsg);
-    fireEvent.change(usernameInput, { target: { value: 'yuch!&?' } });
-    fireEvent.change(passwordInput, { target: { value: 'testpwd1234' } });
-    // expect(
-    //   getByText(
-    //     '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
-    //   ),
-    // ).toBeDefined();
   });
 });

@@ -44,10 +44,11 @@ const SnackbarContentWrapper = ({ classes, message, variant, onClose }) => {
   const iconColor = color[variant];
   return (
     <SnackbarContent
+      data-testid="client-msg"
       className={`${classes[variant]} ${classes.container}`}
-      aria-describedby="client-snackbar"
+      aria-describedby="client-msg"
       message={
-        <span id="client-snackbar" className={classes.messageBox}>
+        <span id="client-msg" className={classes.messageBox}>
           <div className={classes.icon}>
             <Icon
               name={variant}

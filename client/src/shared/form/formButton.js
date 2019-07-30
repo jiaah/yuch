@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-const FormButton = ({
+export const FormButton = ({
   typeValue,
   variantValue,
   buttonName,
@@ -47,5 +47,4 @@ const FormButton = ({
   );
 };
 
-export const Unwrapped = FormButton;
 export default withStyles(styles)(FormButton);
