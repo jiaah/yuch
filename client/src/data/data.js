@@ -127,8 +127,7 @@ export const navAdminItems = {
 export const message = {
   auth: {
     loggedInUser: '회원님은 이미 로그인 되어있습니다.',
-    loginFailed:
-      '아이디 또는 비밀번호를 다시 확인하세요. 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+    loginFailed: '아이디 또는 비밀번호 오류입니다.',
     unauthenticated: '로그인을 해주세요.',
   },
   reserve: {

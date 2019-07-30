@@ -22,9 +22,9 @@ describe('async reserve request actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  it('creates RESERVE_SUCCESS after successfully sending reserve request', async done => {
+  it('calls RESERVE_SUCCESS action type after successfully sending reserve request', done => {
     const API_URL = `${API_HOST}/reserve`;
-    await store.dispatch(actions.reserve());
+    store.dispatch(actions.reserve());
 
     moxios.stubRequest(API_URL, {
       status: 201,
@@ -41,10 +41,10 @@ describe('async reserve request actions', () => {
     });
   });
 
-  it('creates HTTP_FAILURE when sending reserve request failed', async done => {
+  it('calls HTTP_FAILURE action type when sending reserve request failed', done => {
     const API_URL = `${API_HOST}/reserve`;
     const error = 'server error';
-    await store.dispatch(actions.reserve());
+    store.dispatch(actions.reserve());
 
     moxios.stubRequest(API_URL, {
       status: 400,

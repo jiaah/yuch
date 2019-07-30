@@ -31,6 +31,8 @@ const mockUserLogin = jest
 
 const history = createMemoryHistory();
 history.push('/login');
+const location = history.location;
+
 const keepMeLoggedIn = jest.fn();
 const addFlashMessage = jest.fn();
 
@@ -47,7 +49,7 @@ const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
   const component = render(
     <MemoryRouter>
-      <Login {...setupProps} history={history} />
+      <Login {...setupProps} />
     </MemoryRouter>,
   );
   const { container } = component;
@@ -70,23 +72,29 @@ it('redirects to homepage on login submit success', async () => {
     expect(mockUserLogin).toHaveBeenCalledTimes(1);
   });
 
-  const location = history.location;
   const unlisten = history.listen(expect(location.pathname).toMatch('/'));
   unlisten();
 });
 
 it('display error message on login submit failure', async () => {
   const { component, submitButton, usernameInput, passwordInput } = setUp();
+  const { container, getByText } = component;
 
   fireEvent.change(usernameInput, { target: { value: username } });
   fireEvent.change(passwordInput, { target: { value: '-1' } });
 
   fireEvent.click(submitButton);
-  await setTimeout(() => {
+  await wait(() => {
     expect(mockUserLogin).toHaveBeenCalledTimes(1);
   });
+
+  const unlisten = history.listen(expect(location.pathname).toMatch('/login'));
+  unlisten();
 
   // const getById = queryByAttribute.bind(null, 'id');
   // const clientMsg = getById(container, 'client-msg');
   // console.log('clientMsg: ', clientMsg);
+
+  // getByText('아이디 또는 비밀번호 오류입니다.').toBeInTheDocument();
+  // getByText('아이디 또는 비밀번호 오류입니다.').toBeVisible();
 });
