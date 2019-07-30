@@ -1,0 +1,29 @@
+/* Catering rates */
+.paper-rates {
+  @include for-big-desktop-up {
+    display: flex;
+  }
+}
+
+.paper-rates--sec {
+  margin-top: 3em;
+
+  @include for-big-desktop-up {
+    margin-top: 0;
+    margin-left: 3em;
+  }
+}
+
+.rate-edit-form {
+  @include for-big-desktop-up {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.rate-edit-form--btn {
+  @include for-big-desktop-up {
+    margin-left: 2em;
+    margin-top: 9px;
+  }
+}

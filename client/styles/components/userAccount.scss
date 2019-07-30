@@ -1,0 +1,71 @@
+/* Common */
+.user-account--user-number {
+  margin: auto 0 auto 1em;
+}
+
+.user-form {
+  @include for-desktop-up {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.user-form--left,
+.user-form--right {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.user-form--radioBtn {
+  margin-left: 3em;
+
+  @include for-desktop-up {
+    margin-left: .5em;
+  }
+}
+
+/* Edit User Account */
+.edit-userform--bottom {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.edit-userform--bottom-delete {
+  display: flex;
+  justify-content: center;
+
+  @include for-desktop-up {
+    flex-direction: column;
+    margin-left: 1.9em;
+    margin-top: 1.6em;
+  }
+}
+
+.edit-userform--bottom-delete-icon {
+  margin-top: -5.5px;
+  margin-right: -7px;
+
+  @include for-desktop-up {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -17px;
+  }
+}
+
+.edit-userform--bottom-delete-message {
+  margin-top: 5px;
+
+  @include for-desktop-up {
+    margin-top: 8px;
+  }
+}
+
+.edit-userform--bottom-delete-message--p {
+  font-size: 14px;
+  margin-top: -1px;
+}

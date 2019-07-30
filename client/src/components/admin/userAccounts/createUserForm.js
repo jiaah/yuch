@@ -105,16 +105,18 @@ const CreateUserForm = props => {
       <RadioButtonFormControl
         label="비지니스 타입"
         icon="bankAccount"
-        className="user-form--radioBtn"
+        formClassName="user-form--radioBtn"
         component={<BusinessTypeOptions name="businessType" />}
+        required
       />
       <RadioButtonFormControl
         label="입금 계좌번호"
         icon="bankAccount"
-        className="user-form--radioBtn"
+        formClassName="user-form--radioBtn"
         component={
           <BankAccountOptions name="bankAccountId" bankAccount={bankAccount} />
         }
+        required
       />
       <div className="justify-center">
         <FormButton

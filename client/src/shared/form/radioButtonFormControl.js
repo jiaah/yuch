@@ -17,23 +17,24 @@ const styles = theme => ({
   formLabel: {
     marginLeft: '8px',
   },
-  formControlLabel: {
-    [theme.breakpoints.up('md')]: {
-      marginRight: '50px',
-    },
-  },
 });
 
 const RadioButtonFormControl = ({
   label,
   icon,
   component,
-  className,
-  classes,
+  formClassName,
+  formLabelClassName,
+  classes: { formControl, formLabel },
+  required,
 }) => (
-  <div className={className}>
-    <FormControl component="fieldset" required className={classes.formControl}>
-      <div className="flex">
+  <FormControl
+    component="fieldset"
+    required={!!required}
+    className={formControl}
+  >
+    <div className={formClassName}>
+      <div className={`flex ${formLabelClassName}`}>
         <Icon
           name={icon}
           width="20"
@@ -41,13 +42,13 @@ const RadioButtonFormControl = ({
           viewBox="0 0 25 25"
           fill="none"
         />
-        <FormLabel component="legend" className={classes.formLabel}>
+        <FormLabel component="legend" className={formLabel}>
           {label}
         </FormLabel>
       </div>
       {component}
-    </FormControl>
-  </div>
+    </div>
+  </FormControl>
 );
 
 export default withStyles(styles)(RadioButtonFormControl);
