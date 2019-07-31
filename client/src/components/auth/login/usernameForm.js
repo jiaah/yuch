@@ -7,13 +7,13 @@ import VerifyUserOptions from './verifyUserOptions';
 
 const UsernameForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <RadioButtonFormControl
+    {/* <RadioButtonFormControl
       label="인증방법"
       icon=""
       formClassName="flex"
       formLabelClassName="radio-btn--verify-user"
       component={<VerifyUserOptions name="verifyUserType" />}
-    />
+    /> */}
     <FormikField
       label="이메일"
       name="email"

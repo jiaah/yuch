@@ -77,8 +77,7 @@ it('redirects to homepage on login submit success', async () => {
 });
 
 it('display error message on login submit failure', async () => {
-  const { component, submitButton, usernameInput, passwordInput } = setUp();
-  const { container, getByText } = component;
+  const { submitButton, usernameInput, passwordInput } = setUp();
 
   fireEvent.change(usernameInput, { target: { value: username } });
   fireEvent.change(passwordInput, { target: { value: '-1' } });
@@ -91,10 +90,8 @@ it('display error message on login submit failure', async () => {
   const unlisten = history.listen(expect(location.pathname).toMatch('/login'));
   unlisten();
 
-  // const getById = queryByAttribute.bind(null, 'id');
-  // const clientMsg = getById(container, 'client-msg');
-  // console.log('clientMsg: ', clientMsg);
-
-  // getByText('아이디 또는 비밀번호 오류입니다.').toBeInTheDocument();
-  // getByText('아이디 또는 비밀번호 오류입니다.').toBeVisible();
+  // this test will not pass coz the flash message is rendered only temporarily.
+  // await waitForElement(() => getByTestId('error-test'), {
+  //   container,
+  // });
 });

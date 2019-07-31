@@ -28,7 +28,7 @@ describe('async auth request actions', () => {
     moxios.uninstall();
   });
 
-  it('calls login action and returns user info object', async () => {
+  it('calls login action and returns user info object', done => {
     const API_URL = `${API_HOST}/auth/login`;
     const user = { username, password };
     const expectedData = {
@@ -38,7 +38,7 @@ describe('async auth request actions', () => {
       isAdmin,
     };
 
-    await store.dispatch(actions.userLogin(user));
+    store.dispatch(actions.userLogin(user));
     moxios.stubRequest(API_URL, {
       status: 200,
       response: expectedData,
@@ -56,8 +56,8 @@ describe('async auth request actions', () => {
       },
     ];
 
-    moxios.wait(async () => {
-      await expect(store.getActions()).toEqual(expectedActions);
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
       done();
     });
   });
@@ -112,7 +112,7 @@ describe('async auth request actions', () => {
 
   it('calls resetPasswordWithAccessToken action', done => {
     const API_URL = `${API_HOST}/auth/reset/password/${token}`;
-    store.dispatch(actions.resetPasswordWithAccessToken(newPassword));
+    store.dispatch(actions.resetPasswordWithAccessToken(token, newPassword));
     moxios.stubRequest(API_URL, { status: 200 });
     const expectedActions = [
       { type: types.HTTP_REQUEST, api: 'password' },
@@ -130,25 +130,23 @@ describe('async auth request actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  // it('calls findUsername action', done => {
-  //   const API_URL = `${API_HOST}/auth/forgot/username`;
-  //   store.dispatch(actions.findUsername(email));
-  //   moxios.stubRequest(API_URL, { status: 200 });
-  //   const expectedActions = [
-  //     { type: types.HTTP_REQUEST, api: 'findUsername' },
-  //     {
-  //       type: types.HTTP_SUCCESS,
-  //       api: 'findUsername',
-  //       payload: { username },
-  //     },
-  //   ];
-  //   moxios.wait(() => {
-  //     expect(store.getActions()).toEqual(expectedActions);
-  //     done();
-  //   });
-  // });
-
-  // ISSUE !!!! test does not fail when function params missing.
+  it('calls findUsername action', done => {
+    const API_URL = `${API_HOST}/auth/forgot/username`;
+    store.dispatch(actions.findUsername(email));
+    moxios.stubRequest(API_URL, { status: 200, response: { username } });
+    const expectedActions = [
+      { type: types.HTTP_REQUEST, api: 'findUsername' },
+      {
+        type: types.HTTP_SUCCESS,
+        api: 'findUsername',
+        payload: { username },
+      },
+    ];
+    moxios.wait(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
 
   it('calls sendVerificationCodeToEmail action', done => {
     const API_URL = `${API_HOST}/auth/forgot/password`;

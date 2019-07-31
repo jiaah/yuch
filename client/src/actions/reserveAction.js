@@ -12,7 +12,10 @@ export const reserve = reserveInfo => async dispatch => {
     await axios.post(`${API_HOST}/reserve`, reserveInfo);
     dispatch({ type: types.HTTP_SUCCESS, api: 'reserve' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'reserve', error });
-    throw new Error(error);
+    dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'reserve',
+      error: 'error code 400',
+    });
   }
 };

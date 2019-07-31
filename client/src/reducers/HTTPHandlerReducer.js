@@ -26,6 +26,7 @@ const httpHandler = (state = initialState, action) => {
         api: action.api,
         isLoading: false,
         data: [...state.data, contents],
+        error: '',
       };
     case types.HTTP_FAILURE:
       return {
