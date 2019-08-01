@@ -65,11 +65,20 @@ export class ReserveContainer extends Component {
     this.setState({ [id]: value });
   };
 
+  handleReserveMessage = () => {
+    const { isHttpError } = this.props;
+
+    if (!isHttpError) {
+      return this.setState({ isReserved: 'success' });
+    }
+    return this.setState({ isReserved: 'error' });
+  };
+
   handleSubmit = async ev => {
     await ev.preventDefault();
     await this.setState({ submitBtnClicked: true });
 
-    const { reserveActions, httpError } = this.props;
+    const { reserveActions } = this.props;
 
     const { name, contact, number, place, date, time } = this.state;
     const reserveInfo = {
@@ -97,10 +106,7 @@ export class ReserveContainer extends Component {
     }
 
     await reserveActions.reserve(reserveInfo);
-    if (httpError === '') {
-      return this.setState({ isReserved: 'success' });
-    }
-    return this.setState({ isReserved: 'error' });
+    return this.handleReserveMessage();
   };
 
   render() {
@@ -149,7 +155,7 @@ export class ReserveContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  httpError: state.httpHandler.error,
+  isHttpError: state.httpHandler.isHttpError,
 });
 
 const mapDispatchToProps = dispatch => ({

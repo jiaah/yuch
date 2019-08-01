@@ -15,7 +15,7 @@ export const reserve = reserveInfo => async dispatch => {
     dispatch({
       type: types.HTTP_FAILURE,
       api: 'reserve',
-      error: 'error code 400',
+      error: 'Sending a reservation email failed.',
     });
   }
 };

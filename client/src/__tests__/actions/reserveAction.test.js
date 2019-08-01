@@ -43,7 +43,7 @@ describe('async reserve request actions', () => {
 
   it('calls HTTP_FAILURE action type when sending reserve request failed', done => {
     const API_URL = `${API_HOST}/reserve`;
-    const error = 'error code 400';
+    const error = 'Sending a reservation email failed.';
     store.dispatch(actions.reserve());
 
     moxios.stubRequest(API_URL, {
