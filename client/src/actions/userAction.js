@@ -15,8 +15,11 @@ export const getMe = id => async dispatch => {
     });
     return data;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getMyAccount', error });
-    throw new Error('Getting the user account failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getMyAccount',
+      error: 'Getting the user account failed.',
+    });
   }
 };
 
@@ -29,8 +32,11 @@ export const editUserAccount = (id, userInfo) => async dispatch => {
       api: 'editUserAccount',
     });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'editUserAccount', error });
-    throw new Error('Updating the user account failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'editUserAccount',
+      error: 'Updating the user account failed.',
+    });
   }
 };
 

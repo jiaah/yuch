@@ -30,16 +30,17 @@ export const Login = ({
       return history.push('/');
     }
 
-    try {
-      const token = await userLogin(username, password);
-      await saveUserToken(token, keepLoggedIn);
-      await resetForm({});
-      await setSubmitting(false);
-      history.push('/');
-    } catch (error) {
+    const res = await userLogin(username, password);
+    // res.error : when API request failed
+    // res === undefined : when received token is undefined
+    if (res.error || res === undefined || res === null) {
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
+    await saveUserToken(res, keepLoggedIn);
+    await resetForm({});
+    await setSubmitting(false);
+    return history.push('/');
   };
 
   return (

@@ -13,8 +13,11 @@ export const getBankAccount = () => async dispatch => {
     });
     return bankAccount;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getBankAccount', error });
-    throw new Error('Getting the bank account list is failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getBankAccount',
+      error: 'Getting the bank account list is failed.',
+    });
   }
 };
 
@@ -24,8 +27,11 @@ export const createBankAccount = values => async dispatch => {
     await axios.post(`${API_HOST}/admin/bankaccount`, values);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'createBankAccount' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'createBankAccount', error });
-    throw new Error('Creating the bank account is failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'createBankAccount',
+      error: 'Creating the bank account is failed.',
+    });
   }
 };
 
@@ -35,8 +41,11 @@ export const editBankAccount = values => async dispatch => {
     await axios.patch(`${API_HOST}/admin/bankaccount/${values.id}`, values);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'editBankAccount' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'editBankAccount', error });
-    throw new Error('Editing the bank account is failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'editBankAccount',
+      error: 'Editing the bank account is failed.',
+    });
   }
 };
 
@@ -46,7 +55,10 @@ export const deleteBankAccount = id => async dispatch => {
     await axios.delete(`${API_HOST}/admin/bankaccount/${id}`);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteBankAccount' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'deleteBankAccount', error });
-    throw new Error('Deleting the bank account is failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'deleteBankAccount',
+      error: 'Deleting the bank account is failed.',
+    });
   }
 };

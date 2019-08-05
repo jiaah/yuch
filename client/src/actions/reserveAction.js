@@ -10,9 +10,9 @@ export const reserve = reserveInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'reserve' });
   try {
     await axios.post(`${API_HOST}/reserve`, reserveInfo);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'reserve' });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'reserve' });
   } catch (error) {
-    dispatch({
+    return dispatch({
       type: types.HTTP_FAILURE,
       api: 'reserve',
       error: 'Sending a reservation email failed.',

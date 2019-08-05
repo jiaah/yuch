@@ -40,12 +40,16 @@ const UserAccountContainer = ({
   selectedSearchItem,
 }) => {
   const [users, setUsers] = useState([]);
+
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchUsersData = async () => {
     const data = await getUsers();
     const { users, bankAccounts } = data;
+    if (users === undefined || users === null) {
+      return null;
+    }
     return Promise.all([setUsers(users), setBankAccount(bankAccounts)]);
   };
 

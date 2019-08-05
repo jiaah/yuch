@@ -33,20 +33,19 @@ const UserAccountModal = ({
       ...others,
     };
 
-    try {
-      await createUser(userInfo);
+    const res = await createUser(userInfo);
+    if (!res.error) {
       await Promise.all([
         resetForm({}),
         handleCloseModal(),
         selectedSearchItem !== null ? resetSelectedItemValue() : null, // to ensure to display all users list when reload page
       ]);
       return window.location.reload(true);
-    } catch (error) {
-      await addFlashMessage(
-        'error',
-        `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 '고객명'이나 '고객아이디' 입니다.`,
-      );
     }
+    addFlashMessage(
+      'error',
+      `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 고객인지 확인해주세요.`,
+    );
     return setSubmitting(false);
   };
 

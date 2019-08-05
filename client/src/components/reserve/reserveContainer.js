@@ -65,10 +65,8 @@ export class ReserveContainer extends Component {
     this.setState({ [id]: value });
   };
 
-  handleReserveMessage = () => {
-    const { isHttpError } = this.props;
-
-    if (!isHttpError) {
+  handleReserveMessage = res => {
+    if (!res.error) {
       return this.setState({ isReserved: 'success' });
     }
     return this.setState({ isReserved: 'error' });
@@ -105,8 +103,8 @@ export class ReserveContainer extends Component {
       return null;
     }
 
-    await reserveActions.reserve(reserveInfo);
-    return this.handleReserveMessage();
+    const res = await reserveActions.reserve(reserveInfo);
+    return this.handleReserveMessage(res);
   };
 
   render() {
@@ -154,10 +152,6 @@ export class ReserveContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isHttpError: state.httpHandler.isHttpError,
-});
-
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   reserveActions: bindActionCreators(reserveActions, dispatch),
@@ -166,7 +160,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withStyles(styles),
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
   ),
 )(ReserveContainer);

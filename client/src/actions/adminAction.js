@@ -20,8 +20,11 @@ export const getAdmin = id => async dispatch => {
     });
     return data;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getAdmin', error });
-    throw new Error('Getting the admin account failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getAdmin',
+      error: 'Getting the admin account failed.',
+    });
   }
 };
 
@@ -34,8 +37,11 @@ export const editAdminAccount = (id, values) => async dispatch => {
       api: 'editAdminAccount',
     });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'editAdminAccount', error });
-    throw new Error('Updating the admin account failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'editAdminAccount',
+      error: 'Updating the admin account failed.',
+    });
   }
 };
 
@@ -52,8 +58,11 @@ export const getUsers = () => async dispatch => {
     });
     return data;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getUsers', error });
-    throw new Error('Getting users list is failed');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getUsers',
+      error: 'Getting users list is failed',
+    });
   }
 };
 
@@ -64,8 +73,11 @@ export const createUser = userInfo => async dispatch => {
     await axios.post(`${API_HOST}/admin/user/register`, { userInfo });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'createUser', error });
-    throw new Error('Creating a user failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'createUser',
+      error: 'Creating a user failed.',
+    });
   }
 };
 
@@ -77,8 +89,11 @@ export const editUser = userInfo => async dispatch => {
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'editUser', error });
-    throw new Error('Editing a user failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'editUser',
+      error: 'Editing a user failed.',
+    });
   }
 };
 
@@ -88,7 +103,10 @@ export const deleteUser = userId => async dispatch => {
     await axios.delete(`${API_HOST}/admin/user/delete/${userId}`);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'deleteUser', error });
-    throw new Error('Deleting the user failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'deleteUser',
+      error: 'Deleting the user failed.',
+    });
   }
 };

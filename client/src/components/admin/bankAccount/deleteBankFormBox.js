@@ -10,16 +10,15 @@ const DeleteBankFormBox = ({
   bankAccount,
 }) => {
   const handleDeleteUser = async () => {
-    try {
-      await deleteBankAccount(selectedSearchItem);
+    const res = await deleteBankAccount(selectedSearchItem);
+    if (!res.error) {
       await handleCloseModal();
       return window.location.reload(true);
-    } catch (err) {
-      return addFlashMessage(
-        'error',
-        `고객 은행계정 삭제에 실패하였습니다. 다시 시도해 주세요.`,
-      );
     }
+    return addFlashMessage(
+      'error',
+      `고객 은행계정 삭제에 실패하였습니다. 다시 시도해 주세요.`,
+    );
   };
 
   return (

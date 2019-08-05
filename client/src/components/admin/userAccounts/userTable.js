@@ -65,7 +65,8 @@ const UserTable = ({
             list={data.userAccountTableHeadColumns}
           />
           <TableBody>
-            {users.length !== 0 &&
+            {users &&
+              users.length !== 0 &&
               stableSort(usersToDisplay, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {

@@ -30,11 +30,11 @@ const RatesContainer = ({
   show,
   modalActions: { showModal, hideModal },
 }) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
-    setData(res);
+    if (!res.error) setData(res);
   };
 
   useEffect(() => {

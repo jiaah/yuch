@@ -18,8 +18,11 @@ const AdminAccountContainer = ({
   const [userData, setUserData] = useState(null);
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchUserData = async () => {
-    const data = await getMe(id);
-    setUserData(data[0]);
+    const res = await getMe(id);
+    if (!res.error) {
+      return setUserData(res[0]);
+    }
+    return setUserData([]);
   };
 
   useEffect(() => {

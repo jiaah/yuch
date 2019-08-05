@@ -21,26 +21,28 @@ const UserFormBox = ({
       dinnerQty: dinnerQtyValue,
       ...others,
     };
-    try {
-      await editUserAccount(id, userInfo);
-      // if companyName changes -> update auth login state -> change companyName on Nav bar
+    const res = await editUserAccount(id, userInfo);
+    // if companyName changes -> update auth login state -> change companyName on Nav bar
+    if (!res.error) {
       if (userData.companyName !== values.companyName) {
+        // update companyName to auth state to display updated companyName in Navbar
         updateCompanyName(id, values.companyName);
       }
-      await addFlashMessage(
+      addFlashMessage(
         'success',
         `${values.companyName}님의 계정이 수정되었습니다.`,
       );
-    } catch (error) {
-      await addFlashMessage(
+    } else {
+      addFlashMessage(
         'error',
         `${
-          valuse.companyName
+          values.companyName
         }님의 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );
     }
     return setSubmitting(false);
   };
+  console.log(userData);
   return (
     <Formik
       initialValues={userData}

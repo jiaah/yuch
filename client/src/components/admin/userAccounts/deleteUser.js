@@ -11,16 +11,16 @@ const DeleteUserFormBox = ({
 }) => {
   const handleDeleteUser = async () => {
     const { id, companyName } = clickedUserData;
-    try {
-      await deleteUser(id);
+
+    const res = await deleteUser(id);
+    if (!res.error) {
       await Promise.all([closeSubModal(), handleCloseModal()]);
       return window.location.reload(true);
-    } catch (err) {
-      return addFlashMessage(
-        'error',
-        `${companyName} 고객 계정 삭제에 실패하였습니다. 비밀번호를 확인해주세요.`,
-      );
     }
+    return addFlashMessage(
+      'error',
+      `${companyName} 고객 계정 삭제에 실패하였습니다. 비밀번호를 확인해주세요.`,
+    );
   };
 
   return (

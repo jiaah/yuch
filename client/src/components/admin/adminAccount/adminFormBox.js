@@ -12,14 +12,12 @@ const AdminFormBox = ({
 }) => {
   const handleEditAdmin = async (values, { setSubmitting }) => {
     const { id, companyName } = adminData;
-    try {
-      await editAdminAccount(id, values);
-      await addFlashMessage(
-        'success',
-        `${companyName}님의 계정이 수정되었습니다.`,
-      );
-    } catch (error) {
-      await addFlashMessage(
+
+    const res = await editAdminAccount(id, values);
+    if (!res.error) {
+      addFlashMessage('success', `${companyName}님의 계정이 수정되었습니다.`);
+    } else {
+      addFlashMessage(
         'error',
         `${companyName}님의 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );

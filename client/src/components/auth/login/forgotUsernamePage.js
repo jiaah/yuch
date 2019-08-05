@@ -12,18 +12,19 @@ const ForgotUsernamePage = ({
 }) => {
   const handleForgotUsername = async (values, { setSubmitting, resetForm }) => {
     const { email } = values;
-    try {
-      const username = await findUsername(email);
-      setSubmitting();
-      resetForm({});
-      return saveUsername(username, email);
-    } catch (err) {
-      await addFlashMessage(
-        'error',
-        `${email}은 유청에 등록되어 있는 이메일이 아닙니다. 이메일 주소를 확인해주세요.`,
-      );
-      return setSubmitting();
+
+    const res = await findUsername(email);
+    if (!res.error) {
+      const { username } = res;
+      await saveUsername(username, email);
+      setSubmitting(false);
+      return resetForm({});
     }
+    addFlashMessage(
+      'error',
+      `${email}은 유청에 등록되어 있는 이메일이 아닙니다. 이메일 주소를 확인해주세요.`,
+    );
+    return setSubmitting();
   };
 
   const usernameValues = {

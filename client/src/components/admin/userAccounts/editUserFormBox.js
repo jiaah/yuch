@@ -25,16 +25,15 @@ const DeleteUserFormBox = ({
       nextMonth,
     };
 
-    try {
-      await editUser(userInfo);
+    const res = await editUser(userInfo);
+    if (!res.error) {
       await Promise.all([resetForm({}), handleCloseModal()]);
       return window.location.reload(true);
-    } catch (error) {
-      await addFlashMessage(
-        'error',
-        `${companyName} 고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
-      );
     }
+    addFlashMessage(
+      'error',
+      `${companyName} 고객 계정 수정에 실패하였습니다. 다른 고객계정과 중복되는 부분이 있는지 확인해주세요.`,
+    );
     return setSubmitting(false);
   };
 

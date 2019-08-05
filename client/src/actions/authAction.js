@@ -15,8 +15,11 @@ export const userLogin = (username, password) => async dispatch => {
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
     return token;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'login', error });
-    throw new Error('Login failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'login',
+      error: 'Login failed.',
+    });
   }
 };
 
@@ -32,8 +35,11 @@ export const confirmAdminUser = password => async dispatch => {
     await axios.post(`${API_HOST}/auth/login/admin`, { password });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'confirmAdminUser', error });
-    throw new Error('Failed admin user authentication.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'confirmAdminUser',
+      error: 'Failed admin user authentication.',
+    });
   }
 };
 
@@ -48,8 +54,11 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'password',
+      error: 'Changing the password failed.',
+    });
   }
 };
 
@@ -60,8 +69,11 @@ export const resetPassword = (id, newPassword) => async dispatch => {
     await axios.patch(`${API_HOST}/auth/reset/password`, { id, newPassword });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'password',
+      error: 'Resetting the password failed.',
+    });
   }
 };
 
@@ -77,8 +89,11 @@ export const resetPasswordWithAccessToken = (
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'password', error });
-    throw new Error('Changing the password failed.');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'password',
+      error: 'Changing the password failed.',
+    });
   }
 };
 
@@ -100,14 +115,13 @@ export const findUsername = email => async dispatch => {
       api: 'findUsername',
       payload: data,
     });
-    return data.username;
+    return data;
   } catch (error) {
-    dispatch({
+    return dispatch({
       type: types.HTTP_FAILURE,
       api: 'findUsername',
-      error,
+      error: 'Failed to find user.',
     });
-    throw new Error('Failed to find user.');
   }
 };
 
@@ -127,11 +141,10 @@ export const sendVerificationCodeToEmail = (
       api: 'sendVerificationCodeToEmail',
     });
   } catch (error) {
-    dispatch({
+    return dispatch({
       type: types.HTTP_FAILURE,
       api: 'sendVerificationCodeToEmail',
-      error,
+      error: 'Failed to send an email.',
     });
-    throw new Error('Failed to send email.');
   }
 };

@@ -5,7 +5,6 @@ const initialState = {
   isLoading: false,
   data: [],
   error: '',
-  isHttpError: false,
 };
 
 const httpHandler = (state = initialState, action) => {
@@ -20,7 +19,6 @@ const httpHandler = (state = initialState, action) => {
         isLoading: true,
         data: [],
         error: '',
-        isHttpError: false,
       };
     case types.HTTP_SUCCESS:
       return {
@@ -29,7 +27,6 @@ const httpHandler = (state = initialState, action) => {
         isLoading: false,
         data: [...state.data, contents],
         error: '',
-        isHttpError: false,
       };
     case types.HTTP_FAILURE:
       return {
@@ -37,7 +34,6 @@ const httpHandler = (state = initialState, action) => {
         api: action.api,
         isLoading: false,
         error: action.error,
-        isHttpError: true,
       };
     case types.HTTP_RESET:
       return {
@@ -46,7 +42,6 @@ const httpHandler = (state = initialState, action) => {
         isLoading: false,
         data: [],
         error: '',
-        isHttpError: false,
       };
     default:
       return state;

@@ -19,17 +19,16 @@ const ResetContainer = ({
     const token = parsed.token;
     const { newPassword } = values;
 
-    try {
-      await resetPasswordWithAccessToken(token, newPassword);
+    const res = await resetPasswordWithAccessToken(token, newPassword);
+    if (!res.error) {
       await addFlashMessage('success', `고객님의 비밀번호를 수정하였습니다.`);
       resetForm({});
-      history.push('/login');
-    } catch (error) {
-      await addFlashMessage(
-        'error',
-        `유효하지 않는 링크입니다. 비밀번호 찾기를 처음부터 다시 해주세요.`,
-      );
+      return history.push('/login');
     }
+    addFlashMessage(
+      'error',
+      `유효하지 않는 링크입니다. 비밀번호 찾기를 처음부터 다시 해주세요.`,
+    );
     return setSubmitting(false);
   };
 

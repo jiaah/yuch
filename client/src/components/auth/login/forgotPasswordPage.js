@@ -13,14 +13,15 @@ const ForgotPasswordPage = ({
 
   const handleForgotPassword = async (values, { setSubmitting, resetForm }) => {
     const { username, email } = values;
-    try {
-      await sendVerificationCodeToEmail(username, email);
+
+    const res = await sendVerificationCodeToEmail(username, email);
+    if (!res.error) {
       await setState({ emailSent: true, email });
       resetForm({});
-    } catch (err) {
-      await addFlashMessage(
+    } else {
+      addFlashMessage(
         'error',
-        `${email}로 이메일을 보내는데 실패하였습니다. 이메일 주소가 맞는지 확인하고, 다시 시도해주세요.`,
+        `${email}로 이메일을 보내는데 실패하였습니다. 아이디와 이메일 주소가 맞는지 확인해주세요.`,
       );
     }
     return setSubmitting();

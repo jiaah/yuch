@@ -20,14 +20,14 @@ const AdminConfirmContainer = ({
 
   const handleConfirm = async (values, { setSubmitting, resetForm }) => {
     const { password } = values;
-    try {
-      await confirmAdminUser(password);
+
+    const res = await confirmAdminUser(password);
+    if (!res.error) {
       await Promise.all([resetForm({}), setSubmitting(false)]);
       return handleButtonClick();
-    } catch (err) {
-      setSubmitting(false);
-      return addFlashMessage('error', `비밀번호를 확인해주세요.`);
     }
+    addFlashMessage('error', `비밀번호를 확인해주세요.`);
+    return setSubmitting(false);
   };
 
   return (

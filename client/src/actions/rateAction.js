@@ -15,8 +15,11 @@ export const getCateringRates = () => async dispatch => {
     });
     return rates;
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'getCateringRates', error });
-    throw new Error('Getting users list is failed');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getCateringRates',
+      error: 'Getting users list is failed',
+    });
   }
 };
 
@@ -37,7 +40,10 @@ export const updateReservedPrice = (
       api: 'updateReservedPrice',
     });
   } catch (error) {
-    dispatch({ type: types.HTTP_FAILURE, api: 'updateReservedPrice', error });
-    throw new Error('Getting users list is failed');
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'updateReservedPrice',
+      error: 'Getting users list is failed',
+    });
   }
 };
