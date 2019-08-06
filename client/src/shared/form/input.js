@@ -11,9 +11,10 @@ const styles = theme => ({
       width: 500,
     },
   },
+  // forgot id, password
   textFieldA: {
-    width: 300,
-    margin: '10px 14px',
+    width: 280,
+    margin: '0 14px',
     [theme.breakpoints.up('md')]: {
       width: 700,
     },

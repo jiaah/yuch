@@ -15,7 +15,7 @@ const UsernameForm = ({
       <table>
         <tbody>
           <tr className="verify-user--bb">
-            <td className="pw3 f-mini fw3">인증방법</td>
+            <td className="verify-user--label">인증방법</td>
             <td className="pw1">
               <RadioButtons
                 selectedValue={selectedValue}
@@ -23,9 +23,12 @@ const UsernameForm = ({
               />
             </td>
           </tr>
+          <tr>
+            <td className="verify-user--hr" />
+          </tr>
           {selectedValue === 'email' && (
             <tr>
-              <td className="pw3 f-mini fw3">이메일</td>
+              <td className="verify-user--label">이메일</td>
               <td>
                 <FormikField
                   label=""
@@ -41,7 +44,7 @@ const UsernameForm = ({
           )}
           {selectedValue === 'contactNo' && (
             <tr>
-              <td className="pw3 f-mini fw3">연락처</td>
+              <td className="verify-user--label">연락처</td>
               <td>
                 <FormikField
                   label=""

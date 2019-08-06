@@ -1,30 +1,51 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
 const PasswordForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <FormikField
-      label="아이디"
-      name="username"
-      type="text"
-      icon="filledUser"
-      styleName="textField"
-      variant="outlined"
-      placeholder="( 아이디 ) yucheong"
-      required
-    />
-    <FormikField
-      label="이메일"
-      name="email"
-      type="email"
-      icon="email"
-      styleName="textField"
-      variant="outlined"
-      placeholder="sleket12@hanmail.net"
-      required
-    />
+    <Paper className="verify-user--paper">
+      <table>
+        <tbody>
+          <tr>
+            <td className="verify-user--label">아이디</td>
+            <td>
+              <FormikField
+                label=""
+                name="username"
+                type="text"
+                icon="filledUser"
+                styleName="textFieldA"
+                variant="outlined"
+                placeholder="( 아이디 ) yucheong"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td className="verify-user--hr" />
+          </tr>
+          <tr>
+            <td className="verify-user--label">이메일</td>
+            <td>
+              <FormikField
+                label=""
+                name="email"
+                type="email"
+                icon="email"
+                styleName="textFieldA"
+                variant="outlined"
+                placeholder="sleket12@hanmail.net"
+                required
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Paper>
+
     <FormButton
       typeValue="submit"
       variantValue="contained"

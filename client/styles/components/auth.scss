@@ -44,7 +44,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 400px;
+  width: 450px;
   margin: 3em auto;
 
   @include for-desktop-up {
@@ -53,13 +53,30 @@
 }
 
 .verify-user--paper {
-  width: 400px;
+  width: 450px;
 
   @include for-desktop-up {
     width: 900px;
   }
 }
 
-.verify-user--bb {
+.verify-user--hr {
   border-bottom: 1px solid $light-grey;
+  position: absolute;
+  width: 450px;
+
+  @include for-desktop-up {
+    width: 900px;
+  }
+}
+
+.verify-user--label {
+  padding: 2em 3em;
+  font-size: .9em;
+  font-weight: 300;
+}
+
+.h-center {
+  padding-top: auto;
+  padding-bottom: auto;
 }

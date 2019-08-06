@@ -17,22 +17,25 @@ const FoundUsernamePage = ({ data, selectedValue, history }) => {
     <div className="tc">
       <h2 className="mb4">아이디 찾기가 완료되었습니다.</h2>
       <Paper className="mh1 verify-user--paper">
-        <table className="flex flex-column-m ph1">
+        <table className="flex flex-column-m">
           <tbody>
-            <tr>
-              <td className="pw3 f-mini fw3">이름</td>
+            <tr className="">
+              <td className="verify-user--label">이름</td>
               <td className="ts pw2 ">
                 <span className="b">{companyName}</span>
               </td>
             </tr>
-            <tr className="verify-user--bb">
-              <td className="pw3 f-mini fw3">{label}</td>
+            <tr>
+              <td className="pw3 pb4 f-mini fw3">{label}</td>
               <td className="pw2">
                 <span className="b">{info}</span>
               </td>
             </tr>
             <tr>
-              <td className="pw3 f-mini fw3">아이디</td>
+              <td className="verify-user--hr" />
+            </tr>
+            <tr>
+              <td className="verify-user--label">아이디</td>
               <td className="ts pw2">
                 <span className="b c-point2">{username}</span>
               </td>
