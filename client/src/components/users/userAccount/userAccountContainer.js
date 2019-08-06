@@ -22,6 +22,7 @@ const AdminAccountContainer = ({
     if (!res.error) {
       return setUserData(res[0]);
     }
+    // to display forms with empty values when http request fails
     return setUserData([]);
   };
 
