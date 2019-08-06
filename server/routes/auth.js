@@ -19,7 +19,11 @@ module.exports = () => {
   router.patch('/reset/password/:token', authController.resetPasswordWithToken);
 
   /* --- Forgot username/password --- */
-  router.post('/forgot/username', authController.forgotUsername);
+  router.post('/forgot/username/email', authController.findUsernameWithEmail);
+  router.post(
+    '/forgot/username/contact',
+    authController.findUsernameWithContact,
+  );
   router.post('/forgot/password', authController.forgotPassword);
   return router;
 };

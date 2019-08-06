@@ -105,9 +105,11 @@ export const loginValidation = Yup.object({
 });
 
 export const forgotUsernameValidation = Yup.object({
-  email: Yup.string()
-    .email('이메일 주소가 유효하지 않습니다.')
-    .required('이메일 주소를 입력하세요.'),
+  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+  contactNo: Yup.string().matches(
+    phoneRegExp,
+    "' - '를 포함해서 번호를 입력해주세요.",
+  ),
 });
 
 export const forgotPasswordValidation = Yup.object({

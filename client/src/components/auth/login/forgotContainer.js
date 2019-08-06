@@ -16,10 +16,18 @@ import * as authActions from '../../../actions/authAction';
 import * as messageActions from '../../../actions/messageAction';
 
 const ForgotContainer = ({
-  authActions: { findUsername, sendVerificationCodeToEmail },
+  authActions: {
+    findUsernameWithEmail,
+    findUsernameWithContact,
+    sendVerificationCodeToEmail,
+  },
   messageActions: { addFlashMessage },
   location,
 }) => {
+  // 인증방법 radio buttons
+  const [selectedValue, setSelectedValue] = useState('contactNo');
+  const handleSelectRadioButton = e => setSelectedValue(e.target.value);
+
   const parsed = queryString.parse(location.search);
   const valueToFind = parsed.value;
   const { companyName } = admin;
@@ -27,23 +35,31 @@ const ForgotContainer = ({
   const [state, setState] = useState({ foundUser: false, data: '' });
   const { foundUser, data } = state;
 
-  const saveUsername = (username, email) => {
-    setState({ foundUser: true, data: { username, email } });
+  // to display users info on api request success
+  const saveUsername = (companyName, username, values) => {
+    const { email, contactNo } = values;
+    setState({
+      foundUser: true,
+      data: { companyName, username, email, contactNo },
+    });
   };
 
   return (
-    <div className="login-container">
+    <div className="verify-user--container">
       {valueToFind === 'username' ? (
         !foundUser ? (
           <UsernameFormBox
             companyName={companyName}
             forgotUsernameValidation={forgotUsernameValidation}
-            findUsername={findUsername}
+            findUsernameWithEmail={findUsernameWithEmail}
+            findUsernameWithContact={findUsernameWithContact}
             addFlashMessage={addFlashMessage}
             saveUsername={saveUsername}
+            selectedValue={selectedValue}
+            handleSelectRadioButton={handleSelectRadioButton}
           />
         ) : (
-          <FoundUsername data={data} />
+          <FoundUsername data={data} selectedValue={selectedValue} />
         )
       ) : null}
       {valueToFind === 'password' && (

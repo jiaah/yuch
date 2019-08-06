@@ -11,6 +11,13 @@ const styles = theme => ({
       width: 500,
     },
   },
+  textFieldA: {
+    width: 300,
+    margin: '10px 14px',
+    [theme.breakpoints.up('md')]: {
+      width: 700,
+    },
+  },
   // lunchQty, dinnerQty
   textFieldB: {
     width: 138,

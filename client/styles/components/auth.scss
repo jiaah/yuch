@@ -39,6 +39,27 @@
 }
 
 /* ------ Forgot username/password ------ */
+.verify-user--container {
+  height: calc(100vh - 240px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 3em auto;
+
+  @include for-desktop-up {
+    width: 900px;
+  }
+}
+
+.verify-user--paper {
+  width: 400px;
+
+  @include for-desktop-up {
+    width: 900px;
+  }
+}
+
 .verify-user--bb {
   border-bottom: 1px solid $light-grey;
 }

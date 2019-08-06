@@ -103,11 +103,33 @@ export const keepMeLoggedIn = () => ({
 });
 
 /* --- Forgot Username/Password --- */
-export const findUsername = email => async dispatch => {
+export const findUsernameWithEmail = email => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'findUsername' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/forgot/username`, {
+    const res = await axios.post(`${API_HOST}/auth/forgot/username/email`, {
       email,
+    });
+    const { data } = res;
+    await dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'findUsername',
+      payload: data,
+    });
+    return data;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'findUsername',
+      error: 'Failed to find user.',
+    });
+  }
+};
+
+export const findUsernameWithContact = contactNo => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'findUsername' });
+  try {
+    const res = await axios.post(`${API_HOST}/auth/forgot/username/contact`, {
+      contactNo,
     });
     const { data } = res;
     await dispatch({

@@ -132,18 +132,33 @@ exports.resetPasswordWithToken = (req, res) => {
 };
 
 /* --- Forgot username/password --- */
-exports.forgotUsername = (req, res) =>
+exports.findUsernameWithEmail = (req, res) =>
   knex('users')
     .where({ email: req.body.email })
     .first()
     .then(user => {
       if (user) {
+        const companyName = user.companyName;
         const username = user.username;
-        return res.status(200).json({ username });
+        return res.status(200).json({ companyName, username });
       }
-      return res.status(409).json('Can not find user email');
+      return res.status(409).json('Can not find user');
     })
-    .catch(() => res.status(500).json('Can not find user email'));
+    .catch(() => res.status(500).json());
+
+exports.findUsernameWithContact = (req, res) =>
+  knex('users')
+    .where({ contactNo: req.body.contactNo })
+    .first()
+    .then(user => {
+      if (user) {
+        const companyName = user.companyName;
+        const username = user.username;
+        return res.status(200).json({ companyName, username });
+      }
+      return res.status(409).json('Can not find user');
+    })
+    .catch(() => res.status(500).json());
 
 exports.forgotPassword = (req, res) => {
   const { username, email } = req.body;
