@@ -9,6 +9,7 @@ const RadioButtons = ({ selectedValue, handleSelectRadioButton }) => (
     name="contactNo"
     value={selectedValue}
     onChange={handleSelectRadioButton}
+    className="ph"
     row
   >
     <FormControlLabel

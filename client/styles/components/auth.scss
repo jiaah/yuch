@@ -71,12 +71,14 @@
 }
 
 .verify-user--label {
-  padding: 2em 3em;
+  padding-left: 2em;
+  padding-right: 2em;
   font-size: .9em;
   font-weight: 300;
-}
+  vertical-align: middle;
 
-.h-center {
-  padding-top: auto;
-  padding-bottom: auto;
+  @include for-desktop-up {
+    padding-left: 4em;
+    padding-right: 4em;
+  }
 }

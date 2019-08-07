@@ -19,15 +19,15 @@ const FoundUsernamePage = ({ data, selectedValue, history }) => {
       <Paper className="mh1 verify-user--paper">
         <table className="flex flex-column-m">
           <tbody>
-            <tr className="">
-              <td className="verify-user--label">이름</td>
-              <td className="ts pw2 ">
+            <tr>
+              <td className="ph1 verify-user--label">이름</td>
+              <td className="ph1 pw2 ts">
                 <span className="b">{companyName}</span>
               </td>
             </tr>
             <tr>
-              <td className="pw3 pb4 f-mini fw3">{label}</td>
-              <td className="pw2">
+              <td className="pw3 pb3 f-mini fw3">{label}</td>
+              <td className="pw2 ts">
                 <span className="b">{info}</span>
               </td>
             </tr>
@@ -35,8 +35,8 @@ const FoundUsernamePage = ({ data, selectedValue, history }) => {
               <td className="verify-user--hr" />
             </tr>
             <tr>
-              <td className="verify-user--label">아이디</td>
-              <td className="ts pw2">
+              <td className="ph1 verify-user--label">아이디</td>
+              <td className="ph1 pw2 ts">
                 <span className="b c-point2">{username}</span>
               </td>
             </tr>
