@@ -22,18 +22,16 @@ header {
 
 .header-text--box {
   position: absolute;
-  top: 52%;
+  top: 40%;
   padding-left: 1em;
   padding-right: 1em;
 
   @include for-tablet-portrait-up {
-    top: 53%;
     padding-left: 4em;
     padding-right: 4em;
   }
 
   @include for-tablet-landscape-up {
-    top: 55%;
     padding-left: 6em;
   }
 
