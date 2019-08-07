@@ -29,14 +29,14 @@ const ForgotUsernamePage = ({
     if (!res.error) {
       const { companyName, username } = res;
       await saveUsername(companyName, username, values);
-      setSubmitting(false);
-      return resetForm({});
+      resetForm({});
+    } else {
+      addFlashMessage(
+        'error',
+        `유청에 등록되어 있는 정보가 아닙니다. 다시 한번 확인해주세요.`,
+      );
     }
-    addFlashMessage(
-      'error',
-      `유청에 등록되어 있는 정보가 아닙니다. 다시 한번 확인해주세요.`,
-    );
-    return setSubmitting();
+    return setSubmitting(false);
   };
 
   const usernameValues = {
