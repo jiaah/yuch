@@ -23,7 +23,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist'),
     publicPath: '/',
   },
-  resolve: { extensions: ['.js', '.jsx', '.json'] },
+  resolve: { extensions: ['.ts', '.js', '.jsx', '.json'] },
   module: {
     rules: [
       {
