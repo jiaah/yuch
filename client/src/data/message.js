@@ -22,6 +22,7 @@ export const headerMsgB = (
       <br />
       공장, 사무실, 회사 연중 중식.석식.야식 배달
     </h1>
+    <p className="white">* 인원에 따라 가격 상이함.</p>
     <div className="mt4">
       <a className="header--contact td-none" href="tel:+82-54-745-0999">
         전화문의 및 상담환영
