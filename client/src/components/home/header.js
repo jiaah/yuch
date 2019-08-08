@@ -4,13 +4,26 @@ import { headerMsgA, headerMsgB, headerMsgC } from '../../data/message';
 
 const Header = () => {
   const messages = [headerMsgA, headerMsgB, headerMsgC];
+  // to stop header messages auto change when user clicks an arrow button
+  const [arrowBtnTouched, setArrowBtnTouched] = useState(false);
+
   const [msg, setMsg] = useState(0);
   const handleLeftButtonClick = () => {
     if (msg !== 0) setMsg(msg - 1);
+    if (!arrowBtnTouched) setArrowBtnTouched(true);
   };
   const handleRightButtonClick = () => {
     if (msg !== messages.length - 1) setMsg(msg + 1);
+    if (!arrowBtnTouched) setArrowBtnTouched(true);
   };
+
+  setTimeout(() => {
+    if (!arrowBtnTouched) {
+      if (msg < messages.length - 1) return setMsg(msg + 1);
+      return setMsg(0);
+    }
+  }, 4500);
+
   return (
     <header>
       <div className="flex justify-between header--center">
