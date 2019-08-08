@@ -21,11 +21,11 @@ const HomeMain = () => (
         <p className="f-mini lh-3">OUR RESTAURANT</p>
         <h3 className="c-text1">당신의 위한 {admin.companyName} 서비스</h3>
         <div className="mb3">
-          <h4 className="b">위탁급식</h4>
+          <h4 className="b">위탁급식 / 출장뷔페</h4>
           <p>
-            기업계&#44; 각종 행사 모임
+            공장&#44; 사무실&#44; 회사 위탁급식
             <br />
-            연중 중식&#44; 석식&#44; 야식 배달
+            성당&#44; 교회&#44; 각종 행사모임 출장뷔페
           </p>
         </div>
         <div>

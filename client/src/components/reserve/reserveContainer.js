@@ -119,7 +119,7 @@ export class ReserveContainer extends Component {
           <h3 className="white f-en b" data-testid="reserve-title">
             Reservation
           </h3>
-          <p>기업체 각종 행사, 모임 단체 식사 주문받습니다.</p>
+          <p>성당&#44; 교회 각종 행사 모임 출장뷔페 주문받습니다.</p>
           <Button
             onClick={this.showModal}
             variant="contained"
