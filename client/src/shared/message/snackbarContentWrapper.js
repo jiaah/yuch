@@ -67,7 +67,7 @@ const SnackbarContentWrapper = ({ classes, message, variant, onClose }) => {
           width="20"
           height="20"
           viewBox="0 0 20 20"
-          type="client-msg"
+          color="white"
           handleClick={onClose}
         />,
       ]}

@@ -52,6 +52,29 @@ header {
   }
 }
 
+.header--contact {
+  border: 1px solid $c-point2;
+  color: #f8b37d;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 13px 28px 12px 28px;
+}
+
+.header--price {
+  color: white;
+  border-radius: 10px;
+  border: 1px solid $c-point2;
+  cursor: pointer;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 25px 20px;
+}
 
 /* ------ Home Main ------ */
 

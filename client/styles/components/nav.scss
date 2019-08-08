@@ -4,110 +4,111 @@
   letter-spacing: 1.2px;
   padding: .5em .7em 0 .7em;
 
-  .contact {
-    background-color: $c-point2;
-    border-radius: 5px;
-    cursor: pointer;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    padding: 5.6px 18px 3.4px 18px;
+}
 
-    @include for-big-desktop-up {
-      padding-top: 8px;
-      padding-bottom: 6px;
-    }
+.contact {
+  background-color: $c-point2;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 5.6px 18px 3.4px 18px;
+
+  @include for-big-desktop-up {
+    padding-top: 8px;
+    padding-bottom: 6px;
+  }
+}
+
+.nav--login-btn {
+  padding: 4.2px 17px 1.4px 18px;
+  margin: 5px 0;
+  border: 1.48px solid $c-point1;
+  background-color: $c-point1;
+  color: #ffffff;
+
+  @include for-tablet-landscape-up {
+    padding: 4.3px 19px 1.8px 20px;
+
   }
 
-  .nav--login-btn {
-    padding: 4.2px 17px 1.4px 18px;
-    margin: 5px 0;
-    border: 1.48px solid $c-point1;
-    background-color: $c-point1;
-    color: #ffffff;
-
-    @include for-tablet-landscape-up {
-      padding: 4.3px 19px 1.8px 20px;
-
-    }
-
-    @include for-big-desktop-up {
-      padding-top: 6px;
-      padding-bottom: 3px;
-    }
+  @include for-big-desktop-up {
+    padding-top: 6px;
+    padding-bottom: 3px;
   }
+}
 
-  .nav--login-btn:hover {
-    color: #c4c4c4;
-    transition: color .2s;
-    -webkit-transition: color .2s;
-    -moz-transition: color .2s;
-    -ms-transition: color .2s;
-    -o-transition: color .2s;
+.nav--login-btn:hover {
+  color: #c4c4c4;
+  transition: color .2s;
+  -webkit-transition: color .2s;
+  -moz-transition: color .2s;
+  -ms-transition: color .2s;
+  -o-transition: color .2s;
+}
+
+.anchor:hover {
+  color: #c4c4c4;
+  transition: color .2s;
+  -webkit-transition: font-weight .2s;
+  -moz-transition: font-weight .2s;
+  -ms-transition: font-weight .2s;
+  -o-transition: font-weight .2s;
+}
+
+.nav-menu {
+  padding: .32em 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+
+  @include for-big-desktop-up {
+    padding-top: .4em;
+    padding-bottom: .4em;
   }
+}
 
-  .anchor:hover {
-    color: #c4c4c4;
-    transition: color .2s;
-    -webkit-transition: font-weight .2s;
-    -moz-transition: font-weight .2s;
-    -ms-transition: font-weight .2s;
-    -o-transition: font-weight .2s;
-  }
+.nav-menu--btn {
+  width: 8em;
+}
 
-  .nav-menu {
-    padding: .32em 0;
-    display: flex;
-    justify-content: space-around;
-    background-color: #ffffff;
+.nav-menu--btn:focus,
+.nav-menu--btn:hover {
+  background-color: $c-hover-bg;
+}
 
-    @include for-big-desktop-up {
-      padding-top: .4em;
-      padding-bottom: .4em;
-    }
-  }
+.nav-menu--admin {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+}
 
-  .nav-menu--btn {
-    width: 8em;
-  }
+.toggle-menu {
+  width: 15em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  font-size: 15.5px;
+}
 
-  .nav-menu--btn:focus,
-  .nav-menu--btn:hover {
-    background-color: $c-hover-bg;
-  }
+.rightSideMenu {
+  margin-left: -8em;
+}
 
-  .nav-menu--admin {
-    display: flex;
-    justify-content: space-around;
-    background-color: #ffffff;
-  }
+.toggle-menu--item {
+  font-size: 15.5px;
+  padding-left: .5em;
+  padding-right: .5em;
+}
 
-  .toggle-menu {
-    width: 15em;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    font-size: 15.5px;
-  }
+.toggle-menu--list {
+  width: 100%;
+}
 
-  .rightSideMenu {
-    margin-left: -8em;
-  }
-
-  .toggle-menu--item {
-    font-size: 15.5px;
-    padding-left: .5em;
-    padding-right: .5em;
-  }
-
-  .toggle-menu--list {
-    width: 100%;
-  }
-
-  .toggle-menu--item:focus,
-  .toggle-menu--item:hover {
-    background-color: $c-hover-bg;
-  }
+.toggle-menu--item:focus,
+.toggle-menu--item:hover {
+  background-color: $c-hover-bg;
 }
 
 .yuch-logo {

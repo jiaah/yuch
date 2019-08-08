@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import IconButton from '../../shared/form/iconButton';
+import { headerMsgA, headerMsgB, headerMsgC } from '../../data/message';
 
-const Header = () => (
-  <header>
-    <div className="header-text--box">
-      <h1>
-        <span className="point1 f-en lh-3">NO MSG&#33;</span>
-        <br />
-        오늘도 열심히 일한 당신에게 <br />
-        당신만을 위한 <span className="point2">착한 가격의 집밥을</span>
-        선물하세요&#46;
-      </h1>
-    </div>
-  </header>
-);
+const Header = () => {
+  const messages = [headerMsgA, headerMsgB, headerMsgC];
+  const [msg, setMsg] = useState(0);
+  const handleLeftButtonClick = () => {
+    if (msg !== 0) setMsg(msg - 1);
+  };
+  const handleRightButtonClick = () => {
+    if (msg !== messages.length - 1) setMsg(msg + 1);
+  };
+  return (
+    <header>
+      <IconButton
+        handleClick={() => handleLeftButtonClick()}
+        name="arrowLeft"
+        width="27"
+        height="27"
+        viewBox="0 0 24 24"
+        color="white"
+      />
+      <React.Fragment>{messages[msg]}</React.Fragment>
+      <IconButton
+        handleClick={() => handleRightButtonClick()}
+        name="arrowRight"
+        width="27"
+        height="27"
+        viewBox="0 0 24 24"
+        color="white"
+      />
+    </header>
+  );
+};
 
 export default Header;

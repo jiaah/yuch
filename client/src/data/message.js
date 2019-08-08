@@ -3,6 +3,49 @@ import { Link } from 'react-router-dom';
 /* --- Components --- */
 import { admin } from './data';
 
+export const headerMsgA = (
+  <div className="header-text--box">
+    <h1>
+      <div className="point1 f-en">NO MSG&#33;</div>
+      <br />
+      오늘도 열심히 일한 당신에게 <br />
+      당신만을 위한 <span className="point2">착한 가격의 집밥을</span>
+      선물하세요&#46;
+    </h1>
+  </div>
+);
+
+export const headerMsgB = (
+  <div className="header-text--box">
+    <h1>
+      <div className="point1 f-en">위탁급식 전문업체</div>
+      <br />
+      <div className="point2">가정식 한식뷔페</div>
+      공장, 사무실, 회사 연중 중식.석식.야식 배달
+    </h1>
+    <div className="mt4">
+      <a className="header--contact td-none" href="tel:+82-54-745-0999">
+        전화문의 및 상담환영
+      </a>
+    </div>
+  </div>
+);
+
+export const headerMsgC = (
+  <div className="header-text--box">
+    <h1>
+      <div className="point1 f-en">찾아가는 서비스</div>
+      <br />
+      성당, 교회 각종 행사모임 <span className="point2">출장뷔페</span>
+      <div className="mt2 header--price">
+        반찬 (6가지)&#8201;&#8201;&#8201;&#8201;&#8201; 6,000 원<br />
+        반찬 (8가지)&#8201;&#8201;&#8201;&#8201;&#8201; 8,000 원<br />
+        반찬 (10가지)&#8201;&#8201; 10,000 원
+      </div>
+    </h1>
+  </div>
+);
+
 export const bankAccountPageInfoA = (
   <React.Fragment>
     {admin.companyName} 고객 업체에게&#8201;
