@@ -24,6 +24,8 @@ import Print from './print';
 import Visibility from './visibility';
 import VisibilityOff from './visibilityOff';
 import Address from './address';
+import ArrowRight from './arrowRight';
+import ArrowLeft from './arrowLeft';
 
 const Icon = props => {
   switch (props.name) {
@@ -73,6 +75,10 @@ const Icon = props => {
       return <VisibilityOff {...props} />;
     case 'address':
       return <Address {...props} />;
+    case 'arrowRight':
+      return <ArrowRight {...props} />;
+    case 'arrowLeft':
+      return <ArrowLeft {...props} />;
     default:
       return <div />;
   }
