@@ -20,7 +20,6 @@ export const headerMsgB = (
     <h1>
       <div className="point1 f-en">위탁급식 전문업체</div>
       <br />
-      <div className="point2">가정식 한식뷔페</div>
       공장, 사무실, 회사 연중 중식.석식.야식 배달
     </h1>
     <div className="mt4">
@@ -43,6 +42,19 @@ export const headerMsgC = (
         반찬 (10가지)&#8201;&#8201; 10,000 원
       </div>
     </h1>
+  </div>
+);
+
+export const headerMsgD = (
+  <div className="header-text--box">
+    <h1>
+      <div className="point1 f-en">레스토랑</div>
+      <br />
+      가정식 한식뷔페
+      <br />
+      당신을 위한 <span className="point2">4000원의 행복</span>을 가지세요&#46;
+    </h1>
+    <p className="white">* 현금가</p>
   </div>
 );
 

@@ -67,7 +67,8 @@ header {
 
 
 .header--contact {
-  border: 1px solid $c-point2;
+  border: 2px solid #f8b37d;
+  background-color: #ffffff0b;
   color: #f8b37d;
   border-radius: 10px;
   cursor: pointer;
@@ -81,7 +82,8 @@ header {
 .header--price {
   color: white;
   border-radius: 10px;
-  border: 1px solid $c-point2;
+  border: 1px solid #f8b37d;
+  background-color: #ffffff06;
   cursor: pointer;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

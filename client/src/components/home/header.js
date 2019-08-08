@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import IconButton from '../../shared/form/iconButton';
-import { headerMsgA, headerMsgB, headerMsgC } from '../../data/message';
+import {
+  headerMsgA,
+  headerMsgB,
+  headerMsgC,
+  headerMsgD,
+} from '../../data/message';
 
 const Header = () => {
-  const messages = [headerMsgA, headerMsgB, headerMsgC];
+  const messages = [headerMsgA, headerMsgB, headerMsgC, headerMsgD];
   // to stop header messages auto change when user clicks an arrow button
   const [arrowBtnTouched, setArrowBtnTouched] = useState(false);
 

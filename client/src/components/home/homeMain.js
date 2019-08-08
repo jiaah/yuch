@@ -29,7 +29,7 @@ const HomeMain = () => (
           </p>
         </div>
         <div>
-          <h4 className="b">식당</h4>
+          <h4 className="b">레스토랑</h4>
           <p>중식&#44; 석식 뷔폐 서비스</p>
         </div>
       </div>
