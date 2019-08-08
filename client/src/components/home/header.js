@@ -13,23 +13,25 @@ const Header = () => {
   };
   return (
     <header>
-      <IconButton
-        handleClick={() => handleLeftButtonClick()}
-        name="arrowLeft"
-        width="27"
-        height="27"
-        viewBox="0 0 24 24"
-        color="white"
-      />
+      <div className="flex justify-between header--center">
+        <IconButton
+          handleClick={() => handleLeftButtonClick()}
+          name="arrowLeft"
+          width="27"
+          height="27"
+          viewBox="0 0 24 24"
+          color="white"
+        />
+        <IconButton
+          handleClick={() => handleRightButtonClick()}
+          name="arrowRight"
+          width="27"
+          height="27"
+          viewBox="0 0 24 24"
+          color="white"
+        />
+      </div>
       <React.Fragment>{messages[msg]}</React.Fragment>
-      <IconButton
-        handleClick={() => handleRightButtonClick()}
-        name="arrowRight"
-        width="27"
-        height="27"
-        viewBox="0 0 24 24"
-        color="white"
-      />
     </header>
   );
 };

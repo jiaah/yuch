@@ -1,5 +1,4 @@
 /* ------ Header ------ */
-
 header {
   background-image: linear-gradient(to top right, rgba(29, 28, 27, 0.6), rgba(39, 37, 35, 0.45)), url(./../assets/img/farm.jpeg);
   background-repeat: no-repeat;
@@ -20,6 +19,12 @@ header {
   }
 }
 
+.header--center {
+  position: relative;
+  top: 30%;
+  z-index: 100;
+}
+
 .header-text--box {
   position: absolute;
   top: 40%;
@@ -38,19 +43,28 @@ header {
   @include for-big-desktop-up {
     left: 5%;
   }
+}
 
-  .point1 {
-    font-size: 1.7em;
+.header-text--box-c {
+  position: absolute;
+  top: 38%;
+  padding-left: 1em;
+  padding-right: 1em;
 
-    @include for-big-desktop-up {
-      font-size: 2.5em;
-    }
+  @include for-tablet-portrait-up {
+    padding-left: 4em;
+    padding-right: 4em;
   }
 
-  .point2 {
-    color: #f8b37d;
+  @include for-tablet-landscape-up {
+    padding-left: 6em;
+  }
+
+  @include for-big-desktop-up {
+    left: 5%;
   }
 }
+
 
 .header--contact {
   border: 1px solid $c-point2;
@@ -73,7 +87,19 @@ header {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  padding: 25px 20px;
+  padding: 20px;
+}
+
+.point1 {
+  font-size: 1.7em;
+
+  @include for-big-desktop-up {
+    font-size: 2.5em;
+  }
+}
+
+.point2 {
+  color: #f8b37d;
 }
 
 /* ------ Home Main ------ */

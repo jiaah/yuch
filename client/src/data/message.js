@@ -32,7 +32,7 @@ export const headerMsgB = (
 );
 
 export const headerMsgC = (
-  <div className="header-text--box">
+  <div className="header-text--box-c">
     <h1>
       <div className="point1 f-en">찾아가는 서비스</div>
       <br />
