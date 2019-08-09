@@ -12,10 +12,6 @@ const Modal = Loader({
 });
 
 const styles = theme => ({
-  modal: {
-    overflowX: 'scroll',
-    overflowY: 'scroll',
-  },
   paper: {
     position: 'absolute',
     boxShadow: theme.shadows[5],
@@ -39,7 +35,7 @@ const SimpleModal = ({ show, classes, component, title, handleClose }) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={show}
-        className={classes.modal}
+        className=""
       >
         <div
           className={`tc box-container ${classes.paper}`}

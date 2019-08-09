@@ -42,7 +42,7 @@ const ForgotPasswordPage = ({
         고객님이 입력한 이메일로 인증코드가 전송됩니다.
       </p>
       <p className="c-text-grey f-mini">
-        이메일 주소를 등록하지 않았거나, 기억이 나지 않으면&#8201;
+        비밀번호를 찾는데 어려움이 있으면&#8201;
         {companyName}
         으로 문의 바랍니다.
       </p>
