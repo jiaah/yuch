@@ -24,7 +24,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.json', '.scss'],
   },
   node: {
     fs: 'empty',
