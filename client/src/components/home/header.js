@@ -29,12 +29,12 @@ const Header = () => {
     if (!arrowBtnTouched) setArrowBtnTouched(true);
   };
 
-  setTimeout(() => {
-    if (!arrowBtnTouched) {
+  if (!arrowBtnTouched) {
+    setTimeout(() => {
       if (msg < messages.length - 1) return setMsg(msg + 1);
       return setMsg(0);
-    }
-  }, 4200);
+    }, 4200);
+  }
 
   return (
     <header>
