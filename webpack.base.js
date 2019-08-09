@@ -51,7 +51,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              minimze: true,
+              sourceMap: devMode,
               importLoaders: 1,
             },
           },
@@ -64,13 +65,13 @@ module.exports = {
                   browsers: 'last 2 versions',
                 }),
               ],
-              sourceMap: true,
+              sourceMap: devMode,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: devMode,
               includePaths: ['client/styles/main.scss'],
             },
           },
