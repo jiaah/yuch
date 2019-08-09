@@ -80,7 +80,7 @@ header {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  padding: 13px 28px 12px 28px;
+  padding: 11px 22px 10px 22px;
 }
 
 .header--price {
@@ -93,18 +93,28 @@ header {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  padding: 20px;
+  padding: 16px 20px;
 }
 
-.point1 {
-  font-size: 1.7em;
+
+.header--no-msg {
+  font-size: 1.8em;
+
+  @include for-big-desktop-up {
+    font-size: 1.7em;
+    line-height: 1.25em;
+  }
+}
+
+.header--text {
+  font-size: 1.65em;
 
   @include for-big-desktop-up {
     font-size: 2.5em;
   }
 }
 
-.point2 {
+.header--text--point-color {
   color: #f8b37d;
 }
 

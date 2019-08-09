@@ -16,33 +16,36 @@ const FoundUsernamePage = ({ data, selectedValue, history }) => {
   return (
     <div className="tc">
       <h2 className="mb4">아이디 찾기가 완료되었습니다.</h2>
-      <Paper className="mh1 verify-user--paper">
-        <table className="flex flex-column-m">
-          <tbody>
-            <tr>
-              <td className="ph1 verify-user--label">이름</td>
-              <td className="ph1 pw2 ts">
-                <span className="b">{companyName}</span>
-              </td>
-            </tr>
-            <tr>
-              <td className="pw3 pb3 f-mini fw3">{label}</td>
-              <td className="pw2 ts">
-                <span className="b">{info}</span>
-              </td>
-            </tr>
-            <tr>
-              <td className="verify-user--hr" />
-            </tr>
-            <tr>
-              <td className="ph1 verify-user--label">아이디</td>
-              <td className="ph1 pw2 ts">
-                <span className="b c-point2">{username}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Paper>
+      <div className="flex flex-column-m items-center mh1">
+        <Paper className="verify-user--paper">
+          <table className="flex flex-column-m">
+            <tbody>
+              <tr>
+                <td className="ph1 verify-user--label">이름</td>
+                <td className="ph1 pw2 ts">
+                  <span className="b">{companyName}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="pw3 pb3 f-mini fw3">{label}</td>
+                <td className="pw2 ts">
+                  <span className="b">{info}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="verify-user--hr" />
+              </tr>
+              <tr>
+                <td className="ph1 verify-user--label">아이디</td>
+                <td className="ph1 pw2 ts">
+                  <span className="b c-point2">{username}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Paper>
+      </div>
+
       <div>
         <Button
           typeValue="button"

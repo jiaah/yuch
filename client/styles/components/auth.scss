@@ -44,41 +44,42 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 450px;
+  width: 360px;
   margin: 3em auto;
+  overflow-x: scroll;
 
   @include for-desktop-up {
-    width: 900px;
+    width: 710px;
   }
 }
 
 .verify-user--paper {
-  width: 450px;
+  width: 350px;
 
   @include for-desktop-up {
-    width: 900px;
+    width: 700px;
   }
 }
 
 .verify-user--hr {
   border-bottom: 1px solid $light-grey;
   position: absolute;
-  width: 450px;
+  width: 350px;
 
   @include for-desktop-up {
-    width: 900px;
+    width: 700px;
   }
 }
 
 .verify-user--label {
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
   font-size: .9em;
   font-weight: 300;
   vertical-align: middle;
 
   @include for-desktop-up {
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-left: 3em;
+    padding-right: 3em;
   }
 }

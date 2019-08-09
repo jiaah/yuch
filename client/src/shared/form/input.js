@@ -13,10 +13,10 @@ const styles = theme => ({
   },
   // forgot id, password
   textFieldA: {
-    width: 320,
+    width: 250,
     margin: '14px 10px',
     [theme.breakpoints.up('md')]: {
-      width: 680,
+      width: 520,
     },
   },
   // lunchQty, dinnerQty

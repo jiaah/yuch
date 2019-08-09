@@ -33,7 +33,7 @@ const ForgotPasswordPage = ({
   };
 
   return (
-    <div className="flex flex-column-m items-center">
+    <div className="tc">
       <p className="mb2 b f-regular lh-2">
         고객님의 아이디와 {companyName}에 등록되어 있는 이메일 주소를 입력해
         주세요.

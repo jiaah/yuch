@@ -6,7 +6,7 @@ import { admin } from './data';
 export const headerMsgA = (
   <div className="header-text--box">
     <h1>
-      <div className="point1 f-en">NO MSG&#33;</div>
+      <div className="header--no-msg f-en">NO MSG&#33;</div>
       <br />
       오늘도 열심히 일한 당신에게 <br />
       당신만을 위한 <span className="point2">착한 가격의 집밥을</span>
@@ -18,7 +18,7 @@ export const headerMsgA = (
 export const headerMsgB = (
   <div className="header-text--box">
     <h1>
-      <div className="point1 f-en">위탁급식 전문업체</div>
+      <div className="header--text f-en">위탁급식 전문업체</div>
       <br />
       공장, 사무실, 회사 연중 중식.석식.야식 배달
     </h1>
@@ -34,9 +34,10 @@ export const headerMsgB = (
 export const headerMsgC = (
   <div className="header-text--box-c">
     <h1>
-      <div className="point1 f-en">찾아가는 서비스</div>
+      <div className="header--text f-en">찾아가는 서비스</div>
       <br />
-      성당, 교회 각종 행사모임 <span className="point2">출장뷔페</span>
+      성당, 교회 각종 행사모임{' '}
+      <span className="header--text--point-color">출장뷔페</span>
       <div className="mt2 header--price">
         반찬 (6가지)&#8201;&#8201;&#8201;&#8201;&#8201; 6,000 원<br />
         반찬 (8가지)&#8201;&#8201;&#8201;&#8201;&#8201; 8,000 원<br />
@@ -49,11 +50,13 @@ export const headerMsgC = (
 export const headerMsgD = (
   <div className="header-text--box">
     <h1>
-      <div className="point1 f-en">레스토랑</div>
+      <div className="header--text f-en">레스토랑</div>
       <br />
       가정식 한식뷔페
       <br />
-      당신을 위한 <span className="point2">4000원의 행복</span>을 가지세요&#46;
+      당신을 위한{' '}
+      <span className="header--text--point-color">4000원의 행복</span>을
+      가지세요&#46;
     </h1>
     <p className="white">* 현금가</p>
   </div>
