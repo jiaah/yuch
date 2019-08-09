@@ -9,7 +9,7 @@ const ResetPwForm = ({ isSubmitting }) => (
       label="새 비밀번호"
       name="newPassword"
       styleName="textField"
-      placeholder="( 숫자 or 숫자+영문 조합 )"
+      placeholder="(숫자 or 숫자+영문 조합)"
     />
     <PasswordField
       label="비밀번호 확인"

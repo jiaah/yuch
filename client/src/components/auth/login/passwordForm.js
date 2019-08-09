@@ -19,7 +19,7 @@ const PasswordForm = ({ isSubmitting }) => (
                 icon="filledUser"
                 styleName="textFieldA"
                 variant="outlined"
-                placeholder="( 아이디 ) yucheong"
+                placeholder="yucheong"
                 required
               />
             </td>
