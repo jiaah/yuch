@@ -50,11 +50,11 @@ const SearchBar = ({
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
-    const suggestions = await users
+    const suggestion = await users
       .sort()
       .filter(u => u.companyName.match(regex));
 
-    return setSuggestions(suggestions);
+    return setSuggestions(suggestion);
   };
 
   const handleOnKeyUp = e => {
