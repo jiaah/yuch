@@ -40,4 +40,4 @@ const config = {
   plugins: [new BrotliPlugin()],
 };
 
-module.exports = merge(config, baseConfig);
+module.exports = merge(baseConfig, config);

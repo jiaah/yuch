@@ -131,8 +131,8 @@ describe('async auth request actions', () => {
   });
 
   it('calls findUsername action', done => {
-    const API_URL = `${API_HOST}/auth/forgot/username`;
-    store.dispatch(actions.findUsername(email));
+    const API_URL = `${API_HOST}/auth/forgot/username/email`;
+    store.dispatch(actions.findUsernameWithEmail(email));
     moxios.stubRequest(API_URL, { status: 200, response: { username } });
     const expectedActions = [
       { type: types.HTTP_REQUEST, api: 'findUsername' },

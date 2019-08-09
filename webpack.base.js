@@ -23,7 +23,12 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist'),
     publicPath: '/',
   },
-  resolve: { extensions: ['.ts', '.js', '.jsx', '.json'] },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.scss', '.css'],
+  },
+  node: {
+    fs: 'empty',
+  },
   module: {
     rules: [
       {
@@ -79,7 +84,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpe?g|png|gif|ico|svg)$/,
+        test: /\.(jpe?g|png|gif|ico)$/,
         loader: 'file-loader',
         options: {
           name: devMode ? '[name].[ext]' : '[name].[hash].[ext]',

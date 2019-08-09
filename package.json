@@ -13,10 +13,12 @@
     }
   },
   "scripts": {
+    "webpack-init": "webpack-dev-server --config=webpack.dev.js",
     "precommit": "lint-staged",
     "dev": "npm-run-all --parallel dev:*",
     "dev:client": "cross-env NODE_ENV=development webpack --config webpack.dev.js --watch",
     "dev:server": "cross-env NODE_ENV=development nodemon --inspect --watch config --watch server ./bin/www",
+    "prod:client": "cross-env NODE_ENV=production webpack --config=webpack.prod.js --watch",
     "build:prod": "cross-env NODE_ENV=production webpack --config=webpack.prod.js",
     "start": "cross-env NODE_ENV=production node ./bin/www",
     "heroku-postbuild": "npm run build:prod",
@@ -24,7 +26,10 @@
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
     "test:client": "cross-env NODE_ENV=test jest --config ./client/jest.config.js --coverage --watch",
     "test:server": "jest --config ./server/jest.config.js --coverage --watch",
-    "coverage": "jest -u --maxWorkers=2 --coverage"
+    "coverage": "jest -u --maxWorkers=2 --coverage",
+    "webpack-analyse": "cross-env NODE_ENV=test webpack --profile --json > stats.json",
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d public/dist"
   },
   "lint-staged": {
     "linters": {
