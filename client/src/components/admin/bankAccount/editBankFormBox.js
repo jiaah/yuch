@@ -31,25 +31,16 @@ const EditBankFormBox = ({
     return setSubmitting(false);
   };
   return (
-    <React.Fragment>
-      {confirmMsg ? (
-        <AdminConfirmContainer
-          handleButtonClick={checkIfUserIsAdmin}
-          confirmType="edit"
-        />
-      ) : (
-        <Formik
-          initialValues={clickedUserData[0]}
-          render={props => (
-            <Form className="mh1">
-              <BankForm {...props} />
-            </Form>
-          )}
-          onSubmit={handleEditBankAccount}
-          validationSchema={bankAccountValidation}
-        />
+    <Formik
+      initialValues={clickedUserData[0]}
+      render={props => (
+        <Form className="mh1">
+          <BankForm {...props} />
+        </Form>
       )}
-    </React.Fragment>
+      onSubmit={handleEditBankAccount}
+      validationSchema={bankAccountValidation}
+    />
   );
 };
 

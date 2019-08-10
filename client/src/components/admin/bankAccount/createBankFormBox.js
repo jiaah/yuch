@@ -44,11 +44,6 @@ const CreateBankFormBox = ({
             <span className="c-point2">&#8201;수정을 해주세요</span>.
           </p>
         </div>
-      ) : confirmMsg ? (
-        <AdminConfirmContainer
-          handleButtonClick={checkIfUserIsAdmin}
-          confirmType="edit"
-        />
       ) : (
         <Formik
           initialValues={values}
