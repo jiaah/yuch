@@ -7,6 +7,8 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Loader from '../../../shared/loader';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
+import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
+import Modal from '../../../shared/modal';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -31,6 +33,21 @@ const RatesContainer = ({
   modalActions: { showModal, hideModal },
 }) => {
   const [data, setData] = useState([]);
+  const [adminConfirmed, setAdminConfirmed] = useState(false);
+  const handleAdminConfirmed = () => {
+    setAdminConfirmed(true);
+    return hideModal();
+  };
+  const closeAdminCinfirmModal = async () => {
+    addFlashMessage(
+      'warning',
+      '중요한 데이터 보안을 위해 비밀번호 확인이 필요합니다.',
+    );
+    return hideModal();
+  };
+
+  // only renders mealprice data when admin user is confirmed
+  const dataToRender = adminConfirmed ? data : [];
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
@@ -43,6 +60,8 @@ const RatesContainer = ({
 
   useEffect(() => {
     fetchCateringRates();
+    // open admin password checking modal on page load
+    showModal();
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
@@ -77,22 +96,35 @@ const RatesContainer = ({
           handleClick={() => printDiv('printRates')}
         />
       </div>
-      {data && (
-        <RatesPaper
-          users={data}
-          selectedSearchItem={selectedSearchItem}
-          handleEditUserBtnClick={handleEditUserBtnClick}
-        />
-      )}
-      {show && (
-        <EditRateModal
-          clickedUserData={clickedUserData}
-          hideModal={hideModal}
-          resetClickedItemData={resetClickedItemData}
-          updateReservedPrice={updateReservedPrice}
-          addFlashMessage={addFlashMessage}
-        />
-      )}
+      <RatesPaper
+        users={dataToRender}
+        selectedSearchItem={selectedSearchItem}
+        handleEditUserBtnClick={handleEditUserBtnClick}
+      />
+      {show &&
+        adminConfirmed && (
+          <EditRateModal
+            clickedUserData={clickedUserData}
+            hideModal={hideModal}
+            resetClickedItemData={resetClickedItemData}
+            updateReservedPrice={updateReservedPrice}
+            addFlashMessage={addFlashMessage}
+          />
+        )}
+      {/* admin password check */}
+      {show &&
+        !adminConfirmed && (
+          <Modal
+            title=""
+            handleClose={closeAdminCinfirmModal}
+            component={
+              <AdminConfirmContainer
+                handleButtonClick={handleAdminConfirmed}
+                confirmType="create"
+              />
+            }
+          />
+        )}
     </div>
   );
 };
