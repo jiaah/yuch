@@ -42,7 +42,6 @@ const UserFormBox = ({
     }
     return setSubmitting(false);
   };
-  console.log(userData);
   return (
     <Formik
       initialValues={userData}

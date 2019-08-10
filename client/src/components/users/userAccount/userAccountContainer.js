@@ -19,11 +19,13 @@ const AdminAccountContainer = ({
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchUserData = async () => {
     const res = await getMe(id);
-    if (!res.error) {
-      return setUserData(res[0]);
+    if (res.error) {
+      // to render the form
+      // setting default userData to {} would not render server data
+      setUserData([]);
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    // to display forms with empty values when http request fails
-    return setUserData([]);
+    return setUserData(res[0]);
   };
 
   useEffect(() => {

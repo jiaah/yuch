@@ -19,8 +19,12 @@ const AdminAccountContainer = ({
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchAdminData = async () => {
     const data = await getAdmin(id);
-    if (data.error)
+    if (data.error) {
+      // to render the form
+      // setting default adminData to {} would not render server data
+      setAdminData({});
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
     return setAdminData(data);
   };
 
