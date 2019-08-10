@@ -28,7 +28,7 @@ const styles = theme => ({
     },
   },
   // [C,D,E] create/edit user account forms
-  // [C] bank account
+  // [C] bank account, confirm admin password
   textFieldC: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,

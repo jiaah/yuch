@@ -16,6 +16,18 @@ const styles = theme => ({
     position: 'absolute',
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
+    display: 'block',
+    overflow: 'scroll',
+    maxHeight: '500px',
+    [theme.breakpoints.up('md')]: {
+      maxHeight: '600px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxHeight: '700px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      maxHeight: '800px',
+    },
   },
 });
 

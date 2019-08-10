@@ -11,7 +11,7 @@ const AdminConfirmForm = ({ isSubmitting, confirmType }) => (
       <PasswordField
         label="비밀번호"
         name="password"
-        styleName="textField"
+        styleName="textFieldC"
         variant="outlined"
       />
       <div className="ml3 mt2">
