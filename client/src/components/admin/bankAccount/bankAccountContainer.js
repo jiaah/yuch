@@ -41,12 +41,14 @@ const BankAccountContainer = ({
   clickedUserData,
   selectedSearchItem,
 }) => {
-  const [bankAccount, setBankAccount] = useState(null);
+  const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchBankAccount = async () => {
-    const bankAccount = await getBankAccount();
-    setBankAccount(bankAccount);
+    const bankAccounts = await getBankAccount();
+    if (bankAccounts.error)
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    return setBankAccount(bankAccounts);
   };
 
   useEffect(() => {

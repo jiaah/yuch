@@ -19,7 +19,9 @@ const AdminAccountContainer = ({
   const [pwdOpen, setPwdOpen] = useState(false);
   const fetchAdminData = async () => {
     const data = await getAdmin(id);
-    setAdminData(data);
+    if (data.error)
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    return setAdminData(data);
   };
 
   useEffect(() => {

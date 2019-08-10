@@ -24,6 +24,7 @@ const AdminFormBox = ({
     }
     return setSubmitting(false);
   };
+
   return (
     <Formik
       initialValues={adminData}

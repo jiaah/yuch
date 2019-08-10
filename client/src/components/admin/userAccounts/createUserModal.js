@@ -60,7 +60,7 @@ const UserAccountModal = ({
     mealPrice: '',
     lunchQty: '',
     dinnerQty: '',
-    bankAccountId: bankAccount[0].id,
+    bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
   };
 

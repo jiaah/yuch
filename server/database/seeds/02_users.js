@@ -41,26 +41,26 @@ exports.seed = (knex, Promise) =>
           isAdmin: IS_ADMIN,
         }),
       );
-    })
-    .then(() => {
-      const fakeUsers = [];
-      const desiredFakeUsers = 15;
-      for (let i = 0; i < desiredFakeUsers; i++) {
-        fakeUsers.push(createFakeUser());
-      }
-      return knex('users')
-        .insert(fakeUsers)
-        .returning('*');
-    })
-    .then(fakeUsers => {
-      const fakeMealPrices = [];
-      fakeUsers.forEach(user => {
-        const createUserMealPrice = () => ({
-          id: faker.random.uuid(),
-          userId: user.id,
-          mealPrice: faker.random.number(),
-        });
-        fakeMealPrices.push(createUserMealPrice());
-      });
-      return knex('meal_price').insert(fakeMealPrices);
     });
+// .then(() => {
+//   const fakeUsers = [];
+//   const desiredFakeUsers = 15;
+//   for (let i = 0; i < desiredFakeUsers; i++) {
+//     fakeUsers.push(createFakeUser());
+//   }
+//   return knex('users')
+//     .insert(fakeUsers)
+//     .returning('*');
+// })
+// .then(fakeUsers => {
+//   const fakeMealPrices = [];
+//   fakeUsers.forEach(user => {
+//     const createUserMealPrice = () => ({
+//       id: faker.random.uuid(),
+//       userId: user.id,
+//       mealPrice: faker.random.number(),
+//     });
+//     fakeMealPrices.push(createUserMealPrice());
+//   });
+//   return knex('meal_price').insert(fakeMealPrices);
+// });

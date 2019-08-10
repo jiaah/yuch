@@ -35,7 +35,6 @@ const EditUserModal = ({
       : subModal === 'delete'
         ? ''
         : '고객 계정';
-
   return (
     <div className="container">
       <Modal

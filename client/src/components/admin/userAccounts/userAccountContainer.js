@@ -40,16 +40,16 @@ const UserAccountContainer = ({
   selectedSearchItem,
 }) => {
   const [users, setUsers] = useState([]);
-
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchUsersData = async () => {
     const data = await getUsers();
     const { users, bankAccounts } = data;
-    if (users === undefined || users === null) {
-      return null;
-    }
+    if (data.error)
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    if (users.length === 0)
+      return addFlashMessage('info', '데이터에 저장된 업체정보가 없습니다.');
     return Promise.all([setUsers(users), setBankAccount(bankAccounts)]);
   };
 
