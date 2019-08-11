@@ -43,6 +43,11 @@ export const confirmAdminUser = password => async dispatch => {
   }
 };
 
+// admin user confirmation status
+export const handleAdminVerificationStatus = () => ({
+  type: types.IS_ADMIN_VERIFIED,
+});
+
 /* --- Password --- */
 export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });

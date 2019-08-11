@@ -6,6 +6,7 @@ const initialState = {
   companyName: '',
   isAdmin: false,
   keepLoggedIn: false,
+  isAdminVerified: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -30,6 +31,10 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         keepLoggedIn: !state.keepLoggedIn,
+      };
+    case types.IS_ADMIN_VERIFIED:
+      return {
+        isAdminVerified: !state.isAdminVerified,
       };
     default:
       return state;
