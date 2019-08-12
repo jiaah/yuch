@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
+import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const DeleteUserFormBox = ({
   handleCloseModal,
@@ -24,8 +24,8 @@ const DeleteUserFormBox = ({
   };
 
   return (
-    <AdminConfirmContainer
-      handleButtonClick={handleDeleteUser}
+    <AdminVerificationContainer
+      handleAdminVerificationSuccess={handleDeleteUser}
       confirmType="delete"
     />
   );

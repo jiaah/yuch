@@ -2,11 +2,11 @@ import React from 'react';
 /* --- Components --- */
 import IconMessage from '../iconMessage';
 import {
-  adminConfirmMessage,
-  adminConfirmMessageOnDelete,
+  adminVerificationMessage,
+  adminVerificationMessageOnDelete,
 } from '../../data/message';
 
-const AdminConfirmForm = ({ type }) => (
+const VerificationMessage = ({ type }) => (
   <React.Fragment>
     {type === 'delete' && (
       <React.Fragment>
@@ -22,11 +22,13 @@ const AdminConfirmForm = ({ type }) => (
             classes="icon-message--warning"
           />
         </div>
-        {adminConfirmMessageOnDelete}
+        {adminVerificationMessageOnDelete}
       </React.Fragment>
     )}
-    {(type === 'edit' || type === 'create') && <p>{adminConfirmMessage}</p>}
+    {(type === 'edit' || type === 'create') && (
+      <p>{adminVerificationMessage}</p>
+    )}
   </React.Fragment>
 );
 
-export default AdminConfirmForm;
+export default VerificationMessage;

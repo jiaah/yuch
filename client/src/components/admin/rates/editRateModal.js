@@ -22,11 +22,8 @@ const EditRateModal = ({
   const [reserveDate, setReserveDate] = React.useState(date);
   const handleSelectChange = e => setReserveDate(e.target.value);
 
-  const closeModal = async () => {
-    if (clickedUserData.length !== 0) {
-      await hideModal();
-      return resetClickedItemData();
-    }
+  const closeModal = () => {
+    resetClickedItemData();
     return hideModal();
   };
 

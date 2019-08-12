@@ -10,7 +10,7 @@ import Button from '../../../shared/form/formButton';
 
 const LoginForm = ({
   keepMeLoggedIn,
-  keepLoggedIn,
+  keepUserLoggedIn,
   userData,
   handleSubmit,
   loginValidation,
@@ -53,9 +53,9 @@ const LoginForm = ({
               control={
                 <Checkbox
                   data-testid="checkbox-login"
-                  checked={keepLoggedIn}
+                  checked={keepUserLoggedIn}
                   onClick={keepMeLoggedIn}
-                  value="keepLoggedIn"
+                  value="keepUserLoggedIn"
                 />
               }
               label="로그인 상태 유지"

@@ -6,8 +6,8 @@ module.exports = () => {
   router.post('/login', authController.loginUser);
 
   /* --- Password --- */
-  // simple Admin Password Check for Security
-  router.post('/login/admin', authController.checkAdminUser);
+  // simple Admin Password Check to secure sensitive data
+  router.post('/login/admin', authController.verifyAdminUser);
 
   // change password (user's current password is required)
   router.patch('/change/password', authController.changePassword);

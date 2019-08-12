@@ -83,7 +83,7 @@ export const bankAccountPageInfoB = (
   </React.Fragment>
 );
 
-export const adminConfirmMessage = (
+export const adminVerificationMessage = (
   <React.Fragment>
     계속 진행하시려면&#44;&#8201; 보안을 위해&#8201;
     <span className="c-point2">
@@ -94,7 +94,7 @@ export const adminConfirmMessage = (
   </React.Fragment>
 );
 
-export const adminConfirmMessageOnDelete = (
+export const adminVerificationMessageOnDelete = (
   <React.Fragment>
     정말 삭제하시겠습니까?
     <br />

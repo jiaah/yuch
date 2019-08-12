@@ -37,7 +37,7 @@ exports.loginUser = (req, res) => {
 };
 
 /* --- Password --- */
-exports.checkAdminUser = (req, res) => {
+exports.verifyAdminUser = (req, res) => {
   const { password } = req.body;
   return knex('users')
     .where({ isAdmin: true })

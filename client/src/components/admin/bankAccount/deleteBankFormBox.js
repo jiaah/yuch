@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
+import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const DeleteBankFormBox = ({
   deleteBankAccount,
@@ -35,7 +35,7 @@ const DeleteBankFormBox = ({
           </p>
         </div>
       ) : (
-        <AdminConfirmContainer
+        <AdminVerificationContainer
           handleButtonClick={handleDeleteUser}
           confirmType="delete"
         />

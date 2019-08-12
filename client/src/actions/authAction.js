@@ -29,15 +29,15 @@ export const userLogout = () => ({
 
 /* --- Admin --- */
 // check admin password for security
-export const confirmAdminUser = password => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'confirmAdminUser' });
+export const verifyAdminUser = password => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'verifyAdminUser' });
   try {
     await axios.post(`${API_HOST}/auth/login/admin`, { password });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'confirmAdminUser' });
+    return dispatch({ type: types.HTTP_SUCCESS, api: 'verifyAdminUser' });
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
-      api: 'confirmAdminUser',
+      api: 'verifyAdminUser',
       error: 'Failed admin user authentication.',
     });
   }

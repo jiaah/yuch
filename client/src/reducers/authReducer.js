@@ -5,11 +5,11 @@ const initialState = {
   id: '',
   companyName: '',
   isAdmin: false,
-  keepLoggedIn: false,
+  keepUserLoggedIn: false,
   isAdminVerified: false,
 };
 
-const auth = (state = initialState, action) => {
+export const auth = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_LOGIN:
       return {
@@ -27,11 +27,25 @@ const auth = (state = initialState, action) => {
         companyName: '',
         isAdmin: false,
       };
+    default:
+      return state;
+  }
+};
+
+export const keepUserLoggedIn = (state = initialState, action) => {
+  switch (action.type) {
     case types.KEEP_ME_LOGGED_IN:
       return {
         ...state,
-        keepLoggedIn: !state.keepLoggedIn,
+        keepUserLoggedIn: !state.keepUserLoggedIn,
       };
+    default:
+      return state;
+  }
+};
+
+export const isAdminVerified = (state = initialState, action) => {
+  switch (action.type) {
     case types.IS_ADMIN_VERIFIED:
       return {
         isAdminVerified: !state.isAdminVerified,
@@ -40,5 +54,3 @@ const auth = (state = initialState, action) => {
       return state;
   }
 };
-
-export default auth;

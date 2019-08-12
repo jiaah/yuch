@@ -4,7 +4,7 @@ import { connectRouter } from 'connected-react-router';
 import modal from './modalReducer';
 import httpHandler from './HTTPHandlerReducer';
 import message from './messageReducer';
-import auth from './authReducer';
+import { auth, keepUserLoggedIn, isAdminVerified } from './authReducer';
 import selected from './selectedReducer';
 
 export default history =>
@@ -14,5 +14,7 @@ export default history =>
     httpHandler,
     message,
     auth,
+    keepUserLoggedIn,
+    isAdminVerified,
     selected,
   });

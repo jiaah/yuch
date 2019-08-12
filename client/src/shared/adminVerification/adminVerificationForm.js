@@ -2,11 +2,11 @@ import React from 'react';
 /* --- Components --- */
 import PasswordField from '../form/passwordField';
 import FormButton from '../form/formButton';
-import ConfirmMessage from './confirmMessage';
+import VerificationMessage from './verificationMessage';
 
-const AdminConfirmForm = ({ isSubmitting, confirmType }) => (
+const AdminVerificationForm = ({ isSubmitting, confirmType }) => (
   <div className="mh3 lh-3 mh-auto">
-    <ConfirmMessage type={confirmType} />
+    <VerificationMessage type={confirmType} />
     <div className="flex justify-center mt4">
       <PasswordField
         label="비밀번호"
@@ -27,4 +27,4 @@ const AdminConfirmForm = ({ isSubmitting, confirmType }) => (
   </div>
 );
 
-export default AdminConfirmForm;
+export default AdminVerificationForm;

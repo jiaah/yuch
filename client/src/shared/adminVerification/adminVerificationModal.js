@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import AdminConfirmContainer from './adminConfirm/adminConfirmContainer';
+import AdminVerificationContainer from './adminVerificationContainer';
 import Modal from '../modal';
 /* --- Actions --- */
 import { hideModal } from '../../actions/modalAction';
@@ -11,12 +11,12 @@ import { handleAdminVerificationStatus } from '../../actions/authAction';
 const AdminConfirmModal = ({
   show,
   isAdminVerified,
-  modalActions: { hideModal },
+  hideModal,
   handleAdminVerificationStatus,
   addFlashMessage,
 }) => {
   // 'isAdminVerified' is required to distinguish 'admin password check' modal and 'rate edit modal'.
-  const closeModalOnSuccess = async () => {
+  const handleAdminVerificationSuccess = async () => {
     if (!isAdminVerified) await handleAdminVerificationStatus();
     return hideModal();
   };
@@ -30,36 +30,30 @@ const AdminConfirmModal = ({
 
   useEffect(
     () => () => {
-      Promise.all([
-        show ? hideModal() : null,
-        isAdminVerified ? handleAdminVerificationStatus() : null,
-      ]);
+      Promise.all([show ? hideModal() : null]);
     },
     [],
   );
-
-  return (
-    <React.Fragment>
-      {show &&
-        !isAdminVerified && (
-          <Modal
-            title=""
-            handleClose={closeModal}
-            component={
-              <AdminConfirmContainer
-                handleButtonClick={closeModalOnSuccess}
-                confirmType="create"
-              />
-            }
+  if (show && !isAdminVerified) {
+    return (
+      <Modal
+        title=""
+        handleClose={closeModal}
+        component={
+          <AdminVerificationContainer
+            handleAdminVerificationSuccess={handleAdminVerificationSuccess}
+            confirmType="create"
           />
-        )}
-    </React.Fragment>
-  );
+        }
+      />
+    );
+  }
+  return null;
 };
 
 const mapStateToProps = state => ({
   show: state.modal.show,
-  isAdminVerified: state.auth.isAdminVerified,
+  isAdminVerified: state.isAdminVerified.isAdminVerified,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,13 +7,13 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Loader from '../../../shared/loader';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
-import Modal from '../../../shared/modal';
+import AdminVerificationModal from '../../../shared/adminVerification/adminVerificationModal';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import { handleAdminVerificationStatus } from '../../../actions/authAction';
 
 const EditRateModal = Loader({
   loader: () =>
@@ -21,33 +21,19 @@ const EditRateModal = Loader({
 });
 const RatesContainer = ({
   rateActions: { getCateringRates, updateReservedPrice },
+  modalActions: { showModal, hideModal },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
   },
+  handleAdminVerificationStatus,
   addFlashMessage,
+  isAdminVerified,
   selectedSearchItem,
   clickedUserData,
-  show,
-  modalActions: { showModal, hideModal },
 }) => {
   const [data, setData] = useState([]);
-  const [adminConfirmed, setAdminConfirmed] = useState(false);
-  const handleAdminConfirmed = () => {
-    setAdminConfirmed(true);
-    return hideModal();
-  };
-  const closeAdminCinfirmModal = async () => {
-    addFlashMessage(
-      'warning',
-      '중요한 데이터 보안을 위해 비밀번호 확인이 필요합니다.',
-    );
-    return hideModal();
-  };
-
-  // only renders mealprice data when admin user is confirmed
-  const dataToRender = adminConfirmed ? data : [];
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
@@ -60,12 +46,14 @@ const RatesContainer = ({
 
   useEffect(() => {
     fetchCateringRates();
-    // open admin password checking modal on page load
+    // opens the admin password checking modal on page load
     showModal();
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
+        // show ? hideModal() : null,
+        isAdminVerified ? handleAdminVerificationStatus() : null,
       ]);
   }, []);
 
@@ -82,6 +70,9 @@ const RatesContainer = ({
   };
 
   const renderAllUsers = () => resetSelectedItemValue();
+
+  // only renders mealprice data when admin user is confirmed
+  const dataToRender = isAdminVerified ? data : [];
 
   return (
     <div className="container w-90">
@@ -101,8 +92,8 @@ const RatesContainer = ({
         selectedSearchItem={selectedSearchItem}
         handleEditUserBtnClick={handleEditUserBtnClick}
       />
-      {show &&
-        adminConfirmed && (
+      {isAdminVerified &&
+        clickedUserData.length !== 0 && (
           <EditRateModal
             clickedUserData={clickedUserData}
             hideModal={hideModal}
@@ -112,19 +103,7 @@ const RatesContainer = ({
           />
         )}
       {/* admin password check */}
-      {show &&
-        !adminConfirmed && (
-          <Modal
-            title=""
-            handleClose={closeAdminCinfirmModal}
-            component={
-              <AdminConfirmContainer
-                handleButtonClick={handleAdminConfirmed}
-                confirmType="create"
-              />
-            }
-          />
-        )}
+      <AdminVerificationModal />
     </div>
   );
 };
@@ -132,7 +111,7 @@ const RatesContainer = ({
 const mapStateToProps = state => ({
   selectedSearchItem: state.selected.value,
   clickedUserData: state.selected.data,
-  show: state.modal.show,
+  isAdminVerified: state.isAdminVerified.isAdminVerified,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -141,6 +120,8 @@ const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  handleAdminVerificationStatus: () =>
+    dispatch(handleAdminVerificationStatus()),
 });
 
 export default connect(

@@ -12,7 +12,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 export const Login = ({
   history,
   // states
-  keepLoggedIn,
+  keepUserLoggedIn,
   userData,
   // actions
   userLogin,
@@ -37,7 +37,7 @@ export const Login = ({
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
-    await saveUserToken(res, keepLoggedIn);
+    await saveUserToken(res, keepUserLoggedIn);
     await resetForm({});
     await setSubmitting(false);
     return history.push('/');
@@ -46,7 +46,7 @@ export const Login = ({
   return (
     <LoginForm
       keepMeLoggedIn={keepMeLoggedIn}
-      keepLoggedIn={keepLoggedIn}
+      keepUserLoggedIn={keepUserLoggedIn}
       userData={userData}
       handleSubmit={handleSubmit}
       loginValidation={loginValidation}
@@ -55,7 +55,7 @@ export const Login = ({
 };
 
 const mapStateToProps = state => ({
-  keepLoggedIn: state.auth.keepLoggedIn,
+  keepUserLoggedIn: state.keepUserLoggedIn.keepUserLoggedIn,
   userData: state.httpHandler.data,
 });
 const mapDispatchToProps = dispatch => ({

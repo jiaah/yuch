@@ -2,29 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
-import AdminConfirmForm from './adminConfirmForm';
+import AdminVerificationForm from './adminVerificationForm';
 import { passwordValidation } from '../../components/formValidation';
 /* --- Actions --- */
-import { confirmAdminUser } from '../../actions/authAction';
+import { verifyAdminUser } from '../../actions/authAction';
 import { addFlashMessage } from '../../actions/messageAction';
 
-const AdminConfirmContainer = ({
+const AdminVerificationContainer = ({
   // actions
-  confirmAdminUser,
+  verifyAdminUser,
   addFlashMessage,
   // props passed from a parent component
-  handleButtonClick,
+  handleAdminVerificationSuccess,
   confirmType,
 }) => {
   const values = { password: '' };
 
-  const handleConfirm = async (values, { setSubmitting, resetForm }) => {
+  const handleVerification = async (values, { setSubmitting, resetForm }) => {
     const { password } = values;
 
-    const res = await confirmAdminUser(password);
+    const res = await verifyAdminUser(password);
     if (!res.error) {
       await Promise.all([resetForm({}), setSubmitting(false)]);
-      return handleButtonClick();
+      return handleAdminVerificationSuccess();
     }
     addFlashMessage('error', `비밀번호를 확인해주세요.`);
     return setSubmitting(false);
@@ -35,17 +35,17 @@ const AdminConfirmContainer = ({
       initialValues={values}
       render={props => (
         <Form>
-          <AdminConfirmForm {...props} confirmType={confirmType} />
+          <AdminVerificationForm {...props} confirmType={confirmType} />
         </Form>
       )}
-      onSubmit={handleConfirm}
+      onSubmit={handleVerification}
       validationSchema={passwordValidation}
     />
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  confirmAdminUser: password => dispatch(confirmAdminUser(password)),
+  verifyAdminUser: password => dispatch(verifyAdminUser(password)),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });
@@ -53,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(AdminConfirmContainer);
+)(AdminVerificationContainer);

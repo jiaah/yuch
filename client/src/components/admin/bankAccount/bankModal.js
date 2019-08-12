@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import Loader from '../../../shared/loader';
-import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
+import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const CreateBankFormBox = Loader({
   loader: () =>
@@ -32,6 +32,8 @@ const BankModal = ({
   deleteBankAccount,
   addFlashMessage,
   bankAccount,
+  handleAdminVerificationStatus,
+  isAdminVerified,
 }) => {
   const title =
     clickedBtn === 'edit'
@@ -40,13 +42,17 @@ const BankModal = ({
         ? '은행계좌 등록'
         : null;
 
-  const [adminConfirmed, setAdminConfirmed] = useState(false);
-  const handleAdminConfirmed = () => setAdminConfirmed(true);
+  const handleAdminVerificationSuccess = () => {
+    if (!isAdminVerified) handleAdminVerificationStatus();
+  };
 
   const handleCloseModal = async () => {
     await Promise.all([
       clickedUserData.length !== 0 ? resetClickedItemData() : null,
       selectedSearchItem !== null ? resetSelectedItemValue() : null,
+      // makes sure that admin user has to verify itself every single change regarding to bank account
+      // bank account info is considered as a highly sensitive data.
+      isAdminVerified ? handleAdminVerificationStatus() : null,
     ]);
     return hideModal();
   };
@@ -62,13 +68,15 @@ const BankModal = ({
           <React.Fragment>
             {clickedBtn !== null &&
               clickedBtn !== 'delete' &&
-              !adminConfirmed && (
-                <AdminConfirmContainer
-                  handleButtonClick={handleAdminConfirmed}
+              !isAdminVerified && (
+                <AdminVerificationContainer
+                  handleAdminVerificationSuccess={
+                    handleAdminVerificationSuccess
+                  }
                   confirmType={clickedBtn}
                 />
               )}
-            {adminConfirmed ? (
+            {isAdminVerified ? (
               clickedBtn === 'edit' ? (
                 <EditBankFormBox
                   bankAccountValidation={bankAccountValidation}

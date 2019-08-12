@@ -18,6 +18,7 @@ import * as modalActions from '../../../actions/modalAction';
 import * as bankActions from '../../../actions/bankAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import { handleAdminVerificationStatus } from '../../../actions/authAction';
 
 const BankModal = Loader({
   loader: () => import('./bankModal' /* webpackChunkName: 'BankModal' */),
@@ -37,9 +38,11 @@ const BankAccountContainer = ({
     saveSelectedItemValue,
     resetSelectedItemValue,
   },
+  handleAdminVerificationStatus,
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
+  isAdminVerified,
 }) => {
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -123,6 +126,8 @@ const BankAccountContainer = ({
           addFlashMessage={addFlashMessage}
           resetSelectedItemValue={resetSelectedItemValue}
           bankAccount={bankAccount}
+          handleAdminVerificationStatus={handleAdminVerificationStatus}
+          isAdminVerified={isAdminVerified}
         />
       )}
     </div>
@@ -132,6 +137,7 @@ const BankAccountContainer = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
+  isAdminVerified: state.isAdminVerified.isAdminVerified,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -140,6 +146,8 @@ const mapDispatchToProps = dispatch => ({
   selectedActions: bindActionCreators(selectedActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  handleAdminVerificationStatus: () =>
+    dispatch(handleAdminVerificationStatus()),
 });
 
 export default connect(

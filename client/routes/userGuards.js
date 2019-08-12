@@ -7,15 +7,9 @@ import { clearStorage } from '../localStorage';
 const UserGuards = Component => {
   class LoginAuth extends React.Component {
     componentWillMount() {
-      const {
-        keepLoggedIn,
-        userLogout,
-        isLoggedIn,
-        isAdmin,
-        history,
-      } = this.props;
+      const { keepUserLoggedIn, isLoggedIn, isAdmin, history } = this.props;
       if (
-        (!keepLoggedIn && !sessionStorage.getItem('keepLoggedIn')) || // if user reopen the browser ( keepLoggedIn is false)
+        (!keepUserLoggedIn && !sessionStorage.getItem('keepUserLoggedIn')) || // if user reopen the browser ( keepUserLoggedIn is false)
         !isLoggedIn || // if user is not logged in
         isAdmin // if logged in user is admin
       ) {
@@ -31,7 +25,7 @@ const UserGuards = Component => {
   }
 
   const mapPropsToState = state => ({
-    keepLoggedIn: state.auth.keepLoggedIn,
+    keepUserLoggedIn: state.keepUserLoggedIn.keepUserLoggedIn,
     isLoggedIn: state.auth.isLoggedIn,
     isAdmin: state.auth.isAdmin,
   });

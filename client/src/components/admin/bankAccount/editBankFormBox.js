@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import BankForm from './bankForm';
-import AdminConfirmContainer from '../../../shared/adminConfirm/adminConfirmContainer';
 
 const EditBankFormBox = ({
   bankAccountValidation,
@@ -11,8 +10,6 @@ const EditBankFormBox = ({
   addFlashMessage,
   clickedUserData,
 }) => {
-  const [confirmMsg, setConfirmMesg] = useState(true);
-  const checkIfUserIsAdmin = () => setConfirmMesg(false);
   const handleEditBankAccount = async (
     values,
     { setSubmitting, resetForm },
