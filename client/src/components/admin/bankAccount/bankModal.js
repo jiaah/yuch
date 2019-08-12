@@ -21,9 +21,14 @@ const DeleteBankFormBox = Loader({
 
 const BankModal = ({
   bankAccountValidation,
+  // local states
   clickedBtn,
+  bankAccount,
+  // global states
   clickedUserData,
   selectedSearchItem,
+  isAdminVerified,
+  // actions
   hideModal,
   resetClickedItemData,
   resetSelectedItemValue,
@@ -31,9 +36,7 @@ const BankModal = ({
   editBankAccount,
   deleteBankAccount,
   addFlashMessage,
-  bankAccount,
   handleAdminVerificationStatus,
-  isAdminVerified,
 }) => {
   const title =
     clickedBtn === 'edit'

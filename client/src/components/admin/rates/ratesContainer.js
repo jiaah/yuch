@@ -52,7 +52,6 @@ const RatesContainer = ({
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
-        // show ? hideModal() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
       ]);
   }, []);

@@ -22,10 +22,13 @@ const styles = () => ({
 
 const UserTable = ({
   classes: { tableWrapper, table },
-  handleEditUserBtnClick,
+  // local states
   users,
-  selectedSearchItem,
   bankAccount,
+  // global states
+  selectedSearchItem,
+  // fncs from parent component
+  handleEditUserBtnClick,
 }) => {
   // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');

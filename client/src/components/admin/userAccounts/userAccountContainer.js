@@ -63,7 +63,7 @@ const UserAccountContainer = ({
     };
   }, []);
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     if (clickedBtn === 'edit') {
       return Promise.all([resetClickedItemData(), hideModal()]);
     }
@@ -144,7 +144,7 @@ const UserAccountContainer = ({
       </div>
       {clickedBtn === 'create' ? (
         <CreateUserModal
-          handleCloseModal={closeModal}
+          handleCloseModal={handleCloseModal}
           createUser={createUser}
           addFlashMessage={addFlashMessage}
           selectedSearchItem={selectedSearchItem}
@@ -153,7 +153,7 @@ const UserAccountContainer = ({
         />
       ) : clickedBtn === 'edit' ? (
         <EditUserModal
-          handleCloseModal={closeModal}
+          handleCloseModal={handleCloseModal}
           editUser={editUser}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData[0]}

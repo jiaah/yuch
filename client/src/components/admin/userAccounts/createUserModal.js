@@ -6,12 +6,16 @@ import Modal from '../../../shared/modal';
 import { addUserAccountValidation } from '../../formValidation';
 
 const UserAccountModal = ({
+  // local states
+  bankAccount,
+  // global states
+  selectedSearchItem,
+  // actions
   createUser,
   addFlashMessage,
-  selectedSearchItem,
   resetSelectedItemValue,
+  // fncs from parent component
   handleCloseModal,
-  bankAccount,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {

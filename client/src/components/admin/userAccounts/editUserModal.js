@@ -18,13 +18,15 @@ const DeleteUser = Loader({
 });
 
 const EditUserModal = ({
+  // global states
   clickedUserData,
+  // actions
   editUser,
   addFlashMessage,
   resetPassword,
   deleteUser,
+  // fncs from parent component
   handleCloseModal,
-  bankAccount,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);

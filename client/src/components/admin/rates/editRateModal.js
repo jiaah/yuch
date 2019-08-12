@@ -7,7 +7,9 @@ import { thisMonth, nextMonth, inTwoMonths } from '../../../shared/moment';
 import { reservePriceValidation } from '../../formValidation';
 
 const EditRateModal = ({
+  // global states
   clickedUserData,
+  // actions
   hideModal,
   resetClickedItemData,
   updateReservedPrice,

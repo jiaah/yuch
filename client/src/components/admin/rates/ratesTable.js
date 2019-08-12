@@ -17,11 +17,14 @@ const styles = () => ({
 
 const RatesTable = ({
   classes: { tableWrapper, table },
+  // local states
   order,
   orderBy,
   sortedData,
-  handleRequestSort,
+  // global states
   selectedSearchItem,
+  // fncs from parent component
+  handleRequestSort,
   handleEditUserBtnClick,
 }) => {
   // selected row
