@@ -13,6 +13,7 @@ const IconButton = ({ handleClick, name, width, height, viewBox, color }) => {
 
   return (
     <button
+      aria-label={name}
       type="button"
       style={{
         border: 'none',

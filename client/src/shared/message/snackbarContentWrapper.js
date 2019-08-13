@@ -63,6 +63,7 @@ const SnackbarContentWrapper = ({ classes, message, variant, onClose }) => {
       }
       action={[
         <IconButton
+          key="close"
           name="close"
           width="20"
           height="20"
