@@ -24,7 +24,7 @@ const config = {
         test: /\.js(\?.*)?$/i,
         exclude: /node_modules/,
         terserOptions: {
-          ecma: 6,
+          ecma: 5,
           compress: true,
           output: {
             comments: false,

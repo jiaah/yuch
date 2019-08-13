@@ -7,8 +7,9 @@ module.exports = {
       {
         useBuiltIns: 'usage',
         targets: {
-          browsers: ['last 2 versions', 'safari >= 7'],
+          browsers: ['last 2 versions', 'ie >= 11'],
           node: 'current',
+          uglify: true,
         },
         loose: true,
         modules: isTest ? 'commonjs' : false,

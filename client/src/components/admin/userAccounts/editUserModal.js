@@ -18,6 +18,8 @@ const DeleteUser = Loader({
 });
 
 const EditUserModal = ({
+  // local states
+  bankAccount,
   // global states
   clickedUserData,
   // actions
