@@ -132,3 +132,29 @@ export const ratesPageInfoB = (
     &#8201; 에서 할 수 있습니다&#46;
   </React.Fragment>
 );
+
+export const createBankAccountMsg = (
+  <div className="mb3">
+    <p className="mb3">
+      계좌를&#8201;
+      <span className="c-point2">5개 이상</span> 등록할 수 없습니다.
+    </p>
+    <p>
+      등록한 계좌 중 사용하지 않는 계좌를 삭제하거나
+      <span className="c-point2">&#8201;수정을 해주세요</span>.
+    </p>
+  </div>
+);
+
+export const deleteBankAccountMsg = (
+  <div className="mb3">
+    <p className="mb3">
+      계좌가 <span className="c-point2">최소한 하나</span>는 등록되어있어야
+      합니다.
+    </p>
+    <p>
+      변경을 원하신다면, 새로운 계좌를 등록하거나
+      <span className="c-point2">&#8201;수정을 해주세요</span>.
+    </p>
+  </div>
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 /* --- Components --- */
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
+import { deleteBankAccountMsg } from '../../../data/message';
 
 const DeleteBankFormBox = ({
   deleteBankAccount,
@@ -24,16 +25,7 @@ const DeleteBankFormBox = ({
   return (
     <React.Fragment>
       {bankAccount.length < 2 ? (
-        <div className="mb3">
-          <p className="mb3">
-            계좌가 <span className="c-point2">최소한 하나</span>는
-            등록되어있어야 합니다.
-          </p>
-          <p>
-            변경을 원하신다면, 새로운 계좌를 등록하거나
-            <span className="c-point2">&#8201;수정을 해주세요</span>.
-          </p>
-        </div>
+        <React.Fragment>{deleteBankAccountMsg}</React.Fragment>
       ) : (
         <AdminVerificationContainer
           handleButtonClick={handleDeleteUser}

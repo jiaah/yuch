@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import BankForm from './bankForm';
+import { createBankAccountMsg } from '../../../data/message';
 
 const CreateBankFormBox = ({
   bankAccountValidation,
@@ -31,16 +32,7 @@ const CreateBankFormBox = ({
   return (
     <React.Fragment>
       {bankAccount.length >= 4 ? (
-        <div className="mb3">
-          <p className="mb3">
-            계좌를&#8201;
-            <span className="c-point2">5개 이상</span> 등록할 수 없습니다.
-          </p>
-          <p>
-            등록한 계좌 중 사용하지 않는 계좌를 삭제하거나
-            <span className="c-point2">&#8201;수정을 해주세요</span>.
-          </p>
-        </div>
+        <React.Fragment>{createBankAccountMsg}</React.Fragment>
       ) : (
         <Formik
           initialValues={values}
