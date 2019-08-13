@@ -13,9 +13,17 @@ const Header = () => {
   const [arrowBtnTouched, setArrowBtnTouched] = useState(false);
   const [msg, setMsg] = useState(0);
 
+  let timer;
+  if (!arrowBtnTouched) {
+    timer = setTimeout(() => {
+      if (msg < messages.length - 1) return setMsg(msg + 1);
+      return setMsg(0);
+    }, 4000);
+  }
+
   useEffect(
     () => () => {
-      if (!arrowBtnTouched) setArrowBtnTouched(true);
+      clearTimeout(timer);
     },
     [],
   );
@@ -28,13 +36,6 @@ const Header = () => {
     if (msg !== messages.length - 1) setMsg(msg + 1);
     if (!arrowBtnTouched) setArrowBtnTouched(true);
   };
-
-  if (!arrowBtnTouched) {
-    setTimeout(() => {
-      if (msg < messages.length - 1) return setMsg(msg + 1);
-      return setMsg(0);
-    }, 4200);
-  }
 
   return (
     <header>
