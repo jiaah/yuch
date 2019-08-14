@@ -7,7 +7,7 @@ module.exports = {
       {
         useBuiltIns: 'usage',
         targets: {
-          browsers: ['last 2 versions', 'ie >= 11'],
+          browsers: ['>0.2%', 'not dead', 'ie >= 9'],
           node: 'current',
           uglify: true,
         },
