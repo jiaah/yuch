@@ -1,0 +1,15 @@
+.fourohfour {
+  background-color: $c-point2;
+  height: calc(100vh - 127px);
+  padding-left: 3em;
+  padding-right: 3em;
+
+  h2 {
+    font-size: 2.5em;
+    color: #ffffff;
+
+    @include for-desktop-up {
+      font-size: 4em;
+    }
+  }
+}

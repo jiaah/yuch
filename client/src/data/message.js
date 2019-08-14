@@ -9,7 +9,8 @@ export const headerMsgA = (
       <div className="header--no-msg f-en">NO MSG&#33;</div>
       <br />
       오늘도 열심히 일한 당신에게 <br />
-      당신만을 위한 <span className="point2">착한 가격의 집밥을</span>
+      당신만을 위한{' '}
+      <span className="header--text--point-color">착한 가격의 집밥을</span>
       선물하세요&#46;
     </h1>
   </div>
