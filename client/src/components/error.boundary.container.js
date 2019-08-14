@@ -28,7 +28,7 @@ class ErrorBoundary extends Component {
             <div className="notfound">
               <div className="notfound-404">
                 <h1>Oops!</h1>
-                <h2>시스템 오류입니다.</h2>
+                <h2>500 - 시스템 오류입니다.</h2>
               </div>
               <a href="/">Go TO Homepage</a>
             </div>
