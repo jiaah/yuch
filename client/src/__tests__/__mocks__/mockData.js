@@ -9,6 +9,7 @@ export const companyName = 'yuchung';
 export const isAdmin = true;
 export const email = 'yuchung@gmail.com';
 export const contactNo = '010-2929-3030';
+export const address = 'yuchung 1071-1';
 export const mealPrice = '8500';
 export const date = '2019-08-20';
 export const bankInfo = {
