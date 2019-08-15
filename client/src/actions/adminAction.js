@@ -1,18 +1,13 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 import { API_HOST } from '../../config';
-import { getToken } from '../../localStorage';
-
-const token = getToken();
 
 /* --- Admin --- */
 // admin account
 export const getAdmin = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getAdmin' });
   try {
-    const res = await axios.get(`${API_HOST}/admin/me/${id}`, {
-      headers: { authorization: token },
-    });
+    const res = await axios.get(`${API_HOST}/admin/me/${id}`);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,

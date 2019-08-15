@@ -27,6 +27,5 @@ module.exports = {
     '!./../src/components/reserve/textMaskCustom.js',
     '!./../src/components/home/map.js',
   ],
-  transformIgnorePatterns: '<rootDir>/node_modules',
   // setupTestFrameworkScriptFile: '<rootDir>/client/src/__tests__/setupTests',
 };

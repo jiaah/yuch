@@ -10,7 +10,7 @@ exports.getAdmin = (req, res) => {
     .first()
     .select('id', 'companyName', 'username', 'contactNo', 'email')
     .then(admin => res.status(200).json(admin))
-    .catch(err => res.status(500).json(err));
+    .catch(err => res.status(409).json(err));
 };
 
 exports.editAdminAccount = (req, res) => {
@@ -109,7 +109,7 @@ exports.createUser = (req, res) => {
         });
       })
       .then(() => res.status(200).json())
-      .catch(err => res.status(409).json(err)),
+      .catch(err => res.status(500).json(err)),
   );
 };
 
@@ -153,7 +153,7 @@ exports.editUserByAdmin = (req, res) => {
         }),
     )
     .then(() => res.status(200).json())
-    .catch(err => res.status(409).json(err));
+    .catch(err => res.status(500).json(err));
 };
 
 exports.deleteUser = (req, res) => {
