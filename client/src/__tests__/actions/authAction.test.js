@@ -93,6 +93,12 @@ describe('async auth request actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
+  it('calls handleAdminVerificationStatus action', () => {
+    store.dispatch(actions.handleAdminVerificationStatus());
+    const expectedActions = [{ type: types.IS_ADMIN_VERIFIED }];
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+
   it('calls verifyAdminUser action', done => {
     const API_URL = `${API_HOST}/auth/login/admin`;
     store.dispatch(actions.verifyAdminUser(password));
