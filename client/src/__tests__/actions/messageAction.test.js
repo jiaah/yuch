@@ -2,9 +2,7 @@ import moxios from 'moxios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/messageAction';
 import { mockStore } from '../setupTests';
-import { id, companyName, email, contactNo } from '../__mocks__/mockData';
 
-const clickedData = [{ id, companyName, contactNo, email }];
 const store = mockStore({});
 
 describe('async message request actions', () => {

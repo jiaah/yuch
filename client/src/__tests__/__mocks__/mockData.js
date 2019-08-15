@@ -10,6 +10,13 @@ export const isAdmin = true;
 export const email = 'yuchung@gmail.com';
 export const contactNo = '010-2929-3030';
 
+export const bankInfo = {
+  id: '8f5af680-973e-11e4-ad43-a13a6',
+  bankname: 'RBC',
+  accountHolder: 'yuchung',
+  accountNo: '010-2929-3030',
+};
+
 export const httpInitState = {
   api: '',
   isLoading: false,
