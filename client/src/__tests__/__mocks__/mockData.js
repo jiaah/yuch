@@ -9,7 +9,8 @@ export const companyName = 'yuchung';
 export const isAdmin = true;
 export const email = 'yuchung@gmail.com';
 export const contactNo = '010-2929-3030';
-
+export const mealPrice = '8500';
+export const date = '2019-08-20';
 export const bankInfo = {
   id: '8f5af680-973e-11e4-ad43-a13a6',
   bankname: 'RBC',
