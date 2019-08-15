@@ -7,7 +7,7 @@ import { id, companyName, email, contactNo } from '../__mocks__/mockData';
 const clickedData = [{ id, companyName, contactNo, email }];
 const store = mockStore({});
 
-describe('async modal request actions', () => {
+describe('async selecte request actions', () => {
   beforeEach(() => {
     store.clearActions();
     moxios.install();

@@ -43,7 +43,6 @@ const UserAccountContainer = ({
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
-  console.log(clickedUserData);
   const fetchUsersData = async () => {
     const data = await getUsers();
     const { users, bankAccounts } = data;
