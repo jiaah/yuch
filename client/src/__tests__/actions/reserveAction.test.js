@@ -3,6 +3,7 @@ import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/reserveAction';
 import { mockStore } from '../setupTests';
 import { API_HOST } from '../../../config';
+import { reserveContents } from '../__mocks__/mockData';
 
 const store = mockStore({});
 
@@ -24,7 +25,7 @@ describe('async reserve request actions', () => {
 
   it('calls RESERVE_SUCCESS action type after successfully sending reserve request', done => {
     const API_URL = `${API_HOST}/reserve`;
-    store.dispatch(actions.reserve());
+    store.dispatch(actions.reserve(reserveContents));
 
     moxios.stubRequest(API_URL, {
       status: 201,
