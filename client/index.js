@@ -1,5 +1,5 @@
 // IE old browser support
-import 'core-js/stable';
+import 'core-js';
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/ie11';
 import React from 'react';

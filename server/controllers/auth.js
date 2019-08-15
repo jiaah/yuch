@@ -92,7 +92,7 @@ exports.resetPassword = (req, res) => {
   const { id, newPassword } = req.body;
   setPassword(id, newPassword)
     .then(() => res.status(200).json())
-    .catch(err => res.status(409).json(err));
+    .catch(err => res.status(500).json(err));
 };
 
 // when user forgot password

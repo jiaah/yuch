@@ -5,10 +5,9 @@ module.exports = {
     [
       'env',
       {
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry',
         targets: {
-          browsers: ['>0.2%', 'not dead', 'ie >= 9'],
-          node: 'current',
+          browsers: ['last 1 version', '> 1%', 'not dead', 'ie >= 9'],
           uglify: true,
         },
         loose: true,
@@ -24,7 +23,6 @@ module.exports = {
     'transform-class-properties',
     'transform-object-rest-spread',
     'syntax-dynamic-import',
-    // 'dynamic-import-node',
     [
       'import',
       {
