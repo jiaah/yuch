@@ -12,18 +12,16 @@ const UserGuards = Component => {
       const {
         keepUserLoggedIn,
         isAdmin,
-        isLoggedIn,
         history,
         addFlashMessage,
         userLogout,
       } = this.props;
       if (
         (!keepUserLoggedIn && !sessionStorage.getItem('keepUserLoggedIn')) || // if user reopen the browser ( keepUserLoggedIn is false)
-        !isLoggedIn || // if user is not logged in
         isAdmin // if logged in user is admin
       ) {
-        await clearStorage();
         await userLogout();
+        await clearStorage();
         await addFlashMessage('warning', '로그인을 해주세요.');
         return history.push('/');
       }
@@ -36,7 +34,6 @@ const UserGuards = Component => {
 
   const mapPropsToState = state => ({
     keepUserLoggedIn: state.keepUserLoggedIn.keepUserLoggedIn,
-    isLoggedIn: state.auth.isLoggedIn,
     isAdmin: state.auth.isAdmin,
   });
 
