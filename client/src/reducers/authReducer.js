@@ -5,8 +5,6 @@ const initialState = {
   id: '',
   companyName: '',
   isAdmin: false,
-  keepUserLoggedIn: false,
-  isAdminVerified: false,
 };
 
 export const auth = (state = initialState, action) => {
@@ -32,7 +30,11 @@ export const auth = (state = initialState, action) => {
   }
 };
 
-export const keepUserLoggedIn = (state = initialState, action) => {
+// should not affect login reducer.
+export const keepUserLoggedIn = (
+  state = { keepUserLoggedIn: false },
+  action,
+) => {
   switch (action.type) {
     case types.KEEP_ME_LOGGED_IN:
       return {
@@ -44,7 +46,7 @@ export const keepUserLoggedIn = (state = initialState, action) => {
   }
 };
 
-export const isAdminVerified = (state = initialState, action) => {
+export const isAdminVerified = (state = { isAdminVerified: false }, action) => {
   switch (action.type) {
     case types.IS_ADMIN_VERIFIED:
       return {
