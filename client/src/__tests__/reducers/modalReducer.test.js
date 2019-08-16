@@ -7,20 +7,20 @@ const initialState = {
 
 test('should setup default reserve values', () => {
   const action = { type: '@@INIT' };
-  const state = modal(undefined, action);
-  expect(state).toEqual(initialState);
+  const newState = modal(initialState, action);
+  expect(newState).toEqual(initialState);
 });
 
 test('should set show status on showModal action', () => {
-  const state = modal(initialState, {
+  const newState = modal(initialState, {
     type: types.SHOW_MODAL,
   });
-  expect(state).toEqual({ ...initialState, show: true });
+  expect(newState).toEqual({ ...initialState, show: true });
 });
 
 test('should set hide status on hideModal action', () => {
-  const state = modal(initialState, {
+  const newState = modal(initialState, {
     type: types.HIDE_MODAL,
   });
-  expect(state).toEqual({ ...initialState, show: false });
+  expect(newState).toEqual({ ...initialState, show: false });
 });
