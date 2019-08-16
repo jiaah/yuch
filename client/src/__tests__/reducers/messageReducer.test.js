@@ -1,4 +1,4 @@
-import message from '../../reducers/messageReducer';
+import messageReducer from '../../reducers/messageReducer';
 import * as types from '../../actions/actionTypes';
 
 const initialState = {
@@ -9,19 +9,19 @@ const initialState = {
 
 test('should setup default state', () => {
   const action = { type: '@@INIT' };
-  const newState = message(initialState, action);
+  const newState = messageReducer(initialState, action);
   expect(newState).toEqual(initialState);
 });
 
 test('set a flash message', () => {
   const messageType = 'warning';
   const contents = '로그인을 해주세요.';
-
-  const newState = message(initialState, {
+  const action = {
     type: types.ADD_FLASH_MESSAGE,
     variant: messageType,
     message: contents,
-  });
+  };
+  const newState = messageReducer(initialState, action);
   expect(newState).toEqual({
     ...initialState,
     show: true,
@@ -31,9 +31,10 @@ test('set a flash message', () => {
 });
 
 test('remove a flash message', () => {
-  const newState = message(initialState, {
+  const action = {
     type: types.DELETE_FLASH_MESSAGE,
-  });
+  };
+  const newState = messageReducer(initialState, action);
   expect(newState).toEqual({
     ...initialState,
     show: false,
