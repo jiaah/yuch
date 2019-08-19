@@ -5,6 +5,7 @@ module.exports = {
     node: true,
     es6: true,
     jest: true,
+    'cypress/globals': true,
   },
   extends: [
     'plugin:flowtype/recommended',
@@ -21,7 +22,15 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['flowtype', 'jest', 'prettier', 'react', 'jsx-a11y', 'import'],
+  plugins: [
+    'flowtype',
+    'jest',
+    'cypress',
+    'prettier',
+    'react',
+    'jsx-a11y',
+    'import',
+  ],
   rules: {
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/label-has-for': 'off',

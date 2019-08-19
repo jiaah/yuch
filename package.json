@@ -32,6 +32,10 @@
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
     "test:client": "cross-env NODE_ENV=test jest --config ./client/jest.config.js --coverage --watch",
     "test:server": "jest --config ./server/jest.config.js --coverage --watch",
+    "cypress:open": "cypress open",
+    "test:e2e:dev": "npm-run-all --parallel dev:server cy:run",
+    "test:e2e": "npm-run-all --parallel --race start cy:run",
+    "cy:run": "cypress run",
     "coverage": "jest -u --maxWorkers=2 --coverage",
     "webpack-analyse": "cross-env NODE_ENV=test webpack --profile --json > stats.json",
     "predeploy": "npm run build:prod",
@@ -53,7 +57,9 @@
       ".*/dist",
       ".*/node_modules",
       "./package.json",
-      "./package-lock.json"
+      "./package-lock.json",
+      ".*/fixtures",
+      "./cypress.json"
     ]
   },
   "repository": {
@@ -148,10 +154,13 @@
     "babel-register": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "brotli-webpack-plugin": "^1.0.0",
+    "cypress": "^3.4.1",
+    "cypress-testing-library": "^4.0.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-loader": "^2.1.0",
+    "eslint-plugin-cypress": "^2.6.1",
     "eslint-plugin-flow": "^2.29.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",

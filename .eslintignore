@@ -4,4 +4,4 @@ node_modules/
 flow-typed/
 coverage/
 static/
-
+cypress/fixtures/
