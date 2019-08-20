@@ -98,6 +98,7 @@ const routes = props => (
 setConfig({
   // set this flag to support SFC if patch is not landed
   pureSFC: true,
+  showReactDomPatchNotification: false,
 });
 
 const Routes =
