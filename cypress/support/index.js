@@ -17,6 +17,6 @@
 import './commands';
 import 'babel-register';
 import 'babel-runtime/regenerator';
-import 'cypress-testing-library/add-commands';
+import '@testing-library/cypress/add-commands';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

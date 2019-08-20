@@ -9,7 +9,7 @@ import {
   queryByAttribute,
   waitForElement,
   wait,
-} from 'react-testing-library';
+} from '@testing-library/react';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
