@@ -44,7 +44,7 @@ const styles = theme => ({
     marginRight: theme.spacing(1),
     width: 250,
     [theme.breakpoints.up('md')]: {
-      width: 604,
+      width: 570,
     },
   },
   // rate form : reservePrice

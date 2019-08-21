@@ -18,9 +18,15 @@ const styles = () => ({
 
 const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
   const [activeId, setActiveId] = useState(null);
-  const anchorRef = useRef(null);
-  const handleToggle = id => setActiveId(id);
-  const handleClose = () => setActiveId(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (ev, id) => {
+    setActiveId(id);
+    setAnchorEl(ev.currentTarget);
+  };
+  const handleClose = () => {
+    setActiveId(null);
+    setAnchorEl(null);
+  };
 
   return (
     <React.Fragment>
@@ -28,20 +34,18 @@ const ToggleMenuList = ({ navAdminList, navAdminItems, classes }) => {
         {navAdminList.map(e => (
           <div key={e.id}>
             <Button
-              ref={anchorRef}
               aria-owns={activeId === e.id ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={() => handleToggle(e.id)}
+              aria-haspopup={activeId === e.id ? 'true' : 'false'}
+              onClick={ev => handleClick(ev, e.id)}
               className="nav-menu--btn"
             >
               {e.name}
             </Button>
             {activeId === e.id && (
               <ToggleMenuItems
-                listId={e.id}
                 activeId={activeId}
+                anchorEl={anchorEl}
                 handleClose={handleClose}
-                anchorRef={anchorRef}
                 items={navAdminItems[e.id]}
               />
             )}

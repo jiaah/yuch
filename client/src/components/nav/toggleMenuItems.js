@@ -7,20 +7,12 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const ToggleMenuItems = ({
-  listId,
-  activeId,
-  handleClose,
-  anchorRef,
-  items,
-}) => {
-  const isOpen = activeId === listId;
+const ToggleMenuItems = ({ activeId, anchorEl, handleClose, items }) => {
   const leftSideMenu = activeId === 4 ? 'rightSideMenu' : '';
-
   return (
     <Popper
-      open={isOpen}
-      anchorEl={anchorRef.current}
+      open={Boolean(anchorEl)}
+      anchorEl={anchorEl}
       keepMounted
       transition
       disablePortal
@@ -42,7 +34,7 @@ const ToggleMenuItems = ({
                     replace
                     key={e.id}
                     to={e.to}
-                    className="anchor td-none c-text1"
+                    className="anchor td-none c-text"
                   >
                     <MenuItem
                       className="toggle-menu--item"
