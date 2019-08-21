@@ -13,7 +13,7 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 800 },
+  table: { minWidth: 470 },
 });
 
 const BankTable = ({

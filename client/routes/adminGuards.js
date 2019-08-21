@@ -11,8 +11,7 @@ import { addFlashMessage } from '../src/actions/messageAction';
 
 const AdminGuards = Component => {
   class LoginAuth extends React.Component {
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillMount = async () => {
+    componentDidMount = async () => {
       const {
         keepUserLoggedIn,
         isAdmin,

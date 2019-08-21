@@ -74,7 +74,8 @@
   },
   "homepage": "https://yu-chung.com/",
   "dependencies": {
-    "@material-ui/core": "^3.1.2",
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/styles": "^4.3.0",
     "@sendgrid/mail": "^6.3.1",
     "autoprefixer": "^9.1.1",
     "axios": "^0.18.0",

@@ -1,4 +1,4 @@
-/* Catering rates */
+/* Catering Rates */
 .paper-rates {
   @include for-big-desktop-up {
     display: flex;
@@ -25,5 +25,17 @@
   @include for-big-desktop-up {
     margin-left: 2em;
     margin-top: 9px;
+  }
+}
+
+/* Bank Account */
+.bank--container {
+  margin: 3em auto;
+  text-align: center;
+  width: 90vw;
+
+  @include for-desktop-up {
+    width: 60vw;
+    max-width: 1100px;
   }
 }

@@ -26,7 +26,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.warning.main,
   },
   container: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     borderRadius: '5px',
   },
   messageBox: {

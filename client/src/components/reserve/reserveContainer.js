@@ -20,7 +20,7 @@ const Form = Loader({
 const styles = theme => ({
   bigButton: {
     color: '#ffffff',
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     width: '9em',
     paddingTop: '5px',
     paddingBottom: '5px',

@@ -33,28 +33,24 @@ const BankTableRow = ({
       selected={selected === row.id}
     >
       <TableCell padding="checkbox">
-        <IconButton
-          name="edit"
-          width="19"
-          height="19"
-          viewBox="0 0 24 24"
-          handleClick={() => handleEditBtnClick(row.id)}
-        />
-        <IconButton
-          name="delete"
-          width="19"
-          height="19"
-          viewBox="0 0 24 24"
-          handleClick={() => handleDeleteBtnClick(row.id)}
-        />
+        <div className="flex flex-row-m">
+          <IconButton
+            name="edit"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={() => handleEditBtnClick(row.id)}
+          />
+          <IconButton
+            name="delete"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={() => handleDeleteBtnClick(row.id)}
+          />
+        </div>
       </TableCell>
-      <TableCell
-        component="th"
-        id={labelId}
-        scope="row"
-        padding="none"
-        className={resize}
-      >
+      <TableCell component="th" id={labelId} scope="row" className={resize}>
         {row.accountHolder}
       </TableCell>
       <TableCell align="right" className={resize}>
