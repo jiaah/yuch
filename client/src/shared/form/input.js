@@ -119,8 +119,7 @@ const Input = ({
         className={classes[styleName]}
         helperText={isTouched && errorMessage}
         error={isTouched && Boolean(errorMessage)}
-        data-testid={name}
-        tabIndex={name}
+        inputProps={{ 'data-testid': name, tabIndex: name }}
       />
     </React.Fragment>
   );
