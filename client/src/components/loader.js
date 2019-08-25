@@ -1,7 +1,6 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-
-const Loading = () => import('./loading' /* webpackChunkName: 'Spinner' */);
+import Loading from './loading';
 
 const MessageBox = ({ props, msg }) => (
   <div className="error--container">
@@ -21,12 +20,10 @@ const MessageBox = ({ props, msg }) => (
 
 const isLoading = props => {
   if (props.error) {
-    const msg = 'Routing Error!';
-    return MessageBox(props, msg);
+    return MessageBox(props, 'Routing Error!');
   }
   if (props.timedOut) {
-    const msg = 'Taking a long time...';
-    return MessageBox(props, msg);
+    return MessageBox(props, 'Taking a long time...');
   }
   if (props.pastDelay) {
     return Loading();

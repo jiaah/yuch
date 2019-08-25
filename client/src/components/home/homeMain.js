@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Component --- */
-import LazyImage from '../../shared/lazyImage';
+import LazyImage from '../../helpers/lazyImage';
 import { admin } from '../../data/data';
 /* --- Images --- */
 import delivery from '../../../assets/img/delivery.jpg';

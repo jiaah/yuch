@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import EditUserForm from './editUserForm';
-import { nextMonth } from '../../../shared/moment';
+import { nextMonth } from '../../../helpers/moment';
 
 const DeleteUserFormBox = ({
   showSubModal,
