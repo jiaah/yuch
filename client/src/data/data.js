@@ -27,7 +27,7 @@ export const navClient = [
   {
     id: 1,
     name: '금일식수',
-    to: '/user/catering/dd',
+    to: '/user/catering',
     className: 'c-text',
   },
   {

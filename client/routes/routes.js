@@ -51,6 +51,11 @@ const UserAccount = Loader({
     import('../src/components/users/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
+const UserDailyCatering = Loader({
+  loader: () =>
+    import('../src/components/users/catering/cateringContainer' /* webpackChunkName: 'UserAccount' */),
+});
+
 const NoMatch = Loader({
   loader: () =>
     import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
@@ -88,6 +93,11 @@ const routes = props => (
         exact
         path="/user/account/me"
         component={UserGuards(UserAccount)}
+      />
+      <Route
+        exact
+        path="/user/catering"
+        component={UserGuards(UserDailyCatering)}
       />
       <Route component={NoMatch} />
     </Switch>

@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-// moment.locale('kr');
-
 export const today = moment().format('YYYY-MM-DD');
 export const todayInKorean = moment().format('YYYY 년 MM 월 DD 일');
 export const dateInKorean = moment().format('MM 월 DD 일 (ddd)');

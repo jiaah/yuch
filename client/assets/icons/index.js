@@ -26,6 +26,8 @@ import VisibilityOff from './visibilityOff';
 import Address from './address';
 import ArrowRight from './arrowRight';
 import ArrowLeft from './arrowLeft';
+import ArrowBack from './arrowBack';
+import ArrowForward from './arrowForward';
 
 const Icon = props => {
   switch (props.name) {
@@ -79,6 +81,10 @@ const Icon = props => {
       return <ArrowRight {...props} />;
     case 'arrowLeft':
       return <ArrowLeft {...props} />;
+    case 'arrowBack':
+      return <ArrowBack {...props} />;
+    case 'arrowForward':
+      return <ArrowForward {...props} />;
     default:
       return <div />;
   }
