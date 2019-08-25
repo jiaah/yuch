@@ -4,7 +4,7 @@ import { hot, setConfig } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 /* --- Components --- */
 import App from '../app';
-import Loader from '../src/shared/loader';
+import Loader from '../src/components/loader';
 /* --- Routes --- */
 import UserGuards from './userGuards';
 import AdminGuards from './adminGuards';

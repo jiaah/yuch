@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Component --- */
-import Loader from '../../shared/loader';
+import Loader from '../loader';
 
 const Map = Loader({
   loader: () => import('./map' /* webpackChunkName: 'Map' */),

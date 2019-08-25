@@ -1,7 +1,7 @@
 import React from 'react';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
-import Loader from '../../../shared/loader';
+import Loader from '../../loader';
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const CreateBankFormBox = Loader({

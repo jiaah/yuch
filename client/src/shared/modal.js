@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 /* --- Components --- */
 import IconButton from './form/iconButton';
-import Loader from './loader';
+import Loader from '../components/loader';
 
 const Modal = Loader({
   loader: () =>

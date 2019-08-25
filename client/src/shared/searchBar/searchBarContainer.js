@@ -5,7 +5,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
-import Loader from '../loader';
+import Loader from '../../components/loader';
 /* --- Actions --- */
 import { saveSelectedItemValue } from '../../actions/selectedAction';
 

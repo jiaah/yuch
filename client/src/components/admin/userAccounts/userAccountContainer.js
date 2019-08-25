@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import Loader from '../../../shared/loader';
+import Loader from '../../loader';
 import UserTable from './userTable';
 import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';

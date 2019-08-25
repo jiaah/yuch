@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
-import Loader from '../../../shared/loader';
+import Loader from '../../loader';
 import BankTable from './bankTable';
 import { bankAccountTableHeadColumns } from '../../../data/data';
 import {

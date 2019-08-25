@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import RatesPaper from './ratesPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import Loader from '../../../shared/loader';
+import Loader from '../../loader';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import AdminVerificationModal from '../../../shared/adminVerification/adminVerificationModal';

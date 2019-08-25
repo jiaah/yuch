@@ -120,7 +120,7 @@ const Input = ({
         helperText={isTouched && errorMessage}
         error={isTouched && Boolean(errorMessage)}
         data-testid={name}
-        tabindex={name}
+        tabIndex={name}
       />
     </React.Fragment>
   );

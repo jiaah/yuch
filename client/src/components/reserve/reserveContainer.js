@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import compose from 'recompose/compose';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import Loader from '../../shared/loader';
+import Loader from '../loader';
 import * as moment from '../../shared/moment';
 import ReserveMessage from './reserveMessage';
 import Modal from '../../shared/modal';

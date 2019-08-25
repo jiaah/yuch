@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 /* --- Components --- */
-import Loader from '../../../shared/loader';
+import Loader from '../../loader';
 import {
   editUserAccountValidation,
   resetPasswordValidation,
