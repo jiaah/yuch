@@ -52,7 +52,6 @@
   "lint-staged": {
     "linters": {
       "**/*.{js,jsx,json}": [
-        "eslint --fix",
         "prettier --parser flow --write",
         "git add"
       ],
