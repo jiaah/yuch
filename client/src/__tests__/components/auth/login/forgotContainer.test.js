@@ -1,13 +1,5 @@
-import { MemoryRouter } from 'react-router-dom';
 import { ForgotContainer } from '../../../../components/auth/login/forgotContainer';
-import React, {
-  render,
-  cleanup,
-  fireEvent,
-  queryByAttribute,
-  wait,
-} from '../../../setupTests';
-import * as data from '../../../__mocks__/mockData';
+import React, { render, cleanup } from '../../../setupTests';
 
 afterEach(cleanup);
 

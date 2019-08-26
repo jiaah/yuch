@@ -26,7 +26,6 @@ export const ForgotContainer = ({
 }) => {
   // 인증방법 radio buttons
   const [selectedValue, setSelectedValue] = useState('contactNo');
-
   const handleSelectRadioButton = e => setSelectedValue(e.target.value);
 
   const parsed = queryString.parse(location.search);

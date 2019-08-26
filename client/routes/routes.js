@@ -61,9 +61,9 @@ const NoMatch = Loader({
     import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
 });
 
-const routes = props => (
+const routes = () => (
   <div>
-    <App history={props.history} />
+    <App />
     <Switch>
       <Route exact path="/" component={Home} />
       <LoggedOutRoute path="/login" component={Login} />
