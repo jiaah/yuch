@@ -45,7 +45,6 @@ const PasswordForm = ({ isSubmitting }) => (
         </tbody>
       </table>
     </Paper>
-
     <FormButton
       typeValue="submit"
       variantValue="contained"

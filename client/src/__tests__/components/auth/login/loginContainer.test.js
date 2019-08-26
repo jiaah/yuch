@@ -1,9 +1,8 @@
-import { MemoryRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import { renderWithRouter } from '../../../util';
 import * as authAction from '../../../../actions/authAction';
 import { Login } from '../../../../components/auth/login/loginContainer';
 import React, {
-  render,
   cleanup,
   fireEvent,
   queryByAttribute,
@@ -30,8 +29,6 @@ const mockUserLogin = jest
   );
 
 const history = createMemoryHistory();
-history.push('/login');
-const location = history.location;
 
 const keepMeLoggedIn = jest.fn();
 const addFlashMessage = jest.fn();
@@ -47,22 +44,27 @@ const defaultProps = {
 
 const setUp = (props = {}) => {
   const setupProps = { ...defaultProps, ...props };
-  const component = render(
-    <MemoryRouter>
-      <Login {...setupProps} />
-    </MemoryRouter>,
-  );
-  const { container } = component;
+  const component = renderWithRouter(<Login {...setupProps} />, {
+    route: '/login',
+  });
+  const { container, history } = component;
   const getByName = queryByAttribute.bind(null, 'name');
   const getByType = queryByAttribute.bind(null, 'type');
   const usernameInput = getByName(container, 'username');
   const passwordInput = getByName(container, 'password');
   const submitButton = getByType(container, 'submit');
-  return { component, submitButton, usernameInput, passwordInput };
+  return {
+    component,
+    history,
+    submitButton,
+    usernameInput,
+    passwordInput,
+  };
 };
 
 it('redirects to homepage on login submit success', async () => {
   const { submitButton, usernameInput, passwordInput } = setUp();
+  const location = history.location;
 
   fireEvent.change(usernameInput, { target: { value: username } });
   fireEvent.change(passwordInput, { target: { value: password } });
@@ -74,24 +76,4 @@ it('redirects to homepage on login submit success', async () => {
 
   const unlisten = history.listen(expect(location.pathname).toMatch('/'));
   unlisten();
-});
-
-it('display error message on login submit failure', async () => {
-  const { submitButton, usernameInput, passwordInput } = setUp();
-
-  fireEvent.change(usernameInput, { target: { value: username } });
-  fireEvent.change(passwordInput, { target: { value: '-1' } });
-
-  fireEvent.click(submitButton);
-  await wait(() => {
-    expect(mockUserLogin).toHaveBeenCalledTimes(1);
-  });
-
-  const unlisten = history.listen(expect(location.pathname).toMatch('/login'));
-  unlisten();
-
-  // this test will not pass coz the flash message is rendered only temporarily.
-  // await waitForElement(() => getByTestId('error-test'), {
-  //   container,
-  // });
 });
