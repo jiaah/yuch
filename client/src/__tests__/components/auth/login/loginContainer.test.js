@@ -35,7 +35,6 @@ const addFlashMessage = jest.fn();
 
 const defaultProps = {
   history,
-  keepLoggedIn: false,
   userData: [],
   userLogin: mockUserLogin,
   addFlashMessage,
@@ -63,15 +62,24 @@ const setUp = (props = {}) => {
 };
 
 it('redirects to homepage on login submit success', async () => {
-  const { submitButton, usernameInput, passwordInput } = setUp();
+  const { submitButton, usernameInput, passwordInput } = setUp({
+    keepUserLoggedIn: false,
+  });
   const location = history.location;
 
   fireEvent.change(usernameInput, { target: { value: username } });
   fireEvent.change(passwordInput, { target: { value: password } });
 
+  expect(localStorage.getItem('token')).toBeNull();
+
   fireEvent.click(submitButton);
   await wait(() => {
     expect(mockUserLogin).toHaveBeenCalledTimes(1);
+  });
+
+  await wait(() => {
+    expect(localStorage.getItem('token')).not.toBeNull();
+    expect(sessionStorage.getItem('keepUserLoggedIn')).toBe('false');
   });
 
   const unlisten = history.listen(expect(location.pathname).toMatch('/'));

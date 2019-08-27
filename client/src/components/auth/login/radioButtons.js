@@ -23,6 +23,7 @@ const RadioButtons = ({ selectedValue, handleSelectRadioButton }) => (
       control={<Radio color="primary" />}
       label="이메일"
       labelPlacement="end"
+      data-testid="email-forgot"
     />
   </RadioGroup>
 );

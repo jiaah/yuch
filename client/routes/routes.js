@@ -28,7 +28,7 @@ const Reset = Loader({
 
 const UserAccountForAdmin = Loader({
   loader: () =>
-    import('../src/components/admin/userAccounts/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/admin/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
 const BankAccount = Loader({

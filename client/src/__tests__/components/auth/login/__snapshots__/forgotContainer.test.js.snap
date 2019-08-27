@@ -531,6 +531,7 @@ Object {
                         </label>
                         <label
                           class="MuiFormControlLabel-root"
+                          data-testid="email-forgot"
                         >
                           <span
                             aria-disabled="false"
@@ -773,6 +774,7 @@ Object {
                       </label>
                       <label
                         class="MuiFormControlLabel-root"
+                        data-testid="email-forgot"
                       >
                         <span
                           aria-disabled="false"
