@@ -11,7 +11,7 @@ const hotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.dev');
 const routes = require('./routes');
 
-const app = express();
+const app = require('./app');
 
 const isProd = process.env.NODE_ENV === 'production';
 const DIST_DIR = path.join(__dirname, '../', 'public/dist');

@@ -71,3 +71,7 @@ typings/
 
 # next.js build output
 .next
+
+# postgres data volume with docker
+postgres-data/*
+!postgres-data/README.md
