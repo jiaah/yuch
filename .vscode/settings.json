@@ -3,5 +3,12 @@
   "editor.rulers": [100],
   "editor.tabSize": 2,
   "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/packages": true,
+    "**/postgres-data": true
+  }
 }
