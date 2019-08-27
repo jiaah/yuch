@@ -31,6 +31,10 @@ module.exports = {
   production: {
     client: 'pg',
     connection: DATABASE_URL,
+    pool: {
+      min: 2,
+      max: 5,
+    },
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
     },
