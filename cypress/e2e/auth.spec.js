@@ -6,7 +6,7 @@ describe('login', () => {
     cy.contains('로그인').click();
   });
 
-  it.only('can visit login page & login submission failure', async () => {
+  it('can visit login page & login submission failure', async () => {
     const usernameText = 'yuch';
     const passwordText = 'yuch2009ung';
 
