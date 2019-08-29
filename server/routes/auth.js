@@ -25,5 +25,9 @@ module.exports = () => {
     authController.findUsernameWithContact,
   );
   router.post('/forgot/password', authController.forgotPassword);
+
+  /* --- Refresh Token --- */
+  router.post('/refresh', authController.refreshToken);
+
   return router;
 };

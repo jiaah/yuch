@@ -1,6 +1,8 @@
+const jwtDecode = require('jwt-decode');
 const knex = require('../database');
 const util = require('../lib/util');
 const sendEmail = require('../lib/send-email');
+const userService = require('../services/userService');
 
 /* --- Login --- */
 exports.loginUser = (req, res) => {
@@ -204,4 +206,21 @@ exports.forgotPassword = (req, res) => {
       res.status(409).json('Can not find user email');
       next(err);
     });
+};
+
+exports.refreshToken = async (req, res) => {
+  try {
+    const decodedToken = jwtDecode(req.headers.token);
+    const isValid = await userService.isValid(decodedToken.id);
+
+    if (!isValid) {
+      throw new Error('Unauthorized error');
+    }
+
+    const user = await userService.findOneById(decodedToken.id);
+    const token = await util.getRandomToken(user);
+    return res.status(200).json({ token });
+  } catch (err) {
+    res.status(401).json(err.message);
+  }
 };
