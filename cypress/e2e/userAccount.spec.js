@@ -1,15 +1,10 @@
 describe('user', () => {
   beforeEach(() => {});
   it('can visit the app', () => {
-    cy.login('user');
-    // cy.visit('/user/account');
-    cy.request({
-      url: '/api/admin/users',
-      method: 'GET',
-      // body: {
-      //   email: body.username,
-      //   password: body.password,
-      // },
+    cy.login('user').then(() => {
+      expect(window.localStorage.getItem('token')).to.exist;
+      cy.visit('/');
+      cy.contains('로그아웃');
     });
   });
 });

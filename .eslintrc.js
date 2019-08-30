@@ -89,6 +89,7 @@ module.exports = {
       files: ['*.spec.js'],
       rules: {
         'jest/valid-expect': 0,
+        'no-unused-expressions': 0,
       },
     },
   ],
