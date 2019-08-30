@@ -36,8 +36,8 @@ const UserAccountModal = ({
       dinnerQty: dinnerQtyValue,
       ...others,
     };
-
     const res = await createUser(userInfo);
+
     if (!res.error) {
       await Promise.all([
         resetForm({}),

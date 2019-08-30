@@ -59,6 +59,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           icon="email"
           styleName="textFieldC"
           placeholder="sleket12@hanmail.net"
+          required
         />
         <div className="flex justify-center">
           <FormikField
