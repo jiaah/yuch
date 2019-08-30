@@ -1,0 +1,32 @@
+## Refresh Token [/auth/refresh]
+
+
+### 토큰 갱신 [POST]
+
++ Request JSON Message
+
+    + Headers
+
+            token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...
+
+
++ Response 200 (application/json)
+
+    + Schema
+
+            {
+              token: JWT (JSON WEB TOKEN)
+            }
+
+    + Body
+
+            {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...",
+            }
+
++ Response 401 (text/plain)
+
+
+    + Body
+
+            Unauthorized error
