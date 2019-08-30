@@ -84,4 +84,12 @@ module.exports = {
     'react/prefer-stateless-function': 'warn',
     'prettier/prettier': 'warn',
   },
+  overrides: [
+    {
+      files: ['*.spec.js'],
+      rules: {
+        'jest/valid-expect': 0,
+      },
+    },
+  ],
 };
