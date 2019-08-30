@@ -208,19 +208,21 @@ exports.forgotPassword = (req, res) => {
     });
 };
 
-exports.refreshToken = async (req, res) => {
+exports.refreshToken = async (req, res, next) => {
   try {
     const decodedToken = jwtDecode(req.headers.token);
     const isValid = await userService.isValid(decodedToken.id);
 
     if (!isValid) {
-      throw new Error('Unauthorized error');
+      const error = new Error('Unauthorized error');
+      error.status = 401;
+      throw error;
     }
 
     const user = await userService.findOneById(decodedToken.id);
     const token = await util.getRandomToken(user);
     return res.status(200).json({ token });
   } catch (err) {
-    res.status(401).json(err.message);
+    next(err);
   }
 };

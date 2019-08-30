@@ -1,44 +1,17 @@
 /* eslint no-console: 0 */
-require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const webpack = require('webpack');
 const cors = require('cors');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.dev');
-const routes = require('./routes');
 
 const app = require('./app');
 
 const isProd = process.env.NODE_ENV === 'production';
 const DIST_DIR = path.join(__dirname, '../', 'public/dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
-const corsOptions = {
-  origin: 'https://yu-chung.com',
-  optionsSuccessStatus: 200,
-};
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PATCH', 'DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-app.use(cors(corsOptions));
-app.use(logger('dev'));
-// extract POST data from HTTP request
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  }),
-);
-
-// routes
-app.use('/api', routes);
 
 if (!isProd) {
   const compiler = webpack(config);
@@ -69,9 +42,11 @@ if (!isProd) {
   });
 } else {
   app.use(express.static(DIST_DIR));
-  app.get('*', cors(corsOptions), (req, res) => res.sendFile(HTML_FILE));
+  app.get('*', cors(app.get('corsOptions')), (req, res) =>
+    res.sendFile(HTML_FILE),
+  );
 
-  app.get('/', cors(corsOptions), (req, res) => {
+  app.get('/', cors(app.get('corsOptions')), (req, res) => {
     res.redirect('https://yu-chung.com');
   });
 }
