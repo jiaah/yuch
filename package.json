@@ -31,7 +31,7 @@
     "precommit": "lint-staged",
     "dev": "npm-run-all --parallel dev:*",
     "dev:client": "cross-env NODE_ENV=development webpack --config webpack.dev.js --watch",
-    "dev:server": "cross-env NODE_ENV=development nodemon --inspect --watch config --watch server ./bin/www",
+    "dev:server": "cross-env NODE_ENV=development nodemon --inspect --ignore '*.spec.js' --watch config --watch server ./bin/www",
     "prod:client": "cross-env NODE_ENV=production webpack --config=webpack.prod.js --watch",
     "build:prod": "cross-env NODE_ENV=production webpack --config=webpack.prod.js",
     "start": "cross-env NODE_ENV=production node ./bin/www",
@@ -48,7 +48,7 @@
     "webpack-analyse": "cross-env NODE_ENV=test webpack --profile --json > stats.json",
     "predeploy": "npm run build:prod",
     "deploy": "gh-pages -d public/dist",
-    "docs": "aglio --theme-template triple --theme-variables slate -i blueprint/main.apib -o blueprint/output/doc.html"
+    "docs": "npx aglio --theme-template triple --theme-variables slate -i blueprint/main.apib -o blueprint/output/doc.html"
   },
   "lint-staged": {
     "linters": {
@@ -85,7 +85,6 @@
     "@material-ui/core": "^4.3.2",
     "@material-ui/styles": "^4.3.0",
     "@sendgrid/mail": "^6.3.1",
-    "aglio": "^2.3.0",
     "autoprefixer": "^9.1.1",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
@@ -120,6 +119,7 @@
     "morgan": "^1.9.0",
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.3",
+    "objection": "^1.6.9",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "pg": "^7.12.1",
     "postcss": "^7.0.2",

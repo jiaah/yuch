@@ -1,13 +1,8 @@
-const knex = require('../database');
+const Users = require('../models/Users');
 
 exports.isValid = async id => {
-  const user = await knex('users')
-    .where({ id })
-    .first();
+  const user = await Users.query().findById(id);
   return !!user;
 };
 
-exports.findOneById = async id =>
-  knex('users')
-    .where({ id })
-    .first();
+exports.findOneById = async id => Users.query().findById(id);

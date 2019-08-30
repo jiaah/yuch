@@ -210,7 +210,8 @@ exports.forgotPassword = (req, res) => {
 
 exports.refreshToken = async (req, res, next) => {
   try {
-    const decodedToken = jwtDecode(req.headers.token);
+    const decodedToken = jwtDecode(req.headers.authorization);
+
     const isValid = await userService.isValid(decodedToken.id);
 
     if (!isValid) {
