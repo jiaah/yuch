@@ -3,12 +3,11 @@
 
 ### 토큰 갱신 [POST]
 
-+ Request JSON Message
++ Request with token
 
     + Headers
 
             Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...
-
 
 + Response 200 (application/json)
 
@@ -24,9 +23,20 @@
               "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...",
             }
 
-+ Response 401 (text/plain)
-
++ Response 401 (application/json)
 
     + Body
 
-            Unauthorized error
+            {
+              "message": "Unauthorized error",
+              "error": .....
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+              "message": "interal error message",
+              "error": .....
+            }
