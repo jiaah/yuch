@@ -60,7 +60,11 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               indent: 'postcss',
-              plugins: [autoprefixer()],
+              plugins: [
+                autoprefixer({
+                  browsers: ['last 1 versions', 'ie >= 11', '> 1%', 'not dead'],
+                }),
+              ],
               sourceMap: devMode,
             },
           },
