@@ -18,20 +18,6 @@ describe('login', () => {
       .type(passwordText)
       .should('have.value', passwordText);
     cy.get('button[type=submit]').click();
-
-    // cy.server();
-    // cy.route('POST', 'http://localhost:9080/auth/login', {
-    //   username: usernameText,
-    //   password: passwordText,
-    // });
-    // cy.request({
-    //   method: 'POST',
-    //   url: '/auth/login',
-    //   body: {
-    //     username: usernameText,
-    //     password: passwordText,
-    //   },
-    // });
     await cy.contains('계정').should('be.visible');
   });
 
@@ -46,23 +32,14 @@ describe('login', () => {
       .type(passwordText)
       .should('have.value', passwordText);
     cy.get('button[type=submit]').click();
-
-    cy.server();
-    cy.route('POST', '/auth/login', {
-      username: usernameText,
-      password: passwordText,
-    });
-
     cy.contains('아이디 또는 비밀번호 오류입니다.');
   });
 
   it('fails to access protected recource', () => {
-    cy.server();
-    cy.route({
-      url: '/admin/account/rates',
-      failOnStatusCode: false,
-    })
-      .its('status')
-      .should('equal', 500);
+    cy.visit('/user/account');
+    cy.contains('로그인을 해주세요.');
+
+    cy.visit('/admin/account');
+    cy.contains('로그인을 해주세요.');
   });
 });

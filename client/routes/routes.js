@@ -76,12 +76,12 @@ const routes = () => (
       />
       <Route
         exact
-        path="/admin/account/bankaccount"
+        path="/admin/account/bank"
         component={AdminGuards(BankAccount)}
       />
       <Route
         exact
-        path="/admin/account/me"
+        path="/admin/account"
         component={AdminGuards(AdminAccount)}
       />
       <Route
@@ -89,11 +89,7 @@ const routes = () => (
         path="/admin/account/rates"
         component={AdminGuards(CateringRates)}
       />
-      <Route
-        exact
-        path="/user/account/me"
-        component={UserGuards(UserAccount)}
-      />
+      <Route exact path="/user/account" component={UserGuards(UserAccount)} />
       <Route
         exact
         path="/user/catering"
