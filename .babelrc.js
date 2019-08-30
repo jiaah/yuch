@@ -8,6 +8,7 @@ module.exports = {
         useBuiltIns: 'entry',
         targets: {
           uglify: true,
+          node: 'current',
         },
         loose: true,
         modules: isTest ? 'commonjs' : false,
