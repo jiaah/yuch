@@ -5,7 +5,6 @@ const autoprefixer = require('autoprefixer');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
@@ -133,7 +132,6 @@ module.exports = {
       filename: devMode ? '[name].css' : '[name].[chunkhash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[chunkhash].css',
     }),
-    new CaseSensitivePathsPlugin(),
     new CopyWebpackPlugin([
       { from: `${__dirname}/static`, to: `${__dirname}/public/dist` },
     ]),

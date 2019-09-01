@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const baseConfig = require('./webpack.base');
 
 const config = {
@@ -38,6 +38,7 @@ const config = {
   },
   devtool: 'cheap-module-source-map',
   plugins: [
+    new CaseSensitivePathsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin(),
   ],
