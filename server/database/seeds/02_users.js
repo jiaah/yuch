@@ -15,6 +15,12 @@ const createFakeUser = () => ({
   businessType: 'catering',
 });
 
+const createUserMealPrice = user => ({
+  id: faker.random.uuid(),
+  userId: user.id,
+  mealPrice: faker.random.number(),
+});
+
 const {
   COMPANY_NAME,
   USERNAME,
@@ -24,43 +30,32 @@ const {
   IS_ADMIN,
 } = process.env;
 
-exports.seed = (knex, Promise) =>
-  knex('users')
-    .del()
-    .then(() => {
-      // WARNING !! DO NOT DELETE the initial Admin Account setup.
-      const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(PASSWORD, salt);
-      return Promise.join(
-        knex('users').insert({
-          companyName: COMPANY_NAME,
-          username: USERNAME,
-          password: hash,
-          contactNo: CONTACT_NO,
-          email: EMAIL,
-          isAdmin: IS_ADMIN,
-        }),
-      );
-    })
-    .then(() => {
-      const fakeUsers = [];
-      const desiredFakeUsers = 15;
-      for (let i = 0; i < desiredFakeUsers; i++) {
-        fakeUsers.push(createFakeUser());
-      }
-      return knex('users')
-        .insert(fakeUsers)
-        .returning('*');
-    })
-    .then(fakeUsers => {
-      const fakeMealPrices = [];
-      fakeUsers.forEach(user => {
-        const createUserMealPrice = () => ({
-          id: faker.random.uuid(),
-          userId: user.id,
-          mealPrice: faker.random.number(),
-        });
-        fakeMealPrices.push(createUserMealPrice());
-      });
-      return knex('meal_price').insert(fakeMealPrices);
-    });
+exports.seed = async knex => {
+  await knex('users').del();
+  await knex('meal_price').del();
+
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(PASSWORD, salt);
+
+  await knex('users').insert({
+    companyName: COMPANY_NAME,
+    username: USERNAME,
+    password: hash,
+    contactNo: CONTACT_NO,
+    email: EMAIL,
+    isAdmin: IS_ADMIN,
+  });
+
+  const fakeUsers = [];
+  const fakeMealPrices = [];
+  const desiredFakeUsers = 15;
+
+  for (let i = 0; i < desiredFakeUsers; i++) {
+    const tempUser = createFakeUser();
+    fakeUsers.push(tempUser);
+    fakeMealPrices.push(createUserMealPrice(tempUser));
+  }
+
+  await knex('users').insert(fakeUsers);
+  await knex('meal_price').insert(fakeMealPrices);
+};
