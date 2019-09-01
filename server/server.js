@@ -49,6 +49,12 @@ if (!isProd) {
   app.get('/', cors(app.get('corsOptions')), (req, res) => {
     res.redirect('https://yu-chung.com');
   });
+
+  // catch 404 and forward to error handler
+  app.use((req, res, next) =>
+    // const err = new Error('Not Found');
+    res.status(404).send({ message: `Route${req.url} Not found.` }),
+  );
 }
 
 module.exports = app;

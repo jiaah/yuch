@@ -36,12 +36,6 @@ app.use(
 // routes
 app.use('/api', routes);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) =>
-  // const err = new Error('Not Found');
-  res.status(404).send({ message: `Route${req.url} Not found.` }),
-);
-
 // production error handler (no stacktraces leaked to user)
 if (app.get('env') === 'production') {
   app.use((err, req, res, next) => {
