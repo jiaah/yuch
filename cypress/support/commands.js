@@ -1,35 +1,10 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
 Cypress.Commands.add('login', userType => {
+  cy.visit('/login');
   const types = {
     admin: {
-      username: 'yuchung',
+      username: 'yuch',
       companyName: 'yuchung',
-      password: 'yuchung12',
+      password: 'yuch2009ung',
       contactNo: '010-2020-3939',
       bankAccountId: 'd9a9e5c6-186e-412a-9307-93990ac1a0a5',
       email: 'yuchung@gmail.com',
@@ -51,12 +26,9 @@ Cypress.Commands.add('login', userType => {
   };
   // grab the user
   const userInfo = types[userType];
-
-  // create the user first in the DB
-  // return cy
-  //   .request('POST', '/api/admin/user/register', { userInfo })
-  //   .then(() => {});
-
+  cy.get(`[data-testid="username"]`).type(userInfo.username);
+  cy.get(`[data-testid="password"]`).type(userInfo.password);
+  cy.get('button[type=submit]').click();
   cy.request({
     url: '/api/auth/login',
     method: 'POST',
@@ -64,8 +36,10 @@ Cypress.Commands.add('login', userType => {
       username: userInfo.username,
       password: userInfo.password,
     },
-  }).then(({ body }) => {
-    window.localStorage.setItem('token', body.token);
-    window.sessionStorage.setItem('keepUserLoggedIn', false);
-  });
+  }).then(({ body }) =>
+    cy.window().then(win => {
+      win.localStorage.setItem('token', body.token);
+      win.sessionStorage.setItem('keepUserLoggedIn', false);
+    }),
+  );
 });
