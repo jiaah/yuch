@@ -38,10 +38,10 @@ const RatesContainer = ({
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
     if (res.error)
-      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     if (res.length === 0)
-      return addFlashMessage('info', '데이터에 저장된 업체정보가 없습니다.');
-    return setData(res);
+      addFlashMessage('info', '데이터에 저장된 업체정보가 없습니다.');
+    setData(res);
   };
 
   useEffect(() => {
@@ -87,6 +87,7 @@ const RatesContainer = ({
         />
       </div>
       <RatesPaper
+        data={data}
         users={dataToRender}
         selectedSearchItem={selectedSearchItem}
         handleEditUserBtnClick={handleEditUserBtnClick}
