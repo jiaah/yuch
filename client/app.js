@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
-import NavContainer from './src/components/nav/navContainer';
+import NavContainer from './src/components/navigation/navContainer';
 import Loader from './src/components/loader';
 import './styles/main.scss';
 

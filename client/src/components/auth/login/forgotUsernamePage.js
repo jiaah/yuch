@@ -50,7 +50,7 @@ const ForgotUsernamePage = ({
         {companyName}에 등록되어 있는 이메일주소 혹은 연락처를 입력해 주세요.
       </p>
       <p className="c-text-grey f-mini mb3">
-        이메일주소 혹은 연락처를 등록하지 않았거나, 기억이 나지 않으면&#8201;
+        비밀번호를 찾는데 어려움이 있으시면&#8201;
         {companyName}
         으로 문의 바랍니다.
       </p>

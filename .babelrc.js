@@ -7,8 +7,8 @@ module.exports = {
       {
         useBuiltIns: 'entry',
         targets: {
-          browsers: ['last 1 version', '> 1%', 'not dead', 'ie >= 11'],
           uglify: true,
+          node: 'current',
         },
         loose: true,
         modules: isTest ? 'commonjs' : false,

@@ -39,7 +39,7 @@ export const navClient = [
   {
     id: 3,
     name: '계정',
-    to: '/user/account/me',
+    to: '/user/account',
     className: 'c-text',
   },
 ];
@@ -114,12 +114,12 @@ export const navAdminItems = {
     {
       id: 13,
       name: `${admin.companyName} 계정`,
-      to: '/admin/account/me',
+      to: '/admin/account',
     },
     {
       id: 14,
       name: `${admin.companyName} 계좌`,
-      to: '/admin/account/bankaccount',
+      to: '/admin/account/bank',
     },
   ],
 };

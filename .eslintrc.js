@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    jest: true,
+    'jest/globals': true,
     'cypress/globals': true,
   },
   extends: [
@@ -84,4 +84,13 @@ module.exports = {
     'react/prefer-stateless-function': 'warn',
     'prettier/prettier': 'warn',
   },
+  overrides: [
+    {
+      files: ['*.spec.js'],
+      rules: {
+        'jest/valid-expect': 0,
+        'no-unused-expressions': 0,
+      },
+    },
+  ],
 };
