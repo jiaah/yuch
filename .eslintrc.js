@@ -90,6 +90,7 @@ module.exports = {
       rules: {
         'jest/valid-expect': 0,
         'no-unused-expressions': 0,
+        'no-focused-tests': 0,
       },
     },
   ],
