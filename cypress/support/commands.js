@@ -29,3 +29,12 @@ Cypress.Commands.add('login', userType => {
     }),
   );
 });
+
+Cypress.Commands.add(
+  'seedAndVisitBankAccountPage',
+  (seedData = 'fixture:bankAccounts') => {
+    cy.server();
+    cy.route('GET', '/api/admin/bankaccount', seedData);
+    cy.visit('/admin/account/bank');
+  },
+);

@@ -14,7 +14,7 @@ describe('forgot auth pages', () => {
     });
 
     it('renders a found username page from submit success', () => {
-      const contactNoText = '010-3306-0057';
+      const contactNoText = '010-2200-0087';
       cy.get(`[data-testid="contactNo"]`)
         .type(contactNoText)
         .should('have.value', contactNoText);
@@ -23,7 +23,7 @@ describe('forgot auth pages', () => {
       cy.route('POST', '/auth/forgot/username/contact', {
         contactNo: contactNoText,
       });
-      cy.contains('아이디 찾기가 완료되었습니다.');
+      cy.contains('아이디 찾기가 완료');
     });
 
     it('display an error message from submit failure', () => {
@@ -34,28 +34,26 @@ describe('forgot auth pages', () => {
 
       cy.contains('계속하기').click();
       cy.route({
-        url: '/auth/forgot/username/contact',
+        url: '/api/auth/forgot/username/contact',
         method: 'POST',
         status: 409,
         response: {},
       });
-      cy.contains(
-        '유청에 등록되어 있는 정보가 아닙니다. 다시 한번 확인해주세요.',
-      );
+      cy.get('.error').should('be.visible');
     });
 
     it('renders a form with email option on email button click & submission success', () => {
       cy.get(`[data-testid="email-forgot"]`).click();
       cy.get(`[data-testid="email"]`).should('have.value', '');
 
-      const emailText = 'sleket12@hanmail.net';
+      const emailText = 'yuch@hanmail.net';
       cy.get(`[data-testid="email"]`)
         .type(emailText)
         .should('have.value', emailText);
 
       cy.contains('계속하기').click();
-      cy.route('POST', '/auth/forgot/username/email', { email: emailText });
-      cy.contains('아이디 찾기가 완료되었습니다.');
+      cy.route('POST', '/api/auth/forgot/username/email', { email: emailText });
+      cy.contains('아이디 찾기가 완료');
     });
 
     it('submission failure with email option', () => {
@@ -73,9 +71,7 @@ describe('forgot auth pages', () => {
         status: 409,
         response: {},
       });
-      cy.contains(
-        '유청에 등록되어 있는 정보가 아닙니다. 다시 한번 확인해주세요.',
-      );
+      cy.get('.error').should('be.visible');
     });
   });
 
@@ -92,7 +88,7 @@ describe('forgot auth pages', () => {
 
     it('submission success', () => {
       const usernameText = 'yuch';
-      const emailText = 'sleket12@hanmail.net';
+      const emailText = 'yuch@hanmail.net';
       cy.get(`[data-testid="username"]`)
         .type(usernameText)
         .should('have.value', usernameText);
@@ -104,13 +100,12 @@ describe('forgot auth pages', () => {
         username: usernameText,
         email: emailText,
       });
-
-      cy.contains('인증코드가 성공적으로 전송되었습니다. ');
+      cy.contains('성공적으로 전송되었습니다');
     });
 
     it('submission failure', () => {
       const usernameText = 'incorrectusername';
-      const emailText = 'sleket12@hanmail.net';
+      const emailText = 'yuch12@hanmail.net';
       cy.get(`[data-testid="username"]`)
         .type(usernameText)
         .should('have.value', usernameText);
@@ -124,7 +119,7 @@ describe('forgot auth pages', () => {
         status: 409,
         response: {},
       });
-      cy.contains('이메일을 보내는데 실패하였습니다.');
+      cy.get('.error').should('be.visible');
     });
   });
 });

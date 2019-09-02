@@ -47,17 +47,16 @@ const AdminAccountContainer = ({
             <h3 className="flex justify-start">Profile</h3>
             {/* 'adminData' condition is needed as 'formik form values' render
             before receiving 'the retrieved admin data' */}
-            {userData &&
-              !pwdOpen && (
-                <UserFormBox
-                  userData={userData}
-                  editUserAccountValidation={editUserAccountValidation}
-                  editUserAccount={editUserAccount}
-                  updateCompanyName={updateCompanyName}
-                  addFlashMessage={addFlashMessage}
-                  openPasswordForm={openPasswordForm}
-                />
-              )}
+            {userData && !pwdOpen && (
+              <UserFormBox
+                userData={userData}
+                editUserAccountValidation={editUserAccountValidation}
+                editUserAccount={editUserAccount}
+                updateCompanyName={updateCompanyName}
+                addFlashMessage={addFlashMessage}
+                openPasswordForm={openPasswordForm}
+              />
+            )}
             {pwdOpen && (
               <ChangePwContainer
                 userData={userData}

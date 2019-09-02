@@ -53,7 +53,7 @@ const BankTable = ({
           orderBy="id"
           list={bankAccountTableHeadColumns}
         />
-        <TableBody>
+        <TableBody data-testid="bank-account--table">
           {bankAccount &&
             bankAccount.length !== 0 &&
             stableSort(bankAccount, getSorting('asc', 'id')).map(
