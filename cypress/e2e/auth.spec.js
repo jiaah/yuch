@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-focused-tests */
 // <reference types="cypress" />;
 describe('login', () => {
   beforeEach(() => {

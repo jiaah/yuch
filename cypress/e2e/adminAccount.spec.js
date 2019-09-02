@@ -1,18 +1,15 @@
-describe('user account page', () => {
+describe('admin account page', () => {
   beforeEach(() => {
-    cy.login('user');
+    cy.login('admin');
   });
   it('visits accout page', () => {
     expect(window.localStorage.getItem('token')).to.exist;
     cy.contains('로그아웃');
-    // forbidden to access admin route
-    cy.visit('/admin/account');
-    cy.contains('로그인을 해주세요.');
   });
 
   context('user account', () => {
     beforeEach(() => {
-      cy.visit('/user/account');
+      cy.visit('/admin/account');
       cy.get(`[data-testid="to-password-modal-btn"]`).as('pwdModalBtn');
     });
     it('edits user account info', () => {
@@ -21,12 +18,12 @@ describe('user account page', () => {
         .type('010-2020-3030');
       cy.get('button[type=submit]').click();
     });
-    it('changes password', () => {
+    it('change password', () => {
       cy.get(`@pwdModalBtn`).click();
 
-      cy.get(`[data-testid="password"]`).type('jiahlee88');
-      cy.get(`[data-testid="newPassword"]`).type('jiahlee88');
-      cy.get(`[data-testid="confirmPassword"]`).type('jiahlee88');
+      cy.get(`[data-testid="password"]`).type('yuch2009ung');
+      cy.get(`[data-testid="newPassword"]`).type('yuch2009ung');
+      cy.get(`[data-testid="confirmPassword"]`).type('yuch2009ung');
       cy.get('button[type=submit]').click();
       cy.contains('수정되었습니다');
     });
