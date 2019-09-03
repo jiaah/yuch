@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
-import { isLoggedIn, saveUserToken } from '../../../../localStorage';
+import { isLoggedIn, saveUserTokens } from '../../../../localStorage';
 import { loginValidation } from '../../formValidation';
 import * as data from '../../../data/data';
 /* --- Actions --- */
@@ -37,7 +37,7 @@ export const Login = ({
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
-    await saveUserToken(res, keepUserLoggedIn);
+    await saveUserTokens(res, keepUserLoggedIn);
     await resetForm({});
     await setSubmitting(false);
     return history.push('/');
