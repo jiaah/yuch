@@ -10,11 +10,11 @@ export const userLogin = (username, password) => async dispatch => {
       password,
     });
     const { id, companyName, isAdmin } = res.data;
-    // save refresh token
+    // save refresh token (?)
     const tokenData = {
       token: res.headers.authorization.split(' ')[1],
-      refreshToken: 'asdfasdfasdfasf',
       expiresIn: res.headers.expiresin,
+      refreshToken: 'asdfasdfasdfasf',
     };
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
     return tokenData;
@@ -31,6 +31,7 @@ export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
 
+/* --- Admin --- */
 export const refreshToken = async () => {
   dispatch({ type: types.HTTP_REQUEST, api: 'refreshToken' });
   try {

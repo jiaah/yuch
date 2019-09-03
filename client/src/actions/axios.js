@@ -36,10 +36,10 @@ const isTokenExpiredError = () => {
   const timeStamp = timeToNumbers;
 
   // when token is expired.
-  if (expireTime < timeStamp) {
+  if (expireTime <= timeStamp) {
     return true;
   }
-  if (expireTime >= timeStamp) {
+  if (expireTime > timeStamp) {
     return false;
   }
 };
@@ -61,6 +61,8 @@ const resetTokenAndReattemptRequest = async error => {
     if (!newToken) {
       return Promise.reject(error);
     }
+
+    // saveToken is not being called.
     await saveToken(newToken, expiresIn);
     errorResponse.config.headers.authorization = `Bearer ${newToken}`;
     return axios(errorResponse.config);
