@@ -1,12 +1,11 @@
-import axios from 'axios';
+import { Axios } from './axios';
 import * as types from './actionTypes';
-import { API_HOST } from '../../config';
 
 /* --- Login --- */
 export const userLogin = (username, password) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/login`, {
+    const res = await Axios.post('/auth/login', {
       username,
       password,
     });
@@ -35,7 +34,7 @@ export const userLogout = () => ({
 export const verifyAdminUser = password => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'verifyAdminUser' });
   try {
-    await axios.post(`${API_HOST}/auth/login/admin`, { password });
+    await Axios.post('/auth/login/admin', { password });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'verifyAdminUser' });
   } catch (error) {
     return dispatch({
@@ -55,7 +54,7 @@ export const handleAdminVerificationStatus = () => ({
 export const changePassword = (id, password, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    await axios.patch(`${API_HOST}/auth/change/password`, {
+    await Axios.patch('/auth/change/password', {
       id,
       password,
       newPassword,
@@ -74,7 +73,7 @@ export const changePassword = (id, password, newPassword) => async dispatch => {
 export const resetPassword = (id, newPassword) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    await axios.patch(`${API_HOST}/auth/reset/password`, { id, newPassword });
+    await Axios.patch('/auth/reset/password', { id, newPassword });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
   } catch (error) {
     return dispatch({
@@ -92,7 +91,7 @@ export const resetPasswordWithAccessToken = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'password' });
   try {
-    await axios.patch(`${API_HOST}/auth/reset/password/${token}`, {
+    await Axios.patch(`/auth/reset/password/${token}`, {
       newPassword,
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'password' });
@@ -114,7 +113,7 @@ export const keepMeLoggedIn = () => ({
 export const findUsernameWithEmail = email => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'findUsername' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/forgot/username/email`, {
+    const res = await Axios.post('/auth/forgot/username/email', {
       email,
     });
     const { data } = res;
@@ -136,7 +135,7 @@ export const findUsernameWithEmail = email => async dispatch => {
 export const findUsernameWithContact = contactNo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'findUsername' });
   try {
-    const res = await axios.post(`${API_HOST}/auth/forgot/username/contact`, {
+    const res = await Axios.post('/auth/forgot/username/contact', {
       contactNo,
     });
     const { data } = res;
@@ -162,7 +161,7 @@ export const sendVerificationCodeToEmail = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
   try {
-    await axios.post(`${API_HOST}/auth/forgot/password`, {
+    await Axios.post('/auth/forgot/password', {
       username,
       email,
     });

@@ -1,13 +1,12 @@
-import axios from 'axios';
+import { Axios } from './axios';
 import * as types from './actionTypes';
-import { API_HOST } from '../../config';
 
 /* --- Users --- */
 // user account
 export const getMe = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getMyAccount' });
   try {
-    const res = await axios.get(`${API_HOST}/user/me/${id}`);
+    const res = await Axios.get(`/user/me/${id}`);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -26,7 +25,7 @@ export const getMe = id => async dispatch => {
 export const editUserAccount = (id, userInfo) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUserAccount' });
   try {
-    await axios.patch(`${API_HOST}/user/edit/${id}`, { userInfo });
+    await Axios.patch(`/user/edit/${id}`, { userInfo });
     return dispatch({
       type: types.HTTP_SUCCESS,
       api: 'editUserAccount',
