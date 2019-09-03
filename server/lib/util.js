@@ -27,7 +27,6 @@ exports.isValidToken = function isValidToken(token) {
         reject(new Error('Unauthorized access'));
       }
       req.userData = decoded;
-      console.log('decoded: ', decoded);
       resolve(true);
     });
   });

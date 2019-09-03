@@ -7,9 +7,11 @@ export const saveUserToken = (tokenData, keepUserLoggedIn) => {
   // keepUserLoggedIn state is always saved in localStorage (thanks to redux-persist) regardless of user's choice.
   // save keepUserLoggedIn state in session storage to prevent from logging out a user on refresh.
   // (check routes/authGuards.js)
-  return !keepUserLoggedIn
-    ? sessionStorage.setItem('keepUserLoggedIn', keepUserLoggedIn)
-    : null;
+  if (keepUserLoggedIn !== undefined) {
+    return !keepUserLoggedIn
+      ? sessionStorage.setItem('keepUserLoggedIn', keepUserLoggedIn)
+      : null;
+  }
 };
 
 export const clearStorage = () => {
