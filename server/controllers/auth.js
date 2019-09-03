@@ -33,7 +33,7 @@ exports.loginUser = (req, res) => {
     })
     .then(token => {
       res.header('Authorization', `Bearer + ${token}`);
-      res.header('expiresIn', process.env.expiresIn);
+      res.header('expiresin', process.env.expiresIn);
       return res.status(200).json({ id, companyName, isAdmin });
     })
     .catch(err => res.status(500).json(err));

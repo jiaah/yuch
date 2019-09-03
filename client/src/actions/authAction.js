@@ -10,11 +10,13 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
-    console.log(res.headers);
-    const { token, id, companyName, isAdmin } = res.data;
-
+    const { id, companyName, isAdmin } = res.data;
+    const tokenData = {
+      token: res.headers.authorization.split(' ')[2],
+      expiresIn: res.headers.expiresin,
+    };
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
-    return token;
+    return tokenData;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
