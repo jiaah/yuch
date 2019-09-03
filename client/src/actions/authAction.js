@@ -12,7 +12,7 @@ export const userLogin = (username, password) => async dispatch => {
     });
     const { id, companyName, isAdmin } = res.data;
     const tokenData = {
-      token: res.headers.authorization.split(' ')[2],
+      token: res.headers.authorization.split(' ')[1],
       expiresIn: res.headers.expiresin,
     };
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });

@@ -40,7 +40,7 @@ export const Login = ({
     await saveUserToken(res, keepUserLoggedIn);
     await resetForm({});
     await setSubmitting(false);
-    // return history.push('/');
+    return history.push('/');
   };
 
   return (

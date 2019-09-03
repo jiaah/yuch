@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const adminController = require('../controllers/admin');
+const onlyLoggedIn = require('../lib/only-logged-in');
 
 module.exports = () => {
   /* --- Admin --- */
   // Profile
-  router.get('/me/:id', adminController.getAdmin);
+  router.get('/me/:id', onlyLoggedIn, adminController.getAdmin);
   router.patch('/edit/:id', adminController.editAdminAccount);
 
   // Bank Account
