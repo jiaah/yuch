@@ -1,28 +1,45 @@
 const router = require('express').Router();
 const adminController = require('../controllers/admin');
+const onlyLoggedIn = require('../lib/only-logged-in');
 
 module.exports = () => {
   /* --- Admin --- */
   // Profile
-  router.get('/me/:id', adminController.getAdmin);
-  router.patch('/edit/:id', adminController.editAdminAccount);
+  router.get('/me/:id', onlyLoggedIn, adminController.getAdmin);
+  router.patch('/edit/:id', onlyLoggedIn, adminController.editAdminAccount);
 
   // Bank Account
-  router.get('/bankaccount', adminController.getBankAccount);
-  router.post('/bankaccount', adminController.createBankAccount);
-  router.patch('/bankaccount/:id', adminController.editBankAccount);
-  router.delete('/bankaccount/:id', adminController.deleteBankAccount);
+  router.get('/bankaccount', onlyLoggedIn, adminController.getBankAccount);
+  router.post('/bankaccount', onlyLoggedIn, adminController.createBankAccount);
+  router.patch(
+    '/bankaccount/:id',
+    onlyLoggedIn,
+    adminController.editBankAccount,
+  );
+  router.delete(
+    '/bankaccount/:id',
+    onlyLoggedIn,
+    adminController.deleteBankAccount,
+  );
 
   /* --- User --- */
   // User Account
-  router.post('/user/register', adminController.createUser);
-  router.patch('/user/edit/:id', adminController.editUserByAdmin);
-  router.delete('/user/delete/:id', adminController.deleteUser);
+  router.post('/user/register', onlyLoggedIn, adminController.createUser);
+  router.patch('/user/edit/:id', onlyLoggedIn, adminController.editUserByAdmin);
+  router.delete('/user/delete/:id', onlyLoggedIn, adminController.deleteUser);
 
   // get users profile
-  router.get('/users', adminController.getUsersList);
+  router.get('/users', onlyLoggedIn, adminController.getUsersList);
   // get catering meal prices of all clients
-  router.get('/users/catering/rates', adminController.getCateringRates);
-  router.patch('/users/catering/rates', adminController.updateReservedPrice);
+  router.get(
+    '/users/catering/rates',
+    onlyLoggedIn,
+    adminController.getCateringRates,
+  );
+  router.patch(
+    '/users/catering/rates',
+    onlyLoggedIn,
+    adminController.updateReservedPrice,
+  );
   return router;
 };

@@ -22,45 +22,43 @@ const BankTableRow = ({
   selected,
   labelId,
 }) => (
-  <React.Fragment>
-    <TableRow
-      key={row.id}
-      hover
-      onClick={() => handleTableRowClick(row.id)}
-      role="checkbox"
-      aria-checked={selected === row.id}
-      tabIndex={-1}
-      selected={selected === row.id}
-    >
-      <TableCell padding="checkbox">
-        <div className="flex flex-row-m">
-          <IconButton
-            name="edit"
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            handleClick={() => handleEditBtnClick(row.id)}
-          />
-          <IconButton
-            name="delete"
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            handleClick={() => handleDeleteBtnClick(row.id)}
-          />
-        </div>
-      </TableCell>
-      <TableCell component="th" id={labelId} scope="row" className={resize}>
-        {row.accountHolder}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.bankName}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.accountNo}
-      </TableCell>
-    </TableRow>
-  </React.Fragment>
+  <TableRow
+    key={row.id}
+    hover
+    onClick={() => handleTableRowClick(row.id)}
+    role="checkbox"
+    aria-checked={selected === row.id}
+    tabIndex={-1}
+    selected={selected === row.id}
+  >
+    <TableCell padding="checkbox">
+      <div className="flex flex-row-m" data-testid="bank-account--tablerow">
+        <IconButton
+          name="edit"
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          handleClick={() => handleEditBtnClick(row.id)}
+        />
+        <IconButton
+          name="delete"
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          handleClick={() => handleDeleteBtnClick(row.id)}
+        />
+      </div>
+    </TableCell>
+    <TableCell component="th" id={labelId} scope="row" className={resize}>
+      {row.accountHolder}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.bankName}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.accountNo}
+    </TableCell>
+  </TableRow>
 );
 
 export default withStyles(styles)(BankTableRow);

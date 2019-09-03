@@ -1,12 +1,11 @@
-import axios from 'axios';
+import { Axios } from './axios';
 import * as types from './actionTypes';
-import { API_HOST } from '../../config';
 
 // get users catering meal prices
 export const getCateringRates = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getCateringRates' });
   try {
-    const res = await axios.get(`${API_HOST}/admin/users/catering/rates`);
+    const res = await Axios.get('/admin/users/catering/rates');
     const rates = res.data;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -30,7 +29,7 @@ export const updateReservedPrice = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateReservedPrice' });
   try {
-    await axios.patch(`${API_HOST}/admin/users/catering/rates`, {
+    await Axios.patch('/admin/users/catering/rates', {
       userId,
       reservePrice,
       reserveDate,

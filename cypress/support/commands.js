@@ -3,25 +3,11 @@ Cypress.Commands.add('login', userType => {
   const types = {
     admin: {
       username: 'yuch',
-      companyName: 'yuchung',
       password: 'yuch2009ung',
-      contactNo: '010-2020-3939',
-      bankAccountId: 'd9a9e5c6-186e-412a-9307-93990ac1a0a5',
-      email: 'yuchung@gmail.com',
-      mealPrice: 9000,
-      businessType: 'catering',
-      admin: true,
     },
     user: {
       username: 'jiahlee',
-      companyName: 'jiahlee88',
       password: 'jiahlee88',
-      contactNo: '054-1111-7272',
-      bankAccountId: 'd9a9e5c6-186e-412a-9307-93990ac1a0a5',
-      email: 'jiah12@gmail.com',
-      mealPrice: 9000,
-      businessType: 'catering',
-      admin: false,
     },
   };
   // grab the user
@@ -43,3 +29,12 @@ Cypress.Commands.add('login', userType => {
     }),
   );
 });
+
+Cypress.Commands.add(
+  'seedAndVisitBankAccountPage',
+  (seedData = 'fixture:bankAccounts') => {
+    cy.server();
+    cy.route('GET', '/api/admin/bankaccount', seedData);
+    cy.visit('/admin/account/bank');
+  },
+);

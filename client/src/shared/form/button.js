@@ -24,12 +24,13 @@ const button = ({
   width,
   classes,
   className,
+  testId,
 }) => {
   const widthValue =
     width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
   return (
     <Button
-      data-testid="button"
+      data-testid={testId}
       type={typeValue}
       onClick={ev => handleButtonClick(ev)}
       variant={variantValue}

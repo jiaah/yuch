@@ -1,13 +1,12 @@
-import axios from 'axios';
+import { Axios } from './axios';
 import * as types from './actionTypes';
-import { API_HOST } from '../../config';
 
 /* --- Admin --- */
 // admin account
 export const getAdmin = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getAdmin' });
   try {
-    const res = await axios.get(`${API_HOST}/admin/me/${id}`);
+    const res = await Axios.get(`/admin/me/${id}`);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -26,7 +25,7 @@ export const getAdmin = id => async dispatch => {
 export const editAdminAccount = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
   try {
-    await axios.patch(`${API_HOST}/admin/edit/${id}`, { values });
+    await Axios.patch(`/admin/edit/${id}`, { values });
     return dispatch({
       type: types.HTTP_SUCCESS,
       api: 'editAdminAccount',
@@ -45,7 +44,7 @@ export const editAdminAccount = (id, values) => async dispatch => {
 export const getUsers = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });
   try {
-    const res = await axios.get(`${API_HOST}/admin/users`);
+    const res = await Axios.get('/admin/users');
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -65,7 +64,7 @@ export const getUsers = () => async dispatch => {
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
-    await axios.post(`${API_HOST}/admin/user/register`, { userInfo });
+    await Axios.post('/admin/user/register', { userInfo });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
   } catch (error) {
     return dispatch({
@@ -79,7 +78,7 @@ export const createUser = userInfo => async dispatch => {
 export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
-    await axios.patch(`${API_HOST}/admin/user/edit/${userInfo.id}`, {
+    await Axios.patch(`/admin/user/edit/${userInfo.id}`, {
       userInfo,
     });
     return dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
@@ -95,7 +94,7 @@ export const editUser = userInfo => async dispatch => {
 export const deleteUser = userId => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    await axios.delete(`${API_HOST}/admin/user/delete/${userId}`);
+    await Axios.delete(`/admin/user/delete/${userId}`);
     return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
   } catch (error) {
     return dispatch({

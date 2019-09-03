@@ -25,6 +25,7 @@ const ChangePwForm = ({ isSubmitting, closePasswordForm }) => (
         buttonName="취소"
         width="medium"
         handleButtonClick={closePasswordForm}
+        testId="close-modal-btn"
       />
       <FormButton
         typeValue="submit"

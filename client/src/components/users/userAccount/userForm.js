@@ -85,6 +85,7 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         buttonName="비밀번호 변경"
         width="medium"
         handleButtonClick={openPasswordForm}
+        testId="to-password-modal-btn"
       />
       <FormButton
         typeValue="submit"

@@ -4,12 +4,13 @@ const bcrypt = require('bcryptjs');
 // used for login & find password
 exports.getRandomToken = function getRandomToken(user) {
   return new Promise((resolve, reject) => {
+    const { secret, expiresIn } = process.env;
     const tokenDetails = {
       id: user.id,
       username: user.username,
     };
-    const token = jwt.sign(tokenDetails, process.env.secret, {
-      expiresIn: '1h',
+    const token = jwt.sign(tokenDetails, secret, {
+      expiresIn,
     });
     if (token === '' || token === undefined) {
       reject(new Error('Failed to create token'));
@@ -26,7 +27,6 @@ exports.isValidToken = function isValidToken(token) {
         reject(new Error('Unauthorized access'));
       }
       req.userData = decoded;
-      console.log('decoded: ', decoded);
       resolve(true);
     });
   });

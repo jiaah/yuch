@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-focused-tests */
 // <reference types="cypress" />;
 describe('login', () => {
   beforeEach(() => {
@@ -32,14 +31,14 @@ describe('login', () => {
       .type(passwordText)
       .should('have.value', passwordText);
     cy.get('button[type=submit]').click();
-    cy.contains('아이디 또는 비밀번호 오류입니다.');
+    cy.get('.error').should('be.visible');
   });
 
   it('fails to access protected recource', () => {
     cy.visit('/user/account');
-    cy.contains('로그인을 해주세요.');
+    cy.get('.warning').should('be.visible');
 
     cy.visit('/admin/account');
-    cy.contains('로그인을 해주세요.');
+    cy.get('.warning').should('be.visible');
   });
 });
