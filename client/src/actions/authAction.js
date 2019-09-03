@@ -10,6 +10,7 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
+    console.log(res.headers);
     const { token, id, companyName, isAdmin } = res.data;
 
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
