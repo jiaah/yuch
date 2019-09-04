@@ -10,7 +10,7 @@ export const userLogin = (username, password) => async dispatch => {
       password,
     });
     const { id, companyName, isAdmin } = res.data;
-    // save refresh token (?)
+    // save refresh token
     const tokenData = {
       token: res.headers.authorization.split(' ')[1],
       expiresIn: res.headers.expiresin,
@@ -31,8 +31,8 @@ export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
 
-/* --- Admin --- */
-export const refreshToken = async () => {
+/* --- Token --- */
+export const renewRefreshToken = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'refreshToken' });
   try {
     const res = await Axios.post('/auth/refresh');

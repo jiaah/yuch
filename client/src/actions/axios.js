@@ -9,6 +9,8 @@ import {
 import { timeToNumbers } from '../helpers/moment';
 
 const token = getToken();
+const expireAccessTokenTime = getExpireTime();
+const timeStamp = timeToNumbers;
 
 // create axios instance
 export const Axios = axios.create({
@@ -32,14 +34,10 @@ Axios.interceptors.response.use(
 );
 
 const isTokenExpiredError = () => {
-  const expireTime = getExpireTime();
-  const timeStamp = timeToNumbers;
-
-  // when token is expired.
-  if (expireTime <= timeStamp) {
+  if (expireAccessTokenTime <= timeStamp) {
     return true;
   }
-  if (expireTime > timeStamp) {
+  if (expireAccessTokenTime > timeStamp) {
     return false;
   }
 };
@@ -47,14 +45,16 @@ const isTokenExpiredError = () => {
 const resetTokenAndReattemptRequest = async error => {
   try {
     const { response: errorResponse } = error;
-    // check if refresh token exist (long-live token)
+
     const refreshToken = await getRefreshToken();
     if (!refreshToken) {
       return Promise.reject(error);
     }
 
-    // generate new access token (send refresh-token ?)
-    const res = await Axios.post('/auth/refresh');
+    // obtain new access token (correct route when server is ready)
+    const res = await Axios.post('/auth/refresh', {
+      refreshToken,
+    });
     const newToken = res.data.token;
     const expiresIn = '120000';
 
@@ -62,7 +62,6 @@ const resetTokenAndReattemptRequest = async error => {
       return Promise.reject(error);
     }
 
-    // saveToken is not being called.
     await saveToken(newToken, expiresIn);
     errorResponse.config.headers.authorization = `Bearer ${newToken}`;
     return axios(errorResponse.config);

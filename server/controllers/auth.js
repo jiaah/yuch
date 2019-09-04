@@ -176,7 +176,9 @@ exports.forgotPassword = (req, res) => {
           from: process.env.GMAIL,
           to: user.email,
           subject: '비밀번호 변경 요청',
-          html: `${username} 회원님의 유청 계정에 대한 비밀번호 변경 요청을 접수하였습니다. <br/><br/> 비밀번호를 재설정하기위해, 아래 링크를 클릭하거나 복사하여서 브라우저로 가세요. <br/> 링크는 1시간동안 활성 상태로 유지됩니다. <br/><br/> http://${req.headers.host}/reset?token=${token} <br/><br/> 만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
+          html: `${username} 회원님의 유청 계정에 대한 비밀번호 변경 요청을 접수하였습니다. <br/><br/> 비밀번호를 재설정하기위해, 아래 링크를 클릭하거나 복사하여서 브라우저로 가세요. <br/> 링크는 1시간동안 활성 상태로 유지됩니다. <br/><br/> http://${
+            req.headers.host
+          }/reset?token=${token} <br/><br/> 만약 회원님이 비밀번호를 요청하지 않으셨다면 이 이메일을 무시하세요. <br/> 회원님의 비밀번호는 변경되지 않습니다.`,
         };
         return knex('users')
           .where({ username })
