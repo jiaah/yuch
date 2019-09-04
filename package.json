@@ -54,7 +54,7 @@
     "linters": {
       "**/*.{js,jsx,json}": [
         "eslint --fix",
-        "prettier --parser flow --write",
+        "prettier --parser flow --write --fix",
         "git add"
       ],
       "**/*.{scss}": [
