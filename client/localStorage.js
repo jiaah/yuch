@@ -1,33 +1,17 @@
-import {
-  convertToExpireTokenTime,
-  calculateExpireTime,
-} from './src/utils/time';
-import { timeStamp } from './src/helpers/moment';
-
 // access token
 export const isLoggedIn = () => !!localStorage.token;
 export const getToken = () => localStorage.token;
-export const getExpireTime = () => localStorage.expireTime;
-export const saveToken = (token, expiresIn) => {
-  const expireAccessTokenTime = convertToExpireTokenTime(expiresIn);
-  localStorage.setItem('token', token);
-  localStorage.setItem('expireTime', expireAccessTokenTime);
-};
+export const saveToken = token => localStorage.setItem('token', token);
 
 // refresh token
 export const getRefreshToken = () => localStorage.refreshToken;
-export const getRefreshTokenRenewTime = () =>
-  localStorage.refreshTokenRenewTime;
-export const saveRefreshToken = refreshToken => {
-  const renewTime = calculateExpireTime(timeStamp, 2, 'minutes');
+export const saveRefreshToken = refreshToken =>
   localStorage.setItem('refreshToken', refreshToken);
-  localStorage.setItem('refreshTokenRenewTime', renewTime);
-};
 
 // save tokens
 export const saveUserTokens = (tokenData, keepUserLoggedIn) => {
-  const { token, expiresIn, refreshToken } = tokenData;
-  saveToken(token, expiresIn);
+  const { token, refreshToken } = tokenData;
+  saveToken(token);
   saveRefreshToken(refreshToken);
   // keepUserLoggedIn state is always saved in localStorage (thanks to redux-persist) regardless of user's choice.
   // save keepUserLoggedIn state in session storage to prevent from logging out a user on refresh.

@@ -4,13 +4,10 @@ import {
   getToken,
   getRefreshToken,
   saveToken,
-  getExpireTime,
+  saveRefreshToken,
 } from '../../localStorage';
-import { timeToNumbers } from '../helpers/moment';
 
 const token = getToken();
-const expireAccessTokenTime = getExpireTime();
-const timeStamp = timeToNumbers;
 
 // create axios instance
 export const Axios = axios.create({
@@ -26,20 +23,17 @@ Axios.interceptors.response.use(
     // If the request succeeds, we don't have to do anything and just return the response
     response,
   async error => {
-    if (isTokenExpiredError()) {
+    if (isTokenExpiredError(error)) {
       return resetTokenAndReattemptRequest(error);
     }
     return Promise.reject(error);
   },
 );
 
-const isTokenExpiredError = () => {
-  if (expireAccessTokenTime <= timeStamp) {
-    return true;
-  }
-  if (expireAccessTokenTime > timeStamp) {
-    return false;
-  }
+const isTokenExpiredError = error => {
+  const { response: errorResponse } = error;
+  if (errorResponse.status === 401) return true;
+  return false;
 };
 
 const resetTokenAndReattemptRequest = async error => {
@@ -51,18 +45,21 @@ const resetTokenAndReattemptRequest = async error => {
       return Promise.reject(error);
     }
 
-    // obtain new access token (correct route when server is ready)
-    const res = await Axios.post('/auth/refresh', {
+    const res = await Axios.post('/auth/token', {
       refreshToken,
     });
-    const newToken = res.data.token;
-    const expiresIn = '120000';
+    const newRefreshToken = res.data.refreshToken;
+    const newToken = res.headers.authorization.split(' ')[1];
 
+    // update refreshToken if it's renewed.
+    if (newRefreshToken !== refreshToken) {
+      saveRefreshToken(newRefreshToken);
+    }
     if (!newToken) {
       return Promise.reject(error);
     }
-
-    await saveToken(newToken, expiresIn);
+    await saveToken(newToken);
+    // re-attempt api request
     errorResponse.config.headers.authorization = `Bearer ${newToken}`;
     return axios(errorResponse.config);
   } catch (err) {

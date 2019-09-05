@@ -9,12 +9,10 @@ export const userLogin = (username, password) => async dispatch => {
       username,
       password,
     });
-    const { id, companyName, isAdmin } = res.data;
-    // save refresh token
+    const { id, companyName, isAdmin, refreshToken } = res.data;
     const tokenData = {
       token: res.headers.authorization.split(' ')[1],
-      expiresIn: res.headers.expiresin,
-      refreshToken: 'asdfasdfasdfasf',
+      refreshToken,
     };
     dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
     return tokenData;
@@ -30,23 +28,6 @@ export const userLogin = (username, password) => async dispatch => {
 export const userLogout = () => ({
   type: types.USER_LOGOUT,
 });
-
-/* --- Token --- */
-export const renewRefreshToken = () => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'refreshToken' });
-  try {
-    const res = await Axios.post('/auth/refresh');
-    const newToken = res.data.token;
-    dispatch({ type: types.HTTP_SUCCESS, api: 'refreshToken' });
-    return newToken;
-  } catch (error) {
-    return dispatch({
-      type: types.HTTP_FAILURE,
-      api: 'refreshToken',
-      error: 'Failed to generate new token',
-    });
-  }
-};
 
 /* --- Admin --- */
 // check admin password for security
