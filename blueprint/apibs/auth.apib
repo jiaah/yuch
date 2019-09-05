@@ -1,7 +1,69 @@
-## Refresh Token [/auth/refresh]
+## User Login [/auth/login]
 
+### 로그인 [POST]
 
-### 토큰 갱신 [POST]
++ Request with username, password
+
+        {
+          "username": "yuch",
+          "password": "..."
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...
+            expiresin: 1200000
+
+    + Body
+
+            {
+              "id": "ca236d5a-331a-45dd-af80-09889b3380a6",
+              "companyName": "유청",
+              "isAdmin": true,
+              "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQi..."
+            }
+
+    + Schema
+
+            {
+              id: UUID,
+              companyName: string,
+              isAdmin: boolean,
+              refreshToken: JWT (JSON WEB TOKEN)
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+              "message": "User not found",
+              "error": .....
+            }
+
++ Response 409 (application/json)
+
+    + Body
+
+            {
+              "message": "Auth failed",
+              "error": .....
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+              "message": "interal error message",
+              "error": .....
+            }
+
+## User Logout [/auth/logout]
+
+### 로그아웃 [POST]
 
 + Request with token
 
@@ -9,18 +71,68 @@
 
             Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...
 
-+ Response 200 (application/json)
++ Response 200
+
+    + Body
+
+            "success"
 
     + Schema
 
-            {
-              token: JWT (JSON WEB TOKEN)
-            }
+            string
+
++ Response 401 (application/json)
 
     + Body
 
             {
-              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...",
+              "message": "Unauthorized access",
+              "error": .....
+            }
+
++ Response 500 (application/json)
+
+    + Body
+
+            {
+              "message": "interal error message",
+              "error": .....
+            }
+
+## Refresh Token [/auth/refresh]
+
+
+### 토큰 갱신 [POST]
+
++ Request with refreshToken
+
+        {
+          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQi..."
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2...
+            expiresin: 1200000
+
+    + Body
+
+            {
+              "id": "ca236d5a-331a-45dd-af80-09889b3380a6",
+              "companyName": "유청",
+              "isAdmin": true,
+              "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQi..."
+            }
+
+    + Schema
+
+            {
+              id: UUID,
+              companyName: string,
+              isAdmin: boolean,
+              refreshToken: JWT (JSON WEB TOKEN)
             }
 
 + Response 401 (application/json)
@@ -28,7 +140,7 @@
     + Body
 
             {
-              "message": "Unauthorized error",
+              "message": "Unauthorized refresh",
               "error": .....
             }
 
