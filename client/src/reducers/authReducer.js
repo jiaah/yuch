@@ -5,6 +5,7 @@ const initialState = {
   id: '',
   companyName: '',
   isAdmin: false,
+  loggedInAt: '',
 };
 
 const auth = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const auth = (state = initialState, action) => {
         id: action.payload.id,
         companyName: action.payload.companyName,
         isAdmin: action.payload.isAdmin,
+        loggedInAt: '',
       };
     case types.USER_LOGOUT:
       return {

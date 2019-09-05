@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 import { clearStorage } from '../../localStorage';
 
 /* --- Login --- */
-export const userLogin = (username, password) => async dispatch => {
+export const userLogin = (username, password, loggedInAt) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
     const res = await Axios.post('/auth/login', {
@@ -15,7 +15,10 @@ export const userLogin = (username, password) => async dispatch => {
       token: res.headers.authorization.split(' ')[1],
       refreshToken,
     };
-    dispatch({ type: types.USER_LOGIN, payload: { id, companyName, isAdmin } });
+    dispatch({
+      type: types.USER_LOGIN,
+      payload: { id, companyName, isAdmin, loggedInAt },
+    });
     return tokenData;
   } catch (error) {
     return dispatch({
@@ -29,7 +32,7 @@ export const userLogin = (username, password) => async dispatch => {
 export const userLogout = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'userLogout' });
   try {
-    await Axios.post('/auth/logout');
+    // await Axios.post('/auth/logout');
     await dispatch({ type: types.USER_LOGOUT, api: 'userLogout' });
     return clearStorage();
   } catch (error) {
@@ -115,11 +118,6 @@ export const resetPasswordWithAccessToken = (
     });
   }
 };
-
-/* --- Keep me logged in --- */
-export const keepMeLoggedIn = () => ({
-  type: types.KEEP_ME_LOGGED_IN,
-});
 
 /* --- Forgot Username/Password --- */
 export const findUsernameWithEmail = email => async dispatch => {
