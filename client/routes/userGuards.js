@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-/* --- Components --- */
-import { clearStorage } from '../localStorage';
 /* --- Actions --- */
 import { userLogout } from '../src/actions/authAction';
 import { addFlashMessage } from '../src/actions/messageAction';
@@ -22,7 +20,6 @@ const UserGuards = Component => {
         isAdmin // if logged in user is admin
       ) {
         await userLogout();
-        await clearStorage();
         await addFlashMessage('warning', '로그인을 해주세요.');
         return history.push('/');
       }

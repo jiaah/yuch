@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 /* --- Components --- */
-import { clearStorage } from '../../../localStorage';
 import Navbar from './navbar';
 import NavMenu from './navMenu';
 import * as data from '../../data/data';
@@ -22,7 +21,6 @@ const NavContainer = ({
   const handleUserLogout = async ev => {
     ev.preventDefault();
     await userLogout();
-    await clearStorage();
     return history.push('/');
   };
 

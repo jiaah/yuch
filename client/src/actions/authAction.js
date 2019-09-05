@@ -1,5 +1,6 @@
 import { Axios } from './axios';
 import * as types from './actionTypes';
+import { clearStorage } from '../../localStorage';
 
 /* --- Login --- */
 export const userLogin = (username, password) => async dispatch => {
@@ -25,9 +26,20 @@ export const userLogin = (username, password) => async dispatch => {
   }
 };
 
-export const userLogout = () => ({
-  type: types.USER_LOGOUT,
-});
+export const userLogout = () => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'userLogout' });
+  try {
+    await Axios.post('/auth/logout');
+    await dispatch({ type: types.USER_LOGOUT, api: 'userLogout' });
+    return clearStorage();
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'userLogout',
+      error: 'Failed to logout user.',
+    });
+  }
+};
 
 /* --- Admin --- */
 // check admin password for security
