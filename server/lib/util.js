@@ -19,6 +19,20 @@ exports.getRandomToken = function getRandomToken(user) {
   });
 };
 
+exports.getRefreshToken = id => {
+  try {
+    const { secret } = process.env;
+    const tokenDetails = {
+      id,
+      createdAt: Date.now(),
+    };
+    const refreshToken = jwt.sign(tokenDetails, secret);
+    return refreshToken;
+  } catch (error) {
+    throw new Error('Failed to create refresh token');
+  }
+};
+
 // check if reset password token is valid
 exports.isValidToken = function isValidToken(token) {
   return new Promise((resolve, reject) => {

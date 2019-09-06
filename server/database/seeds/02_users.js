@@ -38,6 +38,7 @@ exports.seed = async knex => {
   const hash = bcrypt.hashSync(PASSWORD, salt);
 
   await knex('users').insert({
+    id: 'ca236d5a-331a-45dd-af80-09889b3380a6',
     companyName: COMPANY_NAME,
     username: USERNAME,
     password: hash,
