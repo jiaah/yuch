@@ -12,6 +12,7 @@ const AdminGuards = Component => {
     componentDidMount = async () => {
       const {
         keepMeLoggedIn,
+        isLoggedIn,
         isAdmin,
         history,
         addFlashMessage,
@@ -20,11 +21,12 @@ const AdminGuards = Component => {
 
       if (
         (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // when user reopen the browser ( keepMeLoggedIn is false)
+        !isLoggedIn ||
         !isAdmin // if logged in user is not admin
       ) {
         await userLogout();
         addFlashMessage('warning', '로그인을 해주세요.');
-        return history.push('/login');
+        return history.push('/');
       }
     };
 
@@ -35,6 +37,7 @@ const AdminGuards = Component => {
 
   const mapPropsToState = state => ({
     keepMeLoggedIn: state.auth.keepMeLoggedIn,
+    isLoggedIn: state.auth.isLoggedIn,
     isAdmin: state.auth.isAdmin,
   });
 
