@@ -1,25 +1,25 @@
 # Catering Management System
 
 ## Purpose
-- Automate lunch and dinner order process.
-- Issue Monthly bill.
-- Track company revenue.
+- Automates lunch and dinner order process.
+- Issues Monthly bill.
+- Tracks company revenue.
 
 ## Features
 ### Client
-- Manage user's account
-- Make lunch & dinner request of the day
+- Manages user's account
+- Makes lunch & dinner request of the day
 - Invoice ( issue monthly )
 
 ### Company
-- Manage company's account
-- Manage company’s bank accounts
-- Manage client accounts
-- Manage a table of meal prices of all the clients
+- Manages company's account
+- Manages company’s bank accounts
+- Manages client accounts
+- Manages a table of meal prices of all the clients
 
-- (catering & restaurant) Manage tables of lunch & dinner requests of the day from all the clients
-- (restaurant) Manage lunch & dinner income of the day
-- Manage special meals
+- (catering & restaurant) Manages tables of lunch & dinner requests of the day from all the clients
+- (restaurant) Manages lunch & dinner income of the day
+- Manages special meals
 
-- Display a table of each client's bill balance
-- Display a graph of monthly revenue of restaurant, catering business and total
+- Displays a table of each client's bill balance
+- Displays a graph of monthly revenue of restaurant, catering business and total
