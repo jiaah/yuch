@@ -5,7 +5,6 @@ import modal from './modalReducer';
 import httpHandler from './HTTPHandlerReducer';
 import message from './messageReducer';
 import auth from './authReducer';
-import keepUserLoggedIn from './keepMeLoggedInReducer';
 import isAdminVerified from './isAdminVerifiedReducer';
 import selected from './selectedReducer';
 
@@ -16,7 +15,6 @@ export default history =>
     httpHandler,
     message,
     auth,
-    keepUserLoggedIn,
     isAdminVerified,
     selected,
   });

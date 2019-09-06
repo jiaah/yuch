@@ -3,7 +3,11 @@ import * as types from './actionTypes';
 import { clearStorage } from '../../localStorage';
 
 /* --- Login --- */
-export const userLogin = (username, password, loggedInAt) => async dispatch => {
+export const userLogin = (
+  username,
+  password,
+  keekMeLoggedIn,
+) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
     const res = await Axios.post('/auth/login', {
@@ -17,7 +21,7 @@ export const userLogin = (username, password, loggedInAt) => async dispatch => {
     };
     dispatch({
       type: types.USER_LOGIN,
-      payload: { id, companyName, isAdmin, loggedInAt },
+      payload: { id, companyName, isAdmin, keekMeLoggedIn },
     });
     return tokenData;
   } catch (error) {

@@ -7,9 +7,7 @@ import './styles/main.scss';
 
 const MessageBox = Loader({
   loader: () =>
-    import(
-      './src/shared/message/messageContainer' /* webpackChunkName: 'MessageBox' */
-    ),
+    import('./src/shared/message/messageContainer' /* webpackChunkName: 'MessageBox' */),
 });
 
 export const App = ({ messageShow, children }) => (

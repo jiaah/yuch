@@ -8,7 +8,7 @@ const UserGuards = Component => {
   class LoginAuth extends React.Component {
     componentDidMount = async () => {
       const {
-        keepUserLoggedIn,
+        keepMeLoggedIn,
         isAdmin,
         history,
         addFlashMessage,
@@ -16,8 +16,8 @@ const UserGuards = Component => {
       } = this.props;
 
       if (
-        (!keepUserLoggedIn && !sessionStorage.getItem('keepUserLoggedIn')) || // if user reopen the browser ( keepUserLoggedIn is false)
-        isAdmin // if logged in user is admin
+        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
+        isAdmin
       ) {
         await userLogout();
         await addFlashMessage('warning', '로그인을 해주세요.');
@@ -31,7 +31,7 @@ const UserGuards = Component => {
   }
 
   const mapPropsToState = state => ({
-    keepUserLoggedIn: state.keepUserLoggedIn.keepUserLoggedIn,
+    keepMeLoggedIn: state.auth.keepMeLoggedIn,
     isAdmin: state.auth.isAdmin,
   });
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 /* --- Actions --- */
 import { userLogout } from '../src/actions/authAction';
 import { addFlashMessage } from '../src/actions/messageAction';
-// when 'keepUserLoggedIn === false'
+// when 'keepMeLoggedIn === false'
 // -> on refresh : prevent from logging out user
 // -> on reopen  : force logging out user
 
@@ -11,7 +11,7 @@ const AdminGuards = Component => {
   class LoginAuth extends React.Component {
     componentDidMount = async () => {
       const {
-        keepUserLoggedIn,
+        keepMeLoggedIn,
         isAdmin,
         history,
         addFlashMessage,
@@ -19,7 +19,7 @@ const AdminGuards = Component => {
       } = this.props;
 
       if (
-        (!keepUserLoggedIn && !sessionStorage.getItem('keepUserLoggedIn')) || // when user reopen the browser ( keepUserLoggedIn is false)
+        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // when user reopen the browser ( keepMeLoggedIn is false)
         !isAdmin // if logged in user is not admin
       ) {
         await userLogout();
@@ -34,7 +34,7 @@ const AdminGuards = Component => {
   }
 
   const mapPropsToState = state => ({
-    keepUserLoggedIn: state.keepUserLoggedIn.keepUserLoggedIn,
+    keepMeLoggedIn: state.auth.keepMeLoggedIn,
     isAdmin: state.auth.isAdmin,
   });
 

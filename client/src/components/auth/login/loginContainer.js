@@ -31,11 +31,8 @@ export const Login = ({
       setSubmitting(false);
       return history.push('/');
     }
-    // dont save keepMeLoggedIn in store
-    // keekMeLoggedIn === true, -> timeStamp
-    // keepMeLoggedIn === false, -> timeStamp + 1yr
-    const loggedInAt = '';
-    const res = await userLogin(username, password, loggedInAt);
+
+    const res = await userLogin(username, password, keepMeLoggedIn);
     // res.error : when API request failed
     // res === undefined : when received token is undefined
     if (res.error || res === undefined || res === null) {
