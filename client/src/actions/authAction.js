@@ -36,7 +36,7 @@ export const userLogin = (
 export const userLogout = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'userLogout' });
   try {
-    // await Axios.post('/auth/logout');
+    await Axios.post('/auth/logout');
     await dispatch({ type: types.USER_LOGOUT, api: 'userLogout' });
     return clearStorage();
   } catch (error) {
