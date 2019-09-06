@@ -6,6 +6,9 @@ module.exports = () => {
   /* --- Login --- */
   router.post('/login', authController.loginUser);
 
+  /* --- LogOut --- */
+  router.post('/logout', onlyLoggedIn, authController.logoutUser);
+
   /* --- Password --- */
   // simple Admin Password Check to secure sensitive data
   router.post('/login/admin', authController.verifyAdminUser);
@@ -27,7 +30,7 @@ module.exports = () => {
   // reset password with access token
   router.patch('/reset/password/:token', authController.resetPasswordWithToken);
 
-  /* --- Refresh Token --- */
+  /* --- Refresh Access Token --- */
   router.post('/refresh', authController.refreshToken);
 
   return router;

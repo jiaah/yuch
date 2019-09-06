@@ -5,38 +5,53 @@ const sendEmail = require('../lib/send-email');
 const userService = require('../services/userService');
 
 /* --- Login --- */
-exports.loginUser = (req, res) => {
-  const { username, password } = req.body;
-  let id;
-  let companyName;
-  let userData;
-  let isAdmin;
-  return knex('users')
-    .where({ username })
-    .first()
-    .then(user => {
-      userData = user;
-      id = user.id;
-      companyName = user.companyName;
-      isAdmin = user.isAdmin;
-      if (!user) {
-        return res.status(404).json('User not found');
-      }
-      return util.comparePassword(password, user.password);
-    })
-    .then(isMatch => {
-      if (isMatch) {
-        const token = util.getRandomToken(userData);
-        return token;
-      }
-      return res.status(409).json('Auth failed');
-    })
-    .then(token => {
-      res.header('Authorization', `Bearer ${token}`);
-      res.header('expiresin', process.env.expiresIn);
-      return res.status(200).json({ id, companyName, isAdmin });
-    })
-    .catch(err => res.status(500).json(err));
+exports.loginUser = async (req, res, next) => {
+  try {
+    let error;
+    const { expiresIn } = process.env;
+    const { username, password } = req.body;
+
+    const user = await userService.findOneByUsername(username);
+
+    if (!user) {
+      error = new Error('User not found');
+      error.status = 404;
+      throw error;
+    }
+
+    const isMatch = await util.comparePassword(password, user.password);
+
+    if (!isMatch) {
+      error = new Error('Auth failed');
+      error.status = 409;
+      throw error;
+    }
+
+    const token = await util.getRandomToken(user);
+    const refreshToken = await userService.reNewRefreshToken(user.id);
+
+    res.header('Authorization', `Bearer ${token}`);
+    res.header('expiresin', expiresIn);
+    return res.status(200).json({
+      id: user.id,
+      companyName: user.companyName,
+      isAdmin: user.isAdmin,
+      refreshToken,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/* --- logout --- */
+exports.logoutUser = async (req, res, next) => {
+  try {
+    const { id } = req.userData;
+    await userService.emptyRefreshToken(id);
+    return res.status(200).json('success');
+  } catch (err) {
+    next(err);
+  }
 };
 
 /* --- Password --- */
@@ -209,21 +224,36 @@ exports.forgotPassword = (req, res) => {
     });
 };
 
+// Refresh Access Token
 exports.refreshToken = async (req, res, next) => {
   try {
-    const decodedToken = jwtDecode(req.headers.authorization);
+    const { refreshToken } = req.body;
 
-    const isValid = await userService.isValid(decodedToken.id);
+    const decodedRefreshToken = jwtDecode(refreshToken);
+
+    const isValid = await userService.isValid(
+      decodedRefreshToken.id,
+      refreshToken,
+    );
 
     if (!isValid) {
-      const error = new Error('Unauthorized error');
+      const error = new Error('Unauthorized refresh');
       error.status = 401;
       throw error;
     }
 
-    const user = await userService.findOneById(decodedToken.id);
+    const user = await userService.findOneById(decodedRefreshToken.id);
     const token = await util.getRandomToken(user);
-    return res.status(200).json({ token });
+    const newRefreshToken = await userService.reNewRefreshToken(user.id);
+
+    res.header('Authorization', `Bearer ${token}`);
+    res.header('expiresin', process.env.expiresIn);
+    return res.status(200).json({
+      id: user.id,
+      companyName: user.companyName,
+      isAdmin: user.isAdmin,
+      refreshToken: newRefreshToken,
+    });
   } catch (err) {
     next(err);
   }
