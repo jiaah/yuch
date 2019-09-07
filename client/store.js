@@ -3,12 +3,13 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { history } from './history';
 import rootReducer from './src/reducers';
 
-export const history = createBrowserHistory();
+// export const history = createBrowserHistory();
 
 const middlewares = [
   routerMiddleware(history), // for dispatching history actions

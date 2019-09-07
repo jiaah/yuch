@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import configureStore, { history } from './store';
+import configureStore from './store';
+import { history } from './history';
 import Routes from './routes/routes';
 import Loading from './src/components/loading';
 
