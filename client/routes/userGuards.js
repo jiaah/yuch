@@ -10,6 +10,7 @@ const UserGuards = Component => {
       const {
         keepMeLoggedIn,
         isLoggedIn,
+        userId,
         history,
         addFlashMessage,
         userLogout,
@@ -19,7 +20,7 @@ const UserGuards = Component => {
         (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
         !isLoggedIn
       ) {
-        await userLogout();
+        await userLogout(userId);
         await addFlashMessage('warning', '로그인을 해주세요.');
         return history.push('/');
       }
@@ -33,10 +34,11 @@ const UserGuards = Component => {
   const mapPropsToState = state => ({
     keepMeLoggedIn: state.auth.keepMeLoggedIn,
     isLoggedIn: state.auth.isLoggedIn,
+    userId: state.auth.id,
   });
 
   const mapDispatchToProps = dispatch => ({
-    userLogout: () => dispatch(userLogout()),
+    userLogout: userId => dispatch(userLogout(userId)),
     addFlashMessage: (variant, message) =>
       dispatch(addFlashMessage(variant, message)),
   });

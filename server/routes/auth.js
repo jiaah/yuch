@@ -7,7 +7,7 @@ module.exports = () => {
   router.post('/login', authController.loginUser);
 
   /* --- LogOut --- */
-  router.post('/logout', onlyLoggedIn, authController.logoutUser);
+  router.post('/logout', authController.logoutUser);
 
   /* --- Password --- */
   // simple Admin Password Check to secure sensitive data

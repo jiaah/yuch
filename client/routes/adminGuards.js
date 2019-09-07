@@ -14,6 +14,7 @@ const AdminGuards = Component => {
         keepMeLoggedIn,
         isLoggedIn,
         isAdmin,
+        userId,
         history,
         addFlashMessage,
         userLogout,
@@ -24,7 +25,7 @@ const AdminGuards = Component => {
         !isLoggedIn ||
         !isAdmin // if logged in user is not admin
       ) {
-        await userLogout();
+        await userLogout(userId);
         addFlashMessage('warning', '로그인을 해주세요.');
         return history.push('/');
       }
@@ -39,10 +40,11 @@ const AdminGuards = Component => {
     keepMeLoggedIn: state.auth.keepMeLoggedIn,
     isLoggedIn: state.auth.isLoggedIn,
     isAdmin: state.auth.isAdmin,
+    userId: state.auth.id,
   });
 
   const mapDispatchToProps = dispatch => ({
-    userLogout: () => dispatch(userLogout()),
+    userLogout: userId => dispatch(userLogout(userId)),
     addFlashMessage: (variant, message) =>
       dispatch(addFlashMessage(variant, message)),
   });

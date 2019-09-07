@@ -14,13 +14,14 @@ const NavContainer = ({
   isLoggedIn,
   companyName,
   isAdmin,
+  userId,
   routerLocation,
   userLogout,
   history,
 }) => {
   const handleUserLogout = async ev => {
     ev.preventDefault();
-    await userLogout();
+    await userLogout(userId);
     return history.push('/');
   };
 
@@ -56,11 +57,12 @@ const mapStateToProps = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   companyName: state.auth.companyName,
   isAdmin: state.auth.isAdmin,
+  userId: state.auth.id,
   routerLocation: state.router.location.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({
-  userLogout: () => dispatch(userLogout()),
+  userLogout: userId => dispatch(userLogout(userId)),
 });
 
 export default withRouter(

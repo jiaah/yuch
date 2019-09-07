@@ -46,7 +46,7 @@ exports.loginUser = async (req, res, next) => {
 /* --- logout --- */
 exports.logoutUser = async (req, res, next) => {
   try {
-    const { id } = req.userData;
+    const { id } = req.body;
     await userService.emptyRefreshToken(id);
     return res.status(200).json('success');
   } catch (err) {
