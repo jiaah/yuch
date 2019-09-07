@@ -17,12 +17,14 @@ export const ReserveForm = ({
   const dateToNumber = date.replace(/[^a-zA-Z0-9 ]/g, '');
   const timeToNumber = time.replace(/[^a-zA-Z0-9 ]/g, '');
   const validDateToNumber = inThreeDays.replace(/[^a-zA-Z0-9 ]/g, '');
-  const inValidContactValue = !!(
-    contact === '(0  )    -    ' ||
-    !!(contact[11].indexOf('_') !== -1) ||
-    !!(contact[12].indexOf('_') !== -1) ||
-    !!(contact[13].indexOf('_') !== -1)
-  );
+  const inValidContactValue =
+    contact.length !== 0 &&
+    !!(
+      contact === '(0  )    -    ' ||
+      !!(contact[11].indexOf('_') !== -1) ||
+      !!(contact[12].indexOf('_') !== -1) ||
+      !!(contact[13].indexOf('_') !== -1)
+    );
 
   return (
     <form data-testid="reserve-form">
