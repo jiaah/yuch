@@ -4,7 +4,6 @@ import {
   saveToken,
   saveRefreshToken,
 } from '../../localStorage';
-import { history } from '../../history';
 
 export const isTokenExpiredError = error => {
   const { response: errorResponse } = error;
@@ -13,20 +12,18 @@ export const isTokenExpiredError = error => {
 };
 
 export const resetTokenAndReattemptRequest = async error => {
+  const { response: errorResponse } = error;
+
+  const refreshToken = await getRefreshToken();
+  if (!refreshToken) {
+    return Promise.reject(error);
+  }
   try {
-    const { response: errorResponse } = error;
-
-    const refreshToken = await getRefreshToken();
-    if (!refreshToken) {
-      return history.push('/login');
-    }
-
     const res = await Axios.post('/auth/refresh', {
       refreshToken,
     });
     const newRefreshToken = res.data.refreshToken;
     const newToken = res.headers.authorization.split(' ')[1];
-
     // update refreshToken if it's renewed.
     if (newRefreshToken !== refreshToken) {
       saveRefreshToken(newRefreshToken);

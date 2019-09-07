@@ -25,6 +25,7 @@ Cypress.Commands.add('login', userType => {
   }).then(({ body }) =>
     cy.window().then(win => {
       win.localStorage.setItem('token', body.token);
+      win.localStorage.setItem('token', body.refreshToken);
       win.sessionStorage.setItem('keepUserLoggedIn', false);
     }),
   );

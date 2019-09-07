@@ -17,6 +17,7 @@ export const getAdmin = id => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getAdmin',
+      status: error.response.status,
       error: 'Getting the admin account failed.',
     });
   }

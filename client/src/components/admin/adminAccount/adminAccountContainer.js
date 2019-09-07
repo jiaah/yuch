@@ -23,7 +23,7 @@ const AdminAccountContainer = ({
       // to render the form
       // setting default adminData to {} would not render server data
       setAdminData({});
-      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
     return setAdminData(data);
   };
@@ -69,7 +69,9 @@ const AdminAccountContainer = ({
     </div>
   );
 };
-const mapStateToPorps = state => ({ id: state.auth.id });
+const mapStateToPorps = state => ({
+  id: state.auth.id,
+});
 const mapDispatchToProps = dispatch => ({
   getAdmin: id => dispatch(getAdmin(id)),
   editAdminAccount: (id, values) => dispatch(editAdminAccount(id, values)),
