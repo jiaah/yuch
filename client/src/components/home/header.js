@@ -18,7 +18,7 @@ const Header = () => {
     timer = setTimeout(() => {
       if (msg < messages.length - 1) return setMsg(msg + 1);
       return setMsg(0);
-    }, 4000);
+    }, 3000);
   }
 
   useEffect(

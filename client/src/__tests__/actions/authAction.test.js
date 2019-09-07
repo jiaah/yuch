@@ -15,6 +15,7 @@ const {
   isAdmin,
   email,
   contactNo,
+  keepMeLoggedIn,
 } = data;
 
 const store = mockStore({});
@@ -31,15 +32,15 @@ describe('async auth request actions', () => {
 
   it('calls login action and returns user info object', done => {
     const API_URL = `${API_HOST}/auth/login`;
-    const user = { username, password };
     const expectedData = {
       token,
       id,
       companyName,
       isAdmin,
+      keepMeLoggedIn,
     };
 
-    store.dispatch(actions.userLogin(user));
+    store.dispatch(actions.userLogin({ username, password, keepMeLoggedIn }));
     moxios.stubRequest(API_URL, {
       status: 200,
       response: expectedData,
@@ -53,6 +54,7 @@ describe('async auth request actions', () => {
           id,
           companyName,
           isAdmin,
+          keepMeLoggedIn,
         },
       },
     ];
@@ -65,7 +67,7 @@ describe('async auth request actions', () => {
 
   it('calls HTTP_FAILURE action when login fails', done => {
     const API_URL = `${API_HOST}/auth/login`;
-    const user = { username, password };
+    const user = { username, password, keepMeLoggedIn };
 
     store.dispatch(actions.userLogin(user));
     moxios.stubRequest(API_URL, {

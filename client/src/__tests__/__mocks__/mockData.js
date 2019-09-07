@@ -1,5 +1,6 @@
 export const inThreeDays = '2020-11-06';
 export const now = '11 06 2020, 11:35 20';
+export const keepMeLoggedIn = false;
 export const username = 'yuchung';
 export const password = 'testingpwd12';
 export const newPassword = 'newPwd1234';

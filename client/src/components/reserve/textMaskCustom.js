@@ -7,7 +7,9 @@ const TextMaskCustom = props => {
   return (
     <MaskedInput
       {...other}
-      ref={inputRef}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
       mask={[
         '(',
         ' ',
@@ -29,7 +31,7 @@ const TextMaskCustom = props => {
         /\d/,
         /\d/,
       ]}
-      // placeholderChar={'\u2000'}
+      placeholderChar={'\u2000'}
       showMask={false}
     />
   );
