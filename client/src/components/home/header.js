@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useInterval } from '../../helpers/useInterval';
 import IconButton from '../../shared/form/iconButton';
 import {
   headerMsgA,
@@ -13,20 +14,10 @@ const Header = () => {
   const [arrowBtnTouched, setArrowBtnTouched] = useState(false);
   const [msg, setMsg] = useState(0);
 
-  let timer;
-  if (!arrowBtnTouched) {
-    timer = setTimeout(() => {
-      if (msg < messages.length - 1) return setMsg(msg + 1);
-      return setMsg(0);
-    }, 3000);
-  }
-
-  useEffect(
-    () => () => {
-      clearTimeout(timer);
-    },
-    [],
-  );
+  useInterval(() => {
+    if (msg < messages.length - 1) return setMsg(msg + 1);
+    return setMsg(0);
+  }, !arrowBtnTouched ? 3000 : null);
 
   const handleLeftButtonClick = () => {
     if (msg !== 0) setMsg(msg - 1);
