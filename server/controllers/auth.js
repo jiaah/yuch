@@ -14,16 +14,16 @@ exports.loginUser = async (req, res, next) => {
     const user = await userService.findOneByUsername(username);
 
     if (!user) {
-      error = new Error('User not found');
-      error.status = 404;
+      error = new Error('Unauthorized');
+      error.status = 401;
       throw error;
     }
 
     const isMatch = await util.comparePassword(password, user.password);
 
     if (!isMatch) {
-      error = new Error('Auth failed');
-      error.status = 409;
+      error = new Error('Unauthorized');
+      error.status = 401;
       throw error;
     }
 
@@ -65,7 +65,7 @@ exports.verifyAdminUser = (req, res) => {
       if (isMatch) {
         return res.status(200).json();
       }
-      return res.status(409).json('Auth failed');
+      return res.status(401).json('Unauthorized');
     })
     .catch(err => res.status(500).json(err));
 };
@@ -80,7 +80,7 @@ const setPassword = (id, newPassword) =>
           password: hashedPassword,
         })
         .then(() => resolve())
-        .catch(() => reject(new Error('Auth failed'))),
+        .catch(() => reject(new Error('Setting new password failed'))),
     );
   });
 
@@ -91,7 +91,7 @@ exports.changePassword = (req, res) => {
     .first()
     .then(user => {
       if (!user) {
-        return res.status(401).json('Auth failed');
+        return res.status(401).json('Unauthorized');
       }
       util.comparePassword(password, user.password).then(isMatch => {
         if (isMatch) {
@@ -99,7 +99,7 @@ exports.changePassword = (req, res) => {
             .then(() => res.status(200).json())
             .catch(err => res.status(409).json(err));
         }
-        return res.status(409).json('Auth failed');
+        return res.status(401).json('Unauthorized');
       });
     })
     .catch(err => res.status(500).json(err));
@@ -141,10 +141,10 @@ exports.resetPasswordWithToken = (req, res) => {
             .then(() => res.status(200).json())
             .catch(err => res.status(409).json(err));
         } catch (err) {
-          return res.status(409).json('Access token has expired');
+          return res.status(409).json('Invalid token');
         }
       }
-      return res.status(409).json('Access token is invalid');
+      return res.status(409).json('Invalid token');
     })
     .catch(err => res.status(409).json(err));
 };
@@ -160,7 +160,7 @@ exports.findUsernameWithEmail = (req, res) =>
         const username = user.username;
         return res.status(200).json({ companyName, username });
       }
-      return res.status(409).json('Can not find user');
+      return res.status(409).json('User not found');
     })
     .catch(() => res.status(500).json());
 
@@ -174,7 +174,7 @@ exports.findUsernameWithContact = (req, res) =>
         const username = user.username;
         return res.status(200).json({ companyName, username });
       }
-      return res.status(409).json('Can not find user');
+      return res.status(409).json('User not found');
     })
     .catch(() => res.status(500).json());
 
@@ -216,10 +216,10 @@ exports.forgotPassword = (req, res) => {
             next(err);
           });
       }
-      return res.status(409).json('Can not find user email');
+      return res.status(409).json('User not found');
     })
     .catch(err => {
-      res.status(409).json('Can not find user email');
+      res.status(409).json('User not found');
       next(err);
     });
 };

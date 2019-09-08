@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
 
   jwt.verify(token, process.env.secret, (err, decoded) => {
     if (err) {
-      return res.status(401).json('Unauthorized access');
+      return res.status(403).json('Invalid token');
     }
     req.userData = decoded;
     next();
