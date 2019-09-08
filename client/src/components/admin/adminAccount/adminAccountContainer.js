@@ -23,7 +23,7 @@ const AdminAccountContainer = ({
       // to render the form
       // setting default adminData to {} would not render server data
       setAdminData({});
-      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
     return setAdminData(data);
   };

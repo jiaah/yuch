@@ -17,6 +17,7 @@ export const getCateringRates = () => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getCateringRates',
+      status: error.response.status,
       error: 'Getting users list is failed',
     });
   }
@@ -42,6 +43,7 @@ export const updateReservedPrice = (
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'updateReservedPrice',
+      status: error.response.status,
       error: 'Getting users list is failed',
     });
   }

@@ -17,6 +17,7 @@ export const getMe = id => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getMyAccount',
+      status: error.response.status,
       error: 'Getting the user account failed.',
     });
   }
@@ -34,6 +35,7 @@ export const editUserAccount = (id, userInfo) => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'editUserAccount',
+      status: error.response.status,
       error: 'Updating the user account failed.',
     });
   }

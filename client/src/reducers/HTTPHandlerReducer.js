@@ -4,15 +4,15 @@ const initialState = {
   api: '',
   isLoading: false,
   data: [],
-  status: null,
+  status: '',
   error: '',
 };
 
 const httpHandler = (state = initialState, action) => {
   // to keep data as [], not undefined when nothing was passed from action.
-  const { payload } = action;
+  const { payload, status } = action;
   const contents = payload || [];
-  const httpStatus = action.status || null;
+  const httpStatus = status || '';
   switch (action.type) {
     case types.HTTP_REQUEST:
       return {
@@ -20,8 +20,8 @@ const httpHandler = (state = initialState, action) => {
         api: action.api,
         isLoading: true,
         data: [],
-        status: null,
         error: '',
+        status: '',
       };
     case types.HTTP_SUCCESS:
       return {
@@ -29,16 +29,16 @@ const httpHandler = (state = initialState, action) => {
         api: action.api,
         isLoading: false,
         data: [...state.data, contents],
-        status: httpStatus,
         error: '',
+        status: httpStatus,
       };
     case types.HTTP_FAILURE:
       return {
         ...state,
         api: action.api,
         isLoading: false,
-        status: httpStatus,
         error: action.error,
+        status: httpStatus,
       };
     case types.HTTP_RESET:
       return {
@@ -46,8 +46,8 @@ const httpHandler = (state = initialState, action) => {
         api: '',
         isLoading: false,
         data: [],
-        status: null,
         error: '',
+        status: '',
       };
     default:
       return state;

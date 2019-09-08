@@ -15,15 +15,17 @@ const AdminGuards = Component => {
         isLoggedIn,
         isAdmin,
         id,
+        httpStatus,
         history,
         addFlashMessage,
         userLogout,
       } = this.props;
 
       if (
-        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // when user reopen the browser ( keepMeLoggedIn is false)
+        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
         !isLoggedIn ||
-        !isAdmin // if logged in user is not admin
+        !isAdmin || // if logged in user is not admin
+        httpStatus === 401 // token authentication failure on API request by a loggedIn user
       ) {
         await userLogout(id);
         addFlashMessage('warning', '로그인을 해주세요.');
@@ -41,6 +43,7 @@ const AdminGuards = Component => {
     isLoggedIn: state.auth.isLoggedIn,
     isAdmin: state.auth.isAdmin,
     id: state.auth.id,
+    httpStatus: state.httpHandler.status,
   });
 
   const mapDispatchToProps = dispatch => ({

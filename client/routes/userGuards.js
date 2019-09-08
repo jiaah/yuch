@@ -17,8 +17,9 @@ const UserGuards = Component => {
       } = this.props;
 
       if (
-        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
-        !isLoggedIn
+        (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) ||
+        !isLoggedIn ||
+        (isLoggedIn && httpStatus === 401)
       ) {
         addFlashMessage('warning', '로그인을 해주세요.');
         await userLogout(id);

@@ -17,7 +17,7 @@ const CustomizedSnackbar = ({ show, variant, message, removeFlashMessage }) => {
         horizontal: 'center',
       }}
       open={show}
-      autoHideDuration={4000}
+      autoHideDuration={3000}
       onClose={handleClose}
     >
       <SnackbarContentWrapper

@@ -35,6 +35,7 @@ export const editAdminAccount = (id, values) => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'editAdminAccount',
+      status: error.response.status,
       error: 'Updating the admin account failed.',
     });
   }
@@ -56,6 +57,7 @@ export const getUsers = () => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getUsers',
+      status: error.response.status,
       error: 'Getting users list is failed',
     });
   }
@@ -71,6 +73,7 @@ export const createUser = userInfo => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'createUser',
+      status: error.response.status,
       error: 'Creating a user failed.',
     });
   }
@@ -87,6 +90,7 @@ export const editUser = userInfo => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'editUser',
+      status: error.response.status,
       error: 'Editing a user failed.',
     });
   }
@@ -101,6 +105,7 @@ export const deleteUser = userId => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'deleteUser',
+      status: error.response.status,
       error: 'Deleting the user failed.',
     });
   }

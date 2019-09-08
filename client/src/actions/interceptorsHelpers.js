@@ -14,11 +14,12 @@ export const isTokenExpiredError = error => {
 export const resetTokenAndReattemptRequest = async error => {
   const { response: errorResponse } = error;
 
-  const refreshToken = await getRefreshToken();
-  if (!refreshToken) {
-    return Promise.reject(error);
-  }
   try {
+    const refreshToken = await getRefreshToken();
+    if (!refreshToken) {
+      return Promise.reject(error);
+    }
+
     const res = await Axios.post('/auth/refresh', {
       refreshToken,
     });

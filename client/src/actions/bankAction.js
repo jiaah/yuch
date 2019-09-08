@@ -15,6 +15,7 @@ export const getBankAccount = () => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getBankAccount',
+      status: error.response.status,
       error: 'Getting the bank account list is failed.',
     });
   }
@@ -29,6 +30,7 @@ export const createBankAccount = values => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'createBankAccount',
+      status: error.response.status,
       error: 'Creating the bank account is failed.',
     });
   }
@@ -43,6 +45,7 @@ export const editBankAccount = values => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'editBankAccount',
+      status: error.response.status,
       error: 'Editing the bank account is failed.',
     });
   }
@@ -57,6 +60,7 @@ export const deleteBankAccount = id => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'deleteBankAccount',
+      status: error.response.status,
       error: 'Deleting the bank account is failed.',
     });
   }

@@ -4,7 +4,13 @@ import { Redirect, Route } from 'react-router-dom';
 import { isLoggedIn } from '../localStorage';
 
 // to block login page to loggedIn user
-const LoggedInRoute = ({ component: Component, ...rest }) => (
+const LoggedInRoute = ({
+  httpStatus,
+  id,
+  userLogout,
+  component: Component,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={props =>
