@@ -20,7 +20,7 @@ const MessagesList = ({
         variant={variant}
         message={
           httpStatus === 401
-            ? '고객님의 인증에 실패하였습니다. 다시 로그인 해주세요.'
+            ? '유효하지 않은 토큰입니다. 다시 로그인 해주세요.'
             : message
         }
         removeFlashMessage={removeFlashMessage}
