@@ -22,10 +22,13 @@ Cypress.Commands.add('login', userType => {
       username: userInfo.username,
       password: userInfo.password,
     },
-  }).then(({ body }) =>
+  }).then(res =>
     cy.window().then(win => {
-      win.localStorage.setItem('token', body.token);
-      win.localStorage.setItem('token', body.refreshToken);
+      win.localStorage.setItem(
+        'token',
+        res.headers.authorization.split(' ')[1],
+      );
+      win.localStorage.setItem('refreshToken', res.body.refreshToken);
       win.sessionStorage.setItem('keepUserLoggedIn', false);
     }),
   );

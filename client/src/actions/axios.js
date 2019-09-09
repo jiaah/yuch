@@ -17,14 +17,14 @@ export const Axios = axios.create({
   },
 });
 
-// Axios.interceptors.response.use(
-//   response =>
-//     // If the request succeeds, we don't have to do anything and just return the response
-//     response,
-//   async error => {
-//     if (isTokenExpiredError(error)) {
-//       return resetTokenAndReattemptRequest(error);
-//     }
-//     return Promise.reject(error);
-//   },
-// );
+Axios.interceptors.response.use(
+  response =>
+    // If the request succeeds, we don't have to do anything and just return the response
+    response,
+  async error => {
+    if (isTokenExpiredError(error)) {
+      return resetTokenAndReattemptRequest(error);
+    }
+    return Promise.reject(error);
+  },
+);

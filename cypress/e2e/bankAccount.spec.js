@@ -34,4 +34,15 @@ describe('bank account page', () => {
     cy.get('[data-testid="bank-account--tablerow"]').should('not.exist');
     cy.get('.error').should('be.visible');
   });
+
+  // assertion error
+  // how to reset token, refresh token after testing
+  it('display an error when user has invalid refresh token & token', () => {
+    // window.localStorage.setItem('token', 'asdfasfdasfd');
+    // window.localStorage.setItem('refreshToken', '');
+    // expect(window.localStorage.getItem('token')).to.be.a('asdfasfdasfd');
+    // expect(window.localStorage.getItem('refreshToken')).to.be.a('');
+    // cy.seedAndVisitBankAccountPage();
+    // cy.get('.error').should('be.visible');
+  });
 });

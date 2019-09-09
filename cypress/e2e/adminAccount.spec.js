@@ -5,11 +5,11 @@ describe('admin account', () => {
 
   it('displays a logout button', () => {
     expect(window.localStorage.getItem('token')).to.exist;
+    expect(window.localStorage.getItem('refreshToken')).to.exist;
     cy.contains('로그아웃');
   });
 
   context('admin account page', () => {
-    beforeEach(() => {});
     it('edits user account info', () => {
       cy.visit('/admin/account');
       cy.get(`[data-testid="companyName"]`)
@@ -19,24 +19,27 @@ describe('admin account', () => {
       cy.get('.success').should('be.visible');
     });
 
-    // it.only('display an error on failure', () => {
-    //   cy.visit('/admin/account');
-    //   const id = 'asdfasdf';
-    //   cy.server()
-    //     .route({
-    //       url: `api/admin/edit/${id}`,
-    //       method: 'PATCH',
-    //       status: 500,
-    //       response: {},
-    //     })
-    //     .as('edit');
+    // ERROR
+    it('display an error on failure', () => {
+      cy.visit('/admin/account');
+      const id = 'asdfasdf';
+      cy.server()
+        .route({
+          url: `api/admin/edit/${id}`,
+          method: 'PATCH',
+          status: 500,
+          response: {},
+        })
+        .as('edit');
 
-    //   cy.get('button[type=submit]')
-    //     .click()
-    //     .wait('@edit')
-    //     .should('have.class', 'error');
-    // });
+      cy.get('button[type=submit]')
+        .click()
+        .wait('@edit')
+        .should('have.class', 'error');
+    });
 
+    // how to reset password change after testing.
+    // otherwise it throw an error when login testing.
     it('changes password', () => {
       cy.visit('/admin/account');
       cy.get(`[data-testid="to-password-modal-btn"]`).as('pwdModalBtn');
