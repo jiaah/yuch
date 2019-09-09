@@ -11,7 +11,7 @@ describe('login', () => {
     const response = await request(app)
       .post('/api/auth/login')
       .send('username=notUser&password=yuch2009ung');
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(401);
   });
 
   it('should throw error if not matched password', async () => {
@@ -21,7 +21,7 @@ describe('login', () => {
     const response = await request(app)
       .post('/api/auth/login')
       .send('username=yuch&password=uch2009ung');
-    expect(response.status).toBe(409);
+    expect(response.status).toBe(401);
   });
 
   it('should response ok with body if not matched password', async () => {
@@ -55,14 +55,14 @@ describe('logout', () => {
 describe('refresh access token', () => {
   it('should get error if not send token in header', async () => {
     const response = await request(app).post('/api/auth/refresh');
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(401);
   });
 
   it('should get error if not valid token', async () => {
     const response = await request(app)
       .post('/api/auth/refresh')
       .send('refreshToken=foobar');
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(401);
   });
 
   it('should get error if valid token but not exist user', async () => {
