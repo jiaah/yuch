@@ -3,12 +3,7 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import Loader from '../loader';
-
-const ToggleMenuItems = Loader({
-  loader: () =>
-    import('./toggleMenuItems' /* webpackChunkName: 'ToggleMenuItems' */),
-});
+import ToggleMenuItems from './toggleMenuItems';
 
 const styles = () => ({
   root: {

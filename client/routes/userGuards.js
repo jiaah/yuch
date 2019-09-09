@@ -11,6 +11,7 @@ const UserGuards = Component => {
         keepMeLoggedIn,
         isLoggedIn,
         id,
+        httpStatus,
         history,
         addFlashMessage,
         userLogout,
@@ -36,6 +37,7 @@ const UserGuards = Component => {
     keepMeLoggedIn: state.auth.keepMeLoggedIn,
     isLoggedIn: state.auth.isLoggedIn,
     id: state.auth.id,
+    httpStatus: state.httpHandler.status,
   });
 
   const mapDispatchToProps = dispatch => ({
