@@ -19,7 +19,7 @@ describe('admin account', () => {
       cy.get('.success').should('be.visible');
     });
 
-    // ERROR
+    // CypressError: No request ever occured
     it('display an error on failure', () => {
       cy.visit('/admin/account');
       const id = 'asdfasdf';
@@ -60,5 +60,15 @@ describe('admin account', () => {
       cy.get('[data-testid="close-modal-btn"]').click();
       cy.get(`@pwdModalBtn`).should('be.visible');
     });
+  });
+
+  // how to reset token, refresh token after testing
+  it('display an error when user has invalid refresh token & token', () => {
+    // window.localStorage.setItem('token', 'asdfasfdasfd');
+    // window.localStorage.setItem('refreshToken', '');
+    // expect(window.localStorage.getItem('token')).to.be.a('asdfasfdasfd');
+    // expect(window.localStorage.getItem('refreshToken')).to.be.a('');
+    // cy.visit('/admin/account');
+    // cy.get('.error').should('be.visible');
   });
 });

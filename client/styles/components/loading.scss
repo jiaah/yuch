@@ -58,3 +58,30 @@ $color-loader: #ff6300;
     width: 15px
   }
 }
+
+
+.loading {
+  margin-top: 5em;
+}
+
+
+.loading-container {
+  // height, position not working -> soulution: padding.
+  display: flex;
+  justify-content: center;
+  padding-top: 9em;
+
+  @include for-desktop-up {
+    padding-top: 10em;
+  }
+}
+
+.loading {
+  width: 64px;
+  height: 64px;
+
+  @include for-desktop-up {
+    width: 100px;
+    height: 100px;
+  }
+}

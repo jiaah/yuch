@@ -2,23 +2,28 @@ import React from 'react';
 import Loadable from 'react-loadable';
 import Loading from './loading';
 
-const MessageBox = ({ props, msg }) => (
-  <div className="error--container">
-    <div id="notfound">
-      <div className="notfound">
-        <div className="notfound-404">
-          <h1>Oops!</h1>
-          <h2>{msg}</h2>
+const MessageBox = ({ props, msg }) => {
+  console.log('messageBox is called');
+  console.log('props in MessageBox: ', props);
+  return (
+    <div className="error--container">
+      <div id="notfound">
+        <div className="notfound">
+          <div className="notfound-404">
+            <h1>Oops!</h1>
+            <h2>{msg}</h2>
+          </div>
+          <button type="button" onClick={props.retry}>
+            Retry
+          </button>
         </div>
-        <button type="button" onClick={props.retry}>
-          Retry
-        </button>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const isLoading = props => {
+  console.log('props in isLoading: ', props);
   if (props.error) {
     return MessageBox(props, 'Routing Error!');
   }
