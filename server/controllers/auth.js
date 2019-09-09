@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const jwtDecode = require('jwt-decode');
 const knex = require('../database');
 const util = require('../lib/util');
@@ -229,6 +230,8 @@ exports.refreshToken = async (req, res, next) => {
   try {
     const { refreshToken } = req.body;
 
+    const refreshTokenVerify = jwt.verify(refreshToken, process.env.secret);
+
     const decodedRefreshToken = jwtDecode(refreshToken);
 
     const isValid = await userService.isValid(
@@ -255,6 +258,13 @@ exports.refreshToken = async (req, res, next) => {
       refreshToken: newRefreshToken,
     });
   } catch (err) {
-    next(err);
+    let error;
+    if (err instanceof jwt.JsonWebTokenError) {
+      error = new Error('Invalid token');
+      error.status = 401;
+    } else {
+      error = err;
+    }
+    next(error);
   }
 };
