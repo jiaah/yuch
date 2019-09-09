@@ -1,7 +1,7 @@
 import moxios from 'moxios';
 import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
-import * as actions from '../../actions/userAction';
+import * as actions from '../../actions/userAccountAction';
 import { mockStore } from '../setupTests';
 import { API_HOST } from '../../../config';
 import {

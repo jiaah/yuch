@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 /* --- Components --- */
 import { dateInKorean } from '../../../helpers/moment';
 import IconButton from '../../../shared/form/iconButton';
+/* --- Actions --- */
+import { fetchUserCatering } from '../../../actions/catering';
 
-const CateringContainer = ({ id }) => {
-  const fetchData = () => {
-    console.log(id);
+const CateringContainer = ({ id, fetchUserCatering }) => {
+  const fetchData = async () => {
+    const res = await fetchUserCatering(id);
+    return res;
   };
   const handleDateBackward = () => console.log('backward');
   const handleDateForward = () => console.log('forward');
 
-  useEffect(() => fetchData(), []);
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="container">
       <h2>식수현황</h2>
@@ -38,7 +43,9 @@ const CateringContainer = ({ id }) => {
 const mapStateToProps = state => ({
   id: state.auth.id,
 });
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  fetchUserCatering: id => dispatch(fetchUserCatering(id)),
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

@@ -53,3 +53,29 @@ export const reserveContents = {
   time: '12:30',
   createdAt: now,
 };
+
+export const catering = [
+  {
+    userId: '0',
+    catering: [
+      { date: '190918', lunchQty: 20, dinnerQty: 40, lateNightSnackQty: 10 },
+      { date: '190919', lunchQty: 30, dinnerQty: 10, lateNightSnackQty: 5 },
+      { date: '190920', lunchQty: 10, dinnerQty: 50, lateNightSnackQty: 0 },
+    ],
+  },
+  {
+    userId: '1',
+    catering: [
+      { date: '190918', lunchQty: 10, dinnerQty: 15, lateNightSnackQty: 9 },
+      { date: '190919', lunchQty: 0, dinnerQty: 3, lateNightSnackQty: 5 },
+      {
+        date: '190920',
+        lunchQty: 0,
+        dinnerQty: 0,
+        defaultLunchQty: 5,
+        defaultDinnerQty: 0,
+        lateNightSnackQty: 6,
+      },
+    ],
+  },
+];
