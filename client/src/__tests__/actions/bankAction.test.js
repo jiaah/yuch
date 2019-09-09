@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/bankAction';
 import { mockStore } from '../setupTests';
@@ -10,10 +11,10 @@ const store = mockStore({});
 describe('async bank actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('receives bank accounts on success', done => {
@@ -43,6 +44,7 @@ describe('async bank actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'getBankAccount',
+        status: 500,
         error: 'Getting the bank account list is failed.',
       },
     ];
@@ -77,6 +79,7 @@ describe('async bank actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'createBankAccount',
+        status: 500,
         error: 'Creating the bank account is failed.',
       },
     ];
@@ -111,6 +114,7 @@ describe('async bank actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'editBankAccount',
+        status: 500,
         error: 'Editing the bank account is failed.',
       },
     ];
@@ -145,6 +149,7 @@ describe('async bank actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'deleteBankAccount',
+        status: 500,
         error: 'Deleting the bank account is failed.',
       },
     ];

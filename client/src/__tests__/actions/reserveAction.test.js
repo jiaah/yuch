@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/reserveAction';
 import { mockStore } from '../setupTests';
@@ -10,11 +11,11 @@ const store = mockStore({});
 describe('async reserve request actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('should generate reset reserve info action', () => {
@@ -48,12 +49,12 @@ describe('async reserve request actions', () => {
     store.dispatch(actions.reserve());
 
     moxios.stubRequest(API_URL, {
-      status: 400,
+      status: 500,
     });
 
     const expectedActions = [
       { type: types.HTTP_REQUEST, api: 'reserve' },
-      { type: types.HTTP_FAILURE, api: 'reserve', error },
+      { type: types.HTTP_FAILURE, api: 'reserve', status: 500, error },
     ];
 
     moxios.wait(() => {

@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/adminAction';
 import { mockStore } from '../setupTests';
@@ -23,10 +24,10 @@ const store = mockStore({});
 describe('async admin actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('receives admin account info on success', done => {
@@ -64,6 +65,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'getAdmin',
+        status: 409,
         error: 'Getting the admin account failed.',
       },
     ];
@@ -114,6 +116,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'editAdminAccount',
+        status: 409,
         error: 'Updating the admin account failed.',
       },
     ];
@@ -158,6 +161,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'getUsers',
+        status: 500,
         error: 'Getting users list is failed',
       },
     ];
@@ -194,6 +198,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'createUser',
+        status: 500,
         error: 'Creating a user failed.',
       },
     ];
@@ -230,6 +235,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'editUser',
+        status: 500,
         error: 'Editing a user failed.',
       },
     ];
@@ -266,6 +272,7 @@ describe('async admin actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'deleteUser',
+        status: 500,
         error: 'Deleting the user failed.',
       },
     ];

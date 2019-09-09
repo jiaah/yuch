@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import { hideModal, showModal } from '../../actions/modalAction';
 import { mockStore } from '../setupTests';
@@ -8,11 +9,11 @@ const store = mockStore({});
 describe('async modal request actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('should call hide modal action', () => {

@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/rateAction';
 import { mockStore } from '../setupTests';
@@ -11,10 +12,10 @@ const store = mockStore({});
 describe('async catering rates actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('receives meal prices of all clients on success', done => {
@@ -45,6 +46,7 @@ describe('async catering rates actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'getCateringRates',
+        status: 500,
         error: 'Getting users list is failed',
       },
     ];
@@ -84,6 +86,7 @@ describe('async catering rates actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'updateReservedPrice',
+        status: 500,
         error: 'Getting users list is failed',
       },
     ];

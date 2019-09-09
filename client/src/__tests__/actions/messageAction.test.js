@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/messageAction';
 import { mockStore } from '../setupTests';
@@ -8,10 +9,10 @@ const store = mockStore({});
 describe('async message request actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('add flash message', () => {

@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/userAction';
 import { mockStore } from '../setupTests';
@@ -25,10 +26,10 @@ const store = mockStore({});
 describe('async user account actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(Axios);
   });
 
   it('receives a user account on success', done => {
@@ -59,6 +60,7 @@ describe('async user account actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'getMyAccount',
+        status: 500,
         error: 'Getting the user account failed.',
       },
     ];
@@ -93,6 +95,7 @@ describe('async user account actions', () => {
       {
         type: types.HTTP_FAILURE,
         api: 'editUserAccount',
+        status: 500,
         error: 'Updating the user account failed.',
       },
     ];

@@ -14,6 +14,7 @@ export const reserve = reserveInfo => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'reserve',
+      status: error.response.status,
       error: 'Sending a reservation email failed.',
     });
   }

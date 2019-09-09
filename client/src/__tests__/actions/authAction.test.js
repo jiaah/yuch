@@ -1,98 +1,23 @@
 import moxios from 'moxios';
+import { Axios } from '../../actions/axios';
 import * as types from '../../actions/actionTypes';
 import * as actions from '../../actions/authAction';
 import { mockStore } from '../setupTests';
 import { API_HOST } from '../../../config';
 import * as data from '../__mocks__/mockData';
 
-const {
-  username,
-  password,
-  newPassword,
-  id,
-  token,
-  companyName,
-  isAdmin,
-  email,
-  contactNo,
-  keepMeLoggedIn,
-} = data;
+const { username, password, newPassword, id, token, email, contactNo } = data;
 
 const store = mockStore({});
 
 describe('async auth request actions', () => {
   beforeEach(() => {
     store.clearActions();
-    moxios.install();
+    moxios.install(Axios);
   });
 
   afterEach(() => {
-    moxios.uninstall();
-  });
-
-  it('calls login action and returns user info object', done => {
-    const API_URL = `${API_HOST}/auth/login`;
-    const expectedData = {
-      token,
-      id,
-      companyName,
-      isAdmin,
-      keepMeLoggedIn,
-    };
-
-    store.dispatch(actions.userLogin({ username, password, keepMeLoggedIn }));
-    moxios.stubRequest(API_URL, {
-      status: 200,
-      response: expectedData,
-    });
-
-    const expectedActions = [
-      { type: types.HTTP_REQUEST, api: 'login' },
-      {
-        type: types.USER_LOGIN,
-        payload: {
-          id,
-          companyName,
-          isAdmin,
-          keepMeLoggedIn,
-        },
-      },
-    ];
-
-    moxios.wait(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-      done();
-    });
-  });
-
-  it('calls HTTP_FAILURE action when login fails', done => {
-    const API_URL = `${API_HOST}/auth/login`;
-    const user = { username, password, keepMeLoggedIn };
-
-    store.dispatch(actions.userLogin(user));
-    moxios.stubRequest(API_URL, {
-      status: 409,
-    });
-
-    const expectedActions = [
-      { type: types.HTTP_REQUEST, api: 'login' },
-      {
-        type: types.HTTP_FAILURE,
-        api: 'login',
-        error: 'Login failed.',
-      },
-    ];
-
-    moxios.wait(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-      done();
-    });
-  });
-
-  it('calls logout action', () => {
-    store.dispatch(actions.userLogout());
-    const expectedActions = [{ type: types.USER_LOGOUT }];
-    expect(store.getActions()).toEqual(expectedActions);
+    moxios.uninstall(Axios);
   });
 
   it('calls handleAdminVerificationStatus action', () => {
@@ -227,12 +152,6 @@ describe('async auth request actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     });
-  });
-
-  it('calls keepMeLoggedIn action', () => {
-    store.dispatch(actions.keepMeLoggedIn());
-    const expectedActions = [{ type: types.KEEP_ME_LOGGED_IN }];
-    expect(store.getActions()).toEqual(expectedActions);
   });
 
   it('calls findUsernameWithEmail action', done => {
