@@ -32,6 +32,7 @@ const RatesContainer = ({
   isAdminVerified,
   selectedSearchItem,
   clickedUserData,
+  show,
 }) => {
   const [data, setData] = useState([]);
 
@@ -53,6 +54,7 @@ const RatesContainer = ({
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
+        show ? hideModal() : null,
       ]);
   }, []);
 
@@ -112,6 +114,7 @@ const mapStateToProps = state => ({
   selectedSearchItem: state.selected.value,
   clickedUserData: state.selected.data,
   isAdminVerified: state.isAdminVerified.isAdminVerified,
+  show: state.modal.show,
 });
 
 const mapDispatchToProps = dispatch => ({

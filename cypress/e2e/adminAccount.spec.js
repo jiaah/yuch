@@ -23,18 +23,15 @@ describe('admin account', () => {
     it('display an error on failure', () => {
       cy.visit('/admin/account');
       const id = 'asdfasdf';
-      cy.server()
-        .route({
+
+      cy.get('button[type=submit]')
+        .click()
+        .request({
           url: `api/admin/edit/${id}`,
           method: 'PATCH',
           status: 500,
           response: {},
         })
-        .as('edit');
-
-      cy.get('button[type=submit]')
-        .click()
-        .wait('@edit')
         .should('have.class', 'error');
     });
 

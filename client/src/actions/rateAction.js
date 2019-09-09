@@ -28,6 +28,7 @@ export const updateReservedPrice = (
   reservePrice,
   reserveDate,
 ) => async dispatch => {
+  console.log(userId, reservePrice, reserveDate);
   dispatch({ type: types.HTTP_REQUEST, api: 'updateReservedPrice' });
   try {
     await Axios.patch('/admin/users/catering/rates', {

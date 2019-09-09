@@ -13,16 +13,15 @@ export const isTokenExpiredError = error => {
 
 export const resetTokenAndReattemptRequest = async error => {
   const { response: errorResponse } = error;
-
+  const refreshToken = await getRefreshToken();
+  if (!refreshToken) {
+    return Promise.reject(error);
+  }
   try {
-    const refreshToken = await getRefreshToken();
-    if (!refreshToken) {
-      return Promise.reject(error);
-    }
-
     const res = await Axios.post('/auth/refresh', {
       refreshToken,
     });
+    console.log('res: ', res);
     const newRefreshToken = res.data.refreshToken;
     const newToken = res.headers.authorization.split(' ')[1];
     // update refreshToken if it's renewed.
@@ -35,8 +34,9 @@ export const resetTokenAndReattemptRequest = async error => {
     await saveToken(newToken);
     // re-attempt api request
     errorResponse.config.headers.authorization = `Bearer ${newToken}`;
-    return axios(errorResponse.config);
-  } catch (err) {
-    Promise.reject(error);
+    return Axios(errorResponse.config);
+  } catch (error) {
+    console.log('error: ', error);
+    return Promise.reject(error);
   }
 };

@@ -37,9 +37,10 @@ const EditRateModal = ({
     const userId = clickedUserData[0].userId;
 
     const res = await updateReservedPrice(userId, reservePrice, reserveDate);
+    console.log('res: ', res);
     if (!res.error) {
       await Promise.all([resetForm({}), closeModal()]);
-      return window.location.reload(true);
+      // return window.location.reload(true);
     }
     addFlashMessage(
       'error',

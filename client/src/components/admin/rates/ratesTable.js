@@ -29,7 +29,8 @@ const RatesTable = ({
 }) => {
   // selected row
   const [selected, setSelected] = React.useState('');
-  const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
+  const emptyRows =
+    sortedData && sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   const handleTableRowClick = id => setSelected(id);
 
