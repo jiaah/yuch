@@ -171,6 +171,7 @@ exports.deleteUser = (req, res) => {
 exports.getUsersList = (req, res) => {
   knex('users')
     .whereNot('users.username', 'yuch')
+    .whereRaw('NOW() BETWEEN meal_price.startedAt AND meal_price.endedAt')
     .select(
       'users.id',
       'users.companyName',
@@ -200,6 +201,7 @@ exports.getUsersList = (req, res) => {
 exports.getCateringRates = (req, res) => {
   knex('meal_price')
     .whereNot('users.isAdmin', true)
+    .whereRaw('NOW() BETWEEN meal_price.startedAt AND meal_price.endedAt')
     .select(
       'meal_price.id',
       'meal_price.userId',

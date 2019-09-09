@@ -7,6 +7,7 @@ exports.getMe = (req, res) => {
 
   knex('users')
     .where({ 'users.id': id })
+    .whereRaw('NOW() BETWEEN meal_price.startedAt AND meal_price.endedAt')
     .select(
       'users.id',
       'users.companyName',
