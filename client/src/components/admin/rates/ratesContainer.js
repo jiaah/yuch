@@ -48,7 +48,9 @@ const RatesContainer = ({
   useEffect(() => {
     fetchCateringRates();
     // opens the admin password checking modal on page load
-    showModal();
+    if (!isAdminVerified) {
+      showModal();
+    }
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,

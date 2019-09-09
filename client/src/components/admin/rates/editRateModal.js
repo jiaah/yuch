@@ -37,16 +37,15 @@ const EditRateModal = ({
     const userId = clickedUserData[0].userId;
 
     const res = await updateReservedPrice(userId, reservePrice, reserveDate);
-    console.log('res: ', res);
-    if (!res.error) {
-      await Promise.all([resetForm({}), closeModal()]);
-      // return window.location.reload(true);
+    if (res.error) {
+      addFlashMessage(
+        'error',
+        `고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
+      );
+      return setSubmitting(false);
     }
-    addFlashMessage(
-      'error',
-      `고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
-    );
-    return setSubmitting(false);
+    await Promise.all([resetForm({}), closeModal()]);
+    return window.location.reload(true);
   };
   return (
     <div className="container">
