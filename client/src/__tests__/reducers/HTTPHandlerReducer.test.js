@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   data: [],
   error: '',
+  status: '',
 };
 
 const api = 'login';

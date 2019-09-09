@@ -10,13 +10,14 @@ import LoginForm from '../../../../components/auth/login/loginForm';
 
 afterEach(cleanup);
 
-const mockKeepMeLoggedIn = jest.fn();
+const mockhandleKeepMeLoggedIn = jest.fn();
 const mockSubmit = jest.fn();
 const defaultProps = {
   handleSubmit: mockSubmit,
   isSubmitting: false,
   userData: [],
-  keepMeLoggedIn: mockKeepMeLoggedIn,
+  handleKeepMeLoggedIn: mockhandleKeepMeLoggedIn,
+  KeepMeLoggedIn: false,
 };
 
 const setUp = (props = {}) => {
@@ -48,9 +49,9 @@ describe('Login Form Component', () => {
     const checkbox = getByTestId('checkbox-login').querySelector(
       'input[type="checkbox"]',
     );
-    expect(mockKeepMeLoggedIn).not.toHaveBeenCalled();
+    expect(mockhandleKeepMeLoggedIn).not.toHaveBeenCalled();
     fireEvent.click(checkbox);
-    expect(mockKeepMeLoggedIn).toHaveBeenCalled();
+    expect(mockhandleKeepMeLoggedIn).toHaveBeenCalled();
     expect(checkbox).toHaveProperty('checked', true);
   });
 

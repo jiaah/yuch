@@ -79,7 +79,7 @@ it('redirects to homepage on login submit success', async () => {
 
   await wait(() => {
     expect(localStorage.getItem('token')).not.toBeNull();
-    expect(sessionStorage.getItem('keepUserLoggedIn')).toBe('false');
+    expect(sessionStorage.getItem('keepUserLoggedIn')).toBeNull();
   });
 
   const unlisten = history.listen(expect(location.pathname).toMatch('/'));
