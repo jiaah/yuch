@@ -10,7 +10,7 @@ import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
 import { ratesPageInfoA, ratesPageInfoB } from '../../../data/message';
 /* --- Actions --- */
-import * as adminActions from '../../../actions/adminAction';
+import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';

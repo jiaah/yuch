@@ -7,7 +7,7 @@ import { editUserAccountValidation } from '../../formValidation';
 import ChangePwContainer from '../../auth/password/changePwContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import * as userActions from '../../../actions/userAction';
+import * as userActions from '../../../actions/userAccountAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({

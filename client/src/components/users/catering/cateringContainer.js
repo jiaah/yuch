@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 /* --- Components --- */
 import { dateInKorean } from '../../../helpers/moment';
 import IconButton from '../../../shared/form/iconButton';
 
-const CateringContainer = () => {
+const CateringContainer = ({ id }) => {
+  const fetchData = () => {
+    console.log(id);
+  };
   const handleDateBackward = () => console.log('backward');
   const handleDateForward = () => console.log('forward');
+
+  useEffect(() => fetchData(), []);
   return (
     <div className="container">
       <h2>식수현황</h2>
@@ -29,5 +35,11 @@ const CateringContainer = () => {
     </div>
   );
 };
-
-export default CateringContainer;
+const mapStateToProps = state => ({
+  id: state.auth.id,
+});
+const mapDispatchToProps = dispatch => ({});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CateringContainer);

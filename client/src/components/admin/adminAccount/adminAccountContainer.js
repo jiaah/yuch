@@ -6,7 +6,10 @@ import { adminAccountValidation } from '../../formValidation';
 import ChangePwContainer from '../../auth/password/changePwContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
-import { getAdmin, editAdminAccount } from '../../../actions/adminAction';
+import {
+  getAdmin,
+  editAdminAccount,
+} from '../../../actions/adminAccountAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const AdminAccountContainer = ({
