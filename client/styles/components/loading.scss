@@ -65,7 +65,7 @@ $color-loader: #ff6300;
 }
 
 
-.loading-container {
+.loading-img--container {
   // height, position not working -> soulution: padding.
   display: flex;
   justify-content: center;
@@ -76,7 +76,7 @@ $color-loader: #ff6300;
   }
 }
 
-.loading {
+.loading-img {
   width: 64px;
   height: 64px;
 
