@@ -1,9 +1,7 @@
 exports.up = knex =>
   knex.schema.alterTable('meal_price', table => {
-    table.datetime('startedAt', { useTz: true }).defaultTo(knex.fn.now(6));
-    table
-      .datetime('endedAt', { useTz: true })
-      .defaultTo('9999-12-31 23:59:59.99999-00');
+    table.date('startedAt').defaultTo(knex.fn.now());
+    table.date('endedAt').defaultTo('9999-12-31');
   });
 
 exports.down = knex =>
