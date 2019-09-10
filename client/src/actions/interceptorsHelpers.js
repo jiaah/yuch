@@ -4,28 +4,19 @@ import {
   saveToken,
   saveRefreshToken,
 } from '../../localStorage';
-import { API_HOST } from '../../config';
 
 export const isTokenExpiredError = (error, interceptor) => {
   const status = error.response ? error.response.status : null;
   const originalRequest = error.config;
-
-  // Reject promise if usual error
-  if (status !== 401) {
-    return Promise.reject(error);
-  }
-  // to stop going in an infinite loop when refreshToken is invalid.
-  if (status === 401 && originalRequest.url === `${API_HOST}/auth/refresh`) {
-    Axios.interceptors.response.eject(interceptor);
-    return Promise.reject(error);
-  }
 
   if (status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
     return true;
   }
 
-  return false;
+  // to stop going in an infinite loop.
+  Axios.interceptors.response.eject(interceptor);
+  return Promise.reject(error);
 };
 
 export const resetTokenAndReattemptRequest = async error => {
