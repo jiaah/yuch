@@ -105,6 +105,7 @@ const Input = ({
     ) {
       value = inputValue;
     }
+    console.log('name, value: ', name, value);
     return setFieldValue(name, value, shouldValidate);
   };
 

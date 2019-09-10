@@ -5,8 +5,14 @@ import { bindActionCreators } from 'redux';
 import { dateInKorean, today } from '../../../helpers/moment';
 import { dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
+import CateringFormBox from './cateringFormBox';
 /* --- Actions --- */
 import * as cateringActions from '../../../actions/catering';
+import {
+  cateringYes,
+  cateringToday,
+  cateringTmr,
+} from '../../../__tests__/__mocks__/mockData';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const CateringContainer = ({
@@ -14,18 +20,26 @@ const CateringContainer = ({
   cateringActions: { fetchUserCatering },
   addFlashMessage,
 }) => {
-  const init = { lunchQty: '', dinnerQty: '', lateNightSnackQty: '' };
-  const [catering, setCatering] = useState(init);
+  const [catering, setCatering] = useState({});
 
   const fetchData = async (id, date) => {
-    const res = await fetchUserCatering(id, date);
+    // const res = await fetchUserCatering(id, date);
 
-    if (res.error) {
-      setCatering(init);
-      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    // if (res.error) {
+    //   setCatering({});
+    //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    // }
+    let mockData;
+    if (date === '2019-09-09') {
+      mockData = cateringYes;
     }
-
-    return setCatering(res);
+    if (date === '2019-09-10') {
+      mockData = cateringToday;
+    }
+    if (date === '2019-09-11') {
+      mockData = cateringTmr;
+    }
+    return setCatering(mockData);
   };
 
   const handleDateBackward = () => {
@@ -40,7 +54,6 @@ const CateringContainer = ({
   useEffect(() => {
     fetchData(id, today);
   }, []);
-
   return (
     <div className="container">
       <h2>식수현황</h2>
@@ -60,6 +73,9 @@ const CateringContainer = ({
           viewBox="0 0 30 30"
           handleClick={handleDateForward}
         />
+      </div>
+      <div>
+        <CateringFormBox catering={catering} />
       </div>
     </div>
   );
