@@ -17,6 +17,7 @@ export const userLogin = (
     const { id, companyName, isAdmin, refreshToken } = res.data;
     const tokenData = {
       token: res.headers.authorization.split(' ')[1],
+      expiresIn: res.headers.expiresin,
       refreshToken,
     };
     dispatch({
