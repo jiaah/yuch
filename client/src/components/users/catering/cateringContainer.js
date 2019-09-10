@@ -1,34 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { dateInKorean, today } from '../../../helpers/moment';
+import { dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
-import { fetchUserCatering } from '../../../actions/catering';
-import { catering } from '../../../__tests__/__mocks__/mockData';
+import * as cateringActions from '../../../actions/catering';
 import { addFlashMessage } from '../../../actions/messageAction';
 
-const CateringContainer = ({ id, fetchUserCatering, addFlashMessage }) => {
-  const [data, setData] = useState([]);
+const CateringContainer = ({
+  id,
+  cateringActions: { fetchUserCatering },
+  addFlashMessage,
+}) => {
+  const init = { lunchQty: '', dinnerQty: '', lateNightSnackQty: '' };
+  const [catering, setCatering] = useState(init);
 
-  const fetchData = async () => {
-    console.log('today: ', today);
-    const res = await fetchUserCatering(id, today);
+  const fetchData = async (id, date) => {
+    const res = await fetchUserCatering(id, date);
 
     if (res.error) {
-      setData([]);
+      setCatering(init);
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    console.log('fetched data');
-    return setData(catering);
+
+    return setCatering(res);
   };
-  console.log('data: ', data);
-  const handleDateBackward = () => console.log('backward');
-  const handleDateForward = () => console.log('forward');
+
+  const handleDateBackward = () => {
+    const newDate = dayBefore(catering.date);
+    fetchData(id, newDate);
+  };
+  const handleDateForward = () => {
+    const newDate = dayAfter(catering.date);
+    fetchData(id, newDate);
+  };
 
   useEffect(() => {
-    fetchData();
+    fetchData(id, today);
   }, []);
+
   return (
     <div className="container">
       <h2>식수현황</h2>
@@ -56,7 +68,7 @@ const mapStateToProps = state => ({
   id: state.auth.id,
 });
 const mapDispatchToProps = dispatch => ({
-  fetchUserCatering: id => dispatch(fetchUserCatering(id)),
+  cateringActions: bindActionCreators(cateringActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

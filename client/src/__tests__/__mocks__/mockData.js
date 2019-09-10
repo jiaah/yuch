@@ -80,15 +80,21 @@ export const caterings = [
   },
 ];
 
-export const catering = [
-  { date: '2019-09-08', lunchQty: 10, dinnerQty: 15, lateNightSnackQty: 9 },
-  { date: '2019-09-09', lunchQty: 0, dinnerQty: 3, lateNightSnackQty: 5 },
-  {
-    date: '2019-09-01',
-    lunchQty: 0,
-    dinnerQty: 0,
-    defaultLunchQty: 5,
-    defaultDinnerQty: 0,
-    lateNightSnackQty: 6,
-  },
-];
+export const cateringYes = {
+  date: '2019-09-09',
+  lunchQty: 10,
+  dinnerQty: 15,
+  lateNightSnackQty: 9,
+};
+export const cateringToday = {
+  date: '2019-09-10',
+  lunchQty: 0,
+  dinnerQty: 3,
+  lateNightSnackQty: 5,
+};
+export const cateringTmr = {
+  date: '2019-09-11',
+  lunchQty: 0,
+  dinnerQty: 0,
+  lateNightSnackQty: 6,
+};

@@ -2,7 +2,6 @@ import { Axios } from './axios';
 import * as types from './actionTypes';
 
 export const fetchUserCatering = (id, date) => async dispatch => {
-  console.log('id, date: ', id, date);
   dispatch({ type: types.HTTP_REQUEST, api: 'fetchUserCatering' });
 
   try {
