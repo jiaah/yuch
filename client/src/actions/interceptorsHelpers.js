@@ -1,34 +1,34 @@
 import { Axios } from './axios';
 import {
   getRefreshToken,
-  getExpireTime,
   saveToken,
   saveRefreshToken,
 } from '../../localStorage';
-import { timeToNumber } from '../helpers/moment';
-import { history } from '../../history';
+import { API_HOST } from '../../config';
 
-const expireTime = getExpireTime();
-
-export const isTokenExpiredError = error => {
-  const { response: errorResponse } = error;
+export const isTokenExpiredError = (error, interceptor) => {
+  const status = error.response ? error.response.status : null;
   const originalRequest = error.config;
-  console.log('errorResponse: ', errorResponse);
-  console.log('originalRequest._retry: ', originalRequest._retry);
-  console.log('!originalRequest._retry: ', !originalRequest._retry);
 
-  if (errorResponse.status === 401 && !originalRequest._retry) {
+  // Reject promise if usual error
+  if (status !== 401) {
+    return Promise.reject(error);
+  }
+  // to stop going in an infinite loop when refreshToken is invalid.
+  if (status === 401 && originalRequest.url === `${API_HOST}/auth/refresh`) {
+    Axios.interceptors.response.eject(interceptor);
+    return Promise.reject(error);
+  }
+
+  if (status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
     return true;
   }
-  // if (expireTime < timeToNumber) {
-  //   return true;
-  // }
+
   return false;
 };
 
 export const resetTokenAndReattemptRequest = async error => {
-  const { response: errorResponse } = error;
   const originalRequest = error.config;
   const refreshToken = await getRefreshToken();
 
@@ -52,10 +52,11 @@ export const resetTokenAndReattemptRequest = async error => {
 
     // save token to localStorage
     await saveToken(newToken);
+
     // change authorization header
-    errorResponse.config.headers.authorization = `Bearer ${newToken}`;
+    Axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+
     // return originalRequest object with Axios
-    // return Axios(errorResponse.config);
     return Axios(originalRequest);
   } catch (error) {
     return Promise.reject(error);

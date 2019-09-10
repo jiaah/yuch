@@ -1,14 +1,7 @@
-import { convertToExpireTokenTime } from './src/utils/time';
-
 // access token
 export const isLoggedIn = () => !!localStorage.token;
 export const getToken = () => localStorage.token;
-export const saveToken = (token, expiresIn) => {
-  const expireTime = convertToExpireTokenTime(expiresIn);
-  localStorage.setItem('expireTime', expireTime);
-  localStorage.setItem('token', token);
-};
-export const getExpireTime = () => localStorage.expireTime;
+export const saveToken = token => localStorage.setItem('token', token);
 
 // refresh token
 export const getRefreshToken = () => localStorage.refreshToken;
@@ -17,8 +10,8 @@ export const saveRefreshToken = refreshToken =>
 
 // save tokens
 export const saveUserTokens = (tokenData, keepMeLoggedIn) => {
-  const { token, expiresIn, refreshToken } = tokenData;
-  saveToken(token, expiresIn);
+  const { token, refreshToken } = tokenData;
+  saveToken(token);
   saveRefreshToken(refreshToken);
 
   return !keepMeLoggedIn
