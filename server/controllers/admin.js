@@ -1,5 +1,8 @@
+const moment = require('moment');
+const { check, validationResult } = require('express-validator');
 const knex = require('../database');
 const util = require('../lib/util');
+const mealPriceService = require('../services/mealPriceService');
 
 /* --- Admin --- */
 // admin profile
@@ -120,40 +123,42 @@ exports.editUserByAdmin = (req, res) => {
     companyName,
     contactNo,
     email,
-    mealPrice,
     lunchQty,
     dinnerQty,
     bankAccountId,
     address,
     businessType,
-    nextMonth,
+    // mealPrice,
+    // nextMonth,
   } = req.body.userInfo;
 
-  return knex('users')
-    .where({ id: userId })
-    .first()
-    .update({
-      companyName,
-      username,
-      contactNo,
-      email,
-      lunchQty,
-      dinnerQty,
-      bankAccountId,
-      address,
-      businessType,
-    })
-    .then(() =>
-      knex('meal_price')
-        .where({ userId })
-        .first()
-        .update({
-          reservePrice: mealPrice,
-          reserveDate: nextMonth,
-        }),
-    )
-    .then(() => res.status(200).json())
-    .catch(err => res.status(500).json(err));
+  return (
+    knex('users')
+      .where({ id: userId })
+      .first()
+      .update({
+        companyName,
+        username,
+        contactNo,
+        email,
+        lunchQty,
+        dinnerQty,
+        bankAccountId,
+        address,
+        businessType,
+      })
+      // .then(() =>
+      //   knex('meal_price')
+      //     .where({ userId })
+      //     .first()
+      //     .update({
+      //       reservePrice: mealPrice,
+      //       reserveDate: nextMonth,
+      //     }),
+      // )
+      .then(() => res.status(200).json())
+      .catch(err => res.status(500).json(err))
+  );
 };
 
 exports.deleteUser = (req, res) => {
@@ -171,6 +176,9 @@ exports.deleteUser = (req, res) => {
 exports.getUsersList = (req, res) => {
   knex('users')
     .whereNot('users.username', 'yuch')
+    .whereRaw(
+      'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
+    )
     .select(
       'users.id',
       'users.companyName',
@@ -188,6 +196,7 @@ exports.getUsersList = (req, res) => {
       'meal_price.reserveDate',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
+    .orderBy('users.updated_at', 'desc')
     .then(users => {
       knex('bank_account')
         .select('*')
@@ -200,6 +209,9 @@ exports.getUsersList = (req, res) => {
 exports.getCateringRates = (req, res) => {
   knex('meal_price')
     .whereNot('users.isAdmin', true)
+    .whereRaw(
+      'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
+    )
     .select(
       'meal_price.id',
       'meal_price.userId',
@@ -210,16 +222,27 @@ exports.getCateringRates = (req, res) => {
       'meal_price.updated_at',
     )
     .leftJoin('users', 'meal_price.userId', 'users.id')
+    .orderBy('meal_price.updated_at', 'desc')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
 
-exports.updateReservedPrice = (req, res) => {
-  const { userId, reservePrice, reserveDate } = req.body;
+exports.updateReservedPrice = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
-  return knex('meal_price')
-    .where({ userId })
-    .update({ reservePrice, reserveDate })
-    .then(() => res.status(200).json())
-    .catch(err => res.status(500).json(err));
+    const { userId, reservePrice, reserveDate } = req.body;
+    const parsedReserveDate = moment(`${reserveDate}/01`, 'YYYY/MM/DD');
+    await mealPriceService.reserveMealPrice(
+      userId,
+      reservePrice,
+      parsedReserveDate.format('YYYY-MM-DD'),
+    );
+    return res.status(200).json();
+  } catch (error) {
+    next(error);
+  }
 };
