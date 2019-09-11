@@ -1,0 +1,47 @@
+## Catering Meal Prices [/admin/users/catering/rates]
+
+### List All Clients [GET]
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2ZDVhLTMzMWEtNDVkZC1hZjgwLTA5ODg5YjMzODBhNiIsInVzZXJuYW1lIjoieXVjaCIsImlhdCI6MTU2ODE5MDMxM30.7XYcLwbuTxMxL9PM7Ac7XRhrST4n3VrAavbm8E_K-E8
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": "57a2d77b-e959-4642-a458-a8e5e02ab69f",
+                    "userId": "13d49f91-3096-42bc-aedc-5470966f2bd5",
+                    "companyName": "Bode, Hoeger and Fay",
+                    "mealPrice": 100001,
+                    "reservePrice": {},
+                    "reserveDate": "",
+                    "updated_at": "2019-09-10T13:29:01.189Z"
+                }
+            ]
+
+
+
+### Update Meal Prices [PATCH]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjM2ZDVhLTMzMWEtNDVkZC1hZjgwLTA5ODg5YjMzODBhNiIsInVzZXJuYW1lIjoieXVjaCIsImlhdCI6MTU2ODE5MDMxM30.7XYcLwbuTxMxL9PM7Ac7XRhrST4n3VrAavbm8E_K-E8
+
+    + Body
+
+            {
+                "userId": "cc0d1b50-63ad-477c-b268-4ca2c976679b",
+                "reservePrice": 5000,
+                "reserveDate": "2020/01"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            ""
