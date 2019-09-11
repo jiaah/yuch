@@ -5,13 +5,14 @@ import FormButton from '../../../shared/form/formButton';
 
 const CateringForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <div>
+    <div className="pb2">
       <FormikField
         label="중식"
         name="lunchQty"
         type="text"
         icon="catering"
         styleName="textFieldC"
+        variant="outlined"
       />
       <FormikField
         label="석식"
@@ -19,6 +20,7 @@ const CateringForm = ({ isSubmitting }) => (
         type="text"
         icon="catering"
         styleName="textFieldC"
+        variant="outlined"
       />
       <FormikField
         label="야식"
@@ -26,13 +28,14 @@ const CateringForm = ({ isSubmitting }) => (
         type="text"
         icon="catering"
         styleName="textFieldC"
+        variant="outlined"
       />
     </div>
     <FormButton
       typeValue="submit"
       variantValue="contained"
       buttonName="저장"
-      width="medium"
+      width="extraBig"
       isSubmitting={isSubmitting}
     />
   </React.Fragment>

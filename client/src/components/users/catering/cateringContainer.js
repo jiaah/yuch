@@ -6,6 +6,7 @@ import { dateInKorean, today } from '../../../helpers/moment';
 import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
+import { userCateringMsg } from '../../../data/message';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -67,7 +68,7 @@ const CateringContainer = ({
   const displayedDate = catering && convertToDateForm(catering.date);
 
   return (
-    <div className="container">
+    <div className="user-catering--container">
       <h2>식수현황</h2>
       <div>
         <IconButton
@@ -86,15 +87,17 @@ const CateringContainer = ({
           handleClick={handleDateForward}
         />
       </div>
-      <div>
+      <div className="user-catering--form">
         {catering && (
           <CateringFormBox
-            catering={catering}
+            today={today}
             id={id}
+            catering={catering}
             updateUserCatering={updateUserCatering}
           />
         )}
       </div>
+      {userCateringMsg}
     </div>
   );
 };

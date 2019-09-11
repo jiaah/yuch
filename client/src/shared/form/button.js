@@ -26,8 +26,19 @@ const button = ({
   className,
   testId,
 }) => {
-  const widthValue =
-    width === 'big' ? '8em' : width === 'small' ? '5em' : '7em';
+  let widthValue = '';
+  let paddingValue = '';
+  if (width === 'extraBig') {
+    widthValue = '250px';
+    paddingValue = '5px';
+  }
+  if (width === 'big') {
+    widthValue = '10em';
+    paddingValue = '4px';
+  }
+  if (width === 'medium') widthValue = '8em';
+  if (width === 'small') widthValue = '6em';
+
   return (
     <Button
       data-testid={testId}
@@ -36,7 +47,7 @@ const button = ({
       variant={variantValue}
       color="primary"
       size="small"
-      style={{ width: widthValue }}
+      style={{ width: widthValue, padding: paddingValue }}
       className={`${className} ${classes.button}`}
     >
       {buttonName}

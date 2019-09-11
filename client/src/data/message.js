@@ -159,3 +159,18 @@ export const deleteBankAccountMsg = (
     </p>
   </div>
 );
+
+export const userCateringMsg = (
+  <div className="user-catering--notice">
+    <p className="pb3 b">- &#8201;금일 식수 변경 가능시간&#8201; -</p>
+    <p className="pb3 b">
+      중식
+      :&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;
+      ~ 금일 10 시 30 분<br />
+      석식/야식 :&#8201;&#8201; ~ 금일 16 시 30 분<br />
+    </p>
+    <p className="f-mini">
+      * 변경 가능시간이 지난 후, 변경을 원하시면 유청으로 전화주시기 바랍니다.
+    </p>
+  </div>
+);

@@ -27,11 +27,21 @@ export const FormButton = ({
   className,
 }) => {
   let widthValue = '';
-  if (width === 'big') widthValue = '8em';
-  if (width === 'medium') widthValue = '7em';
-  if (width === 'small') widthValue = '5em';
+  let paddingValue = '';
+  if (width === 'extraBig') {
+    widthValue = '250px';
+    paddingValue = '5px';
+  }
+  if (width === 'big') {
+    widthValue = '10em';
+    paddingValue = '4px';
+  }
+  if (width === 'medium') {
+    widthValue = '8em';
+  }
+  if (width === 'small') widthValue = '6em';
 
-  const widthStyle = { width: widthValue };
+  const widthStyle = { width: widthValue, padding: paddingValue };
   return (
     <Button
       type={typeValue}
