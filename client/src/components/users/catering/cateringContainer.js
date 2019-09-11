@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { dateInKorean, today } from '../../../helpers/moment';
-import { dayBefore, dayAfter } from '../../../utils/time';
+import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
 /* --- Actions --- */
@@ -20,28 +20,37 @@ const CateringContainer = ({
   cateringActions: { fetchUserCatering },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState({});
+  const [catering, setCatering] = useState(null);
 
-  const fetchData = async (id, date) => {
+  const fetchData = async (id, time) => {
     // const res = await fetchUserCatering(id, date);
 
     // if (res.error) {
-    //   setCatering({});
+    //   setCatering(null);
     //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     // }
     let mockData;
-    if (date === '2019-09-09') {
-      mockData = cateringYes;
+    if (time === '2019-09-09') {
+      mockData = await cateringYes;
     }
-    if (date === '2019-09-10') {
-      mockData = cateringToday;
+    if (time === '2019-09-10') {
+      mockData = await cateringToday;
     }
-    if (date === '2019-09-11') {
-      mockData = cateringTmr;
+    if (time === '2019-09-11') {
+      mockData = await cateringTmr;
     }
-    return setCatering(mockData);
+    const { date, lunchQty, dinnerQty, lateNightSnackQty } = mockData;
+    console.log('mockData: ', mockData);
+    const convertedData = await {
+      date,
+      lunchQty: lunchQty === 0 ? '' : lunchQty.toString(),
+      dinnerQty: dinnerQty === 0 ? '' : dinnerQty.toString(),
+      lateNightSnackQty:
+        lateNightSnackQty === 0 ? '' : lateNightSnackQty.toString(),
+    };
+    return setCatering(convertedData);
   };
-
+  console.log('@@@@@@', catering);
   const handleDateBackward = () => {
     const newDate = dayBefore(catering.date);
     fetchData(id, newDate);
@@ -54,6 +63,9 @@ const CateringContainer = ({
   useEffect(() => {
     fetchData(id, today);
   }, []);
+
+  // const displayedDate = convertToDateForm(catering.date);
+
   return (
     <div className="container">
       <h2>식수현황</h2>
@@ -65,7 +77,7 @@ const CateringContainer = ({
           viewBox="0 0 30 30"
           handleClick={handleDateBackward}
         />
-        {dateInKorean}
+        {/* {displayedDate} */}
         <IconButton
           name="arrowForward"
           width="40"

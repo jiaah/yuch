@@ -13,15 +13,9 @@ const UserFormBox = ({
 }) => {
   const handleEditAdmin = async (values, { setSubmitting }) => {
     const { id } = userData;
-    const { lunchQty, dinnerQty, ...others } = values;
-    const lunchQtyValue = lunchQty === '' ? null : lunchQty;
-    const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-    const userInfo = {
-      lunchQty: lunchQtyValue,
-      dinnerQty: dinnerQtyValue,
-      ...others,
-    };
-    const res = await editUserAccount(id, userInfo);
+
+    const res = await editUserAccount(id, values);
+
     // if companyName changes -> update auth login state -> change companyName on Nav bar
     if (!res.error) {
       if (userData.companyName !== values.companyName) {

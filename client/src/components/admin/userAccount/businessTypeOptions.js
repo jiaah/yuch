@@ -8,12 +8,16 @@ import RadioButtonGroup from '../../../shared/form/radioButtonGroup';
 const BusinessTypeOptions = ({ name }) => (
   <Field aria-label={name} name={name} component={RadioButtonGroup}>
     <FormControlLabel
+      id="catering"
+      name={name}
       value="catering"
       control={<Radio color="primary" />}
       label="위탁급식"
       labelPlacement="end"
     />
     <FormControlLabel
+      id="restaurant"
+      name={name}
       value="restaurant"
       control={<Radio color="primary" />}
       label="식당"

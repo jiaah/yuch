@@ -73,15 +73,15 @@ const Input = ({
     if (
       name === 'lunchQty' ||
       name === 'dinnerQty' ||
+      name === 'lateNightSnackQty' ||
       name === 'mealPrice' ||
       name === 'reservePrice'
     ) {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      }
-      if (inputValue === '') {
-        value = inputValue;
+      } else {
+        value = null;
       }
     }
     if (
@@ -92,6 +92,7 @@ const Input = ({
     ) {
       value = inputValue.toLowerCase();
     }
+    // manually need to add all names or number input value will set to string instead of null when it's empty.
     if (
       name === 'companyName' ||
       name === 'contactNo' ||
@@ -105,7 +106,6 @@ const Input = ({
     ) {
       value = inputValue;
     }
-    console.log('name, value: ', name, value);
     return setFieldValue(name, value, shouldValidate);
   };
 

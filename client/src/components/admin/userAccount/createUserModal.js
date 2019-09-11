@@ -18,31 +18,16 @@ const UserAccountModal = ({
   handleCloseModal,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const {
-      companyName,
-      confirmPassword,
-      lunchQty,
-      dinnerQty,
-      ...others
-    } = values;
-    // to save values as number type in database
-    // No need for 'mealPrice' as it's required field.
-    const lunchQtyValue = lunchQty === '' ? null : lunchQty;
-    const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-
-    const userInfo = {
-      companyName,
-      lunchQty: lunchQtyValue,
-      dinnerQty: dinnerQtyValue,
-      ...others,
-    };
+    const { companyName, confirmPassword, ...others } = values;
+    const userInfo = { companyName, ...others };
     const res = await createUser(userInfo);
 
     if (!res.error) {
       await Promise.all([
         resetForm({}),
         handleCloseModal(),
-        selectedSearchItem !== null ? resetSelectedItemValue() : null, // to ensure to display all users list when reload page
+        // to ensure to display all users list when reload page
+        selectedSearchItem !== null ? resetSelectedItemValue() : null,
       ]);
       return window.location.reload(true);
     }

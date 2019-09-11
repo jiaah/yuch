@@ -11,6 +11,8 @@ const BankAccountOptions = ({ name, bankAccount }) => (
       bankAccount.map(row => (
         <FormControlLabel
           key={row.id}
+          id={row.id}
+          name={name}
           value={row.id}
           control={<Radio color="primary" />}
           label={`${row.accountHolder} ${row.bankName} ${row.accountNo}`}

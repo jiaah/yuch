@@ -82,19 +82,19 @@ export const caterings = [
 
 export const cateringYes = {
   date: '2019-09-09',
-  lunchQty: '10',
-  dinnerQty: '15',
-  lateNightSnackQty: '9',
+  lunchQty: 10,
+  dinnerQty: 15,
+  lateNightSnackQty: 9,
 };
 export const cateringToday = {
   date: '2019-09-10',
-  lunchQty: '',
-  dinnerQty: '3',
-  lateNightSnackQty: '5',
+  lunchQty: 0,
+  dinnerQty: 3,
+  lateNightSnackQty: 5,
 };
 export const cateringTmr = {
   date: '2019-09-11',
-  lunchQty: '',
-  dinnerQty: '',
-  lateNightSnackQty: '',
+  lunchQty: 0,
+  dinnerQty: 0,
+  lateNightSnackQty: 0,
 };

@@ -45,7 +45,6 @@ const EditRateModal = ({
       return setSubmitting(false);
     }
     await Promise.all([resetForm({}), closeModal()]);
-    return window.location.reload(true);
   };
   return (
     <div className="container">

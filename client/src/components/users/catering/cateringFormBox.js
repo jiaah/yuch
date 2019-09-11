@@ -7,6 +7,7 @@ const CateringFormBox = ({ catering }) => {
   const handleUpdateCatering = async values => {
     console.log('values: ', values);
   };
+  console.log('catering: ', catering);
 
   return (
     <Formik

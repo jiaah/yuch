@@ -14,16 +14,8 @@ const DeleteUserFormBox = ({
   bankAccount,
 }) => {
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, lunchQty, dinnerQty, ...others } = values;
-    const lunchQtyValue = lunchQty === '' ? null : lunchQty;
-    const dinnerQtyValue = dinnerQty === '' ? null : dinnerQty;
-    const userInfo = {
-      companyName,
-      lunchQty: lunchQtyValue,
-      dinnerQty: dinnerQtyValue,
-      ...others,
-      nextMonth,
-    };
+    const { companyName, ...others } = values;
+    const userInfo = { companyName, ...others, nextMonth };
 
     const res = await editUser(userInfo);
     if (!res.error) {

@@ -8,7 +8,10 @@ import {
 export const isTokenExpiredError = (error, interceptor) => {
   const status = error.response ? error.response.status : null;
   const originalRequest = error.config;
-
+  console.log(
+    'status === 401 && !originalRequest._retry: ',
+    status === 401 && !originalRequest._retry,
+  );
   if (status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
     return true;
