@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { check } = require('express-validator');
 const adminController = require('../controllers/admin');
 const onlyLoggedIn = require('../lib/only-logged-in');
 
@@ -25,7 +26,16 @@ module.exports = () => {
   /* --- User --- */
   // User Account
   router.post('/user/register', onlyLoggedIn, adminController.createUser);
-  router.patch('/user/edit/:id', onlyLoggedIn, adminController.editUserByAdmin);
+  router.patch(
+    '/user/edit/:id',
+    onlyLoggedIn,
+    [
+      check('userId').isUUID(),
+      check('reservePrice').isNumeric(),
+      check('reserveDate').matches(/^[0-9]{4}\/[0-9]{2}$/),
+    ],
+    adminController.editUserByAdmin,
+  );
   router.delete('/user/delete/:id', onlyLoggedIn, adminController.deleteUser);
 
   // get users profile
@@ -39,6 +49,11 @@ module.exports = () => {
   router.patch(
     '/users/catering/rates',
     onlyLoggedIn,
+    [
+      check('userId').isUUID(),
+      check('reservePrice').isNumeric(),
+      check('reserveDate').matches(/^[0-9]{4}\/[0-9]{2}$/),
+    ],
     adminController.updateReservedPrice,
   );
   return router;
