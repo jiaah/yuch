@@ -7,6 +7,8 @@ import message from './messageReducer';
 import auth from './authReducer';
 import isAdminVerified from './isAdminVerifiedReducer';
 import selected from './selectedReducer';
+import userCatering from './userCatering';
+import dateTracker from './dateTracker';
 
 export default history =>
   combineReducers({
@@ -17,4 +19,6 @@ export default history =>
     auth,
     isAdminVerified,
     selected,
+    userCatering,
+    dateTracker,
   });

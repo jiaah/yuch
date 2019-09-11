@@ -81,20 +81,20 @@ export const caterings = [
 ];
 
 export const cateringYes = {
-  date: '2019-09-09',
+  date: '2019-09-10',
   lunchQty: 10,
   dinnerQty: 15,
-  lateNightSnackQty: 9,
+  lateNightSnackQty: 0,
 };
 export const cateringToday = {
-  date: '2019-09-10',
-  lunchQty: 0,
-  dinnerQty: 3,
-  lateNightSnackQty: 5,
+  date: '2019-09-11',
+  lunchQty: 47,
+  dinnerQty: 120,
+  lateNightSnackQty: 30,
 };
 export const cateringTmr = {
-  date: '2019-09-11',
+  date: '2019-09-12',
   lunchQty: 0,
-  dinnerQty: 0,
-  lateNightSnackQty: 0,
+  dinnerQty: 40,
+  lateNightSnackQty: 99,
 };

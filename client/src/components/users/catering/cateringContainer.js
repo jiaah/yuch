@@ -7,7 +7,8 @@ import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
 /* --- Actions --- */
-import * as cateringActions from '../../../actions/catering';
+import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
+import * as cateringActions from '../../../actions/cateringAction';
 import {
   cateringYes,
   cateringToday,
@@ -17,12 +18,15 @@ import { addFlashMessage } from '../../../actions/messageAction';
 
 const CateringContainer = ({
   id,
-  cateringActions: { fetchUserCatering },
+  date,
+  // catering,
+  dateTrackerActions: { updateDate, resetDate },
+  cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
 
-  const fetchData = async (id, time) => {
+  const fetchData = async (id, when) => {
     // const res = await fetchUserCatering(id, date);
 
     // if (res.error) {
@@ -30,41 +34,37 @@ const CateringContainer = ({
     //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     // }
     let mockData;
-    if (time === '2019-09-09') {
+    if (when === '2019-09-10') {
       mockData = await cateringYes;
     }
-    if (time === '2019-09-10') {
+    if (when === '2019-09-11') {
       mockData = await cateringToday;
     }
-    if (time === '2019-09-11') {
+    if (when === '2019-09-12') {
       mockData = await cateringTmr;
     }
-    const { date, lunchQty, dinnerQty, lateNightSnackQty } = mockData;
-    console.log('mockData: ', mockData);
-    const convertedData = await {
-      date,
-      lunchQty: lunchQty === 0 ? '' : lunchQty.toString(),
-      dinnerQty: dinnerQty === 0 ? '' : dinnerQty.toString(),
-      lateNightSnackQty:
-        lateNightSnackQty === 0 ? '' : lateNightSnackQty.toString(),
-    };
-    return setCatering(convertedData);
+    return setCatering(mockData);
   };
-  console.log('@@@@@@', catering);
-  const handleDateBackward = () => {
-    const newDate = dayBefore(catering.date);
-    fetchData(id, newDate);
+
+  const handleDateBackward = async () => {
+    const newDate = await dayBefore(date);
+    await updateDate(newDate);
+    return fetchData(id, newDate);
   };
-  const handleDateForward = () => {
-    const newDate = dayAfter(catering.date);
-    fetchData(id, newDate);
+  const handleDateForward = async () => {
+    const newDate = await dayAfter(date);
+    await updateDate(newDate);
+    return fetchData(id, newDate);
   };
 
   useEffect(() => {
-    fetchData(id, today);
+    // when first page renders, date is set to 'today'.
+    // when refresh the browser, date does not set back to 'today'
+    fetchData(id, date);
+    return () => updateDate(today);
   }, []);
 
-  // const displayedDate = convertToDateForm(catering.date);
+  const displayedDate = catering && convertToDateForm(catering.date);
 
   return (
     <div className="container">
@@ -77,7 +77,7 @@ const CateringContainer = ({
           viewBox="0 0 30 30"
           handleClick={handleDateBackward}
         />
-        {/* {displayedDate} */}
+        {displayedDate}
         <IconButton
           name="arrowForward"
           width="40"
@@ -87,19 +87,30 @@ const CateringContainer = ({
         />
       </div>
       <div>
-        <CateringFormBox catering={catering} />
+        {catering && (
+          <CateringFormBox
+            catering={catering}
+            id={id}
+            updateUserCatering={updateUserCatering}
+          />
+        )}
       </div>
     </div>
   );
 };
+
 const mapStateToProps = state => ({
   id: state.auth.id,
+  date: state.dateTracker.date,
+  catering: state.httpHandler.data,
 });
 const mapDispatchToProps = dispatch => ({
+  dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   cateringActions: bindActionCreators(cateringActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
