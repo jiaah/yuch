@@ -1,5 +1,3 @@
-const moment = require('moment');
-const { check, validationResult } = require('express-validator');
 const knex = require('../database');
 const util = require('../lib/util');
 const mealPriceService = require('../services/mealPriceService');
@@ -229,18 +227,9 @@ exports.getCateringRates = (req, res) => {
 
 exports.updateReservedPrice = async (req, res, next) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
     const { userId, reservePrice, reserveDate } = req.body;
-    const parsedReserveDate = moment(`${reserveDate}/01`, 'YYYY/MM/DD');
-    await mealPriceService.reserveMealPrice(
-      userId,
-      reservePrice,
-      parsedReserveDate.format('YYYY-MM-DD'),
-    );
+
+    await mealPriceService.reserveMealPrice(userId, reservePrice, reserveDate);
     return res.status(200).json();
   } catch (error) {
     next(error);
