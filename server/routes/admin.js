@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { check } = require('express-validator');
 const adminController = require('../controllers/admin');
 const onlyLoggedIn = require('../lib/only-logged-in');
+const validation = require('../lib/validation');
 
 module.exports = () => {
   /* --- Admin --- */
@@ -54,6 +55,7 @@ module.exports = () => {
       check('reservePrice').isNumeric(),
       check('reserveDate').matches(/^[0-9]{4}\/[0-9]{2}$/),
     ],
+    validation,
     adminController.updateReservedPrice,
   );
   return router;
