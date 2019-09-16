@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { today } from '../../../helpers/moment';
-import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/time';
+import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/date';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
 import { userCateringMsg } from '../../../data/message';

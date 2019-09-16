@@ -35,7 +35,6 @@ const EditRateModal = ({
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { reservePrice } = values;
     const userId = clickedUserData[0].userId;
-
     const res = await updateReservedPrice(userId, reservePrice, reserveDate);
     if (res.error) {
       addFlashMessage(
@@ -45,6 +44,7 @@ const EditRateModal = ({
       return setSubmitting(false);
     }
     await Promise.all([resetForm({}), closeModal()]);
+    return window.location.reload(true);
   };
   return (
     <div className="container">
