@@ -1,3 +1,4 @@
+const moment = require('moment');
 const knex = require('../database');
 const util = require('../lib/util');
 const mealPriceService = require('../services/mealPriceService');
@@ -107,9 +108,13 @@ exports.createUser = (req, res) => {
       .returning('id')
       .then(user => {
         const userId = user[0];
+        const startedAt = moment()
+          .startOf('month')
+          .format('YYYY-MM-DD');
         return knex('meal_price').insert({
           mealPrice,
           userId,
+          startedAt,
         });
       })
       .then(() => res.status(200).json())
