@@ -4,6 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
+import { thisMonth } from '../../../helpers/moment';
 
 const styles = theme => ({
   resize: {
@@ -44,9 +45,10 @@ const UserTableRow = ({
       : row.businessType === 'restaurant'
         ? '식당'
         : null;
-  // display reservePrice if it exists.
-  const reservePriceView =
-    row.reservePrice === null ? '' : `[${row.reservePrice}]`;
+  // display new mealPrice if reserveDate is thisMonth.
+  const newMealPrice =
+    row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
+
   return (
     <React.Fragment>
       <TableRow
@@ -95,8 +97,7 @@ const UserTableRow = ({
           {row.lateNightSnackQty}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {row.mealPrice}
-          {reservePriceView}
+          {newMealPrice}
         </TableCell>
         <TableCell align="right" className={resize}>
           {accountHolder}

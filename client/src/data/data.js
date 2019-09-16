@@ -188,7 +188,7 @@ export const userAccountTableHeadColumns = [
     id: 'mealPrice',
     numeric: true,
     disablePadding: false,
-    label: '식수가격[변동가]',
+    label: '식수가격',
   },
   {
     id: 'bankAccountId',
