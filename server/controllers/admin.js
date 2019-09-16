@@ -26,6 +26,7 @@ exports.editAdminAccount = (req, res) => {
       username,
       contactNo,
       email,
+      updated_at: new Date().toISOString(),
     })
     .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
