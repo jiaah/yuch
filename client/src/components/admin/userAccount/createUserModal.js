@@ -24,14 +24,20 @@ const UserAccountModal = ({
       confirmPassword,
       lunchQty,
       dinnerQty,
+      lateNightSnackQty,
       ...others
     } = values;
+
+    // re-assign to null if value is empty.
     const newLunch = await emptyStrToNull(lunchQty);
     const newDinner = await emptyStrToNull(newDinner);
+    const newLatNightSnack = await emptyStrToNull(lateNightSnackQty);
+
     const userInfo = {
       companyName,
       lunchQty: newLunch,
       dinnerQty: newDinner,
+      lateNightSnackQty: newLatNightSnack,
       ...others,
     };
     const res = await createUser(userInfo);
@@ -43,7 +49,7 @@ const UserAccountModal = ({
         // to ensure to display all users list when reload page
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
       ]);
-      // return window.location.reload(true);
+      return window.location.reload(true);
     }
     addFlashMessage(
       'error',
@@ -63,6 +69,7 @@ const UserAccountModal = ({
     mealPrice: '',
     lunchQty: '',
     dinnerQty: '',
+    lateNightSnackQty: '',
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
   };

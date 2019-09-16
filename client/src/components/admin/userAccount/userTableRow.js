@@ -92,12 +92,12 @@ const UserTableRow = ({
           {row.dinnerQty}
         </TableCell>
         <TableCell align="right" className={resize}>
+          {row.lateNightSnackQty}
+        </TableCell>
+        <TableCell align="right" className={resize}>
           {row.mealPrice}
           {reservePriceView}
         </TableCell>
-        {/* <TableCell align="right" className={resize}>
-          {reservePriceView}
-        </TableCell> */}
         <TableCell align="right" className={resize}>
           {accountHolder}
           &#8201;&#8201;&#8201;

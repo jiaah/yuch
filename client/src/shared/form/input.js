@@ -32,12 +32,17 @@ const styles = theme => ({
   textFieldC: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 250,
+    width: 260,
   },
   textFieldD: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 118,
+    marginLeft: theme.spacing(0.6),
+    marginRight: theme.spacing(0.6),
+    width: 80,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing(2.2),
+      marginRight: theme.spacing(2.2),
+      width: 170,
+    },
   },
   textFieldE: {
     marginLeft: theme.spacing(1),

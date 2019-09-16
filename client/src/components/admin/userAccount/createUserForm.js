@@ -75,34 +75,42 @@ const CreateUserForm = props => {
             placeholder="sleket12@hanmail.net"
             required
           />
-          <div className="flex justify-center">
-            <FormikField
-              label="중식 식수량"
-              name="lunchQty"
-              type="text"
-              icon="catering"
-              styleName="textFieldD"
-              placeholder="70"
-            />
-            <FormikField
-              label="석식 식수량"
-              name="dinnerQty"
-              type="text"
-              icon="catering"
-              styleName="textFieldD"
-              placeholder="35"
-            />
-          </div>
+          <FormikField
+            label="주소"
+            name="address"
+            type="text"
+            icon="address"
+            styleName="textFieldC"
+            placeholder="황성동 1071-1번지 강남골프장 맞은편"
+          />
         </div>
       </div>
-      <FormikField
-        label="주소"
-        name="address"
-        type="text"
-        icon="address"
-        styleName="textFieldE"
-        placeholder="황성동 1071-1번지 강남골프장 맞은편"
-      />
+      <div className="flex justify-center">
+        <FormikField
+          label="중식 식수량"
+          name="lunchQty"
+          type="text"
+          icon="catering"
+          styleName="textFieldD"
+          placeholder="70"
+        />
+        <FormikField
+          label="석식 식수량"
+          name="dinnerQty"
+          type="text"
+          icon="catering"
+          styleName="textFieldD"
+          placeholder="35"
+        />
+        <FormikField
+          label="석식 식수량"
+          name="lateNightSnackQty"
+          type="text"
+          icon="catering"
+          styleName="textFieldD"
+          placeholder="35"
+        />
+      </div>
       <RadioButtonFormControl
         label="비지니스 타입"
         icon="bankAccount"
