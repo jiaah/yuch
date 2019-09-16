@@ -179,6 +179,12 @@ export const userAccountTableHeadColumns = [
     label: '석식식수량',
   },
   {
+    id: 'lateNightSnackQty',
+    numeric: true,
+    disablePadding: false,
+    label: '야식식수량',
+  },
+  {
     id: 'mealPrice',
     numeric: true,
     disablePadding: false,

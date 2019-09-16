@@ -34,8 +34,6 @@ export const updateReservedPrice = (
       userId,
       reservePrice,
       reserveDate,
-    });
-    return dispatch({
       type: types.HTTP_SUCCESS,
       api: 'updateReservedPrice',
     });
