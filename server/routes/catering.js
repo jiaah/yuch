@@ -5,6 +5,17 @@ const validation = require('../lib/validation');
 const cateringController = require('../controllers/catering');
 
 module.exports = () => {
+  router.get(
+    '/user/{id}',
+    onlyLoggedIn,
+    [
+      check('date')
+        .matches(/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/)
+        .isISO8601(),
+    ],
+    cateringController.getLists,
+  );
+
   /* --- Login --- */
   router.get(
     '/users',
@@ -13,13 +24,6 @@ module.exports = () => {
     validation,
     cateringController.getLists,
   );
-
-  // router.post(
-  //   '/user/{id}',
-  //   onlyLoggedIn,
-  //   [check('reservePrice').isNumeric()],
-  //   cateringController.loginUser,
-  // );
 
   // router.patch(
   //   '/user/{id}',
