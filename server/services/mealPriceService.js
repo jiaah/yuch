@@ -53,6 +53,7 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
           .patch({
             reservePrice: mealPrice,
             reserveDate,
+            updated_at: new Date().toISOString(),
           })
           .where({ userId });
       }
