@@ -30,13 +30,14 @@ export const updateReservedPrice = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateReservedPrice' });
   try {
-    await Axios.patch('/admin/users/catering/rates', {
+    const res = await Axios.patch('/admin/users/catering/rates', {
       userId,
       reservePrice,
       reserveDate,
       type: types.HTTP_SUCCESS,
       api: 'updateReservedPrice',
     });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
