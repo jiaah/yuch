@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
 import { addUserAccountValidation } from '../../formValidation';
+import { emptyStrToNull } from '../../../utils/reformat';
 
 const UserAccountModal = ({
   // local states
@@ -18,8 +19,21 @@ const UserAccountModal = ({
   handleCloseModal,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, confirmPassword, ...others } = values;
-    const userInfo = { companyName, ...others };
+    const {
+      companyName,
+      confirmPassword,
+      lunchQty,
+      dinnerQty,
+      ...others
+    } = values;
+    const newLunch = await emptyStrToNull(lunchQty);
+    const newDinner = await emptyStrToNull(newDinner);
+    const userInfo = {
+      companyName,
+      lunchQty: newLunch,
+      dinnerQty: newDinner,
+      ...others,
+    };
     const res = await createUser(userInfo);
 
     if (!res.error) {
@@ -29,7 +43,7 @@ const UserAccountModal = ({
         // to ensure to display all users list when reload page
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
       ]);
-      return window.location.reload(true);
+      // return window.location.reload(true);
     }
     addFlashMessage(
       'error',
