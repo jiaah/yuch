@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { dateInKorean, today } from '../../../helpers/moment';
+import { today } from '../../../helpers/moment';
 import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/time';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
@@ -26,7 +26,7 @@ const CateringContainer = ({
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
-
+  console.log('hey, newHey: ', hey, newHey);
   const fetchData = async (id, when) => {
     // const res = await fetchUserCatering(id, date);
 

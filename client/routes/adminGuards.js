@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+/* --- Components --- */
+import { getToken, getRefreshToken } from '../localStorage';
 /* --- Actions --- */
 import { userLogout } from '../src/actions/authAction';
 import { addFlashMessage } from '../src/actions/messageAction';
@@ -25,7 +27,9 @@ const AdminGuards = Component => {
         (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
         !isLoggedIn ||
         !isAdmin || // if logged in user is not admin
-        httpStatus === 401 // token authentication failure on API request by a loggedIn user
+        httpStatus === 401 || // token authentication failure on API request by a loggedIn user
+        !getToken ||
+        !getRefreshToken // In case token doesn't exist, but somehow isLoggedIn in redux-store is true.
       ) {
         await userLogout(id);
         addFlashMessage('warning', '로그인을 해주세요.');
