@@ -18,6 +18,6 @@ export const inThreeDays = moment()
   .format('YYYY-MM-DD');
 
 export const timeToNow = moment().toNow();
-export const timeStamp = moment().format('MMMM DD YYYY, h:mm a');
+export const timeStamp = moment().format('YYYY-MM-DD, h:mm a');
 
 export const timeToNumber = moment().format('YYYYMMDDhhmm');
