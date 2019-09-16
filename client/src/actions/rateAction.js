@@ -34,8 +34,11 @@ export const updateReservedPrice = (
       userId,
       reservePrice,
       reserveDate,
+    });
+    dispatch({
       type: types.HTTP_SUCCESS,
       api: 'updateReservedPrice',
+      payload: { rates },
     });
     return res;
   } catch (error) {
