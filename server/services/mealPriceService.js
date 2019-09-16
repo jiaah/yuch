@@ -5,24 +5,27 @@ const MealPrice = require('../models/MealPrice');
 const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
   try {
     const maxEndedAt = '9999-12-31';
+    const parsedReserveDate = moment(`${reserveDate}/01`, 'YYYY/MM/DD').format(
+      'YYYY-MM-DD',
+    );
     return transaction(MealPrice.knex(), async trx => {
       // find
       const row = await MealPrice.query(trx)
         .where({ userId })
-        .whereRaw(`'${reserveDate}' BETWEEN "startedAt" AND "endedAt"`)
+        .whereRaw(`'${parsedReserveDate}' BETWEEN "startedAt" AND "endedAt"`)
         .first();
       if (row) {
         row.startedAt = moment(row.startedAt).format('YYYY-MM-DD');
         row.endedAt = moment(row.endedAt).format('YYYY-MM-DD');
 
-        if (row.startedAt === reserveDate) {
+        if (row.startedAt === parsedReserveDate) {
           // update mealPrice on currentPrice
           await MealPrice.query(trx)
             .findById(row.id)
             .patch({ mealPrice });
         } else {
           let endedAt;
-          const prevEndedAt = moment(reserveDate, 'YYYY-MM-DD')
+          const prevEndedAt = moment(parsedReserveDate, 'YYYY-MM-DD')
             .subtract(1, 'days')
             .endOf('month');
           if (row.endedAt === maxEndedAt) {
@@ -37,7 +40,7 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
           await MealPrice.query(trx).insert({
             mealPrice,
             userId,
-            startedAt: reserveDate,
+            startedAt: parsedReserveDate,
             endedAt,
           });
           // update prev record if exists
@@ -45,6 +48,14 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
             .findById(row.id)
             .patch({ endedAt: prevEndedAt });
         }
+
+        await MealPrice.query(trx)
+          .patch({
+            reservePrice: mealPrice,
+            reserveDate,
+            updated_at: new Date().toISOString(),
+          })
+          .where({ userId });
       }
     });
   } catch (error) {
