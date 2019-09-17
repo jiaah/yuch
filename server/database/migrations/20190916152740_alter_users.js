@@ -1,6 +1,6 @@
 exports.up = knex =>
   knex.schema.alterTable('users', table => {
-    table.string('lateNightSnackQty');
+    table.string('lateNightSnackQty').defaultTo(null);
   });
 
 exports.down = knex =>
