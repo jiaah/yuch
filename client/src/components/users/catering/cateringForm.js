@@ -43,8 +43,7 @@ const CateringForm = ({
       variantValue="contained"
       buttonName="저장"
       width="extraBig"
-      isSubmitting={isSubmitting}
-      disabled={isLunchQtyDisabled && isDinnerQtyDisabled}
+      isSubmitting={(isLunchQtyDisabled && isDinnerQtyDisabled) || isSubmitting}
     />
   </React.Fragment>
 );
