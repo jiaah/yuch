@@ -30,7 +30,7 @@ const UserAccountModal = ({
 
     // re-assign to null if value is empty.
     const newLunch = await emptyStrToNull(lunchQty);
-    const newDinner = await emptyStrToNull(newDinner);
+    const newDinner = await emptyStrToNull(dinnerQty);
     const newLatNightSnack = await emptyStrToNull(lateNightSnackQty);
 
     const userInfo = {
@@ -40,6 +40,7 @@ const UserAccountModal = ({
       lateNightSnackQty: newLatNightSnack,
       ...others,
     };
+
     const res = await createUser(userInfo);
 
     if (!res.error) {
