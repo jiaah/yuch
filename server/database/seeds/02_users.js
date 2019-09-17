@@ -11,6 +11,7 @@ const createFakeUser = () => ({
   address: faker.address.streetAddress(),
   lunchQty: faker.random.number(),
   dinnerQty: faker.random.number(),
+  lateNightSnackQty: faker.random.number(),
   email: faker.internet.email(),
   businessType: 'catering',
 });
