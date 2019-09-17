@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+/* --- Components --- */
+import { getToken, getRefreshToken } from '../localStorage';
 /* --- Actions --- */
 import { userLogout } from '../src/actions/authAction';
 import { addFlashMessage } from '../src/actions/messageAction';

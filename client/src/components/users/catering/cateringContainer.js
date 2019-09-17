@@ -25,8 +25,7 @@ const CateringContainer = ({
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState(null);
-  console.log('hey, newHey: ', hey, newHey);
+  const [catering, setCatering] = useState({});
   const fetchData = async (id, when) => {
     // const res = await fetchUserCatering(id, date);
 

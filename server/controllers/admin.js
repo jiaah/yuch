@@ -241,7 +241,7 @@ exports.updateReservedPrice = async (req, res, next) => {
     const { userId, reservePrice, reserveDate } = req.body;
 
     await mealPriceService.reserveMealPrice(userId, reservePrice, reserveDate);
-    return res.status(200).json();
+    return res.status(200).json('');
   } catch (error) {
     next(error);
   }
