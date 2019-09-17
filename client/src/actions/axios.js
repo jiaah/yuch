@@ -32,9 +32,22 @@ const responseInterceptor = () => {
       // If the request succeeds, we don't have to do anything and just return the response
       response,
     async error => {
-      if (isTokenExpiredError(error, interceptor)) {
+      const status = error.response ? error.response.status : null;
+      const originalRequest = error.config;
+
+      // to stop going in an infinite loop when refreshToken is invalid.
+      if (
+        status === 401 &&
+        originalRequest.url === `${API_HOST}/auth/refresh`
+      ) {
+        Axios.interceptors.response.eject(interceptor);
+        return Promise.reject(error);
+      }
+
+      if (isTokenExpiredError(error)) {
         return resetTokenAndReattemptRequest(error);
       }
+
       return Promise.reject(error);
     },
   );
