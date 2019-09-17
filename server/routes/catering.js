@@ -5,32 +5,73 @@ const validation = require('../lib/validation');
 const cateringController = require('../controllers/catering');
 
 module.exports = () => {
+  /* --- Client --- */
   router.get(
-    '/user/{id}',
+    '/user/:userId',
     onlyLoggedIn,
     [
       check('date')
-        .matches(/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/)
+        .matches(/^[0-9]{8}$/)
         .isISO8601(),
     ],
-    cateringController.getLists,
+    validation,
+    cateringController.getOne,
   );
 
-  /* --- Login --- */
+  /* --- Client --- */
+  router.patch(
+    '/user/:userId',
+    onlyLoggedIn,
+    [
+      check('date')
+        .matches(/^[0-9]{8}$/)
+        .isISO8601(),
+      check('lunchQty').isNumeric(),
+      check('dinnerQty').isNumeric(),
+      check('lateNightSnackQty').isNumeric(),
+    ],
+    validation,
+    cateringController.setOne,
+  );
+
+  /* --- Admin --- */
   router.get(
     '/users',
     onlyLoggedIn,
-    [check('date').isNumeric()],
+    [
+      check('date')
+        .matches(/^[0-9]{8}$/)
+        .isISO8601(),
+    ],
     validation,
     cateringController.getLists,
   );
 
-  // router.patch(
-  //   '/user/{id}',
-  //   onlyLoggedIn,
-  //   [check('reservePrice').isNumeric()],
-  //   cateringController.loginUser,
-  // );
+  /* --- Admin --- */
+  router.patch(
+    '/users',
+    onlyLoggedIn,
+    [
+      check('date')
+        .matches(/^[0-9]{8}$/)
+        .isISO8601(),
+    ],
+    validation,
+    cateringController.setBatch,
+  );
+
+  /* --- Admin --- */
+  router.patch(
+    '/endofservice/user/:userId',
+    onlyLoggedIn,
+    [
+      check('date')
+        .matches(/^[0-9]{8}$/)
+        .isISO8601(),
+    ],
+    validation,
+    cateringController.resetQty,
+  );
 
   return router;
 };
