@@ -14,6 +14,7 @@ const FormikField = ({
   styleName,
   variant,
   required,
+  disabled,
 }) => (
   <Field
     label={label}
@@ -24,6 +25,7 @@ const FormikField = ({
     styleName={styleName}
     variant={variant}
     required={!!required}
+    disabled={!!disabled}
     margin="normal"
     InputProps={{
       startAdornment: (

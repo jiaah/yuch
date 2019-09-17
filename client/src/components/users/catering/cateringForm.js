@@ -3,7 +3,11 @@ import React from 'react';
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
-const CateringForm = ({ isSubmitting }) => (
+const CateringForm = ({
+  isSubmitting,
+  isLunchQtyDisabled,
+  isDinnerQtyDisabled,
+}) => (
   <React.Fragment>
     <div className="pb2">
       <FormikField
@@ -13,6 +17,7 @@ const CateringForm = ({ isSubmitting }) => (
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
+        disabled={isLunchQtyDisabled}
       />
       <FormikField
         label="석식"
@@ -21,6 +26,7 @@ const CateringForm = ({ isSubmitting }) => (
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
+        disabled={isDinnerQtyDisabled}
       />
       <FormikField
         label="야식"
@@ -29,6 +35,7 @@ const CateringForm = ({ isSubmitting }) => (
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
+        disabled={isDinnerQtyDisabled}
       />
     </div>
     <FormButton
@@ -37,6 +44,7 @@ const CateringForm = ({ isSubmitting }) => (
       buttonName="저장"
       width="extraBig"
       isSubmitting={isSubmitting}
+      disabled={isLunchQtyDisabled && isDinnerQtyDisabled}
     />
   </React.Fragment>
 );

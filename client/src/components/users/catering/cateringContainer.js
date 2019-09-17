@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { today, inAWeek } from '../../../helpers/moment';
-import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/date';
+import {
+  convertToDateForm,
+  dayBefore,
+  dayAfter,
+  isLunchQtyChangeDisabled,
+  isDinnerQtyChangeDisabled,
+} from '../../../utils/date';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
 import { userCateringMsg } from '../../../data/message';
@@ -26,28 +32,28 @@ const CateringContainer = ({
 }) => {
   const [catering, setCatering] = useState(null);
   const fetchData = async (id, when) => {
-    const res = await fetchUserCatering(id, when);
+    // const res = await fetchUserCatering(id, when);
 
-    if (res.error) {
-      setCatering(null);
-      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    // if (res.error) {
+    //   setCatering(null);
+    //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    // }
+    let mockData;
+    if (when === '20190916') {
+      mockData = await cateringYes;
     }
-    // let mockData;
-    // if (when === '20190916') {
-    //   mockData = await cateringYes;
-    // }
-    // if (when === '20190917') {
-    //   mockData = await cateringToday;
-    // }
-    // if (when === '20190918') {
-    //   mockData = await cateringTmr;
-    // }
+    if (when === '20190917') {
+      mockData = await cateringToday;
+    }
+    if (when === '20190918') {
+      mockData = await cateringTmr;
+    }
     return setCatering(mockData);
   };
 
   const handleDateBackward = async () => {
-    // const createdAt = '20190916';
-    const createdAt = catering.created_at;
+    const createdAt = '20190916';
+    // const createdAt = catering.created_at;
     const newDate = await dayBefore(date);
 
     if (newDate >= createdAt) {
@@ -106,6 +112,8 @@ const CateringContainer = ({
             id={id}
             catering={catering}
             updateUserCatering={updateUserCatering}
+            isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
+            isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
           />
         )}
       </div>
