@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { today } from '../../../helpers/moment';
+import { today, inAWeek } from '../../../helpers/moment';
 import { convertToDateForm, dayBefore, dayAfter } from '../../../utils/date';
 import IconButton from '../../../shared/form/iconButton';
 import CateringFormBox from './cateringFormBox';
@@ -20,51 +20,64 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const CateringContainer = ({
   id,
   date,
-  // catering,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState({});
+  const [catering, setCatering] = useState(null);
   const fetchData = async (id, when) => {
-    // const res = await fetchUserCatering(id, date);
+    const res = await fetchUserCatering(id, when);
 
-    // if (res.error) {
-    //   setCatering(null);
-    //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    if (res.error) {
+      setCatering(null);
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
+    // let mockData;
+    // if (when === '20190916') {
+    //   mockData = await cateringYes;
     // }
-    let mockData;
-    if (when === '2019-09-10') {
-      mockData = await cateringYes;
-    }
-    if (when === '2019-09-11') {
-      mockData = await cateringToday;
-    }
-    if (when === '2019-09-12') {
-      mockData = await cateringTmr;
-    }
+    // if (when === '20190917') {
+    //   mockData = await cateringToday;
+    // }
+    // if (when === '20190918') {
+    //   mockData = await cateringTmr;
+    // }
     return setCatering(mockData);
   };
 
   const handleDateBackward = async () => {
+    // const createdAt = '20190916';
+    const createdAt = catering.created_at;
     const newDate = await dayBefore(date);
-    await updateDate(newDate);
-    return fetchData(id, newDate);
+
+    if (newDate >= createdAt) {
+      await updateDate(newDate);
+      return fetchData(id, newDate);
+    }
+    return addFlashMessage('info', '존재하는 데이터가 없습니다.');
   };
+
   const handleDateForward = async () => {
     const newDate = await dayAfter(date);
-    await updateDate(newDate);
-    return fetchData(id, newDate);
+
+    if (newDate < inAWeek) {
+      await updateDate(newDate);
+      return fetchData(id, newDate);
+    }
+    return addFlashMessage(
+      'info',
+      '7일 내의 식수량만 미리 등록 할 수 있습니다.',
+    );
   };
 
   useEffect(() => {
-    // when first page renders, date is set to 'today'.
-    // when refresh the browser, date does not set back to 'today'
+    // page open -> default date, 'today'
+    // browser refresh -> keep the changed date
     fetchData(id, date);
-    return () => updateDate(today);
+    return () => resetDate();
   }, []);
 
-  const displayedDate = catering && convertToDateForm(catering.date);
+  const displayedDate = catering && convertToDateForm(date);
 
   return (
     <div className="user-catering--container">

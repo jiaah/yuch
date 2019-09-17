@@ -3,13 +3,13 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CateringForm from './cateringForm';
 
-const CateringFormBox = ({ today, id, catering, updateUserCatering }) => {
+const CateringFormBox = ({ id, catering, updateUserCatering }) => {
+  console.log('catering: ', catering);
   const handleUpdateCatering = async (values, { setSubmitting }) => {
-    // No permission when 'today > values.date'
     updateUserCatering(id, values);
     return setSubmitting(false);
   };
-  console.log('catering: ', catering);
+
   return (
     <Formik
       initialValues={catering}
