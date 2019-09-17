@@ -1,15 +1,195 @@
-// const moment = require('moment');
-// const { transaction } = require('objection');
+const moment = require('moment');
+const { raw } = require('objection');
 const Catering = require('../models/Catering');
+const Users = require('../models/Users');
+
+const findOneByUserIdWithDate = async (userId, date) => {
+  try {
+    let result;
+    const user = await Users.query()
+      .findById(userId)
+      .first();
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
+    const dayOfWeek = parsedDate.day();
+
+    if (![0, 6].includes(dayOfWeek)) {
+      if (user) {
+        result = await Catering.query()
+          .where({ userId, date: formatedDate })
+          .first();
+
+        if (!result) {
+          result = await Catering.query().insertAndFetch({
+            userId,
+            date: formatedDate,
+            lunchQty: user.lunchQty,
+            dinnerQty: user.dinnerQty,
+            lateNightSnackQty: user.lateNightSnackQty,
+          });
+        }
+
+        result.date = moment(result.date).format('YYYY-MM-DD');
+
+        if (result.lunchQty === 0) {
+          result.lunchQty = null;
+        }
+
+        if (result.dinnerQty === 0) {
+          result.dinnerQty = null;
+        }
+
+        if (result.lateNightSnackQty === 0) {
+          result.lateNightSnackQty = null;
+        }
+      }
+    } else {
+      result = {
+        userId,
+        date: formatedDate,
+        lunchQty: null,
+        dinnerQty: null,
+        lateNightSnackQty: null,
+        created_at: null,
+      };
+    }
+
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateByUserIdWithDate = async (
+  userId,
+  date,
+  lunchQty,
+  dinnerQty,
+  lateNightSnackQty,
+) => {
+  try {
+    let result;
+
+    const user = await Users.query().findById(userId);
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
+
+    if (user) {
+      const catering = await Catering.query()
+        .where({ userId, date: formatedDate })
+        .first();
+
+      if (catering) {
+        await Catering.query()
+          .where({ userId, date: formatedDate })
+          .patch({
+            lunchQty,
+            dinnerQty,
+            lateNightSnackQty,
+            updated_at: new Date().toISOString(),
+          });
+        result = await findOneByUserIdWithDate(userId, date);
+      } else {
+        result = await Catering.query().insertAndFetch({
+          userId,
+          date: formatedDate,
+          lunchQty,
+          dinnerQty,
+          lateNightSnackQty,
+        });
+      }
+
+      if (result.lunchQty === 0) {
+        result.lunchQty = null;
+      }
+
+      if (result.dinnerQty === 0) {
+        result.dinnerQty = null;
+      }
+
+      if (result.lateNightSnackQty === 0) {
+        result.lateNightSnackQty = null;
+      }
+    }
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const getLists = async date => {
   try {
-    console.log('a');
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
+    const rows = await Catering.query()
+      .select(raw('catering.*, users."companyName"'))
+      .leftJoin('users', 'users.id', 'catering.userId')
+      .where({ date: formatedDate });
+    rows.map(row => {
+      const newRow = row;
+      if (row.lunchQty === 0) {
+        newRow.lunchQty = null;
+      }
+      if (row.dinnerQty === 0) {
+        newRow.dinnerQty = null;
+      }
+      if (row.lateNightSnackQty === 0) {
+        newRow.lateNightSnackQty = null;
+      }
+      return row;
+    });
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const setLists = async (date, data) => {
+  try {
+    let parsedData;
+
+    if (typeof data === 'string') {
+      parsedData = JSON.parse(data);
+    } else {
+      parsedData = data;
+    }
+
+    parsedData.forEach(async datum => {
+      await updateByUserIdWithDate(
+        datum.userId,
+        date,
+        datum.lunchQty,
+        datum.dinnerQty,
+        datum.lateNightSnackQty,
+      );
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+const resetQty = async (userId, date) => {
+  try {
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
+    await Catering.query()
+      .patch({
+        lunchQty: 0,
+        dinnerQty: 0,
+        lateNightSnackQty: 0,
+        updated_at: new Date().toISOString(),
+      })
+      .where({ userId })
+      .where('date', '>=', formatedDate);
   } catch (error) {
     throw error;
   }
 };
 
 module.exports = {
+  findOneByUserIdWithDate,
+  updateByUserIdWithDate,
   getLists,
+  setLists,
+  resetQty,
 };

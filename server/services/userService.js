@@ -7,6 +7,11 @@ const isValid = async (id, refreshToken) => {
   return !!user;
 };
 
+const isAdmin = async id => {
+  const user = await Users.query().findById(id);
+  return user.isAdmin;
+};
+
 const findOneById = async id => Users.query().findById(id);
 
 const findOneByUsername = async username => {
@@ -51,6 +56,7 @@ const reNewRefreshToken = async id => {
 };
 
 module.exports = {
+  isAdmin,
   emptyRefreshToken,
   findOneById,
   findOneByUsername,
