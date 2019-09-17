@@ -90,6 +90,13 @@ const CateringContainer = ({
       <h2>식수현황</h2>
       <div>
         <IconButton
+          name="arrowLeft"
+          width="20"
+          height="22"
+          viewBox="0 0 30 30"
+          handleClick={handleDateBackward}
+        />
+        <IconButton
           name="arrowBack"
           width="40"
           height="40"
@@ -103,6 +110,13 @@ const CateringContainer = ({
           height="40"
           viewBox="0 0 30 30"
           handleClick={handleDateForward}
+        />
+        <IconButton
+          name="arrowRight"
+          width="20"
+          height="22"
+          viewBox="0 0 30 30"
+          handleClick={handleDateBackward}
         />
       </div>
       <div className="user-catering--form">
