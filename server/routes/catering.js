@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { check } = require('express-validator');
+const { check, body, query } = require('express-validator');
 const onlyLoggedIn = require('../lib/only-logged-in');
 const validation = require('../lib/validation');
 const cateringController = require('../controllers/catering');
@@ -10,7 +10,7 @@ module.exports = () => {
     '/user/:userId',
     onlyLoggedIn,
     [
-      check('date')
+      query('date')
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
     ],
@@ -39,7 +39,7 @@ module.exports = () => {
     '/users',
     onlyLoggedIn,
     [
-      check('date')
+      query('date')
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
     ],

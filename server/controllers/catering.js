@@ -3,7 +3,7 @@ const userService = require('../services/userService');
 
 exports.getOne = async (req, res, next) => {
   try {
-    const { date } = req.body;
+    const { date } = req.query;
     const { userId } = req.params;
 
     const catering = await cateringService.findOneByUserIdWithDate(
@@ -38,7 +38,7 @@ exports.setOne = async (req, res, next) => {
 
 exports.getLists = async (req, res, next) => {
   try {
-    const { date } = req.body;
+    const { date } = req.query;
     const isAdmin = await userService.isAdmin(req.userData.id);
 
     // 관리자 체크
