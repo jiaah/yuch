@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react';
 /* --- Components --- */
-// import { today, inAWeek } from '../../../helpers/moment';
-// import {
-//   convertToDateForm,
-//   dayBefore,
-//   dayAfter,
-//   weekBefore,
-//   weekAfter,
-//   isLunchQtyChangeDisabled,
-//   isDinnerQtyChangeDisabled,
-// } from '../../../utils/date';
-import IconButton from '../../../shared/form/iconButton';
+import IconButton from './iconButton';
 
 const DateButtons = ({
   // state
   id,
   date,
   catering,
-  // action
+  // actions
   updateDate,
   addFlashMessage,
-  // func
+  // funcs
   fetchData,
   // moment
   inAWeek,
   dateUtils,
+  // props
+  createdAt,
+  dateForwardMessage,
 }) => {
   const {
     convertToDateForm,
@@ -37,8 +28,6 @@ const DateButtons = ({
   } = dateUtils;
 
   const handleDateBackward = async newDate => {
-    const createdAt = catering.created_at;
-
     if (newDate >= createdAt) {
       await updateDate(newDate);
       return fetchData(id, newDate);
@@ -51,10 +40,7 @@ const DateButtons = ({
       await updateDate(newDate);
       return fetchData(id, newDate);
     }
-    return addFlashMessage(
-      'info',
-      '7일 내의 식수량만 미리 등록 할 수 있습니다.',
-    );
+    return addFlashMessage('info', dateForwardMessage);
   };
 
   const moveToAWeekBefore = async () => {

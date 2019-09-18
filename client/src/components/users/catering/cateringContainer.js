@@ -6,7 +6,7 @@ import { today, inAWeek } from '../../../helpers/moment';
 import * as dateUtils from '../../../utils/date';
 import { userCateringMsg } from '../../../data/message';
 import CateringFormBox from './cateringFormBox';
-import DateButtons from './dateButtons';
+import DateButtons from '../../../shared/form/dateButtons';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -19,15 +19,28 @@ const CateringContainer = ({
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
+  const {
+    isLunchQtyChangeDisabled,
+    isDinnerQtyChangeDisabled,
+    convertToDateForm,
+  } = dateUtils;
   const [catering, setCatering] = useState(null);
-  const { isLunchQtyChangeDisabled, isDinnerQtyChangeDisabled } = dateUtils;
+
   const fetchData = async (id, when) => {
     const res = await fetchUserCatering(id, when);
 
     if (res.error) {
-      setCatering(null);
+      const formatedDate = await convertToDateForm(date);
+      setCatering({
+        date: formatedDate,
+        created_at: today,
+        lunchQty: null,
+        dinnerQty: null,
+        lateNightSnackQty: null,
+      });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
+
     return setCatering(res);
   };
 
@@ -41,28 +54,32 @@ const CateringContainer = ({
   return (
     <div className="user-catering--container">
       <h2>식수현황</h2>
-      <DateButtons
-        id={id}
-        date={date}
-        catering={catering}
-        updateDate={updateDate}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        inAWeek={inAWeek}
-        dateUtils={dateUtils}
-      />
-      <div className="user-catering--form">
-        {catering && (
-          <CateringFormBox
-            today={today}
+      {catering && (
+        <React.Fragment>
+          <DateButtons
             id={id}
+            date={date}
             catering={catering}
-            updateUserCatering={updateUserCatering}
-            isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
-            isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+            updateDate={updateDate}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            inAWeek={inAWeek}
+            dateUtils={dateUtils}
+            createdAt={catering.created_at}
+            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
-        )}
-      </div>
+          <div className="user-catering--form">
+            <CateringFormBox
+              today={today}
+              id={id}
+              catering={catering}
+              updateUserCatering={updateUserCatering}
+              isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
+              isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+            />
+          </div>
+        </React.Fragment>
+      )}
       {userCateringMsg}
     </div>
   );
