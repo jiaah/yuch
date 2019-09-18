@@ -55,7 +55,7 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
               .patch({ endedAt: prevEndedAt });
           }
         } else {
-          const endedAt = moment(firstRow.endedAt, 'YYYY-MM-DD')
+          const endedAt = moment(firstRow.startedAt, 'YYYY-MM-DD')
             .subtract(1, 'days')
             .format('YYYY-MM-DD');
           // insert new record
