@@ -35,6 +35,10 @@ const RatesContainer = ({
   show,
 }) => {
   const [data, setData] = useState([]);
+  // selected row on click
+  const [selected, setSelected] = React.useState('');
+  const handleTableRowClick = id => setSelected(id);
+  const resetTableRowClick = () => setSelected('');
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
@@ -69,12 +73,15 @@ const RatesContainer = ({
     e.preventDefault();
     const userData = await getClickedUserData(id);
     await saveClickedItemData(userData);
+    // unselect the selected row when user clicks the edit button.
+    // to prevent from having multiple selected rows.
+    if (selected !== '') await resetTableRowClick();
     return showModal();
   };
 
   const renderAllUsers = () => resetSelectedItemValue();
 
-  // only renders mealprice data when admin user is confirmed
+  // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
 
   return (
@@ -93,20 +100,21 @@ const RatesContainer = ({
       <RatesPaper
         data={data}
         users={dataToRender}
+        clickedUserId={clickedUserData.userId}
         selectedSearchItem={selectedSearchItem}
         handleEditUserBtnClick={handleEditUserBtnClick}
+        selected={selected}
+        handleTableRowClick={handleTableRowClick}
       />
       {isAdminVerified &&
         clickedUserData.length !== 0 && (
           <EditRateModal
             clickedUserData={clickedUserData}
             hideModal={hideModal}
-            resetClickedItemData={resetClickedItemData}
             updateReservedPrice={updateReservedPrice}
             addFlashMessage={addFlashMessage}
           />
         )}
-      {/* admin password check */}
       <AdminVerificationModal />
     </div>
   );

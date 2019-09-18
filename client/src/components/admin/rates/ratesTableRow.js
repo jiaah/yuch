@@ -18,6 +18,7 @@ const RatesTableRow = ({
   classes: { resize },
   row,
   labelId,
+  clickedUserId,
   selectedSearchItem,
   selected,
   handleTableRowClick,
@@ -35,7 +36,9 @@ const RatesTableRow = ({
         tabIndex={-1}
         aria-checked={selected === row.userId}
         selected={
-          selectedSearchItem === row.companyName || selected === row.userId
+          selectedSearchItem === row.companyName ||
+          clickedUserId === row.userId ||
+          selected === row.userId
         }
         onClick={() => handleTableRowClick(row.userId)}
       >

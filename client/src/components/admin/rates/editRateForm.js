@@ -22,7 +22,6 @@ const EditUserForm = ({
           name="reservePrice"
           type="text"
           styleName="textFieldF"
-          placeholder="8000"
           required
         />
         <ExpireDateSelect

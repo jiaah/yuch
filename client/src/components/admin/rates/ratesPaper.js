@@ -4,7 +4,14 @@ import { stableSort, getSorting } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
 import RatesTable from './ratesTable';
 
-const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
+const RatesPaper = ({
+  users,
+  clickedUserId,
+  selectedSearchItem,
+  handleEditUserBtnClick,
+  selected,
+  handleTableRowClick,
+}) => {
   // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');
   // selected column
@@ -41,8 +48,11 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
             orderBy={orderBy}
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
+            clickedUserId={clickedUserId}
             selectedSearchItem={selectedSearchItem}
             handleEditUserBtnClick={handleEditUserBtnClick}
+            selected={selected}
+            handleTableRowClick={handleTableRowClick}
           />
         }
       />
@@ -54,8 +64,11 @@ const RatesPaper = ({ users, selectedSearchItem, handleEditUserBtnClick }) => {
             orderBy={orderBy}
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
+            clickedUserId={clickedUserId}
             selectedSearchItem={selectedSearchItem}
             handleEditUserBtnClick={handleEditUserBtnClick}
+            selected={selected}
+            handleTableRowClick={handleTableRowClick}
           />
         }
       />

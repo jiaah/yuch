@@ -21,17 +21,16 @@ const RatesTable = ({
   order,
   orderBy,
   sortedData,
+  selected,
   // global states
+  clickedUserId,
   selectedSearchItem,
-  // fncs from parent component
+  // fncs
   handleRequestSort,
   handleEditUserBtnClick,
+  handleTableRowClick,
 }) => {
-  // selected row
-  const [selected, setSelected] = React.useState('');
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
-
-  const handleTableRowClick = id => setSelected(id);
 
   // to render only one user on search.
   const searchUser = sortedData.filter(
@@ -58,6 +57,7 @@ const RatesTable = ({
                     key={row.userId}
                     row={row}
                     labelId={labelId}
+                    clickedUserId={clickedUserId}
                     selectedSearchItem={selectedSearchItem}
                     selected={selected}
                     handleTableRowClick={handleTableRowClick}

@@ -37,19 +37,17 @@ export const addUserAccountValidation = Yup.object({
     .required('연락처를 입력하세요.'),
   email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
   address: Yup.string(''),
-  mealPrice: Yup.number()
-    .typeError('숫자만 입력하세요.')
-    .min(1, '0이상의 숫자를 입력해 주세요.')
-    .max(30000, '3만원 이하만 입력 가능합니다.')
-    .positive('1이상의 자연수만 입력하세요.')
-    .integer('1이상의 자연수만 입력하세요.')
-    .required('식수가격을 입력하세요.'),
   lunchQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
   dinnerQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.'),
+  lateNightSnackQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
@@ -74,19 +72,17 @@ export const editUserAccountValidation = Yup.object({
     .matches(phoneRegExp, "' - '를 포함해서 번호를 입력해주세요.")
     .required('연락처를 입력하세요.'),
   email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
-  mealPrice: Yup.number()
-    .typeError('숫자만 입력하세요.')
-    .min(1, '0이상의 숫자를 입력해 주세요.')
-    .max(30000, '3만원 이하만 입력 가능합니다.')
-    .positive('1이상의 자연수만 입력하세요.')
-    .integer('1이상의 자연수만 입력하세요.')
-    .required('식수가격을 입력하세요.'),
   lunchQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')
     .positive('1이상의 자연수만 입력하세요.'),
   dinnerQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.'),
+  lateNightSnackQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.')

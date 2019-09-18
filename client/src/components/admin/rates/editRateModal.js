@@ -11,30 +11,25 @@ const EditRateModal = ({
   clickedUserData,
   // actions
   hideModal,
-  resetClickedItemData,
   updateReservedPrice,
   addFlashMessage,
 }) => {
   const title = (
     <React.Fragment>
-      <span className="b">{clickedUserData[0].companyName}</span> 식수가격
+      <span className="b">{clickedUserData.companyName}</span> 식수가격
     </React.Fragment>
   );
-  const date = (clickedUserData && clickedUserData[0].reserveDate) || nextMonth;
+  const date = (clickedUserData && clickedUserData.reserveDate) || nextMonth;
   const [reserveDate, setReserveDate] = React.useState(date);
-  const handleSelectChange = e => setReserveDate(e.target.value);
-
-  const closeModal = async () => {
-    await resetClickedItemData();
-    return hideModal();
-  };
-
-  const reservePrice = clickedUserData[0].reservePrice;
+  const reservePrice = clickedUserData.reservePrice;
   const values = { reservePrice };
+
+  const handleSelectChange = e => setReserveDate(e.target.value);
+  const closeModal = () => hideModal();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { reservePrice } = values;
-    const userId = clickedUserData[0].userId;
+    const userId = clickedUserData.userId;
     const res = await updateReservedPrice(userId, reservePrice, reserveDate);
     if (res.error) {
       addFlashMessage(
