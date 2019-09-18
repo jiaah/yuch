@@ -5,6 +5,7 @@ import Modal from '../../../shared/modal';
 import RateForm from './editRateForm';
 import { thisMonth, nextMonth, inTwoMonths } from '../../../helpers/moment';
 import { reservePriceValidation } from '../../formValidation';
+import { saveYposition } from '../../../helpers/scrollPosition';
 
 const EditRateModal = ({
   // global states
@@ -38,6 +39,7 @@ const EditRateModal = ({
       );
       return setSubmitting(false);
     }
+    await saveYposition();
     await Promise.all([resetForm({}), closeModal()]);
     return window.location.reload(true);
   };

@@ -8,6 +8,7 @@ import Loader from '../../loader';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import AdminVerificationModal from '../../../shared/adminVerification/adminVerificationModal';
+import { keepScrollPosition } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -55,7 +56,6 @@ const RatesContainer = ({
   };
 
   useEffect(() => {
-    fetchCateringRates();
     // opens the admin password checking modal on page load
     if (!isAdminVerified) {
       showModal();
@@ -64,6 +64,8 @@ const RatesContainer = ({
     if (clickedUserData.length !== 0) {
       setEditBtnClickedRow(clickedUserData.userId);
     }
+    fetchCateringRates();
+    keepScrollPosition();
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
