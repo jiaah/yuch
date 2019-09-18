@@ -26,9 +26,6 @@ module.exports = () => {
       check('date')
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
-      check('lunchQty').isNumeric(),
-      check('dinnerQty').isNumeric(),
-      check('lateNightSnackQty').isNumeric(),
     ],
     validation,
     cateringController.setOne,
