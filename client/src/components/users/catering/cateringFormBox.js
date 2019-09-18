@@ -10,7 +10,6 @@ const CateringFormBox = ({
   isLunchQtyDisabled,
   isDinnerQtyDisabled,
 }) => {
-  console.log('catering: ', catering);
   const handleUpdateCatering = async (values, { setSubmitting }) => {
     updateUserCatering(id, values);
     return setSubmitting(false);
