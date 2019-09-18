@@ -5,53 +5,53 @@ const Users = require('../models/Users');
 
 const findOneByUserIdWithDate = async (userId, date) => {
   try {
-    let result;
     const user = await Users.query()
       .findById(userId)
       .first();
     const parsedDate = moment(date, 'YYYYMMDD');
     const formatedDate = parsedDate.format('YYYY-MM-DD');
     const dayOfWeek = parsedDate.day();
+    let result = await Catering.query()
+      .where({ userId, date: formatedDate })
+      .first();
 
-    if (![0, 6].includes(dayOfWeek)) {
-      if (user) {
-        result = await Catering.query()
-          .where({ userId, date: formatedDate })
-          .first();
+    if (!user) {
+      throw new Error('Not Exists User');
+    }
 
-        if (!result) {
-          result = await Catering.query().insertAndFetch({
-            userId,
-            date: formatedDate,
-            lunchQty: user.lunchQty,
-            dinnerQty: user.dinnerQty,
-            lateNightSnackQty: user.lateNightSnackQty,
-          });
-        }
-
-        result.date = moment(result.date).format('YYYYMMDD');
-
-        if (result.lunchQty === 0) {
-          result.lunchQty = null;
-        }
-
-        if (result.dinnerQty === 0) {
-          result.dinnerQty = null;
-        }
-
-        if (result.lateNightSnackQty === 0) {
-          result.lateNightSnackQty = null;
-        }
+    if (!result) {
+      if (![0, 6].includes(dayOfWeek)) {
+        result = await Catering.query().insertAndFetch({
+          userId,
+          date: formatedDate,
+          lunchQty: user.lunchQty,
+          dinnerQty: user.dinnerQty,
+          lateNightSnackQty: user.lateNightSnackQty,
+        });
+      } else {
+        result = {
+          userId,
+          date: formatedDate,
+          lunchQty: null,
+          dinnerQty: null,
+          lateNightSnackQty: null,
+          created_at: null,
+        };
       }
-    } else {
-      result = {
-        userId,
-        date: formatedDate,
-        lunchQty: null,
-        dinnerQty: null,
-        lateNightSnackQty: null,
-        created_at: null,
-      };
+    }
+
+    result.date = moment(result.date).format('YYYYMMDD');
+
+    if (result.lunchQty === 0) {
+      result.lunchQty = null;
+    }
+
+    if (result.dinnerQty === 0) {
+      result.dinnerQty = null;
+    }
+
+    if (result.lateNightSnackQty === 0) {
+      result.lateNightSnackQty = null;
     }
 
     return result;
