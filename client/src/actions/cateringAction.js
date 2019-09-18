@@ -7,7 +7,6 @@ export const fetchUserCatering = (id, date) => async dispatch => {
   try {
     const res = await Axios.get(`/catering/user/${id}`, { params: { date } });
     const { data } = res;
-    console.log('data in GET action: ', data);
     dispatch({
       type: types.FETCH_USER_CATERING,
       payload: data,
@@ -28,7 +27,6 @@ export const updateUserCatering = (id, data) => async dispatch => {
 
   try {
     const res = await Axios.patch(`/catering/user/${id}`, data);
-
     dispatch({
       type: types.UPDATE_USER_CATERING,
       payload: res.data,
