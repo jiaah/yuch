@@ -6,7 +6,6 @@ const DateButtons = ({
   // state
   id,
   date,
-  catering,
   // actions
   updateDate,
   addFlashMessage,
@@ -16,16 +15,11 @@ const DateButtons = ({
   inAWeek,
   dateUtils,
   // props
+  formatedDate,
   createdAt,
   dateForwardMessage,
 }) => {
-  const {
-    convertToDateForm,
-    dayBefore,
-    dayAfter,
-    weekBefore,
-    weekAfter,
-  } = dateUtils;
+  const { dayBefore, dayAfter, weekBefore, weekAfter } = dateUtils;
 
   const handleDateBackward = async newDate => {
     if (newDate >= createdAt) {
@@ -60,8 +54,6 @@ const DateButtons = ({
     return handleDateForward(newDate);
   };
 
-  const displayedDate = catering && convertToDateForm(date);
-
   return (
     <div>
       <IconButton
@@ -78,7 +70,7 @@ const DateButtons = ({
         viewBox="0 0 30 30"
         handleClick={moveToADayBefore}
       />
-      {displayedDate}
+      {formatedDate}
       <IconButton
         name="arrowForward"
         width="40"

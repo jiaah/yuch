@@ -25,12 +25,12 @@ const CateringContainer = ({
     convertToDateForm,
   } = dateUtils;
   const [catering, setCatering] = useState(null);
+  const formatedDate = convertToDateForm(date);
 
   const fetchData = async (id, when) => {
     const res = await fetchUserCatering(id, when);
 
     if (res.error) {
-      const formatedDate = await convertToDateForm(date);
       setCatering({
         date: formatedDate,
         created_at: today,
@@ -59,12 +59,12 @@ const CateringContainer = ({
           <DateButtons
             id={id}
             date={date}
-            catering={catering}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
             inAWeek={inAWeek}
             dateUtils={dateUtils}
+            formatedDate={formatedDate}
             createdAt={catering.created_at}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />

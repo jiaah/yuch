@@ -11,6 +11,7 @@ import AdminGuards from './adminGuards';
 import LoggedOutRoute from './loggedOutRoute';
 import Home from '../src/components/home/homeContainer';
 
+/* --- AUTH --- */
 const Login = Loader({
   loader: () =>
     import('../src/components/auth/login/loginContainer' /* webpackChunkName: 'Login' */),
@@ -26,6 +27,7 @@ const Reset = Loader({
     import('../src/components/auth/password/resetPwContainer' /* webpackChunkName: 'Reset' */),
 });
 
+/* --- ADMIN --- */
 const UserAccountForAdmin = Loader({
   loader: () =>
     import('../src/components/admin/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
@@ -46,16 +48,23 @@ const AdminAccount = Loader({
     import('../src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
 });
 
+const RestoSales = Loader({
+  loader: () =>
+    import('../src/components/sales/resto/restoContainer' /* webpackChunkName: 'UserAccount' */),
+});
+
+/* --- USER --- */
 const UserAccount = Loader({
   loader: () =>
     import('../src/components/users/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
-const UserDailyCatering = Loader({
+const UserCatering = Loader({
   loader: () =>
     import('../src/components/users/catering/cateringContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
+/* --- ECS --- */
 const NoMatch = Loader({
   loader: () =>
     import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
@@ -66,9 +75,16 @@ const routes = () => (
     <App />
     <Switch>
       <Route exact path="/" component={Home} />
+      {/* --- AUTH --- */}
       <LoggedOutRoute path="/login" component={Login} />
       <LoggedOutRoute path="/auth/forgot" component={Forgot} />
       <Route path="/reset" component={Reset} />
+      {/* --- ADMIN --- */}
+      <Route
+        exact
+        path="/admin/account"
+        component={AdminGuards(AdminAccount)}
+      />
       <Route
         exact
         path="/admin/account/users"
@@ -81,20 +97,17 @@ const routes = () => (
       />
       <Route
         exact
-        path="/admin/account"
-        component={AdminGuards(AdminAccount)}
-      />
-      <Route
-        exact
         path="/admin/account/rates"
         component={AdminGuards(CateringRates)}
       />
-      <Route exact path="/user/account" component={UserGuards(UserAccount)} />
       <Route
         exact
-        path="/user/catering"
-        component={UserGuards(UserDailyCatering)}
+        path="/admin/count/restaurant/dd"
+        component={AdminGuards(RestoSales)}
       />
+      {/* --- USER --- */}
+      <Route exact path="/user/account" component={UserGuards(UserAccount)} />
+      <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
       <Route component={NoMatch} />
     </Switch>
   </div>

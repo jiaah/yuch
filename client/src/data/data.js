@@ -67,17 +67,17 @@ export const navAdminItems = {
   1: [
     {
       id: 11,
-      name: '금일 위탁급식 식수현황',
+      name: '금일 위탁급식 식수',
       to: '/admin/count/catering/dd',
     },
     {
       id: 12,
-      name: '금일 식당 매출현황',
+      name: '금일 식당 매출',
       to: '/admin/count/restaurant/dd',
     },
     {
       id: 13,
-      name: '특식 등록',
+      name: '특식',
       to: '/admin/count/specialmeal',
     },
   ],
