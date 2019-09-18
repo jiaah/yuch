@@ -38,7 +38,6 @@ export const updateReservedPrice = (
     dispatch({
       type: types.HTTP_SUCCESS,
       api: 'updateReservedPrice',
-      payload: { rates },
     });
     return res;
   } catch (error) {
