@@ -26,6 +26,8 @@ const CateringContainer = ({
     formatToYYYYMMDD,
   } = dateUtils;
   const [catering, setCatering] = useState(null);
+  console.log('catering: ', catering);
+
   const [createdAt, setCreatedAt] = useState('');
 
   const formattedDate = formatToDateForm(date);
@@ -78,6 +80,7 @@ const CateringContainer = ({
               id={id}
               catering={catering}
               updateUserCatering={updateUserCatering}
+              addFlashMessage={addFlashMessage}
               isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
               isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
             />

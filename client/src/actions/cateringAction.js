@@ -26,9 +26,7 @@ export const updateUserCatering = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUserCatering' });
 
   try {
-    const res = await Axios.patch(`/catering/user/${id}`, {
-      params: { values },
-    });
+    const res = await Axios.patch(`/catering/user/${id}`, values);
     const { data } = res;
     dispatch({
       type: types.UPDATE_USER_CATERING,

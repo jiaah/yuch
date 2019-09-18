@@ -7,11 +7,17 @@ const CateringFormBox = ({
   id,
   catering,
   updateUserCatering,
+  addFlashMessage,
   isLunchQtyDisabled,
   isDinnerQtyDisabled,
 }) => {
   const handleUpdateCatering = async (values, { setSubmitting }) => {
-    updateUserCatering(id, values);
+    const res = updateUserCatering(id, values);
+    if (!res.error) {
+      addFlashMessage('success', `저장되었습니다.`);
+    } else {
+      addFlashMessage('error', `저장되지 않았습니다. 다시 시도해 주세요.`);
+    }
     return setSubmitting(false);
   };
 
