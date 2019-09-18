@@ -40,7 +40,8 @@ const RatesContainer = ({
   const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
   const handleTableRowClick = id => {
     setSelectedRow(id);
-    setEditBtnClickedRow('');
+    // unselect the selected row to prevent from having multiple selected rows.
+    if (editBtnClickedRow !== '') setEditBtnClickedRow('');
   };
   const resetTableRowClick = () => setSelectedRow('');
 
@@ -59,10 +60,14 @@ const RatesContainer = ({
     if (!isAdminVerified) {
       showModal();
     }
+    // keep edit button selected row on browser refresh
+    if (clickedUserData.length !== 0) {
+      setEditBtnClickedRow(clickedUserData.userId);
+    }
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
-        // clickedUserData.length !== 0 ? resetClickedItemData() : null,
+        clickedUserData.length !== 0 ? resetClickedItemData() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
         show ? hideModal() : null,
       ]);
@@ -78,8 +83,8 @@ const RatesContainer = ({
     const userData = await getClickedUserData(id);
     await saveClickedItemData(userData);
 
+    // select row (UI)
     await setEditBtnClickedRow(userData.userId);
-    // unselect the selected row when user clicks the edit button.
     // to prevent from having multiple selected rows.
     if (selectedRow !== '') await resetTableRowClick();
     return showModal();
