@@ -29,7 +29,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
           });
         }
 
-        result.date = moment(result.date).format('YYYY-MM-DD');
+        result.date = moment(result.date).format('YYYYMMDD');
 
         if (result.lunchQty === 0) {
           result.lunchQty = null;
