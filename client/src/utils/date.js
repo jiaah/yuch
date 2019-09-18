@@ -21,8 +21,10 @@ export const weekAfter = date =>
     .add(7, 'days')
     .format('YYYYMMDD');
 
-export const convertToDateForm = date =>
+export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
+
+export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
 
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {

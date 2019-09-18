@@ -12,7 +12,7 @@ const userCatering = (state = initialState, action) => {
     case types.UPDATE_USER_CATERING:
       return {
         ...state,
-        catering: [...catering, payload],
+        catering: payload,
       };
     case types.RESET_USER_CATERING:
       return {

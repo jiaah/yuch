@@ -15,7 +15,7 @@ const DateButtons = ({
   inAWeek,
   dateUtils,
   // props
-  formatedDate,
+  formattedDate,
   createdAt,
   dateForwardMessage,
 }) => {
@@ -70,7 +70,7 @@ const DateButtons = ({
         viewBox="0 0 30 30"
         handleClick={moveToADayBefore}
       />
-      {formatedDate}
+      {formattedDate}
       <IconButton
         name="arrowForward"
         width="40"

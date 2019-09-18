@@ -22,10 +22,14 @@ const CateringContainer = ({
   const {
     isLunchQtyChangeDisabled,
     isDinnerQtyChangeDisabled,
-    convertToDateForm,
+    formatToDateForm,
+    formatToYYYYMMDD,
   } = dateUtils;
   const [catering, setCatering] = useState(null);
-  const formatedDate = convertToDateForm(date);
+  const [createdAt, setCreatedAt] = useState('');
+
+  const formattedDate = formatToDateForm(date);
+  formatToYYYYMMDD(createdAt);
 
   const fetchData = async (id, when) => {
     const res = await fetchUserCatering(id, when);
@@ -40,7 +44,7 @@ const CateringContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-
+    await setCreatedAt(formatToYYYYMMDD(res.created_at));
     return setCatering(res);
   };
 
@@ -64,8 +68,8 @@ const CateringContainer = ({
             fetchData={fetchData}
             inAWeek={inAWeek}
             dateUtils={dateUtils}
-            formatedDate={formatedDate}
-            createdAt={catering.created_at}
+            formattedDate={formattedDate}
+            createdAt={createdAt}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
           <div className="user-catering--form">

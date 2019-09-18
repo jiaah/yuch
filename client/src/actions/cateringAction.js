@@ -5,7 +5,7 @@ export const fetchUserCatering = (id, date) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'fetchUserCatering' });
 
   try {
-    const res = await Axios.get(`/catering/user/${id}`, { date });
+    const res = await Axios.get(`/catering/user/${id}`, { params: { date } });
     const { data } = res;
     dispatch({
       type: types.FETCH_USER_CATERING,
