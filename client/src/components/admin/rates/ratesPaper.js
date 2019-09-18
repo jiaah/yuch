@@ -6,10 +6,10 @@ import RatesTable from './ratesTable';
 
 const RatesPaper = ({
   users,
-  clickedUserId,
   selectedSearchItem,
   handleEditUserBtnClick,
-  selected,
+  selectedRow,
+  editBtnClickedRow,
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
@@ -48,10 +48,10 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
-            clickedUserId={clickedUserId}
             selectedSearchItem={selectedSearchItem}
             handleEditUserBtnClick={handleEditUserBtnClick}
-            selected={selected}
+            selectedRow={selectedRow}
+            editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
           />
         }
@@ -64,10 +64,10 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
-            clickedUserId={clickedUserId}
             selectedSearchItem={selectedSearchItem}
             handleEditUserBtnClick={handleEditUserBtnClick}
-            selected={selected}
+            selectedRow={selectedRow}
+            editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
           />
         }

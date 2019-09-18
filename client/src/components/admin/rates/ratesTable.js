@@ -21,9 +21,9 @@ const RatesTable = ({
   order,
   orderBy,
   sortedData,
-  selected,
+  selectedRow,
+  editBtnClickedRow,
   // global states
-  clickedUserId,
   selectedSearchItem,
   // fncs
   handleRequestSort,
@@ -57,9 +57,9 @@ const RatesTable = ({
                     key={row.userId}
                     row={row}
                     labelId={labelId}
-                    clickedUserId={clickedUserId}
                     selectedSearchItem={selectedSearchItem}
-                    selected={selected}
+                    selectedRow={selectedRow}
+                    editBtnClickedRow={editBtnClickedRow}
                     handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
                   />

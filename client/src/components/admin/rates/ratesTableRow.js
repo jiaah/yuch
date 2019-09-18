@@ -18,9 +18,9 @@ const RatesTableRow = ({
   classes: { resize },
   row,
   labelId,
-  clickedUserId,
   selectedSearchItem,
-  selected,
+  selectedRow,
+  editBtnClickedRow,
   handleTableRowClick,
   handleEditUserBtnClick,
 }) => {
@@ -34,11 +34,11 @@ const RatesTableRow = ({
         hover
         role="checkbox"
         tabIndex={-1}
-        aria-checked={selected === row.userId}
+        aria-checked={selectedRow === row.userId}
         selected={
           selectedSearchItem === row.companyName ||
-          clickedUserId === row.userId ||
-          selected === row.userId
+          editBtnClickedRow === row.userId ||
+          selectedRow === row.userId
         }
         onClick={() => handleTableRowClick(row.userId)}
       >

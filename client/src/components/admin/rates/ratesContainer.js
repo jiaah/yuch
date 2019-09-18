@@ -36,9 +36,13 @@ const RatesContainer = ({
 }) => {
   const [data, setData] = useState([]);
   // selected row on click
-  const [selected, setSelected] = React.useState('');
-  const handleTableRowClick = id => setSelected(id);
-  const resetTableRowClick = () => setSelected('');
+  const [selectedRow, setSelectedRow] = useState('');
+  const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
+  const handleTableRowClick = id => {
+    setSelectedRow(id);
+    setEditBtnClickedRow('');
+  };
+  const resetTableRowClick = () => setSelectedRow('');
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
@@ -58,7 +62,7 @@ const RatesContainer = ({
     return () =>
       Promise.all([
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
-        clickedUserData.length !== 0 ? resetClickedItemData() : null,
+        // clickedUserData.length !== 0 ? resetClickedItemData() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
         show ? hideModal() : null,
       ]);
@@ -73,9 +77,11 @@ const RatesContainer = ({
     e.preventDefault();
     const userData = await getClickedUserData(id);
     await saveClickedItemData(userData);
+
+    await setEditBtnClickedRow(userData.userId);
     // unselect the selected row when user clicks the edit button.
     // to prevent from having multiple selected rows.
-    if (selected !== '') await resetTableRowClick();
+    if (selectedRow !== '') await resetTableRowClick();
     return showModal();
   };
 
@@ -100,10 +106,10 @@ const RatesContainer = ({
       <RatesPaper
         data={data}
         users={dataToRender}
-        clickedUserId={clickedUserData.userId}
         selectedSearchItem={selectedSearchItem}
         handleEditUserBtnClick={handleEditUserBtnClick}
-        selected={selected}
+        selectedRow={selectedRow}
+        editBtnClickedRow={editBtnClickedRow}
         handleTableRowClick={handleTableRowClick}
       />
       {isAdminVerified &&
