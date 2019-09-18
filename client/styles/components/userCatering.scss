@@ -7,11 +7,6 @@
     margin: 4em auto;
     max-width: 1000px;
   }
-
-  @include for-tablet-landscape-up {
-    margin: 5em auto;
-    max-width: 1000px;
-  }
 }
 
 .user-catering--form {
@@ -38,6 +33,22 @@
 
   @include for-tablet-portrait-up {
     padding: 1.5em;
-    margin: 4em;
+    margin: 3em;
   }
+}
+
+.catering--hr {
+  border-bottom: 1px solid $light-grey;
+  position: absolute;
+  width: 940px;
+  margin: 0 auto;
+}
+
+.catering--pb {
+  padding-bottom: 1.5em;
+  padding-top: 1em;
+}
+
+.catering--vr {
+  border-right: 1px solid $light-grey;
 }

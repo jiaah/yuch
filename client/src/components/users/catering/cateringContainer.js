@@ -26,8 +26,6 @@ const CateringContainer = ({
     formatToYYYYMMDD,
   } = dateUtils;
   const [catering, setCatering] = useState(null);
-  console.log('catering: ', catering);
-
   const [createdAt, setCreatedAt] = useState('');
 
   const formattedDate = formatToDateForm(date);
@@ -39,7 +37,7 @@ const CateringContainer = ({
     if (res.error) {
       setCatering({
         date: formatedDate,
-        created_at: today,
+        created_at: date,
         lunchQty: null,
         dinnerQty: null,
         lateNightSnackQty: null,
@@ -63,7 +61,6 @@ const CateringContainer = ({
       {catering && (
         <React.Fragment>
           <DateButtons
-            id={id}
             date={date}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}

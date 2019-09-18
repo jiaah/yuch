@@ -24,7 +24,8 @@ const DateButtons = ({
   const handleDateBackward = async newDate => {
     if (newDate >= createdAt) {
       await updateDate(newDate);
-      return fetchData(id, newDate);
+      fetchData(id, newDate);
+      return window.location.reload(true);
     }
     return addFlashMessage('info', '존재하는 데이터가 없습니다.');
   };
@@ -32,7 +33,8 @@ const DateButtons = ({
   const handleDateForward = async newDate => {
     if (newDate < inAWeek) {
       await updateDate(newDate);
-      return fetchData(id, newDate);
+      fetchData(id, newDate);
+      return window.location.reload(true);
     }
     return addFlashMessage('info', dateForwardMessage);
   };

@@ -7,6 +7,7 @@ export const fetchUserCatering = (id, date) => async dispatch => {
   try {
     const res = await Axios.get(`/catering/user/${id}`, { params: { date } });
     const { data } = res;
+    console.log('data in GET action: ', data);
     dispatch({
       type: types.FETCH_USER_CATERING,
       payload: data,
@@ -22,17 +23,17 @@ export const fetchUserCatering = (id, date) => async dispatch => {
   }
 };
 
-export const updateUserCatering = (id, values) => async dispatch => {
+export const updateUserCatering = (id, data) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUserCatering' });
 
   try {
-    const res = await Axios.patch(`/catering/user/${id}`, values);
-    const { data } = res;
+    const res = await Axios.patch(`/catering/user/${id}`, data);
+
     dispatch({
       type: types.UPDATE_USER_CATERING,
-      payload: data,
+      payload: res.data,
     });
-    return data;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
