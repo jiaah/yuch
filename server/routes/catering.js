@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { check, body, query } = require('express-validator');
+const { check, query } = require('express-validator');
 const onlyLoggedIn = require('../lib/only-logged-in');
 const validation = require('../lib/validation');
 const cateringController = require('../controllers/catering');
