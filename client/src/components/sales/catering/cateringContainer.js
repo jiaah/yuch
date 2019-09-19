@@ -75,10 +75,21 @@ const CateringContainer = ({
   };
 
   return (
-    <div className="user-catering--container">
+    <div className="r--w-60 container">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>
+      <DateButtons
+        date={date}
+        updateDate={updateDate}
+        addFlashMessage={addFlashMessage}
+        fetchData={fetchData}
+        inAWeek={inAWeek}
+        dateUtils={dateUtils}
+        formattedDate={formattedDate}
+        startTime={startTime}
+        dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
+      />
       <div className="paper-label-box flex justify-between">
         <SearchBar data={catering} />
         <IconButton
@@ -90,29 +101,14 @@ const CateringContainer = ({
         />
       </div>
       {catering && (
-        <React.Fragment>
-          <DateButtons
-            date={date}
-            updateDate={updateDate}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            inAWeek={inAWeek}
-            dateUtils={dateUtils}
-            formattedDate={formattedDate}
-            startTime={startTime}
-            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
-          />
-          <div className="user-catering--form">
-            <CateringPaper
-              users={catering}
-              selectedSearchItem={selectedSearchItem}
-              handleEditUserBtnClick={handleEditUserBtnClick}
-              selectedRow={selectedRow}
-              editBtnClickedRow={editBtnClickedRow}
-              handleTableRowClick={handleTableRowClick}
-            />
-          </div>
-        </React.Fragment>
+        <CateringPaper
+          users={catering}
+          selectedSearchItem={selectedSearchItem}
+          handleEditUserBtnClick={handleEditUserBtnClick}
+          selectedRow={selectedRow}
+          editBtnClickedRow={editBtnClickedRow}
+          handleTableRowClick={handleTableRowClick}
+        />
       )}
       {adminCateringMsg}
     </div>

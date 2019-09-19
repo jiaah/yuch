@@ -103,7 +103,7 @@ const CreateUserForm = props => {
           placeholder="35"
         />
         <FormikField
-          label="석식 식수량"
+          label="야식 식수량"
           name="lateNightSnackQty"
           type="text"
           icon="catering"

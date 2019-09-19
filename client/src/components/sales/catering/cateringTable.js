@@ -46,7 +46,7 @@ const CateringTable = ({
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
-            list={data.cateringRatesTableHeadColumns}
+            list={data.usersCateringTableHeadColumns}
           />
           <TableBody>
             {sortedData.length !== 0 &&

@@ -264,3 +264,42 @@ export const cateringRatesTableHeadColumns = [
     label: '적용되는 날짜',
   },
 ];
+
+export const usersCateringTableHeadColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: '2',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '업체명',
+  },
+  {
+    id: 'lunchQty',
+    numeric: true,
+    disablePadding: false,
+    label: '중식',
+  },
+  {
+    id: 'dinnerQty',
+    numeric: true,
+    disablePadding: false,
+    label: '석식',
+  },
+  {
+    id: 'lateNightSnackQty',
+    numeric: true,
+    disablePadding: false,
+    label: '야식',
+  },
+];
