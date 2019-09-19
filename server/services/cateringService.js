@@ -1,5 +1,4 @@
 const moment = require('moment');
-const { raw } = require('objection');
 const Catering = require('../models/Catering');
 const Users = require('../models/Users');
 
@@ -123,7 +122,7 @@ const getLists = async date => {
   try {
     const results = [];
     const users = await Users.query()
-      .where({ isAdmin: false })
+      .where({ isAdmin: false, businessType: 'catering' })
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
