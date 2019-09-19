@@ -90,7 +90,7 @@ const CateringContainer = ({
         startTime={startTime}
         dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
       />
-      <div className="paper-label-box flex justify-between">
+      <div className="paper-label-box flex justify-between users-catering--width">
         <SearchBar data={catering} />
         <IconButton
           name="print"

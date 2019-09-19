@@ -10,7 +10,7 @@ import FormikField from '../../../shared/form/formikField';
 const styles = theme => ({
   resize: {
     [theme.breakpoints.up('md')]: {
-      fontSize: '15.5px',
+      fontSize: '14px',
     },
   },
 });
@@ -55,13 +55,13 @@ const CateringInputCell = ({ classes: { resize }, row, labelId }) => {
           >
             {row.companyName}
           </TableCell>
-          <TableCell align="right" className={resize}>
+          <TableCell align="center" className={resize} padding="none">
             <FormikField name="lunchQty" type="text" styleName="textFieldE" />
           </TableCell>
-          <TableCell align="right" className={resize}>
+          <TableCell align="center" className={resize} padding="none">
             <FormikField name="dinnerQty" type="text" styleName="textFieldE" />
           </TableCell>
-          <TableCell align="right" className={resize}>
+          <TableCell align="center" className={resize} padding="none">
             <FormikField
               name="lateNightSnackQty"
               type="text"

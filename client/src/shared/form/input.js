@@ -44,8 +44,9 @@ const styles = theme => ({
       width: 170,
     },
   },
+  // users catering
   textFieldE: {
-    width: 70,
+    width: 65,
   },
   // rate form : reservePrice
   textFieldF: {

@@ -1,3 +1,4 @@
+// user catering
 .user-catering--container {
   margin: 2.5em auto;
   text-align: center;
@@ -37,4 +38,15 @@
 
 .catering--vr {
   border-right: 1px solid $light-grey;
+}
+
+// users catering
+.users-catering--width {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+
+  @include for-big-desktop-up {
+    max-width: 1500px;
+  }
 }
