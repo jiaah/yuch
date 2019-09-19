@@ -2,7 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import { stableSort, getSorting } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
-import RatesTable from './ratesTable';
+import CateringTable from './cateringTable';
 
 const CateringPaper = ({
   users,
@@ -12,9 +12,7 @@ const CateringPaper = ({
   editBtnClickedRow,
   handleTableRowClick,
 }) => {
-  // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');
-  // selected column
   const [orderBy, setOrderBy] = React.useState('companyName');
 
   const handleRequestSort = (event, property) => {
@@ -40,10 +38,10 @@ const CateringPaper = ({
   }
 
   return (
-    <div id="printRates" className="paper-rates">
+    <div id="print" className="paper-rates">
       <Paper
         component={
-          <RatesTable
+          <CateringTable
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataA}
@@ -59,7 +57,7 @@ const CateringPaper = ({
       <Paper
         classes="paper-rates--sec"
         component={
-          <RatesTable
+          <CateringTable
             order={order}
             orderBy={orderBy}
             sortedData={sortedDataB}

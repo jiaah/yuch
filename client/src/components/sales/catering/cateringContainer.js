@@ -7,21 +7,37 @@ import * as dateUtils from '../../../utils/date';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import Loader from '../../loader';
 import IconButton from '../../../shared/form/iconButton';
+import { printDiv } from '../../../utils/print';
+import CateringPaper from './cateringPaper';
+import Loader from '../../loader';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
   date,
+  selectedSearchItem,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUsersCatering, updateUsersCatering },
+  selectedActions: {
+    resetSelectedItemValue,
+    saveClickedItemData,
+    resetClickedItemData,
+  },
   addFlashMessage,
 }) => {
   const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
   const [catering, setCatering] = useState(null);
+  const [selectedRow, setSelectedRow] = useState('');
+  const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
+  const handleTableRowClick = id => {
+    setSelectedRow(id);
+    if (editBtnClickedRow !== '') setEditBtnClickedRow('');
+  };
+  const resetTableRowClick = () => setSelectedRow('');
 
   const formattedDate = formatToDateForm(date);
   const startTime = firstDayOfLastMonth();
@@ -42,19 +58,35 @@ const CateringContainer = ({
     return () => resetDate();
   }, []);
 
+  const getClickedUserData = async id => {
+    const userData = await catering.filter(user => user.userId === id);
+    return userData[0];
+  };
+
+  const handleEditUserBtnClick = async (e, id) => {
+    e.preventDefault();
+    const userData = await getClickedUserData(id);
+    await saveClickedItemData(userData);
+
+    // select row (UI)
+    await setEditBtnClickedRow(userData.userId);
+    // to prevent from having multiple selected rows.
+    if (selectedRow !== '') await resetTableRowClick();
+  };
+
   return (
     <div className="user-catering--container">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>
       <div className="paper-label-box flex justify-between">
-        <SearchBar users={catering} />
+        <SearchBar data={catering} />
         <IconButton
           name="print"
           width="32"
           height="32"
           viewBox="0 0 25 25"
-          handleClick={() => printDiv('printRates')}
+          handleClick={() => printDiv('print')}
         />
       </div>
       {catering && (
@@ -70,7 +102,16 @@ const CateringContainer = ({
             startTime={startTime}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
-          <div className="user-catering--form" />
+          <div className="user-catering--form">
+            <CateringPaper
+              users={catering}
+              selectedSearchItem={selectedSearchItem}
+              handleEditUserBtnClick={handleEditUserBtnClick}
+              selectedRow={selectedRow}
+              editBtnClickedRow={editBtnClickedRow}
+              handleTableRowClick={handleTableRowClick}
+            />
+          </div>
         </React.Fragment>
       )}
       {adminCateringMsg}
@@ -81,12 +122,14 @@ const CateringContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.httpHandler.data,
+  selectedSearchItem: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   cateringActions: bindActionCreators(cateringActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
 });
 
 export default connect(

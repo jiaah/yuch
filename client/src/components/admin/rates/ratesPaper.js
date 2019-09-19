@@ -40,7 +40,7 @@ const RatesPaper = ({
   }
 
   return (
-    <div id="printRates" className="paper-rates">
+    <div id="print" className="paper-rates">
       <Paper
         component={
           <RatesTable

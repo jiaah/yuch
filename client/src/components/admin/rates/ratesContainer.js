@@ -114,7 +114,7 @@ const RatesContainer = ({
           width="32"
           height="32"
           viewBox="0 0 25 25"
-          handleClick={() => printDiv('printRates')}
+          handleClick={() => printDiv('print')}
         />
       </div>
       <RatesPaper
