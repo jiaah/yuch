@@ -91,7 +91,13 @@ const UserAccountContainer = ({
   return (
     <div className="container w-95">
       {/* auto complete search bar by companyName */}
-      <h2 onClick={renderAllUsers}>고객 계정</h2>
+      <h2
+        className="pointer"
+        title="모든 고객 계정 보기"
+        onClick={renderAllUsers}
+      >
+        고객 계정
+      </h2>
       <div className="paper-label-box justify-between ">
         <div className="flex">
           <SearchBar users={users} />
