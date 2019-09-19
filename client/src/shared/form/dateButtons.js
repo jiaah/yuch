@@ -16,13 +16,13 @@ const DateButtons = ({
   dateUtils,
   // props
   formattedDate,
-  createdAt,
+  startTime,
   dateForwardMessage,
 }) => {
   const { dayBefore, dayAfter, weekBefore, weekAfter } = dateUtils;
 
   const handleDateBackward = async newDate => {
-    if (newDate >= createdAt) {
+    if (newDate >= startTime) {
       await updateDate(newDate);
       fetchData(id, newDate);
       return window.location.reload(true);

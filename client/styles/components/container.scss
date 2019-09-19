@@ -63,18 +63,3 @@
     min-width: 700px;
   }
 }
-
-.phone {
-  display: inline-block;
-  
-  @include for-tablet-landscape-up {
-    display: none;
-  }
-}
-
-.desktop {
-  display: none;
-  @include for-tablet-landscape-up {
-    display: inline-block;
-  }
-}

@@ -26,7 +26,7 @@ const CateringContainer = ({
     formatToYYYYMMDD,
   } = dateUtils;
   const [catering, setCatering] = useState(null);
-  const [createdAt, setCreatedAt] = useState('');
+  const [startTime, setStartTime] = useState('');
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
@@ -44,9 +44,8 @@ const CateringContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-
-    const createdDate = await formatToYYYYMMDD(res.created_at);
-    await setCreatedAt(createdDate);
+    const startDate = await formatToYYYYMMDD(res.created_at);
+    await setStartTime(startDate);
     return setCatering(res);
   };
 
@@ -59,7 +58,9 @@ const CateringContainer = ({
 
   return (
     <div className="user-catering--container">
-      <h2>식수현황</h2>
+      <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
+        식수현황
+      </h2>
       {catering && (
         <React.Fragment>
           <DateButtons
@@ -70,7 +71,7 @@ const CateringContainer = ({
             inAWeek={inAWeek}
             dateUtils={dateUtils}
             formattedDate={formattedDate}
-            createdAt={createdAt}
+            startTime={startTime}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
           <div className="user-catering--form">

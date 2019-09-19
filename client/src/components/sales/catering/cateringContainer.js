@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { today, inAWeek } from '../../../helpers/moment';
+import { inAWeek } from '../../../helpers/moment';
 import * as dateUtils from '../../../utils/date';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
@@ -12,7 +12,6 @@ import * as cateringActions from '../../../actions/cateringAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const CateringContainer = ({
-  id,
   date,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUsersCatering, updateUsersCatering },
@@ -22,6 +21,7 @@ const CateringContainer = ({
   const [catering, setCatering] = useState(null);
 
   const formattedDate = formatToDateForm(date);
+  const startTime = firstDayOfLastMonth();
 
   const fetchData = async when => {
     const res = await fetchUsersCatering(when);
@@ -41,7 +41,9 @@ const CateringContainer = ({
 
   return (
     <div className="user-catering--container">
-      <h2>식수현황</h2>
+      <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
+        식수현황
+      </h2>
       {catering && (
         <React.Fragment>
           <DateButtons
@@ -52,7 +54,7 @@ const CateringContainer = ({
             inAWeek={inAWeek}
             dateUtils={dateUtils}
             formattedDate={formattedDate}
-            createdAt={firstDayOfLastMonth()}
+            startTime={startTime}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
           <div className="user-catering--form" />
