@@ -99,6 +99,8 @@ const updateByUserIdWithDate = async (
         });
       }
 
+      result.date = moment(result.date).format('YYYYMMDD');
+
       if (result.lunchQty === 0) {
         result.lunchQty = null;
       }
@@ -119,26 +121,21 @@ const updateByUserIdWithDate = async (
 
 const getLists = async date => {
   try {
-    const parsedDate = moment(date, 'YYYYMMDD');
-    const formatedDate = parsedDate.format('YYYY-MM-DD');
-    const rows = await Catering.query()
-      .select(raw('catering.*, users."companyName"'))
-      .leftJoin('users', 'users.id', 'catering.userId')
-      .where({ date: formatedDate });
-    rows.map(row => {
-      const newRow = row;
-      if (row.lunchQty === 0) {
-        newRow.lunchQty = null;
-      }
-      if (row.dinnerQty === 0) {
-        newRow.dinnerQty = null;
-      }
-      if (row.lateNightSnackQty === 0) {
-        newRow.lateNightSnackQty = null;
-      }
-      return row;
-    });
-    return rows;
+    const results = [];
+    const users = await Users.query()
+      .where({ isAdmin: false })
+      .orderBy('companyName', 'asc');
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const user of users) {
+      // eslint-disable-next-line no-await-in-loop
+      const result = await findOneByUserIdWithDate(user.id, date);
+      results.push(
+        Object.assign({}, result, { companyName: user.companyName }),
+      );
+    }
+
+    return results;
   } catch (error) {
     throw error;
   }
