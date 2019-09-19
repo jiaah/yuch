@@ -40,7 +40,7 @@ const styles = theme => ({
 
 const SearchBar = ({
   classes: { search, searchIcon },
-  users,
+  data,
   saveSelectedItemValue,
 }) => {
   const [inputValue, setInputValue] = useState(inputValue);
@@ -50,7 +50,7 @@ const SearchBar = ({
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
-    const suggestion = await users
+    const suggestion = await data
       .sort()
       .filter(u => u.companyName.match(regex));
 

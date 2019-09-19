@@ -6,6 +6,9 @@ import { inAWeek } from '../../../helpers/moment';
 import * as dateUtils from '../../../utils/date';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import Loader from '../../loader';
+import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -44,6 +47,16 @@ const CateringContainer = ({
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>
+      <div className="paper-label-box flex justify-between">
+        <SearchBar users={catering} />
+        <IconButton
+          name="print"
+          width="32"
+          height="32"
+          viewBox="0 0 25 25"
+          handleClick={() => printDiv('printRates')}
+        />
+      </div>
       {catering && (
         <React.Fragment>
           <DateButtons

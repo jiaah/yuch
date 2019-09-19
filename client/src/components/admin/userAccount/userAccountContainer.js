@@ -59,6 +59,7 @@ const UserAccountContainer = ({
       Promise.all([
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
+        renderAllUsers(),
       ]);
     };
   }, []);
@@ -100,7 +101,7 @@ const UserAccountContainer = ({
       </h2>
       <div className="paper-label-box justify-between ">
         <div className="flex">
-          <SearchBar users={users} />
+          <SearchBar data={users} />
           <p className="f-mini ml3 user-account--user-number">
             총 고객 수&#8201;&#8201;
             <span className="b">{users.length}</span>

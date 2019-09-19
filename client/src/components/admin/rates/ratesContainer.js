@@ -72,6 +72,7 @@ const RatesContainer = ({
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
         show ? hideModal() : null,
+        renderAllUsers(),
       ]);
   }, []);
 
@@ -99,9 +100,15 @@ const RatesContainer = ({
 
   return (
     <div className="container w-90">
-      <h2 onClick={renderAllUsers}>식수가격</h2>
+      <h2
+        className="pointer"
+        title="모든 고객 계정 보기"
+        onClick={renderAllUsers}
+      >
+        식수가격
+      </h2>
       <div className="paper-label-box flex justify-between">
-        <SearchBar users={data} />
+        <SearchBar data={data} />
         <IconButton
           name="print"
           width="32"
