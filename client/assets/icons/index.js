@@ -28,6 +28,7 @@ import ArrowRight from './arrowRight';
 import ArrowLeft from './arrowLeft';
 import ArrowBack from './arrowBack';
 import ArrowForward from './arrowForward';
+import Done from './done';
 
 const Icon = props => {
   switch (props.name) {
@@ -85,6 +86,8 @@ const Icon = props => {
       return <ArrowBack {...props} />;
     case 'arrowForward':
       return <ArrowForward {...props} />;
+    case 'done':
+      return <Done {...props} />;
     default:
       return <div />;
   }

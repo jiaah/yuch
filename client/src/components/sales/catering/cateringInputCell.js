@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 /* --- Components --- */
 import IconFormButton from '../../../shared/form/iconFormButton';
 import IconButton from '../../../shared/form/iconButton';
@@ -27,7 +27,7 @@ const CateringInputCell = ({ classes: { resize }, row, labelId }) => {
         <React.Fragment>
           <TableCell padding="checkbox">
             <IconFormButton
-              name="close"
+              name="done"
               width="19"
               height="19"
               viewBox="0 0 24 24"
