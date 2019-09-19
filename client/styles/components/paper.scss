@@ -1,0 +1,46 @@
+.paper {
+  @include for-big-desktop-up {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.paper--sec {
+  margin-top: 3em;
+
+  @include for-big-desktop-up {
+    margin-top: 0;
+  }
+}
+
+.paper-label-box {
+  display: flex;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 2em;
+  margin-bottom: .5em;
+
+  @include for-big-desktop-up {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+}
+
+.paper-padding {
+  padding: 1em 2em;
+}
+
+
+// modal && paper
+.box-container {
+  width: 80vw;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+
+  @include for-desktop-up {
+    width: 50vw;
+    min-width: 700px;
+  }
+}

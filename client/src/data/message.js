@@ -161,7 +161,7 @@ export const deleteBankAccountMsg = (
 );
 
 export const userCateringMsg = (
-  <div className="user-catering--notice">
+  <div className="user--notice">
     <p className="pb3 b">- &#8201;금일 식수 변경 가능시간&#8201; -</p>
     <p className="pb3 b">
       중식
@@ -177,7 +177,7 @@ export const userCateringMsg = (
 );
 
 export const adminCateringMsg = (
-  <div className="user-catering--notice">
+  <div className="user--notice">
     <p className="pb3 b">- &#8201;고객 금일 식수 변경 가능시간&#8201; -</p>
     <p className="pb3 b">
       중식

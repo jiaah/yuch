@@ -44,30 +44,3 @@
     width: 20vw;
   }
 }
-
-// paper
-.paper-label-box {
-  display: flex;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-top: 2em;
-  margin-bottom: .5em;
-}
-
-.paper-padding {
-  padding: 1em 2em;
-}
-
-// modal && paper
-.box-container {
-  width: 80vw;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-
-  @include for-desktop-up {
-    width: 50vw;
-    min-width: 700px;
-  }
-}

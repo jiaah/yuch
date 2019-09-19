@@ -56,27 +56,16 @@ const CateringInputCell = ({ classes: { resize }, row, labelId }) => {
             {row.companyName}
           </TableCell>
           <TableCell align="right" className={resize}>
-            <FormikField
-              name="lunchQty"
-              type="text"
-              icon="catering"
-              styleName="textFieldD"
-            />
+            <FormikField name="lunchQty" type="text" styleName="textFieldE" />
           </TableCell>
           <TableCell align="right" className={resize}>
-            <FormikField
-              name="dinnerQty"
-              type="text"
-              icon="catering"
-              styleName="textFieldD"
-            />
+            <FormikField name="dinnerQty" type="text" styleName="textFieldE" />
           </TableCell>
           <TableCell align="right" className={resize}>
             <FormikField
               name="lateNightSnackQty"
               type="text"
-              icon="catering"
-              styleName="textFieldD"
+              styleName="textFieldE"
             />
           </TableCell>
         </React.Fragment>

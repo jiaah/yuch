@@ -75,7 +75,7 @@ const CateringContainer = ({
   };
 
   return (
-    <div className="r--w-60 container">
+    <div className="r--w-70 container">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>

@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 // 한글만 가능, 띄어쓰기 불가능
 const hangulRegExp = /^[가-힣]+$/;
-// 2~12 한글, 숫자 입력 가능. 특수문자는 !@#)(*_로 한정. 띄어쓰기 가능.
-const nameRegExp = /^[가-힣0-9!@#)(*_\s]{2,12}$/;
+// 2~12 한글, 숫자 입력 가능. 특수문자는 !@#())*_로 한정. 띄어쓰기 가능.
+const nameRegExp = /^[가-힣0-9!@#()*_\s]{2,20}$/;
 // 영.숫자 조합
 const engNumRegExp = /^[a-zA-Z0-9_]+$/;
 const phoneRegExp = /^([0-9]{2}|[0-9]{3})-([0-9]{3}|[0-9]{4})-[0-9]{4}$/;
@@ -14,7 +14,7 @@ export const addUserAccountValidation = Yup.object({
       nameRegExp,
       '한글.숫자, 특수문자 !@#)(*_ 만 입력가능합니다 (띄어쓰기 가능)',
     )
-    .max(12, '12글자 아래로 입력해주세요.')
+    .max(20, '20글자 아래로 입력해주세요.')
     .required('업체명을 입력해주세요.'),
   username: Yup.string('')
     .lowercase('소문자로 입력해주세요.')
@@ -60,7 +60,7 @@ export const editUserAccountValidation = Yup.object({
       nameRegExp,
       '한글.숫자, 특수문자 !@#)(* 만 입력가능합니다 (띄어쓰기 가능)',
     )
-    .max(12, '12글자 아래로 입력해주세요.')
+    .max(20, '20글자 아래로 입력해주세요.')
     .required('업체명을 입력해주세요.'),
   username: Yup.string('')
     .lowercase('소문자로 입력해주세요.')
@@ -175,7 +175,7 @@ export const adminAccountValidation = Yup.object({
       nameRegExp,
       '한글.숫자, 특수문자 !@#)(* 만 입력가능합니다 (띄어쓰기 가능)',
     )
-    .max(12, '12글자 아래로 입력해주세요.')
+    .max(20, '20글자 아래로 입력해주세요.')
     .required('업체명을 입력해주세요.'),
   username: Yup.string('')
     .lowercase('소문자로 입력해주세요.')

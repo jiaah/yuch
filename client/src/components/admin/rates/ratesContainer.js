@@ -99,7 +99,7 @@ const RatesContainer = ({
   const dataToRender = isAdminVerified ? data : [];
 
   return (
-    <div className="container w-90">
+    <div className="container r--w-80">
       <h2
         className="pointer"
         title="모든 고객 계정 보기"

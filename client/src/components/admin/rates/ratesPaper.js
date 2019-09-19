@@ -40,7 +40,7 @@ const RatesPaper = ({
   }
 
   return (
-    <div id="print" className="paper-rates">
+    <div id="print" className="paper">
       <Paper
         component={
           <RatesTable
@@ -57,7 +57,7 @@ const RatesPaper = ({
         }
       />
       <Paper
-        classes="paper-rates--sec"
+        classes="paper--sec"
         component={
           <RatesTable
             order={order}

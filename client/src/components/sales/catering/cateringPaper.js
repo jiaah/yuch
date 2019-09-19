@@ -38,7 +38,7 @@ const CateringPaper = ({
   }
 
   return (
-    <div id="print" className="paper-rates">
+    <div id="print" className="paper">
       <Paper
         component={
           <CateringTable
@@ -55,7 +55,7 @@ const CateringPaper = ({
         }
       />
       <Paper
-        classes="paper-rates--sec"
+        classes="paper--sec"
         component={
           <CateringTable
             order={order}

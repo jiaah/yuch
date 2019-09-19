@@ -12,7 +12,10 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { width: '100%' },
+  table: {
+    width: '100%',
+    minWidth: '500px',
+  },
 });
 
 const CateringTable = ({

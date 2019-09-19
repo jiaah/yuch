@@ -45,12 +45,7 @@ const styles = theme => ({
     },
   },
   textFieldE: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 250,
-    [theme.breakpoints.up('md')]: {
-      width: 570,
-    },
+    width: 70,
   },
   // rate form : reservePrice
   textFieldF: {

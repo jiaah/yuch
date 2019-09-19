@@ -23,20 +23,6 @@
   }
 }
 
-.user-catering--notice {
-  border-top: 1px solid #fac59c;
-  border-bottom: 1px solid #fac59c;
-  color: $c-text;
-  cursor: pointer;
-  padding: 1em;
-  margin: 1em;
-
-  @include for-tablet-portrait-up {
-    padding: 1.5em;
-    margin: 3em;
-  }
-}
-
 .catering--hr {
   border-bottom: 1px solid $light-grey;
   position: absolute;
