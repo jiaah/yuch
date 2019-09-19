@@ -15,7 +15,7 @@ const CateringContainer = ({
   id,
   date,
   dateTrackerActions: { updateDate, resetDate },
-  cateringActions: { fetchUserCatering, updateUserCatering },
+  cateringActions: { fetchUsersCatering, updateUsersCatering },
   addFlashMessage,
 }) => {
   const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
@@ -23,8 +23,8 @@ const CateringContainer = ({
 
   const formattedDate = formatToDateForm(date);
 
-  const fetchData = async (id, when) => {
-    const res = await fetchUserCatering(id, when);
+  const fetchData = async when => {
+    const res = await fetchUsersCatering(when);
 
     if (res.error) {
       setCatering();
@@ -35,7 +35,7 @@ const CateringContainer = ({
   };
 
   useEffect(() => {
-    fetchData(id, date);
+    fetchData(date);
     return () => resetDate();
   }, []);
 
@@ -64,7 +64,6 @@ const CateringContainer = ({
 };
 
 const mapStateToProps = state => ({
-  id: state.auth.id,
   date: state.dateTracker.date,
   catering: state.httpHandler.data,
 });
