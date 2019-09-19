@@ -89,6 +89,7 @@ const UserAccountContainer = ({
   const renderAllUsers = () => {
     if (selectedSearchItem !== null) resetSelectedItemValue();
   };
+
   return (
     <div className="container w-95">
       {/* auto complete search bar by companyName */}
@@ -158,12 +159,12 @@ const UserAccountContainer = ({
           resetSelectedItemValue={resetSelectedItemValue}
           bankAccount={bankAccount}
         />
-      ) : clickedBtn === 'edit' ? (
+      ) : clickedBtn === 'edit' && clickedUserData ? (
         <EditUserModal
           handleCloseModal={handleCloseModal}
           editUser={editUser}
           clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData[0]}
+          clickedUserData={clickedUserData}
           resetPassword={resetPassword}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
