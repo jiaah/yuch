@@ -39,14 +39,6 @@ exports.setOne = async (req, res, next) => {
 exports.getLists = async (req, res, next) => {
   try {
     const { date } = req.query;
-    const isAdmin = await userService.isAdmin(req.userData.id);
-
-    // 관리자 체크
-    if (!isAdmin) {
-      const error = new Error('Not Admin');
-      error.status = 401;
-      throw error;
-    }
 
     const caterings = await cateringService.getLists(date);
 
@@ -59,14 +51,6 @@ exports.getLists = async (req, res, next) => {
 exports.setBatch = async (req, res, next) => {
   try {
     const { date, data } = req.body;
-    const isAdmin = await userService.isAdmin(req.userData.id);
-
-    // 관리자 체크
-    if (!isAdmin) {
-      const error = new Error('Not Admin');
-      error.status = 401;
-      throw error;
-    }
 
     await cateringService.setLists(date, data);
 
@@ -80,14 +64,6 @@ exports.resetQty = async (req, res, next) => {
   try {
     const { date } = req.body;
     const { userId } = req.params;
-    const isAdmin = await userService.isAdmin(req.userData.id);
-
-    // 관리자 체크
-    if (!isAdmin) {
-      const error = new Error('Not Admin');
-      error.status = 401;
-      throw error;
-    }
 
     await cateringService.resetQty(userId, date);
 
