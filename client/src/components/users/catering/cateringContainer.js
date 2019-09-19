@@ -28,8 +28,8 @@ const CateringContainer = ({
   const [catering, setCatering] = useState(null);
   const [createdAt, setCreatedAt] = useState('');
 
+  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
-  formatToYYYYMMDD(createdAt);
 
   const fetchData = async (id, when) => {
     const res = await fetchUserCatering(id, when);
@@ -44,7 +44,9 @@ const CateringContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    await setCreatedAt(formatToYYYYMMDD(res.created_at));
+
+    const createdDate = await formatToYYYYMMDD(res.created_at);
+    await setCreatedAt(createdDate);
     return setCatering(res);
   };
 

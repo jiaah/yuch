@@ -50,7 +50,12 @@ const AdminAccount = Loader({
 
 const RestoSales = Loader({
   loader: () =>
-    import('../src/components/sales/resto/restoContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/sales/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
+});
+
+const AdminCatering = Loader({
+  loader: () =>
+    import('../src/components/sales/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
 /* --- USER --- */
@@ -104,6 +109,11 @@ const routes = () => (
         exact
         path="/admin/count/restaurant/dd"
         component={AdminGuards(RestoSales)}
+      />
+      <Route
+        exact
+        path="/admin/count/catering/dd"
+        component={AdminGuards(AdminCatering)}
       />
       {/* --- USER --- */}
       <Route exact path="/user/account" component={UserGuards(UserAccount)} />

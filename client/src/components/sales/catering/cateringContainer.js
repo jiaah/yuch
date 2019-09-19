@@ -4,39 +4,34 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { today, inAWeek } from '../../../helpers/moment';
 import * as dateUtils from '../../../utils/date';
-import RestoFormBox from './restoFormBox';
+import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
-const RestoContainer = ({
+const CateringContainer = ({
   id,
   date,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
-  const { formatToDateForm } = dateUtils;
-  const formatedDate = formatToDateForm(date);
-  const [resto, setResto] = useState(null);
+  const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
+  const [catering, setCatering] = useState(null);
+
+  const formattedDate = formatToDateForm(date);
 
   const fetchData = async (id, when) => {
-    // create action / reducer
     const res = await fetchUserCatering(id, when);
 
     if (res.error) {
-      setResto({
-        date: formatedDate,
-        created_at: today,
-        lunchQty: null,
-        dinnerQty: null,
-        lateNightSnackQty: null,
-      });
+      setCatering();
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setResto(res);
+
+    return setCatering(res);
   };
 
   useEffect(() => {
@@ -46,31 +41,24 @@ const RestoContainer = ({
 
   return (
     <div className="user-catering--container">
-      <h2>식당 매출 관리</h2>
-      {resto && (
+      <h2>식수현황</h2>
+      {catering && (
         <React.Fragment>
           <DateButtons
-            id={id}
             date={date}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
             inAWeek={inAWeek}
             dateUtils={dateUtils}
-            formatedDate={formatedDate}
-            createdAt={resto.created_at}
-            dateForwardMessage="존재하지 않는 페이지입니다."
+            formattedDate={formattedDate}
+            createdAt={firstDayOfLastMonth()}
+            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
-          <div className="user-catering--form">
-            <RestoFormBox
-              today={today}
-              id={id}
-              resto={resto}
-              updateUserCatering={updateUserCatering}
-            />
-          </div>
+          <div className="user-catering--form" />
         </React.Fragment>
       )}
+      {adminCateringMsg}
     </div>
   );
 };
@@ -90,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(RestoContainer);
+)(CateringContainer);

@@ -170,7 +170,26 @@ export const userCateringMsg = (
       석식/야식 :&#8201;&#8201; ~ 금일 13 시 30 분<br />
     </p>
     <p className="f-mini">
-      * 변경 가능시간이 지난 후, 변경을 원하시면 유청으로 문의해주시기 바랍니다.
+      * 변경 가능시간이 지난 후, 변경을 원하시면 {admin.companyName}
+      으로 문의해주시기 바랍니다.
+    </p>
+  </div>
+);
+
+export const adminCateringMsg = (
+  <div className="user-catering--notice">
+    <p className="pb3 b">- &#8201;고객 금일 식수 변경 가능시간&#8201; -</p>
+    <p className="pb3 b">
+      중식
+      :&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;
+      ~ 금일 9 시 00 분<br />
+      석식/야식 :&#8201;&#8201; ~ 금일 13 시 30 분<br />
+    </p>
+    <p className="f-mini">
+      * {admin.companyName}은 지난 날짜에 대한 식수변경은 이전 달 까지만
+      가능합니다.
+      <br />* {admin.companyName}
+      고객은 상단의 변경가능시간에만 식수변경이 가능합니다.
     </p>
   </div>
 );

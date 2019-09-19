@@ -21,6 +21,15 @@ export const weekAfter = date =>
     .add(7, 'days')
     .format('YYYYMMDD');
 
+const lastMonth = moment()
+  .add(-1, 'months')
+  .format('YYYYMM');
+
+export const firstDayOfLastMonth = () => {
+  const value = `${lastMonth}01`;
+  return value;
+};
+
 export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
