@@ -3,17 +3,19 @@ const specialService = require('../services/specialService');
 
 exports.getOne = async (req, res, next) => {
   try {
-    const { specialId } = req.params;
+    const { userId } = req.params;
+    const { date } = req.query;
 
-    const isExist = await specialService.isExist(specialId);
+    const parsedDate = moment(`${date}01`, 'YYYYMMDD');
 
-    if (!isExist) {
-      const error = new Error('Not Exist Special Meal');
-      error.status = 404;
-      throw error;
-    }
+    const startedAt = parsedDate.format('YYYY-MM-DD');
+    const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
 
-    const result = await specialService.findById(specialId);
+    const result = await specialService.findAllByUserIdWithDateRange(
+      userId,
+      startedAt,
+      endedAt,
+    );
 
     return res.status(200).json(result);
   } catch (error) {
@@ -30,7 +32,7 @@ exports.lists = async (req, res, next) => {
     const startedAt = parsedDate.format('YYYY-MM-DD');
     const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
 
-    const results = await specialService.listsByDateBetween(startedAt, endedAt);
+    const results = await specialService.listsByDateRange(startedAt, endedAt);
 
     return res.status(200).json(results);
   } catch (error) {
@@ -41,6 +43,7 @@ exports.lists = async (req, res, next) => {
 exports.create = async (req, res, next) => {
   try {
     const {
+      userId,
       companyName,
       contactNo,
       address,
@@ -52,10 +55,18 @@ exports.create = async (req, res, next) => {
 
     const parsedDate = moment(`${date} ${time}`, 'YYYYMMDD h:mm a');
     const sumTotal = mealPrice * quantity;
+
+    if (!userId || userId === 'null') {
+      nullableUserId = null;
+    } else {
+      nullableUserId = userId;
+    }
+
     changedDate = parsedDate.format('YYYY-MM-DD');
     changedTime = parsedDate.format('HH:mm:ss');
 
     const result = await specialService.create({
+      userId: nullableUserId,
       companyName,
       contactNo,
       address,
@@ -76,6 +87,7 @@ exports.update = async (req, res, next) => {
   try {
     const { specialId } = req.params;
     const {
+      userId,
       companyName,
       contactNo,
       address,
@@ -95,10 +107,16 @@ exports.update = async (req, res, next) => {
 
     const parsedDate = moment(`${date} ${time}`, 'YYYYMMDD h:mm a');
     const sumTotal = mealPrice * quantity;
+    if (!userId || userId === 'null') {
+      nullableUserId = null;
+    } else {
+      nullableUserId = userId;
+    }
     changedDate = parsedDate.format('YYYY-MM-DD');
     changedTime = parsedDate.format('HH:mm:ss');
 
     const result = await specialService.update(specialId, {
+      userId: nullableUserId,
       companyName,
       contactNo,
       address,

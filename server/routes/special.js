@@ -16,12 +16,12 @@ module.exports = () => {
     specialController.lists,
   );
 
-  /* --- Admin --- */
+  /* --- Common --- */
   router.post(
     '/',
     onlyLoggedIn,
-    isAdmin,
     [
+      check('userId'),
       check('companyName')
         .not()
         .isEmpty()
@@ -45,12 +45,12 @@ module.exports = () => {
     specialController.create,
   );
 
-  /* --- Admin --- */
+  /* --- Common --- */
   router.patch(
     '/:specialId',
     onlyLoggedIn,
-    isAdmin,
     [
+      check('userId'),
       check('companyName')
         .trim()
         .not()
@@ -87,71 +87,74 @@ module.exports = () => {
 
   /* --- Client --- */
   router.get(
-    '/user/:specialId',
+    '/user/:userId',
     onlyLoggedIn,
     [query('date').matches(/^[0-9]{6}$/)],
     validation,
     specialController.getOne,
   );
 
-  /* --- Client --- */
-  router.post(
-    '/user',
-    onlyLoggedIn,
-    [
-      check('companyName')
-        .not()
-        .isEmpty()
-        .trim(),
-      check('contactNo')
-        .not()
-        .isEmpty()
-        .trim(),
-      check('address')
-        .not()
-        .isEmpty()
-        .trim(),
-      check('date')
-        .matches(/^[0-9]{8}$/)
-        .isISO8601(),
-      check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}\s(pm|am)$/),
-      check('quantity').isNumeric(),
-      check('mealPrice').isNumeric(),
-    ],
-    validation,
-    specialController.create,
-  );
+  // /* --- Client --- */
+  // router.post(
+  //   '/user',
+  //   onlyLoggedIn,
+  //   [
+  //     check('userId')
+  //       .optional()
+  //       .isUUID(),
+  //     check('companyName')
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('contactNo')
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('address')
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('date')
+  //       .matches(/^[0-9]{8}$/)
+  //       .isISO8601(),
+  //     check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}\s(pm|am)$/),
+  //     check('quantity').isNumeric(),
+  //     check('mealPrice').isNumeric(),
+  //   ],
+  //   validation,
+  //   specialController.create,
+  // );
 
-  /* --- Client --- */
-  router.patch(
-    '/user/:specialId',
-    onlyLoggedIn,
-    [
-      check('companyName')
-        .trim()
-        .not()
-        .isEmpty()
-        .trim(),
-      check('contactNo')
-        .trim()
-        .not()
-        .isEmpty()
-        .trim(),
-      check('address')
-        .trim()
-        .not()
-        .isEmpty()
-        .trim(),
-      check('date')
-        .matches(/^[0-9]{8}$/)
-        .isISO8601(),
-      check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}\s(pm|am)$/),
-      check('quantity').isNumeric(),
-      check('mealPrice').isNumeric(),
-    ],
-    validation,
-    specialController.update,
-  );
+  // /* --- Client --- */
+  // router.patch(
+  //   '/user/:specialId',
+  //   onlyLoggedIn,
+  //   [
+  //     check('companyName')
+  //       .trim()
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('contactNo')
+  //       .trim()
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('address')
+  //       .trim()
+  //       .not()
+  //       .isEmpty()
+  //       .trim(),
+  //     check('date')
+  //       .matches(/^[0-9]{8}$/)
+  //       .isISO8601(),
+  //     check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}\s(pm|am)$/),
+  //     check('quantity').isNumeric(),
+  //     check('mealPrice').isNumeric(),
+  //   ],
+  //   validation,
+  //   specialController.update,
+  // );
 
   return router;
 };
