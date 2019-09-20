@@ -22,7 +22,7 @@ const IconFormButton = ({
   return (
     <button
       aria-label={name}
-      type="button"
+      type="submit"
       style={{
         border: 'none',
         backgroundColor: 'transparent',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,14 +32,29 @@ const CateringTable = ({
   handleRequestSort,
   handleEditUserBtnClick,
   handleTableRowClick,
+  // actions
+  updateUsersCatering,
 }) => {
+  const [dataToDisplay, setDataToDisplay] = useState([]);
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
-  // to render only one user on search.
-  const searchUser = sortedData.filter(
-    u => u.companyName === selectedSearchItem,
-  );
-  const userToDisplay = searchUser.length === 0 ? sortedData : searchUser;
+  useEffect(() => {
+    // to render only one user on search.
+    const searchUser = sortedData.filter(
+      u => u.companyName === selectedSearchItem,
+    );
+    const userToDisplay = searchUser.length === 0 ? sortedData : searchUser;
+    setDataToDisplay(userToDisplay);
+  }, []);
+
+  const handleChange = (e, name, id) => {
+    const { value } = e.target;
+    setDataToDisplay(
+      dataToDisplay.map(
+        row => (row.id === id ? { ...row, [name]: value } : row),
+      ),
+    );
+  };
 
   return (
     <React.Fragment>
@@ -53,7 +68,7 @@ const CateringTable = ({
           />
           <TableBody>
             {sortedData.length !== 0 &&
-              userToDisplay.map((row, index) => {
+              dataToDisplay.map((row, index) => {
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (
                   <CateringTableRow
@@ -65,6 +80,8 @@ const CateringTable = ({
                     editBtnClickedRow={editBtnClickedRow}
                     handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
+                    updateUsersCatering={updateUsersCatering}
+                    handleChange={handleChange}
                   />
                 );
               })}

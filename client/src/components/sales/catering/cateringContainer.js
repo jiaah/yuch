@@ -32,10 +32,9 @@ const CateringContainer = ({
   const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
   const [catering, setCatering] = useState(null);
   const [selectedRow, setSelectedRow] = useState('');
-  const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
+  // const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
   const handleTableRowClick = id => {
     setSelectedRow(id);
-    if (editBtnClickedRow !== '') setEditBtnClickedRow('');
   };
   const resetTableRowClick = () => setSelectedRow('');
 
@@ -69,7 +68,7 @@ const CateringContainer = ({
     await saveClickedItemData(userData);
 
     // select row (UI)
-    await setEditBtnClickedRow(userData.userId);
+    // await setEditBtnClickedRow(userData.userId);
     // to prevent from having multiple selected rows.
     if (selectedRow !== '') await resetTableRowClick();
   };
@@ -106,7 +105,7 @@ const CateringContainer = ({
           selectedSearchItem={selectedSearchItem}
           handleEditUserBtnClick={handleEditUserBtnClick}
           selectedRow={selectedRow}
-          editBtnClickedRow={editBtnClickedRow}
+          // editBtnClickedRow={editBtnClickedRow}
           handleTableRowClick={handleTableRowClick}
         />
       )}
