@@ -33,7 +33,7 @@ const CateringTable = ({
   handleEditUserBtnClick,
   handleTableRowClick,
   // actions
-  updateUsersCatering,
+  updateUserCatering,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
@@ -56,12 +56,24 @@ const CateringTable = ({
     );
   };
 
-  const updateMealQty = async id => {
-    const values = await dataToDisplay.filter(row => row.userId === id);
+  const updateMealQty = async userId => {
+    // setSubmitting(true)
+    const values = await dataToDisplay.filter(row => {
+      if (row.userId === userId) {
+        return {
+          date: row.date,
+          lunchQty: row.lunchQty,
+          dinnerQty: row.dinnerQty,
+          lateNightSnackQty: row.lateNightSnackQty,
+        };
+      }
+      return null;
+    });
     console.log('values: ', values);
-    const res = await updateUsersCatering(values);
+    const res = await updateUserCatering(userId, values[0]);
     console.log('res: ', res);
-    endEditing();
+    // endEditing();
+    // setSubmitting(false)
   };
 
   return (
@@ -88,7 +100,7 @@ const CateringTable = ({
                     editBtnClickedRow={editBtnClickedRow}
                     handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
-                    updateUsersCatering={updateUsersCatering}
+                    updateUserCatering={updateUserCatering}
                     handleChange={handleChange}
                     updateMealQty={updateMealQty}
                   />

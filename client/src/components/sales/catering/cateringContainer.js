@@ -21,7 +21,7 @@ const CateringContainer = ({
   date,
   selectedSearchItem,
   dateTrackerActions: { updateDate, resetDate },
-  cateringActions: { fetchUsersCatering, updateUsersCatering },
+  cateringActions: { fetchUsersCatering, updateUserCatering },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
@@ -107,7 +107,7 @@ const CateringContainer = ({
           selectedRow={selectedRow}
           // editBtnClickedRow={editBtnClickedRow}
           handleTableRowClick={handleTableRowClick}
-          updateUsersCatering={updateUsersCatering}
+          updateUserCatering={updateUserCatering}
         />
       )}
       {adminCateringMsg}

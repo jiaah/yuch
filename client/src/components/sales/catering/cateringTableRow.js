@@ -34,7 +34,6 @@ const CateringTableRow = ({
   const endEditing = () => setEditIndex('');
 
   const currentlyEditing = editIndex === userId;
-  console.log('currentlyEditing: ', currentlyEditing);
 
   return (
     <React.Fragment>
@@ -56,7 +55,7 @@ const CateringTableRow = ({
                 height="19"
                 viewBox="0 0 24 24"
                 // isSubmitting={isSubmitting}
-                handleClick={updateMealQty(userId)}
+                handleClick={() => updateMealQty(userId)}
               />
             </TableCell>
             <TableCell padding="checkbox">

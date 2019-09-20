@@ -12,7 +12,7 @@ const CateringPaper = ({
   // editBtnClickedRow,
   handleTableRowClick,
   // actions
-  updateUsersCatering,
+  updateUserCatering,
 }) => {
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('companyName');
@@ -53,7 +53,7 @@ const CateringPaper = ({
             selectedRow={selectedRow}
             // editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
-            updateUsersCatering={updateUsersCatering}
+            updateUserCatering={updateUserCatering}
           />
         }
       />
@@ -70,7 +70,7 @@ const CateringPaper = ({
             selectedRow={selectedRow}
             // editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
-            updateUsersCatering={updateUsersCatering}
+            updateUserCatering={updateUserCatering}
           />
         }
       />
