@@ -13,16 +13,21 @@ const formatDateTime = result => {
   return formatedResult;
 };
 
-const findById = async id => {
+const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
   try {
-    const result = await SpecialMeal.query().findById(id);
-    return formatDateTime(result);
+    const results = await SpecialMeal.query()
+      .where({ userId })
+      .whereBetween('date', [startedAt, endedAt])
+      .orderBy('date', 'asc')
+      .orderBy('time', 'asc');
+    results.map(result => formatDateTime(result));
+    return results;
   } catch (error) {
     throw error;
   }
 };
 
-const listsByDateBetween = async (startedAt, endedAt) => {
+const listsByDateRange = async (startedAt, endedAt) => {
   try {
     const results = await SpecialMeal.query()
       .whereBetween('date', [startedAt, endedAt])
@@ -72,8 +77,8 @@ const deleteById = async id => {
 };
 
 module.exports = {
-  findById,
-  listsByDateBetween,
+  findAllByUserIdWithDateRange,
+  listsByDateRange,
   create,
   update,
   isExist,
