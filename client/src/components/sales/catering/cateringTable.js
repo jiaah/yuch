@@ -51,9 +51,17 @@ const CateringTable = ({
     const { value } = e.target;
     setDataToDisplay(
       dataToDisplay.map(
-        row => (row.id === id ? { ...row, [name]: value } : row),
+        row => (row.userId === id ? { ...row, [name]: value } : row),
       ),
     );
+  };
+
+  const updateMealQty = async id => {
+    const values = await dataToDisplay.filter(row => row.userId === id);
+    console.log('values: ', values);
+    const res = await updateUsersCatering(values);
+    console.log('res: ', res);
+    endEditing();
   };
 
   return (
@@ -82,6 +90,7 @@ const CateringTable = ({
                     handleEditUserBtnClick={handleEditUserBtnClick}
                     updateUsersCatering={updateUsersCatering}
                     handleChange={handleChange}
+                    updateMealQty={updateMealQty}
                   />
                 );
               })}

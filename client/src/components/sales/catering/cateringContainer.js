@@ -107,6 +107,7 @@ const CateringContainer = ({
           selectedRow={selectedRow}
           // editBtnClickedRow={editBtnClickedRow}
           handleTableRowClick={handleTableRowClick}
+          updateUsersCatering={updateUsersCatering}
         />
       )}
       {adminCateringMsg}

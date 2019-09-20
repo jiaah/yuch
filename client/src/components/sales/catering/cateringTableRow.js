@@ -26,25 +26,20 @@ const CateringTableRow = ({
   // handleTableRowClick,
   handleEditUserBtnClick,
   handleChange,
+  updateMealQty,
 }) => {
-  const {
-    id,
-    userId,
-    companyName,
-    lunchQty,
-    dinnerQty,
-    lateNightSnackQty,
-  } = row;
+  const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
   const [editIndex, setEditIndex] = useState('');
   const startEditing = id => setEditIndex(id);
   const endEditing = () => setEditIndex('');
 
-  const currentlyEditing = editIndex === id;
+  const currentlyEditing = editIndex === userId;
+  console.log('currentlyEditing: ', currentlyEditing);
 
   return (
     <React.Fragment>
       <TableRow
-        key={`tr-${id}`}
+        key={`tr-${userId}`}
         hover
         role="checkbox"
         tabIndex={-1}
@@ -61,7 +56,7 @@ const CateringTableRow = ({
                 height="19"
                 viewBox="0 0 24 24"
                 // isSubmitting={isSubmitting}
-                handleClick={endEditing}
+                handleClick={updateMealQty(userId)}
               />
             </TableCell>
             <TableCell padding="checkbox">
@@ -86,8 +81,8 @@ const CateringTableRow = ({
                   height="19"
                   viewBox="0 0 24 24"
                   handleClick={e => {
-                    handleEditUserBtnClick(e, id);
-                    startEditing(id);
+                    handleEditUserBtnClick(e, userId);
+                    startEditing(userId);
                   }}
                 />
               </div>
@@ -114,7 +109,7 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="lunchQty"
-              onChange={e => handleChange(e, 'lunchQty', id)}
+              onChange={e => handleChange(e, 'lunchQty', userId)}
               value={lunchQty}
               className={textField}
             />
@@ -123,10 +118,28 @@ const CateringTableRow = ({
           )}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {dinnerQty}
+          {currentlyEditing ? (
+            <TextField
+              name="dinnerQty"
+              onChange={e => handleChange(e, 'dinnerQty', userId)}
+              value={dinnerQty}
+              className={textField}
+            />
+          ) : (
+            `${lunchQty}`
+          )}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {lateNightSnackQty}
+          {currentlyEditing ? (
+            <TextField
+              name="lateNightSnackQty"
+              onChange={e => handleChange(e, 'lateNightSnackQty', userId)}
+              value={lateNightSnackQty}
+              className={textField}
+            />
+          ) : (
+            `${lunchQty}`
+          )}
         </TableCell>
       </TableRow>
     </React.Fragment>
