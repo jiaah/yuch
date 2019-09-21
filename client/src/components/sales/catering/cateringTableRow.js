@@ -22,15 +22,17 @@ const CateringTableRow = ({
   row,
   labelId,
   // global state
-  selectedSearchItem,
+  selectedItemValue,
   // local state
   editIndex,
   isSubmitting,
+  selectedRow,
   // funcs
   handleChange,
   updateMealQty,
   startEditing,
   endEditing,
+  handleTableRowClick,
   // actions
   saveSelectedItemValue,
   resetSelectedItemValue,
@@ -45,14 +47,15 @@ const CateringTableRow = ({
 
   // blur the rest on edit
   const isOff =
-    !editIndex || !selectedSearchItem
+    !editIndex || !selectedItemValue
       ? null
-      : selectedSearchItem !== userId
+      : selectedItemValue !== userId
         ? 'off'
         : null;
 
   const handleEditBtnClick = async (e, id) => {
     e.preventDefault();
+    // to keep edited row in focus
     await saveSelectedItemValue(id);
     return startEditing(id);
   };
@@ -66,14 +69,16 @@ const CateringTableRow = ({
     <React.Fragment>
       <TableRow
         key={`tr-${userId}`}
-        hover
         // selected row on search
         selected={
           // companyName -> searched row in focus
           // userId -> edited row in focus
-          selectedSearchItem === companyName || selectedSearchItem === userId
+          selectedItemValue === companyName ||
+          selectedItemValue === userId ||
+          selectedRow === userId
         }
         className={isOff}
+        onClick={() => handleTableRowClick(userId)}
       >
         {currentlyEditing ? (
           <React.Fragment>

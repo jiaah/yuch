@@ -22,7 +22,7 @@ import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
   date,
-  selectedSearchItem,
+  selectedItemValue,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUsersCatering, updateUserCatering },
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
@@ -35,6 +35,11 @@ const CateringContainer = ({
   const [editIndex, setEditIndex] = useState(null);
   const startEditing = id => setEditIndex(id);
   const endEditing = () => setEditIndex(null);
+
+  // selected row on click
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onfocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const formattedDate = formatToDateForm(date);
   const startTime = firstDayOfLastMonth();
@@ -59,9 +64,18 @@ const CateringContainer = ({
     };
   }, []);
 
-  const handleResetSearch = () => {
-    // do nothing.
+  const handleTableRowClick = id => {
+    onfocusOnSelectdRow(id);
+    if (editIndex) endEditing();
+    if (selectedItemValue) resetSelectedItemValue();
   };
+
+  const handleSuggestionSelected = () => {
+    if (editIndex) endEditing();
+    if (selectedRow) offFocusOnSelectdRow();
+  };
+
+  const handleResetSearch = () => {};
 
   return (
     <div className="r--w-70 container">
@@ -82,7 +96,7 @@ const CateringContainer = ({
       <div className="paper-label-box flex justify-between users-catering--width">
         <SearchBar
           data={catering}
-          handleSuggestionSelected={endEditing}
+          handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={handleResetSearch}
         />
         <IconButton
@@ -96,7 +110,7 @@ const CateringContainer = ({
       {catering && (
         <CateringPaper
           users={catering}
-          selectedSearchItem={selectedSearchItem}
+          selectedItemValue={selectedItemValue}
           updateUserCatering={updateUserCatering}
           addFlashMessage={addFlashMessage}
           saveSelectedItemValue={saveSelectedItemValue}
@@ -105,6 +119,8 @@ const CateringContainer = ({
           endEditing={endEditing}
           editIndex={editIndex}
           saveYposition={saveYposition}
+          handleTableRowClick={handleTableRowClick}
+          selectedRow={selectedRow}
         />
       )}
       {adminCateringMsg}
@@ -115,7 +131,7 @@ const CateringContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
-  selectedSearchItem: state.selected.value,
+  selectedItemValue: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

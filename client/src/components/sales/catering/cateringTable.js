@@ -23,8 +23,9 @@ const CateringTable = ({
   // local states
   sortedData,
   editIndex,
+  selectedRow,
   // global states
-  selectedSearchItem,
+  selectedItemValue,
   // actions
   updateUserCatering,
   addFlashMessage,
@@ -33,6 +34,7 @@ const CateringTable = ({
   // fncs
   startEditing,
   endEditing,
+  handleTableRowClick,
   // helpers
   saveYposition,
 }) => {
@@ -104,7 +106,7 @@ const CateringTable = ({
                     key={row.userId}
                     row={row}
                     labelId={labelId}
-                    selectedSearchItem={selectedSearchItem}
+                    selectedItemValue={selectedItemValue}
                     updateUserCatering={updateUserCatering}
                     handleChange={handleChange}
                     updateMealQty={updateMealQty}
@@ -114,6 +116,8 @@ const CateringTable = ({
                     saveSelectedItemValue={saveSelectedItemValue}
                     resetSelectedItemValue={resetSelectedItemValue}
                     isSubmitting={isSubmitting}
+                    handleTableRowClick={handleTableRowClick}
+                    selectedRow={selectedRow}
                   />
                 );
               })}

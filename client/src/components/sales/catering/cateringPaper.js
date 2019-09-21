@@ -1,6 +1,5 @@
 import React from 'react';
 /* --- Components --- */
-import { stableSort, getSorting } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
 import CateringTable from './cateringTable';
 
@@ -8,8 +7,9 @@ const CateringPaper = ({
   // local state
   users,
   editIndex,
+  selectedRow,
   // global state
-  selectedSearchItem,
+  selectedItemValue,
   // actions
   updateUserCatering,
   addFlashMessage,
@@ -18,6 +18,7 @@ const CateringPaper = ({
   // funcs
   startEditing,
   endEditing,
+  handleTableRowClick,
   // helpers
   saveYposition,
 }) => {
@@ -40,7 +41,7 @@ const CateringPaper = ({
         component={
           <CateringTable
             sortedData={sortedDataA}
-            selectedSearchItem={selectedSearchItem}
+            selectedItemValue={selectedItemValue}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}
             saveSelectedItemValue={saveSelectedItemValue}
@@ -49,6 +50,8 @@ const CateringPaper = ({
             endEditing={endEditing}
             editIndex={editIndex}
             saveYposition={saveYposition}
+            handleTableRowClick={handleTableRowClick}
+            selectedRow={selectedRow}
           />
         }
       />
@@ -57,7 +60,7 @@ const CateringPaper = ({
         component={
           <CateringTable
             sortedData={sortedDataB}
-            selectedSearchItem={selectedSearchItem}
+            selectedItemValue={selectedItemValue}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}
             saveSelectedItemValue={saveSelectedItemValue}
@@ -66,6 +69,8 @@ const CateringPaper = ({
             endEditing={endEditing}
             editIndex={editIndex}
             saveYposition={saveYposition}
+            handleTableRowClick={handleTableRowClick}
+            selectedRow={selectedRow}
           />
         }
       />
