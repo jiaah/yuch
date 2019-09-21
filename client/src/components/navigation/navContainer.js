@@ -19,8 +19,7 @@ const NavContainer = ({
   userLogout,
   history,
 }) => {
-  const handleUserLogout = async ev => {
-    ev.preventDefault();
+  const handleUserLogout = async () => {
     await userLogout(id);
     return history.push('/');
   };

@@ -26,5 +26,4 @@ const Navbar = ({ isLoggedIn, handleUserLogout }) => (
     )}
   </div>
 );
-
 export default Navbar;

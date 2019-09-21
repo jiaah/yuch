@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 /* --- Components --- */
 import LoginForm from './loginForm';
-import { isLoggedIn, saveUserTokens } from '../../../../localStorage';
+import {
+  isLoggedIn,
+  saveUserTokens,
+  clearStorage,
+} from '../../../../localStorage';
 import { loginValidation } from '../../formValidation';
 import * as data from '../../../data/data';
 /* --- Actions --- */
@@ -13,6 +17,7 @@ export const Login = ({
   history,
   // states
   userData,
+  isLoggedInState,
   // actions
   userLogin,
   addFlashMessage,
@@ -45,6 +50,13 @@ export const Login = ({
     return history.push('/');
   };
 
+  useEffect(() => {
+    // Fix system bug: logout user, in case, user have tokens in localStorage but isLoggedIn state is still set to false.
+    if (isLoggedIn() || !isLoggedInState) {
+      clearStorage();
+    }
+  }, []);
+
   return (
     <LoginForm
       keepMeLoggedIn={keepMeLoggedIn}
@@ -58,6 +70,7 @@ export const Login = ({
 
 const mapStateToProps = state => ({
   userData: state.httpHandler.data,
+  isLoggedInState: state.auth.isLoggedIn,
 });
 const mapDispatchToProps = dispatch => ({
   userLogin: (username, password) => dispatch(userLogin(username, password)),
