@@ -8,7 +8,7 @@ import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
-import { ratesPageInfoA, ratesPageInfoB } from '../../../data/message';
+import { ratesPageInfo } from '../../../data/message';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -101,13 +101,7 @@ const UserAccountContainer = ({
   return (
     <div className="container w-95">
       {/* auto complete search bar by companyName */}
-      <h2
-        className="pointer"
-        title="모든 고객 계정 보기"
-        onClick={renderAllUsers}
-      >
-        고객 계정
-      </h2>
+      <h2>고객 계정</h2>
       <div className="paper-label-box justify-between ">
         <div className="flex">
           <SearchBar
@@ -146,19 +140,7 @@ const UserAccountContainer = ({
           viewBox="0 0 20 20"
           fillOuter="#2196F3"
           fillInner="#ffffff"
-          text={ratesPageInfoA}
-          classes="icon-message--info"
-        />
-      </div>
-      <div className="flex justify-end mt3 pw1 pb4">
-        <IconMessage
-          name="info"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          text={ratesPageInfoB}
+          text={ratesPageInfo}
           classes="icon-message--info"
         />
       </div>

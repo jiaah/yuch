@@ -24,7 +24,6 @@ const BankTableRow = ({
 }) => (
   <TableRow
     key={row.id}
-    hover
     onClick={() => handleTableRowClick(row.id)}
     role="checkbox"
     aria-checked={selected === row.id}
