@@ -22,21 +22,14 @@ const RatesTable = ({
   orderBy,
   sortedData,
   selectedRow,
-  editBtnClickedRow,
   // global states
-  selectedSearchItem,
+  selectedItemValue,
   // fncs
   handleRequestSort,
   handleEditUserBtnClick,
   handleTableRowClick,
 }) => {
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
-
-  // to render only one user on search.
-  const searchUser = sortedData.filter(
-    u => u.companyName === selectedSearchItem,
-  );
-  const userToDisplay = searchUser.length === 0 ? sortedData : searchUser;
 
   return (
     <React.Fragment>
@@ -50,16 +43,15 @@ const RatesTable = ({
           />
           <TableBody>
             {sortedData.length !== 0 &&
-              userToDisplay.map((row, index) => {
+              sortedData.map((row, index) => {
                 const labelId = `enhanced-table-checkbox-${index}`;
                 return (
                   <RatesTableRow
                     key={row.userId}
                     row={row}
                     labelId={labelId}
-                    selectedSearchItem={selectedSearchItem}
+                    selectedItemValue={selectedItemValue}
                     selectedRow={selectedRow}
-                    editBtnClickedRow={editBtnClickedRow}
                     handleTableRowClick={handleTableRowClick}
                     handleEditUserBtnClick={handleEditUserBtnClick}
                   />

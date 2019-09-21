@@ -5,11 +5,13 @@ import Paper from '../../../shared/paper';
 import RatesTable from './ratesTable';
 
 const RatesPaper = ({
+  // local state
   users,
-  selectedSearchItem,
-  handleEditUserBtnClick,
   selectedRow,
-  editBtnClickedRow,
+  // global state
+  selectedItemValue,
+  // funcs
+  handleEditUserBtnClick,
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
@@ -48,10 +50,9 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
-            selectedSearchItem={selectedSearchItem}
+            selectedItemValue={selectedItemValue}
             handleEditUserBtnClick={handleEditUserBtnClick}
             selectedRow={selectedRow}
-            editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
           />
         }
@@ -64,10 +65,9 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
-            selectedSearchItem={selectedSearchItem}
+            selectedItemValue={selectedItemValue}
             handleEditUserBtnClick={handleEditUserBtnClick}
             selectedRow={selectedRow}
-            editBtnClickedRow={editBtnClickedRow}
             handleTableRowClick={handleTableRowClick}
           />
         }

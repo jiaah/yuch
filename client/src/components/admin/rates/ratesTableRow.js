@@ -18,9 +18,8 @@ const RatesTableRow = ({
   classes: { resize },
   row,
   labelId,
-  selectedSearchItem,
   selectedRow,
-  editBtnClickedRow,
+  selectedItemValue,
   handleTableRowClick,
   handleEditUserBtnClick,
 }) => {
@@ -31,13 +30,12 @@ const RatesTableRow = ({
     <React.Fragment>
       <TableRow
         key={row.userId}
-        hover
         role="checkbox"
         tabIndex={-1}
         aria-checked={selectedRow === row.userId}
         selected={
-          selectedSearchItem === row.companyName ||
-          editBtnClickedRow === row.userId ||
+          selectedItemValue === row.companyName ||
+          selectedItemValue === row.userId ||
           selectedRow === row.userId
         }
         onClick={() => handleTableRowClick(row.userId)}

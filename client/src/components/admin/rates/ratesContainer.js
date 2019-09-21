@@ -27,6 +27,7 @@ const RatesContainer = ({
   rateActions: { getCateringRates, updateReservedPrice },
   modalActions: { showModal, hideModal },
   selectedActions: {
+    saveSelectedItemValue,
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
@@ -34,20 +35,15 @@ const RatesContainer = ({
   handleAdminVerificationStatus,
   addFlashMessage,
   isAdminVerified,
-  selectedSearchItem,
+  selectedItemValue,
   clickedUserData,
   show,
 }) => {
   const [data, setData] = useState([]);
   // selected row on click
-  const [selectedRow, setSelectedRow] = useState('');
-  const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
-  const handleTableRowClick = id => {
-    setSelectedRow(id);
-    // unselect the selected row to prevent from having multiple selected rows.
-    if (editBtnClickedRow !== '') setEditBtnClickedRow('');
-  };
-  const resetTableRowClick = () => setSelectedRow('');
+  const [selectedRow, setSelectedRow] = useState(null);
+  const setfocusOnSelectdRow = id => setSelectedRow(id);
+  const removeFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
@@ -63,15 +59,11 @@ const RatesContainer = ({
     if (!isAdminVerified) {
       showModal();
     }
-    // keep edit button selected row on browser refresh
-    if (clickedUserData.length !== 0) {
-      setEditBtnClickedRow(clickedUserData.userId);
-    }
     fetchCateringRates();
     keepScrollPosition();
     return () =>
       Promise.all([
-        selectedSearchItem !== null ? resetSelectedItemValue() : null,
+        selectedItemValue !== null ? resetSelectedItemValue() : null,
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
         isAdminVerified ? handleAdminVerificationStatus() : null,
         show ? hideModal() : null,
@@ -89,21 +81,28 @@ const RatesContainer = ({
     const userData = await getClickedUserData(id);
     await saveClickedItemData(userData);
 
-    // select row (UI)
-    await setEditBtnClickedRow(userData.userId);
+    // set focus on editing row
+    await saveSelectedItemValue(userData.userId);
     // to prevent from having multiple selected rows.
-    if (selectedRow !== '') await resetTableRowClick();
+    if (selectedRow) await removeFocusOnSelectdRow();
     return showModal();
   };
 
+  const handleTableRowClick = id => {
+    setfocusOnSelectdRow(id);
+    // unselect the selected row to prevent from having multiple selected rows.
+    if (selectedItemValue) resetSelectedItemValue();
+  };
+
+  // funcions that runs after search component
+  const handleSuggestionSelected = () => {
+    if (selectedRow) removeFocusOnSelectdRow();
+  };
+  const handleResetSearch = () => resetSelectedItemValue();
   const renderAllUsers = () => resetSelectedItemValue();
 
   // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
-
-  // funcions that runs after search component
-  const handleSuggestionSelected = () => {};
-  const handleResetSearch = () => {};
 
   return (
     <div className="container r--w-80">
@@ -131,10 +130,9 @@ const RatesContainer = ({
       <RatesPaper
         data={data}
         users={dataToRender}
-        selectedSearchItem={selectedSearchItem}
+        selectedItemValue={selectedItemValue}
         handleEditUserBtnClick={handleEditUserBtnClick}
         selectedRow={selectedRow}
-        editBtnClickedRow={editBtnClickedRow}
         handleTableRowClick={handleTableRowClick}
       />
       {isAdminVerified &&
@@ -153,7 +151,7 @@ const RatesContainer = ({
 };
 
 const mapStateToProps = state => ({
-  selectedSearchItem: state.selected.value,
+  selectedItemValue: state.selected.value,
   clickedUserData: state.selected.data,
   isAdminVerified: state.isAdminVerified.isAdminVerified,
   show: state.modal.show,
