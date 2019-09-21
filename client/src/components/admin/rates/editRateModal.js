@@ -5,7 +5,6 @@ import Modal from '../../../shared/modal';
 import RateForm from './editRateForm';
 import { thisMonth, nextMonth, inTwoMonths } from '../../../helpers/moment';
 import { reservePriceValidation } from '../../formValidation';
-import { saveYposition } from '../../../helpers/scrollPosition';
 
 const EditRateModal = ({
   // global states
@@ -14,6 +13,8 @@ const EditRateModal = ({
   hideModal,
   updateReservedPrice,
   addFlashMessage,
+  // helpers
+  saveYposition,
 }) => {
   const title = (
     <React.Fragment>

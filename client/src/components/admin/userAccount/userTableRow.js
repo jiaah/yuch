@@ -22,6 +22,7 @@ const UserTableRow = ({
   selected,
   bankAccount,
   labelId,
+  selectedSearchItem,
 }) => {
   const emptyAccount = [{ accountHolder: '', bankName: '', accountNo: '' }];
   let bankAccountInfo;
@@ -53,11 +54,10 @@ const UserTableRow = ({
     <React.Fragment>
       <TableRow
         key={row.id}
-        hover
         role="checkbox"
         tabIndex={-1}
         aria-checked={selected === row.id}
-        selected={selected === row.id}
+        selected={selected === row.id || selectedSearchItem === row.id}
         onClick={() => handleTableRowClick(row.id)}
       >
         <TableCell padding="checkbox">

@@ -72,7 +72,10 @@ const UserAccountContainer = ({
   };
 
   const handleButtonClick = sub =>
-    Promise.all([setClickedBtn(sub), showModal()]);
+    Promise.all([
+      setClickedBtn(sub), // to select modal (edit, create) to open
+      showModal(),
+    ]);
 
   const getClickedUserData = async userId => {
     const userData = await users.filter(user => user.id === userId);
@@ -82,12 +85,17 @@ const UserAccountContainer = ({
   const handleEditUserBtnClick = async (e, userId) => {
     e.preventDefault();
     const userData = await getClickedUserData(userId);
+    // to display user's data on edit modal
     await saveClickedItemData(userData);
     return handleButtonClick('edit');
   };
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
     if (selectedSearchItem !== null) resetSelectedItemValue();
+  };
+
+  const handleSearch = () => {
+    // do nothing
   };
 
   return (
@@ -102,7 +110,11 @@ const UserAccountContainer = ({
       </h2>
       <div className="paper-label-box justify-between ">
         <div className="flex">
-          <SearchBar data={users} />
+          <SearchBar
+            data={users}
+            handleSuggestionSelected={handleSearch}
+            handleResetSearch={renderAllUsers}
+          />
           <p className="f-mini ml3 user-account--user-number">
             총 고객 수&#8201;&#8201;
             <span className="b">{users.length}</span>

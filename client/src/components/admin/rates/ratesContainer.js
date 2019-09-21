@@ -8,7 +8,10 @@ import Loader from '../../loader';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import AdminVerificationModal from '../../../shared/adminVerification/adminVerificationModal';
-import { keepScrollPosition } from '../../../helpers/scrollPosition';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -133,6 +136,7 @@ const RatesContainer = ({
             hideModal={hideModal}
             updateReservedPrice={updateReservedPrice}
             addFlashMessage={addFlashMessage}
+            saveYposition={saveYposition}
           />
         )}
       <AdminVerificationModal />

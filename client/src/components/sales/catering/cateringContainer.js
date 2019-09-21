@@ -10,7 +10,10 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from './cateringPaper';
-import Loader from '../../loader';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -49,11 +52,16 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData(date);
+    keepScrollPosition();
     return () => {
       resetDate();
       resetSelectedItemValue();
     };
   }, []);
+
+  const handleResetSearch = () => {
+    // do nothing.
+  };
 
   return (
     <div className="r--w-70 container">
@@ -72,7 +80,11 @@ const CateringContainer = ({
         dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
       />
       <div className="paper-label-box flex justify-between users-catering--width">
-        <SearchBar data={catering} callFuncInParentComponent={endEditing} />
+        <SearchBar
+          data={catering}
+          handleSuggestionSelected={endEditing}
+          handleResetSearch={handleResetSearch}
+        />
         <IconButton
           name="print"
           width="32"
@@ -92,6 +104,7 @@ const CateringContainer = ({
           startEditing={startEditing}
           endEditing={endEditing}
           editIndex={editIndex}
+          saveYposition={saveYposition}
         />
       )}
       {adminCateringMsg}

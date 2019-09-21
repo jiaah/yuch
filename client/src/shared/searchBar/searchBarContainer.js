@@ -56,7 +56,9 @@ const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
   saveSelectedItemValue,
-  callFuncInParentComponent,
+  // parent component func
+  handleSuggestionSelected,
+  handleResetSearch,
 }) => {
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -85,11 +87,12 @@ const SearchBar = ({
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
     saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux
-    return callFuncInParentComponent();
+    return handleSuggestionSelected();
   };
 
   const resetSearch = () => {
     setInputValue(null);
+    return handleResetSearch();
   };
 
   const open = Boolean(anchorEl);

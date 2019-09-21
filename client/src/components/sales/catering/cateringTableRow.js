@@ -25,6 +25,7 @@ const CateringTableRow = ({
   selectedSearchItem,
   // local state
   editIndex,
+  isSubmitting,
   // funcs
   handleChange,
   updateMealQty,
@@ -67,7 +68,9 @@ const CateringTableRow = ({
         key={`tr-${userId}`}
         hover
         // selected row on search
-        selected={selectedSearchItem === companyName}
+        selected={
+          selectedSearchItem === companyName || selectedSearchItem === userId
+        }
         className={isOff}
       >
         {currentlyEditing ? (
@@ -78,7 +81,7 @@ const CateringTableRow = ({
                 width="19"
                 height="19"
                 viewBox="0 0 24 24"
-                // isSubmitting={isSubmitting}
+                isSubmitting={isSubmitting}
                 handleClick={() => updateMealQty(userId)}
               />
             </TableCell>

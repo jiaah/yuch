@@ -83,6 +83,7 @@ const UserTable = ({
                       selected={selected}
                       bankAccount={bankAccount}
                       labelId={labelId}
+                      selectedSearchItem={selectedSearchItem}
                     />
                   );
                 })}

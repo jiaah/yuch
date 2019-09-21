@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-import { promises } from 'fs';
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import CateringTableRow from './cateringTableRow';
 import * as data from '../../../data/data';
@@ -37,8 +36,11 @@ const CateringTable = ({
   handleRequestSort,
   startEditing,
   endEditing,
+  // helpers
+  saveYposition,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
@@ -54,7 +56,7 @@ const CateringTable = ({
   };
 
   const updateMealQty = async userId => {
-    // setSubmitting(true)
+    await setSubmitting(true);
     const values = await dataToDisplay.filter(row => {
       if (row.userId === userId) {
         return {
@@ -67,9 +69,10 @@ const CateringTable = ({
       }
       return null;
     });
-
+    await saveYposition();
     const res = await updateUserCatering(userId, values[0]);
     if (res.error) {
+      await setSubmitting(false);
       return addFlashMessage(
         'error',
         `${
@@ -83,8 +86,7 @@ const CateringTable = ({
         `${values[0].companyName} 식수 등록되었습니다.`,
       ),
       endEditing(),
-      resetSelectedItemValue(),
-      // setSubmitting(false)
+      setSubmitting(false),
     ]);
     return window.location.reload(true);
   };
@@ -117,6 +119,7 @@ const CateringTable = ({
                     editIndex={editIndex}
                     saveSelectedItemValue={saveSelectedItemValue}
                     resetSelectedItemValue={resetSelectedItemValue}
+                    isSubmitting={isSubmitting}
                   />
                 );
               })}

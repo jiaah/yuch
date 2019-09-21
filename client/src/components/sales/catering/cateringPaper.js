@@ -18,6 +18,8 @@ const CateringPaper = ({
   // funcs
   startEditing,
   endEditing,
+  // helpers
+  saveYposition,
 }) => {
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('companyName');
@@ -61,6 +63,7 @@ const CateringPaper = ({
             startEditing={startEditing}
             endEditing={endEditing}
             editIndex={editIndex}
+            saveYposition={saveYposition}
           />
         }
       />
@@ -80,6 +83,7 @@ const CateringPaper = ({
             startEditing={startEditing}
             endEditing={endEditing}
             editIndex={editIndex}
+            saveYposition={saveYposition}
           />
         }
       />
