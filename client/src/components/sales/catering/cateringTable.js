@@ -25,22 +25,20 @@ const CateringTable = ({
   order,
   orderBy,
   sortedData,
+  editIndex,
   // global states
   selectedSearchItem,
-  // fncs
-  handleRequestSort,
   // actions
   updateUserCatering,
   addFlashMessage,
   saveSelectedItemValue,
   resetSelectedItemValue,
+  // fncs
+  handleRequestSort,
+  startEditing,
+  endEditing,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
-
-  // switch text <-> textfield
-  const [editIndex, setEditIndex] = useState(null);
-  const startEditing = id => setEditIndex(id);
-  const endEditing = () => setEditIndex(null);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 

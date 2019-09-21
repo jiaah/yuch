@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
 import Loader from '../../components/loader';
+import IconButton from '../form/iconButton';
 /* --- Actions --- */
 import { saveSelectedItemValue } from '../../actions/selectedAction';
 
@@ -19,7 +20,7 @@ const styles = theme => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     border: '2px solid #ee91054a',
-    width: '160px',
+    width: '200px',
     [theme.breakpoints.up('sm')]: {
       width: '250px',
     },
@@ -32,16 +33,30 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '2px',
+    marginLeft: '10px',
     [theme.breakpoints.up('sm')]: {
       width: '40px',
+      marginLeft: '0',
+    },
+  },
+  input: {
+    marginLeft: '30px',
+    marginTop: '4.5px',
+  },
+  closeIcon: {
+    marginTop: '7px',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '4px',
     },
   },
 });
 
 const SearchBar = ({
-  classes: { search, searchIcon },
+  classes: { search, searchIcon, input, closeIcon },
   data,
   saveSelectedItemValue,
+  callFuncInParentComponent,
 }) => {
   const [inputValue, setInputValue] = useState(inputValue);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,14 +84,19 @@ const SearchBar = ({
     setInputValue(value); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    return saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux
+    saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux
+    return callFuncInParentComponent();
+  };
+
+  const resetSearch = () => {
+    setInputValue(null);
   };
 
   const open = Boolean(anchorEl);
 
   return (
     <React.Fragment>
-      <div className={search} onKeyUp={handleOnKeyUp}>
+      <div className={`flex flex-row-m ${search}`} onKeyUp={handleOnKeyUp}>
         <div className={searchIcon}>
           <Icon
             name="search"
@@ -92,7 +112,17 @@ const SearchBar = ({
           inputProps={{ 'aria-label': 'Search' }}
           onChange={handleChange}
           value={inputValue || ''}
+          className={input}
         />
+        <div className={closeIcon}>
+          <IconButton
+            name="close"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={resetSearch}
+          />
+        </div>
       </div>
       {open && (
         <AutoCompletePaper

@@ -7,6 +7,7 @@ import CateringTable from './cateringTable';
 const CateringPaper = ({
   // local state
   users,
+  editIndex,
   // global state
   selectedSearchItem,
   // actions
@@ -14,6 +15,9 @@ const CateringPaper = ({
   addFlashMessage,
   saveSelectedItemValue,
   resetSelectedItemValue,
+  // funcs
+  startEditing,
+  endEditing,
 }) => {
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('companyName');
@@ -54,6 +58,9 @@ const CateringPaper = ({
             addFlashMessage={addFlashMessage}
             saveSelectedItemValue={saveSelectedItemValue}
             resetSelectedItemValue={resetSelectedItemValue}
+            startEditing={startEditing}
+            endEditing={endEditing}
+            editIndex={editIndex}
           />
         }
       />
@@ -70,6 +77,9 @@ const CateringPaper = ({
             addFlashMessage={addFlashMessage}
             saveSelectedItemValue={saveSelectedItemValue}
             resetSelectedItemValue={resetSelectedItemValue}
+            startEditing={startEditing}
+            endEditing={endEditing}
+            editIndex={editIndex}
           />
         }
       />

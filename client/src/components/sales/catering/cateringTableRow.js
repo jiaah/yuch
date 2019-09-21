@@ -50,10 +50,6 @@ const CateringTableRow = ({
         ? 'off'
         : null;
 
-  // on search click
-  // editIndex = null
-  // clear searchbar input
-
   const handleEditBtnClick = async (e, id) => {
     e.preventDefault();
     await saveSelectedItemValue(id);

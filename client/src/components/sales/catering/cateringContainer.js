@@ -28,6 +28,11 @@ const CateringContainer = ({
   const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
   const [catering, setCatering] = useState(null);
 
+  // switch text <-> textfield
+  const [editIndex, setEditIndex] = useState(null);
+  const startEditing = id => setEditIndex(id);
+  const endEditing = () => setEditIndex(null);
+
   const formattedDate = formatToDateForm(date);
   const startTime = firstDayOfLastMonth();
 
@@ -67,7 +72,7 @@ const CateringContainer = ({
         dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
       />
       <div className="paper-label-box flex justify-between users-catering--width">
-        <SearchBar data={catering} />
+        <SearchBar data={catering} callFuncInParentComponent={endEditing} />
         <IconButton
           name="print"
           width="32"
@@ -84,6 +89,9 @@ const CateringContainer = ({
           addFlashMessage={addFlashMessage}
           saveSelectedItemValue={saveSelectedItemValue}
           resetSelectedItemValue={resetSelectedItemValue}
+          startEditing={startEditing}
+          endEditing={endEditing}
+          editIndex={editIndex}
         />
       )}
       {adminCateringMsg}
