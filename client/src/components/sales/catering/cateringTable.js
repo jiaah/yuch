@@ -34,8 +34,14 @@ const CateringTable = ({
   handleTableRowClick,
   // actions
   updateUserCatering,
+  addFlashMessage,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const [editIndex, setEditIndex] = useState('');
+  const startEditing = id => setEditIndex(id);
+  const endEditing = () => setEditIndex('');
+
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   useEffect(() => {
@@ -49,9 +55,11 @@ const CateringTable = ({
 
   const handleChange = (e, name, id) => {
     const { value } = e.target;
+    const convertedValue = value === '' ? null : value;
+
     setDataToDisplay(
       dataToDisplay.map(
-        row => (row.userId === id ? { ...row, [name]: value } : row),
+        row => (row.userId === id ? { ...row, [name]: convertedValue } : row),
       ),
     );
   };
@@ -61,6 +69,7 @@ const CateringTable = ({
     const values = await dataToDisplay.filter(row => {
       if (row.userId === userId) {
         return {
+          companyName: row.companyName,
           date: row.date,
           lunchQty: row.lunchQty,
           dinnerQty: row.dinnerQty,
@@ -69,10 +78,18 @@ const CateringTable = ({
       }
       return null;
     });
-    console.log('values: ', values);
+
     const res = await updateUserCatering(userId, values[0]);
-    console.log('res: ', res);
-    // endEditing();
+    if (res.error) {
+      return addFlashMessage(
+        'error',
+        `${
+          values[0].companyName
+        } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
+      );
+    }
+    addFlashMessage('success', `${values[0].companyName} 식수 등록되었습니다.`);
+    endEditing();
     // setSubmitting(false)
   };
 
@@ -103,6 +120,9 @@ const CateringTable = ({
                     updateUserCatering={updateUserCatering}
                     handleChange={handleChange}
                     updateMealQty={updateMealQty}
+                    startEditing={startEditing}
+                    endEditing={endEditing}
+                    editIndex={editIndex}
                   />
                 );
               })}

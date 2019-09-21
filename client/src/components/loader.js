@@ -10,7 +10,11 @@ const MessageBox = (props, msg) => (
           <h1>Oops!</h1>
           <h2>{msg}</h2>
         </div>
-        <button type="button" onClick={props.retry}>
+        <button
+          className="routing-retry--btn"
+          type="button"
+          onClick={props.retry}
+        >
           Retry
         </button>
       </div>

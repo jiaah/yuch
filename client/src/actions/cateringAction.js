@@ -49,7 +49,7 @@ export const fetchUsersCatering = date => async dispatch => {
     const res = await Axios.get('/catering/users', { params: { date } });
     const { data } = res;
     dispatch({
-      type: types.FETCH_USER_CATERING,
+      type: types.FETCH_USERS_CATERING,
       payload: data,
     });
     return data;

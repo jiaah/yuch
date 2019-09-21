@@ -108,6 +108,7 @@ const CateringContainer = ({
           // editBtnClickedRow={editBtnClickedRow}
           handleTableRowClick={handleTableRowClick}
           updateUserCatering={updateUserCatering}
+          addFlashMessage={addFlashMessage}
         />
       )}
       {adminCateringMsg}
@@ -117,7 +118,7 @@ const CateringContainer = ({
 
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
-  catering: state.httpHandler.data,
+  catering: state.userCatering.caterings,
   selectedSearchItem: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({

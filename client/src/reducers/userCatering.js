@@ -2,6 +2,7 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   catering: [],
+  caterings: [],
 };
 
 const userCatering = (state = initialState, action) => {
@@ -13,6 +14,11 @@ const userCatering = (state = initialState, action) => {
       return {
         ...state,
         catering: payload,
+      };
+    case types.FETCH_USERS_CATERING:
+      return {
+        ...state,
+        caterings: payload,
       };
     case types.RESET_USER_CATERING:
       return {
