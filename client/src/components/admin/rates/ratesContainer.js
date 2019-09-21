@@ -101,6 +101,10 @@ const RatesContainer = ({
   // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
 
+  // funcions that runs after search component
+  const handleSuggestionSelected = () => {};
+  const handleResetSearch = () => {};
+
   return (
     <div className="container r--w-80">
       <h2
@@ -111,7 +115,11 @@ const RatesContainer = ({
         식수가격
       </h2>
       <div className="paper-label-box flex justify-between">
-        <SearchBar data={data} />
+        <SearchBar
+          data={data}
+          handleSuggestionSelected={handleSuggestionSelected}
+          handleResetSearch={handleResetSearch}
+        />
         <IconButton
           name="print"
           width="32"
