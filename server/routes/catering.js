@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { check, query } = require('express-validator');
 const onlyLoggedIn = require('../lib/only-logged-in');
 const validation = require('../lib/validation');
+const isAdmin = require('../lib/isAdmin');
 const cateringController = require('../controllers/catering');
 
 module.exports = () => {
@@ -35,6 +36,7 @@ module.exports = () => {
   router.get(
     '/users',
     onlyLoggedIn,
+    isAdmin,
     [
       query('date')
         .matches(/^[0-9]{8}$/)
@@ -48,6 +50,7 @@ module.exports = () => {
   router.patch(
     '/users',
     onlyLoggedIn,
+    isAdmin,
     [
       check('date')
         .matches(/^[0-9]{8}$/)
@@ -61,6 +64,7 @@ module.exports = () => {
   router.patch(
     '/endofservice/user/:userId',
     onlyLoggedIn,
+    isAdmin,
     [
       check('date')
         .matches(/^[0-9]{8}$/)
