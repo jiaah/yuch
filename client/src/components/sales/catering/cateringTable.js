@@ -4,6 +4,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
+import { promises } from 'fs';
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import CateringTableRow from './cateringTableRow';
 import * as data from '../../../data/data';
@@ -24,34 +25,24 @@ const CateringTable = ({
   order,
   orderBy,
   sortedData,
-  selectedRow,
-  editBtnClickedRow,
   // global states
   selectedSearchItem,
   // fncs
   handleRequestSort,
-  handleEditUserBtnClick,
-  handleTableRowClick,
   // actions
   updateUserCatering,
   addFlashMessage,
+  saveSelectedItemValue,
+  resetSelectedItemValue,
 }) => {
-  const [dataToDisplay, setDataToDisplay] = useState([]);
+  const [dataToDisplay, setDataToDisplay] = useState(sortedData);
 
-  const [editIndex, setEditIndex] = useState('');
+  // switch text <-> textfield
+  const [editIndex, setEditIndex] = useState(null);
   const startEditing = id => setEditIndex(id);
-  const endEditing = () => setEditIndex('');
+  const endEditing = () => setEditIndex(null);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
-
-  useEffect(() => {
-    // to render only one user on search.
-    const searchUser = sortedData.filter(
-      u => u.companyName === selectedSearchItem,
-    );
-    const userToDisplay = searchUser.length === 0 ? sortedData : searchUser;
-    setDataToDisplay(userToDisplay);
-  }, []);
 
   const handleChange = (e, name, id) => {
     const { value } = e.target;
@@ -88,9 +79,16 @@ const CateringTable = ({
         } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
       );
     }
-    addFlashMessage('success', `${values[0].companyName} 식수 등록되었습니다.`);
-    endEditing();
-    // setSubmitting(false)
+    await Promise.all([
+      addFlashMessage(
+        'success',
+        `${values[0].companyName} 식수 등록되었습니다.`,
+      ),
+      endEditing(),
+      resetSelectedItemValue(),
+      // setSubmitting(false)
+    ]);
+    return window.location.reload(true);
   };
 
   return (
@@ -113,16 +111,14 @@ const CateringTable = ({
                     row={row}
                     labelId={labelId}
                     selectedSearchItem={selectedSearchItem}
-                    selectedRow={selectedRow}
-                    editBtnClickedRow={editBtnClickedRow}
-                    handleTableRowClick={handleTableRowClick}
-                    handleEditUserBtnClick={handleEditUserBtnClick}
                     updateUserCatering={updateUserCatering}
                     handleChange={handleChange}
                     updateMealQty={updateMealQty}
                     startEditing={startEditing}
                     endEditing={endEditing}
                     editIndex={editIndex}
+                    saveSelectedItemValue={saveSelectedItemValue}
+                    resetSelectedItemValue={resetSelectedItemValue}
                   />
                 );
               })}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,18 +18,21 @@ const styles = theme => ({
 
 const CateringTableRow = ({
   classes: { resize, textField },
+  // var
   row,
   labelId,
+  // global state
   selectedSearchItem,
-  selectedRow,
-  editBtnClickedRow,
-  handleTableRowClick,
-  handleEditUserBtnClick,
+  // local state
+  editIndex,
+  // funcs
   handleChange,
   updateMealQty,
   startEditing,
   endEditing,
-  editIndex,
+  // actions
+  saveSelectedItemValue,
+  resetSelectedItemValue,
 }) => {
   const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
 
@@ -39,19 +42,37 @@ const CateringTableRow = ({
   const dinner = dinnerQty === null ? '' : dinnerQty;
   const lateNightSnack = lateNightSnackQty === null ? '' : lateNightSnackQty;
 
+  // blur the rest on edit
+  const isOff =
+    !editIndex || !selectedSearchItem
+      ? null
+      : selectedSearchItem !== userId
+        ? 'off'
+        : null;
+
+  // on search click
+  // editIndex = null
+  // clear searchbar input
+
+  const handleEditBtnClick = async (e, id) => {
+    e.preventDefault();
+    await saveSelectedItemValue(id);
+    return startEditing(id);
+  };
+
+  const handleCloseBtnClick = async () => {
+    endEditing();
+    resetSelectedItemValue();
+  };
+
   return (
     <React.Fragment>
       <TableRow
         key={`tr-${userId}`}
-        role="checkbox"
-        tabIndex={-1}
-        aria-checked={selectedRow === userId}
-        selected={
-          selectedSearchItem === companyName ||
-          selectedRow === userId ||
-          editBtnClickedRow === userId
-        }
-        onClick={() => handleTableRowClick(userId)}
+        hover
+        // selected row on search
+        selected={selectedSearchItem === companyName}
+        className={isOff}
       >
         {currentlyEditing ? (
           <React.Fragment>
@@ -72,7 +93,7 @@ const CateringTableRow = ({
                   width="19"
                   height="19"
                   viewBox="0 0 24 24"
-                  handleClick={endEditing}
+                  handleClick={handleCloseBtnClick}
                 />
               </div>
             </TableCell>
@@ -86,10 +107,7 @@ const CateringTableRow = ({
                   width="19"
                   height="19"
                   viewBox="0 0 24 24"
-                  handleClick={e => {
-                    handleEditUserBtnClick(e, userId);
-                    startEditing(userId);
-                  }}
+                  handleClick={e => handleEditBtnClick(e, userId)}
                 />
               </div>
             </TableCell>

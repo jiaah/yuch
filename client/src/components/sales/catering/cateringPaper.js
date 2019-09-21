@@ -5,15 +5,15 @@ import Paper from '../../../shared/paper';
 import CateringTable from './cateringTable';
 
 const CateringPaper = ({
+  // local state
   users,
+  // global state
   selectedSearchItem,
-  handleEditUserBtnClick,
-  selectedRow,
-  editBtnClickedRow,
-  handleTableRowClick,
   // actions
   updateUserCatering,
   addFlashMessage,
+  saveSelectedItemValue,
+  resetSelectedItemValue,
 }) => {
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('companyName');
@@ -50,12 +50,10 @@ const CateringPaper = ({
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
             selectedSearchItem={selectedSearchItem}
-            handleEditUserBtnClick={handleEditUserBtnClick}
-            editBtnClickedRow={editBtnClickedRow}
-            handleTableRowClick={handleTableRowClick}
-            selectedRow={selectedRow}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}
+            saveSelectedItemValue={saveSelectedItemValue}
+            resetSelectedItemValue={resetSelectedItemValue}
           />
         }
       />
@@ -68,12 +66,10 @@ const CateringPaper = ({
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
             selectedSearchItem={selectedSearchItem}
-            handleEditUserBtnClick={handleEditUserBtnClick}
-            selectedRow={selectedRow}
-            // editBtnClickedRow={editBtnClickedRow}
-            handleTableRowClick={handleTableRowClick}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}
+            saveSelectedItemValue={saveSelectedItemValue}
+            resetSelectedItemValue={resetSelectedItemValue}
           />
         }
       />

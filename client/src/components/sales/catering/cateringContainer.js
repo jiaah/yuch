@@ -22,21 +22,11 @@ const CateringContainer = ({
   selectedSearchItem,
   dateTrackerActions: { updateDate, resetDate },
   cateringActions: { fetchUsersCatering, updateUserCatering },
-  selectedActions: {
-    resetSelectedItemValue,
-    saveClickedItemData,
-    resetClickedItemData,
-  },
+  selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
   const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
   const [catering, setCatering] = useState(null);
-  const [selectedRow, setSelectedRow] = useState('');
-  // const [editBtnClickedRow, setEditBtnClickedRow] = useState('');
-  const handleTableRowClick = id => {
-    setSelectedRow(id);
-  };
-  const resetTableRowClick = () => setSelectedRow('');
 
   const formattedDate = formatToDateForm(date);
   const startTime = firstDayOfLastMonth();
@@ -54,24 +44,11 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDate();
+    return () => {
+      resetDate();
+      resetSelectedItemValue();
+    };
   }, []);
-
-  const getClickedUserData = async id => {
-    const userData = await catering.filter(user => user.userId === id);
-    return userData[0];
-  };
-
-  const handleEditUserBtnClick = async (e, id) => {
-    e.preventDefault();
-    const userData = await getClickedUserData(id);
-    await saveClickedItemData(userData);
-
-    // select row (UI)
-    // await setEditBtnClickedRow(userData.userId);
-    // to prevent from having multiple selected rows.
-    if (selectedRow !== '') await resetTableRowClick();
-  };
 
   return (
     <div className="r--w-70 container">
@@ -103,12 +80,10 @@ const CateringContainer = ({
         <CateringPaper
           users={catering}
           selectedSearchItem={selectedSearchItem}
-          handleEditUserBtnClick={handleEditUserBtnClick}
-          selectedRow={selectedRow}
-          // editBtnClickedRow={editBtnClickedRow}
-          handleTableRowClick={handleTableRowClick}
           updateUserCatering={updateUserCatering}
           addFlashMessage={addFlashMessage}
+          saveSelectedItemValue={saveSelectedItemValue}
+          resetSelectedItemValue={resetSelectedItemValue}
         />
       )}
       {adminCateringMsg}
