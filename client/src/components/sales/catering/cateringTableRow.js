@@ -69,6 +69,8 @@ const CateringTableRow = ({
         hover
         // selected row on search
         selected={
+          // companyName -> searched row in focus
+          // userId -> edited row in focus
           selectedSearchItem === companyName || selectedSearchItem === userId
         }
         className={isOff}
