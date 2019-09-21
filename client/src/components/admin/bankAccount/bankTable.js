@@ -48,11 +48,7 @@ const BankTable = ({
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
-        <EnhancedTableHead
-          order="asc"
-          orderBy="id"
-          list={bankAccountTableHeadColumns}
-        />
+        <EnhancedTableHead list={bankAccountTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
           {bankAccount &&
             bankAccount.length !== 0 &&

@@ -14,8 +14,6 @@ const styles = theme => ({
 
 const EnhancedTableHead = props => {
   const {
-    order,
-    orderBy,
     classes: { resize },
     list,
   } = props;
@@ -28,7 +26,6 @@ const EnhancedTableHead = props => {
             key={`tr-${row.id}`}
             align={row.numeric ? 'right' : 'left'}
             padding={row.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === row.id ? order : false}
             className={resize}
           >
             {row.label}

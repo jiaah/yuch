@@ -21,29 +21,17 @@ const CateringPaper = ({
   // helpers
   saveYposition,
 }) => {
-  const [order, setOrder] = React.useState('desc');
-  const [orderBy, setOrderBy] = React.useState('companyName');
-
-  const handleRequestSort = (event, property) => {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
-    setOrderBy(property);
-  };
-
   let sortedDataA;
   let sortedDataB;
   if (users && users.length <= 10) {
-    sortedDataA = stableSort(users, getSorting(order, orderBy));
+    sortedDataA = users;
     sortedDataB = [];
   }
   if (users && users.length > 10) {
     const line =
       users.length % 2 === 0 ? users.length / 2 : users.length / 2 + 0.5;
-    sortedDataA = stableSort(users, getSorting(order, orderBy)).slice(0, line);
-    sortedDataB = stableSort(users, getSorting(order, orderBy)).slice(
-      line,
-      users.length,
-    );
+    sortedDataA = users.slice(0, line);
+    sortedDataB = users.slice(line, users.length);
   }
 
   return (
@@ -51,10 +39,7 @@ const CateringPaper = ({
       <Paper
         component={
           <CateringTable
-            order={order}
-            orderBy={orderBy}
             sortedData={sortedDataA}
-            handleRequestSort={handleRequestSort}
             selectedSearchItem={selectedSearchItem}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}
@@ -71,10 +56,7 @@ const CateringPaper = ({
         classes="paper--sec"
         component={
           <CateringTable
-            order={order}
-            orderBy={orderBy}
             sortedData={sortedDataB}
-            handleRequestSort={handleRequestSort}
             selectedSearchItem={selectedSearchItem}
             updateUserCatering={updateUserCatering}
             addFlashMessage={addFlashMessage}

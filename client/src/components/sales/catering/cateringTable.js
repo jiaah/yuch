@@ -4,7 +4,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
+import TableHead from '../../../shared/tableHead';
 import CateringTableRow from './cateringTableRow';
 import * as data from '../../../data/data';
 
@@ -21,8 +21,6 @@ const styles = () => ({
 const CateringTable = ({
   classes: { tableWrapper, table },
   // local states
-  order,
-  orderBy,
   sortedData,
   editIndex,
   // global states
@@ -33,7 +31,6 @@ const CateringTable = ({
   saveSelectedItemValue,
   resetSelectedItemValue,
   // fncs
-  handleRequestSort,
   startEditing,
   endEditing,
   // helpers
@@ -95,12 +92,9 @@ const CateringTable = ({
     <React.Fragment>
       <div className={tableWrapper}>
         <Table className={table} aria-labelledby="tableTitle">
-          <EnhancedTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            list={data.usersCateringTableHeadColumns}
-          />
+          {/* 'orderBy' doesn't work as mapped 'dataToDisplay' is saved in local state in order to handle input change.
+            if 'sortedData' is used to map, 'orderBy' works.  */}
+          <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
               dataToDisplay.map((row, index) => {
