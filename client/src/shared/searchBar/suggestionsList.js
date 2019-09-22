@@ -4,7 +4,7 @@ const SuggestionsList = ({ suggestions, suggestionSelected }) => (
   <ul>
     {suggestions.map(u => (
       <li
-        key={u.id}
+        key={u.userId}
         className="autoComplete-item"
         onClick={() => suggestionSelected(u.companyName)}
       >
