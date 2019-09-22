@@ -21,7 +21,7 @@ const IconMessage = ({
       fillOuter={fillOuter}
       fillInner={fillInner}
     />
-    <p className={`ml2 ${classes}`}>{text}</p>
+    <div className={`ml2 ${classes}`}>{text}</div>
   </React.Fragment>
 );
 

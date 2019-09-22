@@ -4,7 +4,7 @@ import FormikField from '../../../shared/form/formikField';
 import MealPriceField from '../../../shared/form/mealPriceField';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
-import BankAccountOptions from './bankAccountOtions';
+import BankAccountOptions from './bankAccountOptions';
 import FormButton from '../../../shared/form/formButton';
 import Button from '../../../shared/form/button';
 import IconButton from '../../../shared/form/iconButton';
@@ -38,7 +38,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="phone"
           styleName="textFieldC"
-          placeholder="054 - 745 - 0999"
+          placeholder="054-745-0999"
           required
         />
       </div>
@@ -49,7 +49,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="user"
           styleName="textFieldC"
-          placeholder="5000"
           disabled
         />
         <FormikField
@@ -58,7 +57,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="email"
           icon="email"
           styleName="textFieldC"
-          placeholder="sleket12@hanmail.net"
           required
         />
         <FormikField
@@ -67,7 +65,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="address"
           styleName="textFieldC"
-          placeholder="황성동 1071-1번지"
         />
       </div>
     </div>
@@ -78,7 +75,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         type="text"
         icon="catering"
         styleName="textFieldD"
-        placeholder="70"
       />
       <FormikField
         label="석식 식수량"
@@ -86,7 +82,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         type="text"
         icon="catering"
         styleName="textFieldD"
-        placeholder="35"
       />
       <FormikField
         label="야식 식수량"
@@ -94,7 +89,6 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         type="text"
         icon="catering"
         styleName="textFieldD"
-        placeholder="35"
       />
     </div>
     <RadioButtonFormControl
@@ -114,11 +108,18 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
       required
     />
     <div className="edit-userform--bottom">
-      <div>
-        <Button
+      <div className="edit-userform--bottom-right">
+        {/* <Button
           typeValue="button"
           variantValue="outlined"
           buttonName="비밀번호 변경"
+          width="medium"
+          handleButtonClick={() => showSubModal('password')}
+        /> */}
+        <Button
+          typeValue="button"
+          variantValue="outlined"
+          buttonName="서비스 종료"
           width="medium"
           handleButtonClick={() => showSubModal('password')}
         />

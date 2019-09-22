@@ -6,7 +6,7 @@ import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
-import BankAccountOptions from './bankAccountOtions';
+import BankAccountOptions from './bankAccountOptions';
 
 const CreateUserForm = props => {
   const { bankAccount, isSubmitting } = props;

@@ -17,6 +17,11 @@ const DeleteUser = Loader({
   loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
 });
 
+const EndService = Loader({
+  loader: () =>
+    import('./endServiceFormBox' /* webpackChunkName: 'deleteUser' */),
+});
+
 const EditUserModal = ({
   // local states
   bankAccount,
@@ -51,7 +56,7 @@ const EditUserModal = ({
         }}
         component={
           subModal === 'password' ? (
-            <ResetPasswordBox
+            <EndService
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
