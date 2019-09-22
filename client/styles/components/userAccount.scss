@@ -73,3 +73,25 @@
   font-size: 14px;
   margin-top: -1px;
 }
+
+.user-form--service {
+  border: 1px solid #fac59c;
+  padding: 2em;
+
+  @include for-desktop-up {
+    width: 90%;
+    padding: 2em 3em 1em 3em;
+  }
+}
+
+.user-form--service-checkbox {
+  margin-bottom: 2em;
+
+  @include for-desktop-up {
+    margin-top: 2em;
+  }
+}
+
+.user-form--service-date {
+  width: 150px;
+}

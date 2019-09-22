@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import { formattedToday } from '../../../helpers/moment';
 import { formatToYYYYMMDD } from '../../../utils/date';
@@ -10,12 +9,7 @@ import IconMessage from '../../../shared/iconMessage';
 import { endServiceMessageA, endServiceMessageB } from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
 
-const styles = () => ({
-  input: { width: 150 },
-});
-
 const EndServiceFormBox = ({
-  classes: { input },
   userId,
   // actions
   handleEndingService,
@@ -27,9 +21,9 @@ const EndServiceFormBox = ({
   // state endService & date -> values from db : fomattedToday
   const [state, setState] = useState({
     endService: false,
-    date: formattedToday,
+    endDate: formattedToday,
   });
-  const { endService, date } = state;
+  const { endService, endDate } = state;
   const [isSubmitting, setSubmitting] = useState(false);
 
   const handleChange = name => event => {
@@ -43,7 +37,7 @@ const EndServiceFormBox = ({
   const handleSubmit = async () => {
     await setSubmitting(true);
 
-    const formattedDate = formatToYYYYMMDD(date);
+    const formattedDate = formatToYYYYMMDD(endDate);
     const res = await handleEndingService(userId, endService, formattedDate);
 
     if (!res.error) {
@@ -59,28 +53,30 @@ const EndServiceFormBox = ({
   };
 
   const today = formatToYYYYMMDD(formattedToday);
-  const checkedDate = formatToYYYYMMDD(date);
+  const checkedDate = formatToYYYYMMDD(endDate);
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mt4 mb4 user-form w-70 center">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={state.endService}
-              onChange={handleChange('endService')}
-              value="endService"
-            />
-          }
-          label="서비스 종료"
-        />
+      <div className="mt4 mb2 user-form center user-form--service">
+        <div className="user-form--service-checkbox">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={state.endService}
+                onChange={handleChange('endService')}
+                value="endService"
+              />
+            }
+            label="서비스 종료"
+          />
+        </div>
         <TextField
           id="date"
-          label="날짜"
+          label="적용 날짜"
           type="date"
-          defaultValue={formattedToday}
+          defaultValue={endDate}
           margin="normal"
-          className={input}
+          className="user-form--service-date"
           error={today > checkedDate}
           helperText="금일부터 미래날짜만 등록"
           onChange={handleChange('date')}
@@ -93,9 +89,9 @@ const EndServiceFormBox = ({
         variantValue="contained"
         buttonName="저장"
         width="medium"
-        isSubmitting={!state.endService || isSubmitting}
+        isSubmitting={isSubmitting}
       />
-      <div className="flex justify-end pw2">
+      <div className="flex justify-end pw2 mt4">
         <IconMessage
           name="info"
           width="42.5"
@@ -123,4 +119,4 @@ const EndServiceFormBox = ({
   );
 };
 
-export default withStyles(styles)(EndServiceFormBox);
+export default EndServiceFormBox;
