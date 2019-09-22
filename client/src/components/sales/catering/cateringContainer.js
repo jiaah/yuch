@@ -121,6 +121,7 @@ const CateringContainer = ({
           saveYposition={saveYposition}
           handleTableRowClick={handleTableRowClick}
           selectedRow={selectedRow}
+          date={date}
         />
       )}
       {adminCateringMsg}

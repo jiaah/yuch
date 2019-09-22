@@ -9,6 +9,7 @@ const CateringPaper = ({
   editIndex,
   selectedRow,
   // global state
+  date,
   selectedItemValue,
   // actions
   updateUserCatering,
@@ -40,6 +41,7 @@ const CateringPaper = ({
       <Paper
         component={
           <CateringTable
+            date={date}
             sortedData={sortedDataA}
             selectedItemValue={selectedItemValue}
             updateUserCatering={updateUserCatering}
@@ -59,6 +61,7 @@ const CateringPaper = ({
         classes="paper--sec"
         component={
           <CateringTable
+            date={date}
             sortedData={sortedDataB}
             selectedItemValue={selectedItemValue}
             updateUserCatering={updateUserCatering}

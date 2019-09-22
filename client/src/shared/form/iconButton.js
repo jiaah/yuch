@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
 
-const IconButton = ({ handleClick, name, width, height, viewBox, color }) => {
+const IconButton = ({
+  handleClick,
+  name,
+  width,
+  height,
+  viewBox,
+  color,
+  disabled,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
@@ -24,6 +32,7 @@ const IconButton = ({ handleClick, name, width, height, viewBox, color }) => {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      disabled={!!disabled}
     >
       <Icon
         name={name}
