@@ -208,6 +208,12 @@ export const userAccountTableHeadColumns = [
     disablePadding: false,
     label: '비지니스',
   },
+  {
+    id: 'endDate',
+    numeric: true,
+    disablePadding: false,
+    label: '서비스 종료일자',
+  },
 ];
 
 export const bankAccountTableHeadColumns = [
@@ -261,7 +267,7 @@ export const cateringRatesTableHeadColumns = [
     id: 'reserveDate',
     numeric: true,
     disablePadding: false,
-    label: '적용되는 날짜',
+    label: '적용되는 일자',
   },
 ];
 

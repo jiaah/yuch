@@ -37,8 +37,10 @@ const UserTableRow = ({
   }
 
   const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
+
   // shorten bank account number
   const slicedAccountNo = accountNo.slice(0, 8);
+
   // translate businessType value to Korean
   const businessType =
     row.businessType === 'catering'
@@ -46,9 +48,12 @@ const UserTableRow = ({
       : row.businessType === 'restaurant'
         ? '식당'
         : null;
+
   // display new mealPrice if reserveDate is thisMonth.
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
+
+  const endServiceDate = row.endService ? row.endDate : '';
 
   return (
     <React.Fragment>
@@ -111,6 +116,9 @@ const UserTableRow = ({
         </TableCell>
         <TableCell align="right" className={resize}>
           {businessType}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {endServiceDate}
         </TableCell>
       </TableRow>
     </React.Fragment>
