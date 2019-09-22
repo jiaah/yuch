@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 /* --- Components --- */
 import Loader from '../../loader';
-import {
-  editUserAccountValidation,
-  resetPasswordValidation,
-} from '../../formValidation';
+import { editUserAccountValidation } from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
-
-const ResetPasswordBox = Loader({
-  loader: () =>
-    import('./resetPasswordBox' /* webpackChunkName: 'resetPassword' */),
-});
 
 const DeleteUser = Loader({
   loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
@@ -30,8 +22,9 @@ const EditUserModal = ({
   // actions
   editUser,
   addFlashMessage,
-  resetPassword,
+  // resetPassword,
   deleteUser,
+  handleEndingService,
   // fncs from parent component
   handleCloseModal,
 }) => {
@@ -39,8 +32,8 @@ const EditUserModal = ({
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
   const title =
-    subModal === 'password'
-      ? '비밀번호 변경'
+    subModal === 'service'
+      ? `${clickedUserData.companyName}`
       : subModal === 'delete'
         ? ''
         : '고객 계정';
@@ -55,14 +48,13 @@ const EditUserModal = ({
           return closeSubModal();
         }}
         component={
-          subModal === 'password' ? (
+          subModal === 'service' ? (
             <EndService
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              clickedUserId={clickedUserData.id}
-              resetPasswordValidation={resetPasswordValidation}
-              resetPassword={resetPassword}
+              userId={clickedUserData.id}
+              handleEndingService={handleEndingService}
             />
           ) : subModal === 'delete' ? (
             <DeleteUser

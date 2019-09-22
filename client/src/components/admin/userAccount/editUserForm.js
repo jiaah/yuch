@@ -109,19 +109,12 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
     />
     <div className="edit-userform--bottom">
       <div className="edit-userform--bottom-right">
-        {/* <Button
-          typeValue="button"
-          variantValue="outlined"
-          buttonName="비밀번호 변경"
-          width="medium"
-          handleButtonClick={() => showSubModal('password')}
-        /> */}
         <Button
           typeValue="button"
           variantValue="outlined"
           buttonName="서비스 종료"
           width="medium"
-          handleButtonClick={() => showSubModal('password')}
+          handleButtonClick={() => showSubModal('service')}
         />
         <FormButton
           typeValue="submit"

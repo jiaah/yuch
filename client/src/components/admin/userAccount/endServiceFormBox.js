@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import { formattedToday } from '../../../helpers/moment';
+import { formatToYYYYMMDD } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
 import { endServiceMessageA, endServiceMessageB } from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
@@ -13,13 +14,23 @@ const styles = () => ({
   input: { width: 150 },
 });
 
-const EndServiceFormBox = ({ classes: { input } }) => {
+const EndServiceFormBox = ({
+  classes: { input },
+  userId,
+  // actions
+  handleEndingService,
+  addFlashMessage,
+  // funcs
+  closeSubModal,
+  handleCloseModal,
+}) => {
   // state endService & date -> values from db : fomattedToday
   const [state, setState] = useState({
     endService: false,
     date: formattedToday,
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { endService, date } = state;
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const handleChange = name => event => {
     const value =
@@ -29,10 +40,26 @@ const EndServiceFormBox = ({ classes: { input } }) => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = () => console.log('submitted');
+  const handleSubmit = async () => {
+    await setSubmitting(true);
 
-  const today = formattedToday.replace(/[^a-zA-Z0-9 ]/g, '');
-  const checkedDate = state.date.replace(/[^a-zA-Z0-9 ]/g, '');
+    const formattedDate = formatToYYYYMMDD(date);
+    const res = await handleEndingService(userId, endService, formattedDate);
+
+    if (!res.error) {
+      addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
+      Promise.all([setSubmitting(false), closeSubModal(), handleCloseModal()]);
+    } else {
+      addFlashMessage(
+        'error',
+        '서비스 설정에 실패하였습니다. 다시 시도해주세요.',
+      );
+    }
+    return setSubmitting(false);
+  };
+
+  const today = formatToYYYYMMDD(formattedToday);
+  const checkedDate = formatToYYYYMMDD(date);
 
   return (
     <form onSubmit={handleSubmit}>

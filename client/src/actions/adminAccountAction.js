@@ -110,3 +110,28 @@ export const deleteUser = userId => async dispatch => {
     });
   }
 };
+
+export const handleEndingService = (
+  userId,
+  endService,
+  formattedDate,
+) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'endService' });
+  try {
+    await Axios.patch(`/catering/endofservice/user/${userId}`, {
+      endService,
+      date: formattedDate,
+    });
+    return dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'endService',
+    });
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'endService',
+      status: error.response.status,
+      error: 'Updating ending service failed.',
+    });
+  }
+};

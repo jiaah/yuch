@@ -14,7 +14,6 @@ import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
-import { resetPassword } from '../../../actions/authAction';
 
 const CreateUserModal = Loader({
   loader: () =>
@@ -28,13 +27,18 @@ const EditUserModal = Loader({
 
 const UserAccountContainer = ({
   modalActions: { showModal, hideModal },
-  adminActions: { getUsers, createUser, editUser, deleteUser },
+  adminActions: {
+    getUsers,
+    createUser,
+    editUser,
+    deleteUser,
+    handleEndingService,
+  },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
   },
-  resetPassword,
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
@@ -59,7 +63,7 @@ const UserAccountContainer = ({
       Promise.all([
         clickedUserData.length !== 0 ? resetClickedItemData() : null,
         selectedSearchItem !== null ? resetSelectedItemValue() : null,
-        renderAllUsers(),
+        selectedSearchItem ? renderAllUsers() : null,
       ]);
     };
   }, []);
@@ -91,7 +95,7 @@ const UserAccountContainer = ({
   };
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
-    if (selectedSearchItem !== null) resetSelectedItemValue();
+    if (selectedSearchItem) resetSelectedItemValue();
   };
 
   const handleSearch = () => {
@@ -159,10 +163,10 @@ const UserAccountContainer = ({
           editUser={editUser}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
-          resetPassword={resetPassword}
           deleteUser={deleteUser}
           addFlashMessage={addFlashMessage}
           bankAccount={bankAccount}
+          handleEndingService={handleEndingService}
         />
       ) : null}
     </div>
@@ -180,7 +184,6 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   selectedActions: bindActionCreators(selectedActions, dispatch),
-  resetPassword: (id, newPassword) => dispatch(resetPassword(id, newPassword)),
 });
 
 export default connect(
