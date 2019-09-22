@@ -94,8 +94,6 @@ const CateringTable = ({
     <React.Fragment>
       <div className={tableWrapper}>
         <Table className={table} aria-labelledby="tableTitle">
-          {/* 'orderBy' doesn't work as mapped 'dataToDisplay' is saved in local state in order to handle input change.
-            if 'sortedData' is used to map, 'orderBy' works.  */}
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
@@ -130,3 +128,9 @@ const CateringTable = ({
 };
 
 export default withStyles(styles)(CateringTable);
+
+// 'orderBy' doesn't work as 'dataToDisplay' is saved in state in order to handle input change.
+// if 'sortedData' is used to map, 'orderBy' works.
+// Using Formik would not work either as it uses its own state to handle input change.
+// besides Formik can only get the whole dataToDisplay values on submit instead of the changed row data
+// because Form can not be a child of Table.
