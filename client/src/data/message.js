@@ -179,7 +179,7 @@ export const adminCateringMsg = (
       석식/야식 &#58;&#8201;&#8201; &#126; 금일 13 시 30 분<br />
     </p>
     <p className="f-mini">
-      &#42; {admin.companyName}은 지난 날짜에 대한 식수변경은 이전 달 까지만
+      &#42; {admin.companyName}은 지난 일자에 대한 식수변경은 이전 달 까지만
       가능합니다&#46;
       <br />
       &#42; {admin.companyName}
@@ -192,8 +192,8 @@ export const endServiceMessageA = (
   <React.Fragment>
     선택한 날부터 저장된 모든 식수량이 삭제되며&#44;&#8201;식수량 등록이
     불가능합니다&#46;&#8201;&#8201;
-    <span className="c-point2">오늘 날짜 이전에 등록된 식수량을 변경</span>은
-    상단의 메뉴&#8201;&#8201;
+    <span className="c-point2">금일 이전에 등록된 식수량을 변경</span>은 상단의
+    메뉴&#8201;&#8201;
     <Link className="c-point2 td-none" to="/admin/count/catering/dd">
       식수현황/금일위탁급식식수
     </Link>

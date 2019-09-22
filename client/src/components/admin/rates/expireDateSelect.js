@@ -24,7 +24,7 @@ const ExpireDateSelect = ({
   classes,
 }) => (
   <FormControl className={classes.formControl}>
-    <InputLabel required={true}>적용날짜 (YYYY/MM)</InputLabel>
+    <InputLabel required={true}>적용일자 (YYYY/MM)</InputLabel>
     <Select
       value={reserveDate}
       onChange={handleSelectChange}

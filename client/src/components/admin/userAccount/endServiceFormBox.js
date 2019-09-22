@@ -72,13 +72,13 @@ const EndServiceFormBox = ({
         </div>
         <TextField
           id="date"
-          label="적용 날짜"
+          label="적용 일자"
           type="date"
           defaultValue={endDate}
           margin="normal"
           className="user-form--service-date"
           error={today > checkedDate}
-          helperText="금일부터 미래날짜만 등록"
+          helperText="금일부터 등록 가능"
           onChange={handleChange('date')}
           required={state.endService}
           disabled={!state.endService}
