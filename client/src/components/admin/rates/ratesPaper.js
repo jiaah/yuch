@@ -15,7 +15,7 @@ const RatesPaper = ({
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
-  const [order, setOrder] = React.useState('desc');
+  const [order, setOrder] = React.useState('asc');
   // selected column
   const [orderBy, setOrderBy] = React.useState('companyName');
 

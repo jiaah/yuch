@@ -53,7 +53,7 @@ const UserTableRow = ({
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
 
-  const endServiceDate = row.endService ? row.endDate : '';
+  const endServiceDate = row.endDate ? row.endDate : '';
 
   return (
     <React.Fragment>
