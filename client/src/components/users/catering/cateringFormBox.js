@@ -4,17 +4,18 @@ import { Formik, Form } from 'formik';
 import CateringForm from './cateringForm';
 
 const CateringFormBox = ({
+  date,
   catering,
   updateUserCatering,
   addFlashMessage,
   isLunchQtyDisabled,
   isDinnerQtyDisabled,
 }) => {
-  const { userId, date, lunchQty, dinnerQty, lateNightSnackQty } = catering;
   const handleUpdateCatering = async (values, { setSubmitting }) => {
-    const data = { ...values, date };
+    const updateDate = catering.date;
+    const data = { ...values, updateDate };
 
-    const res = updateUserCatering(userId, data);
+    const res = updateUserCatering(catering.userId, data);
 
     if (!res.error) {
       addFlashMessage('success', `저장되었습니다.`);
@@ -26,9 +27,9 @@ const CateringFormBox = ({
   };
 
   const inputValues = {
-    lunchQty,
-    dinnerQty,
-    lateNightSnackQty,
+    lunchQty: catering.lunchQty,
+    dinnerQty: catering.dinnerQty,
+    lateNightSnackQty: catering.lateNightSnackQty,
   };
 
   return (
@@ -38,6 +39,8 @@ const CateringFormBox = ({
         <Form className="flex flex-column-m items-center justify-center">
           <CateringForm
             {...props}
+            date={date}
+            endDate={catering.endDate}
             isLunchQtyDisabled={isLunchQtyDisabled}
             isDinnerQtyDisabled={isDinnerQtyDisabled}
           />

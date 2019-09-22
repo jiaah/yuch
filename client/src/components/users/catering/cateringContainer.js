@@ -77,6 +77,7 @@ const CateringContainer = ({
           <div className="user-catering--form">
             <CateringFormBox
               today={today}
+              date={date}
               id={id}
               catering={catering}
               updateUserCatering={updateUserCatering}
