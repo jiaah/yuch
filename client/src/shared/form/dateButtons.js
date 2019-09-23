@@ -1,42 +1,50 @@
 import React from 'react';
 /* --- Components --- */
 import IconButton from './iconButton';
+import {
+  dayBefore,
+  dayAfter,
+  weekBefore,
+  weekAfter,
+  formatToDateForm,
+} from '../../utils/date';
 
 const DateButtons = ({
+  reload,
+  startTime,
+  endTime,
+  dateForwardMessage,
   // state
-  id,
   date,
   // actions
   updateDate,
   addFlashMessage,
   // funcs
   fetchData,
-  // moment
-  inAWeek,
-  dateUtils,
-  // props
-  formattedDate,
-  startTime,
-  dateForwardMessage,
 }) => {
-  const { dayBefore, dayAfter, weekBefore, weekAfter } = dateUtils;
+  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
+  const formattedDate = formatToDateForm(date);
 
   const handleDateBackward = async newDate => {
     if (newDate >= startTime) {
       await updateDate(newDate);
-      fetchData(id, newDate);
-      return window.location.reload(true);
+      fetchData(newDate);
+      if (reload) window.location.reload(true);
+    } else {
+      addFlashMessage('info', '존재하는 데이터가 없습니다.');
     }
-    return addFlashMessage('info', '존재하는 데이터가 없습니다.');
+    return null;
   };
 
   const handleDateForward = async newDate => {
-    if (newDate < inAWeek) {
+    if (newDate < endTime) {
       await updateDate(newDate);
-      fetchData(id, newDate);
-      return window.location.reload(true);
+      fetchData(newDate);
+      if (reload) window.location.reload(true);
+    } else {
+      addFlashMessage('info', dateForwardMessage);
     }
-    return addFlashMessage('info', dateForwardMessage);
+    return null;
   };
 
   const moveToAWeekBefore = async () => {

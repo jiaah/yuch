@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { today, inAWeek } from '../../../helpers/moment';
-import * as dateUtils from '../../../utils/date';
+import { today, inAWeek, dateInKorean } from '../../../helpers/moment';
+import {
+  isLunchQtyChangeDisabled,
+  isDinnerQtyChangeDisabled,
+  formatToYYYYMMDD,
+} from '../../../utils/date';
 import { userCateringMsg } from '../../../data/message';
 import CateringFormBox from './cateringFormBox';
 import DateButtons from '../../../shared/form/dateButtons';
@@ -19,24 +23,15 @@ const CateringContainer = ({
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
-  const {
-    isLunchQtyChangeDisabled,
-    isDinnerQtyChangeDisabled,
-    formatToDateForm,
-    formatToYYYYMMDD,
-  } = dateUtils;
   const [catering, setCatering] = useState(null);
   const [startTime, setStartTime] = useState('');
 
-  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
-  const formattedDate = formatToDateForm(date);
-
-  const fetchData = async (id, when) => {
+  const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
 
     if (res.error) {
       setCatering({
-        date: formatedDate,
+        date: dateInKorean,
         created_at: date,
         lunchQty: null,
         dinnerQty: null,
@@ -52,26 +47,26 @@ const CateringContainer = ({
   useEffect(() => {
     // page open -> default date, 'today'
     // browser refresh -> keep the changed date
-    fetchData(id, date);
+    fetchData(date);
     return () => resetDate();
   }, []);
 
   return (
     <div className="user-catering--container">
-      <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
+      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>
       {catering && (
         <React.Fragment>
           <DateButtons
+            // interactive data with clients
+            reload={true}
             date={date}
+            startTime={startTime}
+            endTime={inAWeek}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
-            inAWeek={inAWeek}
-            dateUtils={dateUtils}
-            formattedDate={formattedDate}
-            startTime={startTime}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
           <div className="user-catering--form">

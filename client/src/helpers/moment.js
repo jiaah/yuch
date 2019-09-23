@@ -27,3 +27,11 @@ export const today = moment().format('YYYYMMDD');
 export const inAWeek = moment()
   .add(7, 'days')
   .format('YYYYMMDD');
+
+// resto
+export const tomorrow = moment()
+  .add(1, 'day')
+  .format('YYYYMMDD');
+export const lastMonth = moment()
+  .add(-1, 'months')
+  .format('YYYY/MM');

@@ -3,11 +3,9 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import RestoForm from './restoForm';
 
-const RestoFormBox = ({ id, resto, updateUserCatering }) => {
-  const handleUpdateRestoSales = async (values, { setSubmitting }) => {
-    updateUserCatering(id, values);
-    return setSubmitting(false);
-  };
+const RestoFormBox = ({ id, resto }) => {
+  const handleUpdateRestoSales = async (values, { setSubmitting }) =>
+    setSubmitting(false);
 
   return (
     <Formik
