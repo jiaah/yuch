@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { inAWeek } from '../../../helpers/moment';
-import * as dateUtils from '../../../utils/date';
+import { formatToDateForm, firstDayOfLastMonth } from '../../../utils/date';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -24,7 +24,6 @@ const CateringContainer = ({
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
-  const { formatToDateForm, firstDayOfLastMonth } = dateUtils;
   const [catering, setCatering] = useState(null);
 
   // switch text <-> textfield

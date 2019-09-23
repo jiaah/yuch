@@ -58,6 +58,11 @@ const AdminCatering = Loader({
     import('../src/components/sales/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
+const AdminSpecailMeal = Loader({
+  loader: () =>
+    import('../src/components/sales/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+});
+
 /* --- USER --- */
 const UserAccount = Loader({
   loader: () =>
@@ -114,6 +119,11 @@ const routes = () => (
         exact
         path="/admin/count/catering/dd"
         component={AdminGuards(AdminCatering)}
+      />
+      <Route
+        exact
+        path="/admin/count/specialmeal"
+        component={AdminGuards(AdminSpecailMeal)}
       />
       {/* --- USER --- */}
       <Route exact path="/user/account" component={UserGuards(UserAccount)} />
