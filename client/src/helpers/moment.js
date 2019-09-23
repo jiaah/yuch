@@ -35,3 +35,12 @@ export const tomorrow = moment()
 export const lastMonth = moment()
   .add(-1, 'months')
   .format('YYYY/MM');
+
+// special_meal
+export const twoYearsAgo = moment()
+  .add(-2, 'years')
+  .format('YYYY/MM');
+
+export const inTwoYears = moment()
+  .add(2, 'years')
+  .format('YYYY/MM');

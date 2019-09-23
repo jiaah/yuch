@@ -8,6 +8,7 @@ import {
   lastMonth,
   dateInKorean,
 } from '../../../helpers/moment';
+import { formatToDateForm } from '../../../utils/date';
 import RestoFormBox from './restoFormBox';
 import DateButtons from '../../../shared/form/dateButtons';
 import { restoSalesMsg } from '../../../data/message';
@@ -58,6 +59,9 @@ const RestoContainer = ({
     return () => resetDate();
   }, []);
 
+  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
+  const formattedDate = formatToDateForm(date);
+
   return (
     <div className="user-catering--container">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
@@ -66,10 +70,11 @@ const RestoContainer = ({
       {resto && (
         <React.Fragment>
           <DateButtons
-            monthlyUnit={false}
-            date={date}
             startTime={lastMonth}
             endTime={tomorrow}
+            monthlyUnit={false}
+            formattedDate={formattedDate}
+            date={date}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}

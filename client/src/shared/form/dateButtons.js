@@ -8,7 +8,6 @@ import {
   weekAfter,
   yearBefore,
   yearAfter,
-  formatToDateForm,
 } from '../../utils/date';
 
 const DateButtons = ({
@@ -16,6 +15,7 @@ const DateButtons = ({
   startTime,
   endTime,
   dateForwardMessage,
+  formattedDate,
   // state
   date,
   // actions
@@ -24,9 +24,6 @@ const DateButtons = ({
   // funcs
   fetchData,
 }) => {
-  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
-  const formattedDate = formatToDateForm(date);
-
   const handleDateBackward = async newDate => {
     if (newDate >= startTime) {
       await updateDate(newDate);

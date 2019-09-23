@@ -36,6 +36,7 @@ const CateringContainer = ({
   const onfocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 
+  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
   const startTime = firstDayOfLastMonth();
 
@@ -74,13 +75,14 @@ const CateringContainer = ({
   return (
     <div className="r--w-70 container">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
-        식수현황
+        식수 현황
       </h2>
       <DateButtons
         monthlyUnit={false}
-        date={date}
+        formattedDate={formattedDate}
         startTime={startTime}
         endTime={inAWeek}
+        date={date}
         updateDate={updateDate}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}

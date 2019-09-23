@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { tomorrow, lastMonth } from '../../../helpers/moment';
+import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
+import { formatToYearDateForm } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
@@ -22,17 +23,21 @@ const SpecialMealContainer = ({
     return () => resetDate();
   }, []);
 
+  // YYYYMMDD -> 'YYYY 년 MM 월'
+  const formattedDate = formatToYearDateForm(date);
+
   return (
     <div className="user-catering--container">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
-        식당 매출 관리
+        특식 관리
       </h2>
       <React.Fragment>
         <DateButtons
           monthlyUnit={true}
+          startTime={twoYearsAgo}
+          endTime={inTwoYears}
+          formattedDate={formattedDate}
           date={date}
-          startTime="20180101"
-          endTime="20220101"
           updateDate={updateDate}
           addFlashMessage={addFlashMessage}
           fetchData={fetchData}

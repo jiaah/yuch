@@ -7,6 +7,7 @@ import {
   isLunchQtyChangeDisabled,
   isDinnerQtyChangeDisabled,
   formatToYYYYMMDD,
+  formatToDateForm,
 } from '../../../utils/date';
 import { userCateringMsg } from '../../../data/message';
 import CateringFormBox from './cateringFormBox';
@@ -51,6 +52,9 @@ const CateringContainer = ({
     return () => resetDate();
   }, []);
 
+  // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
+  const formattedDate = formatToDateForm(date);
+
   return (
     <div className="user-catering--container">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
@@ -59,10 +63,11 @@ const CateringContainer = ({
       {catering && (
         <React.Fragment>
           <DateButtons
-            monthlyUnit={false}
-            date={date}
             startTime={startTime}
             endTime={inAWeek}
+            formattedDate={formattedDate}
+            monthlyUnit={false}
+            date={date}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}

@@ -43,6 +43,9 @@ export const firstDayOfLastMonth = () => {
 export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
+export const formatToYearDateForm = date =>
+  moment(date).format('YYYY 년 MM 월');
+
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
 
 export const isLunchQtyChangeDisabled = date => {
