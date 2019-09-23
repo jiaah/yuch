@@ -25,8 +25,10 @@ const RestoContainer = ({
 }) => {
   const [resto, setResto] = useState(null);
 
+  const mockData = [{ date: '20190923', lunch: 20, dinner: 40 }, {}];
   const dataFilter = when => {
-    const filteredData = restoSales.filter(r => r.date === when);
+    // const filteredData = restoSales.filter(r => r.date === when);
+    const filteredData = mockData.filter(r => r.date === when);
     return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
   };
 
