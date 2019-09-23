@@ -3,13 +3,27 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import RestoForm from './restoForm';
 
-const RestoFormBox = ({ id, resto }) => {
-  const handleUpdateRestoSales = async (values, { setSubmitting }) =>
-    setSubmitting(false);
+const RestoFormBox = ({ resto, updateRestoSales, addFlashMessage }) => {
+  const { date, lunch, dinner } = resto;
+  const handleUpdateRestoSales = async (values, { setSubmitting }) => {
+    const res = await updateRestoSales({ date, ...values });
+    if (!res.error) {
+      addFlashMessage('success', `저장되었습니다.`);
+    }
+    if (res.error) {
+      addFlashMessage('error', `저장되지 않았습니다. 다시 시도해 주세요.`);
+    }
+    return setSubmitting(false);
+  };
+
+  const inputValues = {
+    lunch,
+    dinner,
+  };
 
   return (
     <Formik
-      initialValues={resto}
+      initialValues={inputValues}
       render={props => (
         <Form className="flex flex-column-m items-center justify-center">
           <RestoForm {...props} />

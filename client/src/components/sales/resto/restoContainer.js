@@ -13,23 +13,43 @@ import DateButtons from '../../../shared/form/dateButtons';
 import { restoSalesMsg } from '../../../data/message';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
+import * as restoActions from '../../../actions/restoAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
 const RestoContainer = ({
-  id,
   date,
+  restoSales,
   dateTrackerActions: { updateDate, resetDate },
+  restoActions: { getRestoSales, updateRestoSales },
   addFlashMessage,
 }) => {
   const [resto, setResto] = useState(null);
 
+  const mockData = [
+    { date: '20190923', lunch: 12, dinner: 40 },
+    { date: '20190922', lunch: 1, dinner: 4 },
+  ];
   const initfetchData = async when => {
-    setResto({
-      date: dateInKorean,
-      lunchQty: null,
-      dinnerQty: null,
-      lateNightSnackQty: null,
+    const res = await getRestoSales(when);
+    if (res.error) {
+      setResto({
+        date: dateInKorean,
+        lunch: null,
+        dinner: null,
+      });
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
+    const filteredData = mockData.filter(r => {
+      if (r.date === when) {
+        return r;
+      }
+      return {
+        date: dateInKorean,
+        lunch: null,
+        dinner: null,
+      };
     });
+    return setResto(filteredData[0]);
   };
 
   const fetchData = when => {};
@@ -58,7 +78,12 @@ const RestoContainer = ({
             dateForwardMessage="존재하지 않는 페이지입니다."
           />
           <div className="user-catering--form">
-            <RestoFormBox id={id} resto={resto} today={today} />
+            <RestoFormBox
+              resto={resto}
+              today={today}
+              updateRestoSales={updateRestoSales}
+              addFlashMessage={addFlashMessage}
+            />
           </div>
         </React.Fragment>
       )}
@@ -68,11 +93,12 @@ const RestoContainer = ({
 };
 
 const mapStateToProps = state => ({
-  id: state.auth.id,
   date: state.dateTracker.date,
+  restoSales: state.resto.sales,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
+  restoActions: bindActionCreators(restoActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

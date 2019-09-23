@@ -1,14 +1,15 @@
 import { Axios } from './axios';
 import * as types from './actionTypes';
 
-export const getRestoSales = id => async dispatch => {
+export const getRestoSales = date => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getRestoSales' });
   try {
-    const res = await Axios.get(`/user/me/${id}`);
+    const res = await Axios.get('/resto', { params: { date } });
     const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.FETCH_RESTO_SALES,
       api: 'getRestoSales',
+      payload: data,
     });
     return data;
   } catch (error) {
@@ -21,14 +22,16 @@ export const getRestoSales = id => async dispatch => {
   }
 };
 
-export const updateRestoSales = (id, userInfo) => async dispatch => {
+export const updateRestoSales = data => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateRestoSales' });
   try {
-    await Axios.patch(`/user/edit/${id}`, { userInfo });
-    return dispatch({
-      type: types.HTTP_SUCCESS,
+    const res = await Axios.patch('/resto', { data });
+    dispatch({
+      type: types.UPDATE_RESTO_SALES,
       api: 'updateRestoSales',
+      payload: data,
     });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,

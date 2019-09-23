@@ -9,21 +9,21 @@ const CateringForm = ({ isSubmitting }) => (
       <div className="phone">
         <FormikField
           label="중식"
-          name="lunchQty"
+          name="lunch"
           type="text"
           icon="catering"
           styleName="textFieldC"
           variant="outlined"
-          disabled="false"
+          disabled={false}
         />
         <FormikField
           label="석식"
-          name="dinnerQty"
+          name="dinner"
           type="text"
           icon="catering"
           styleName="textFieldC"
           variant="outlined"
-          disabled="false"
+          disabled={false}
         />
       </div>
       <table className="desktop">

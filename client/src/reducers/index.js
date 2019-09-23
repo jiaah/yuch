@@ -9,6 +9,7 @@ import isAdminVerified from './isAdminVerifiedReducer';
 import selected from './selectedReducer';
 import userCatering from './userCatering';
 import dateTracker from './dateTracker';
+import resto from './restoReducer';
 
 export default history =>
   combineReducers({
@@ -21,4 +22,5 @@ export default history =>
     selected,
     userCatering,
     dateTracker,
+    resto,
   });

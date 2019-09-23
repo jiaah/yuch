@@ -103,7 +103,9 @@ const Input = ({
       name === 'businessType' ||
       name === 'accountHolder' ||
       name === 'bankName' ||
-      name === 'accountNo'
+      name === 'accountNo' ||
+      name === 'lunch' ||
+      name === 'dinner'
     ) {
       value = inputValue;
     }
