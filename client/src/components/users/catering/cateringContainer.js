@@ -59,6 +59,7 @@ const CateringContainer = ({
       {catering && (
         <React.Fragment>
           <DateButtons
+            monthlyUnit={false}
             date={date}
             startTime={startTime}
             endTime={inAWeek}

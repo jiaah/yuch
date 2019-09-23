@@ -21,6 +21,16 @@ export const weekAfter = date =>
     .add(7, 'days')
     .format('YYYYMMDD');
 
+export const yearBefore = date =>
+  moment(date)
+    .add(-1, 'years')
+    .format('YYYYMMDD');
+
+export const yearAfter = date =>
+  moment(date)
+    .add(1, 'years')
+    .format('YYYYMMDD');
+
 const lastMonth = moment()
   .add(-1, 'months')
   .format('YYYYMM');

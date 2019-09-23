@@ -6,10 +6,13 @@ import {
   dayAfter,
   weekBefore,
   weekAfter,
+  yearBefore,
+  yearAfter,
   formatToDateForm,
 } from '../../utils/date';
 
 const DateButtons = ({
+  monthlyUnit,
   startTime,
   endTime,
   dateForwardMessage,
@@ -50,12 +53,20 @@ const DateButtons = ({
     const newDate = await dayBefore(date);
     return handleDateBackward(newDate);
   };
+  const moveToYearBefore = async () => {
+    const newDate = await yearBefore(date);
+    return handleDateBackward(newDate);
+  };
   const moveToADayAfter = async () => {
     const newDate = await dayAfter(date);
     return handleDateForward(newDate);
   };
   const moveToAWeekAfter = async () => {
     const newDate = await weekAfter(date);
+    return handleDateForward(newDate);
+  };
+  const moveToAYearAfter = async () => {
+    const newDate = await yearAfter(date);
     return handleDateForward(newDate);
   };
 
@@ -66,14 +77,14 @@ const DateButtons = ({
         width="20"
         height="22"
         viewBox="0 0 30 30"
-        handleClick={moveToAWeekBefore}
+        handleClick={monthlyUnit ? moveToYearBefore : moveToAWeekBefore}
       />
       <IconButton
         name="arrowBack"
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={moveToADayBefore}
+        handleClick={monthlyUnit ? moveToAWeekBefore : moveToADayBefore}
       />
       {formattedDate}
       <IconButton
@@ -81,14 +92,14 @@ const DateButtons = ({
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={moveToADayAfter}
+        handleClick={monthlyUnit ? moveToAWeekAfter : moveToADayAfter}
       />
       <IconButton
         name="arrowRight"
         width="20"
         height="22"
         viewBox="0 0 30 30"
-        handleClick={moveToAWeekAfter}
+        handleClick={monthlyUnit ? moveToAYearAfter : moveToAWeekAfter}
       />
     </div>
   );

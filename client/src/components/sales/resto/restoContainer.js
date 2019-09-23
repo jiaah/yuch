@@ -66,6 +66,7 @@ const RestoContainer = ({
       {resto && (
         <React.Fragment>
           <DateButtons
+            monthlyUnit={false}
             date={date}
             startTime={lastMonth}
             endTime={tomorrow}

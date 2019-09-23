@@ -29,9 +29,10 @@ const SpecialMealContainer = ({
       </h2>
       <React.Fragment>
         <DateButtons
+          monthlyUnit={true}
           date={date}
-          startTime="20190922"
-          endTime="20190932"
+          startTime="20180101"
+          endTime="20220101"
           updateDate={updateDate}
           addFlashMessage={addFlashMessage}
           fetchData={fetchData}
