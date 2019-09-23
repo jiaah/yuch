@@ -25,10 +25,11 @@ const RestoContainer = ({
 }) => {
   const [resto, setResto] = useState(null);
 
-  const mockData = [
-    { date: '20190923', lunch: 12, dinner: 40 },
-    { date: '20190922', lunch: 1, dinner: 4 },
-  ];
+  const dataFilter = when => {
+    const filteredData = restoSales.filter(r => r.date === when);
+    return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
+  };
+
   const initfetchData = async when => {
     const res = await getRestoSales(when);
     if (res.error) {
@@ -39,23 +40,19 @@ const RestoContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    const filteredData = mockData.filter(r => {
-      if (r.date === when) {
-        return r;
-      }
-      return {
-        date: dateInKorean,
-        lunch: null,
-        dinner: null,
-      };
-    });
-    return setResto(filteredData[0]);
+    return dataFilter(when);
   };
 
-  const fetchData = when => {};
+  const fetchData = when => dataFilter(when);
 
   useEffect(() => {
-    initfetchData(date);
+    // non-interactive data with clients
+    // do not make api GET request every render
+    if (restoSales.length === 0) {
+      initfetchData(date);
+    } else {
+      fetchData(date);
+    }
     return () => resetDate();
   }, []);
 
@@ -67,8 +64,6 @@ const RestoContainer = ({
       {resto && (
         <React.Fragment>
           <DateButtons
-            // non-interactive data with clients
-            reload={false}
             date={date}
             startTime={lastMonth}
             endTime={tomorrow}

@@ -10,10 +10,6 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from './cateringPaper';
-import {
-  keepScrollPosition,
-  saveYposition,
-} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -117,7 +113,6 @@ const CateringContainer = ({
           startEditing={startEditing}
           endEditing={endEditing}
           editIndex={editIndex}
-          saveYposition={saveYposition}
           handleTableRowClick={handleTableRowClick}
           selectedRow={selectedRow}
           date={date}

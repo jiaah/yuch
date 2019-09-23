@@ -36,8 +36,6 @@ const CateringTable = ({
   startEditing,
   endEditing,
   handleTableRowClick,
-  // helpers
-  saveYposition,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);

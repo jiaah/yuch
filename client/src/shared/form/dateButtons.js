@@ -10,7 +10,6 @@ import {
 } from '../../utils/date';
 
 const DateButtons = ({
-  reload,
   startTime,
   endTime,
   dateForwardMessage,
@@ -29,22 +28,18 @@ const DateButtons = ({
     if (newDate >= startTime) {
       await updateDate(newDate);
       fetchData(newDate);
-      if (reload) window.location.reload(true);
-    } else {
-      addFlashMessage('info', '존재하는 데이터가 없습니다.');
+      return window.location.reload(true);
     }
-    return null;
+    return addFlashMessage('info', '존재하는 데이터가 없습니다.');
   };
 
   const handleDateForward = async newDate => {
     if (newDate < endTime) {
       await updateDate(newDate);
       fetchData(newDate);
-      if (reload) window.location.reload(true);
-    } else {
-      addFlashMessage('info', dateForwardMessage);
+      return window.location.reload(true);
     }
-    return null;
+    return addFlashMessage('info', dateForwardMessage);
   };
 
   const moveToAWeekBefore = async () => {

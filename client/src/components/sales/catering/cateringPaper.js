@@ -20,8 +20,6 @@ const CateringPaper = ({
   startEditing,
   endEditing,
   handleTableRowClick,
-  // helpers
-  saveYposition,
 }) => {
   let sortedDataA;
   let sortedDataB;
@@ -51,7 +49,6 @@ const CateringPaper = ({
             startEditing={startEditing}
             endEditing={endEditing}
             editIndex={editIndex}
-            saveYposition={saveYposition}
             handleTableRowClick={handleTableRowClick}
             selectedRow={selectedRow}
           />
@@ -71,7 +68,6 @@ const CateringPaper = ({
             startEditing={startEditing}
             endEditing={endEditing}
             editIndex={editIndex}
-            saveYposition={saveYposition}
             handleTableRowClick={handleTableRowClick}
             selectedRow={selectedRow}
           />

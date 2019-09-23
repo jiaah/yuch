@@ -59,8 +59,6 @@ const CateringContainer = ({
       {catering && (
         <React.Fragment>
           <DateButtons
-            // interactive data with clients
-            reload={true}
             date={date}
             startTime={startTime}
             endTime={inAWeek}
