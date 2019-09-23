@@ -5,3 +5,14 @@
   height: 0;
   position: relative;
 }
+
+
+.hr {
+  border-bottom: 1px solid $light-grey;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.vr {
+  border-right: 1px solid $light-grey;
+}

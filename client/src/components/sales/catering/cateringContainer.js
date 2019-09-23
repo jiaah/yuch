@@ -57,7 +57,6 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    keepScrollPosition();
     return () => {
       resetDate();
       resetSelectedItemValue();

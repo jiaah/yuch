@@ -6,6 +6,7 @@ import { today, inAWeek } from '../../../helpers/moment';
 import * as dateUtils from '../../../utils/date';
 import RestoFormBox from './restoFormBox';
 import DateButtons from '../../../shared/form/dateButtons';
+import { restoSalesMsg } from '../../../data/message';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -71,6 +72,7 @@ const RestoContainer = ({
           </div>
         </React.Fragment>
       )}
+      {restoSalesMsg}
     </div>
   );
 };

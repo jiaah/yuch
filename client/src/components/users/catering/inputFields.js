@@ -36,15 +36,15 @@ const InputFields = ({ isLunchQtyDisabled, isDinnerQtyDisabled }) => (
     <table className="desktop">
       <tbody>
         <tr>
-          <td className="catering--pb catering--vr">중식</td>
-          <td className="catering--vr">석식</td>
+          <td className="table-input--pb vr">중식</td>
+          <td className="vr">석식</td>
           <td className="">야식</td>
         </tr>
         <tr>
-          <td className="catering--hr" />
+          <td className="hr catering--hr" />
         </tr>
         <tr>
-          <td className="pw1 pt3 catering--vr">
+          <td className="pw1 pt3 vr">
             <FormikField
               name="lunchQty"
               type="text"
@@ -54,7 +54,7 @@ const InputFields = ({ isLunchQtyDisabled, isDinnerQtyDisabled }) => (
               disabled={isLunchQtyDisabled}
             />
           </td>
-          <td className="pw1 catering--vr">
+          <td className="pw1 vr">
             <FormikField
               name="dinnerQty"
               type="text"

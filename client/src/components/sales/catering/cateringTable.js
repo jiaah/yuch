@@ -69,25 +69,25 @@ const CateringTable = ({
       }
       return null;
     });
-    await saveYposition();
+
     const res = await updateUserCatering(userId, values[0]);
     if (res.error) {
-      await setSubmitting(false);
-      return addFlashMessage(
+      addFlashMessage(
         'error',
         `${
           values[0].companyName
         } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
       );
+    } else {
+      await Promise.all([
+        addFlashMessage(
+          'success',
+          `${values[0].companyName} 식수 등록되었습니다.`,
+        ),
+        endEditing(),
+      ]);
     }
-    await Promise.all([
-      addFlashMessage(
-        'success',
-        `${values[0].companyName} 식수 등록되었습니다.`,
-      ),
-      endEditing(),
-      setSubmitting(false),
-    ]);
+    setSubmitting(false);
     return window.location.reload(true);
   };
 

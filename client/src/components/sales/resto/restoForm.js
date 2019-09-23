@@ -5,23 +5,60 @@ import FormButton from '../../../shared/form/formButton';
 
 const CateringForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <div className="pb2">
-      <FormikField
-        label="중식"
-        name="lunchQty"
-        type="text"
-        icon="catering"
-        styleName="textFieldC"
-        variant="outlined"
-      />
-      <FormikField
-        label="석식"
-        name="dinnerQty"
-        type="text"
-        icon="catering"
-        styleName="textFieldC"
-        variant="outlined"
-      />
+    <div className="pb3">
+      <div className="phone">
+        <FormikField
+          label="중식"
+          name="lunchQty"
+          type="text"
+          icon="catering"
+          styleName="textFieldC"
+          variant="outlined"
+          disabled="false"
+        />
+        <FormikField
+          label="석식"
+          name="dinnerQty"
+          type="text"
+          icon="catering"
+          styleName="textFieldC"
+          variant="outlined"
+          disabled="false"
+        />
+      </div>
+      <table className="desktop">
+        <tbody>
+          <tr>
+            <td className="table-input--pb vr">중식</td>
+            <td>석식</td>
+          </tr>
+          <tr>
+            <td className="hr resto--hr" />
+          </tr>
+          <tr>
+            <td className="pw1 pt3 vr">
+              <FormikField
+                name="lunchQty"
+                type="text"
+                icon="catering"
+                styleName="textFieldC"
+                variant="outlined"
+                disabled={false}
+              />
+            </td>
+            <td className="pw1">
+              <FormikField
+                name="dinnerQty"
+                type="text"
+                icon="catering"
+                styleName="textFieldC"
+                variant="outlined"
+                disabled={false}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <FormButton
       typeValue="submit"
