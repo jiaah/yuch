@@ -67,7 +67,7 @@ const RestoContainer = ({
   const formattedDate = formatToDateForm(date);
 
   return (
-    <div className="user-catering--container">
+    <div className="container-b">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         식당 매출 관리
       </h2>
@@ -85,7 +85,7 @@ const RestoContainer = ({
             fetchData={fetchData}
             dateForwardMessage="존재하지 않는 페이지입니다."
           />
-          <div className="user-catering--form">
+          <div className="input-table">
             <RestoFormBox
               resto={resto}
               today={today}

@@ -27,7 +27,7 @@ const SpecialMealContainer = ({
   const formattedDate = formatToYearDateForm(date);
 
   return (
-    <div className="user-catering--container">
+    <div className="container-b">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         특식 관리
       </h2>

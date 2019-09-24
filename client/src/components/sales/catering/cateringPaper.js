@@ -35,7 +35,7 @@ const CateringPaper = ({
   }
 
   return (
-    <div id="print" className="paper users-catering--width">
+    <div id="print" className="paper">
       <Paper
         component={
           <CateringTable

@@ -55,7 +55,7 @@ const CateringContainer = ({
   const formattedDate = formatToDateForm(date);
 
   return (
-    <div className="user-catering--container">
+    <div className="container-b">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         식수현황
       </h2>
@@ -73,7 +73,7 @@ const CateringContainer = ({
             fetchData={fetchData}
             dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
-          <div className="user-catering--form">
+          <div className="input-table">
             <CateringFormBox
               today={today}
               date={date}

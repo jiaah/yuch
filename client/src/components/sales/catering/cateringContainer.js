@@ -74,7 +74,7 @@ const CateringContainer = ({
   const handleResetSearch = () => {};
 
   return (
-    <div className="r--w-70 container">
+    <div className="r--w-70 container-a max-width-1500">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수 현황
       </h2>
@@ -90,36 +90,38 @@ const CateringContainer = ({
         fetchData={fetchData}
         dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
       />
-      <div className="paper-label-box flex justify-between users-catering--width">
-        <SearchBar
-          data={catering}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearch}
-        />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
+      <div className="center">
+        <div className="paper-label-box justify-between">
+          <SearchBar
+            data={catering}
+            handleSuggestionSelected={handleSuggestionSelected}
+            handleResetSearch={handleResetSearch}
+          />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
+        {catering && (
+          <CateringPaper
+            users={catering}
+            selectedItemValue={selectedItemValue}
+            updateUserCatering={updateUserCatering}
+            addFlashMessage={addFlashMessage}
+            saveSelectedItemValue={saveSelectedItemValue}
+            resetSelectedItemValue={resetSelectedItemValue}
+            startEditing={startEditing}
+            endEditing={endEditing}
+            editIndex={editIndex}
+            handleTableRowClick={handleTableRowClick}
+            selectedRow={selectedRow}
+            date={date}
+          />
+        )}
       </div>
-      {catering && (
-        <CateringPaper
-          users={catering}
-          selectedItemValue={selectedItemValue}
-          updateUserCatering={updateUserCatering}
-          addFlashMessage={addFlashMessage}
-          saveSelectedItemValue={saveSelectedItemValue}
-          resetSelectedItemValue={resetSelectedItemValue}
-          startEditing={startEditing}
-          endEditing={endEditing}
-          editIndex={editIndex}
-          handleTableRowClick={handleTableRowClick}
-          selectedRow={selectedRow}
-          date={date}
-        />
-      )}
       {adminCateringMsg}
     </div>
   );

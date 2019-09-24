@@ -55,6 +55,8 @@
 }
 
 .max-width-1500 {
+  max-width: 700px;
+
   @include for-desktop-up {
     max-width: 1500px;
   }

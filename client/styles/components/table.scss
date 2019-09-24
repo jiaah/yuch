@@ -24,3 +24,17 @@
   padding-bottom: 1.5em;
   padding-top: 1em;
 }
+
+// admin: 식수현황, 식당매출
+.input-table {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+
+  @include for-tablet-portrait-up {
+    margin-top: 2em;
+  }
+
+  @include for-tablet-landscape-up {
+    margin-top: 4em;
+  }
+}
