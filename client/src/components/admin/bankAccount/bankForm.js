@@ -4,8 +4,8 @@ import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
 const BankForm = ({ isSubmitting }) => (
-  <React.Fragment>
-    <div className="mt5 mb2 user-form">
+  <div className=" mt4">
+    <div className="mh1 media--justify-around">
       <FormikField
         label="예금주"
         name="accountHolder"
@@ -34,16 +34,14 @@ const BankForm = ({ isSubmitting }) => (
         required
       />
     </div>
-    <div className="edit-userform--bottom">
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="저장"
-        width="medium"
-        isSubmitting={isSubmitting}
-      />
-    </div>
-  </React.Fragment>
+    <FormButton
+      typeValue="submit"
+      variantValue="contained"
+      buttonName="저장"
+      width="medium"
+      isSubmitting={isSubmitting}
+    />
+  </div>
 );
 
 export default BankForm;

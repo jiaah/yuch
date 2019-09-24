@@ -30,8 +30,7 @@
 .edit-userform--bottom {
   @include for-desktop-up {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 }
 
