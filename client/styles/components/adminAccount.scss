@@ -7,3 +7,28 @@
     max-width: 1100px;
   }
 }
+
+.end-of-service {
+  border: 1px solid #fac59c;
+  padding: 2em;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include for-desktop-up {
+    width: 90%;
+    padding: 2em 3em 1em 3em;
+  }
+}
+
+/* User Account End-of-service forms */
+.end-of-service-checkbox {
+  margin-bottom: 2em;
+
+  @include for-desktop-up {
+    margin-top: 2em;
+  }
+}
+
+.end-of-service-date {
+  width: 150px;
+}

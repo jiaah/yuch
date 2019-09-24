@@ -13,8 +13,8 @@ const CreateUserForm = props => {
 
   return (
     <React.Fragment>
-      <div className="mh1 mb2 user-form">
-        <div className="user-form--left">
+      <div className="mh1 mb2 media--justify-around">
+        <div className="media--flex-column-m">
           <FormikField
             label="고객명"
             name="companyName"
@@ -47,7 +47,7 @@ const CreateUserForm = props => {
             required
           />
         </div>
-        <div className="user-form--right">
+        <div className="media--flex-column-m">
           <FormikField
             label="연락처"
             name="contactNo"
@@ -114,14 +114,14 @@ const CreateUserForm = props => {
       <RadioButtonFormControl
         label="비지니스 타입"
         icon="bankAccount"
-        formClassName="user-form--radioBtn"
+        formClassName="form--radioBtn"
         component={<BusinessTypeOptions name="businessType" />}
         required
       />
       <RadioButtonFormControl
         label="입금 계좌번호"
         icon="bankAccount"
-        formClassName="user-form--radioBtn"
+        formClassName="form--radioBtn"
         component={
           <BankAccountOptions name="bankAccountId" bankAccount={bankAccount} />
         }

@@ -88,7 +88,7 @@ const BankAccountContainer = ({
           />
         }
       />
-      <div className="flex justify-end mt3 pw1">
+      <div className="mt3 pw1">
         <IconMessage
           name="info"
           width="20"
@@ -97,10 +97,12 @@ const BankAccountContainer = ({
           fillOuter="#2196F3"
           fillInner="#ffffff"
           text={bankAccountPageInfoA}
-          classes="icon-message--info"
+          position="end"
+          iconBoxStyle=""
+          textStyle="icon-message--info"
         />
       </div>
-      <div className="flex justify-end mt2 pw1">
+      <div className="mt2 pw1">
         <IconMessage
           name="info"
           width="20"
@@ -109,7 +111,9 @@ const BankAccountContainer = ({
           fillOuter="#2196F3"
           fillInner="#ffffff"
           text={bankAccountPageInfoB}
-          classes="icon-message--info"
+          cposition="end"
+          iconBoxStyle=""
+          textStyle="icon-message--info"
         />
       </div>
       {clickedBtn !== null && (

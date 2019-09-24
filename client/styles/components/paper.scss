@@ -30,6 +30,7 @@
 
 .paper-label-box {
   display: flex;
+  // write justify-between or end ..etc in component to be reusable
   padding-left: 1em;
   padding-right: 1em;
   margin-top: 2em;
@@ -39,6 +40,10 @@
     padding-left: 3.5em;
     padding-right: 3.5em;
   }
+}
+
+.paper-label-box--number {
+  margin: auto 0 auto 1em;
 }
 
 .paper-padding {

@@ -103,7 +103,7 @@ const UserAccountContainer = ({
   };
 
   return (
-    <div className="container w-95">
+    <div className="container-a w-95">
       {/* auto complete search bar by companyName */}
       <h2>고객 계정</h2>
       <div className="paper-label-box justify-between ">
@@ -113,7 +113,7 @@ const UserAccountContainer = ({
             handleSuggestionSelected={handleSearch}
             handleResetSearch={renderAllUsers}
           />
-          <p className="f-mini ml3 user-account--user-number">
+          <p className="f-mini ml3 paper-label-box--number">
             총 고객 수&#8201;&#8201;
             <span className="b">{users.length}</span>
           </p>
@@ -136,18 +136,18 @@ const UserAccountContainer = ({
           />
         }
       />
-      <div className="flex justify-end mt3 pw1">
-        <IconMessage
-          name="info"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          text={ratesPageInfo}
-          classes="icon-message--info"
-        />
-      </div>
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={ratesPageInfo}
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info"
+      />
       {clickedBtn === 'create' ? (
         <CreateUserModal
           handleCloseModal={handleCloseModal}

@@ -12,8 +12,8 @@ import IconMessage from '../../../shared/iconMessage';
 
 const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
   <React.Fragment>
-    <div className="mh1 mb2 user-form">
-      <div className="user-form--left">
+    <div className="mh1 mb2 media--justify-around">
+      <div className="media--flex-column-m">
         <FormikField
           label="고객명"
           name="companyName"
@@ -42,7 +42,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           required
         />
       </div>
-      <div className="user-form--right">
+      <div className="media--flex-column-m">
         <MealPriceField
           label="식수가격"
           name="mealPrice"
@@ -94,21 +94,21 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
     <RadioButtonFormControl
       label="비지니스 타입"
       icon="bankAccount"
-      formClassName="user-form--radioBtn"
+      formClassName="form--radioBtn"
       component={<BusinessTypeOptions name="businessType" />}
       required
     />
     <RadioButtonFormControl
       label="입금 계좌번호"
       icon="bankAccount"
-      formClassName="user-form--radioBtn"
+      formClassName="form--radioBtn"
       component={
         <BankAccountOptions name="bankAccountId" bankAccount={bankAccount} />
       }
       required
     />
-    <div className="edit-userform--bottom">
-      <div className="edit-userform--bottom-right">
+    <div className="media--reverse-between">
+      <div>
         <Button
           typeValue="button"
           variantValue="outlined"
@@ -124,8 +124,8 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           isSubmitting={isSubmitting}
         />
       </div>
-      <div className="edit-userform--bottom-delete">
-        <div className="edit-userform--bottom-delete-icon">
+      <div className="reverse-between--icon-box">
+        <div className="reverse-between--icon">
           <IconButton
             name="delete"
             width="33"
@@ -134,18 +134,18 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
             handleClick={() => showSubModal('delete')}
           />
         </div>
-        <div className="flex edit-userform--bottom-delete-message">
-          <IconMessage
-            name="warning"
-            width="25"
-            height="25"
-            viewBox="0 0 25 25"
-            fillOuter="#ed4337"
-            fillInner="#ffffff"
-            text="고객에 관한 모든 정보가 삭제됩니다."
-            classes="icon-message--warning edit-userform--bottom-delete-message--p"
-          />
-        </div>
+        <IconMessage
+          name="warning"
+          width="25"
+          height="25"
+          viewBox="0 0 25 25"
+          fillOuter="#ed4337"
+          fillInner="#ffffff"
+          text="고객에 관한 모든 정보가 삭제됩니다."
+          position="end"
+          iconBoxStyle="reverse-between--icon-msg"
+          textStyle="icon-message--warning reverse-between--icon-msg--p"
+        />
       </div>
     </div>
   </React.Fragment>

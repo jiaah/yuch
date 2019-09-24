@@ -57,64 +57,66 @@ const EndServiceFormBox = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mt4 mb2 user-form center user-form--service">
-        <div className="user-form--service-checkbox">
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={state.endService}
-                onChange={handleChange('endService')}
-                value="endService"
-              />
-            }
-            label="서비스 종료"
+      <div className="mh2">
+        <div className="mh1 media--justify-around end-of-service">
+          <div className="end-of-service-checkbox">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={state.endService}
+                  onChange={handleChange('endService')}
+                  value="endService"
+                />
+              }
+              label="서비스 종료"
+            />
+          </div>
+          <TextField
+            id="date"
+            label="적용 일자"
+            type="date"
+            defaultValue={endDate}
+            margin="normal"
+            className="end-of-service-date"
+            error={today > checkedDate}
+            helperText="금일부터 등록 가능"
+            onChange={handleChange('date')}
+            required={state.endService}
+            disabled={!state.endService}
           />
         </div>
-        <TextField
-          id="date"
-          label="적용 일자"
-          type="date"
-          defaultValue={endDate}
-          margin="normal"
-          className="user-form--service-date"
-          error={today > checkedDate}
-          helperText="금일부터 등록 가능"
-          onChange={handleChange('date')}
-          required={state.endService}
-          disabled={!state.endService}
+        <FormButton
+          typeValue="submit"
+          variantValue="contained"
+          buttonName="저장"
+          width="medium"
+          isSubmitting={isSubmitting}
         />
       </div>
-      <FormButton
-        typeValue="submit"
-        variantValue="contained"
-        buttonName="저장"
-        width="medium"
-        isSubmitting={isSubmitting}
+      <IconMessage
+        name="info"
+        width="42.5"
+        height="18"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={endServiceMessageA}
+        position="end"
+        iconBoxStyle="pw2"
+        textStyle="icon-message--info f-mini"
       />
-      <div className="flex justify-end pw2 mt4">
-        <IconMessage
-          name="info"
-          width="42.5"
-          height="18"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          classes="icon-message--info f-mini"
-          text={endServiceMessageA}
-        />
-      </div>
-      <div className="flex justify-end pw2">
-        <IconMessage
-          name="info"
-          width="18"
-          height="18"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          classes="icon-message--info f-mini"
-          text={endServiceMessageB}
-        />
-      </div>
+      <IconMessage
+        name="info"
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={endServiceMessageB}
+        position="end"
+        iconBoxStyle="pw2 pt2"
+        textStyle="icon-message--info f-mini"
+      />
     </form>
   );
 };

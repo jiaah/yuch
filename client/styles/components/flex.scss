@@ -19,3 +19,18 @@
     justify-content: space-around;
   }
 }
+
+.media--flex-column-m {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.media--reverse-between {
+  @include for-desktop-up {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}

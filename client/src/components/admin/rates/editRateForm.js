@@ -41,7 +41,6 @@ const EditUserForm = ({
       />
     </div>
     <IconMessage
-      position="center"
       name="info"
       width="18"
       height="18"
@@ -49,7 +48,8 @@ const EditUserForm = ({
       fillOuter="#2196F3"
       fillInner="#ffffff"
       text={data.updateRateMessage}
-      classes="icon-message--info f-mini"
+      position="center"
+      textStyle="icon-message--info f-mini"
     />
   </React.Fragment>
 );

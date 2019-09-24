@@ -10,12 +10,13 @@ const IconMessage = ({
   fillInner,
   fillOuter,
   text,
-  classes,
+  iconBoxStyle,
   position,
+  textStyle,
 }) => {
   const positioning = position === 'center' ? 'justify-center' : 'justify-end';
   return (
-    <div className={`flex ${positioning}`}>
+    <div className={`flex ${positioning} ${iconBoxStyle}`}>
       <Icon
         name={name}
         width={width}
@@ -24,7 +25,7 @@ const IconMessage = ({
         fillOuter={fillOuter}
         fillInner={fillInner}
       />
-      <div className={`ml2 ${classes}`}>{text}</div>
+      <div className={`ml2 ${textStyle}`}>{text}</div>
     </div>
   );
 };
