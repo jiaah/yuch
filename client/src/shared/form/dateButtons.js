@@ -30,7 +30,7 @@ const DateButtons = ({
       fetchData(newDate);
       return window.location.reload(true);
     }
-    return addFlashMessage('info', '존재하는 데이터가 없습니다.');
+    return addFlashMessage('info', '존재하지 않는 페이지입니다.');
   };
 
   const handleDateForward = async newDate => {
