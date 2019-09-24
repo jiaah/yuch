@@ -15,8 +15,8 @@ const EditUserForm = ({
   isSubmitting,
 }) => (
   <React.Fragment>
-    <div className="mh2 rate-edit-form">
-      <div className="flex justify-center">
+    <div className="mh2 media--justify-center">
+      <div className="mh1">
         <MealPriceField
           label="변동가격"
           name="reservePrice"
@@ -32,28 +32,25 @@ const EditUserForm = ({
           handleSelectChange={handleSelectChange}
         />
       </div>
-      <div className="rate-edit-form--btn">
-        <FormButton
-          typeValue="submit"
-          variantValue="contained"
-          buttonName="수정"
-          width="medium"
-          isSubmitting={isSubmitting}
-        />
-      </div>
-    </div>
-    <div className="flex justify-end pw3">
-      <IconMessage
-        name="info"
-        width="18"
-        height="18"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={data.updateRateMessage}
-        classes="icon-message--info f-mini"
+      <FormButton
+        typeValue="submit"
+        variantValue="contained"
+        buttonName="수정"
+        width="medium"
+        isSubmitting={isSubmitting}
       />
     </div>
+    <IconMessage
+      position="center"
+      name="info"
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fillOuter="#2196F3"
+      fillInner="#ffffff"
+      text={data.updateRateMessage}
+      classes="icon-message--info f-mini"
+    />
   </React.Fragment>
 );
 

@@ -23,13 +23,13 @@
 }
 
 @mixin for-desktop-up {
-  @media (min-width: 1000px) {
+  @media (min-width: 960px) {
     @content;
   }
 }
 
 @mixin for-m-desktop-up {
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     @content;
   }
 }

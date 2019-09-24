@@ -33,7 +33,9 @@
 }
 
 .icon-message--info {
-  margin-top: -.91px;
+  @include for-desktop-up {
+    margin-top: -2px;
+  }
 }
 
 .icon-print {

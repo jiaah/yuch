@@ -7,11 +7,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = theme => ({
   formControl: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    marginTop: '16px',
-    marginBottom: '8px',
-    minWidth: 180,
+    width: 200,
+    marginTop: '30px',
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '40px',
+      marginTop: '18px',
+      marginBottom: '11px',
+    },
   },
 });
 

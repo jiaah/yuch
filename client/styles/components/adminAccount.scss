@@ -1,22 +1,5 @@
-/* Catering Rates */
-.rate-edit-form {
-  @include for-big-desktop-up {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.rate-edit-form--btn {
-  @include for-big-desktop-up {
-    margin-left: 2em;
-    margin-top: 9px;
-  }
-}
-
 /* Bank Account */
 .bank--container {
-  margin: 3em auto;
-  text-align: center;
   width: 90vw;
 
   @include for-desktop-up {

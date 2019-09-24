@@ -7,14 +7,14 @@ import VerificationMessage from './verificationMessage';
 const AdminVerificationForm = ({ isSubmitting, confirmType }) => (
   <div className="mh3 lh-3 mh-auto">
     <VerificationMessage type={confirmType} />
-    <div className="flex justify-center mt4">
+    <div className="media--justify-center mt4">
       <PasswordField
         label="비밀번호"
         name="password"
-        styleName="textFieldC"
+        styleName="textFieldG"
         variant="outlined"
       />
-      <div className="ml3 mt2">
+      <div className="mt2">
         <FormButton
           typeValue="submit"
           variantValue="contained"

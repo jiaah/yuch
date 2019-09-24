@@ -1,14 +1,22 @@
-.container {
+.container-a {
   margin: 3em auto;
   text-align: center;
+}
 
-  @include for-desktop-up {
-    max-width: 1500;
+.container-b {
+  margin: 2.5em auto;
+  text-align: center;
+  max-width: 450px;
+
+  @include for-tablet-portrait-up {
+    margin: 4em auto;
+    max-width: 1000px;
   }
 }
 
 .w-95 {
   width: 95vw;
+  max-width: 1500px;
 }
 
 // responsive width
@@ -17,6 +25,7 @@
 
   @include for-desktop-up {
     width: 80vw;
+    max-width: 1500px;
   }
 }
 
@@ -42,5 +51,11 @@
   @include for-desktop-up {
     min-width: 400px;
     width: 20vw;
+  }
+}
+
+.max-width-1500 {
+  @include for-desktop-up {
+    max-width: 1500px;
   }
 }

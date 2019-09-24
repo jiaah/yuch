@@ -11,18 +11,22 @@ const IconMessage = ({
   fillOuter,
   text,
   classes,
-}) => (
-  <React.Fragment>
-    <Icon
-      name={name}
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      fillOuter={fillOuter}
-      fillInner={fillInner}
-    />
-    <div className={`ml2 ${classes}`}>{text}</div>
-  </React.Fragment>
-);
+  position,
+}) => {
+  const positioning = position === 'center' ? 'justify-center' : 'justify-end';
+  return (
+    <div className={`flex ${positioning}`}>
+      <Icon
+        name={name}
+        width={width}
+        height={height}
+        viewBox={viewBox}
+        fillOuter={fillOuter}
+        fillInner={fillInner}
+      />
+      <div className={`ml2 ${classes}`}>{text}</div>
+    </div>
+  );
+};
 
 export default IconMessage;

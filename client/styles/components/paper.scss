@@ -1,3 +1,18 @@
+// modal && paper
+.box-container {
+  width: 80vw;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+
+  @include for-desktop-up {
+    width: 80vw;
+    min-width: 700px;
+  }
+}
+
+// paper
 .paper {
   @include for-big-desktop-up {
     display: flex;
@@ -28,19 +43,4 @@
 
 .paper-padding {
   padding: 1em 2em;
-}
-
-
-// modal && paper
-.box-container {
-  width: 80vw;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-
-  @include for-desktop-up {
-    width: 80vw;
-    min-width: 700px;
-  }
 }

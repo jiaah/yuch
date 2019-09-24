@@ -63,7 +63,7 @@ const BankAccountContainer = ({
   };
 
   return (
-    <div className="bank--container">
+    <div className="container-a bank--container">
       <h2>유청 은행 계좌</h2>
       <div className="paper-label-box justify-end">
         <div className="flex">

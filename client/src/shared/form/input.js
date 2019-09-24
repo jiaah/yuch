@@ -28,7 +28,7 @@ const styles = theme => ({
     },
   },
   // [C,D,E] create/edit user account forms
-  // [C] bank account, confirm admin password
+  // [C] bank account
   textFieldC: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -50,9 +50,18 @@ const styles = theme => ({
   },
   // rate form : reservePrice
   textFieldF: {
+    width: 200,
+  },
+  // admin verification
+  textFieldG: {
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(3),
-    width: 180,
+    marginRight: theme.spacing(1),
+    width: 220,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing(2.2),
+      marginRight: theme.spacing(2.2),
+      width: 260,
+    },
   },
 });
 
