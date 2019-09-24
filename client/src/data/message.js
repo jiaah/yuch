@@ -154,7 +154,7 @@ export const deleteBankAccountMsg = (
 );
 
 export const userCateringMsg = (
-  <div className="user--notice">
+  <div className="notice">
     <p className="pb3 b">- &#8201;금일 식수 변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
       중식
@@ -170,7 +170,7 @@ export const userCateringMsg = (
 );
 
 export const adminCateringMsg = (
-  <div className="user--notice">
+  <div className="notice">
     <p className="pb3 b">- &#8201;고객 금일 식수 변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
       중식
@@ -218,7 +218,7 @@ export const endServiceMessageB = (
 );
 
 export const restoSalesMsg = (
-  <div className="user--notice">
+  <div className="notice">
     <p className="pb3 b">- &#8201;식사 시간&#8201; &#45;</p>
     <p className="pb3 b">
       중식 &#58;&#8201;&#8201; 11 시 30 분 &#126; 13 시 30 분<br />
