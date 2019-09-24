@@ -76,7 +76,9 @@ const Input = ({
       name === 'dinnerQty' ||
       name === 'lateNightSnackQty' ||
       name === 'mealPrice' ||
-      name === 'reservePrice'
+      name === 'reservePrice' ||
+      name === 'lunch' ||
+      name === 'dinner'
     ) {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
@@ -103,9 +105,7 @@ const Input = ({
       name === 'businessType' ||
       name === 'accountHolder' ||
       name === 'bankName' ||
-      name === 'accountNo' ||
-      name === 'lunch' ||
-      name === 'dinner'
+      name === 'accountNo'
     ) {
       value = inputValue;
     }

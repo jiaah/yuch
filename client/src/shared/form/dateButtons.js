@@ -11,6 +11,7 @@ import {
 } from '../../utils/date';
 
 const DateButtons = ({
+  reload,
   monthlyUnit,
   startTime,
   endTime,
@@ -28,7 +29,10 @@ const DateButtons = ({
     if (newDate >= startTime) {
       await updateDate(newDate);
       fetchData(newDate);
-      return window.location.reload(true);
+      if (reload) {
+        return window.location.reload(true);
+      }
+      return null;
     }
     return addFlashMessage('info', '존재하지 않는 페이지입니다.');
   };
@@ -37,7 +41,10 @@ const DateButtons = ({
     if (newDate < endTime) {
       await updateDate(newDate);
       fetchData(newDate);
-      return window.location.reload(true);
+      if (reload) {
+        return window.location.reload(true);
+      }
+      return null;
     }
     return addFlashMessage('info', dateForwardMessage);
   };

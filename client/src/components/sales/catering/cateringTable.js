@@ -44,7 +44,13 @@ const CateringTable = ({
 
   const handleChange = (e, name, id) => {
     const { value } = e.target;
-    const convertedValue = value === '' ? null : value;
+    let convertedValue;
+
+    if (value !== '') {
+      convertedValue = isNaN(value) ? value : parseInt(value, 10);
+    } else {
+      convertedValue = null;
+    }
 
     setDataToDisplay(
       dataToDisplay.map(

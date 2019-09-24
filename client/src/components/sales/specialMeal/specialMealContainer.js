@@ -33,6 +33,7 @@ const SpecialMealContainer = ({
       </h2>
       <React.Fragment>
         <DateButtons
+          reload={true}
           monthlyUnit={true}
           startTime={twoYearsAgo}
           endTime={inTwoYears}

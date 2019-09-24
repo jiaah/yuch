@@ -16,7 +16,6 @@ const CateringFormBox = ({
     const data = { ...values, updateDate };
 
     const res = updateUserCatering(catering.userId, data);
-
     if (!res.error) {
       addFlashMessage('success', `저장되었습니다.`);
     }

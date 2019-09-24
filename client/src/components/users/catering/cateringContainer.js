@@ -29,7 +29,6 @@ const CateringContainer = ({
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
-
     if (res.error) {
       setCatering({
         date: dateInKorean,
@@ -63,6 +62,7 @@ const CateringContainer = ({
       {catering && (
         <React.Fragment>
           <DateButtons
+            reload={true}
             startTime={startTime}
             endTime={inAWeek}
             formattedDate={formattedDate}

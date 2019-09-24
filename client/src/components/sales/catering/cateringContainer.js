@@ -61,7 +61,8 @@ const CateringContainer = ({
 
   const handleTableRowClick = id => {
     onfocusOnSelectdRow(id);
-    if (editIndex) endEditing();
+    // if selected row is editing row, do not close editing mode.
+    if (id !== editIndex) endEditing();
     if (selectedItemValue) resetSelectedItemValue();
   };
 
@@ -78,6 +79,7 @@ const CateringContainer = ({
         식수 현황
       </h2>
       <DateButtons
+        reload={true}
         monthlyUnit={false}
         formattedDate={formattedDate}
         startTime={startTime}
