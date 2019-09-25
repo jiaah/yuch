@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { today, inAWeek, dateInKorean } from '../../../helpers/moment';
+import { inAWeek, dateInKorean } from '../../../helpers/moment';
 import {
   isLunchQtyChangeDisabled,
   isDinnerQtyChangeDisabled,
@@ -53,6 +53,13 @@ const CateringContainer = ({
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
+  const endDate = catering && catering.endDate ? catering.endDate : inAWeek;
+  const formattedEndDate =
+    catering && catering.endDate && formatToDateForm(catering.endDate);
+  const message =
+    catering && catering.endDate
+      ? `${formattedEndDate} 일자로 고객님의 위탁급식 서비스가 종료될 예정입니다.`
+      : '7일 내의 식수량만 미리 등록 할 수 있습니다.';
 
   return (
     <div className="container-b">
@@ -64,20 +71,17 @@ const CateringContainer = ({
           <DateButtons
             reload={true}
             startTime={startTime}
-            endTime={inAWeek}
+            endTime={endDate}
             formattedDate={formattedDate}
             monthlyUnit={false}
             date={date}
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
-            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
+            dateForwardMessage={message}
           />
           <div className="input-table">
             <CateringFormBox
-              today={today}
-              date={date}
-              id={id}
               catering={catering}
               updateUserCatering={updateUserCatering}
               addFlashMessage={addFlashMessage}

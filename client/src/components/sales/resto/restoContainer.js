@@ -20,14 +20,15 @@ const RestoContainer = ({
   addFlashMessage,
 }) => {
   const [resto, setResto] = useState(null);
+
   const mockData = [
     { date: '20190923', lunch: 20, dinner: 40 },
     { date: '20190924', lunch: 10, dinner: 5 },
   ];
 
   const dataFilter = when => {
-    // const filteredData = restoSales.filter(r => r.date === when);
     const filteredData = mockData.filter(r => r.date === when);
+    // const filteredData = restoSales && restoSales.filter(r => r.date === when);
     return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
   };
 

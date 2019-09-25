@@ -6,6 +6,7 @@ export const getRestoSales = date => async dispatch => {
   try {
     const res = await Axios.get('/resto', { params: { date } });
     const { data } = res;
+    console.log('data: ', data);
     dispatch({
       type: types.FETCH_RESTO_SALES,
       api: 'getRestoSales',

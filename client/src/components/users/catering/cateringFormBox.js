@@ -5,7 +5,6 @@ import CateringForm from './cateringForm';
 import { cateringValidation } from '../../formValidation';
 
 const CateringFormBox = ({
-  date,
   catering,
   updateUserCatering,
   addFlashMessage,
@@ -39,7 +38,6 @@ const CateringFormBox = ({
         <Form className="flex flex-column-m items-center justify-center">
           <CateringForm
             {...props}
-            date={date}
             endDate={catering.endDate}
             isLunchQtyDisabled={isLunchQtyDisabled}
             isDinnerQtyDisabled={isDinnerQtyDisabled}
