@@ -4,6 +4,7 @@ import Loader from '../../loader';
 import { editUserAccountValidation } from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
+import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
 
 const DeleteUser = Loader({
   loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
@@ -31,12 +32,18 @@ const EditUserModal = ({
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
+
   const title =
     subModal === 'service'
       ? `${clickedUserData.companyName}`
       : subModal === 'delete'
         ? ''
         : '고객 계정';
+
+  const formattedUserEndDate = clickedUserData.endDate
+    ? formatWithDash(clickedUserData.endDate)
+    : clickedUserData.endDate;
+
   return (
     <div className="container">
       <Modal
@@ -54,7 +61,9 @@ const EditUserModal = ({
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               userId={clickedUserData.id}
+              formattedUserEndDate={formattedUserEndDate}
               handleEndingService={handleEndingService}
+              formatToYYYYMMDD={formatToYYYYMMDD}
             />
           ) : subModal === 'delete' ? (
             <DeleteUser

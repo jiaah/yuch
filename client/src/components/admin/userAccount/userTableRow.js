@@ -53,8 +53,6 @@ const UserTableRow = ({
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
 
-  const endServiceDate = row.endDate ? row.endDate : '';
-
   return (
     <React.Fragment>
       <TableRow
@@ -118,7 +116,7 @@ const UserTableRow = ({
           {businessType}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {endServiceDate}
+          {row.endDate}
         </TableCell>
       </TableRow>
     </React.Fragment>

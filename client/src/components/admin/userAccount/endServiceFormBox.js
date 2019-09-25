@@ -4,24 +4,25 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import { formattedToday } from '../../../helpers/moment';
-import { formatToYYYYMMDD } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
 import { endServiceMessageA, endServiceMessageB } from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
 
 const EndServiceFormBox = ({
   userId,
+  formattedUserEndDate,
   // actions
   handleEndingService,
   addFlashMessage,
   // funcs
   closeSubModal,
   handleCloseModal,
+  formatToYYYYMMDD,
 }) => {
   // state endService & date -> values from db : fomattedToday
   const [state, setState] = useState({
-    endService: false,
-    endDate: formattedToday,
+    endService: !!formattedUserEndDate,
+    endDate: formattedUserEndDate || formattedToday,
   });
   const { endService, endDate } = state;
   const [isSubmitting, setSubmitting] = useState(false);
@@ -72,15 +73,15 @@ const EndServiceFormBox = ({
             />
           </div>
           <TextField
-            id="date"
+            id="endDate"
             label="적용 일자"
             type="date"
-            defaultValue={endDate}
+            value={endDate}
             margin="normal"
             className="end-of-service-date"
             error={today > checkedDate}
             helperText="금일부터 등록 가능"
-            onChange={handleChange('date')}
+            onChange={handleChange('endDate')}
             required={state.endService}
             disabled={!state.endService}
           />
