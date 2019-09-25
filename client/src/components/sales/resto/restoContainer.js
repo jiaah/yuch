@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { tomorrow, lastMonth, dateInKorean } from '../../../helpers/moment';
+import { formatToDateForm } from '../../../utils/date';
 import RestoFormBox from './restoFormBox';
 import DateButtons from '../../../shared/form/dateButtons';
 import { restoSalesMsg } from '../../../data/message';
@@ -19,12 +20,11 @@ const RestoContainer = ({
   addFlashMessage,
 }) => {
   const [resto, setResto] = useState(null);
-  console.log('resto: ', resto);
-
   const mockData = [
     { date: '20190923', lunch: 20, dinner: 40 },
     { date: '20190924', lunch: 10, dinner: 5 },
   ];
+
   const dataFilter = when => {
     // const filteredData = restoSales.filter(r => r.date === when);
     const filteredData = mockData.filter(r => r.date === when);
@@ -49,11 +49,11 @@ const RestoContainer = ({
   useEffect(() => {
     // non-interactive data with clients
     // do not make api GET request every render
-    if (restoSales.length === 0) {
-      initfetchData(date);
-    } else {
-      fetchData(date);
-    }
+    // if (restoSales.length === 0) {
+    initfetchData(date);
+    // } else {
+    //   fetchData(date);
+    // }
     return () => resetDate();
   }, []);
 
