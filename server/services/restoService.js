@@ -5,18 +5,32 @@ const findOneByDate = async date => {
   try {
     const parsedDate = moment(date, 'YYYYMMDD');
     const formatedDate = parsedDate.format('YYYY-MM-DD');
+    const lastMonthFormatedDate = parsedDate
+      .subtract(1, 'months')
+      .startOf('month')
+      .format('YYYY-MM-DD');
 
     let result = await Restaurant.query()
+      .select('date', 'lunch', 'dinner')
       .where({ date: formatedDate })
       .first();
 
-    if (!result) {
-      result = await Restaurant.query().insertAndFetch({
-        date: formatedDate,
+    if (result) {
+      result.date = moment(result.date).format('YYYYMMDD');
+    } else {
+      result = await Restaurant.query()
+        .select('date', 'lunch', 'dinner')
+        .whereRaw(
+          `date BETWEEN '${lastMonthFormatedDate}' AND '${formatedDate}'`,
+        )
+        .orderBy('date', 'asc');
+
+      result.map(obj => {
+        const newResult = obj;
+        newResult.date = moment(newResult.date).format('YYYYMMDD');
+        return newResult;
       });
     }
-
-    result.date = moment(result.date).format('YYYYMMDD');
 
     return result;
   } catch (error) {

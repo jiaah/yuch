@@ -4,29 +4,55 @@ const Users = require('../models/Users');
 
 const findOneByUserIdWithDate = async (userId, date) => {
   try {
-    const user = await Users.query()
-      .findById(userId)
-      .first();
     const parsedDate = moment(date, 'YYYYMMDD');
     const formatedDate = parsedDate.format('YYYY-MM-DD');
+
     const dayOfWeek = parsedDate.day();
-    let result = await Catering.query()
-      .where({ userId, date: formatedDate })
+
+    const user = await Users.query()
+      .findById(userId)
       .first();
 
     if (!user) {
       throw new Error('Not Exists User');
     }
 
+    let result = await Catering.query()
+      .select(
+        'catering.userId',
+        'users.companyName',
+        'catering.date',
+        'catering.lunchQty',
+        'catering.dinnerQty',
+        'catering.lateNightSnackQty',
+        'users.endDate',
+      )
+      .innerJoin('users', 'users.id', 'catering.userId')
+      .where({ userId, date: formatedDate })
+      .first();
+
     if (!result) {
       if (![0, 6].includes(dayOfWeek)) {
-        result = await Catering.query().insertAndFetch({
+        await Catering.query().insert({
           userId,
           date: formatedDate,
           lunchQty: user.lunchQty,
           dinnerQty: user.dinnerQty,
           lateNightSnackQty: user.lateNightSnackQty,
         });
+        result = await Catering.query()
+          .select(
+            'catering.userId',
+            'users.companyName',
+            'catering.date',
+            'catering.lunchQty',
+            'catering.dinnerQty',
+            'catering.lateNightSnackQty',
+            'users.endDate',
+          )
+          .innerJoin('users', 'users.id', 'catering.userId')
+          .where({ userId, date: formatedDate })
+          .first();
       } else {
         result = {
           userId,
@@ -40,6 +66,9 @@ const findOneByUserIdWithDate = async (userId, date) => {
     }
 
     result.date = moment(result.date).format('YYYYMMDD');
+    result.endDate = user.endDate
+      ? moment(user.endDate).format('YYYYMMDD')
+      : null;
 
     if (result.lunchQty === 0) {
       result.lunchQty = null;
@@ -75,6 +104,16 @@ const updateByUserIdWithDate = async (
 
     if (user) {
       const catering = await Catering.query()
+        .select(
+          'catering.userId',
+          'users.companyName',
+          'catering.date',
+          'catering.lunchQty',
+          'catering.dinnerQty',
+          'catering.lateNightSnackQty',
+          'users.endDate',
+        )
+        .innerJoin('users', 'users.id', 'catering.userId')
         .where({ userId, date: formatedDate })
         .first();
 
@@ -89,16 +128,32 @@ const updateByUserIdWithDate = async (
           });
         result = await findOneByUserIdWithDate(userId, date);
       } else {
-        result = await Catering.query().insertAndFetch({
+        await Catering.query().insert({
           userId,
           date: formatedDate,
           lunchQty,
           dinnerQty,
           lateNightSnackQty,
         });
+        result = await Catering.query()
+          .select(
+            'catering.userId',
+            'users.companyName',
+            'catering.date',
+            'catering.lunchQty',
+            'catering.dinnerQty',
+            'catering.lateNightSnackQty',
+            'users.endDate',
+          )
+          .innerJoin('users', 'users.id', 'catering.userId')
+          .where({ userId, date: formatedDate })
+          .first();
       }
 
       result.date = moment(result.date).format('YYYYMMDD');
+      result.endDate = user.endDate
+        ? moment(user.endDate).format('YYYYMMDD')
+        : null;
 
       if (result.lunchQty === 0) {
         result.lunchQty = null;
@@ -122,7 +177,7 @@ const getLists = async date => {
   try {
     const results = [];
     const users = await Users.query()
-      .where({ isAdmin: false, businessType: 'catering' })
+      .where({ isAdmin: false, businessType: 'catering', endDate: null })
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
@@ -130,7 +185,12 @@ const getLists = async date => {
       // eslint-disable-next-line no-await-in-loop
       const result = await findOneByUserIdWithDate(user.id, date);
       results.push(
-        Object.assign({}, result, { companyName: user.companyName }),
+        Object.assign({}, result, {
+          companyName: user.companyName,
+          endDate: user.endDate
+            ? moment(user.endDate).format('YYYYMMDD')
+            : null,
+        }),
       );
     }
 
@@ -166,17 +226,10 @@ const setLists = async (date, data) => {
 
 const resetQty = async (userId, date) => {
   try {
-    const parsedDate = moment(date, 'YYYYMMDD');
-    const formatedDate = parsedDate.format('YYYY-MM-DD');
     await Catering.query()
-      .patch({
-        lunchQty: 0,
-        dinnerQty: 0,
-        lateNightSnackQty: 0,
-        updated_at: new Date().toISOString(),
-      })
+      .delete()
       .where({ userId })
-      .where('date', '>=', formatedDate);
+      .where('date', '>=', date);
   } catch (error) {
     throw error;
   }

@@ -20,6 +20,14 @@ exports.loginUser = async (req, res, next) => {
       throw error;
     }
 
+    const isActive = await userService.isActive(user.id);
+
+    if (!isActive) {
+      error = new Error('Inactivated user');
+      error.status = 401;
+      throw error;
+    }
+
     const isMatch = await util.comparePassword(password, user.password);
 
     if (!isMatch) {
@@ -230,7 +238,7 @@ exports.refreshToken = async (req, res, next) => {
   try {
     const { refreshToken } = req.body;
 
-    const refreshTokenVerify = jwt.verify(refreshToken, process.env.secret);
+    // const refreshTokenVerify = jwt.verify(refreshToken, process.env.secret);
 
     const decodedRefreshToken = jwtDecode(refreshToken);
 

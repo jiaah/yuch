@@ -12,6 +12,7 @@ const {
 module.exports = {
   development: {
     client: 'pg',
+    debug: true,
     connection: {
       user: PG_USER,
       host: PG_HOST,

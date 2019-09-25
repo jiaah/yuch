@@ -2,9 +2,23 @@ const jwtDecode = require('jwt-decode');
 const Users = require('../models/Users');
 const util = require('../lib/util');
 
+const inActive = async (userId, endDate) =>
+  Users.query().patchAndFetchById(userId, { endDate });
+
+const active = async userId =>
+  Users.query().patchAndFetchById(userId, { endDate: null });
+
 const isValid = async (id, refreshToken) => {
   const user = await Users.query().findOne({ id, refreshToken });
   return !!user;
+};
+
+const isActive = async id => {
+  const user = await Users.query()
+    .where({ id })
+    .whereRaw('"endDate" <= NOW()')
+    .first();
+  return !user;
 };
 
 const isAdmin = async id => {
@@ -56,6 +70,9 @@ const reNewRefreshToken = async id => {
 };
 
 module.exports = {
+  isActive,
+  inActive,
+  active,
   isAdmin,
   emptyRefreshToken,
   findOneById,
