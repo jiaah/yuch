@@ -118,7 +118,6 @@ const CateringContainer = ({
             editIndex={editIndex}
             handleTableRowClick={handleTableRowClick}
             selectedRow={selectedRow}
-            date={date}
           />
         )}
       </div>

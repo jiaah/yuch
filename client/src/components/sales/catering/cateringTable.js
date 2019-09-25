@@ -25,7 +25,6 @@ const CateringTable = ({
   editIndex,
   selectedRow,
   // global states
-  date,
   selectedItemValue,
   // actions
   updateUserCatering,
@@ -153,7 +152,6 @@ const CateringTable = ({
                     isSubmitting={isSubmitting}
                     handleTableRowClick={handleTableRowClick}
                     selectedRow={selectedRow}
-                    date={date}
                     lunchQtyErr={lunchQtyErr}
                     dinnerQtyErr={dinnerQtyErr}
                     lateNightSnackQtyErr={lateNightSnackQtyErr}
