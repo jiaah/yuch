@@ -184,7 +184,8 @@ export const adminCateringMsg = (
       <br />
       &#42; {admin.companyName}은 지난 일자에 대한 식수변경은 이전 달 까지만
       가능합니다&#46;
-      <br />
+    </p>
+    <p className="f-mini pt2">
       &#42; <span className="c-point2">인보이스 발행 후 식수변경</span>을 한
       경우에는 <span className="c-point2">반드시</span> 인보이스 페이지에서{' '}
       <Link className="c-point2 td-none" to="/admin/invoice/users">
@@ -192,6 +193,17 @@ export const adminCateringMsg = (
         업데이트 버튼
       </Link>
       을 눌러주시기 바랍니다&#46;
+    </p>
+    <p className="f-mini pt2">
+      &#42; 휴먼계정으로 전환된 고객의 지난 식수량 변경하는 방법. <br />
+      고객 계정을 활성화 &#8201;&#8594;&#8201;&#8201;
+      <Link className="c-point2 td-none" to="/admin/count/catering/dd">
+        식수현황/위탁급식식수
+      </Link>{' '}
+      에서 변경&#8201;&#8201;&#8594;
+      <br />
+      <span className="c-point2">인보이스 재발행</span>
+      &#8201;&#8201;&#8594;&#8201;&#8201; 다시 휴먼계정으로 전환
     </p>
   </div>
 );
