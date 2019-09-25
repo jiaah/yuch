@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { today, inAWeek, dateInKorean } from '../../../helpers/moment';
+import { inAWeek, dateInKorean } from '../../../helpers/moment';
 import {
   isLunchQtyChangeDisabled,
   isDinnerQtyChangeDisabled,
@@ -53,6 +53,8 @@ const CateringContainer = ({
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
+  // if end-of-service date is reserved, do not open catering page  from the reserved endDate.
+  const endTime = catering && catering.endDate ? endDate : inAWeek;
 
   return (
     <div className="container-b">
@@ -64,7 +66,7 @@ const CateringContainer = ({
           <DateButtons
             reload={true}
             startTime={startTime}
-            endTime={inAWeek}
+            endTime={endTime}
             formattedDate={formattedDate}
             monthlyUnit={false}
             date={date}
@@ -75,9 +77,6 @@ const CateringContainer = ({
           />
           <div className="input-table">
             <CateringFormBox
-              today={today}
-              date={date}
-              id={id}
               catering={catering}
               updateUserCatering={updateUserCatering}
               addFlashMessage={addFlashMessage}
