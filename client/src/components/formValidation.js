@@ -221,3 +221,24 @@ export const restoSalesValidation = Yup.object({
     .positive('1이상의 자연수만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.'),
 });
+
+export const cateringValidation = Yup.object({
+  lunchQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .min(1, '0이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.'),
+  dinnerQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .min(1, '0이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.'),
+  lateNightSnackQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .min(1, '0이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.'),
+});

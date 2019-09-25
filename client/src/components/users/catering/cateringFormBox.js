@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CateringForm from './cateringForm';
+import { cateringValidation } from '../../formValidation';
 
 const CateringFormBox = ({
   date,
@@ -46,7 +47,7 @@ const CateringFormBox = ({
         </Form>
       )}
       onSubmit={handleUpdateCatering}
-      // validationSchema={}
+      validationSchema={cateringValidation}
     />
   );
 };
