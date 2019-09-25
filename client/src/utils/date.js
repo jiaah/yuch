@@ -48,6 +48,7 @@ export const formatToYearDateForm = date =>
 
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
 export const formatWithDash = date => moment(date).format('YYYY-MM-DD');
+export const formatWithSlash = date => moment(date).format('YYYY/MM/DD');
 
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {

@@ -5,6 +5,7 @@ import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import { thisMonth } from '../../../helpers/moment';
+import { formatWithSlash } from '../../../utils/date';
 
 const styles = theme => ({
   resize: {
@@ -52,6 +53,7 @@ const UserTableRow = ({
   // display new mealPrice if reserveDate is thisMonth.
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
+  const formattedDate = row.endDate && formatWithSlash(row.endDate);
 
   return (
     <React.Fragment>
@@ -116,7 +118,7 @@ const UserTableRow = ({
           {businessType}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {row.endDate}
+          {formattedDate}
         </TableCell>
       </TableRow>
     </React.Fragment>
