@@ -27,7 +27,7 @@ exports.editAdminAccount = (req, res) => {
       username,
       contactNo,
       email,
-      updated_at: new Date().toISOString(),
+      updated_at: knex.raw('NOW()'),
     })
     .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
@@ -154,6 +154,7 @@ exports.editUserByAdmin = (req, res) => {
         bankAccountId,
         address,
         businessType,
+        updated_at: knex.raw('NOW()'),
       })
       // .then(() =>
       //   knex('meal_price')
@@ -241,7 +242,7 @@ exports.getCateringRates = (req, res) => {
       'meal_price.updated_at',
     )
     .leftJoin('users', 'meal_price.userId', 'users.id')
-    .orderBy('users.companyName', 'desc')
+    .orderBy('users.companyName', 'asc')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };
