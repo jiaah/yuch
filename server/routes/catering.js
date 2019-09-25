@@ -67,6 +67,7 @@ module.exports = () => {
     isAdmin,
     [
       check('date')
+        .optional({ nullable: true })
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
     ],
