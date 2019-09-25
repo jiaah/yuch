@@ -200,13 +200,22 @@ exports.getUsersList = (req, res) => {
       'users.address',
       'users.businessType',
       'users.updated_at',
+      'users.endDate',
       'meal_price.mealPrice',
       'meal_price.reservePrice',
       'meal_price.reserveDate',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
     .orderBy('users.updated_at', 'desc')
-    .then(users => {
+    .then(async users => {
+      users.map(user => {
+        const newUser = user;
+        newUser.endDate = user.endDate
+          ? moment(user.endDate).format('YYYYMMDD')
+          : null;
+        return newUser;
+      });
+
       knex('bank_account')
         .select('*')
         .then(bankAccounts => res.status(200).json({ users, bankAccounts }))
@@ -218,6 +227,7 @@ exports.getUsersList = (req, res) => {
 exports.getCateringRates = (req, res) => {
   knex('meal_price')
     .whereNot('users.isAdmin', true)
+    .where('users.endDate', null)
     .whereRaw(
       'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
     )
@@ -231,7 +241,7 @@ exports.getCateringRates = (req, res) => {
       'meal_price.updated_at',
     )
     .leftJoin('users', 'meal_price.userId', 'users.id')
-    .orderBy('meal_price.updated_at', 'desc')
+    .orderBy('users.companyName', 'desc')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));
 };

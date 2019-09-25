@@ -1,3 +1,4 @@
+const moment = require('moment');
 const cateringService = require('../services/cateringService');
 const userService = require('../services/userService');
 
@@ -62,10 +63,20 @@ exports.setBatch = async (req, res, next) => {
 
 exports.resetQty = async (req, res, next) => {
   try {
-    const { date } = req.body;
+    const { date, endService } = req.body;
     const { userId } = req.params;
 
-    await cateringService.resetQty(userId, date);
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
+
+    if (endService) {
+      // inactive of user service
+      await userService.inActive(userId, formatedDate);
+      await cateringService.resetQty(userId, formatedDate);
+    } else {
+      // active of user service
+      await userService.active(userId);
+    }
 
     return res.status(200).json();
   } catch (error) {
