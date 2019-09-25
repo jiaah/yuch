@@ -38,7 +38,7 @@ const CateringForm = ({ isSubmitting }) => (
           <tr>
             <td className="pw1 pt3 vr">
               <FormikField
-                name="lunchQty"
+                name="lunch"
                 type="text"
                 icon="catering"
                 styleName="textFieldC"
@@ -48,7 +48,7 @@ const CateringForm = ({ isSubmitting }) => (
             </td>
             <td className="pw1">
               <FormikField
-                name="dinnerQty"
+                name="dinner"
                 type="text"
                 icon="catering"
                 styleName="textFieldC"

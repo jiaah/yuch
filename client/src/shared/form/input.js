@@ -118,7 +118,6 @@ const Input = ({
     ) {
       value = inputValue;
     }
-
     return setFieldValue(name, value, shouldValidate);
   };
 

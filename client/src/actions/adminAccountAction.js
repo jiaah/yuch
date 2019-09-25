@@ -120,7 +120,7 @@ export const handleEndingService = (
   try {
     await Axios.patch(`/catering/endofservice/user/${userId}`, {
       endService,
-      endDate: formattedDate,
+      date: formattedDate,
     });
     return dispatch({
       type: types.HTTP_SUCCESS,

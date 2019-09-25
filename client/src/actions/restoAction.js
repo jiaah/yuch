@@ -25,7 +25,7 @@ export const getRestoSales = date => async dispatch => {
 export const updateRestoSales = data => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateRestoSales' });
   try {
-    const res = await Axios.patch('/resto', { data });
+    const res = await Axios.patch('/resto', data);
     dispatch({
       type: types.UPDATE_RESTO_SALES,
       api: 'updateRestoSales',
