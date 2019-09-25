@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import {
-  today,
-  tomorrow,
-  lastMonth,
-  dateInKorean,
-} from '../../../helpers/moment';
+import { tomorrow, lastMonth, dateInKorean } from '../../../helpers/moment';
 import RestoFormBox from './restoFormBox';
 import DateButtons from '../../../shared/form/dateButtons';
 import { restoSalesMsg } from '../../../data/message';
@@ -77,7 +72,7 @@ const RestoContainer = ({
           <div className="user-catering--form">
             <RestoFormBox
               resto={resto}
-              today={today}
+              date={date}
               updateRestoSales={updateRestoSales}
               addFlashMessage={addFlashMessage}
             />

@@ -11,10 +11,13 @@ const resto = (state = initialState, action) => {
         sales: payload,
       };
     case types.UPDATE_RESTO_SALES: {
-      const index = state.sales.findIndex(s => s === payload.date);
-      if (index) {
-        state.sales.map(s => (s === payload.date ? payload : s));
-      }
+      // console.log(state.sales);
+      // const index =
+      //   state.sales.length !== 0 &&
+      //   state.sales.findIndex(s => s === payload.date);
+      // if (index) {
+      //   state.sales.map(s => (s === payload.date ? payload : s));
+      // }
       return {
         ...state,
         sales: {
