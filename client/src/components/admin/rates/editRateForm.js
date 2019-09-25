@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import MealPriceField from '../../../shared/form/mealPriceField';
+import FormikField from '../../../shared/form/formikField';
 import ExpireDateSelect from './expireDateSelect';
 import FormButton from '../../../shared/form/formButton';
 import IconMessage from '../../../shared/iconMessage';
@@ -17,10 +17,11 @@ const EditUserForm = ({
   <React.Fragment>
     <div className="mh2 media--justify-center">
       <div className="mh1">
-        <MealPriceField
+        <FormikField
           label="변동가격"
           name="reservePrice"
           type="text"
+          icon="money"
           styleName="textFieldF"
           required
         />

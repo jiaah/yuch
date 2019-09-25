@@ -35,7 +35,7 @@ const AdminAccountContainer = ({
   const openPasswordForm = () => setPwdOpen(true);
   const closePasswordForm = () => setPwdOpen(false);
   return (
-    <div className="container">
+    <div className="container-a">
       <h2>Personal Info</h2>
       <p className="pb3 pt2 f-mini">
         유청 서비스를 이용하시는 고객님의 기본정보와 식수량 설정

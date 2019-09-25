@@ -1,7 +1,6 @@
 import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
-import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
 import Button from '../../../shared/form/button';
 
@@ -61,11 +60,11 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         placeholder="35"
       />
     </div>
-    <MealPriceField
+    <FormikField
       label="식수가격"
       name="mealPrice"
       type="text"
-      icon="user"
+      icon="money"
       styleName="textField"
       placeholder="5000"
       disabled

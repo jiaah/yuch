@@ -2,7 +2,6 @@ import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import PasswordField from '../../../shared/form/passwordField';
-import MealPriceField from '../../../shared/form/mealPriceField';
 import FormButton from '../../../shared/form/formButton';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
@@ -57,11 +56,11 @@ const CreateUserForm = props => {
             placeholder="054 - 745 - 0999"
             required
           />
-          <MealPriceField
+          <FormikField
             label="식수가격"
             name="mealPrice"
             type="text"
-            icon="user"
+            icon="money"
             styleName="textFieldC"
             placeholder="5000"
             required

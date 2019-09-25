@@ -40,7 +40,7 @@ const CateringForm = ({ isSubmitting }) => (
               <FormikField
                 name="lunch"
                 type="text"
-                icon="catering"
+                icon="money"
                 styleName="textFieldC"
                 variant="outlined"
                 disabled={false}
@@ -50,7 +50,7 @@ const CateringForm = ({ isSubmitting }) => (
               <FormikField
                 name="dinner"
                 type="text"
-                icon="catering"
+                icon="money"
                 styleName="textFieldC"
                 variant="outlined"
                 disabled={false}

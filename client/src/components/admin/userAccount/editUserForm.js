@@ -1,7 +1,6 @@
 import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
-import MealPriceField from '../../../shared/form/mealPriceField';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
 import BankAccountOptions from './bankAccountOptions';
@@ -43,11 +42,11 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         />
       </div>
       <div className="media--flex-column-m">
-        <MealPriceField
+        <FormikField
           label="식수가격"
           name="mealPrice"
           type="text"
-          icon="user"
+          icon="money"
           styleName="textFieldC"
           disabled
         />
