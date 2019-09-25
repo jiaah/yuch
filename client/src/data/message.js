@@ -182,8 +182,8 @@ export const adminCateringMsg = (
       &#42; {admin.companyName}
       고객은 상단의 변경가능시간에만 식수변경이 가능합니다&#46;
       <br />
-      &#42; {admin.companyName}은 지난 일자에 대한 식수변경은 이전 달 까지만
-      가능합니다&#46;
+      &#42; {admin.companyName}은 지난 일자에 대한 식수변경을 이전 달 1일까지 할
+      수 있습니다&#46;
     </p>
     <p className="f-mini pt2">
       &#42; <span className="c-point2">인보이스 발행 후 식수변경</span>을 한
