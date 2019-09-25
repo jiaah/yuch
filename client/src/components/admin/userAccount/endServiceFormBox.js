@@ -4,8 +4,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import { formattedToday } from '../../../helpers/moment';
+import { firstDayOfLastMonth } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
-import { endServiceMessageA, endServiceMessageB } from '../../../data/message';
+import {
+  endServiceMessageA,
+  endServiceMessageB,
+  endServiceMessageC,
+  endServiceMessageD,
+} from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
 
 const EndServiceFormBox = ({
@@ -53,7 +59,6 @@ const EndServiceFormBox = ({
     return setSubmitting(false);
   };
 
-  const today = formatToYYYYMMDD(formattedToday);
   const checkedDate = formatToYYYYMMDD(endDate);
 
   return (
@@ -79,8 +84,8 @@ const EndServiceFormBox = ({
             value={endDate}
             margin="normal"
             className="end-of-service-date"
-            error={today > checkedDate}
-            helperText="금일부터 등록 가능"
+            error={firstDayOfLastMonth() > checkedDate}
+            helperText="지난달 1일부터 선택가능"
             onChange={handleChange('endDate')}
             required={state.endService}
             disabled={!state.endService}
@@ -96,26 +101,50 @@ const EndServiceFormBox = ({
       </div>
       <IconMessage
         name="info"
-        width="42.5"
+        width="33"
         height="18"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
         text={endServiceMessageA}
-        position="end"
+        position="start"
         iconBoxStyle="pw2"
         textStyle="icon-message--info f-mini"
       />
       <IconMessage
         name="info"
-        width="18"
+        width="15"
+        height="18"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={endServiceMessageC}
+        position="start"
+        iconBoxStyle="pw2 pt3"
+        textStyle="icon-message--info f-mini"
+      />
+      <IconMessage
+        name="info"
+        width="15"
+        height="18"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={endServiceMessageD}
+        position="start"
+        iconBoxStyle="pw2 pt3"
+        textStyle="icon-message--info f-mini"
+      />
+      <IconMessage
+        name="info"
+        width="15"
         height="18"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
         text={endServiceMessageB}
-        position="end"
-        iconBoxStyle="pw2 pt2"
+        position="start"
+        iconBoxStyle="pw2 pt3"
         textStyle="icon-message--info f-mini"
       />
     </form>
