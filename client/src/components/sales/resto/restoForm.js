@@ -11,7 +11,7 @@ const CateringForm = ({ isSubmitting }) => (
           label="중식"
           name="lunch"
           type="text"
-          icon="catering"
+          icon="money"
           styleName="textFieldC"
           variant="outlined"
           disabled={false}
@@ -20,7 +20,7 @@ const CateringForm = ({ isSubmitting }) => (
           label="석식"
           name="dinner"
           type="text"
-          icon="catering"
+          icon="money"
           styleName="textFieldC"
           variant="outlined"
           disabled={false}

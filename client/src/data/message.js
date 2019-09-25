@@ -248,15 +248,9 @@ export const restoSalesMsg = (
       석식 &#58;&#8201;&#8201; 16 시 30 분 &#126; 18 시 00 분<br />
     </p>
     <p className="f-mini">
-      &#42; 중식. 석식 매출 총액을 입력해주세요&#46; <br />
+      &#42; 중식. 석식 <span className="c-point2">매출 총액</span>을
+      입력해주세요&#46; <br />
       &#42; 지난 일자에 대한 매출액 변경은 이전 달 까지만 가능합니다&#46; <br />
-      &#42; <span className="c-point2">인보이스 발행 후 식수변경</span>을 한
-      경우에는 <span className="c-point2">반드시</span> 인보이스 페이지에서{' '}
-      <Link className="c-point2 td-none" to="/admin/invoice/users">
-        {' '}
-        업데이트 버튼
-      </Link>
-      을 눌러주시기 바랍니다&#46;
     </p>
   </div>
 );
