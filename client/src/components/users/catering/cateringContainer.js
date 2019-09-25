@@ -53,8 +53,14 @@ const CateringContainer = ({
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
-  // if end-of-service date is reserved, do not open catering page  from the reserved endDate.
-  const endTime = catering && catering.endDate ? endDate : inAWeek;
+  // if end-of-service date is reserved, do not open catering page from the reserved endDate.
+  const endTime = catering && catering.endDate ? catering.endDate : inAWeek;
+  const formattedEndDate =
+    catering && catering.endDate && formatToDateForm(catering.endDate);
+  const message =
+    catering && catering.endDate
+      ? `${formattedEndDate} 일자로 고객님의 위탁급식 서비스가 종료됩니다.`
+      : '7일 내의 식수량만 미리 등록 할 수 있습니다.';
 
   return (
     <div className="container-b">
@@ -73,7 +79,7 @@ const CateringContainer = ({
             updateDate={updateDate}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
-            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
+            dateForwardMessage={message}
           />
           <div className="input-table">
             <CateringFormBox
