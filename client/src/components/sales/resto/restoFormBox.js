@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import RestoForm from './restoForm';
+import { restoSalesValidation } from '../../formValidation';
 
 const RestoFormBox = ({ resto, date, updateRestoSales, addFlashMessage }) => {
   useEffect(() => {}, [resto]);
@@ -31,7 +32,7 @@ const RestoFormBox = ({ resto, date, updateRestoSales, addFlashMessage }) => {
         </Form>
       )}
       onSubmit={handleUpdateRestoSales}
-      // validationSchema={}
+      validationSchema={restoSalesValidation}
     />
   );
 };
