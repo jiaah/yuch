@@ -39,6 +39,10 @@ const CateringTable = ({
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);
+  // error handler
+  const [lunchQtyErr, setLunchQtyErr] = useState(false);
+  const [dinnerQtyErr, setDinnerQtyErr] = useState(false);
+  const [lateNightSnackQtyErr, setLateNightSnackQtyErr] = useState(false);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
@@ -59,6 +63,50 @@ const CateringTable = ({
     );
   };
 
+  const validation = values => {
+    if (typeof values.lunchQty !== 'number' && values.lunchQty !== null) {
+      setLunchQtyErr(true);
+    } else {
+      setLunchQtyErr(false);
+    }
+    if (typeof values.dinnerQty !== 'number' && values.dinnerQty !== null) {
+      setDinnerQtyErr(true);
+    } else {
+      setDinnerQtyErr(false);
+    }
+    if (
+      typeof values.lateNightSnackQty !== 'number' &&
+      values.lateNightSnackQty !== null
+    ) {
+      setLateNightSnackQtyErr(true);
+    } else {
+      setLateNightSnackQtyErr(false);
+    }
+  };
+
+  const handleApiRequest = async (userId, values) => {
+    if (!lunchQtyErr && !dinnerQtyErr && !lateNightSnackQtyErr) {
+      const res = await updateUserCatering(userId, values);
+      if (res.error) {
+        addFlashMessage(
+          'error',
+          `${
+            values.companyName
+          } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
+        );
+      } else {
+        await Promise.all([
+          addFlashMessage(
+            'success',
+            `${values.companyName} 식수 등록되었습니다.`,
+          ),
+          endEditing(),
+        ]);
+        window.location.reload(true);
+      }
+    }
+  };
+
   const updateMealQty = async userId => {
     await setSubmitting(true);
     const values = await dataToDisplay.filter(row => {
@@ -74,25 +122,9 @@ const CateringTable = ({
       return null;
     });
 
-    const res = await updateUserCatering(userId, values[0]);
-    if (res.error) {
-      addFlashMessage(
-        'error',
-        `${
-          values[0].companyName
-        } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
-      );
-    } else {
-      await Promise.all([
-        addFlashMessage(
-          'success',
-          `${values[0].companyName} 식수 등록되었습니다.`,
-        ),
-        endEditing(),
-      ]);
-    }
-    setSubmitting(false);
-    return window.location.reload(true);
+    await validation(values[0]);
+    await handleApiRequest(userId, values[0]);
+    return setSubmitting(false);
   };
 
   return (
@@ -122,6 +154,9 @@ const CateringTable = ({
                     handleTableRowClick={handleTableRowClick}
                     selectedRow={selectedRow}
                     date={date}
+                    lunchQtyErr={lunchQtyErr}
+                    dinnerQtyErr={dinnerQtyErr}
+                    lateNightSnackQtyErr={lateNightSnackQtyErr}
                   />
                 );
               })}

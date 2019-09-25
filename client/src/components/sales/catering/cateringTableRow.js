@@ -28,12 +28,16 @@ const CateringTableRow = ({
   editIndex,
   isSubmitting,
   selectedRow,
+  lunchQtyErr,
+  dinnerQtyErr,
+  lateNightSnackQtyErr,
   // funcs
   handleChange,
   updateMealQty,
   startEditing,
   endEditing,
   handleTableRowClick,
+  handleTextFieldTouched,
   // actions
   saveSelectedItemValue,
   resetSelectedItemValue,
@@ -46,7 +50,6 @@ const CateringTableRow = ({
     lateNightSnackQty,
     endDate,
   } = row;
-
   // disable edit button when date >= 서비스 종료 일자
   const endService = date >= endDate;
 
@@ -154,6 +157,7 @@ const CateringTableRow = ({
               onChange={e => handleChange(e, 'lunchQty', userId)}
               value={lunch}
               className={textField}
+              error={lunchQtyErr}
             />
           ) : (
             `${lunch}`
@@ -166,6 +170,7 @@ const CateringTableRow = ({
               onChange={e => handleChange(e, 'dinnerQty', userId)}
               value={dinner}
               className={textField}
+              error={dinnerQtyErr}
             />
           ) : (
             `${dinner}`
@@ -178,6 +183,7 @@ const CateringTableRow = ({
               onChange={e => handleChange(e, 'lateNightSnackQty', userId)}
               value={lateNightSnack}
               className={textField}
+              error={lateNightSnackQtyErr}
             />
           ) : (
             `${lateNightSnack}`
