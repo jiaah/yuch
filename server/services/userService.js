@@ -16,7 +16,7 @@ const isValid = async (id, refreshToken) => {
 const isActive = async id => {
   const user = await Users.query()
     .where({ id })
-    .whereRaw('"endDate" <= NOW()')
+    .whereRaw('"endDate" < NOW()')
     .first();
   return !user;
 };
