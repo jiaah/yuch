@@ -10,12 +10,23 @@ const createModal = ({
   // actions
   hideModal,
   createSpecialMeal,
+  addFlashMessage,
 }) => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    await setSubmitting(true);
     const sendingData = { userId: '', ...values };
-    console.log('sendingData: ', sendingData);
     const res = await createSpecialMeal(sendingData);
-    console.log('res: ', res);
+    if (!res.error) {
+      Promise.all([
+        hideModal(),
+        resetForm({}),
+        addFlashMessage('success', `저장되었습니다.`),
+      ]);
+      window.location.reload(true);
+    } else {
+      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
+    return setSubmitting(false);
   };
 
   const initialValues = {

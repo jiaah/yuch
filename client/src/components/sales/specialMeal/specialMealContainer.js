@@ -98,6 +98,7 @@ const SpecialMealContainer = ({
           hideModal={hideModal}
           createSpecialMeal={createSpecialMeal}
           formattedTmr={formattedTmr}
+          addFlashMessage={addFlashMessage}
         />
       )}
     </div>

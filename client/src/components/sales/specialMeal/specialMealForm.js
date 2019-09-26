@@ -14,6 +14,7 @@ const SpecialMealForm = ({ isSubmitting }) => (
           type="text"
           icon="filledUser"
           styleName="textFieldC"
+          placeholder="(한글) 유청"
           required
         />
         <FormikField
@@ -32,6 +33,7 @@ const SpecialMealForm = ({ isSubmitting }) => (
           type="text"
           icon="phone"
           styleName="textFieldC"
+          placeholder="054-745-0999"
           required
         />
         <TimeField styleName="textFieldC" required />
