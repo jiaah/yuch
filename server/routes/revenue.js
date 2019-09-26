@@ -10,9 +10,9 @@ module.exports = () => {
   router.get(
     '/',
     onlyLoggedIn,
-    [query('date').matches(/^[0-9]{6}$/)],
+    [query('date').matches(/^[0-9]{4}$/)],
     validation,
-    revenueController.listsByMonth,
+    revenueController.listsByMonthly,
   );
 
   /* --- Client --- */
@@ -21,7 +21,7 @@ module.exports = () => {
     onlyLoggedIn,
     [query('date').matches(/^[0-9]{4}$/)],
     validation,
-    revenueController.listsByMonthly,
+    revenueController.listsYuchByMonthly,
   );
 
   return router;
