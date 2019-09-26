@@ -3,23 +3,34 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
-import { formatToYearDateForm } from '../../../utils/date';
+import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import * as specialMealActions from '../../../actions/specialMealAction';
 
 const SpecialMealContainer = ({
   date,
+  specialMealActions: {
+    getSpecialMeal,
+    createSpecialMeal,
+    updateSpecialMeal,
+    deleteSpecialMeal,
+  },
   dateTrackerActions: { updateDate, resetDate },
   addFlashMessage,
 }) => {
   const [specialMeal, setSpecialMeal] = useState([]);
+  const yyyymm = formatToYYYYMM(date);
 
-  const fetchData = async when => {};
+  const fetchData = async when => {
+    const res = await getSpecialMeal(when);
+    return setSpecialMeal(res);
+  };
 
   useEffect(() => {
-    fetchData(date);
+    fetchData(yyyymm);
     return () => resetDate();
   }, []);
 
@@ -38,7 +49,7 @@ const SpecialMealContainer = ({
           startTime={twoYearsAgo}
           endTime={inTwoYears}
           formattedDate={formattedDate}
-          date={date}
+          date={yyyymm}
           updateDate={updateDate}
           addFlashMessage={addFlashMessage}
           fetchData={fetchData}
@@ -56,6 +67,7 @@ const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  specialMealActions: bindActionCreators(specialMealActions, dispatch),
 });
 
 export default connect(
