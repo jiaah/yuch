@@ -5,6 +5,9 @@ export const dateInKorean = moment().format('MM 월 DD 일 (ddd)');
 
 export const timeStamp = moment().format('YYYY-MM-DD, h:mm a');
 export const formattedToday = moment().format('YYYY-MM-DD');
+export const formattedTmr = moment()
+  .add(1, 'day')
+  .format('YYYY-MM-DD');
 // export const timeToNow = moment().toNow();
 
 // reserve mealPrice date

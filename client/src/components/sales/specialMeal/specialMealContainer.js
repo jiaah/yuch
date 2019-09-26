@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
+import { twoYearsAgo, inTwoYears, formattedTmr } from '../../../helpers/moment';
 import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
 import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
-import Modal from './createSpecialMealModal';
+import CreateModal from './createSpecialMealModal';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -53,7 +53,7 @@ const SpecialMealContainer = ({
   const formattedDate = formatToYearDateForm(date);
 
   return (
-    <div className="container-a pw2">
+    <div className="container-a pw3">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         특식 관리
       </h2>
@@ -94,7 +94,11 @@ const SpecialMealContainer = ({
       </div>
       <Paper component={<Table data={specialMeal} />} />
       {clickedBtn !== null && (
-        <Modal hideModal={hideModal} createSpecialMeal={createSpecialMeal} />
+        <CreateModal
+          hideModal={hideModal}
+          createSpecialMeal={createSpecialMeal}
+          formattedTmr={formattedTmr}
+        />
       )}
     </div>
   );

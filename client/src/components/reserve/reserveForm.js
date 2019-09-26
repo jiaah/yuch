@@ -87,7 +87,7 @@ export const ReserveForm = ({
         />
         <TextField
           id="date"
-          label="날짜"
+          label="일자"
           type="date"
           defaultValue={inThreeDays}
           margin="normal"

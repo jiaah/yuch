@@ -3,9 +3,10 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
-import {} from '../../formValidation';
+import { specialMealValidation } from '../../formValidation';
 
 const createModal = ({
+  formattedTmr,
   // actions
   hideModal,
   createSpecialMeal,
@@ -19,8 +20,8 @@ const createModal = ({
 
   const initialValues = {
     companyName: '',
-    date: '',
-    time: '',
+    date: formattedTmr,
+    time: '12:30',
     quantity: '',
     sideDish: '',
     mealPrice: '',
@@ -39,10 +40,10 @@ const createModal = ({
             onSubmit={handleSubmit}
             render={props => (
               <Form>
-                <SpecialMealForm />
+                <SpecialMealForm {...props} />
               </Form>
             )}
-            // validationSchema={}
+            validationSchema={specialMealValidation}
           />
         }
       />

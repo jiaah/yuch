@@ -2,6 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
+import TimeField from '../../../shared/form/timeField';
 
 const SpecialMealForm = ({ isSubmitting }) => (
   <React.Fragment>
@@ -18,7 +19,7 @@ const SpecialMealForm = ({ isSubmitting }) => (
         <FormikField
           label="일자"
           name="date"
-          type="text"
+          type="date"
           icon="calendar"
           styleName="textFieldC"
           required
@@ -33,28 +34,21 @@ const SpecialMealForm = ({ isSubmitting }) => (
           styleName="textFieldC"
           required
         />
-        <FormikField
-          label="시간"
-          name="time"
-          type="text"
-          icon="time"
-          styleName="textFieldC"
-          required
-        />
+        <TimeField styleName="textFieldC" required />
       </div>
     </div>
     <div className="flex justify-center">
       <FormikField
-        label="식수량"
-        name="quantity"
+        label="반찬개수"
+        name="sideDish"
         type="text"
         icon="catering"
         styleName="textFieldD"
         required
       />
       <FormikField
-        label="반찬개수"
-        name="sideDish"
+        label="식수량"
+        name="quantity"
         type="text"
         icon="catering"
         styleName="textFieldD"
@@ -82,7 +76,6 @@ const SpecialMealForm = ({ isSubmitting }) => (
       type="text"
       icon="note"
       styleName="textFieldH"
-      required
     />
     <div className="mt4 justify-center">
       <FormButton

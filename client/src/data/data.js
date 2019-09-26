@@ -331,16 +331,16 @@ export const specialMealTableHeadColumns = [
     label: '시간',
   },
   {
+    id: 'sideDish',
+    numeric: true,
+    disablePadding: false,
+    label: '반찬수',
+  },
+  {
     id: 'quantity',
     numeric: true,
     disablePadding: false,
     label: '식수량',
-  },
-  {
-    id: 'sideDish',
-    numeric: true,
-    disablePadding: false,
-    label: '반찬개수',
   },
   {
     id: 'mealPrice',
@@ -352,7 +352,7 @@ export const specialMealTableHeadColumns = [
     id: 'sumTotal',
     numeric: true,
     disablePadding: false,
-    label: '합계',
+    label: '합계금액',
   },
   {
     id: 'address',

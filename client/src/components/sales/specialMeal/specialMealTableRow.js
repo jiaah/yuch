@@ -58,10 +58,10 @@ const BankTableRow = ({
       {row.time}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.quantity}
+      {row.sideDish}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.sideDish}
+      {row.quantity}
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.mealPrice}

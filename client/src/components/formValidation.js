@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { formattedToday } from '../helpers/moment';
 // 한글만 가능, 띄어쓰기 불가능
 const hangulRegExp = /^[가-힣]+$/;
 // 2~12 한글, 숫자 입력 가능. 특수문자는 !@#())*_로 한정. 띄어쓰기 가능.
@@ -241,4 +242,36 @@ export const cateringValidation = Yup.object({
     .min(1, '0이상의 숫자를 입력해 주세요.')
     .positive('1이상의 자연수만 입력하세요.')
     .integer('1이상의 자연수만 입력하세요.'),
+});
+
+export const specialMealValidation = Yup.object({
+  companyName: Yup.string('')
+    .matches(
+      nameRegExp,
+      '한글.숫자, 특수문자 !@#)(*_ 만 입력가능합니다 (띄어쓰기 가능)',
+    )
+    .max(20, '20글자 아래로 입력해주세요.')
+    .required('고객명을 입력해주세요.'),
+  contactNo: Yup.string()
+    .matches(phoneRegExp, "' - '를 포함해서 번호를 입력해주세요.")
+    .required('연락처를 입력하세요.'),
+  date: Yup.date().min(formattedToday, '지난날짜는 선택할 수 없습니다.'),
+  time: Yup.string().required('시간을 입력해주세요.'),
+  mealPrice: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .required('업체명을 입력해주세요.'),
+  quantity: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .required('업체명을 입력해주세요.'),
+  sideDish: Yup.number()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 자연수만 입력하세요.')
+    .positive('1이상의 자연수만 입력하세요.')
+    .required('업체명을 입력해주세요.'),
+  address: Yup.string(''),
+  note: Yup.string(''),
 });
