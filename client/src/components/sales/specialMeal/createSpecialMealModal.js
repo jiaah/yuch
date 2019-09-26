@@ -8,18 +8,25 @@ import {} from '../../formValidation';
 const createModal = ({
   // actions
   hideModal,
+  createSpecialMeal,
 }) => {
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {};
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const sendingData = { userId: '', ...values };
+    console.log('sendingData: ', sendingData);
+    const res = await createSpecialMeal(sendingData);
+    console.log('res: ', res);
+  };
 
   const initialValues = {
     companyName: '',
     date: '',
     time: '',
     quantity: '',
+    sideDish: '',
     mealPrice: '',
     address: '',
     contactNo: '',
-    memo: '',
+    note: '',
   };
   return (
     <div className="container">

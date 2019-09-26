@@ -22,10 +22,10 @@ export const getSpecialMeal = date => async dispatch => {
   }
 };
 
-export const createSpecialMeal = (id, values) => async dispatch => {
+export const createSpecialMeal = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createSpecialMeal' });
   try {
-    const res = await Axios.post(`/special/${id}`, values);
+    const res = await Axios.post('/special', values);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,

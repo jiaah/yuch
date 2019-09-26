@@ -61,6 +61,9 @@ const BankTableRow = ({
       {row.quantity}
     </TableCell>
     <TableCell align="right" className={resize}>
+      {row.sideDish}
+    </TableCell>
+    <TableCell align="right" className={resize}>
       {row.mealPrice}
     </TableCell>
     <TableCell align="right" className={resize}>
@@ -73,7 +76,7 @@ const BankTableRow = ({
       {row.contactNo}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.memo}
+      {row.note}
     </TableCell>
   </TableRow>
 );

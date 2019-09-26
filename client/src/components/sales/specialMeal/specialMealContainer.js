@@ -93,7 +93,9 @@ const SpecialMealContainer = ({
         </div>
       </div>
       <Paper component={<Table data={specialMeal} />} />
-      {clickedBtn !== null && <Modal hideModal={hideModal} />}
+      {clickedBtn !== null && (
+        <Modal hideModal={hideModal} createSpecialMeal={createSpecialMeal} />
+      )}
     </div>
   );
 };

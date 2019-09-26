@@ -5,7 +5,7 @@ import FormButton from '../../../shared/form/formButton';
 
 const SpecialMealForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <div className="mh1 mb2 media--justify-around">
+    <div className="mt4 mb2 media--justify-around">
       <div className="media--flex-column-m">
         <FormikField
           label="고객명"
@@ -19,15 +19,7 @@ const SpecialMealForm = ({ isSubmitting }) => (
           label="일자"
           name="date"
           type="text"
-          icon=""
-          styleName="textFieldC"
-          required
-        />
-        <FormikField
-          label="식수량"
-          name="quantity"
-          type="text"
-          icon="catering"
+          icon="calendar"
           styleName="textFieldC"
           required
         />
@@ -45,19 +37,37 @@ const SpecialMealForm = ({ isSubmitting }) => (
           label="시간"
           name="time"
           type="text"
-          icon=""
-          styleName="textFieldC"
-          required
-        />
-        <FormikField
-          label="식수가격"
-          name="mealPrice"
-          type="text"
-          icon="money"
+          icon="time"
           styleName="textFieldC"
           required
         />
       </div>
+    </div>
+    <div className="flex justify-center">
+      <FormikField
+        label="식수량"
+        name="quantity"
+        type="text"
+        icon="catering"
+        styleName="textFieldD"
+        required
+      />
+      <FormikField
+        label="반찬개수"
+        name="sideDish"
+        type="text"
+        icon="catering"
+        styleName="textFieldD"
+        required
+      />
+      <FormikField
+        label="식수가격"
+        name="mealPrice"
+        type="text"
+        icon="money"
+        styleName="textFieldD"
+        required
+      />
     </div>
     <FormikField
       label="주소"
@@ -68,13 +78,13 @@ const SpecialMealForm = ({ isSubmitting }) => (
     />
     <FormikField
       label="메모"
-      name="memo"
+      name="note"
       type="text"
-      icon=""
+      icon="note"
       styleName="textFieldH"
       required
     />
-    <div className="justify-center">
+    <div className="mt4 justify-center">
       <FormButton
         typeValue="submit"
         variantValue="contained"

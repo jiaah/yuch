@@ -313,12 +313,6 @@ export const specialMealTableHeadColumns = [
     label: '',
   },
   {
-    id: '2',
-    numeric: true,
-    disablePadding: true,
-    label: '',
-  },
-  {
     id: 'companyName',
     numeric: true,
     disablePadding: false,
@@ -341,6 +335,12 @@ export const specialMealTableHeadColumns = [
     numeric: true,
     disablePadding: false,
     label: '식수량',
+  },
+  {
+    id: 'sideDish',
+    numeric: true,
+    disablePadding: false,
+    label: '반찬개수',
   },
   {
     id: 'mealPrice',
@@ -367,7 +367,7 @@ export const specialMealTableHeadColumns = [
     label: '연락처',
   },
   {
-    id: 'memo',
+    id: 'note',
     numeric: true,
     disablePadding: false,
     label: '메모',
