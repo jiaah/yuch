@@ -45,6 +45,7 @@ const UserAccountContainer = ({
   selectedSearchItem,
 }) => {
   const [users, setUsers] = useState({ activeUsers: [], inActiveUsers: [] });
+  console.log('users: ', users);
   const [isActiveData, setIsActiveDate] = useState(true);
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -54,6 +55,8 @@ const UserAccountContainer = ({
 
   const fetchUsersData = async () => {
     const data = await getUsers();
+    console.log('data : ', data);
+
     const bankAccounts = [];
     if (data.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
