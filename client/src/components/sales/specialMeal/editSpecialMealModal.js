@@ -12,6 +12,7 @@ const EditModal = ({
   addFlashMessage,
   updateSpecialMeal,
   hideModal,
+  resetClickedItemData,
 }) => {
   const { id, userId, ...initialValues } = clickedUserData;
 
@@ -24,6 +25,7 @@ const EditModal = ({
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
+        resetClickedItemData(),
       ]);
       window.location.reload(true);
     } else {

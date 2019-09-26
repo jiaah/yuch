@@ -6,6 +6,8 @@ import {
   dayAfter,
   weekBefore,
   weekAfter,
+  monthBefore,
+  monthAfter,
   yearBefore,
   yearAfter,
 } from '../../utils/date';
@@ -57,12 +59,20 @@ const DateButtons = ({
     const newDate = await dayBefore(date);
     return handleDateBackward(newDate);
   };
+  const moveToAMonthBefore = async () => {
+    const newDate = await monthBefore(date);
+    return handleDateBackward(newDate);
+  };
   const moveToYearBefore = async () => {
     const newDate = await yearBefore(date);
     return handleDateBackward(newDate);
   };
   const moveToADayAfter = async () => {
     const newDate = await dayAfter(date);
+    return handleDateForward(newDate);
+  };
+  const moveToAMonthAfter = async () => {
+    const newDate = await monthAfter(date);
     return handleDateForward(newDate);
   };
   const moveToAWeekAfter = async () => {
@@ -88,7 +98,7 @@ const DateButtons = ({
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToAWeekBefore : moveToADayBefore}
+        handleClick={monthlyUnit ? moveToAMonthBefore : moveToADayBefore}
       />
       {formattedDate}
       <IconButton
@@ -96,7 +106,7 @@ const DateButtons = ({
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToAWeekAfter : moveToADayAfter}
+        handleClick={monthlyUnit ? moveToAMonthAfter : moveToADayAfter}
       />
       <IconButton
         name="arrowRight"

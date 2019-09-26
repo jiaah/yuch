@@ -21,6 +21,16 @@ export const weekAfter = date =>
     .add(7, 'days')
     .format('YYYYMMDD');
 
+export const monthBefore = date =>
+  moment(date)
+    .add(-1, 'months')
+    .format('YYYYMMDD');
+
+export const monthAfter = date =>
+  moment(date)
+    .add(1, 'months')
+    .format('YYYYMMDD');
+
 export const yearBefore = date =>
   moment(date)
     .add(-1, 'years')
@@ -33,7 +43,7 @@ export const yearAfter = date =>
 
 const lastMonth = moment()
   .add(-1, 'months')
-  .format('YYYYMM');
+  .format('YYYYMMDD');
 
 export const firstDayOfLastMonth = () => {
   const value = `${lastMonth}01`;
@@ -44,7 +54,7 @@ export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
 export const formatToYearDateForm = date =>
-  moment(date).format('YYYY 년 MM 월');
+  moment(date, 'YYYYMMDD').format('YYYY 년 MM 월');
 
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');

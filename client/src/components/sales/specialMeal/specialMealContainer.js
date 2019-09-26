@@ -39,9 +39,10 @@ const SpecialMealContainer = ({
   modalActions: { showModal, hideModal },
   addFlashMessage,
 }) => {
-  const yyyymm = formatToYYYYMM(date);
+  // YYYYMMDD -> 'YYYY 년 MM 월'
+  const formattedDate = formatToYearDateForm(date);
 
-  const [specialMeal, setSpecialMeal] = useState([]);
+  const [specialMeal, setSpecialMeal] = useState(null);
   // show modal
   const [clickedBtn, setClickedBtn] = useState(null);
 
@@ -51,12 +52,20 @@ const SpecialMealContainer = ({
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchData = async when => {
-    const res = await getSpecialMeal(when);
+    // YYYYMMDD -> YYYYMM
+    const yyyymm = formatToYYYYMM(when);
+
+    const res = await getSpecialMeal(yyyymm);
+
+    if (res.error) {
+      setSpecialMeal([]);
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
     return setSpecialMeal(res);
   };
 
   useEffect(() => {
-    fetchData(yyyymm);
+    fetchData(date);
     return () => Promise.all([resetDate(), hideModal()]);
   }, []);
 
@@ -69,9 +78,6 @@ const SpecialMealContainer = ({
   };
   const handleResetSearch = () => {};
 
-  // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
-
   return (
     <div className="container-a pw3">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
@@ -83,7 +89,7 @@ const SpecialMealContainer = ({
         startTime={twoYearsAgo}
         endTime={inTwoYears}
         formattedDate={formattedDate}
-        date={yyyymm}
+        date={date}
         updateDate={updateDate}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
@@ -112,20 +118,22 @@ const SpecialMealContainer = ({
           />
         </div>
       </div>
-      <Paper
-        component={
-          <Table
-            data={specialMeal}
-            selectedRow={selectedRow}
-            selectedItemValue={selectedItemValue}
-            saveClickedItemData={saveClickedItemData}
-            saveSelectedItemValue={saveSelectedItemValue}
-            handleButtonClick={handleButtonClick}
-            onfocusOnSelectdRow={onfocusOnSelectdRow}
-            resetSelectedItemValue={resetSelectedItemValue}
-          />
-        }
-      />
+      {specialMeal && (
+        <Paper
+          component={
+            <Table
+              data={specialMeal}
+              selectedRow={selectedRow}
+              selectedItemValue={selectedItemValue}
+              saveClickedItemData={saveClickedItemData}
+              saveSelectedItemValue={saveSelectedItemValue}
+              handleButtonClick={handleButtonClick}
+              onfocusOnSelectdRow={onfocusOnSelectdRow}
+              resetSelectedItemValue={resetSelectedItemValue}
+            />
+          }
+        />
+      )}
       {clickedBtn === 'create' && (
         <CreateModal
           formattedTmr={formattedTmr}
@@ -139,6 +147,7 @@ const SpecialMealContainer = ({
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           updateSpecialMeal={updateSpecialMeal}
+          resetClickedItemData={resetClickedItemData}
           clickedUserData={clickedUserData}
         />
       )}{' '}
