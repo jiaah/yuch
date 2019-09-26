@@ -2,6 +2,20 @@ const moment = require('moment');
 const SpecialMeal = require('../models/SpecialMeal');
 // const Users = require('../models/Users');
 
+const getSumTotalByUserIdWithRangeDate = async (userId, startDate, endDate) => {
+  try {
+    const row = await SpecialMeal.query()
+      .sum('sumTotal as sumTotal')
+      .where({ userId })
+      .whereBetween('date', [startDate, endDate])
+      .first();
+
+    return Number(row.sumTotal);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const formatDateTime = result => {
   const formatedResult = result;
   const parsedDate = moment(result.date);
@@ -77,6 +91,7 @@ const deleteById = async id => {
 };
 
 module.exports = {
+  getSumTotalByUserIdWithRangeDate,
   findAllByUserIdWithDateRange,
   listsByDateRange,
   create,
