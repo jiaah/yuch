@@ -23,10 +23,12 @@ const AdminVerificationContainer = ({
 
     const res = await verifyAdminUser(password);
     if (!res.error) {
-      await Promise.all([resetForm({}), setSubmitting(false)]);
-      return handleAdminVerificationSuccess();
+      await resetForm({});
+      handleAdminVerificationSuccess();
     }
-    addFlashMessage('error', `비밀번호를 확인해주세요.`);
+    if (res.error) {
+      addFlashMessage('error', `비밀번호를 확인해주세요.`);
+    }
     return setSubmitting(false);
   };
 

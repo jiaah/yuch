@@ -43,10 +43,10 @@ export const createSpecialMeal = values => async dispatch => {
   }
 };
 
-export const updateSpecialMeal = (id, values) => async dispatch => {
+export const updateSpecialMeal = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateSpecialMeal' });
   try {
-    const res = await Axios.patch(`/special/${id}`, values);
+    const res = await Axios.patch(`/special/${values.id}`, values);
     const { data } = res;
     dispatch({
       type: types.HTTP_SUCCESS,
@@ -64,10 +64,10 @@ export const updateSpecialMeal = (id, values) => async dispatch => {
   }
 };
 
-export const deleteSpecialMeal = (id, date) => async dispatch => {
+export const deleteSpecialMeal = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteSpecialMeal' });
   try {
-    const res = await Axios.delete(`/special/${id}`, { params: { date } });
+    const res = await Axios.delete(`/special/user/${id}`);
 
     dispatch({
       type: types.HTTP_SUCCESS,

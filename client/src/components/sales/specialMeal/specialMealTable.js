@@ -21,6 +21,7 @@ const BankTable = ({
   data,
   // actions
   saveClickedItemData,
+  saveSelectedItemValue,
   // func
   handleButtonClick,
 }) => {

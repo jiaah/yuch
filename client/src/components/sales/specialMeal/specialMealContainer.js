@@ -11,6 +11,7 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import CreateModal from './createSpecialMealModal';
 import EditModal from './editSpecialMealModal';
+import DeleteModal from './deleteSpecialMealModal';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -21,6 +22,7 @@ import * as selectedActions from '../../../actions/selectedAction';
 const SpecialMealContainer = ({
   date,
   clickedUserData,
+  selectedSearchItem,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
@@ -48,11 +50,17 @@ const SpecialMealContainer = ({
 
   useEffect(() => {
     fetchData(yyyymm);
-    return () => resetDate();
+    return () => Promise.all([resetDate(), hideModal()]);
   }, []);
 
   const handleButtonClick = sub => {
     Promise.all([setClickedBtn(sub), showModal()]);
+  };
+
+  const handleCloseModal = () => {
+    if (clickedUserData) resetClickedItemData();
+    if (selectedSearchItem) resetSelectedItemValue();
+    return hideModal();
   };
 
   const handleSuggestionSelected = () => {};
@@ -106,25 +114,35 @@ const SpecialMealContainer = ({
           <Table
             data={specialMeal}
             saveClickedItemData={saveClickedItemData}
+            saveSelectedItemValue={saveSelectedItemValue}
             handleButtonClick={handleButtonClick}
           />
         }
       />
-      {clickedBtn === 'create' ? (
+      {clickedBtn === 'create' && (
         <CreateModal
           formattedTmr={formattedTmr}
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           createSpecialMeal={createSpecialMeal}
         />
-      ) : clickedBtn === 'edit' ? (
+      )}
+      {clickedBtn === 'edit' && (
         <EditModal
-          hideModal={hideModal}
+          handleCloseModal={handleCloseModal}
           addFlashMessage={addFlashMessage}
           updateSpecialMeal={updateSpecialMeal}
           clickedUserData={clickedUserData}
         />
-      ) : null}
+      )}{' '}
+      {clickedBtn === 'delete' && (
+        <DeleteModal
+          handleCloseModal={handleCloseModal}
+          addFlashMessage={addFlashMessage}
+          deleteSpecialMeal={deleteSpecialMeal}
+          selectedSearchItem={selectedSearchItem}
+        />
+      )}
     </div>
   );
 };
@@ -132,6 +150,7 @@ const SpecialMealContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
   clickedUserData: state.selected.data,
+  selectedSearchItem: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

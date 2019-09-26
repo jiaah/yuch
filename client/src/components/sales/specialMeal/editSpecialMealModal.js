@@ -5,24 +5,24 @@ import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
 
-const createModal = ({
-  formattedTmr,
+const EditModal = ({
   // state
   clickedUserData,
   // actions
-  hideModal,
   addFlashMessage,
   updateSpecialMeal,
+  // funcs
+  handleCloseModal,
 }) => {
   const { id, userId, ...initialValues } = clickedUserData;
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
-    const sendingData = { userId: '', ...values };
+    const sendingData = { id, userId: '', ...values };
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
-        hideModal(),
+        handleCloseModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
       ]);
@@ -37,7 +37,7 @@ const createModal = ({
     <div className="container">
       <Modal
         title="특식 등록"
-        handleClose={() => hideModal()}
+        handleClose={() => handleCloseModal()}
         component={
           <Formik
             initialValues={initialValues}
@@ -55,4 +55,4 @@ const createModal = ({
   );
 };
 
-export default createModal;
+export default EditModal;
