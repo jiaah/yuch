@@ -145,6 +145,7 @@
     "style-loader": "^0.22.1",
     "supertest": "^4.0.2",
     "terser-webpack-plugin": "^1.1.0",
+    "toposort": "^1.0.6",
     "vanilla-lazyload": "^8.17.0",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^2.13.1",

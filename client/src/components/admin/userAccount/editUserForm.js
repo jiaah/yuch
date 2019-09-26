@@ -111,9 +111,9 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         <Button
           typeValue="button"
           variantValue="outlined"
-          buttonName="서비스 종료"
+          buttonName="비밀번호 변경"
           width="medium"
-          handleButtonClick={() => showSubModal('service')}
+          handleButtonClick={() => showSubModal('password')}
         />
         <FormButton
           typeValue="submit"
@@ -130,7 +130,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
             width="33"
             height="33"
             viewBox="0 0 24 24"
-            handleClick={() => showSubModal('delete')}
+            handleClick={() => showSubModal('service')}
           />
         </div>
         <IconMessage
@@ -140,7 +140,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           viewBox="0 0 25 25"
           fillOuter="#ed4337"
           fillInner="#ffffff"
-          text="고객에 관한 모든 정보가 삭제됩니다."
+          text="지정된 일자로부터 저장된 모든 식수량이 삭제됩니다."
           position="end"
           iconBoxStyle="reverse-between--icon-msg"
           textStyle="icon-message--warning reverse-between--icon-msg--p"

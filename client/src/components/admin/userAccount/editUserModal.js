@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 /* --- Components --- */
-import Loader from '../../loader';
 import { editUserAccountValidation } from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
 
-const DeleteUser = Loader({
-  loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
-});
-
 const EndService = Loader({
   loader: () =>
-    import('./endServiceFormBox' /* webpackChunkName: 'deleteUser' */),
+    import('./endServiceFormBox' /* webpackChunkName: 'EndService' */),
+});
+
+const ResetPassword = Loader({
+  loader: () =>
+    import('./resetPasswordBox' /* webpackChunkName: 'ResetPassword' */),
 });
 
 const EditUserModal = ({
@@ -24,7 +24,6 @@ const EditUserModal = ({
   editUser,
   addFlashMessage,
   // resetPassword,
-  deleteUser,
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
@@ -33,12 +32,7 @@ const EditUserModal = ({
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
 
-  const title =
-    subModal === 'service'
-      ? `${clickedUserData.companyName}`
-      : subModal === 'delete'
-        ? ''
-        : '고객 계정';
+  const title = subModal ? `${clickedUserData.companyName}` : '';
 
   const formattedUserEndDate = clickedUserData.endDate
     ? formatWithDash(clickedUserData.endDate)
@@ -57,22 +51,14 @@ const EditUserModal = ({
         component={
           subModal === 'service' ? (
             <EndService
-              closeSubModal={closeSubModal}
-              handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               userId={clickedUserData.id}
               formattedUserEndDate={formattedUserEndDate}
               handleEndingService={handleEndingService}
               formatToYYYYMMDD={formatToYYYYMMDD}
             />
-          ) : subModal === 'delete' ? (
-            <DeleteUser
-              closeSubModal={closeSubModal}
-              handleCloseModal={handleCloseModal}
-              addFlashMessage={addFlashMessage}
-              clickedUserData={clickedUserData}
-              deleteUser={deleteUser}
-            />
+          ) : subModal === 'password' ? (
+            <ResetPassword />
           ) : (
             <EditUserFormBox
               showSubModal={showSubModal}

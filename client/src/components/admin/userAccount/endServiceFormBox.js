@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
 /* --- Components --- */
 import { formattedToday } from '../../../helpers/moment';
-import { firstDayOfLastMonth } from '../../../utils/date';
-import IconMessage from '../../../shared/iconMessage';
-import {
-  endServiceMessageA,
-  endServiceMessageB,
-  endServiceMessageC,
-  endServiceMessageD,
-} from '../../../data/message';
-import FormButton from '../../../shared/form/formButton';
+import EndServiceForm from './endServiceForm';
+import Loader from '../../loader';
+
+const Verification = Loader({
+  loader: () => import('./verification' /* webpackChunkName: 'Verification' */),
+});
 
 const EndServiceFormBox = ({
   userId,
@@ -21,8 +15,6 @@ const EndServiceFormBox = ({
   handleEndingService,
   addFlashMessage,
   // funcs
-  closeSubModal,
-  handleCloseModal,
   formatToYYYYMMDD,
 }) => {
   // state endService & date -> values from db : fomattedToday
@@ -32,6 +24,10 @@ const EndServiceFormBox = ({
   });
   const { endService, endDate } = state;
   const [isSubmitting, setSubmitting] = useState(false);
+  const [verification, setVerification] = useState(false);
+
+  const offVerification = () => setVerification(false);
+  const onVerification = () => setVerification(true);
 
   const handleChange = name => event => {
     const value =
@@ -43,13 +39,11 @@ const EndServiceFormBox = ({
 
   const handleSubmit = async () => {
     await setSubmitting(true);
-
     const formattedDate = formatToYYYYMMDD(endDate);
     const res = await handleEndingService(userId, endService, formattedDate);
-
+    await offVerification();
     if (!res.error) {
       addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
-      Promise.all([setSubmitting(false), closeSubModal(), handleCloseModal()]);
     } else {
       addFlashMessage(
         'error',
@@ -62,92 +56,20 @@ const EndServiceFormBox = ({
   const checkedDate = formatToYYYYMMDD(endDate);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="mh2">
-        <div className="mh1 media--justify-around end-of-service">
-          <div className="end-of-service-checkbox">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={state.endService}
-                  onChange={handleChange('endService')}
-                  value="endService"
-                />
-              }
-              label="서비스 종료"
-            />
-          </div>
-          <TextField
-            id="endDate"
-            label="적용 일자"
-            type="date"
-            value={endDate}
-            margin="normal"
-            className="end-of-service-date"
-            error={firstDayOfLastMonth() > checkedDate}
-            helperText="지난달 1일부터 선택가능"
-            onChange={handleChange('endDate')}
-            required={state.endService}
-            disabled={!state.endService}
-          />
-        </div>
-        <FormButton
-          typeValue="submit"
-          variantValue="contained"
-          buttonName="저장"
-          width="medium"
+    <div>
+      {!verification ? (
+        <EndServiceForm
+          checkedDate={checkedDate}
           isSubmitting={isSubmitting}
+          endService={endService}
+          endDate={endDate}
+          handleChange={handleChange}
+          onVerification={onVerification}
         />
-      </div>
-      <IconMessage
-        name="info"
-        width="33"
-        height="18"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={endServiceMessageA}
-        position="start"
-        iconBoxStyle="pw2"
-        textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="15"
-        height="18"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={endServiceMessageC}
-        position="start"
-        iconBoxStyle="pw2 pt3"
-        textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="15"
-        height="18"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={endServiceMessageD}
-        position="start"
-        iconBoxStyle="pw2 pt3"
-        textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="15"
-        height="18"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={endServiceMessageB}
-        position="start"
-        iconBoxStyle="pw2 pt3"
-        textStyle="icon-message--info f-mini"
-      />
-    </form>
+      ) : (
+        <Verification handleSubmit={handleSubmit} />
+      )}
+    </div>
   );
 };
 
