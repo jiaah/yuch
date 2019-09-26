@@ -54,7 +54,7 @@ const create = async data => {
 const isExist = async id => {
   try {
     return Boolean(await SpecialMeal.query().findById(id));
-  } catch {
+  } catch (error) {
     throw error;
   }
 };
