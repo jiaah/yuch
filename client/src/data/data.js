@@ -304,3 +304,72 @@ export const usersCateringTableHeadColumns = [
     label: '야식',
   },
 ];
+
+export const specialMealTableHeadColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: '2',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '회사명',
+  },
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '날찌',
+  },
+  {
+    id: 'time',
+    numeric: true,
+    disablePadding: false,
+    label: '시간',
+  },
+  {
+    id: 'quantity',
+    numeric: true,
+    disablePadding: false,
+    label: '식수량',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+  {
+    id: 'memo',
+    numeric: true,
+    disablePadding: false,
+    label: '메모',
+  },
+];

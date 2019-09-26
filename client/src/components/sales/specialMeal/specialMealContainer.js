@@ -5,6 +5,10 @@ import { bindActionCreators } from 'redux';
 import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
 import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
+import Paper from '../../../shared/paper';
+import Table from './specialMealTable';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -37,25 +41,41 @@ const SpecialMealContainer = ({
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
 
+  const handleSuggestionSelected = () => {};
+  const handleResetSearch = () => {};
+
   return (
-    <div className="container-b">
+    <div className="container-a pw2">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         특식 관리
       </h2>
-      <React.Fragment>
-        <DateButtons
-          reload={true}
-          monthlyUnit={true}
-          startTime={twoYearsAgo}
-          endTime={inTwoYears}
-          formattedDate={formattedDate}
-          date={yyyymm}
-          updateDate={updateDate}
-          addFlashMessage={addFlashMessage}
-          fetchData={fetchData}
-          dateForwardMessage="존재하지 않는 페이지입니다."
+      <DateButtons
+        reload={true}
+        monthlyUnit={true}
+        startTime={twoYearsAgo}
+        endTime={inTwoYears}
+        formattedDate={formattedDate}
+        date={yyyymm}
+        updateDate={updateDate}
+        addFlashMessage={addFlashMessage}
+        fetchData={fetchData}
+        dateForwardMessage="존재하지 않는 페이지입니다."
+      />
+      <div className="paper-label-box justify-between">
+        <SearchBar
+          data={specialMeal}
+          handleSuggestionSelected={handleSuggestionSelected}
+          handleResetSearch={handleResetSearch}
         />
-      </React.Fragment>
+        <IconButton
+          name="print"
+          width="32"
+          height="32"
+          viewBox="0 0 25 25"
+          handleClick={() => printDiv('print')}
+        />
+      </div>
+      <Paper component={<Table data={specialMeal} />} />
     </div>
   );
 };
