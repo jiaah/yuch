@@ -182,7 +182,11 @@ exports.deleteUser = (req, res) => {
 };
 
 // get users profile, meal prices && bank accounts data
-exports.getUsersList = (req, res) => {
+exports.getUsersList = async (req, res) => {
+  const users = [];
+  const activeUsers = [];
+  const inActiveUsers = [];
+
   knex('users')
     .whereNot('users.username', 'yuch')
     .whereRaw(
@@ -232,6 +236,9 @@ exports.getCateringRates = (req, res) => {
     .whereRaw(
       'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
     )
+    .where(builder => {
+      builder.whereRaw('"endDate" < NOW()').orWhereNull('endDate');
+    })
     .select(
       'meal_price.id',
       'meal_price.userId',

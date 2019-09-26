@@ -8,6 +8,6 @@ router.use('/catering', require('./catering')());
 router.use('/special', require('./special')());
 router.use('/resto', require('./resto')());
 router.use('/invoice', require('./invoice')());
-// router.use('/revenue', require('./revenue')());
+router.use('/revenue', require('./revenue')());
 
 module.exports = router;
