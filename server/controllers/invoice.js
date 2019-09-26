@@ -9,9 +9,9 @@ exports.update = async (req, res, next) => {
     const startedAt = parsedDate.format('YYYY-MM-DD');
     const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
 
-    const results = await invoiceService.reCalculateInvoice(startedAt, endedAt);
+    await invoiceService.Lists(startedAt, endedAt);
 
-    return res.status(200).json(results);
+    return res.status(200).json({});
   } catch (error) {
     next(error);
   }
@@ -25,7 +25,7 @@ exports.lists = async (req, res, next) => {
     const startedAt = parsedDate.format('YYYY-MM-DD');
     const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
 
-    const results = await invoiceService.findAllByDate(startedAt, endedAt);
+    const results = await invoiceService.Lists(startedAt, endedAt);
 
     return res.status(200).json(results);
   } catch (error) {
