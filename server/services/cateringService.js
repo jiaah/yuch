@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { raw } = require('objection');
 const Catering = require('../models/Catering');
 const Users = require('../models/Users');
 
@@ -26,6 +27,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
         'catering.dinnerQty',
         'catering.lateNightSnackQty',
         'users.endDate',
+        'users.created_at',
       )
       .innerJoin('users', 'users.id', 'catering.userId')
       .where({ userId, date: formatedDate })
@@ -49,6 +51,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
             'catering.dinnerQty',
             'catering.lateNightSnackQty',
             'users.endDate',
+            'users.created_at',
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
@@ -144,6 +147,7 @@ const updateByUserIdWithDate = async (
             'catering.dinnerQty',
             'catering.lateNightSnackQty',
             'users.endDate',
+            'users.created_at',
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
@@ -177,7 +181,10 @@ const getLists = async date => {
   try {
     const results = [];
     const users = await Users.query()
-      .where({ isAdmin: false, businessType: 'catering', endDate: null })
+      .where({ isAdmin: false, businessType: 'catering' })
+      .where(builder => {
+        builder.whereRaw('"endDate" < NOW()').orWhereNull('endDate');
+      })
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax

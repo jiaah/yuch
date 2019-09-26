@@ -41,6 +41,9 @@ exports.getLists = async (req, res, next) => {
   try {
     const { date } = req.query;
 
+    // const parsedDate = moment(date, 'YYYYMMDD');
+    // const formatedDate = parsedDate.format('YYYY-MM-DD');
+
     const caterings = await cateringService.getLists(date);
 
     return res.status(200).json(caterings);

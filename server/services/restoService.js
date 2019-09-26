@@ -10,27 +10,25 @@ const findOneByDate = async date => {
       .startOf('month')
       .format('YYYY-MM-DD');
 
-    let result = await Restaurant.query()
+    // let result = await Restaurant.query()
+    //   .select('date', 'lunch', 'dinner')
+    //   .where({ date: formatedDate })
+    //   .first();
+
+    // if (result) {
+    //   result.date = moment(result.date).format('YYYYMMDD');
+    // } else {
+    const result = await Restaurant.query()
       .select('date', 'lunch', 'dinner')
-      .where({ date: formatedDate })
-      .first();
+      .whereRaw(`date BETWEEN '${lastMonthFormatedDate}' AND '${formatedDate}'`)
+      .orderBy('date', 'asc');
 
-    if (result) {
-      result.date = moment(result.date).format('YYYYMMDD');
-    } else {
-      result = await Restaurant.query()
-        .select('date', 'lunch', 'dinner')
-        .whereRaw(
-          `date BETWEEN '${lastMonthFormatedDate}' AND '${formatedDate}'`,
-        )
-        .orderBy('date', 'asc');
-
-      result.map(obj => {
-        const newResult = obj;
-        newResult.date = moment(newResult.date).format('YYYYMMDD');
-        return newResult;
-      });
-    }
+    result.map(obj => {
+      const newResult = obj;
+      newResult.date = moment(newResult.date).format('YYYYMMDD');
+      return newResult;
+    });
+    // }
 
     return result;
   } catch (error) {
