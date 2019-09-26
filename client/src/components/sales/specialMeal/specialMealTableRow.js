@@ -15,20 +15,28 @@ const styles = theme => ({
 
 const BankTableRow = ({
   classes: { resize },
+  row,
+  labelId,
+  // local state
+  selectedRow,
+  // global state
+  selectedItemValue,
+  // func
   handleTableRowClick,
   handleEditBtnClick,
   handleDeleteBtnClick,
-  row,
-  selected,
-  labelId,
 }) => (
   <TableRow
     key={row.id}
     onClick={() => handleTableRowClick(row.id)}
     role="checkbox"
-    aria-checked={selected === row.id}
+    aria-checked={selectedRow === row.id}
     tabIndex={-1}
-    selected={selected === row.id}
+    selected={
+      selectedItemValue === row.companyName ||
+      selectedItemValue === row.id ||
+      selectedRow === row.id
+    }
   >
     <TableCell padding="checkbox">
       <div className="flex flex-row-m" data-testid="bank-account--tablerow">

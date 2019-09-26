@@ -11,8 +11,7 @@ const EditModal = ({
   // actions
   addFlashMessage,
   updateSpecialMeal,
-  // funcs
-  handleCloseModal,
+  hideModal,
 }) => {
   const { id, userId, ...initialValues } = clickedUserData;
 
@@ -22,7 +21,7 @@ const EditModal = ({
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
-        handleCloseModal(),
+        hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
       ]);
@@ -37,7 +36,7 @@ const EditModal = ({
     <div className="container">
       <Modal
         title="특식 등록"
-        handleClose={() => handleCloseModal()}
+        handleClose={() => hideModal()}
         component={
           <Formik
             initialValues={initialValues}

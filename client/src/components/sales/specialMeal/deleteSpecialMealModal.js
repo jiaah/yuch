@@ -4,17 +4,16 @@ import Modal from '../../../shared/modal';
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const DeleteModal = ({
-  selectedSearchItem,
+  selectedItemValue,
   // actions
   addFlashMessage,
   deleteSpecialMeal,
-  // func
-  handleCloseModal,
+  hideModal,
 }) => {
   const handleDeleteUser = async () => {
-    const res = await deleteSpecialMeal(selectedSearchItem);
+    const res = await deleteSpecialMeal(selectedItemValue);
     if (!res.error) {
-      await handleCloseModal();
+      await hideModal();
       return window.location.reload(true);
     }
     return addFlashMessage(
@@ -27,7 +26,7 @@ const DeleteModal = ({
     <div className="container">
       <Modal
         title=""
-        handleClose={() => handleCloseModal()}
+        handleClose={() => hideModal()}
         component={
           <AdminVerificationContainer
             handleAdminVerificationSuccess={handleDeleteUser}

@@ -22,7 +22,7 @@ import * as selectedActions from '../../../actions/selectedAction';
 const SpecialMealContainer = ({
   date,
   clickedUserData,
-  selectedSearchItem,
+  selectedItemValue,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
@@ -39,9 +39,16 @@ const SpecialMealContainer = ({
   modalActions: { showModal, hideModal },
   addFlashMessage,
 }) => {
-  const [specialMeal, setSpecialMeal] = useState([]);
-  const [clickedBtn, setClickedBtn] = useState(null);
   const yyyymm = formatToYYYYMM(date);
+
+  const [specialMeal, setSpecialMeal] = useState([]);
+  // show modal
+  const [clickedBtn, setClickedBtn] = useState(null);
+
+  // selected row on click
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onfocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchData = async when => {
     const res = await getSpecialMeal(when);
@@ -57,13 +64,9 @@ const SpecialMealContainer = ({
     Promise.all([setClickedBtn(sub), showModal()]);
   };
 
-  const handleCloseModal = () => {
-    if (clickedUserData) resetClickedItemData();
-    if (selectedSearchItem) resetSelectedItemValue();
-    return hideModal();
+  const handleSuggestionSelected = () => {
+    if (selectedRow) offFocusOnSelectdRow();
   };
-
-  const handleSuggestionSelected = () => {};
   const handleResetSearch = () => {};
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
@@ -113,9 +116,13 @@ const SpecialMealContainer = ({
         component={
           <Table
             data={specialMeal}
+            selectedRow={selectedRow}
+            selectedItemValue={selectedItemValue}
             saveClickedItemData={saveClickedItemData}
             saveSelectedItemValue={saveSelectedItemValue}
             handleButtonClick={handleButtonClick}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
+            resetSelectedItemValue={resetSelectedItemValue}
           />
         }
       />
@@ -129,7 +136,7 @@ const SpecialMealContainer = ({
       )}
       {clickedBtn === 'edit' && (
         <EditModal
-          handleCloseModal={handleCloseModal}
+          hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           updateSpecialMeal={updateSpecialMeal}
           clickedUserData={clickedUserData}
@@ -137,10 +144,10 @@ const SpecialMealContainer = ({
       )}{' '}
       {clickedBtn === 'delete' && (
         <DeleteModal
-          handleCloseModal={handleCloseModal}
+          hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           deleteSpecialMeal={deleteSpecialMeal}
-          selectedSearchItem={selectedSearchItem}
+          selectedItemValue={selectedItemValue}
         />
       )}
     </div>
@@ -150,7 +157,7 @@ const SpecialMealContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
   clickedUserData: state.selected.data,
-  selectedSearchItem: state.selected.value,
+  selectedItemValue: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
