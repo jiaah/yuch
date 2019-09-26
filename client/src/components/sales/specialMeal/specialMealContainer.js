@@ -12,6 +12,7 @@ import IconButton from '../../../shared/form/iconButton';
 import CreateModal from './createSpecialMealModal';
 import EditModal from './editSpecialMealModal';
 import DeleteModal from './deleteSpecialMealModal';
+import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';

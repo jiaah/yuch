@@ -18,24 +18,15 @@ const styles = () => ({
 
 const BankTable = ({
   classes: { tableWrapper, table },
-  // local state
   data,
-  selectedRow,
-  // global state
-  selectedItemValue,
   // actions
   saveClickedItemData,
   saveSelectedItemValue,
-  resetSelectedItemValue,
   // func
   handleButtonClick,
-  onfocusOnSelectdRow,
 }) => {
-  const handleTableRowClick = id => {
-    onfocusOnSelectdRow(id);
-    // if selected row is editing row, do not close editing mode.
-    if (selectedItemValue) resetSelectedItemValue();
-  };
+  const [selected, setSelected] = React.useState('');
+  const handleTableRowClick = id => setSelected(id);
 
   const getClickedUserData = async id => {
     const filteredData = await data.filter(b => b.id === id);
@@ -43,9 +34,6 @@ const BankTable = ({
   };
 
   const handleEditBtnClick = async id => {
-    // to keep edited row in focus
-    await saveSelectedItemValue(id);
-
     const selectedData = await getClickedUserData(id);
     await saveClickedItemData(selectedData);
     return handleButtonClick('edit');
@@ -56,7 +44,7 @@ const BankTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = data && 7 - data.length;
+  const emptyRows = data && 9 - data.length;
 
   return (
     <div id="print" className={tableWrapper}>
@@ -74,9 +62,8 @@ const BankTable = ({
                   handleEditBtnClick={handleEditBtnClick}
                   handleDeleteBtnClick={handleDeleteBtnClick}
                   row={row}
-                  selectedRow={selectedRow}
+                  selected={selected}
                   labelId={labelId}
-                  selectedItemValue={selectedItemValue}
                 />
               );
             })}

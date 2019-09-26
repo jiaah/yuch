@@ -4,8 +4,9 @@ import { formattedToday } from '../../../helpers/moment';
 import EndServiceForm from './endServiceForm';
 import Loader from '../../loader';
 
-const Verification = Loader({
-  loader: () => import('./verification' /* webpackChunkName: 'Verification' */),
+const AdminVerificationContainer = Loader({
+  loader: () =>
+    import('../../../shared/adminVerification/adminVerificationContainer' /* webpackChunkName: 'Verification' */),
 });
 
 const EndServiceFormBox = ({
@@ -67,7 +68,10 @@ const EndServiceFormBox = ({
           onVerification={onVerification}
         />
       ) : (
-        <Verification handleSubmit={handleSubmit} />
+        <AdminVerificationContainer
+          handleAdminVerificationSuccess={handleSubmit}
+          confirmType="edit"
+        />
       )}
     </div>
   );

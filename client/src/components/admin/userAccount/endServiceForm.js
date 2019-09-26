@@ -2,6 +2,8 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '../../../../assets/icons';
 /* --- Components --- */
 import { firstDayOfLastMonth } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
@@ -50,6 +52,19 @@ const EndServiceForm = ({
           onChange={handleChange('endDate')}
           required={endService}
           disabled={!endService}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Icon
+                  name="calendar"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                />
+              </InputAdornment>
+            ),
+          }}
         />
       </div>
       <FormButton
