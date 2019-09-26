@@ -16,18 +16,25 @@ const styles = () => ({
   table: { minWidth: 470 },
 });
 
-const BankTable = ({ classes: { tableWrapper, table }, data }) => {
+const BankTable = ({
+  classes: { tableWrapper, table },
+  data,
+  // actions
+  saveClickedItemData,
+  // func
+  handleButtonClick,
+}) => {
   const [selected, setSelected] = React.useState('');
   const handleTableRowClick = id => setSelected(id);
 
-  const getClickedUserData = async bankId => {
-    const bankData = await data.filter(b => b.id === bankId);
-    return bankData[0];
+  const getClickedUserData = async id => {
+    const filteredData = await data.filter(b => b.id === id);
+    return filteredData[0];
   };
 
   const handleEditBtnClick = async id => {
-    const bankData = await getClickedUserData(id);
-    await saveClickedItemData(bankData);
+    const selectedData = await getClickedUserData(id);
+    await saveClickedItemData(selectedData);
     return handleButtonClick('edit');
   };
 

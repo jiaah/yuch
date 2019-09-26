@@ -30,6 +30,20 @@ const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
 const listsByDateRange = async (startedAt, endedAt) => {
   try {
     const results = await SpecialMeal.query()
+      .select(
+        'id',
+        'userId',
+        'companyName',
+        'mealPrice',
+        'date',
+        'time',
+        'sideDish',
+        'quantity',
+        'sumTotal',
+        'address',
+        'contactNo',
+        'note',
+      )
       .whereBetween('date', [startedAt, endedAt])
       .orderBy('date', 'asc')
       .orderBy('time', 'asc');

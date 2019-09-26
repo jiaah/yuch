@@ -10,19 +10,28 @@ import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import CreateModal from './createSpecialMealModal';
+import EditModal from './editSpecialMealModal';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
+import * as selectedActions from '../../../actions/selectedAction';
 
 const SpecialMealContainer = ({
   date,
+  clickedUserData,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
     updateSpecialMeal,
     deleteSpecialMeal,
+  },
+  selectedActions: {
+    saveClickedItemData,
+    resetClickedItemData,
+    saveSelectedItemValue,
+    resetSelectedItemValue,
   },
   dateTrackerActions: { updateDate, resetDate },
   modalActions: { showModal, hideModal },
@@ -92,21 +101,37 @@ const SpecialMealContainer = ({
           />
         </div>
       </div>
-      <Paper component={<Table data={specialMeal} />} />
-      {clickedBtn !== null && (
+      <Paper
+        component={
+          <Table
+            data={specialMeal}
+            saveClickedItemData={saveClickedItemData}
+            handleButtonClick={handleButtonClick}
+          />
+        }
+      />
+      {clickedBtn === 'create' ? (
         <CreateModal
-          hideModal={hideModal}
-          createSpecialMeal={createSpecialMeal}
           formattedTmr={formattedTmr}
+          hideModal={hideModal}
           addFlashMessage={addFlashMessage}
+          createSpecialMeal={createSpecialMeal}
         />
-      )}
+      ) : clickedBtn === 'edit' ? (
+        <EditModal
+          hideModal={hideModal}
+          addFlashMessage={addFlashMessage}
+          updateSpecialMeal={updateSpecialMeal}
+          clickedUserData={clickedUserData}
+        />
+      ) : null}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
+  clickedUserData: state.selected.data,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
@@ -114,6 +139,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addFlashMessage(variant, message)),
   modalActions: bindActionCreators(modalActions, dispatch),
   specialMealActions: bindActionCreators(specialMealActions, dispatch),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
 });
 
 export default connect(
