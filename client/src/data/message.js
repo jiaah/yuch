@@ -77,7 +77,11 @@ export const bankAccountPageInfoA = (
 export const bankAccountPageInfoB = (
   <React.Fragment>
     <span className="c-point2">새로운 계좌 등록 혹은 삭제 시&#44;</span>
-    &#8201;&#8201;&#39;계정 &#62; 고객계정&#39; 으로 이동하여&#44;&#8201;&#8201;
+    &#8201;&#8201;
+    <Link className="td-none c-text2" to="/admin/account/users">
+      &#39;고객관리 &#62; 고객계정&#39;
+    </Link>{' '}
+    으로 이동하여&#44;&#8201;&#8201;
     <span className="c-point2">
       반드시 새로운 계좌를 고객 업체에 등록해주세요&#46;
     </span>
@@ -119,7 +123,7 @@ export const ratesPageInfo = (
   <React.Fragment>
     <span className="c-point2">식수가격 변동</span>은 상단의 메뉴&#8201;&#8201;
     <Link className="c-point2 td-none" to="/admin/account/rates">
-      계정/식수가격 페이지
+      &#39;유청계정 &#62; 식수가격&#39;
     </Link>
     &#8201; 에서 할 수 있습니다&#46;
   </React.Fragment>
@@ -195,14 +199,17 @@ export const adminCateringMsg = (
       을 눌러주시기 바랍니다&#46;
     </p>
     <p className="f-mini pt2">
-      &#42; 휴먼계정으로 전환된 고객의 지난 식수량 변경하는 방법. <br />
+      &#42; <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는
+      방법. <br />
       고객 계정을 활성화 &#8201;&#8594;&#8201;&#8201;
-      <Link className="c-point2 td-none" to="/admin/count/catering/dd">
-        식수현황/위탁급식식수
+      <Link className="c-text td-none" to="/admin/count/catering/dd">
+        &#39;식수현황 &#62; 위탁급식식수&#39;
       </Link>{' '}
       에서 변경&#8201;&#8201;&#8594;
       <br />
-      <span className="c-point2">인보이스 재발행</span>
+      <Link className="c-point2 td-none" to="/admin/invoice/users">
+        인보이스 재발행
+      </Link>
       &#8201;&#8201;&#8594;&#8201;&#8201; 다시 휴먼계정으로 전환
     </p>
   </div>
@@ -224,7 +231,7 @@ export const endServiceMessageC = (
     휴먼계정으로 전환된 이 고객의 정보는{' '}
     <Link className="c-point2 td-none" to="/admin/account/users">
       {' '}
-      계정/고객계정
+      &#39;고객관리 &#62; 고객계정&#39;
     </Link>{' '}
     에서 확인하실 수 있습니다.
   </React.Fragment>
@@ -235,10 +242,12 @@ export const endServiceMessageD = (
     휴먼계정으로 전환된 후에 이전의 식수량 변경을 원하실 경우 : <br />
     고객 계정을 활성화 &#8201;&#8594;&#8201;&#8201;
     <Link className="c-point2 td-none" to="/admin/count/catering/dd">
-      식수현황/위탁급식식수
+      &#39;식수현황 &#62; 위탁급식식수&#39;
     </Link>{' '}
     에서 변경&#8201;&#8201;&#8594;&#8201;&#8201;
-    <span className="c-point2">인보이스 재발행</span>
+    <Link className="c-point2 td-none" to="/admin/invoice/users">
+      인보이스 재발행
+    </Link>
     <br />
     &#8201;&#8201;&#8594;&#8201;&#8201; 다시 휴먼계정으로 전환
   </React.Fragment>

@@ -111,7 +111,7 @@ const BankAccountContainer = ({
           fillOuter="#2196F3"
           fillInner="#ffffff"
           text={bankAccountPageInfoB}
-          cposition="end"
+          position="end"
           iconBoxStyle=""
           textStyle="icon-message--info"
         />

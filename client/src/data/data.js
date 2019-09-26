@@ -55,11 +55,11 @@ export const navAdminList = [
   },
   {
     id: 3,
-    name: '매출현황',
+    name: '고객관리',
   },
   {
     id: 4,
-    name: '계정',
+    name: '유청계정',
   },
 ];
 
@@ -87,20 +87,13 @@ export const navAdminItems = {
       name: '회사별 거래명세서',
       to: '/admin/invoice/users',
     },
-  ],
-  3: [
-    {
-      id: 11,
-      name: '매출 상세내역',
-      to: '/admin/revenue/mm',
-    },
     {
       id: 12,
       name: '매출 현황',
       to: '/admin/revenue',
     },
   ],
-  4: [
+  3: [
     {
       id: 11,
       name: '식수 가격',
@@ -111,13 +104,15 @@ export const navAdminItems = {
       name: '고객 계정',
       to: '/admin/account/users',
     },
+  ],
+  4: [
     {
-      id: 13,
+      id: 11,
       name: `${admin.companyName} 계정`,
       to: '/admin/account',
     },
     {
-      id: 14,
+      id: 12,
       name: `${admin.companyName} 계좌`,
       to: '/admin/account/bank',
     },
