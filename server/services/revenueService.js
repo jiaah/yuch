@@ -1,86 +1,93 @@
 const moment = require('moment');
 const SpecialMeal = require('../models/SpecialMeal');
-// const Users = require('../models/Users');
+const Catering = require('../models/Catering');
+const Restaurant = require('../models/Restaurant');
 
-const formatDateTime = result => {
-  const formatedResult = result;
-  const parsedDate = moment(result.date);
-  const parsedTime = moment(
-    `${parsedDate.format('YYYY-MM-DD')} ${result.time}`,
-  );
-  formatedResult.date = parsedDate.format('YYYYMMDD');
-  formatedResult.time = parsedTime.format('h:mm a');
-  return formatedResult;
-};
+const getTotalResto = (userId, startDate, endDate) => {};
 
-const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
-  try {
-    const results = await SpecialMeal.query()
-      .where({ userId })
-      .whereBetween('date', [startedAt, endedAt])
-      .orderBy('date', 'asc')
-      .orderBy('time', 'asc');
-    results.map(result => formatDateTime(result));
-    return results;
-  } catch (error) {
-    throw error;
-  }
-};
+const getTotalCatering = (userId, startDate, endDate) => {};
 
-const listsByDateRange = async (startedAt, endedAt) => {
-  try {
-    const results = await SpecialMeal.query()
-      .whereBetween('date', [startedAt, endedAt])
-      .orderBy('date', 'asc')
-      .orderBy('time', 'asc');
+// const formatDateTime = result => {
+//   const formatedResult = result;
+//   const parsedDate = moment(result.date);
+//   const parsedTime = moment(
+//     `${parsedDate.format('YYYY-MM-DD')} ${result.time}`,
+//   );
+//   formatedResult.date = parsedDate.format('YYYYMMDD');
+//   formatedResult.time = parsedTime.format('h:mm a');
+//   return formatedResult;
+// };
 
-    results.map(result => formatDateTime(result));
+// const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
+//   try {
+//     const results = await SpecialMeal.query()
+//       .where({ userId })
+//       .whereBetween('date', [startedAt, endedAt])
+//       .orderBy('date', 'asc')
+//       .orderBy('time', 'asc');
+//     results.map(result => formatDateTime(result));
+//     return results;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-    return results;
-  } catch (error) {
-    throw error;
-  }
-};
+// const listsByDateRange = async (startedAt, endedAt) => {
+//   try {
+//     const results = await SpecialMeal.query()
+//       .whereBetween('date', [startedAt, endedAt])
+//       .orderBy('date', 'asc')
+//       .orderBy('time', 'asc');
 
-const create = async data => {
-  try {
-    const result = await SpecialMeal.query().insertAndFetch(data);
-    return formatDateTime(result);
-  } catch (error) {
-    throw error;
-  }
-};
+//     results.map(result => formatDateTime(result));
 
-const isExist = async id => {
-  try {
-    return Boolean(await SpecialMeal.query().findById(id));
-  } catch (error) {
-    throw error;
-  }
-};
+//     return results;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-const update = async (id, data) => {
-  try {
-    const result = await SpecialMeal.query().patchAndFetchById(id, data);
-    return formatDateTime(result);
-  } catch (error) {
-    throw error;
-  }
-};
+// const create = async data => {
+//   try {
+//     const result = await SpecialMeal.query().insertAndFetch(data);
+//     return formatDateTime(result);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-const deleteById = async id => {
-  try {
-    return SpecialMeal.query().deleteById(id);
-  } catch (error) {
-    throw error;
-  }
-};
+// const isExist = async id => {
+//   try {
+//     return Boolean(await SpecialMeal.query().findById(id));
+//   } catch {
+//     throw error;
+//   }
+// };
+
+// const update = async (id, data) => {
+//   try {
+//     const result = await SpecialMeal.query().patchAndFetchById(id, data);
+//     return formatDateTime(result);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// const deleteById = async id => {
+//   try {
+//     return SpecialMeal.query().deleteById(id);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 module.exports = {
-  findAllByUserIdWithDateRange,
-  listsByDateRange,
-  create,
-  update,
-  isExist,
-  deleteById,
+  getTotalResto,
+  getTotalCatering,
+  // findAllByUserIdWithDateRange,
+  // listsByDateRange,
+  // create,
+  // update,
+  // isExist,
+  // deleteById,
 };

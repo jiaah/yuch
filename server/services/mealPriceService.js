@@ -2,6 +2,19 @@ const moment = require('moment');
 const { transaction } = require('objection');
 const MealPrice = require('../models/MealPrice');
 
+const getMealPriceByUserIdWithDate = async (userId, date) => {
+  try {
+    const row = await MealPrice.query()
+      .select('mealPrice')
+      .where({ userId })
+      .whereRaw(`'${date}' BETWEEN "startedAt" AND "endedAt"`)
+      .first();
+    return Number(row.mealPrice);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
   try {
     const maxEndedAt = '9999-12-31';
@@ -82,5 +95,6 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
 };
 
 module.exports = {
+  getMealPriceByUserIdWithDate,
   reserveMealPrice,
 };

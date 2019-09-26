@@ -1,7 +1,35 @@
 const moment = require('moment');
-const { raw } = require('objection');
 const Catering = require('../models/Catering');
 const Users = require('../models/Users');
+
+const getSumTotalByUserIdWithRangeDate = async (
+  userId,
+  mealPrice,
+  startDate,
+  endDate,
+) => {
+  try {
+    const row = await Catering.query()
+      .sum('lunchQty as lunchQty')
+      .sum('dinnerQty as dinnerQty')
+      .sum('lateNightSnackQty as lateNightSnackQty')
+      .where({ userId })
+      .whereBetween('date', [startDate, endDate])
+      .first();
+    let lunchQty = 0;
+    let dinnerQty = 0;
+    let lateNightSnackQty = 0;
+    if (row) {
+      lunchQty = Number(row.lunchQty);
+      dinnerQty = Number(row.dinnerQty);
+      lateNightSnackQty = Number(row.lateNightSnackQty);
+    }
+
+    return (lunchQty + dinnerQty + lateNightSnackQty) * mealPrice;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const findOneByUserIdWithDate = async (userId, date) => {
   try {
@@ -183,7 +211,7 @@ const getLists = async date => {
     const users = await Users.query()
       .where({ isAdmin: false, businessType: 'catering' })
       .where(builder => {
-        builder.whereRaw('"endDate" < NOW()').orWhereNull('endDate');
+        builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
       })
       .orderBy('companyName', 'asc');
 
@@ -243,6 +271,7 @@ const resetQty = async (userId, date) => {
 };
 
 module.exports = {
+  getSumTotalByUserIdWithRangeDate,
   findOneByUserIdWithDate,
   updateByUserIdWithDate,
   getLists,
