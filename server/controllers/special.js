@@ -49,8 +49,10 @@ exports.create = async (req, res, next) => {
       address,
       date,
       time,
+      sideDish,
       quantity,
       mealPrice,
+      note,
     } = req.body;
 
     const parsedDate = moment(`${date} ${time}`, 'YYYYMMDD h:mm a');
@@ -72,9 +74,11 @@ exports.create = async (req, res, next) => {
       address,
       date: changedDate,
       time: changedTime,
+      sideDish,
       quantity,
       mealPrice,
       sumTotal,
+      note,
     });
 
     return res.status(200).json(result);
@@ -95,6 +99,8 @@ exports.update = async (req, res, next) => {
       time,
       quantity,
       mealPrice,
+      sideDish,
+      note,
     } = req.body;
 
     const isExist = await specialService.isExist(specialId);
@@ -122,9 +128,11 @@ exports.update = async (req, res, next) => {
       address,
       date: changedDate,
       time: changedTime,
+      sideDish,
       quantity,
       mealPrice,
       sumTotal,
+      note,
     });
 
     return res.status(200).json(result);
