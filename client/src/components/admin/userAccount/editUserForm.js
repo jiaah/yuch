@@ -8,6 +8,7 @@ import FormButton from '../../../shared/form/formButton';
 import Button from '../../../shared/form/button';
 import IconButton from '../../../shared/form/iconButton';
 import IconMessage from '../../../shared/iconMessage';
+import { endOfServiceMegInEditForm } from '../../../data/message';
 
 const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
   <React.Fragment>
@@ -140,7 +141,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           viewBox="0 0 25 25"
           fillOuter="#ed4337"
           fillInner="#ffffff"
-          text="지정된 일자로부터 저장된 모든 식수량이 삭제됩니다."
+          text={endOfServiceMegInEditForm}
           position="end"
           iconBoxStyle="reverse-between--icon-msg"
           textStyle="icon-message--warning reverse-between--icon-msg--p"

@@ -9,4 +9,4 @@ const Verification = ({ handleSubmit }) => (
   />
 );
 
-export default DeleteUserFormBox;
+export default Verification;

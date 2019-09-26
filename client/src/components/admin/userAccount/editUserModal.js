@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 /* --- Components --- */
+import Loader from '../../loader';
 import { editUserAccountValidation } from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
 
-const EndService = Loader({
-  loader: () =>
-    import('./endServiceFormBox' /* webpackChunkName: 'EndService' */),
-});
-
 const ResetPassword = Loader({
   loader: () =>
-    import('./resetPasswordBox' /* webpackChunkName: 'ResetPassword' */),
+    import('./resetPasswordBox' /* webpackChunkName: 'resetPassword' */),
+});
+
+const EndService = Loader({
+  loader: () =>
+    import('./endServiceFormBox' /* webpackChunkName: 'deleteUser' */),
 });
 
 const EditUserModal = ({
@@ -24,6 +25,7 @@ const EditUserModal = ({
   editUser,
   addFlashMessage,
   // resetPassword,
+  deleteUser,
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
@@ -51,6 +53,8 @@ const EditUserModal = ({
         component={
           subModal === 'service' ? (
             <EndService
+              closeSubModal={closeSubModal}
+              handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               userId={clickedUserData.id}
               formattedUserEndDate={formattedUserEndDate}
@@ -58,7 +62,13 @@ const EditUserModal = ({
               formatToYYYYMMDD={formatToYYYYMMDD}
             />
           ) : subModal === 'password' ? (
-            <ResetPassword />
+            <ResetPassword
+              closeSubModal={closeSubModal}
+              handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
+              clickedUserData={clickedUserData}
+              deleteUser={deleteUser}
+            />
           ) : (
             <EditUserFormBox
               showSubModal={showSubModal}

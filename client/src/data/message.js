@@ -266,3 +266,11 @@ export const restoSalesMsg = (
     </p>
   </div>
 );
+
+export const endOfServiceMegInEditForm = (
+  <React.Fragment>
+    &#91;&#8201;휴면계정 설정&#8201;&#93;&#8201;&#8201;지정된 일자로부터 저장된{' '}
+    <br />
+    모든 식수량이 삭제됩니다&#44;
+  </React.Fragment>
+);
