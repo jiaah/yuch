@@ -34,7 +34,7 @@ const EditUserModal = ({
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
 
-  const title = subModal ? `${clickedUserData.companyName}` : '';
+  const title = subModal ? `${clickedUserData.companyName}` : '고객 계정';
 
   const formattedUserEndDate = clickedUserData.endDate
     ? formatWithDash(clickedUserData.endDate)
