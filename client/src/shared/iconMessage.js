@@ -14,7 +14,11 @@ const IconMessage = ({
   position,
   textStyle,
 }) => {
-  const positioning = position === 'center' ? 'justify-center' : 'justify-end';
+  let positioning;
+  if (position === 'start') positioning = 'justify-start';
+  if (position === 'center') positioning = 'justify-center';
+  if (position === 'end') positioning = 'justify-end';
+
   return (
     <div className={`flex ${positioning} ${iconBoxStyle}`}>
       <Icon

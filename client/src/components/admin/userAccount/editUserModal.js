@@ -6,8 +6,9 @@ import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
 
-const DeleteUser = Loader({
-  loader: () => import('./deleteUser' /* webpackChunkName: 'deleteUser' */),
+const ResetPassword = Loader({
+  loader: () =>
+    import('./resetPasswordBox' /* webpackChunkName: 'resetPassword' */),
 });
 
 const EndService = Loader({
@@ -33,12 +34,7 @@ const EditUserModal = ({
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
 
-  const title =
-    subModal === 'service'
-      ? `${clickedUserData.companyName}`
-      : subModal === 'delete'
-        ? ''
-        : '고객 계정';
+  const title = subModal ? `${clickedUserData.companyName}` : '고객 계정';
 
   const formattedUserEndDate = clickedUserData.endDate
     ? formatWithDash(clickedUserData.endDate)
@@ -65,8 +61,8 @@ const EditUserModal = ({
               handleEndingService={handleEndingService}
               formatToYYYYMMDD={formatToYYYYMMDD}
             />
-          ) : subModal === 'delete' ? (
-            <DeleteUser
+          ) : subModal === 'password' ? (
+            <ResetPassword
               closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}

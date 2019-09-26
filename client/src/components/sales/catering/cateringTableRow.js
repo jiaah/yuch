@@ -22,7 +22,6 @@ const CateringTableRow = ({
   row,
   labelId,
   // global state
-  date,
   selectedItemValue,
   // local state
   editIndex,
@@ -37,22 +36,11 @@ const CateringTableRow = ({
   startEditing,
   endEditing,
   handleTableRowClick,
-  handleTextFieldTouched,
   // actions
   saveSelectedItemValue,
   resetSelectedItemValue,
 }) => {
-  const {
-    userId,
-    companyName,
-    lunchQty,
-    dinnerQty,
-    lateNightSnackQty,
-    endDate,
-  } = row;
-  // disable edit button when date >= 서비스 종료 일자
-  const endService = date >= endDate;
-
+  const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
   const currentlyEditing = editIndex === userId;
 
   const lunch = lunchQty === null ? '' : lunchQty;
@@ -127,7 +115,6 @@ const CateringTableRow = ({
                   width="19"
                   height="19"
                   viewBox="0 0 24 24"
-                  disabled={endService}
                   handleClick={e => handleEditBtnClick(e, userId)}
                 />
               </div>

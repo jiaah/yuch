@@ -70,7 +70,7 @@ const UserAccountContainer = ({
 
   const handleCloseModal = () => {
     if (clickedBtn === 'edit') {
-      return Promise.all([resetClickedItemData(), hideModal()]);
+      resetClickedItemData();
     }
     return hideModal();
   };
