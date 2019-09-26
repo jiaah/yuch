@@ -63,6 +63,14 @@ const styles = theme => ({
       width: 260,
     },
   },
+  textFieldH: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 260,
+    [theme.breakpoints.up('md')]: {
+      width: 580,
+    },
+  },
 });
 
 const Input = ({

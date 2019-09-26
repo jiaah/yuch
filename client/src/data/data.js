@@ -322,13 +322,13 @@ export const specialMealTableHeadColumns = [
     id: 'companyName',
     numeric: true,
     disablePadding: false,
-    label: '회사명',
+    label: '고객명',
   },
   {
     id: 'date',
     numeric: true,
     disablePadding: false,
-    label: '날찌',
+    label: '일자',
   },
   {
     id: 'time',

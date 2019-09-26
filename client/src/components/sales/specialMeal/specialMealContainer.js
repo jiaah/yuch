@@ -9,8 +9,10 @@ import Paper from '../../../shared/paper';
 import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
+import Modal from './createSpecialMealModal';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
+import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
 
@@ -23,9 +25,11 @@ const SpecialMealContainer = ({
     deleteSpecialMeal,
   },
   dateTrackerActions: { updateDate, resetDate },
+  modalActions: { showModal, hideModal },
   addFlashMessage,
 }) => {
   const [specialMeal, setSpecialMeal] = useState([]);
+  const [clickedBtn, setClickedBtn] = useState(null);
   const yyyymm = formatToYYYYMM(date);
 
   const fetchData = async when => {
@@ -38,11 +42,15 @@ const SpecialMealContainer = ({
     return () => resetDate();
   }, []);
 
-  // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
+  const handleButtonClick = sub => {
+    Promise.all([setClickedBtn(sub), showModal()]);
+  };
 
   const handleSuggestionSelected = () => {};
   const handleResetSearch = () => {};
+
+  // YYYYMMDD -> 'YYYY 년 MM 월'
+  const formattedDate = formatToYearDateForm(date);
 
   return (
     <div className="container-a pw2">
@@ -67,15 +75,25 @@ const SpecialMealContainer = ({
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={handleResetSearch}
         />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
+        <div>
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+          <IconButton
+            handleClick={() => handleButtonClick('create')}
+            name="add"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+          />
+        </div>
       </div>
       <Paper component={<Table data={specialMeal} />} />
+      {clickedBtn !== null && <Modal hideModal={hideModal} />}
     </div>
   );
 };
@@ -87,6 +105,7 @@ const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  modalActions: bindActionCreators(modalActions, dispatch),
   specialMealActions: bindActionCreators(specialMealActions, dispatch),
 });
 
