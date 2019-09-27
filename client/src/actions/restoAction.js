@@ -43,3 +43,7 @@ export const updateRestoSales = data => async dispatch => {
     });
   }
 };
+
+export const resetRestoSales = () => ({
+  type: types.RESET_RESTO_SALES,
+});

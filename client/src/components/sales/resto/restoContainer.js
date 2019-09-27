@@ -15,8 +15,9 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const RestoContainer = ({
   date,
   restoSales,
+
   dateTrackerActions: { updateDate, resetDate },
-  restoActions: { getRestoSales, updateRestoSales },
+  restoActions: { getRestoSales, updateRestoSales, resetRestoSales },
   addFlashMessage,
 }) => {
   const [resto, setResto] = useState(null);
@@ -26,7 +27,7 @@ const RestoContainer = ({
     return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
   };
 
-  const initfetchData = async when => {
+  const fetchData = async when => {
     const res = await getRestoSales(when);
     if (res.error) {
       setResto({
@@ -39,17 +40,15 @@ const RestoContainer = ({
     return dataFilter(when);
   };
 
-  const fetchData = when => dataFilter(when);
-
   useEffect(() => {
     // non-interactive data with clients
     // do not make api GET request every render
-    // if (restoSales.length === 0) {
-    initfetchData(date);
-    // } else {
-    //   fetchData(date);
-    // }
-    return () => resetDate();
+    if (restoSales.length === 0) {
+      fetchData(date);
+    } else {
+      dataFilter(date);
+    }
+    return () => Promise.all([resetRestoSales(), resetDate()]);
   }, []);
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'

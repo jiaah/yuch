@@ -212,13 +212,13 @@ export const restoSalesValidation = Yup.object({
   lunch: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .min(1, '1이상의 숫자를 입력해 주세요.')
+    .min(0, '1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.')
     .integer('1이상의 숫자를 입력해 주세요.'),
   dinner: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .min(1, '1이상의 숫자를 입력해 주세요.')
+    .min(0, '1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.')
     .integer('1이상의 숫자를 입력해 주세요.'),
 });

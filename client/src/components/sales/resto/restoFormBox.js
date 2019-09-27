@@ -7,7 +7,9 @@ import { restoSalesValidation } from '../../formValidation';
 const RestoFormBox = ({ resto, date, updateRestoSales, addFlashMessage }) => {
   useEffect(() => {}, [resto]);
   const { lunch, dinner } = resto;
+  console.log('lunch, dinner: ', lunch, dinner);
   const handleUpdateRestoSales = async (values, { setSubmitting }) => {
+    console.log('values: ', values);
     const res = await updateRestoSales({ date, ...values });
     if (!res.error) {
       addFlashMessage('success', `저장되었습니다.`);
