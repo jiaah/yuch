@@ -1,7 +1,6 @@
 const moment = require('moment');
 const { raw } = require('objection');
 const SpecialMeal = require('../models/SpecialMeal');
-// const Users = require('../models/Users');
 
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) => {
   const results = await SpecialMeal.query()

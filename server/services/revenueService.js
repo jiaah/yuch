@@ -1,93 +1,123 @@
+/* eslint-disable no-await-in-loop */
 const moment = require('moment');
+const { raw } = require('objection');
 const SpecialMeal = require('../models/SpecialMeal');
-const Catering = require('../models/Catering');
+const Invoice = require('../models/Invoice');
+const Calendars = require('../models/Calendars');
 const Restaurant = require('../models/Restaurant');
 
-const getTotalResto = (userId, startDate, endDate) => {};
+const getRevenues = async (startDate, endDate) => {
+  try {
+    const results = [];
+    const calrendars = await Calendars.query()
+      .select(raw('min(date)').as('date'))
+      .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
+      .groupByRaw("to_char(date, 'YYYY-MM')")
+      .orderBy('date', 'asc');
 
-const getTotalCatering = (userId, startDate, endDate) => {};
+    // eslint-disable-next-line no-restricted-syntax
+    for (const { date } of calrendars) {
+      const subStartDate = moment(date).format('YYYY-MM-DD');
+      const subEndDate = moment(date)
+        .endOf('month')
+        .format('YYYY-MM-DD');
 
-// const formatDateTime = result => {
-//   const formatedResult = result;
-//   const parsedDate = moment(result.date);
-//   const parsedTime = moment(
-//     `${parsedDate.format('YYYY-MM-DD')} ${result.time}`,
-//   );
-//   formatedResult.date = parsedDate.format('YYYYMMDD');
-//   formatedResult.time = parsedTime.format('h:mm a');
-//   return formatedResult;
-// };
+      const sumTotalResto = await getSumTotalResto(subStartDate, subEndDate);
+      const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
+        subStartDate,
+        subEndDate,
+      );
 
-// const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
-//   try {
-//     const results = await SpecialMeal.query()
-//       .where({ userId })
-//       .whereBetween('date', [startedAt, endedAt])
-//       .orderBy('date', 'asc')
-//       .orderBy('time', 'asc');
-//     results.map(result => formatDateTime(result));
-//     return results;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+      const sumTotalInvoice = await getSumTotalInvoice(subStartDate);
 
-// const listsByDateRange = async (startedAt, endedAt) => {
-//   try {
-//     const results = await SpecialMeal.query()
-//       .whereBetween('date', [startedAt, endedAt])
-//       .orderBy('date', 'asc')
-//       .orderBy('time', 'asc');
+      const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
-//     results.map(result => formatDateTime(result));
+      const result = {
+        date: moment(date).format('YYYYMM'),
+        sumTotalResto,
+        sumTotalSpecialMeal,
+        sumTotalInvoice,
+        sumTotal,
+      };
+      results.push(result);
+    }
+    return results;
+  } catch (error) {
+    throw error;
+  }
+};
 
-//     return results;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+const getTotalRevenues = async (startDate, endDate) => {
+  try {
+    const results = [];
+    const calrendars = await Calendars.query()
+      .select(raw('min(date)').as('date'))
+      .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
+      .groupByRaw("to_char(date, 'YYYY-MM')")
+      .orderBy('date', 'asc');
 
-// const create = async data => {
-//   try {
-//     const result = await SpecialMeal.query().insertAndFetch(data);
-//     return formatDateTime(result);
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+    // eslint-disable-next-line no-restricted-syntax
+    for (const { date } of calrendars) {
+      const subStartDate = moment(date).format('YYYY-MM-DD');
+      const subEndDate = moment(date)
+        .endOf('month')
+        .format('YYYY-MM-DD');
 
-// const isExist = async id => {
-//   try {
-//     return Boolean(await SpecialMeal.query().findById(id));
-//   } catch {
-//     throw error;
-//   }
-// };
+      const sumTotalResto = await getSumTotalResto(subStartDate, subEndDate);
+      const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
+        subStartDate,
+        subEndDate,
+      );
 
-// const update = async (id, data) => {
-//   try {
-//     const result = await SpecialMeal.query().patchAndFetchById(id, data);
-//     return formatDateTime(result);
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+      const sumTotalInvoice = await getSumTotalInvoice(subStartDate);
 
-// const deleteById = async id => {
-//   try {
-//     return SpecialMeal.query().deleteById(id);
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+      const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
+
+      const result = {
+        date: moment(date).format('YYYYMM'),
+        sumTotal,
+      };
+      results.push(result);
+    }
+
+    return results;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getSumTotalResto = async (startDate, endDate) => {
+  const result = await Restaurant.query()
+    .select(raw('sum(lunch + dinner)').as('sumTotal'))
+    .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
+    .first();
+  return result.sumTotal || 0;
+};
+
+const getSumTotalSpecialMeal = async (startDate, endDate) => {
+  try {
+    const result = await SpecialMeal.query()
+      .select(raw('sum("sumTotal")').as('sumTotal'))
+      .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
+      .first();
+    return result.sumTotal || 0;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getSumTotalInvoice = async date => {
+  try {
+    const result = await Invoice.query()
+      .select(raw('sum("sumTotal")').as('sumTotal'))
+      .where({ date });
+    return result.sumTotal || 0;
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = {
-  getTotalResto,
-  getTotalCatering,
-  // findAllByUserIdWithDateRange,
-  // listsByDateRange,
-  // create,
-  // update,
-  // isExist,
-  // deleteById,
+  getRevenues,
+  getTotalRevenues,
 };
