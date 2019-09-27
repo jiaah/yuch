@@ -53,7 +53,7 @@ exports.create = async (req, res, next) => {
       mealPrice,
     } = req.body;
 
-    const parsedDate = moment(`${date} ${time}`, 'YYYYMMDD h:mm a');
+    const parsedDate = moment(`${date} ${time}`, 'YYYY-MM-DD hh:mm');
     const sumTotal = mealPrice * quantity;
 
     if (!userId || userId === 'null') {

@@ -204,7 +204,7 @@ exports.getUsersList = async (req, res, next) => {
         'users.address',
         'users.businessType',
         'users.updated_at',
-        raw('to_char("endDate", \'YYYYMMDD\') as endDate'),
+        raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
         'meal_price.mealPrice',
         'meal_price.reservePrice',
         'meal_price.reserveDate',
@@ -234,7 +234,7 @@ exports.getUsersList = async (req, res, next) => {
         'users.address',
         'users.businessType',
         'users.updated_at',
-        raw('to_char("endDate", \'YYYYMMDD\') as endDate'),
+        raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
         'meal_price.mealPrice',
         'meal_price.reservePrice',
         'meal_price.reserveDate',
@@ -246,6 +246,8 @@ exports.getUsersList = async (req, res, next) => {
       )
       .whereRaw('"endDate" < NOW()')
       .orderBy('users.updated_at', 'desc');
+
+    result.bankAccounts = await BankAccount.query();
 
     return res.status(200).json(result);
 
@@ -308,6 +310,7 @@ exports.getCateringRates = (req, res) => {
       'meal_price.id',
       'meal_price.userId',
       'users.companyName',
+      'users.endDate',
       'meal_price.mealPrice',
       'meal_price.reservePrice',
       'meal_price.reserveDate',

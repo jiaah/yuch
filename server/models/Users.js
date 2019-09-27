@@ -1,9 +1,14 @@
 const { Model } = require('objection');
+const visibilityPlugin = require('objection-visibility').default;
 const BankAccount = require('./BankAccount');
 
-class Users extends Model {
+class Users extends visibilityPlugin(Model) {
   static get tableName() {
     return 'users';
+  }
+
+  static get hidden() {
+    return ['updated_at'];
   }
 
   static get relationMappings() {
