@@ -17,3 +17,14 @@ export const saveClickedItemData = data => ({
 export const resetClickedItemData = () => ({
   type: types.RESET_CLICKED_ITEM_DATA,
 });
+
+export const saveSelectValue = (name, value) => ({
+  type: types.SAVE_SELECT_VALUE,
+  name,
+  value,
+});
+
+export const resetSelectValue = name => ({
+  type: types.RESET_SELECT_VALUE,
+  name,
+});

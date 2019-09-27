@@ -27,6 +27,9 @@ const EditUserModal = Loader({
 });
 
 const UserAccountContainer = ({
+  usersStatus,
+  clickedUserData,
+  selectedSearchItem,
   modalActions: { showModal, hideModal },
   adminActions: {
     getUsers,
@@ -41,21 +44,26 @@ const UserAccountContainer = ({
     resetClickedItemData,
   },
   addFlashMessage,
-  clickedUserData,
-  selectedSearchItem,
 }) => {
-  const [users, setUsers] = useState({ activeUsers: [], inActiveUsers: [] });
-  console.log('users: ', users);
-  const [isActiveData, setIsActiveDate] = useState(true);
+  const [users, setUsers] = useState({
+    activeUsers: [],
+    inActiveUsers: [],
+    allUsers: [],
+  });
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
-  const { activeUsers, inActiveUsers } = users;
-  const allUsers = activeUsers.push(...inActiveUsers);
+  const { activeUsers, inActiveUsers, allUsers } = users;
+
+  const selctedUsers =
+    usersStatus === '활성 계정'
+      ? activeUsers
+      : usersStatus === '비활성 계정'
+        ? inActiveUsers
+        : allUsers;
 
   const fetchUsersData = async () => {
     const data = await getUsers();
-    console.log('data : ', data);
 
     const bankAccounts = [];
     if (data.error)
@@ -64,6 +72,7 @@ const UserAccountContainer = ({
       setUsers({
         activeUsers: data.activeUsers,
         inActiveUsers: data.inActiveUsers,
+        allUsers: [...data.activeUsers, ...data.inActiveUsers],
       }),
       setBankAccount(bankAccounts),
     ]);
@@ -94,12 +103,7 @@ const UserAccountContainer = ({
     ]);
 
   const getClickedUserData = async userId => {
-    let userData;
-    if (isActiveData) {
-      userData = await activeUsers.filter(user => user.id === userId);
-    } else {
-      userData = await inActiveUsers.filter(user => user.id === userId);
-    }
+    const userData = await selctedUsers.filter(user => user.id === userId);
     return userData[0];
   };
 
@@ -110,6 +114,7 @@ const UserAccountContainer = ({
     await saveClickedItemData(userData);
     return handleButtonClick('edit');
   };
+
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
     if (selectedSearchItem) resetSelectedItemValue();
@@ -126,24 +131,24 @@ const UserAccountContainer = ({
       <div className="paper-label-box justify-between ">
         <div className="flex">
           <SearchBar
-            data={allUsers}
+            data={selctedUsers}
             handleSuggestionSelected={handleSearch}
             handleResetSearch={renderAllUsers}
           />
           <p className="f-mini ml3 paper-label-box--number">
             총 고객 수&#8201;&#8201;
-            <span className="b">
-              {isActiveData ? activeUsers.length : inActiveUsers.length}
-            </span>
+            <span className="b">{selctedUsers.length}</span>
           </p>
         </div>
         <div className="flex">
           <Select
             label=""
-            initValue="활성계정"
+            name="users"
+            selectedValue={usersStatus}
             options={[
-              { value: 'activeUsers', view: '활성 계정' },
-              { value: 'inAactiveUsers', view: '비활성 계정' },
+              { value: '활성 계정' },
+              { value: '비활성 계정' },
+              { value: '전체 계정' },
             ]}
           />
           <IconButton
@@ -159,7 +164,7 @@ const UserAccountContainer = ({
         component={
           <UserTable
             handleEditUserBtnClick={handleEditUserBtnClick}
-            users={isActiveData ? activeUsers : inActiveUsers}
+            users={selctedUsers}
             selectedSearchItem={selectedSearchItem}
             bankAccount={bankAccount}
           />
@@ -205,6 +210,7 @@ const UserAccountContainer = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
+  usersStatus: state.selected.users,
 });
 
 const mapDispatchToProps = dispatch => ({

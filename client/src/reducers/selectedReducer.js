@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   value: null,
   data: [],
+  users: '활성 계정',
 };
 
 const selectedItem = (state = initialState, action) => {
@@ -27,6 +28,21 @@ const selectedItem = (state = initialState, action) => {
         ...state,
         data: [],
       };
+    // Select Form
+    case types.SAVE_SELECT_VALUE:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    case types.RESET_SELECT_VALUE: {
+      let resetValue;
+      if (action.name === 'users') resetValue = '활성 계정';
+
+      return {
+        ...state,
+        [action.name]: resetValue,
+      };
+    }
     default:
       return state;
   }
