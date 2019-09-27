@@ -29,6 +29,7 @@ const CateringContainer = ({
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
+
     if (res.error) {
       setCatering({
         date: dateInKorean,

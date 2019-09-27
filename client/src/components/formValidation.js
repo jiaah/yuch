@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { formattedToday } from '../helpers/moment';
+
 // 한글만 가능, 띄어쓰기 불가능
 const hangulRegExp = /^[가-힣]+$/;
 // 2~12 한글, 숫자 입력 가능. 특수문자는 !@#())*_로 한정. 띄어쓰기 가능.
@@ -255,7 +255,7 @@ export const specialMealValidation = Yup.object({
   contactNo: Yup.string()
     .matches(phoneRegExp, "' - '를 포함해서 번호를 입력해주세요.")
     .required('연락처를 입력하세요.'),
-  date: Yup.date().min(formattedToday, '지난날짜는 선택할 수 없습니다.'),
+  date: Yup.date(),
   time: Yup.string().required('시간을 입력해주세요.'),
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
