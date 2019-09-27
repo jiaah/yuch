@@ -250,46 +250,6 @@ exports.getUsersList = async (req, res, next) => {
     result.bankAccounts = await BankAccount.query();
 
     return res.status(200).json(result);
-
-    // knex('users')
-    //   .whereNot('users.username', 'yuch')
-    //   .whereRaw(
-    //     'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
-    //   )
-    //   .select(
-    //     'users.id',
-    //     'users.companyName',
-    //     'users.username',
-    //     'users.contactNo',
-    //     'users.email',
-    //     'users.lunchQty',
-    //     'users.dinnerQty',
-    //     'users.lateNightSnackQty',
-    //     'users.bankAccountId',
-    //     'users.address',
-    //     'users.businessType',
-    //     'users.updated_at',
-    //     'users.endDate',
-    //     'meal_price.mealPrice',
-    //     'meal_price.reservePrice',
-    //     'meal_price.reserveDate',
-    //   )
-    //   .leftJoin('meal_price', 'users.id', 'meal_price.userId')
-    //   .orderBy('users.updated_at', 'desc')
-    //   .then(async users => {
-    //     users.map(user => {
-    //       const newUser = user;
-    //       newUser.endDate = user.endDate
-    //         ? moment(user.endDate).format('YYYYMMDD')
-    //         : null;
-    //       return newUser;
-    //     });
-
-    //     knex('bank_account')
-    //       .select('*')
-    //       .then(bankAccounts => res.status(200).json({ users, bankAccounts }))
-    //       .catch(err => res.status(500).json(err));
-    //   });
   } catch (err) {
     next(err);
   }
@@ -299,12 +259,11 @@ exports.getUsersList = async (req, res, next) => {
 exports.getCateringRates = (req, res) => {
   knex('meal_price')
     .whereNot('users.isAdmin', true)
-    .where('users.endDate', null)
     .whereRaw(
       'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
     )
     .where(builder => {
-      builder.whereRaw('"endDate" < NOW()').orWhereNull('endDate');
+      builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
     })
     .select(
       'meal_price.id',

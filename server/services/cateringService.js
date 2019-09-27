@@ -68,11 +68,12 @@ const findOneByUserIdWithDate = async (userId, date) => {
         'catering.dinnerQty',
         'catering.lateNightSnackQty',
         'users.endDate',
-        'users.created_at',
+        raw('users.created_at').as('createdAt'),
       )
       .innerJoin('users', 'users.id', 'catering.userId')
       .where({ userId, date: formatedDate })
       .first();
+    console.log(result);
 
     if (!result) {
       if (![0, 6].includes(dayOfWeek)) {
@@ -92,7 +93,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
             'catering.dinnerQty',
             'catering.lateNightSnackQty',
             'users.endDate',
-            'users.created_at',
+            raw('users.created_at').as('createdAt'),
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
@@ -104,7 +105,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
           lunchQty: null,
           dinnerQty: null,
           lateNightSnackQty: null,
-          created_at: null,
+          createdAt: null,
         };
       }
     }
@@ -125,6 +126,8 @@ const findOneByUserIdWithDate = async (userId, date) => {
     if (result.lateNightSnackQty === 0) {
       result.lateNightSnackQty = null;
     }
+
+    console.log(result);
 
     return result;
   } catch (error) {
@@ -151,12 +154,12 @@ const updateByUserIdWithDate = async (
         .select(
           'catering.userId',
           'users.companyName',
-          'users.created_at',
           'catering.date',
           'catering.lunchQty',
           'catering.dinnerQty',
           'catering.lateNightSnackQty',
           'users.endDate',
+          raw('users.created_at').as('createdAt'),
         )
         .innerJoin('users', 'users.id', 'catering.userId')
         .where({ userId, date: formatedDate })
@@ -189,7 +192,7 @@ const updateByUserIdWithDate = async (
             'catering.dinnerQty',
             'catering.lateNightSnackQty',
             'users.endDate',
-            'users.created_at',
+            raw('users.created_at').as('createdAt'),
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
