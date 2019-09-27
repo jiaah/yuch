@@ -135,7 +135,6 @@ const findOne = async (userId, startedAt, endedAt) => {
 
     result.caterings = await cateringService.getListsByUserIdWithRangeDate(
       userId,
-      result.mealPrice,
       startedAt,
       endedAt,
     );
@@ -146,31 +145,6 @@ const findOne = async (userId, startedAt, endedAt) => {
     );
 
     return result;
-
-    // const hasInvoice = await invoiceExist(userId, startedAt);
-    // if (!hasInvoice) {
-    //   const results = await invoiceInfo(userId, startedAt, endedAt);
-    //   results.map(result => {
-    //     const newResult = result;
-    //     newResult.date = moment(result.date).format('YYYY-MM-DD');
-    //     return newResult;
-    //   });
-    //   return results;
-
-    //   // const data = {
-    //   //   userId,
-    //   // };
-    //   // await Invoice.query().insert(data);
-    // }
-    // return Invoice.query()
-    //   .select(
-    //     'invoice.userId',
-    //     'users.companyName',
-    //     'invoice.mealPrice',
-    //     'invoice.sumTotal',
-    //   )
-    //   .join('users', 'users.id', 'invoice.userId')
-    //   .where({ userId, date: startedAt });
   } catch (error) {
     throw error;
   }
