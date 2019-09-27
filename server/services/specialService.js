@@ -16,7 +16,7 @@ const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) => {
     .whereBetween('date', [startDate, endDate])
     .orderBy('date', 'asc');
 
-  results.map(result => formatDateTime2(result));
+  results.map(result => formatDateTime(result));
 
   return results;
 };
@@ -41,8 +41,8 @@ const formatDateTime = result => {
   const parsedTime = moment(
     `${parsedDate.format('YYYY-MM-DD')} ${result.time}`,
   );
-  formatedResult.date = parsedDate.format('YYYYMMDD');
-  formatedResult.time = parsedTime.format('h:mm a');
+  formatedResult.date = parsedDate.format('YYYY-MM-DD');
+  formatedResult.time = parsedTime.format('hh:mm');
   return formatedResult;
 };
 
@@ -103,7 +103,7 @@ const listsByDateRange = async (startedAt, endedAt) => {
 const create = async data => {
   try {
     const result = await SpecialMeal.query().insertAndFetch(data);
-    return formatDateTime2(result);
+    return formatDateTime(result);
   } catch (error) {
     throw error;
   }
