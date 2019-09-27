@@ -1,6 +1,19 @@
 const moment = require('moment');
+const { raw } = require('objection');
 const Catering = require('../models/Catering');
 const Users = require('../models/Users');
+
+const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) =>
+  Catering.query()
+    .select(
+      raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
+      'lunchQty',
+      'dinnerQty',
+      'lateNightSnackQty',
+    )
+    .where({ userId })
+    .whereBetween('date', [startDate, endDate])
+    .orderBy('date', 'asc');
 
 const getSumTotalByUserIdWithRangeDate = async (
   userId,
@@ -272,6 +285,7 @@ const resetQty = async (userId, date) => {
 };
 
 module.exports = {
+  getListsByUserIdWithRangeDate,
   getSumTotalByUserIdWithRangeDate,
   findOneByUserIdWithDate,
   updateByUserIdWithDate,
