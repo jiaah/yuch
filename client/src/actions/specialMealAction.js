@@ -1,6 +1,7 @@
 import { Axios } from './axios';
 import * as types from './actionTypes';
 
+// Admin
 export const getSpecialMeal = date => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getSpecialMeal' });
   try {
@@ -22,6 +23,29 @@ export const getSpecialMeal = date => async dispatch => {
   }
 };
 
+// User
+export const getUserSpecialMeal = (id, date) => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getSpecialMeal' });
+  try {
+    const res = await Axios.get(`/special/user/${id}`, { params: { date } });
+    const { data } = res;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getSpecialMeal',
+      payload: data,
+    });
+    return data;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'updateSpecialMeal',
+      status: error.response.status,
+      error: 'Updating SpecialMeal failed.',
+    });
+  }
+};
+
+// Common
 export const createSpecialMeal = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createSpecialMeal' });
   try {

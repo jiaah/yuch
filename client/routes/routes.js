@@ -74,6 +74,11 @@ const UserCatering = Loader({
     import('../src/components/users/catering/cateringContainer' /* webpackChunkName: 'UserAccount' */),
 });
 
+const UserSpecialMeal = Loader({
+  loader: () =>
+    import('../src/components/users/specialMeal/specialMealContainer' /* webpackChunkName: 'UserAccount' */),
+});
+
 /* --- ECS --- */
 const NoMatch = Loader({
   loader: () =>
@@ -130,6 +135,11 @@ const routes = () => (
       />
       {/* --- USER --- */}
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
+      <Route
+        exact
+        path="/user/special-meal"
+        component={UserGuards(UserSpecialMeal)}
+      />
       <Route exact path="/user/account" component={UserGuards(UserAccount)} />
       <Route component={NoMatch} />
     </Switch>
