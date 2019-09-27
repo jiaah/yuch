@@ -6,7 +6,7 @@ const Users = require('../models/Users');
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) =>
   Catering.query()
     .select(
-      raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
+      raw('to_char("date", \'YYYYMMDD\')').as('date'),
       'lunchQty',
       'dinnerQty',
       'lateNightSnackQty',

@@ -42,7 +42,7 @@ const Lists = async (startedAt, endedAt) => {
         await Invoice.query()
           .update({
             mealPrice,
-            sumTotal,
+            sumTotal: cateringSumTotal,
             updated_at: new Date().toISOString(),
           })
           .where({ userId: user.id, date: startedAt });
@@ -52,7 +52,7 @@ const Lists = async (startedAt, endedAt) => {
           userId: user.id,
           mealPrice,
           date: startedAt,
-          sumTotal,
+          sumTotal: cateringSumTotal,
           updated_at: new Date().toISOString(),
         });
       }
@@ -88,12 +88,12 @@ const findOne = async (userId, startedAt, endedAt) => {
   try {
     const result = await Users.query()
       .select('companyName')
-      .where({ userId })
+      .where({ id: userId })
       .first();
 
     result.userId = userId;
     result.mealPrice = await mealPriceService.getMealPriceByUserIdWithDate(
-      user.id,
+      userId,
       endedAt,
     );
 
@@ -101,35 +101,35 @@ const findOne = async (userId, startedAt, endedAt) => {
       .where({ userId, date: startedAt })
       .first();
 
+    const cateringSumTotal = await cateringService.getSumTotalByUserIdWithRangeDate(
+      userId,
+      result.mealPrice,
+      startedAt,
+      endedAt,
+    );
+
+    const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
+      userId,
+      startedAt,
+      endedAt,
+    );
+
+    result.sumTotal = cateringSumTotal + specialSumTotal;
+
     if (!result.invoice) {
-      const cateringSumTotal = await cateringService.getSumTotalByUserIdWithRangeDate(
-        userId,
-        result.mealPrice,
-        startedAt,
-        endedAt,
-      );
-
-      const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
-        userId,
-        startedAt,
-        endedAt,
-      );
-
-      const sumTotal = cateringSumTotal + specialSumTotal;
-
       // insert Invoice
       const insertedInvoice = await Invoice.query().insert({
         userId,
         mealPrice: result.mealPrice,
         date: startedAt,
-        sumTotal,
+        sumTotal: cateringSumTotal,
         updated_at: new Date().toISOString(),
       });
 
       result.invoice = {
         invoiceId: insertedInvoice.id,
         mealPrice: result.mealPrice,
-        sumTotal,
+        sumTotal: cateringSumTotal,
       };
     }
 
