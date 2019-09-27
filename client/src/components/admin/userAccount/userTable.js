@@ -24,7 +24,6 @@ const UserTable = ({
   classes: { tableWrapper, table },
   // local states
   users,
-  bankAccount,
   // global states
   selectedSearchItem,
   // fncs from parent component
@@ -81,7 +80,6 @@ const UserTable = ({
                       handleEditUserBtnClick={handleEditUserBtnClick}
                       row={row}
                       selected={selected}
-                      bankAccount={bankAccount}
                       labelId={labelId}
                       selectedSearchItem={selectedSearchItem}
                     />

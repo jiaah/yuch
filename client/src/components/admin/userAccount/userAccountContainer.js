@@ -65,7 +65,6 @@ const UserAccountContainer = ({
   const fetchUsersData = async () => {
     const data = await getUsers();
 
-    const bankAccounts = [];
     if (data.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     return Promise.all([
@@ -74,7 +73,7 @@ const UserAccountContainer = ({
         inActiveUsers: data.inActiveUsers,
         allUsers: [...data.activeUsers, ...data.inActiveUsers],
       }),
-      setBankAccount(bankAccounts),
+      setBankAccount(data.bankAccounts),
     ]);
   };
 
@@ -166,7 +165,6 @@ const UserAccountContainer = ({
             handleEditUserBtnClick={handleEditUserBtnClick}
             users={selctedUsers}
             selectedSearchItem={selectedSearchItem}
-            bankAccount={bankAccount}
           />
         }
       />

@@ -21,26 +21,17 @@ const UserTableRow = ({
   handleEditUserBtnClick,
   row,
   selected,
-  bankAccount,
   labelId,
   selectedSearchItem,
 }) => {
-  const emptyAccount = [{ accountHolder: '', bankName: '', accountNo: '' }];
-  let bankAccountInfo;
+  let bankAccount;
 
-  if (bankAccount.length !== 0) {
-    bankAccountInfo = bankAccount.filter(b => b.id === row.bankAccountId);
-    // when admin deletes a bank account from bank_account table
-    // => no matching bank account => display empty string
-    if (bankAccountInfo.length === 0) bankAccountInfo = emptyAccount;
-  } else if (bankAccount.length === 0) {
-    bankAccountInfo = emptyAccount;
+  if (row.bankAccount) {
+    const { accountHolder, bankName, accountNo } = row.bankAccount;
+    bankAccount = { accountHolder, bankName, accountNo: accountNo.slice(0, 8) };
+  } else {
+    bankAccount = { accountHolder: '', bankName: '', accountNo: '' };
   }
-
-  const { accountHolder, bankName, accountNo } = bankAccountInfo[0];
-
-  // shorten bank account number
-  const slicedAccountNo = accountNo.slice(0, 8);
 
   // translate businessType value to Korean
   const businessType =
@@ -105,11 +96,11 @@ const UserTableRow = ({
           {newMealPrice}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {accountHolder}
+          {bankAccount.accountHolder}
           &#8201;&#8201;&#8201;
-          {bankName}
+          {bankAccount.bankName}
           &#8201;&#8201;&#8201;
-          {slicedAccountNo}
+          {bankAccount.accountNo}
         </TableCell>
         <TableCell align="right" className={resize}>
           {row.address}
