@@ -27,6 +27,17 @@ const formatDateTime = result => {
   return formatedResult;
 };
 
+const formatDateTime2 = result => {
+  const formatedResult = result;
+  const parsedDate = moment(result.date);
+  const parsedTime = moment(
+    `${parsedDate.format('YYYY-MM-DD')} ${result.time}`,
+  );
+  formatedResult.date = parsedDate.format('YYYY-MM-DD');
+  formatedResult.time = parsedTime.format('hh:mm');
+  return formatedResult;
+};
+
 const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
   try {
     const results = await SpecialMeal.query()
@@ -73,7 +84,7 @@ const listsByDateRange = async (startedAt, endedAt) => {
 const create = async data => {
   try {
     const result = await SpecialMeal.query().insertAndFetch(data);
-    return formatDateTime(result);
+    return formatDateTime2(result);
   } catch (error) {
     throw error;
   }
