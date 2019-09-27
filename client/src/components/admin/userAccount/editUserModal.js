@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 /* --- Components --- */
 import Loader from '../../loader';
-import { editUserAccountValidation } from '../../formValidation';
+import {
+  editUserAccountValidation,
+  resetPasswordValidation,
+} from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
@@ -24,8 +27,7 @@ const EditUserModal = ({
   // actions
   editUser,
   addFlashMessage,
-  // resetPassword,
-  deleteUser,
+  resetPassword,
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
@@ -63,11 +65,12 @@ const EditUserModal = ({
             />
           ) : subModal === 'password' ? (
             <ResetPassword
-              closeSubModal={closeSubModal}
               handleCloseModal={handleCloseModal}
+              closeSubModal={closeSubModal}
               addFlashMessage={addFlashMessage}
+              resetPassword={resetPassword}
+              resetPasswordValidation={resetPasswordValidation}
               clickedUserData={clickedUserData}
-              deleteUser={deleteUser}
             />
           ) : (
             <EditUserFormBox

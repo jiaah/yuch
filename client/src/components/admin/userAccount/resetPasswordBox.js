@@ -6,16 +6,17 @@ import ResetPwForm from '../../auth/password/resetPwForm';
 
 const ResetPasswordBox = ({
   handleCloseModal,
+  closeSubModal,
   addFlashMessage,
   resetPassword,
-  closeSubModal,
   resetPasswordValidation,
-  userId,
+  clickedUserData,
 }) => {
   const handleChangePassword = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, newPassword } = values;
+    const { companyName, id } = clickedUserData;
+    const { newPassword } = values;
 
-    const res = await resetPassword(userId, newPassword);
+    const res = await resetPassword(id, newPassword);
     if (!res.error) {
       addFlashMessage(
         'success',

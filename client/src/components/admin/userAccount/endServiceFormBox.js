@@ -17,6 +17,8 @@ const EndServiceFormBox = ({
   addFlashMessage,
   // funcs
   formatToYYYYMMDD,
+  closeSubModal,
+  handleCloseModal,
 }) => {
   // state endService & date -> values from db : fomattedToday
   const [state, setState] = useState({
@@ -42,8 +44,10 @@ const EndServiceFormBox = ({
     await setSubmitting(true);
     const formattedDate = formatToYYYYMMDD(endDate);
     const res = await handleEndingService(userId, endService, formattedDate);
+
     await offVerification();
     if (!res.error) {
+      Promise.all([closeSubModal(), handleCloseModal()]);
       addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
     } else {
       addFlashMessage(

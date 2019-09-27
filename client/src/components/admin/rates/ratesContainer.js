@@ -40,6 +40,7 @@ const RatesContainer = ({
   show,
 }) => {
   const [data, setData] = useState([]);
+
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
   const setfocusOnSelectdRow = id => setSelectedRow(id);
