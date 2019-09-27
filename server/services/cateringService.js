@@ -138,6 +138,7 @@ const updateByUserIdWithDate = async (
         .select(
           'catering.userId',
           'users.companyName',
+          'users.created_at',
           'catering.date',
           'catering.lunchQty',
           'catering.dinnerQty',
