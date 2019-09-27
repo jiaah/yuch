@@ -7,6 +7,7 @@ import IconMessage from '../../../shared/iconMessage';
 import * as data from '../../../data/message';
 
 const EditUserForm = ({
+  selectedDate,
   reserveDate,
   thisMonth,
   nextMonth,
@@ -26,7 +27,7 @@ const EditUserForm = ({
           required
         />
         <ExpireDateSelect
-          reserveDate={reserveDate}
+          reserveDate={reserveDate || selectedDate}
           thisMonth={thisMonth}
           nextMonth={nextMonth}
           inTwoMonths={inTwoMonths}

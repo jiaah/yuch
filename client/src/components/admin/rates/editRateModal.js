@@ -21,18 +21,18 @@ const EditRateModal = ({
       <span className="b">{clickedUserData.companyName}</span> 식수가격
     </React.Fragment>
   );
-  const date = (clickedUserData && clickedUserData.reserveDate) || nextMonth;
-  const [reserveDate, setReserveDate] = React.useState(date);
+
+  const [selectedDate, setSelectedDate] = React.useState(nextMonth);
   const reservePrice = clickedUserData.reservePrice;
   const values = { reservePrice };
 
-  const handleSelectChange = e => setReserveDate(e.target.value);
+  const handleSelectChange = e => setSelectedDate(e.target.value);
   const closeModal = () => hideModal();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     const { reservePrice } = values;
     const userId = clickedUserData.userId;
-    const res = await updateReservedPrice(userId, reservePrice, reserveDate);
+    const res = await updateReservedPrice(userId, reservePrice, selectedDate);
     if (res.error) {
       addFlashMessage(
         'error',
@@ -56,7 +56,8 @@ const EditRateModal = ({
               <Form>
                 <RateForm
                   {...props}
-                  reserveDate={reserveDate}
+                  selectedDate={selectedDate}
+                  reserveDate={clickedUserData.reserveDate}
                   thisMonth={thisMonth}
                   nextMonth={nextMonth}
                   inTwoMonths={inTwoMonths}
