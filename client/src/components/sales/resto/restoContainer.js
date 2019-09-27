@@ -15,7 +15,6 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const RestoContainer = ({
   date,
   restoSales,
-
   dateTrackerActions: { updateDate, resetDate },
   restoActions: { getRestoSales, updateRestoSales, resetRestoSales },
   addFlashMessage,
