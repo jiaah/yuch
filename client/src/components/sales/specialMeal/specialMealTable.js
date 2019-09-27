@@ -24,6 +24,7 @@ const BankTable = ({
   saveSelectedItemValue,
   // func
   handleButtonClick,
+  formatToDateForm,
 }) => {
   const [selected, setSelected] = React.useState('');
   const handleTableRowClick = id => setSelected(id);
@@ -64,6 +65,7 @@ const BankTable = ({
                   row={row}
                   selected={selected}
                   labelId={labelId}
+                  formatToDateForm={formatToDateForm}
                 />
               );
             })}

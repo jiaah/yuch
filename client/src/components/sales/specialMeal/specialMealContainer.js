@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { twoYearsAgo, inTwoYears, formattedTmr } from '../../../helpers/moment';
-import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
+import {
+  formatToYearDateForm,
+  formatToYYYYMM,
+  formatToDateForm,
+} from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
 import Table from './specialMealTable';
@@ -131,6 +135,7 @@ const SpecialMealContainer = ({
               handleButtonClick={handleButtonClick}
               onfocusOnSelectdRow={onfocusOnSelectdRow}
               resetSelectedItemValue={resetSelectedItemValue}
+              formatToDateForm={formatToDateForm}
             />
           }
         />
