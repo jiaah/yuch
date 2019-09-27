@@ -304,7 +304,7 @@ exports.getCateringRates = (req, res) => {
       'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
     )
     .where(builder => {
-      builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+      builder.whereRaw('"endDate" < NOW()').orWhereNull('endDate');
     })
     .select(
       'meal_price.id',

@@ -42,11 +42,7 @@ exports.findOne = async (req, res, next) => {
     const startedAt = parsedDate.format('YYYY-MM-DD');
     const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
 
-    const result = await invoiceService.findOneByUserIdWithDate(
-      userId,
-      startedAt,
-      endedAt,
-    );
+    const result = await invoiceService.findOne(userId, startedAt, endedAt);
 
     return res.status(200).json(result);
   } catch (error) {

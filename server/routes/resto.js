@@ -24,8 +24,6 @@ module.exports = () => {
       check('date')
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
-      check('lunch').isNumeric(),
-      check('dinner').isNumeric(),
     ],
     validation,
     restoController.setOne,
