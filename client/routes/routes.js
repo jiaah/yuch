@@ -90,25 +90,11 @@ const routes = () => (
       <LoggedOutRoute path="/auth/forgot" component={Forgot} />
       <Route path="/reset" component={Reset} />
       {/* --- ADMIN --- */}
+      {/* 식수현황 */}
       <Route
         exact
-        path="/admin/account"
-        component={AdminGuards(AdminAccount)}
-      />
-      <Route
-        exact
-        path="/admin/account/users"
-        component={AdminGuards(UserAccountForAdmin)}
-      />
-      <Route
-        exact
-        path="/admin/account/bank"
-        component={AdminGuards(BankAccount)}
-      />
-      <Route
-        exact
-        path="/admin/account/rates"
-        component={AdminGuards(CateringRates)}
+        path="/admin/count/catering/dd"
+        component={AdminGuards(AdminCatering)}
       />
       <Route
         exact
@@ -117,17 +103,34 @@ const routes = () => (
       />
       <Route
         exact
-        path="/admin/count/catering/dd"
-        component={AdminGuards(AdminCatering)}
-      />
-      <Route
-        exact
         path="/admin/count/specialmeal"
         component={AdminGuards(AdminSpecailMeal)}
       />
+      {/* 고객관리 */}
+      <Route
+        exact
+        path="/admin/account/rates"
+        component={AdminGuards(CateringRates)}
+      />
+      <Route
+        exact
+        path="/admin/account/users"
+        component={AdminGuards(UserAccountForAdmin)}
+      />
+      {/* 유청계정 */}
+      <Route
+        exact
+        path="/admin/account"
+        component={AdminGuards(AdminAccount)}
+      />
+      <Route
+        exact
+        path="/admin/account/bank"
+        component={AdminGuards(BankAccount)}
+      />
       {/* --- USER --- */}
-      <Route exact path="/user/account" component={UserGuards(UserAccount)} />
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
+      <Route exact path="/user/account" component={UserGuards(UserAccount)} />
       <Route component={NoMatch} />
     </Switch>
   </div>
