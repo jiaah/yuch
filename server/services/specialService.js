@@ -1,10 +1,18 @@
 const moment = require('moment');
+const { raw } = require('objection');
 const SpecialMeal = require('../models/SpecialMeal');
 // const Users = require('../models/Users');
 
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) => {
-  const results = SpecialMeal.query()
-    .select(raw('id').as('specialId'), 'data', 'tile', 'mealPrice', 'quantity')
+  const results = await SpecialMeal.query()
+    .select(
+      raw('id').as('specialId'),
+      'date',
+      'time',
+      'mealPrice',
+      'quantity',
+      raw('("mealPrice" * "quantity")').as('sumTotal'),
+    )
     .where({ userId })
     .whereBetween('date', [startDate, endDate])
     .orderBy('date', 'asc');
