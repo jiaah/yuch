@@ -22,6 +22,7 @@ const RestoContainer = ({
   const [resto, setResto] = useState(null);
 
   const dataFilter = when => {
+    // use global state so that it doesn't loose the data.
     const filteredData = restoSales && restoSales.filter(r => r.date === when);
     return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
   };
