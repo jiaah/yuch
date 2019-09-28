@@ -56,6 +56,12 @@ const BankAccountContainer = ({
 
   useEffect(() => {
     fetchBankAccount();
+    return () => {
+      Promise.all([
+        clickedUserData.length !== 0 && resetClickedItemData(),
+        selectedSearchItem !== null && resetSelectedItemValue(),
+      ]);
+    };
   }, []);
 
   const handleButtonClick = sub => {

@@ -64,10 +64,10 @@ const RatesContainer = ({
     keepScrollPosition();
     return () =>
       Promise.all([
-        selectedItemValue !== null ? resetSelectedItemValue() : null,
-        clickedUserData.length !== 0 ? resetClickedItemData() : null,
-        isAdminVerified ? handleAdminVerificationStatus() : null,
-        show ? hideModal() : null,
+        clickedUserData.length !== 0 && resetClickedItemData(),
+        selectedSearchItem !== null && resetSelectedItemValue(),
+        isAdminVerified && handleAdminVerificationStatus(),
+        show && hideModal(),
         renderAllUsers(),
       ]);
   }, []);

@@ -77,9 +77,9 @@ const UserAccountContainer = ({
     fetchUsersData();
     return () => {
       Promise.all([
-        clickedUserData.length !== 0 ? resetClickedItemData() : null,
-        selectedSearchItem !== null ? resetSelectedItemValue() : null,
-        selectedSearchItem ? renderAllUsers() : null,
+        clickedUserData.length !== 0 && resetClickedItemData(),
+        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedSearchItem && renderAllUsers(),
       ]);
     };
   }, []);

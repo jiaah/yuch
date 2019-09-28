@@ -79,9 +79,9 @@ const SpecialMealContainer = ({
       Promise.all([
         resetDate(),
         hideModal(),
-        offFocusOnSelectdRow(),
-        resetClickedItemData(),
-        resetSelectedItemValue(),
+        selectedRow !== null && offFocusOnSelectdRow(),
+        clickedUserData.length !== 0 && resetClickedItemData(),
+        selectedSearchItem !== null && resetSelectedItemValue(),
       ]);
   }, []);
 
