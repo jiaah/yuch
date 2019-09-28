@@ -39,6 +39,7 @@ const ModalController = ({
         createSpecialMeal={createSpecialMeal}
         getUsers={getUsers}
         clickedUserData={clickedUserData}
+        resetClickedItemData={resetClickedItemData}
       />
     )}
     {clickedBtn === 'edit' && (

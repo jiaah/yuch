@@ -28,21 +28,34 @@ const createModal = ({
   createSpecialMeal,
   addFlashMessage,
   getUsers,
+  resetClickedItemData,
 }) => {
   const [state, setState] = useState({ selectedUser: false, users: null });
 
   // yuch client selection checkbox
-  const handleChange = name => event =>
-    setState({ ...state, [name]: event.target.checked });
-
+  const handleChange = name => async event => {
+    const checked = event.target.checked;
+    if (!checked) await resetClickedItemData();
+    return setState({ ...state, [name]: checked });
+  };
   // get users list
   const fetchUsersData = async () => {
     const res = await getUsers();
     return setState({ ...state, users: res.activeUsers });
   };
 
+  const handleResetSearch = () => {
+    Promise.all([
+      resetClickedItemData(),
+      setState({ ...state, selectedUser: false }),
+    ]);
+  };
+
   useEffect(() => {
     fetchUsersData();
+    return () => {
+      handleResetSearch();
+    };
   }, []);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -101,7 +114,7 @@ const createModal = ({
                   <SearchBar
                     data={state.users}
                     handleSuggestionSelected={() => {}}
-                    handleResetSearch={() => {}}
+                    handleResetSearch={handleResetSearch}
                   />
                 )}
               </div>
