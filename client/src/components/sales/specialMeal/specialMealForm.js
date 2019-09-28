@@ -1,53 +1,13 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+
 /* --- Components --- */
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormikField from '../../../shared/form/formikField';
 import TextArea from '../../../shared/form/textAreaFormik';
 import FormButton from '../../../shared/form/formButton';
 import TimeField from '../../../shared/form/timeField';
-import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import { adminSpecialMealMsg } from '../../../data/message';
 
-const styles = theme => ({
-  checkbox: {
-    marginRight: '-3px',
-    [theme.breakpoints.up('md')]: {
-      marginRight: '-11px',
-    },
-  },
-});
-
-const SpecialMealForm = ({
-  classes: { checkbox },
-  isSubmitting,
-  users,
-  handleChange,
-  selectedUser,
-}) => (
+const SpecialMealForm = ({ isSubmitting }) => (
   <React.Fragment>
-    <div className="special-meal-select-user--box">
-      <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={selectedUser}
-              onChange={handleChange('selectedUser')}
-              value="selectedUser"
-            />
-          }
-          label="유청 고객 등록하기"
-          className={checkbox}
-        />
-        <SearchBar
-          data={users}
-          handleSuggestionSelected={() => {}}
-          handleResetSearch={() => {}}
-        />
-      </div>
-      {adminSpecialMealMsg}
-    </div>
     <div className="mt4 mb2 media--justify-around">
       <div className="media--flex-column-m">
         <FormikField
@@ -133,4 +93,4 @@ const SpecialMealForm = ({
   </React.Fragment>
 );
 
-export default withStyles(styles)(SpecialMealForm);
+export default SpecialMealForm;

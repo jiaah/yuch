@@ -5,7 +5,7 @@ import Fade from '@material-ui/core/Fade';
 /* --- Components --- */
 import SuggestionsList from './suggestionsList';
 
-const styles = { zIndex: 200 };
+const styles = { zIndex: 100000000 };
 
 const AutoCompletePaper = ({
   open,
