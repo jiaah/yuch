@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears, formattedTmr } from '../../../helpers/moment';
+import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
@@ -10,47 +10,26 @@ import {
 } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
-import Table from '../../sales/specialMeal/specialMealTable';
+import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
-import CreateModal from '../../sales/specialMeal/createSpecialMealModal';
-import EditModal from '../../sales/specialMeal/editSpecialMealModal';
-import DeleteModal from '../../sales/specialMeal/deleteSpecialMealModal';
 import { printDiv } from '../../../utils/print';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
-import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
-import * as selectedActions from '../../../actions/selectedAction';
 
 const SpecialMealContainer = ({
   userId,
   date,
-  clickedUserData,
-  selectedItemValue,
-  specialMealActions: {
-    getUserSpecialMeal,
-    createSpecialMeal,
-    updateSpecialMeal,
-    deleteSpecialMeal,
-  },
-  selectedActions: {
-    saveClickedItemData,
-    resetClickedItemData,
-    saveSelectedItemValue,
-    resetSelectedItemValue,
-  },
+  specialMealActions: { getUserSpecialMeal },
   dateTrackerActions: { updateDate, resetDate },
-  modalActions: { showModal, hideModal },
   addFlashMessage,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
 
   const [specialMeal, setSpecialMeal] = useState(null);
-  // show modal
-  const [clickedBtn, setClickedBtn] = useState(null);
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
@@ -72,12 +51,8 @@ const SpecialMealContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => Promise.all([resetDate(), hideModal()]);
+    return () => resetDate();
   }, []);
-
-  const handleButtonClick = sub => {
-    Promise.all([setClickedBtn(sub), showModal()]);
-  };
 
   const handleSuggestionSelected = () => {
     if (selectedRow) offFocusOnSelectdRow();
@@ -115,13 +90,6 @@ const SpecialMealContainer = ({
             viewBox="0 0 25 25"
             handleClick={() => printDiv('print')}
           />
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-          />
         </div>
       </div>
       {specialMeal && (
@@ -130,40 +98,11 @@ const SpecialMealContainer = ({
             <Table
               data={specialMeal}
               selectedRow={selectedRow}
-              selectedItemValue={selectedItemValue}
-              saveClickedItemData={saveClickedItemData}
-              saveSelectedItemValue={saveSelectedItemValue}
-              handleButtonClick={handleButtonClick}
               onfocusOnSelectdRow={onfocusOnSelectdRow}
               resetSelectedItemValue={resetSelectedItemValue}
               formatToDateForm={formatToDateForm}
             />
           }
-        />
-      )}
-      {clickedBtn === 'create' && (
-        <CreateModal
-          formattedTmr={formattedTmr}
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          createSpecialMeal={createSpecialMeal}
-        />
-      )}
-      {clickedBtn === 'edit' && (
-        <EditModal
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          updateSpecialMeal={updateSpecialMeal}
-          resetClickedItemData={resetClickedItemData}
-          clickedUserData={clickedUserData}
-        />
-      )}{' '}
-      {clickedBtn === 'delete' && (
-        <DeleteModal
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          deleteSpecialMeal={deleteSpecialMeal}
-          selectedItemValue={selectedItemValue}
         />
       )}
     </div>
@@ -173,16 +112,12 @@ const SpecialMealContainer = ({
 const mapStateToProps = state => ({
   userId: state.auth.id,
   date: state.dateTracker.date,
-  clickedUserData: state.selected.data,
-  selectedItemValue: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
-  modalActions: bindActionCreators(modalActions, dispatch),
   specialMealActions: bindActionCreators(specialMealActions, dispatch),
-  selectedActions: bindActionCreators(selectedActions, dispatch),
 });
 
 export default connect(

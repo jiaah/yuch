@@ -19,12 +19,8 @@ const SpecialMealTableRow = ({
   labelId,
   // local state
   selectedRow,
-  // global state
-  selectedItemValue,
   // func
   handleTableRowClick,
-  handleEditBtnClick,
-  handleDeleteBtnClick,
   formatToDateForm,
 }) => {
   const formattedDate = formatToDateForm(row.date);
@@ -35,30 +31,9 @@ const SpecialMealTableRow = ({
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
-      selected={
-        selectedItemValue === row.companyName ||
-        selectedItemValue === row.id ||
-        selectedRow === row.id
-      }
+      selected={selectedRow === row.id}
     >
-      <TableCell padding="checkbox">
-        <div className="flex flex-row-m" data-testid="bank-account--tablerow">
-          <IconButton
-            name="edit"
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            handleClick={() => handleEditBtnClick(row.id)}
-          />
-          <IconButton
-            name="delete"
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            handleClick={() => handleDeleteBtnClick(row.id)}
-          />
-        </div>
-      </TableCell>
+      <TableCell padding="checkbox" />
       <TableCell component="th" id={labelId} scope="row" className={resize}>
         {row.companyName}
       </TableCell>

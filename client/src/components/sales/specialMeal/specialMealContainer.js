@@ -53,6 +53,7 @@ const SpecialMealContainer = ({
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
+  console.log('selectedRow: ', selectedRow);
   const onfocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 

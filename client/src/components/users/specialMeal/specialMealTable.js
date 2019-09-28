@@ -16,34 +16,16 @@ const styles = () => ({
   table: { minWidth: 470 },
 });
 
-const SpecialMealTable = ({
+const BankTable = ({
   classes: { tableWrapper, table },
   data,
   // local state
   selectedRow,
-  // actions
-  saveSelectedItemValue,
   // func
   formatToDateForm,
   onfocusOnSelectdRow,
 }) => {
   const handleTableRowClick = id => onfocusOnSelectdRow(id);
-
-  const getClickedUserData = async id => {
-    const filteredData = await data.filter(b => b.id === id);
-    return filteredData[0];
-  };
-
-  const handleEditBtnClick = async id => {
-    const selectedData = await getClickedUserData(id);
-    await saveClickedItemData(selectedData);
-    return handleButtonClick('edit');
-  };
-
-  const handleDeleteBtnClick = async id => {
-    await saveSelectedItemValue(id);
-    return handleButtonClick('delete');
-  };
 
   const emptyRows = data && 9 - data.length;
 
@@ -60,9 +42,8 @@ const SpecialMealTable = ({
                 <SpecialMealTableRow
                   key={row.id}
                   handleTableRowClick={handleTableRowClick}
-                  handleEditBtnClick={handleEditBtnClick}
-                  handleDeleteBtnClick={handleDeleteBtnClick}
                   row={row}
+                  selected={selected}
                   labelId={labelId}
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
@@ -78,4 +59,4 @@ const SpecialMealTable = ({
   );
 };
 
-export default withStyles(styles)(SpecialMealTable);
+export default withStyles(styles)(BankTable);
