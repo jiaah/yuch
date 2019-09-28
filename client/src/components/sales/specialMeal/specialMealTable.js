@@ -26,10 +26,10 @@ const SpecialMealTable = ({
   saveSelectedItemValue,
   // func
   formatToDateForm,
-  onfocusOnSelectdRow,
+  onFocusOnSelectdRow,
   handleButtonClick,
 }) => {
-  const handleTableRowClick = id => onfocusOnSelectdRow(id);
+  const handleTableRowClick = id => onFocusOnSelectdRow(id);
 
   const getClickedUserData = async id => {
     const filteredData = await data.filter(b => b.id === id);

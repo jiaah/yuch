@@ -57,7 +57,7 @@ const SpecialMealContainer = ({
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
-  const onfocusOnSelectdRow = id => setSelectedRow(id);
+  const onFocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchData = async when => {
@@ -79,6 +79,7 @@ const SpecialMealContainer = ({
       Promise.all([
         resetDate(),
         hideModal(),
+        offFocusOnSelectdRow(),
         resetClickedItemData(),
         resetSelectedItemValue(),
       ]);
@@ -139,7 +140,7 @@ const SpecialMealContainer = ({
               saveClickedItemData={saveClickedItemData}
               saveSelectedItemValue={saveSelectedItemValue}
               handleButtonClick={handleButtonClick}
-              onfocusOnSelectdRow={onfocusOnSelectdRow}
+              onFocusOnSelectdRow={onFocusOnSelectdRow}
               resetSelectedItemValue={resetSelectedItemValue}
               formatToDateForm={formatToDateForm}
             />
