@@ -8,6 +8,7 @@ import { specialMealValidation } from '../../formValidation';
 const EditModal = ({
   // state
   clickedUserData,
+  users,
   // actions
   addFlashMessage,
   updateSpecialMeal,
@@ -45,7 +46,7 @@ const EditModal = ({
             onSubmit={handleSubmit}
             render={props => (
               <Form>
-                <SpecialMealForm {...props} />
+                <SpecialMealForm {...props} users={users} />
               </Form>
             )}
             validationSchema={specialMealValidation}

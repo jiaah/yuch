@@ -13,17 +13,19 @@ import Paper from '../../../shared/paper';
 import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
-import CreateModal from './createSpecialMealModal';
-import EditModal from './editSpecialMealModal';
-import DeleteModal from './deleteSpecialMealModal';
 import { printDiv } from '../../../utils/print';
+import Loader from '../../loader';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
 import * as selectedActions from '../../../actions/selectedAction';
+import { getUsers } from '../../../actions/adminAccountAction';
 
+const ModalControlloer = Loader({
+  loader: () => import('./modalController' /* webpackChunkName: 'BankModal' */),
+});
 const SpecialMealContainer = ({
   date,
   clickedUserData,
@@ -43,6 +45,7 @@ const SpecialMealContainer = ({
   dateTrackerActions: { updateDate, resetDate },
   modalActions: { showModal, hideModal },
   addFlashMessage,
+  getUsers,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
@@ -53,7 +56,6 @@ const SpecialMealContainer = ({
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
-  console.log('selectedRow: ', selectedRow);
   const onfocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 
@@ -141,31 +143,19 @@ const SpecialMealContainer = ({
           }
         />
       )}
-      {clickedBtn === 'create' && (
-        <CreateModal
-          formattedTmr={formattedTmr}
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          createSpecialMeal={createSpecialMeal}
-        />
-      )}
-      {clickedBtn === 'edit' && (
-        <EditModal
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          updateSpecialMeal={updateSpecialMeal}
-          resetClickedItemData={resetClickedItemData}
-          clickedUserData={clickedUserData}
-        />
-      )}{' '}
-      {clickedBtn === 'delete' && (
-        <DeleteModal
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          deleteSpecialMeal={deleteSpecialMeal}
-          selectedItemValue={selectedItemValue}
-        />
-      )}
+      <ModalControlloer
+        clickedBtn={clickedBtn}
+        formattedTmr={formattedTmr}
+        clickedUserData={clickedUserData}
+        selectedItemValue={selectedItemValue}
+        hideModal={hideModal}
+        addFlashMessage={addFlashMessage}
+        createSpecialMeal={createSpecialMeal}
+        updateSpecialMeal={updateSpecialMeal}
+        deleteSpecialMeal={deleteSpecialMeal}
+        resetClickedItemData={resetClickedItemData}
+        getUsers={getUsers}
+      />
     </div>
   );
 };
@@ -182,6 +172,7 @@ const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
   specialMealActions: bindActionCreators(specialMealActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
+  getUsers: () => dispatch(getUsers()),
 });
 
 export default connect(

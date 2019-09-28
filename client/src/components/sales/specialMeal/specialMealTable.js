@@ -22,10 +22,12 @@ const SpecialMealTable = ({
   // local state
   selectedRow,
   // actions
+  saveClickedItemData,
   saveSelectedItemValue,
   // func
   formatToDateForm,
   onfocusOnSelectdRow,
+  handleButtonClick,
 }) => {
   const handleTableRowClick = id => onfocusOnSelectdRow(id);
 

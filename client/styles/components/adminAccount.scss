@@ -32,3 +32,19 @@
 .end-of-service-date {
   width: 190px;
 }
+
+/* Special meal user assignment forms */
+.special-meal-select-user--box {
+  margin-left: 1em;
+  margin-right: 1em;
+
+  @include for-desktop-up {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+}
+
+.special-meal-select-user {
+  border: 1px solid #fac59c;
+  padding: 1.15em 0 1em 0;
+}

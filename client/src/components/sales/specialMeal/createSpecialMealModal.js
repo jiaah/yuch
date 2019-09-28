@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
@@ -7,6 +7,10 @@ import { specialMealValidation } from '../../formValidation';
 
 const createModal = ({
   formattedTmr,
+  users,
+  selectedUser,
+  // funcs
+  handleChange,
   // actions
   hideModal,
   createSpecialMeal,
@@ -51,7 +55,12 @@ const createModal = ({
             onSubmit={handleSubmit}
             render={props => (
               <Form>
-                <SpecialMealForm {...props} />
+                <SpecialMealForm
+                  {...props}
+                  users={users}
+                  selectedUser={selectedUser}
+                  handleChange={handleChange}
+                />
               </Form>
             )}
             validationSchema={specialMealValidation}

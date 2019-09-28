@@ -1,11 +1,53 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormikField from '../../../shared/form/formikField';
+import TextArea from '../../../shared/form/textAreaFormik';
 import FormButton from '../../../shared/form/formButton';
 import TimeField from '../../../shared/form/timeField';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import { adminSpecialMealMsg } from '../../../data/message';
 
-const SpecialMealForm = ({ isSubmitting }) => (
+const styles = theme => ({
+  checkbox: {
+    marginRight: '-3px',
+    [theme.breakpoints.up('md')]: {
+      marginRight: '-11px',
+    },
+  },
+});
+
+const SpecialMealForm = ({
+  classes: { checkbox },
+  isSubmitting,
+  users,
+  handleChange,
+  selectedUser,
+}) => (
   <React.Fragment>
+    <div className="special-meal-select-user--box">
+      <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={selectedUser}
+              onChange={handleChange('selectedUser')}
+              value="selectedUser"
+            />
+          }
+          label="유청 고객 등록하기"
+          className={checkbox}
+        />
+        <SearchBar
+          data={users}
+          handleSuggestionSelected={() => {}}
+          handleResetSearch={() => {}}
+        />
+      </div>
+      {adminSpecialMealMsg}
+    </div>
     <div className="mt4 mb2 media--justify-around">
       <div className="media--flex-column-m">
         <FormikField
@@ -72,14 +114,14 @@ const SpecialMealForm = ({ isSubmitting }) => (
       icon="address"
       styleName="textFieldH"
     />
-    <FormikField
-      label="메모"
+    <TextArea
       name="note"
       type="text"
-      icon="note"
-      styleName="textFieldH"
+      styleName="textField"
+      placeholder="메모 ( 작성된 메모를 등록된 고객이 볼 수 있습니다. )"
+      rows={6}
     />
-    <div className="mt4 justify-center">
+    <div className="mt2 justify-center">
       <FormButton
         typeValue="submit"
         variantValue="contained"
@@ -91,4 +133,4 @@ const SpecialMealForm = ({ isSubmitting }) => (
   </React.Fragment>
 );
 
-export default SpecialMealForm;
+export default withStyles(styles)(SpecialMealForm);

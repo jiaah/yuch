@@ -300,3 +300,14 @@ export const userSpecialMealNotice = (
     </p>
   </div>
 );
+
+export const adminSpecialMealMsg = (
+  <p className="f-mini">
+    * 유청 고객 등록을 통하여 신청된 특식의 계산서는{' '}
+    <span className="c-point2">월말 거래명세서에 포함</span>
+    되며, <br />
+    등록된 내역을 <span className="c-point2">고객이 볼 수 있습니다</span>.<br />{' '}
+    * 월말 거래명세서와 <span className="c-point2">별개로 정산</span>을
+    원하시면, 고객 등록을 선택하지 마세요.
+  </p>
+);

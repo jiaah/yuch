@@ -5,6 +5,8 @@ import Fade from '@material-ui/core/Fade';
 /* --- Components --- */
 import SuggestionsList from './suggestionsList';
 
+const styles = { zIndex: 200 };
+
 const AutoCompletePaper = ({
   open,
   anchorEl,
@@ -24,7 +26,13 @@ const AutoCompletePaper = ({
   };
 
   return (
-    <Popper id="simple-popper" open={open} anchorEl={anchorEl} transition>
+    <Popper
+      id="simple-popper"
+      open={open}
+      anchorEl={anchorEl}
+      transition
+      style={{ styles }}
+    >
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
           <Paper

@@ -64,11 +64,16 @@ const styles = theme => ({
     },
   },
   textFieldH: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 260,
+    width: 265,
     [theme.breakpoints.up('md')]: {
       width: 580,
+    },
+  },
+  // outlined note
+  textFieldJ: {
+    width: 270,
+    [theme.breakpoints.up('md')]: {
+      width: 585,
     },
   },
 });
