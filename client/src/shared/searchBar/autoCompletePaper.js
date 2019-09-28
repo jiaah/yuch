@@ -2,12 +2,14 @@ import React from 'react';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import SuggestionsList from './suggestionsList';
 
-const styles = { zIndex: 100000000 };
+const styles = () => ({ popper: { zIndex: 100000000 } });
 
 const AutoCompletePaper = ({
+  classes: { popper },
   open,
   anchorEl,
   suggestions,
@@ -31,7 +33,7 @@ const AutoCompletePaper = ({
       open={open}
       anchorEl={anchorEl}
       transition
-      style={{ styles }}
+      className={popper}
     >
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
@@ -47,4 +49,4 @@ const AutoCompletePaper = ({
   );
 };
 
-export default AutoCompletePaper;
+export default withStyles(styles)(AutoCompletePaper);
