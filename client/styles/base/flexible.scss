@@ -13,3 +13,11 @@
     display: inline-block;
   }
 }
+
+.tablet {
+  display: none;
+
+  @include for-tablet-portrait-up {
+    display: inline-block;
+  }
+}

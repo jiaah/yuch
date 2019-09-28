@@ -258,20 +258,20 @@ export const specialMealValidation = Yup.object({
   date: Yup.date(),
   time: Yup.string().required('시간을 입력해주세요.'),
   mealPrice: Yup.number()
-    .typeError('숫자만 입력하세요.')
+    .typeError('숫자를 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.')
-    .required('업체명을 입력해주세요.'),
+    .required('입력해 주세요.'),
   quantity: Yup.number()
-    .typeError('숫자만 입력하세요.')
+    .typeError('숫자를 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.')
-    .required('업체명을 입력해주세요.'),
+    .required('입력해 주세요.'),
   sideDish: Yup.number()
-    .typeError('숫자만 입력하세요.')
+    .typeError('숫자를 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.')
-    .required('업체명을 입력해주세요.'),
+    .required('입력해 주세요.'),
   address: Yup.string('').nullable(),
   note: Yup.string('').nullable(),
 });

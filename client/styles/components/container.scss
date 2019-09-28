@@ -14,18 +14,16 @@
   }
 }
 
+// responsive width
 .w-95 {
   width: 95vw;
-  max-width: 1500px;
 }
 
-// responsive width
 .r--w-80 {
   width: 90vw;
 
   @include for-desktop-up {
     width: 80vw;
-    max-width: 1500px;
   }
 }
 

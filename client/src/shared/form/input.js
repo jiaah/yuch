@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   // lunchQty, dinnerQty
   textFieldB: {
-    width: 138,
+    width: 142,
     margin: '20px 14px',
     [theme.breakpoints.up('md')]: {
       width: 238,
@@ -63,17 +63,11 @@ const styles = theme => ({
       width: 260,
     },
   },
+  // special_meal
   textFieldH: {
-    width: 265,
+    width: 260,
     [theme.breakpoints.up('md')]: {
       width: 580,
-    },
-  },
-  // outlined note
-  textFieldJ: {
-    width: 270,
-    [theme.breakpoints.up('md')]: {
-      width: 585,
     },
   },
 });
@@ -136,6 +130,7 @@ const Input = ({
     ) {
       value = inputValue;
     }
+
     return setFieldValue(name, value, shouldValidate);
   };
 

@@ -20,7 +20,7 @@ const styles = theme => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     border: '2px solid #ee91054a',
-    width: '200px',
+    width: '170px',
     [theme.breakpoints.up('sm')]: {
       width: '250px',
     },

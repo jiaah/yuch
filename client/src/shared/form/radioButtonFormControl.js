@@ -9,7 +9,8 @@ const styles = theme => ({
   formControl: {
     display: 'flex',
     justifyContent: 'center',
-    margin: theme.spacing(3),
+    marginLest: theme.spacing(3),
+    marginTop: theme.spacing(3.5),
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(5),
     },

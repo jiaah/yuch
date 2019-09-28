@@ -16,7 +16,7 @@ const styles = theme => ({
     margin: theme.spacing(-1.4, 1.3, 0, 0),
     minWidth: 60,
     height: 30,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       minWidth: 120,
     },
   },

@@ -125,12 +125,14 @@ const UserAccountContainer = ({
       <h2>고객 계정</h2>
       <div className="paper-label-box justify-between ">
         <div className="flex">
-          <SearchBar
-            data={selctedUsers}
-            handleSuggestionSelected={handleSearch}
-            handleResetSearch={renderAllUsers}
-          />
-          <p className="f-mini ml3 paper-label-box--number">
+          <div className="mr3">
+            <SearchBar
+              data={selctedUsers}
+              handleSuggestionSelected={handleSearch}
+              handleResetSearch={renderAllUsers}
+            />
+          </div>
+          <p className="f-mini paper-label-box--number tablet">
             총 고객 수&#8201;&#8201;
             <span className="b">{selctedUsers.length}</span>
           </p>
