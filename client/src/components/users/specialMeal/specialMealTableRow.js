@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-/* --- Components --- */
-import IconButton from '../../../shared/form/iconButton';
 
 const styles = theme => ({
   resize: {
@@ -17,17 +15,25 @@ const SpecialMealTableRow = ({
   classes: { resize },
   row,
   labelId,
-  // local state
-  selectedRow,
   // func
-  handleTableRowClick,
   formatToDateForm,
 }) => {
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onfocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
+
+  useEffect(
+    () => () => {
+      offFocusOnSelectdRow();
+    },
+    [],
+  );
+
   const formattedDate = formatToDateForm(row.date);
   return (
     <TableRow
       key={row.id}
-      onClick={() => handleTableRowClick(row.id)}
+      onClick={() => onfocusOnSelectdRow(row.id)}
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}

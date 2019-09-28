@@ -19,37 +19,27 @@ const styles = () => ({
 const BankTable = ({
   classes: { tableWrapper, table },
   data,
-  // local state
-  selectedRow,
   // func
   formatToDateForm,
-  onfocusOnSelectdRow,
 }) => {
-  const handleTableRowClick = id => onfocusOnSelectdRow(id);
-
-  const emptyRows = data && 9 - data.length;
+  const emptyRows = data && 4 - data.length;
 
   return (
     <div id="print" className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
-          {data &&
-            data.length !== 0 &&
-            data.map((row, index) => {
-              const labelId = `enhanced-table-checkbox-${index}`;
-              return (
-                <SpecialMealTableRow
-                  key={row.id}
-                  handleTableRowClick={handleTableRowClick}
-                  row={row}
-                  selected={selected}
-                  labelId={labelId}
-                  formatToDateForm={formatToDateForm}
-                  selectedRow={selectedRow}
-                />
-              );
-            })}
+          {data.map((row, index) => {
+            const labelId = `enhanced-table-checkbox-${index}`;
+            return (
+              <SpecialMealTableRow
+                key={row.id}
+                row={row}
+                labelId={labelId}
+                formatToDateForm={formatToDateForm}
+              />
+            );
+          })}
           <TableRow style={{ height: 49 * emptyRows }}>
             <TableCell colSpan={6} />
           </TableRow>

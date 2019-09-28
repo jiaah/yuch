@@ -40,9 +40,9 @@ export const headerMsgC = (
       성당, 교회 각종 행사모임{' '}
       <span className="header--text--point-color">출장뷔페</span>
       <div className="mt2 header--price">
-        반찬 (6가지)&#8201;&#8201;&#8201;&#8201;&#8201; 6,000 원<br />
-        반찬 (8가지)&#8201;&#8201;&#8201;&#8201;&#8201; 8,000 원<br />
-        반찬 (10가지)&#8201;&#8201; 10,000 원
+        반찬 (6가지)&#8199;&#8199;&#8201; 6,000 원<br />
+        반찬 (8가지)&#8199;&#8199;&#8201; 8,000 원<br />
+        반찬 (10가지)&#8199; 10,000 원
       </div>
     </h1>
   </div>
@@ -69,7 +69,7 @@ export const bankAccountPageInfoA = (
     <span className="c-point2">
       등록되어있는 계좌 그룹을 유지하고&#44;&#8201;
     </span>
-    &#8201;계좌 정보 변경만 원하시면&#44;&#8201;&#8201;
+    &#8201;계좌 정보 변경만 원하시면&#44;&#8199;
     <span className="c-point2">계좌를 수정 해주세요&#46;</span>
   </React.Fragment>
 );
@@ -77,11 +77,11 @@ export const bankAccountPageInfoA = (
 export const bankAccountPageInfoB = (
   <React.Fragment>
     <span className="c-point2">새로운 계좌 등록 혹은 삭제 시&#44;</span>
-    &#8201;&#8201;
+    &#8199;
     <Link className="td-none c-text2" to="/admin/account/users">
       &#39;고객관리 &#62; 고객계정&#39;
     </Link>{' '}
-    으로 이동하여&#44;&#8201;&#8201;
+    으로 이동하여&#44;&#8199;
     <span className="c-point2">
       반드시 새로운 계좌를 고객 업체에 등록해주세요&#46;
     </span>
@@ -161,10 +161,9 @@ export const userCateringMsg = (
   <div className="notice">
     <p className="pb3 b">- &#8201;금일 식수 변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
-      중식
-      &#58;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;
-      &#126; 금일 09 시 00 분<br />
-      석식/야식 &#58;&#8201;&#8201; &#126; 금일 13 시 30 분<br />
+      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 09 시 00
+      분<br />
+      석식/야식 &#58;&#8199; &#126; 금일 13 시 30 분<br />
     </p>
     <p className="f-mini">
       &#42; 변경 가능시간이 지난 후, 변경을 원하시면 {admin.companyName}
@@ -177,10 +176,9 @@ export const adminCateringMsg = (
   <div className="notice">
     <p className="pb3 b">- &#8201;고객 금일 식수 변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
-      중식
-      &#58;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;
-      &#126; 금일 09 시 00 분<br />
-      석식/야식 &#58;&#8201;&#8201; &#126; 금일 13 시 30 분<br />
+      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 09 시 00
+      분<br />
+      석식/야식 &#58;&#8199; &#126; 금일 13 시 30 분<br />
     </p>
     <p className="f-mini">
       &#42; {admin.companyName}
@@ -201,16 +199,16 @@ export const adminCateringMsg = (
     <p className="f-mini pt2">
       &#42; <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는
       방법. <br />
-      고객 계정을 활성화 &#8201;&#8594;&#8201;&#8201;
+      고객 계정을 활성화 &#8201;&#8594;&#8199;
       <Link className="c-text td-none" to="/admin/count/catering/dd">
         &#39;식수현황 &#62; 위탁급식식수&#39;
       </Link>{' '}
-      에서 변경&#8201;&#8201;&#8594;
+      에서 변경&#8199;&#8594;
       <br />
       <Link className="c-point2 td-none" to="/admin/invoice/users">
         인보이스 재발행
       </Link>
-      &#8201;&#8201;&#8594;&#8201;&#8201; 다시 휴먼계정으로 전환
+      &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
     </p>
   </div>
 );
@@ -222,7 +220,7 @@ export const endServiceMessageA = (
     </span>
     되며&#44;&#8201; 이 날 이후로는 의도치 않은 식수량 등록을 방지하기위해, 이
     고객의 계정은 <span className="c-point2">휴면계정으로 전환</span>
-    되어 로그인을 할 수가 없게됩니다 &#46;&#8201;&#8201;
+    되어 로그인을 할 수가 없게됩니다 &#46;&#8199;
   </React.Fragment>
 );
 
@@ -240,22 +238,22 @@ export const endServiceMessageC = (
 export const endServiceMessageD = (
   <React.Fragment>
     휴먼계정으로 전환된 후에 이전의 식수량 변경을 원하실 경우 : <br />
-    고객 계정을 활성화 &#8201;&#8594;&#8201;&#8201;
+    고객 계정을 활성화 &#8201;&#8594;&#8199;
     <Link className="c-point2 td-none" to="/admin/count/catering/dd">
       &#39;식수현황 &#62; 위탁급식식수&#39;
     </Link>{' '}
-    에서 변경&#8201;&#8201;&#8594;&#8201;&#8201;
+    에서 변경&#8199;&#8594;&#8199;
     <Link className="c-point2 td-none" to="/admin/invoice/users">
       인보이스 재발행
     </Link>
     <br />
-    &#8201;&#8201;&#8594;&#8201;&#8201; 다시 휴먼계정으로 전환
+    &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
   </React.Fragment>
 );
 
 export const endServiceMessageB = (
   <React.Fragment>
-    고객의 서비스를 다시 활성화 시키시려면,&#8201;&#8201; &#39;서비스종료&#39;
+    고객의 서비스를 다시 활성화 시키시려면,&#8199; &#39;서비스종료&#39;
     &#8201;&#8201;체크박스를 해지하고 <br />
     저장버튼을 클릭해주세요&#44;
   </React.Fragment>
@@ -265,8 +263,8 @@ export const restoSalesMsg = (
   <div className="notice">
     <p className="pb3 b">- &#8201;식사 시간&#8201; &#45;</p>
     <p className="pb3 b">
-      중식 &#58;&#8201;&#8201; 11 시 30 분 &#126; 13 시 30 분<br />
-      석식 &#58;&#8201;&#8201; 16 시 30 분 &#126; 18 시 00 분<br />
+      중식 &#58;&#8199; 11 시 30 분 &#126; 13 시 30 분<br />
+      석식 &#58;&#8199; 16 시 30 분 &#126; 18 시 00 분<br />
     </p>
     <p className="f-mini">
       &#42; 중식. 석식 <span className="c-point2">매출 총액</span>을
@@ -278,8 +276,27 @@ export const restoSalesMsg = (
 
 export const endOfServiceMegInEditForm = (
   <React.Fragment>
-    &#91;&#8201;휴면계정 설정&#8201;&#93;&#8201;&#8201;지정된 일자로부터 저장된{' '}
-    <br />
+    &#91;&#8201;휴면계정 설정&#8201;&#93;&#8199;지정된 일자로부터 저장된 <br />
     모든 식수량이 삭제됩니다&#44;
   </React.Fragment>
+);
+
+export const userSpecialMealNotice = (
+  <div className="notice">
+    <p className="pb3 b">- &#8201;가격&#8201; &#45;</p>
+    <p className="pb3 b">
+      반찬 &#40;6가지&#41;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;6&#44;000 원{' '}
+      <br />
+      반찬 &#40;8가지&#41;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;8&#44;000 원{' '}
+      <br />
+      반찬 &#40;10가지&#41;&#8199;&#8199;&#8199;&#8199;10&#44;000 원
+    </p>
+    <p className="f-mini">
+      &#42; 특식 신청 또는 변경을 원하시면 유청에{' '}
+      <span className="c-point2">전화문의</span> 주시기 바랍니다&#46;
+      <br />
+      &#42; 특식의 반찬수와 가격은 조정가능합니다&#46; <br />
+      &#42; <span className="c-point2">각종 행사 모임 출장 뷔폐</span>
+    </p>
+  </div>
 );

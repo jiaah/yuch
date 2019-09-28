@@ -11,9 +11,9 @@ import {
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
 import Table from './specialMealTable';
-import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
+import { userSpecialMealNotice } from '../../../data/message';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -30,11 +30,6 @@ const SpecialMealContainer = ({
   const formattedDate = formatToYearDateForm(date);
 
   const [specialMeal, setSpecialMeal] = useState(null);
-
-  // selected row on click
-  const [selectedRow, setSelectedRow] = useState(null);
-  const onfocusOnSelectdRow = id => setSelectedRow(id);
-  const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
@@ -54,11 +49,6 @@ const SpecialMealContainer = ({
     return () => resetDate();
   }, []);
 
-  const handleSuggestionSelected = () => {
-    if (selectedRow) offFocusOnSelectdRow();
-  };
-  const handleResetSearch = () => {};
-
   return (
     <div className="container-a pw3">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
@@ -76,12 +66,7 @@ const SpecialMealContainer = ({
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={specialMeal}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearch}
-        />
+      <div className="paper-label-box justify-end">
         <div>
           <IconButton
             name="print"
@@ -95,16 +80,15 @@ const SpecialMealContainer = ({
       {specialMeal && (
         <Paper
           component={
-            <Table
-              data={specialMeal}
-              selectedRow={selectedRow}
-              onfocusOnSelectdRow={onfocusOnSelectdRow}
-              resetSelectedItemValue={resetSelectedItemValue}
-              formatToDateForm={formatToDateForm}
-            />
+            specialMeal && specialMeal.length !== 0 ? (
+              <Table data={specialMeal} formatToDateForm={formatToDateForm} />
+            ) : (
+              <h3 className="mt4 mb4">신청한 특식이 없습니다.</h3>
+            )
           }
         />
       )}
+      {userSpecialMealNotice}
     </div>
   );
 };
