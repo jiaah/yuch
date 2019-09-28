@@ -35,13 +35,8 @@
 
 /* Special meal user assignment forms */
 .special-meal-select-user--box {
-  margin-left: 1em;
-  margin-right: 1em;
-
-  @include for-desktop-up {
-    margin-left: 1.5em;
-    margin-right: 1.5em;
-  }
+  margin-left: 1.5em;
+  margin-right: 1.5em;
 }
 
 .special-meal-select-user {
