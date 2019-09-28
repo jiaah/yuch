@@ -36,7 +36,7 @@ const RestoContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return dataFilter(when);
+    return setResto(res[res.length - 1]);
   };
 
   useEffect(() => {
@@ -50,12 +50,21 @@ const RestoContainer = ({
     return () => Promise.all([resetRestoSales(), resetDate()]);
   }, []);
 
+  const resetToToday = async () => {
+    await resetDate();
+    return window.location.reload(true);
+  };
+
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
 
   return (
     <div className="container-b">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={() => resetToToday()}
+      >
         식당 매출 관리
       </h2>
       {resto && (

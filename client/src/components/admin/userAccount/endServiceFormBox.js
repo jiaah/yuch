@@ -49,6 +49,7 @@ const EndServiceFormBox = ({
     if (!res.error) {
       Promise.all([closeSubModal(), handleCloseModal()]);
       addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
+      window.location.reload(true);
     } else {
       addFlashMessage(
         'error',
