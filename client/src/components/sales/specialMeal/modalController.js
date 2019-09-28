@@ -1,8 +1,19 @@
 import React from 'react';
 /* --- Components --- */
-import CreateModal from './createSpecialMealModal';
-import EditModal from './editSpecialMealModal';
-import DeleteModal from './deleteSpecialMealModal';
+import Loader from '../../loader';
+
+const CreateModal = Loader({
+  loader: () =>
+    import('./createSpecialMealModal' /* webpackChunkName: 'BankModal' */),
+});
+const EditModal = Loader({
+  loader: () =>
+    import('./editSpecialMealModal' /* webpackChunkName: 'BankModal' */),
+});
+const DeleteModal = Loader({
+  loader: () =>
+    import('./deleteSpecialMealModal' /* webpackChunkName: 'BankModal' */),
+});
 
 const ModalController = ({
   clickedBtn,
@@ -27,6 +38,7 @@ const ModalController = ({
         addFlashMessage={addFlashMessage}
         createSpecialMeal={createSpecialMeal}
         getUsers={getUsers}
+        clickedUserData={clickedUserData}
       />
     )}
     {clickedBtn === 'edit' && (

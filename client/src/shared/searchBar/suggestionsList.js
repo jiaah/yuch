@@ -6,7 +6,7 @@ const SuggestionsList = ({ suggestions, suggestionSelected }) => (
       <li
         key={u.companyName}
         className="autoComplete-item"
-        onClick={() => suggestionSelected(u.companyName)}
+        onClick={() => suggestionSelected(u)}
       >
         <div className="pa3">{u.companyName}</div>
       </li>

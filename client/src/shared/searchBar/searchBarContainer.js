@@ -8,7 +8,10 @@ import Icon from '../../../assets/icons';
 import Loader from '../../components/loader';
 import IconButton from '../form/iconButton';
 /* --- Actions --- */
-import { saveSelectedItemValue } from '../../actions/selectedAction';
+import {
+  saveSelectedItemValue,
+  saveClickedItemData,
+} from '../../actions/selectedAction';
 
 const AutoCompletePaper = Loader({
   loader: () =>
@@ -55,7 +58,9 @@ const styles = theme => ({
 const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
+  // actions
   saveSelectedItemValue,
+  saveClickedItemData,
   // parent component func
   handleSuggestionSelected,
   handleResetSearch,
@@ -82,11 +87,12 @@ const SearchBar = ({
     if (value.length > 0) getSuggestions(value);
   };
 
-  const suggestionSelected = value => {
-    setInputValue(value); // display the selected value in search bar
+  const suggestionSelected = user => {
+    setInputValue(user.companyName); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    saveSelectedItemValue(value); // make the selected value accesible in a parents component via redux
+    saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
+    saveClickedItemData(user);
     return handleSuggestionSelected();
   };
 
@@ -141,6 +147,7 @@ const SearchBar = ({
 
 const mapDispatchToProps = dispatch => ({
   saveSelectedItemValue: value => dispatch(saveSelectedItemValue(value)),
+  saveClickedItemData: value => dispatch(saveClickedItemData(value)),
 });
 
 export default compose(

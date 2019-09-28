@@ -26,6 +26,7 @@ import { getUsers } from '../../../actions/adminAccountAction';
 const ModalControlloer = Loader({
   loader: () => import('./modalController' /* webpackChunkName: 'BankModal' */),
 });
+
 const SpecialMealContainer = ({
   date,
   clickedUserData,
@@ -74,17 +75,19 @@ const SpecialMealContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => Promise.all([resetDate(), hideModal()]);
+    return () =>
+      Promise.all([
+        resetDate(),
+        hideModal(),
+        resetClickedItemData(),
+        resetSelectedItemValue(),
+      ]);
   }, []);
 
-  const handleButtonClick = sub => {
-    Promise.all([setClickedBtn(sub), showModal()]);
+  const handleButtonClick = async sub => {
+    await setClickedBtn(sub);
+    return showModal();
   };
-
-  const handleSuggestionSelected = () => {
-    if (selectedRow) offFocusOnSelectdRow();
-  };
-  const handleResetSearch = () => {};
 
   return (
     <div className="container-a w-95">
@@ -103,12 +106,12 @@ const SpecialMealContainer = ({
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
-      <div className="paper-label-box justify-between">
-        <SearchBar
+      <div className="paper-label-box justify-end">
+        {/* <SearchBar
           data={specialMeal}
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={handleResetSearch}
-        />
+        /> */}
         <div>
           <IconButton
             name="print"

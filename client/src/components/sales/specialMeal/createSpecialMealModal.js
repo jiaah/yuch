@@ -22,22 +22,23 @@ const styles = theme => ({
 const createModal = ({
   classes: { checkbox },
   formattedTmr,
+  clickedUserData,
   // actions
   hideModal,
   createSpecialMeal,
   addFlashMessage,
   getUsers,
 }) => {
+  const [state, setState] = useState({ selectedUser: false, users: null });
+
   // yuch client selection checkbox
-  const [state, setState] = useState({ selectedUser: false });
   const handleChange = name => event =>
     setState({ ...state, [name]: event.target.checked });
 
   // get users list
-  const [users, setUsers] = useState(null);
   const fetchUsersData = async () => {
     const res = await getUsers();
-    return setUsers(res.activeUsers);
+    return setState({ ...state, users: res.activeUsers });
   };
 
   useEffect(() => {
@@ -46,7 +47,10 @@ const createModal = ({
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
-    const sendingData = { userId: '', ...values };
+    const sendingData = {
+      userId: clickedUserData && state.selectedUser ? clickedUserData.id : '',
+      ...values,
+    };
     const res = await createSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
@@ -62,14 +66,14 @@ const createModal = ({
   };
 
   const initialValues = {
-    companyName: '',
+    companyName: clickedUserData ? clickedUserData.companyName : '',
     date: formattedTmr,
     time: '12:30',
     quantity: '',
     sideDish: '',
     mealPrice: '',
-    address: '',
-    contactNo: '',
+    address: clickedUserData ? clickedUserData.address : '',
+    contactNo: clickedUserData ? clickedUserData.contactNo : '',
     note: '',
   };
 
@@ -79,39 +83,41 @@ const createModal = ({
         title="특식 등록"
         handleClose={() => hideModal()}
         component={
-          <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            render={props => (
-              <React.Fragment>
-                <div className="special-meal-select-user--box">
-                  <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={state.selectedUser}
-                          onChange={handleChange('selectedUser')}
-                          value="selectedUser"
-                        />
-                      }
-                      label="유청 고객 등록하기"
-                      className={checkbox}
+          <React.Fragment>
+            <div className="special-meal-select-user--box">
+              <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={state.selectedUser}
+                      onChange={handleChange('selectedUser')}
+                      value="selectedUser"
                     />
-                    <SearchBar
-                      data={users}
-                      handleSuggestionSelected={() => {}}
-                      handleResetSearch={() => {}}
-                    />
-                  </div>
-                  {adminSpecialMealMsg}
-                </div>
+                  }
+                  label="유청 고객 등록하기"
+                  className={checkbox}
+                />
+                {state.selectedUser && (
+                  <SearchBar
+                    data={state.users}
+                    handleSuggestionSelected={() => {}}
+                    handleResetSearch={() => {}}
+                  />
+                )}
+              </div>
+              {adminSpecialMealMsg}
+            </div>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              render={props => (
                 <Form>
                   <SpecialMealForm {...props} />
                 </Form>
-              </React.Fragment>
-            )}
-            validationSchema={specialMealValidation}
-          />
+              )}
+              validationSchema={specialMealValidation}
+            />
+          </React.Fragment>
         }
       />
     </div>
