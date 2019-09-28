@@ -18,6 +18,7 @@ const DeleteModal = Loader({
 const ModalController = ({
   clickedBtn,
   formattedTmr,
+  adminSpecialMealMsg,
   // globalState
   clickedUserData,
   selectedItemValue,
@@ -40,6 +41,7 @@ const ModalController = ({
         getUsers={getUsers}
         clickedUserData={clickedUserData}
         resetClickedItemData={resetClickedItemData}
+        adminSpecialMealMsg={adminSpecialMealMsg}
       />
     )}
     {clickedBtn === 'edit' && (

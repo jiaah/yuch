@@ -8,7 +8,6 @@ import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import { adminSpecialMealMsg } from '../../../data/message';
 
 const styles = theme => ({
   checkbox: {
@@ -22,6 +21,8 @@ const styles = theme => ({
 const createModal = ({
   classes: { checkbox },
   formattedTmr,
+  adminSpecialMealMsg,
+  // global state
   clickedUserData,
   // actions
   hideModal,

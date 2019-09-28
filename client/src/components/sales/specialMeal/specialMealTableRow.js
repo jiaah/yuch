@@ -28,6 +28,8 @@ const SpecialMealTableRow = ({
   formatToDateForm,
 }) => {
   const formattedDate = formatToDateForm(row.date);
+  const payment = row.userId ? 'YES' : '';
+
   return (
     <TableRow
       key={row.id}
@@ -88,6 +90,9 @@ const SpecialMealTableRow = ({
       </TableCell>
       <TableCell align="right" className={resize}>
         {row.note}
+      </TableCell>
+      <TableCell align="right" className={resize}>
+        {payment}
       </TableCell>
     </TableRow>
   );

@@ -378,4 +378,10 @@ export const specialMealTableHeadColumns = [
     disablePadding: false,
     label: '메모',
   },
+  {
+    id: 'payment',
+    numeric: true,
+    disablePadding: false,
+    label: '인보이스 포함',
+  },
 ];

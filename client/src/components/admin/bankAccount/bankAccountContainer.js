@@ -94,34 +94,30 @@ const BankAccountContainer = ({
           />
         }
       />
-      <div className="mt3 pw1">
-        <IconMessage
-          name="info"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          text={bankAccountPageInfoA}
-          position="end"
-          iconBoxStyle=""
-          textStyle="icon-message--info"
-        />
-      </div>
-      <div className="mt2 pw1">
-        <IconMessage
-          name="info"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          text={bankAccountPageInfoB}
-          position="end"
-          iconBoxStyle=""
-          textStyle="icon-message--info"
-        />
-      </div>
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={bankAccountPageInfoA}
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={bankAccountPageInfoB}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
       {clickedBtn !== null && (
         <BankModal
           resetClickedItemData={resetClickedItemData}

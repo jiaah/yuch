@@ -22,6 +22,12 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { getUsers } from '../../../actions/adminAccountAction';
+import IconMessage from '../../../shared/iconMessage';
+import {
+  adminSpecialMealMsg,
+  adminSpecialMealMsgA,
+  adminSpecialMealMsgB,
+} from '../../../data/message';
 
 const ModalControlloer = Loader({
   loader: () => import('./modalController' /* webpackChunkName: 'BankModal' */),
@@ -147,19 +153,46 @@ const SpecialMealContainer = ({
           }
         />
       )}
-      <ModalControlloer
-        clickedBtn={clickedBtn}
-        formattedTmr={formattedTmr}
-        clickedUserData={clickedUserData}
-        selectedItemValue={selectedItemValue}
-        hideModal={hideModal}
-        addFlashMessage={addFlashMessage}
-        createSpecialMeal={createSpecialMeal}
-        updateSpecialMeal={updateSpecialMeal}
-        deleteSpecialMeal={deleteSpecialMeal}
-        resetClickedItemData={resetClickedItemData}
-        getUsers={getUsers}
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminSpecialMealMsgA}
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info"
       />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminSpecialMealMsgB}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      {clickedBtn && (
+        <ModalControlloer
+          clickedBtn={clickedBtn}
+          formattedTmr={formattedTmr}
+          clickedUserData={clickedUserData}
+          selectedItemValue={selectedItemValue}
+          hideModal={hideModal}
+          addFlashMessage={addFlashMessage}
+          createSpecialMeal={createSpecialMeal}
+          updateSpecialMeal={updateSpecialMeal}
+          deleteSpecialMeal={deleteSpecialMeal}
+          resetClickedItemData={resetClickedItemData}
+          getUsers={getUsers}
+          adminSpecialMealMsg={adminSpecialMealMsg}
+        />
+      )}
     </div>
   );
 };

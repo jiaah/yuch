@@ -314,3 +314,18 @@ export const adminSpecialMealMsg = (
     원하시면, 고객 등록을 선택하지 마세요.
   </p>
 );
+
+export const adminSpecialMealMsgA = (
+  <p className="f-mini">
+    <span className="c-point2">인보이스 포함 &#8199;&#39;YES&#39;&#8199;</span>
+    라고 표시된 것은 특식 정산이 월말 거래명세서에 포함된다는 의미입니다.
+  </p>
+);
+
+export const adminSpecialMealMsgB = (
+  <p className="f-mini">
+    월말 거래명세서에 포함된것을{' '}
+    <span className="c-point2">별개 정산으로 변경</span>을 원한다면, 등록된
+    특식을 삭제한 후 재등록하여주세요.
+  </p>
+);
