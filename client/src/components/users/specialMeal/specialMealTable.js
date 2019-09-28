@@ -22,7 +22,7 @@ const BankTable = ({
   // func
   formatToDateForm,
 }) => {
-  const emptyRows = data && 4 - data.length;
+  const emptyRows = data && 3 - data.length;
 
   return (
     <div id="print" className={tableWrapper}>

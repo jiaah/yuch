@@ -297,6 +297,9 @@ export const userSpecialMealNotice = (
       <br />
       &#42; 특식의 반찬수와 가격은 조정가능합니다&#46; <br />
       &#42; <span className="c-point2">각종 행사 모임 출장 뷔폐</span>
+      <br />
+      &#42; 월말 거래명세서에 포함되는 특식만 리스트에 보입니다. 별개로
+      정산하신다면 시스템에 등록되지 않습니다.
     </p>
   </div>
 );

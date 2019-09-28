@@ -107,12 +107,12 @@ const SpecialMealContainer = ({
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
-      <div className="paper-label-box justify-end">
-        {/* <SearchBar
+      <div className="paper-label-box justify-between">
+        <SearchBar
           data={specialMeal}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearch}
-        /> */}
+          handleSuggestionSelected={() => {}}
+          handleResetSearch={() => {}}
+        />
         <div>
           <IconButton
             name="print"
