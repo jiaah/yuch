@@ -111,7 +111,7 @@ exports.update = async (req, res, next) => {
       throw error;
     }
 
-    const parsedDate = moment(`${date} ${time}`, 'YYYYMMDD h:mm a');
+    const parsedDate = moment(`${date} ${time}`, 'YYYY-MM-DD hh:mm');
     const sumTotal = mealPrice * quantity;
     if (!userId || userId === 'null') {
       nullableUserId = null;

@@ -50,20 +50,12 @@ module.exports = () => {
         .not()
         .isEmpty()
         .trim(),
-      check('contactNo')
-        .trim()
-        .not()
-        .isEmpty()
-        .trim(),
-      check('address')
-        .trim()
-        .not()
-        .isEmpty()
-        .trim(),
+      check('contactNo').trim(),
+      check('address').trim(),
       check('date')
-        .matches(/^[0-9]{8}$/)
+        .matches(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)
         .isISO8601(),
-      check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}\s(pm|am)$/),
+      check('time').matches(/^[0-9]{1,2}:[0-9]{1,2}$/),
       check('quantity').isNumeric(),
       check('mealPrice').isNumeric(),
     ],
