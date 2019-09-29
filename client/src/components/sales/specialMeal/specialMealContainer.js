@@ -37,7 +37,6 @@ const SpecialMealContainer = ({
   date,
   clickedUserData,
   selectedItemValue,
-  modalSearchedUser,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
@@ -191,7 +190,6 @@ const SpecialMealContainer = ({
           formattedTmr={formattedTmr}
           clickedUserData={clickedUserData}
           selectedItemValue={selectedItemValue}
-          modalSearchedUser={modalSearchedUser}
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           createSpecialMeal={createSpecialMeal}
@@ -211,7 +209,6 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   clickedUserData: state.selected.data,
   selectedItemValue: state.selected.value,
-  modalSearchedUser: state.selected.secondData,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

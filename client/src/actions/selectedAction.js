@@ -19,12 +19,12 @@ export const resetClickedItemData = () => ({
 });
 
 export const saveSecondData = data => ({
-  type: types.SAVE_CLICKED_ITEM_DATA,
+  type: types.SAVE_SECOND_DATA,
   data,
 });
 
 export const resetSecondData = () => ({
-  type: types.RESET_CLICKED_ITEM_DATA,
+  type: types.RESET_SECOND_DATA,
 });
 
 export const saveSelectValue = (name, value) => ({

@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
-import SearchBar from './modalSearchBar';
+import SearchBar from '../../../shared/searchBar';
 
 const styles = theme => ({
   checkbox: {
@@ -22,8 +22,6 @@ const createModal = ({
   classes: { checkbox },
   formattedTmr,
   adminSpecialMealMsg,
-  // global state
-  modalSearchedUser,
   // actions
   hideModal,
   createSpecialMeal,
@@ -31,21 +29,49 @@ const createModal = ({
   getUsers,
   saveSelectedItemValue,
 }) => {
-  const [state, setState] = useState({ selectedUser: false, users: null });
-
-  // yuch client selection checkbox
-  const handleChange = name => async event => {
-    const checked = event.target.checked;
-    if (!checked) await resetClickedItemData();
-    return setState({ ...state, [name]: checked });
+  const initValues = {
+    companyName: '',
+    date: formattedTmr,
+    time: '12:30',
+    quantity: '',
+    sideDish: '',
+    mealPrice: '',
+    address: '',
+    contactNo: '',
+    note: '',
   };
+
+  const [state, setState] = useState({
+    selectedUser: false,
+    users: null,
+    inputValues: initValues,
+  });
+
+  const handleSuggestionSelected = modalSearchedUser => {
+    setState({
+      ...state,
+      inputValues: {
+        companyName: modalSearchedUser && modalSearchedUser.companyName,
+        date: formattedTmr,
+        time: '12:30',
+        quantity: '',
+        sideDish: '',
+        mealPrice: '',
+        address: modalSearchedUser && modalSearchedUser.address,
+        contactNo: modalSearchedUser && modalSearchedUser.contactNo,
+        note: '',
+      },
+    });
+  };
+
+  const handleResetSearch = () =>
+    setState({ ...state, selectedUser: false, inputValues: initValues });
+
   // get users list
   const fetchUsersData = async () => {
     const res = await getUsers();
     return setState({ ...state, users: res.activeUsers });
   };
-
-  const handleResetSearch = () => setState({ ...state, selectedUser: false });
 
   useEffect(() => {
     fetchUsersData();
@@ -54,6 +80,13 @@ const createModal = ({
     };
   }, []);
 
+  // yuch client selection checkbox
+  const handleChange = name => async event => {
+    const checked = event.target.checked;
+    if (!checked) await resetClickedItemData();
+    return setState({ ...state, [name]: checked });
+  };
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
     const sendingData = {
@@ -61,7 +94,9 @@ const createModal = ({
         modalSearchedUser && state.selectedUser ? modalSearchedUser.id : '',
       ...values,
     };
+
     const res = await createSpecialMeal(sendingData);
+
     if (!res.error) {
       Promise.all([
         hideModal(),
@@ -75,18 +110,6 @@ const createModal = ({
       addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
     return setSubmitting(false);
-  };
-
-  const initialValues = {
-    companyName: modalSearchedUser ? modalSearchedUser.companyName : '',
-    date: formattedTmr,
-    time: '12:30',
-    quantity: '',
-    sideDish: '',
-    mealPrice: '',
-    address: modalSearchedUser ? modalSearchedUser.address : '',
-    contactNo: modalSearchedUser ? modalSearchedUser.contactNo : '',
-    note: '',
   };
 
   return (
@@ -112,7 +135,7 @@ const createModal = ({
                 {state.selectedUser && (
                   <SearchBar
                     data={state.users}
-                    handleSuggestionSelected={() => {}}
+                    handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
                 )}
@@ -120,7 +143,7 @@ const createModal = ({
               {adminSpecialMealMsg}
             </div>
             <Formik
-              initialValues={initialValues}
+              initialValues={state.inputValues}
               onSubmit={handleSubmit}
               render={props => (
                 <Form>

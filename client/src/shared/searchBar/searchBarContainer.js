@@ -88,7 +88,7 @@ const SearchBar = ({
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
     saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
-    return handleSuggestionSelected();
+    return handleSuggestionSelected(user);
   };
 
   const resetSearch = () => {

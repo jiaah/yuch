@@ -22,7 +22,6 @@ const ModalController = ({
   // globalState
   clickedUserData,
   selectedItemValue,
-  modalSearchedUser,
   // actions
   hideModal,
   addFlashMessage,
@@ -36,7 +35,6 @@ const ModalController = ({
   <React.Fragment>
     {clickedBtn === 'create' && (
       <CreateModal
-        modalSearchedUser={modalSearchedUser}
         formattedTmr={formattedTmr}
         hideModal={hideModal}
         addFlashMessage={addFlashMessage}
