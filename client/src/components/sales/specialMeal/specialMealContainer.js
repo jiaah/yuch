@@ -36,6 +36,7 @@ const ModalControlloer = Loader({
 const SpecialMealContainer = ({
   date,
   clickedUserData,
+
   selectedItemValue,
   specialMealActions: {
     getSpecialMeal,
@@ -99,9 +100,18 @@ const SpecialMealContainer = ({
   const handleSuggestionSelected = () => {
     if (selectedItemValue !== null) resetSelectedItemValue();
   };
+
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
+    // search
     if (selectedItemValue) resetSelectedItemValue();
+    // create & edit
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  };
+
+  const handleTableRowClick = id => {
+    onFocusOnSelectdRow(id);
+    renderAllUsers();
   };
 
   return (
@@ -150,12 +160,13 @@ const SpecialMealContainer = ({
             <Table
               users={specialMeal}
               selectedRow={selectedRow}
+              clickedUserData={clickedUserData}
               selectedItemValue={selectedItemValue}
               saveSelectedItemValue={saveSelectedItemValue}
               saveClickedItemData={saveClickedItemData}
               handleButtonClick={handleButtonClick}
-              onFocusOnSelectdRow={onFocusOnSelectdRow}
               formatToDateForm={formatToDateForm}
+              handleTableRowClick={handleTableRowClick}
             />
           }
         />
@@ -195,8 +206,8 @@ const SpecialMealContainer = ({
           createSpecialMeal={createSpecialMeal}
           updateSpecialMeal={updateSpecialMeal}
           deleteSpecialMeal={deleteSpecialMeal}
-          saveSelectedItemValue={saveSelectedItemValue}
-          resetClickedItemData={resetClickedItemData}
+          resetSelectedItemValue={resetSelectedItemValue}
+          saveClickedItemData={saveClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
         />

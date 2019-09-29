@@ -16,7 +16,6 @@ const SpecialMealForm = ({ isSubmitting }) => (
           type="text"
           icon="filledUser"
           styleName="textFieldC"
-          placeholder="(한글) 유청"
           required
         />
         <FormikField

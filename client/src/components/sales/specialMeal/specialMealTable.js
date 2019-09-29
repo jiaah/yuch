@@ -23,16 +23,15 @@ const SpecialMealTable = ({
   selectedRow,
   // global state
   selectedItemValue,
+  clickedUserData,
   // actions
   saveClickedItemData,
   saveSelectedItemValue,
   // func
   formatToDateForm,
-  onFocusOnSelectdRow,
   handleButtonClick,
+  handleTableRowClick,
 }) => {
-  const handleTableRowClick = id => onFocusOnSelectdRow(id);
-
   const getClickedUserData = async id => {
     const filteredData = await users.filter(b => b.id === id);
     return filteredData[0];
@@ -77,7 +76,7 @@ const SpecialMealTable = ({
                   labelId={labelId}
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
-                  selectedItemValue={selectedItemValue}
+                  clickedUserData={clickedUserData}
                 />
               );
             })}

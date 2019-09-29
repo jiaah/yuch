@@ -27,7 +27,8 @@ const createModal = ({
   createSpecialMeal,
   addFlashMessage,
   getUsers,
-  saveSelectedItemValue,
+  resetSelectedItemValue,
+  saveClickedItemData,
 }) => {
   const initValues = {
     companyName: '',
@@ -43,13 +44,15 @@ const createModal = ({
 
   const [state, setState] = useState({
     selectedUser: false,
-    users: null,
+    users: [],
     inputValues: initValues,
+    userId: null,
   });
 
   const handleSuggestionSelected = modalSearchedUser => {
     setState({
       ...state,
+      userId: modalSearchedUser.id,
       inputValues: {
         companyName: modalSearchedUser && modalSearchedUser.companyName,
         date: formattedTmr,
@@ -74,41 +77,25 @@ const createModal = ({
   };
 
   useEffect(() => {
-    if (!users) fetchUsersData();
-    setState({
-      ...state,
-      inputValues: {
-        companyName: modalSearchedUser && modalSearchedUser.companyName,
-        date: formattedTmr,
-        time: '12:30',
-        quantity: '',
-        sideDish: '',
-        mealPrice: '',
-        address: modalSearchedUser && modalSearchedUser.address,
-        contactNo: modalSearchedUser && modalSearchedUser.contactNo,
-        note: '',
-      },
-    });
+    fetchUsersData();
     return () => {
       handleResetSearch();
     };
-  });
+  }, []);
 
   // yuch client selection checkbox
   const handleChange = name => async event => {
     const checked = event.target.checked;
-    if (!checked) await resetClickedItemData();
+    // if (!checked) await resetClickedItemData();
     return setState({ ...state, [name]: checked });
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
     const sendingData = {
-      userId:
-        modalSearchedUser && state.selectedUser ? modalSearchedUser.id : '',
+      userId: state.userId && state.selectedUser ? state.userId : null,
       ...values,
     };
-
     const res = await createSpecialMeal(sendingData);
 
     if (!res.error) {
@@ -116,8 +103,10 @@ const createModal = ({
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
+        // to prevent from rendering filtered rows from search
+        resetSelectedItemValue(),
         // to keep the created row on focus after re-render
-        saveSelectedItemValue(sendingData.userId),
+        saveClickedItemData(sendingData),
       ]);
       window.location.reload(true);
     } else {
@@ -154,7 +143,6 @@ const createModal = ({
                   />
                 )}
               </div>
-              <h2> {JSON.stringify(state.inputValues)}</h2>
               {adminSpecialMealMsg}
             </div>
             <Formik

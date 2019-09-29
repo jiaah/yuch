@@ -20,7 +20,7 @@ const SpecialMealTableRow = ({
   // local state
   selectedRow,
   // global state
-  selectedItemValue,
+  clickedUserData,
   // func
   handleTableRowClick,
   handleEditBtnClick,
@@ -29,6 +29,9 @@ const SpecialMealTableRow = ({
 }) => {
   const formattedDate = formatToDateForm(row.date);
   const payment = row.userId ? 'YES' : '';
+  const isHandledRow =
+    clickedUserData.companyName === row.companyName &&
+    clickedUserData.date === row.date;
 
   return (
     <TableRow
@@ -37,11 +40,7 @@ const SpecialMealTableRow = ({
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
-      selected={
-        selectedItemValue === row.id ||
-        (selectedItemValue && selectedItemValue === row.userId) ||
-        selectedRow === row.id
-      }
+      selected={isHandledRow || selectedRow === row.id}
     >
       <TableCell padding="checkbox">
         <div className="flex flex-row-m" data-testid="bank-account--tablerow">
