@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
-import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import SearchBar from './modalSearchBar';
 
 const styles = theme => ({
   checkbox: {
@@ -23,13 +23,13 @@ const createModal = ({
   formattedTmr,
   adminSpecialMealMsg,
   // global state
-  clickedUserData,
+  modalSearchedUser,
   // actions
   hideModal,
   createSpecialMeal,
   addFlashMessage,
   getUsers,
-  resetClickedItemData,
+  saveSelectedItemValue,
 }) => {
   const [state, setState] = useState({ selectedUser: false, users: null });
 
@@ -45,12 +45,7 @@ const createModal = ({
     return setState({ ...state, users: res.activeUsers });
   };
 
-  const handleResetSearch = () => {
-    Promise.all([
-      resetClickedItemData(),
-      setState({ ...state, selectedUser: false }),
-    ]);
-  };
+  const handleResetSearch = () => setState({ ...state, selectedUser: false });
 
   useEffect(() => {
     fetchUsersData();
@@ -62,7 +57,8 @@ const createModal = ({
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
     const sendingData = {
-      userId: clickedUserData && state.selectedUser ? clickedUserData.id : '',
+      userId:
+        modalSearchedUser && state.selectedUser ? modalSearchedUser.id : '',
       ...values,
     };
     const res = await createSpecialMeal(sendingData);
@@ -71,6 +67,8 @@ const createModal = ({
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
+        // to keep the created row on focus after re-render
+        saveSelectedItemValue(sendingData.userId),
       ]);
       window.location.reload(true);
     } else {
@@ -80,14 +78,14 @@ const createModal = ({
   };
 
   const initialValues = {
-    companyName: clickedUserData ? clickedUserData.companyName : '',
+    companyName: modalSearchedUser ? modalSearchedUser.companyName : '',
     date: formattedTmr,
     time: '12:30',
     quantity: '',
     sideDish: '',
     mealPrice: '',
-    address: clickedUserData ? clickedUserData.address : '',
-    contactNo: clickedUserData ? clickedUserData.contactNo : '',
+    address: modalSearchedUser ? modalSearchedUser.address : '',
+    contactNo: modalSearchedUser ? modalSearchedUser.contactNo : '',
     note: '',
   };
 

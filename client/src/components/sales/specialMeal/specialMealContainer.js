@@ -37,6 +37,7 @@ const SpecialMealContainer = ({
   date,
   clickedUserData,
   selectedItemValue,
+  modalSearchedUser,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
@@ -87,13 +88,21 @@ const SpecialMealContainer = ({
         hideModal(),
         selectedRow !== null && offFocusOnSelectdRow(),
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedItemValue !== null && resetSelectedItemValue(),
       ]);
   }, []);
 
   const handleButtonClick = async sub => {
     await setClickedBtn(sub);
     return showModal();
+  };
+
+  const handleSuggestionSelected = () => {
+    if (selectedItemValue !== null) resetSelectedItemValue();
+  };
+  // Render all users list from a selected user list [Search]
+  const renderAllUsers = () => {
+    if (selectedItemValue) resetSelectedItemValue();
   };
 
   return (
@@ -116,8 +125,8 @@ const SpecialMealContainer = ({
       <div className="paper-label-box justify-between">
         <SearchBar
           data={specialMeal}
-          handleSuggestionSelected={() => {}}
-          handleResetSearch={() => {}}
+          handleSuggestionSelected={handleSuggestionSelected}
+          handleResetSearch={renderAllUsers}
         />
         <div>
           <IconButton
@@ -140,14 +149,13 @@ const SpecialMealContainer = ({
         <Paper
           component={
             <Table
-              data={specialMeal}
+              users={specialMeal}
               selectedRow={selectedRow}
               selectedItemValue={selectedItemValue}
-              saveClickedItemData={saveClickedItemData}
               saveSelectedItemValue={saveSelectedItemValue}
+              saveClickedItemData={saveClickedItemData}
               handleButtonClick={handleButtonClick}
               onFocusOnSelectdRow={onFocusOnSelectdRow}
-              resetSelectedItemValue={resetSelectedItemValue}
               formatToDateForm={formatToDateForm}
             />
           }
@@ -183,11 +191,13 @@ const SpecialMealContainer = ({
           formattedTmr={formattedTmr}
           clickedUserData={clickedUserData}
           selectedItemValue={selectedItemValue}
+          modalSearchedUser={modalSearchedUser}
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           createSpecialMeal={createSpecialMeal}
           updateSpecialMeal={updateSpecialMeal}
           deleteSpecialMeal={deleteSpecialMeal}
+          saveSelectedItemValue={saveSelectedItemValue}
           resetClickedItemData={resetClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
@@ -201,6 +211,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   clickedUserData: state.selected.data,
   selectedItemValue: state.selected.value,
+  modalSearchedUser: state.selected.secondData,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

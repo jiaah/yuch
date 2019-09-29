@@ -38,8 +38,8 @@ const SpecialMealTableRow = ({
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
       selected={
-        selectedItemValue === row.companyName ||
         selectedItemValue === row.id ||
+        (selectedItemValue && selectedItemValue === row.userId) ||
         selectedRow === row.id
       }
     >

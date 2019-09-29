@@ -65,7 +65,7 @@ const RatesContainer = ({
     return () =>
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedItemValue !== null && resetSelectedItemValue(),
         isAdminVerified && handleAdminVerificationStatus(),
         show && hideModal(),
         renderAllUsers(),
@@ -77,11 +77,16 @@ const RatesContainer = ({
     return userData[0];
   };
 
+  // [ Focus on row ]
+  // - editing a row : permanent focus (global state)
+  // - searching a row : permanent focus (global state)
+  // * editing & searching use the same state to prevent duplicated rows.
+
   const handleEditUserBtnClick = async (e, id) => {
     e.preventDefault();
     const userData = await getClickedUserData(id);
+    // to render clicked user data in textField
     await saveClickedItemData(userData);
-
     // set focus on editing row
     await saveSelectedItemValue(userData.userId);
     // to prevent from having multiple selected rows.

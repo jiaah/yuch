@@ -22,26 +22,28 @@ const ModalController = ({
   // globalState
   clickedUserData,
   selectedItemValue,
+  modalSearchedUser,
   // actions
   hideModal,
   addFlashMessage,
   createSpecialMeal,
   updateSpecialMeal,
   deleteSpecialMeal,
+  saveSelectedItemValue,
   resetClickedItemData,
   getUsers,
 }) => (
   <React.Fragment>
     {clickedBtn === 'create' && (
       <CreateModal
+        modalSearchedUser={modalSearchedUser}
         formattedTmr={formattedTmr}
         hideModal={hideModal}
         addFlashMessage={addFlashMessage}
         createSpecialMeal={createSpecialMeal}
         getUsers={getUsers}
-        clickedUserData={clickedUserData}
-        resetClickedItemData={resetClickedItemData}
         adminSpecialMealMsg={adminSpecialMealMsg}
+        saveSelectedItemValue={saveSelectedItemValue}
       />
     )}
     {clickedBtn === 'edit' && (

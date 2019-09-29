@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, uesEffect } from 'react';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import Icon from '../../../assets/icons';
-import Loader from '../../components/loader';
-import IconButton from '../form/iconButton';
+import Icon from '../../../../assets/icons';
+import Loader from '../../loader';
+import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
-import { saveSelectedItemValue } from '../../actions/selectedAction';
+import {
+  saveSecondData,
+  resetSecondData,
+} from '../../../actions/selectedAction';
 
 const AutoCompletePaper = Loader({
   loader: () =>
-    import('./autoCompletePaper' /* webpackChunkName: 'AutoCompletePaper' */),
+    import('../../../shared/searchBar/autoCompletePaper' /* webpackChunkName: 'AutoCompletePaper' */),
 });
 
 const styles = theme => ({
@@ -56,7 +59,8 @@ const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
   // actions
-  saveSelectedItemValue,
+  saveSecondData,
+  resetSecondData,
   // parent component func
   handleSuggestionSelected,
   handleResetSearch,
@@ -87,14 +91,22 @@ const SearchBar = ({
     setInputValue(user.companyName); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
+    saveSecondData(user); // make the selected value accesible in a parents component via redux
     return handleSuggestionSelected();
   };
 
   const resetSearch = () => {
     setInputValue(null);
+    resetSecondData();
     return handleResetSearch();
   };
+
+  uesEffect(
+    () => () => {
+      resetSearch();
+    },
+    [],
+  );
 
   const open = Boolean(anchorEl);
 
@@ -141,7 +153,8 @@ const SearchBar = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveSelectedItemValue: value => dispatch(saveSelectedItemValue(value)),
+  saveSecondData: value => dispatch(saveSecondData(value)),
+  resetSecondData: () => dispatch(resetSecondData()),
 });
 
 export default compose(

@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   value: null,
   data: [],
+  secondData: [],
   users: '활성 계정',
 };
 
@@ -27,6 +28,17 @@ const selectedItem = (state = initialState, action) => {
       return {
         ...state,
         data: [],
+      };
+    // Independent data from clicked data
+    case types.SAVE_SECOND_DATA:
+      return {
+        ...state,
+        secondData: action.data,
+      };
+    case types.RESET_SECOND_DATA:
+      return {
+        ...state,
+        secondData: [],
       };
     // Select Form
     case types.SAVE_SELECT_VALUE:

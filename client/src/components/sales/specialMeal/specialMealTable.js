@@ -18,9 +18,11 @@ const styles = () => ({
 
 const SpecialMealTable = ({
   classes: { tableWrapper, table },
-  data,
+  users,
   // local state
   selectedRow,
+  // global state
+  selectedItemValue,
   // actions
   saveClickedItemData,
   saveSelectedItemValue,
@@ -32,13 +34,16 @@ const SpecialMealTable = ({
   const handleTableRowClick = id => onFocusOnSelectdRow(id);
 
   const getClickedUserData = async id => {
-    const filteredData = await data.filter(b => b.id === id);
+    const filteredData = await users.filter(b => b.id === id);
     return filteredData[0];
   };
 
   const handleEditBtnClick = async id => {
     const selectedData = await getClickedUserData(id);
     await saveClickedItemData(selectedData);
+    // to keep row on focus after re-render the page
+    // * created row focus is using the same state to prevent duplicated rows.
+    await saveSelectedItemValue(id);
     return handleButtonClick('edit');
   };
 
@@ -47,16 +52,20 @@ const SpecialMealTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = data && 9 - data.length;
+  const emptyRows = users && 9 - users.length;
+
+  // to render only one user on search.
+  const searchUser = users.filter(u => u.companyName === selectedItemValue);
+  const dataToDisplay = searchUser.length === 0 ? users : searchUser;
 
   return (
     <div id="print" className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
-          {data &&
-            data.length !== 0 &&
-            data.map((row, index) => {
+          {users &&
+            users.length !== 0 &&
+            dataToDisplay.map((row, index) => {
               const labelId = `enhanced-table-checkbox-${index}`;
               return (
                 <SpecialMealTableRow
@@ -68,6 +77,7 @@ const SpecialMealTable = ({
                   labelId={labelId}
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
+                  selectedItemValue={selectedItemValue}
                 />
               );
             })}

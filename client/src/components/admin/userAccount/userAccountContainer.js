@@ -115,10 +115,6 @@ const UserAccountContainer = ({
     if (selectedSearchItem) resetSelectedItemValue();
   };
 
-  const handleSearch = () => {
-    // do nothing
-  };
-
   return (
     <div className="container-a pw1">
       {/* auto complete search bar by companyName */}
@@ -128,7 +124,7 @@ const UserAccountContainer = ({
           <div className="mr3">
             <SearchBar
               data={selctedUsers}
-              handleSuggestionSelected={handleSearch}
+              handleSuggestionSelected={() => {}}
               handleResetSearch={renderAllUsers}
             />
           </div>
