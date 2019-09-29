@@ -140,6 +140,7 @@ const createModal = ({
                   />
                 )}
               </div>
+              <h2> {JSON.stringify(state.inputValues)}</h2>
               {adminSpecialMealMsg}
             </div>
             <Formik
