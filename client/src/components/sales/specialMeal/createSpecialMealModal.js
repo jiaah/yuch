@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Modal from '../../../shared/modal';
 import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
-import SearchBar from '../../../shared/searchBar';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 
 const styles = theme => ({
   checkbox: {
@@ -74,11 +74,25 @@ const createModal = ({
   };
 
   useEffect(() => {
-    fetchUsersData();
+    if (!users) fetchUsersData();
+    setState({
+      ...state,
+      inputValues: {
+        companyName: modalSearchedUser && modalSearchedUser.companyName,
+        date: formattedTmr,
+        time: '12:30',
+        quantity: '',
+        sideDish: '',
+        mealPrice: '',
+        address: modalSearchedUser && modalSearchedUser.address,
+        contactNo: modalSearchedUser && modalSearchedUser.contactNo,
+        note: '',
+      },
+    });
     return () => {
       handleResetSearch();
     };
-  }, []);
+  });
 
   // yuch client selection checkbox
   const handleChange = name => async event => {
