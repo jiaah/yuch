@@ -10,20 +10,18 @@ import {
 } from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
-import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
-const InvoiceContainer = ({
+const RevenueContainer = ({
   date,
   dateTrackerActions: { updateDate, resetDate },
   addFlashMessage,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
-  const [data, setData] = useState(null);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
@@ -46,7 +44,7 @@ const InvoiceContainer = ({
   return (
     <div className="container-a pw3">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
-        거래 명세서
+        매출
       </h2>
       <DateButtons
         reload={true}
@@ -60,19 +58,16 @@ const InvoiceContainer = ({
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={data}
-          handleSuggestionSelected={() => {}}
-          handleResetSearch={() => {}}
-        />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
+      <div className="paper-label-box justify-end">
+        <div>
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
       </div>
     </div>
   );
@@ -90,4 +85,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(InvoiceContainer);
+)(RevenueContainer);
