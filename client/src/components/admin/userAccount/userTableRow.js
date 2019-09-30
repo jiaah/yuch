@@ -13,10 +13,11 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const UserTableRow = ({
-  classes: { resize },
+  classes: { resize, point },
   handleTableRowClick,
   handleEditUserBtnClick,
   row,
@@ -70,7 +71,7 @@ const UserTableRow = ({
           id={labelId}
           scope="row"
           padding="none"
-          className={resize}
+          className={`${resize} ${point}`}
         >
           {row.companyName}
         </TableCell>

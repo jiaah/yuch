@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, nextMonth } from '../../../helpers/moment';
+import { twoYearsAgo, nextMonth } from '../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
   formatToDateForm,
-} from '../../../utils/date';
-import { printDiv } from '../../../utils/print';
-import DateButtons from '../../../shared/form/dateButtons';
-import IconButton from '../../../shared/form/iconButton';
+} from '../../utils/date';
+import { printDiv } from '../../utils/print';
+import DateButtons from '../../shared/form/dateButtons';
+import IconButton from '../../shared/form/iconButton';
 /* --- Actions --- */
-import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
-import { addFlashMessage } from '../../../actions/messageAction';
+import * as dateTrackerActiions from '../../actions/dateTrackerAction';
+import { addFlashMessage } from '../../actions/messageAction';
 
 const InvoiceContainer = ({
   date,

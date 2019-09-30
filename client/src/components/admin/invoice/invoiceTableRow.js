@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   resize: {
@@ -30,7 +31,9 @@ const SpecialMealTableRow = ({
     selected={selectedRow === row.userId || searchedValue === row.companyName}
   >
     <TableCell align="right" className={resize}>
-      {row.companyName}
+      <Link className="td-none c-point2 fw6" to={`/invoice/${row.userId}`}>
+        {row.companyName}
+      </Link>
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.mealPrice}

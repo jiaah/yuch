@@ -11,10 +11,11 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const SpecialMealTableRow = ({
-  classes: { resize },
+  classes: { resize, point },
   row,
   labelId,
   upComingEventId,
@@ -65,7 +66,12 @@ const SpecialMealTableRow = ({
           />
         </div>
       </TableCell>
-      <TableCell component="th" id={labelId} scope="row" className={resize}>
+      <TableCell
+        component="th"
+        id={labelId}
+        scope="row"
+        className={`${resize} ${point}`}
+      >
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>

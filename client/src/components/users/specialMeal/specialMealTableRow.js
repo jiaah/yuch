@@ -9,10 +9,11 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const SpecialMealTableRow = ({
-  classes: { resize },
+  classes: { resize, point },
   row,
   // func
   formatToDateForm,
@@ -38,7 +39,7 @@ const SpecialMealTableRow = ({
       tabIndex={-1}
       selected={selectedRow === row.id}
     >
-      <TableCell align="right" className={resize}>
+      <TableCell align="right" className={`${resize} ${point}`}>
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>

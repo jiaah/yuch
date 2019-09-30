@@ -85,6 +85,11 @@ const UserSpecialMeal = Loader({
 });
 
 /* --- ECS --- */
+const Invoice = Loader({
+  loader: () =>
+    import('../src/components/invoice/invoiceContainer' /* webpackChunkName: 'NoMatch' */),
+});
+
 const NoMatch = Loader({
   loader: () =>
     import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
@@ -144,6 +149,8 @@ const routes = () => (
         path="/admin/account/bank"
         component={AdminGuards(BankAccount)}
       />
+      {/* Invoice */}
+      <Route exact path="/invoice/:id" component={Invoice} />
       {/* --- USER --- */}
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
       <Route
