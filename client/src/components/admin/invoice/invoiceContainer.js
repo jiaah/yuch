@@ -100,6 +100,7 @@ const InvoiceContainer = ({
       </div>
       {data && (
         <Paper
+          id="print"
           data={data}
           selectedRow={selectedRow}
           searchedValue={searchedValue}

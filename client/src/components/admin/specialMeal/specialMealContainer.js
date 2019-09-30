@@ -162,6 +162,7 @@ const SpecialMealContainer = ({
       </div>
       {specialMeal && (
         <Paper
+          id="print"
           isDivided={false}
           component={
             <React.Fragment>

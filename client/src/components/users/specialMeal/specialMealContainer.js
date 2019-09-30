@@ -79,6 +79,7 @@ const SpecialMealContainer = ({
       </div>
       {specialMeal && (
         <Paper
+          id="print"
           component={
             specialMeal && specialMeal.length !== 0 ? (
               <Table data={specialMeal} formatToDateForm={formatToDateForm} />
