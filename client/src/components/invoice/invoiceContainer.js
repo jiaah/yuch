@@ -21,6 +21,7 @@ const InvoiceContainer = ({
   addFlashMessage,
 }) => {
   const [data, setData] = useState(null);
+
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
 

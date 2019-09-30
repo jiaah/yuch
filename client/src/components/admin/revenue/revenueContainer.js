@@ -19,7 +19,6 @@ const RevenueContainer = ({
   addFlashMessage,
 }) => {
   const [state, setState] = useState({ revenue: [], yuchRevenue: [] });
-  console.log('state: ', state);
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
