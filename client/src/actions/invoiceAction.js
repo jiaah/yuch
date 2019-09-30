@@ -17,16 +17,16 @@ export const getUsersInvoice = date => async dispatch => {
 };
 
 export const updateUsersInvoice = date => async dispatch => {
-  dispatch({ type: types.HTTP_REQUEST, api: 'getUsersInvoice' });
+  dispatch({ type: types.HTTP_REQUEST, api: 'updateUsersInvoice' });
   try {
     const res = await Axios.patch('/invoice/users', date);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'getUsersInvoice' });
+    dispatch({ type: types.HTTP_SUCCESS, api: 'updateUsersInvoice' });
     return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
-      api: 'getUsersInvoice',
-      error: 'Getting Users Invoice failed.',
+      api: 'updateUsersInvoice',
+      error: 'Updating Users Invoice failed.',
     });
   }
 };

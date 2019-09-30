@@ -19,7 +19,7 @@ const InvoiceContainer = ({
   date,
   searchedValue,
   dateTrackerActions: { updateDate, resetDate },
-  invoiceActions: { getUsersInvoice },
+  invoiceActions: { getUsersInvoice, updateUsersInvoice },
   addFlashMessage,
   resetSelectedItemValue,
 }) => {
@@ -81,13 +81,22 @@ const InvoiceContainer = ({
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={() => {}}
         />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
+        <div className="flex">
+          <IconButton
+            name="update"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => updateUsersInvoice(date)}
+          />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
       </div>
       {data && (
         <Paper
