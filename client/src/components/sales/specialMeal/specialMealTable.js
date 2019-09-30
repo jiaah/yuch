@@ -26,7 +26,6 @@ const SpecialMealTable = ({
   clickedUserData,
   // actions
   saveClickedItemData,
-  saveSelectedItemValue,
   // func
   formatToDateForm,
   handleButtonClick,
@@ -40,14 +39,11 @@ const SpecialMealTable = ({
   const handleEditBtnClick = async id => {
     const selectedData = await getClickedUserData(id);
     await saveClickedItemData(selectedData);
-    // to keep row on focus after re-render the page
-    // * created row focus is using the same state to prevent duplicated rows.
-    await saveSelectedItemValue(id);
     return handleButtonClick('edit');
   };
 
   const handleDeleteBtnClick = async id => {
-    await saveSelectedItemValue(id);
+    await saveClickedItemData(id);
     return handleButtonClick('delete');
   };
 

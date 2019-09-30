@@ -70,6 +70,12 @@ const createModal = ({
   const handleResetSearch = () =>
     setState({ ...state, selectedUser: false, inputValues: initValues });
 
+  // yuch client selection checkbox
+  const handleChange = name => async event => {
+    const checked = event.target.checked;
+    return setState({ ...state, [name]: checked, inputValues: initValues });
+  };
+
   // get users list
   const fetchUsersData = async () => {
     const res = await getUsers();
@@ -83,30 +89,24 @@ const createModal = ({
     };
   }, []);
 
-  // yuch client selection checkbox
-  const handleChange = name => async event => {
-    const checked = event.target.checked;
-    // if (!checked) await resetClickedItemData();
-    return setState({ ...state, [name]: checked });
-  };
-
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
     const sendingData = {
       userId: state.userId && state.selectedUser ? state.userId : null,
       ...values,
     };
+
     const res = await createSpecialMeal(sendingData);
 
     if (!res.error) {
+      // to keep the created row on focus after re-render
+      await saveClickedItemData(sendingData);
       Promise.all([
+        // render all users list if it's filtered by searching
+        resetSelectedItemValue(),
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
-        // to prevent from rendering filtered rows from search
-        resetSelectedItemValue(),
-        // to keep the created row on focus after re-render
-        saveClickedItemData(sendingData),
       ]);
       window.location.reload(true);
     } else {

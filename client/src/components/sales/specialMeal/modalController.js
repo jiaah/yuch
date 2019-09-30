@@ -21,7 +21,6 @@ const ModalController = ({
   adminSpecialMealMsg,
   // globalState
   clickedUserData,
-  selectedItemValue,
   // actions
   hideModal,
   addFlashMessage,
@@ -58,7 +57,7 @@ const ModalController = ({
         hideModal={hideModal}
         addFlashMessage={addFlashMessage}
         deleteSpecialMeal={deleteSpecialMeal}
-        selectedItemValue={selectedItemValue}
+        clickedUserData={clickedUserData}
       />
     )}
   </React.Fragment>

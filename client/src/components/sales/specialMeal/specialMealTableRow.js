@@ -27,11 +27,12 @@ const SpecialMealTableRow = ({
   handleDeleteBtnClick,
   formatToDateForm,
 }) => {
+  const { userId, companyName, date } = clickedUserData;
   const formattedDate = formatToDateForm(row.date);
   const payment = row.userId ? 'YES' : '';
   const isHandledRow =
-    clickedUserData.companyName === row.companyName &&
-    clickedUserData.date === row.date;
+    (userId && userId === row.userId) ||
+    (companyName === row.companyName && date === row.date);
 
   return (
     <TableRow

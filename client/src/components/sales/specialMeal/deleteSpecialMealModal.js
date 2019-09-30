@@ -4,14 +4,14 @@ import Modal from '../../../shared/modal';
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
 const DeleteModal = ({
-  selectedItemValue,
+  clickedUserData,
   // actions
   addFlashMessage,
   deleteSpecialMeal,
   hideModal,
 }) => {
   const handleDeleteUser = async () => {
-    const res = await deleteSpecialMeal(selectedItemValue);
+    const res = await deleteSpecialMeal(clickedUserData);
     if (!res.error) {
       await hideModal();
       return window.location.reload(true);

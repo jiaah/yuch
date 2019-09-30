@@ -59,12 +59,7 @@ const SearchBar = ({
   // for special_meal create modal
   isSecondSearchBar,
   // actions
-  selectedActions: {
-    saveSelectedItemValue,
-    resetSelectedItemValue,
-    saveSecSelectedItemValue,
-    resetSecSelectedItemValue,
-  },
+  selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   // parent component func
   handleSuggestionSelected,
   handleResetSearch,
@@ -95,21 +90,13 @@ const SearchBar = ({
     setInputValue(user.companyName); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    if (!isSecondSearchBar) {
-      saveSelectedItemValue(user.companyName);
-    } else {
-      saveSecSelectedItemValue(user.companyName);
-    } // make the selected value accesible in a parents component via redux
+    if (!isSecondSearchBar) saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
     return handleSuggestionSelected(user);
   };
 
   const resetSearch = () => {
     setInputValue(null);
-    if (!isSecondSearchBar) {
-      resetSelectedItemValue();
-    } else {
-      resetSecSelectedItemValue();
-    }
+    if (!isSecondSearchBar) resetSelectedItemValue();
     return handleResetSearch();
   };
 
