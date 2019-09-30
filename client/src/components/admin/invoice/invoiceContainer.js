@@ -13,16 +13,34 @@ import Paper from './invoicePaper';
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as invoiceActions from '../../../actions/invoiceAction';
+import { resetSelectedItemValue } from '../../../actions/selectedAction';
 
 const InvoiceContainer = ({
   date,
+  searchedValue,
   dateTrackerActions: { updateDate, resetDate },
   invoiceActions: { getUsersInvoice },
   addFlashMessage,
+  resetSelectedItemValue,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
   const [data, setData] = useState([]);
+
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onfocusOnSelectdRow = id => {
+    setSelectedRow(id);
+    resetSelectedItemValue();
+  };
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
+  const handleSuggestionSelected = () => offFocusOnSelectdRow();
+
+  useEffect(
+    () => () => {
+      offFocusOnSelectdRow();
+    },
+    [],
+  );
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
@@ -60,7 +78,7 @@ const InvoiceContainer = ({
       <div className="paper-label-box justify-between">
         <SearchBar
           data={data}
-          handleSuggestionSelected={() => {}}
+          handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={() => {}}
         />
         <IconButton
@@ -71,19 +89,28 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      {data && <Paper data={data} />}
+      {data && (
+        <Paper
+          data={data}
+          selectedRow={selectedRow}
+          searchedValue={searchedValue}
+          onfocusOnSelectdRow={onfocusOnSelectdRow}
+        />
+      )}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   date: state.dateTracker.date,
+  searchedValue: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   invoiceActions: bindActionCreators(invoiceActions, dispatch),
+  resetSelectedItemValue: () => dispatch(resetSelectedItemValue()),
 });
 
 export default connect(

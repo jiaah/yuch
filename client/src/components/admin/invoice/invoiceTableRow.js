@@ -14,8 +14,12 @@ const styles = theme => ({
 const SpecialMealTableRow = ({
   classes: { resize },
   row,
-  onfocusOnSelectdRow,
+  // local state
   selectedRow,
+  // global state
+  searchedValue,
+  // func
+  onfocusOnSelectdRow,
 }) => (
   <TableRow
     key={row.userId}
@@ -23,7 +27,7 @@ const SpecialMealTableRow = ({
     role="checkbox"
     aria-checked={selectedRow === row.userId}
     tabIndex={-1}
-    selected={selectedRow === row.userId}
+    selected={selectedRow === row.userId || searchedValue === row.companyName}
   >
     <TableCell align="right" className={resize}>
       {row.companyName}

@@ -7,6 +7,11 @@ import RatesTable from './invoiceTable';
 const InvoicePaper = ({
   // local state
   data,
+  selectedRow,
+  // global state
+  searchedValue,
+  // func
+  onfocusOnSelectdRow,
 }) => {
   const [order, setOrder] = React.useState('asc');
   // selected column
@@ -43,6 +48,9 @@ const InvoicePaper = ({
             orderBy={orderBy}
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
+            selectedRow={selectedRow}
+            searchedValue={searchedValue}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
           />
         }
       />
@@ -54,6 +62,9 @@ const InvoicePaper = ({
             orderBy={orderBy}
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
+            selectedRow={selectedRow}
+            searchedValue={searchedValue}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
           />
         }
       />

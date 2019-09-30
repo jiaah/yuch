@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,20 +21,13 @@ const InvoiceTable = ({
   order,
   orderBy,
   sortedData,
+  selectedRow,
+  // global state
+  searchedValue,
   // fncs
   handleRequestSort,
+  onfocusOnSelectdRow,
 }) => {
-  const [selectedRow, setSelectedRow] = useState(null);
-  const onfocusOnSelectdRow = id => setSelectedRow(id);
-  const offFocusOnSelectdRow = () => setSelectedRow(null);
-
-  useEffect(
-    () => () => {
-      offFocusOnSelectdRow();
-    },
-    [],
-  );
-
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   return (
@@ -53,8 +46,9 @@ const InvoiceTable = ({
                 <InvoiceTableRow
                   key={row.userId}
                   row={row}
-                  onfocusOnSelectdRow={onfocusOnSelectdRow}
                   selectedRow={selectedRow}
+                  searchedValue={searchedValue}
+                  onfocusOnSelectdRow={onfocusOnSelectdRow}
                 />
               ))}
             {emptyRows > 0 && <TableRow style={{ height: 49 * emptyRows }} />}
