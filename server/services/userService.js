@@ -3,10 +3,16 @@ const Users = require('../models/Users');
 const util = require('../lib/util');
 
 const inActive = async (userId, endDate) =>
-  Users.query().patchAndFetchById(userId, { endDate });
+  Users.query().patchAndFetchById(userId, {
+    endDate,
+    updated_at: new Date().toISOString(),
+  });
 
 const active = async userId =>
-  Users.query().patchAndFetchById(userId, { endDate: null });
+  Users.query().patchAndFetchById(userId, {
+    endDate: null,
+    updated_at: new Date().toISOString(),
+  });
 
 const isValid = async (id, refreshToken) => {
   const user = await Users.query().findOne({ id, refreshToken });
