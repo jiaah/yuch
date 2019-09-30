@@ -150,7 +150,7 @@ const routes = () => (
         component={AdminGuards(BankAccount)}
       />
       {/* Invoice */}
-      <Route exact path="/invoice/:id" component={Invoice} />
+      <Route exact path="/invoice/user" component={Invoice} />
       {/* --- USER --- */}
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
       <Route

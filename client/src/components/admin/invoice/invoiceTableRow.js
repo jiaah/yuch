@@ -31,7 +31,10 @@ const SpecialMealTableRow = ({
     selected={selectedRow === row.userId || searchedValue === row.companyName}
   >
     <TableCell align="right" className={resize}>
-      <Link className="td-none c-point2 fw6" to={`/invoice/${row.userId}`}>
+      <Link
+        className="td-none c-point2 fw6"
+        to={`/invoice/user?name=${row.companyName}&id=${row.userId}`}
+      >
         {row.companyName}
       </Link>
     </TableCell>

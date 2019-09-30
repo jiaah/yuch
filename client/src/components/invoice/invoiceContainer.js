@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 /* --- Components --- */
 import { twoYearsAgo, nextMonth } from '../../helpers/moment';
 import { formatToYearDateForm, formatToYYYYMM } from '../../utils/date';
@@ -19,20 +20,25 @@ const InvoiceContainer = ({
   invoiceActions: { getUserInvoice },
   addFlashMessage,
 }) => {
+  const [data, setData] = useState(null);
+
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
+
+  const parsed = queryString.parse(location.search);
+  const userId = parsed.id;
+  const userName = parsed.companyName;
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyymm = formatToYYYYMM(when);
 
-    const res = await getUserInvoice(id, yyyymm);
+    const res = await getUserInvoice(userId, yyyymm);
 
     if (res.error) {
-      setSpecialMeal([]);
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setSpecialMeal(res);
+    return setData(res);
   };
 
   useEffect(() => {
@@ -43,7 +49,7 @@ const InvoiceContainer = ({
   return (
     <div className="container-a pw3">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
-        거래 명세서
+        {userName}
       </h2>
       <DateButtons
         reload={true}
