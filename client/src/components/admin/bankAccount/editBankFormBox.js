@@ -29,7 +29,7 @@ const EditBankFormBox = ({
   };
   return (
     <Formik
-      initialValues={clickedUserData[0]}
+      initialValues={clickedUserData}
       render={props => (
         <Form className="mh1">
           <BankForm {...props} />
