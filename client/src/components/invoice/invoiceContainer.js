@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 /* --- Components --- */
 import { twoYearsAgo, nextMonth } from '../../helpers/moment';
 import {
@@ -11,6 +12,7 @@ import {
 import { printDiv } from '../../utils/print';
 import DateButtons from '../../shared/form/dateButtons';
 import IconButton from '../../shared/form/iconButton';
+import Icon from '../../../assets/icons';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -58,16 +60,23 @@ const InvoiceContainer = ({
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
-      <div className="paper-label-box justify-end">
-        <div>
+      <div className="paper-label-box justify-between">
+        <Link to="/admin/invoice/users">
           <IconButton
-            name="print"
+            name="list"
             width="32"
             height="32"
             viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
+            handleClick={() => {}}
           />
-        </div>
+        </Link>
+        <IconButton
+          name="print"
+          width="32"
+          height="32"
+          viewBox="0 0 25 25"
+          handleClick={() => printDiv('print')}
+        />
       </div>
     </div>
   );
