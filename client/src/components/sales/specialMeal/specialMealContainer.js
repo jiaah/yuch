@@ -163,18 +163,24 @@ const SpecialMealContainer = ({
       {specialMeal && (
         <Paper
           component={
-            <Table
-              users={specialMeal}
-              selectedRow={selectedRow}
-              clickedUserData={clickedUserData}
-              selectedItemValue={selectedItemValue}
-              saveClickedItemData={saveClickedItemData}
-              handleButtonClick={handleButtonClick}
-              formatToDateForm={formatToDateForm}
-              handleTableRowClick={handleTableRowClick}
-              formatToYYYYMMDD={formatToYYYYMMDD}
-              today={today}
-            />
+            <React.Fragment>
+              {specialMeal.length !== 0 ? (
+                <Table
+                  users={specialMeal}
+                  selectedRow={selectedRow}
+                  clickedUserData={clickedUserData}
+                  selectedItemValue={selectedItemValue}
+                  saveClickedItemData={saveClickedItemData}
+                  handleButtonClick={handleButtonClick}
+                  formatToDateForm={formatToDateForm}
+                  handleTableRowClick={handleTableRowClick}
+                  formatToYYYYMMDD={formatToYYYYMMDD}
+                  today={today}
+                />
+              ) : (
+                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+              )}
+            </React.Fragment>
           }
         />
       )}

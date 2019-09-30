@@ -14,7 +14,7 @@ const styles = theme => ({
 });
 
 const SpecialMealTableRow = ({
-  classes: { resize },
+  classes: { resize, tableRow },
   row,
   labelId,
   upComingEventId,
