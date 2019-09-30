@@ -14,6 +14,7 @@ WORKDIR /app
 
 # add package.json
 COPY package.json /app
+COPY package-lock.json /app
 
 # install dependencies
 RUN npm install --production
