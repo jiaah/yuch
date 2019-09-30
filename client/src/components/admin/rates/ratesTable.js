@@ -12,7 +12,9 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { width: '100%' },
+  table: {
+    width: '100%',
+  },
 });
 
 const RatesTable = ({

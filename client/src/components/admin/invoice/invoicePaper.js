@@ -42,6 +42,7 @@ const InvoicePaper = ({
   return (
     <div id="print" className="paper">
       <Paper
+        isDivided={true}
         component={
           <RatesTable
             order={order}
@@ -55,7 +56,8 @@ const InvoicePaper = ({
         }
       />
       <Paper
-        classes="paper--sec"
+        isDivided={true}
+        classname="paper--sec"
         component={
           <RatesTable
             order={order}

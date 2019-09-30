@@ -8,13 +8,12 @@ import TableCell from '@material-ui/core/TableCell';
 import EnhancedTableHead from '../../../shared/tableHead';
 import { specialMealTableHeadColumns } from '../../../data/data';
 import SpecialMealTableRow from './specialMealTableRow';
-import Address from '../../../../assets/icons/address';
 
 const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 470 },
+  table: { width: '100%' },
 });
 
 const SpecialMealTable = ({

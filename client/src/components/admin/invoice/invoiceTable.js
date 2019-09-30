@@ -12,7 +12,7 @@ const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 470 },
+  table: { width: '100%' },
 });
 
 const InvoiceTable = ({

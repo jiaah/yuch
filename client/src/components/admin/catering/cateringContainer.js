@@ -74,7 +74,7 @@ const CateringContainer = ({
   const handleResetSearch = () => {};
 
   return (
-    <div className="r--w-70 container-a max-width-1500">
+    <div className="container-a r--w-70">
       <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
         식수 현황
       </h2>

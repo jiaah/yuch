@@ -116,7 +116,7 @@ const UserAccountContainer = ({
   };
 
   return (
-    <div className="container-a pw1">
+    <div className="container-a r--w-98">
       {/* auto complete search bar by companyName */}
       <h2>고객 계정</h2>
       <div className="paper-label-box justify-between ">

@@ -121,7 +121,7 @@ const SpecialMealContainer = ({
   };
 
   return (
-    <div className="container-a w-95">
+    <div className="container-a r--w-98">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         특식 관리
       </h2>
@@ -162,6 +162,7 @@ const SpecialMealContainer = ({
       </div>
       {specialMeal && (
         <Paper
+          isDivided={false}
           component={
             <React.Fragment>
               {specialMeal.length !== 0 ? (

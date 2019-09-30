@@ -14,7 +14,7 @@ const styles = () => ({
   },
   table: {
     width: '100%',
-    minWidth: '500px',
+    minWidth: '330px',
   },
 });
 

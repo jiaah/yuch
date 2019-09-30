@@ -36,6 +36,7 @@ const CateringPaper = ({
   return (
     <div id="print" className="paper">
       <Paper
+        isDivided={true}
         component={
           <CateringTable
             sortedData={sortedDataA}
@@ -53,7 +54,8 @@ const CateringPaper = ({
         }
       />
       <Paper
-        classes="paper--sec"
+        classname="paper--sec"
+        isDivided={true}
         component={
           <CateringTable
             sortedData={sortedDataB}

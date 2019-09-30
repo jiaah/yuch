@@ -50,7 +50,7 @@ const SpecialMealContainer = ({
   }, []);
 
   return (
-    <div className="container-a pw3">
+    <div className="container-a r--w-98">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         특식 관리
       </h2>
