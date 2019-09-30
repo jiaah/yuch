@@ -1,31 +1,35 @@
-FROM node:8
+FROM alpine:3.8
 
-ARG NODE_ENV=production
+ENTRYPOINT [ "echo" ]
 
-# Install PM2
-RUN npm install -g pm2
+# FROM node:8
 
-RUN apt-get update
+# ARG NODE_ENV=production
 
-# set workdir
-RUN mkdir -p /app
-WORKDIR /app
+# # Install PM2
+# RUN npm install -g pm2
 
-RUN mkdir -p /app/image
-RUN mkdir -p /app/volumes
+# RUN apt-get update
 
-# add package.json
-COPY package.json /app
+# # set workdir
+# RUN mkdir -p /app
+# WORKDIR /app
 
-# install dependencies
-RUN npm install --production
+# RUN mkdir -p /app/image
+# RUN mkdir -p /app/volumes
 
-# add source code
-COPY server /app
-COPY process.yml /app
+# # add package.json
+# COPY package.json /app
 
-# Expose port
-EXPOSE 3000
+# # install dependencies
+# RUN npm install --production
 
-# serve with pm2
-CMD [ "pm2-docker", "process.yml" ]
+# # add source code
+# COPY server /app
+# COPY process.yml /app
+
+# # Expose port
+# EXPOSE 3000
+
+# # serve with pm2
+# CMD [ "pm2-docker", "process.yml" ]
