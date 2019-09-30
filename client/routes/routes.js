@@ -50,17 +50,22 @@ const AdminAccount = Loader({
 
 const RestoSales = Loader({
   loader: () =>
-    import('../src/components/sales/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
+    import('../src/components/admin/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
 });
 
 const AdminCatering = Loader({
   loader: () =>
-    import('../src/components/sales/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
 const AdminSpecailMeal = Loader({
   loader: () =>
-    import('../src/components/sales/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+});
+
+const AdminInvoice = Loader({
+  loader: () =>
+    import('../src/components/admin/invoice/invoiceContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
 /* --- USER --- */
@@ -110,6 +115,12 @@ const routes = () => (
         exact
         path="/admin/count/specialmeal"
         component={AdminGuards(AdminSpecailMeal)}
+      />
+      {/* 인보이스 */}
+      <Route
+        exact
+        path="/admin/invoice/users"
+        component={AdminGuards(AdminInvoice)}
       />
       {/* 고객관리 */}
       <Route

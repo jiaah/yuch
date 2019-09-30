@@ -6,7 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
-import { specialMealTableHeadColumns } from '../../../data/data';
+import { clientSpecialMealTableHeadColumns } from '../../../data/data';
 import SpecialMealTableRow from './specialMealTableRow';
 
 const styles = () => ({
@@ -27,7 +27,7 @@ const BankTable = ({
   return (
     <div id="print" className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
-        <EnhancedTableHead list={specialMealTableHeadColumns} />
+        <EnhancedTableHead list={clientSpecialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
           {data.map((row, index) => {
             const labelId = `enhanced-table-checkbox-${index}`;
@@ -41,7 +41,7 @@ const BankTable = ({
             );
           })}
           <TableRow style={{ height: 49 * emptyRows }}>
-            <TableCell colSpan={6} />
+            <TableCell colSpan={10} />
           </TableRow>
         </TableBody>
       </Table>

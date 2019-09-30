@@ -39,8 +39,7 @@ const SpecialMealTableRow = ({
       tabIndex={-1}
       selected={selectedRow === row.id}
     >
-      <TableCell padding="checkbox" />
-      <TableCell component="th" id={labelId} scope="row" className={resize}>
+      <TableCell align="right" className={resize}>
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>

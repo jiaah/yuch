@@ -385,3 +385,66 @@ export const specialMealTableHeadColumns = [
     label: '인보이스 포함',
   },
 ];
+
+export const clientSpecialMealTableHeadColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'time',
+    numeric: true,
+    disablePadding: false,
+    label: '시간',
+  },
+  {
+    id: 'sideDish',
+    numeric: true,
+    disablePadding: false,
+    label: '반찬수',
+  },
+  {
+    id: 'quantity',
+    numeric: true,
+    disablePadding: false,
+    label: '식수량',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계금액',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+  {
+    id: 'note',
+    numeric: true,
+    disablePadding: false,
+    label: '메모',
+  },
+];
