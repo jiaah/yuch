@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
+import { twoYearsAgo, nextMonth } from '../../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
@@ -50,7 +50,7 @@ const InvoiceContainer = ({
         reload={true}
         monthlyUnit={true}
         startTime={twoYearsAgo}
-        endTime={inTwoYears}
+        endTime={nextMonth}
         formattedDate={formattedDate}
         date={date}
         updateDate={updateDate}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
+import { twoYearsAgo, nextMonth } from '../../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
@@ -15,10 +15,12 @@ import IconButton from '../../../shared/form/iconButton';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import * as invoiceActions from '../../../actions/invoiceAction';
 
 const InvoiceContainer = ({
   date,
   dateTrackerActions: { updateDate, resetDate },
+  invoiceActions: { getUsersInvoice },
   addFlashMessage,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
@@ -28,14 +30,13 @@ const InvoiceContainer = ({
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyymm = formatToYYYYMM(when);
+    const res = await getUsersInvoice(yyyymm);
+    console.log('res: ', res);
 
-    // const res = await getUserSpecialMeal(userId, yyyymm);
-
-    // if (res.error) {
-    //   setSpecialMeal([]);
-    //   return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-    // }
-    // return setSpecialMeal(res);
+    if (res.error) {
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    }
+    return setData(res);
   };
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const InvoiceContainer = ({
         reload={true}
         monthlyUnit={true}
         startTime={twoYearsAgo}
-        endTime={inTwoYears}
+        endTime={nextMonth}
         formattedDate={formattedDate}
         date={date}
         updateDate={updateDate}
@@ -85,6 +86,7 @@ const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  invoiceActions: bindActionCreators(invoiceActions, dispatch),
 });
 
 export default connect(
