@@ -11,12 +11,7 @@ const styles = theme => ({
   },
 });
 
-const SpecialMealTableRow = ({
-  classes: { resize },
-  row,
-  // func
-  formatToDateForm,
-}) => {
+const SpecialMealTableRow = ({ classes: { resize }, row }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const onfocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
@@ -28,7 +23,6 @@ const SpecialMealTableRow = ({
     [],
   );
 
-  const formattedDate = formatToDateForm(row.date);
   return (
     <TableRow
       key={row.id}
@@ -42,31 +36,10 @@ const SpecialMealTableRow = ({
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {formattedDate}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.time}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.sideDish}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.quantity}
-      </TableCell>
-      <TableCell align="right" className={resize}>
         {row.mealPrice}
       </TableCell>
       <TableCell align="right" className={resize}>
         {row.sumTotal}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.address}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.contactNo}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.note}
       </TableCell>
     </TableRow>
   );

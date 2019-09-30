@@ -6,7 +6,7 @@ export const getUsersInvoice = date => async dispatch => {
   try {
     const res = await Axios.get('/invoice/users', { params: { date } });
     dispatch({ type: types.HTTP_SUCCESS, api: 'getUsersInvoice' });
-    return res;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -36,7 +36,7 @@ export const getUserInvoice = (id, date) => async dispatch => {
   try {
     const res = await Axios.get(`/invoice/user/${id}`, { params: { date } });
     dispatch({ type: types.HTTP_SUCCESS, api: 'getUserInvoice' });
-    return res;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -51,7 +51,7 @@ export const getRevenue = date => async dispatch => {
   try {
     const res = await Axios.get('/revenue', { params: { date } });
     dispatch({ type: types.HTTP_SUCCESS, api: 'getRevenue' });
-    return res;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -66,7 +66,7 @@ export const getYuchRevenue = date => async dispatch => {
   try {
     const res = await Axios.get('/revenue/yuch', { params: { date } });
     dispatch({ type: types.HTTP_SUCCESS, api: 'getYuchRevenue' });
-    return res;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,

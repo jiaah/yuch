@@ -16,7 +16,7 @@ const styles = () => ({
   table: { minWidth: 470 },
 });
 
-const BankTable = ({
+const SpecialMealTable = ({
   classes: { tableWrapper, table },
   data,
   // func
@@ -29,17 +29,15 @@ const BankTable = ({
       <Table className={table} aria-labelledby="tableTitle">
         <EnhancedTableHead list={clientSpecialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
-          {data.map((row, index) => {
-            const labelId = `enhanced-table-checkbox-${index}`;
-            return (
+          {data &&
+            data.length !== 0 &&
+            data.map(row => (
               <SpecialMealTableRow
                 key={row.id}
                 row={row}
-                labelId={labelId}
                 formatToDateForm={formatToDateForm}
               />
-            );
-          })}
+            ))}
           <TableRow style={{ height: 49 * emptyRows }}>
             <TableCell colSpan={10} />
           </TableRow>
@@ -49,4 +47,4 @@ const BankTable = ({
   );
 };
 
-export default withStyles(styles)(BankTable);
+export default withStyles(styles)(SpecialMealTable);

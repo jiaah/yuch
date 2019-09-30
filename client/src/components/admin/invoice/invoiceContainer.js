@@ -3,15 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { twoYearsAgo, nextMonth } from '../../../helpers/moment';
-import {
-  formatToYearDateForm,
-  formatToYYYYMM,
-  formatToDateForm,
-} from '../../../utils/date';
+import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
+import Paper from './invoicePaper';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -25,13 +22,12 @@ const InvoiceContainer = ({
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyymm = formatToYYYYMM(when);
     const res = await getUsersInvoice(yyyymm);
-    console.log('res: ', res);
 
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -45,7 +41,7 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div className="container-a pw3">
+    <div className="container-a r--w-80">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         거래 명세서
       </h2>
@@ -75,6 +71,7 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
+      {data && <Paper data={data} />}
     </div>
   );
 };

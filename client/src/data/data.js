@@ -448,3 +448,24 @@ export const clientSpecialMealTableHeadColumns = [
     label: '메모',
   },
 ];
+
+export const invoiceColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계금액',
+  },
+];
