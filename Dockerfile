@@ -6,23 +6,17 @@ ARG NODE_ENV=production
 RUN npm install -g pm2
 
 # set workdir
-RUN mkdir -p /app
 WORKDIR /app
 
-# RUN mkdir -p /app/public/dist
-# RUN mkdir -p /app/server
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
 
-# add package.json
-COPY package.json /app
-COPY package-lock.json /app
+# Bundle app source
+COPY . .
 
-# install dependencies
-RUN npm install --production
-
-COPY bin /app
-COPY public/dist /app
-COPY server /app
-COPY process.yml /app
+# build frontend
+RUN npm run predeploy
 
 # Expose port
 EXPOSE 9080
