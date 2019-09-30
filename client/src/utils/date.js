@@ -56,6 +56,7 @@ export const formatToDateForm = date =>
 export const formatToYearDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년 MM 월');
 
+export const formatToYYYY = date => moment(date).format('YYYY');
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
 export const formatWithDash = date => moment(date).format('YYYY-MM-DD');

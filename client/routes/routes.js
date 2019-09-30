@@ -68,6 +68,11 @@ const AdminInvoice = Loader({
     import('../src/components/admin/invoice/invoiceContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
+const Revenue = Loader({
+  loader: () =>
+    import('../src/components/admin/revenue/revenueContainer' /* webpackChunkName: 'AdminCatering' */),
+});
+
 /* --- USER --- */
 const UserAccount = Loader({
   loader: () =>
@@ -127,6 +132,7 @@ const routes = () => (
         path="/admin/invoice/users"
         component={AdminGuards(AdminInvoice)}
       />
+      <Route exact path="/admin/revenue" component={AdminGuards(Revenue)} />
       {/* 고객관리 */}
       <Route
         exact

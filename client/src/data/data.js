@@ -90,7 +90,7 @@ export const navAdminItems = {
   2: [
     {
       id: 11,
-      name: '회사별 거래명세서',
+      name: '거래 명세서',
       to: '/admin/invoice/users',
     },
     {
