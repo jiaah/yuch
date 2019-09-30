@@ -17,6 +17,7 @@ const SpecialMealTableRow = ({
   classes: { resize },
   row,
   labelId,
+  upComingEventId,
   // local state
   selectedRow,
   // global state
@@ -28,11 +29,14 @@ const SpecialMealTableRow = ({
   formatToDateForm,
 }) => {
   const { userId, companyName, date } = clickedUserData;
+
   const formattedDate = formatToDateForm(row.date);
   const payment = row.userId ? 'YES' : '';
+
   const isHandledRow =
     (userId && userId === row.userId) ||
     (companyName === row.companyName && date === row.date);
+  const isUpcomingEvent = upComingEventId === row.id;
 
   return (
     <TableRow
@@ -41,7 +45,7 @@ const SpecialMealTableRow = ({
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
-      selected={isHandledRow || selectedRow === row.id}
+      selected={isUpcomingEvent || isHandledRow || selectedRow === row.id}
     >
       <TableCell padding="checkbox">
         <div className="flex flex-row-m" data-testid="bank-account--tablerow">

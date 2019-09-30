@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import EnhancedTableHead from '../../../shared/tableHead';
 import { specialMealTableHeadColumns } from '../../../data/data';
 import SpecialMealTableRow from './specialMealTableRow';
+import Address from '../../../../assets/icons/address';
 
 const styles = () => ({
   tableWrapper: {
@@ -18,8 +19,9 @@ const styles = () => ({
 
 const SpecialMealTable = ({
   classes: { tableWrapper, table },
-  users,
+  today,
   // local state
+  users,
   selectedRow,
   // global state
   selectedItemValue,
@@ -28,6 +30,7 @@ const SpecialMealTable = ({
   saveClickedItemData,
   // func
   formatToDateForm,
+  formatToYYYYMMDD,
   handleButtonClick,
   handleTableRowClick,
 }) => {
@@ -47,11 +50,15 @@ const SpecialMealTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = users && 9 - users.length;
-
   // to render only one user on search.
   const searchUser = users.filter(u => u.companyName === selectedItemValue);
   const dataToDisplay = searchUser.length === 0 ? users : searchUser;
+
+  const emptyRows = users && 9 - users.length;
+
+  const formattedData = users.map(u => formatToYYYYMMDD(u.date));
+  const upComingEventIndex = formattedData.findIndex(i => i >= today);
+  const upComingEventId = users[upComingEventIndex].id;
 
   return (
     <div id="print" className={tableWrapper}>
@@ -73,6 +80,7 @@ const SpecialMealTable = ({
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
+                  upComingEventId={upComingEventId}
                 />
               );
             })}

@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears, formattedTmr } from '../../../helpers/moment';
+import {
+  twoYearsAgo,
+  inTwoYears,
+  formattedTmr,
+  today,
+} from '../../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
   formatToDateForm,
+  formatToYYYYMMDD,
 } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
@@ -166,6 +172,8 @@ const SpecialMealContainer = ({
               handleButtonClick={handleButtonClick}
               formatToDateForm={formatToDateForm}
               handleTableRowClick={handleTableRowClick}
+              formatToYYYYMMDD={formatToYYYYMMDD}
+              today={today}
             />
           }
         />
