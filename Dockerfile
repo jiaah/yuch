@@ -21,5 +21,7 @@ RUN npm run predeploy
 # Expose port
 EXPOSE 9080
 
+HEALTHCHECK --interval=10s CMD wget -qO- localhost:9080
+
 # serve with pm2
 CMD [ "pm2-docker", "process.yml" ]
