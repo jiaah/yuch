@@ -40,7 +40,7 @@ const CateringContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    const startDate = await formatToYYYYMMDD(res.created_at);
+    const startDate = await formatToYYYYMMDD(res.createdAt);
     await setStartTime(startDate);
     return setCatering(res);
   };

@@ -324,7 +324,7 @@ export const adminSpecialMealMsgA = (
 
 export const adminSpecialMealMsgB = (
   <p className="f-mini">
-    월말 거래명세서에 포함된것을{' '}
+    월말 거래명세서에 포함된 특식을{' '}
     <span className="c-point2">별개 정산으로 변경</span>을 원한다면, 등록된
     특식을 삭제한 후 재등록하여주세요.
   </p>
