@@ -36,8 +36,8 @@ const ModalControlloer = Loader({
 const SpecialMealContainer = ({
   date,
   clickedUserData,
-
   selectedItemValue,
+  modalSearchValue,
   specialMealActions: {
     getSpecialMeal,
     createSpecialMeal,
@@ -49,6 +49,7 @@ const SpecialMealContainer = ({
     resetClickedItemData,
     saveSelectedItemValue,
     resetSelectedItemValue,
+    resetSecSelectedItemValue,
   },
   dateTrackerActions: { updateDate, resetDate },
   modalActions: { showModal, hideModal },
@@ -86,9 +87,10 @@ const SpecialMealContainer = ({
       Promise.all([
         resetDate(),
         hideModal(),
-        selectedRow !== null && offFocusOnSelectdRow(),
+        selectedRow && offFocusOnSelectdRow(),
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedItemValue !== null && resetSelectedItemValue(),
+        selectedItemValue && resetSelectedItemValue(),
+        modalSearchValue && resetSecSelectedItemValue(),
       ]);
   }, []);
 
@@ -220,6 +222,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   clickedUserData: state.selected.data,
   selectedItemValue: state.selected.value,
+  modalSearchValue: state.selected.secondValue,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

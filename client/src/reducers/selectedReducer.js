@@ -2,8 +2,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   value: null,
+  secondValue: null,
   data: [],
-  secondData: [],
   users: '활성 계정',
 };
 
@@ -19,6 +19,17 @@ const selectedItem = (state = initialState, action) => {
         ...state,
         value: null,
       };
+    // for special_meal second search bar on create modal
+    case types.SAVE_SECOND_ITEM_VALUE:
+      return {
+        ...state,
+        secondValue: action.value,
+      };
+    case types.RESET_SECOND_ITEM_VALUE:
+      return {
+        ...state,
+        secondValue: null,
+      };
     case types.SAVE_CLICKED_ITEM_DATA:
       return {
         ...state,
@@ -28,17 +39,6 @@ const selectedItem = (state = initialState, action) => {
       return {
         ...state,
         data: [],
-      };
-    // Independent data from clicked data
-    case types.SAVE_SECOND_DATA:
-      return {
-        ...state,
-        secondData: action.data,
-      };
-    case types.RESET_SECOND_DATA:
-      return {
-        ...state,
-        secondData: [],
       };
     // Select Form
     case types.SAVE_SELECT_VALUE:

@@ -140,6 +140,7 @@ const createModal = ({
                     data={state.users}
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
+                    isSecondSearchBar={true}
                   />
                 )}
               </div>

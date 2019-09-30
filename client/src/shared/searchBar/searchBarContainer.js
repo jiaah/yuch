@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
+import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import Icon from '../../../assets/icons';
 import Loader from '../../components/loader';
 import IconButton from '../form/iconButton';
 /* --- Actions --- */
-import { saveSelectedItemValue } from '../../actions/selectedAction';
+import * as selectedActions from '../../actions/selectedAction';
 
 const AutoCompletePaper = Loader({
   loader: () =>
@@ -55,8 +56,15 @@ const styles = theme => ({
 const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
+  // for special_meal create modal
+  isSecondSearchBar,
   // actions
-  saveSelectedItemValue,
+  selectedActions: {
+    saveSelectedItemValue,
+    resetSelectedItemValue,
+    saveSecSelectedItemValue,
+    resetSecSelectedItemValue,
+  },
   // parent component func
   handleSuggestionSelected,
   handleResetSearch,
@@ -87,12 +95,21 @@ const SearchBar = ({
     setInputValue(user.companyName); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
+    if (!isSecondSearchBar) {
+      saveSelectedItemValue(user.companyName);
+    } else {
+      saveSecSelectedItemValue(user.companyName);
+    } // make the selected value accesible in a parents component via redux
     return handleSuggestionSelected(user);
   };
 
   const resetSearch = () => {
     setInputValue(null);
+    if (!isSecondSearchBar) {
+      resetSelectedItemValue();
+    } else {
+      resetSecSelectedItemValue();
+    }
     return handleResetSearch();
   };
 
@@ -141,7 +158,7 @@ const SearchBar = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveSelectedItemValue: value => dispatch(saveSelectedItemValue(value)),
+  selectedActions: bindActionCreators(selectedActions, dispatch),
 });
 
 export default compose(
