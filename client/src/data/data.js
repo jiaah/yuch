@@ -508,3 +508,36 @@ export const userInvoiceColumns = [
     label: '합계',
   },
 ];
+
+export const revenueColumns = [
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'sumTotalInvoice',
+    numeric: true,
+    disablePadding: false,
+    label: '위탁급식',
+  },
+  {
+    id: 'sumTotalSpecialMeal',
+    numeric: true,
+    disablePadding: false,
+    label: '특식',
+  },
+  {
+    id: 'sumTotalResto',
+    numeric: true,
+    disablePadding: false,
+    label: '레스토랑',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
+  },
+];

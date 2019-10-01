@@ -71,6 +71,8 @@ export const invoiceFormat = value => {
   return { date, day };
 };
 
+export const revenueFormat = value => moment(value, 'YYYYMM').format('MM');
+
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {
     const timeStamp = moment();

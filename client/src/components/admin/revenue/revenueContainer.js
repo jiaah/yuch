@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, nextYear } from '../../../helpers/moment';
-import { formatToYearDateForm, formatToYYYY } from '../../../utils/date';
+import { nextYear } from '../../../helpers/moment';
+import {
+  formatToYearDateForm,
+  formatToYYYY,
+  revenueFormat,
+} from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import IconButton from '../../../shared/form/iconButton';
+import Paper from '../../../shared/paper';
+import Table from './revenueTable';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -26,7 +32,6 @@ const InvoiceContainer = ({
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyy = formatToYYYY(when);
-    console.log('yyyy: ', yyyy);
     const res = await getRevenue(yyyy);
 
     if (res.error) {
@@ -70,12 +75,12 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      {/* {data && (
+      {data && (
         <Paper
           id="print"
-          data={data}
+          component={<Table data={data} revenueFormat={revenueFormat} />}
         />
-      )} */}
+      )}
     </div>
   );
 };
