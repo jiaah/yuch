@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
 import {
-  formatToYearDateForm,
+  formatToMonthDateForm,
   formatToYYYYMM,
   formatToDateForm,
 } from '../../../utils/date';
@@ -23,11 +23,11 @@ const SpecialMealContainer = ({
   userId,
   date,
   specialMealActions: { getUserSpecialMeal },
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   addFlashMessage,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
+  const formattedDate = formatToMonthDateForm(date);
 
   const [specialMeal, setSpecialMeal] = useState(null);
 
@@ -46,22 +46,26 @@ const SpecialMealContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDate();
+    return () => resetDateDaily();
   }, []);
 
   return (
-    <div className="container-a pw3">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+    <div className="container-a r--w-98">
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={resetDateDaily}
+      >
         특식 관리
       </h2>
       <DateButtons
-        reload={true}
-        monthlyUnit={true}
-        startTime={twoYearsAgo}
-        endTime={inTwoYears}
-        formattedDate={formattedDate}
         date={date}
-        updateDate={updateDate}
+        reload={true}
+        unit="mm"
+        formattedDate={formattedDate}
+        startTime={`${twoYearsAgo}01`}
+        endTime={`${inTwoYears}01`}
+        updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
@@ -79,6 +83,7 @@ const SpecialMealContainer = ({
       </div>
       {specialMeal && (
         <Paper
+          id="print"
           component={
             specialMeal && specialMeal.length !== 0 ? (
               <Table data={specialMeal} formatToDateForm={formatToDateForm} />

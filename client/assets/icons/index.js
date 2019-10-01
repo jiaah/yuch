@@ -33,6 +33,8 @@ import Money from './money';
 import Note from './note';
 import Calendar from './calendar';
 import Time from './time';
+import List from './List';
+import Update from './update';
 
 const Icon = props => {
   switch (props.name) {
@@ -100,6 +102,10 @@ const Icon = props => {
       return <Calendar {...props} />;
     case 'time':
       return <Time {...props} />;
+    case 'list':
+      return <List {...props} />;
+    case 'update':
+      return <Update {...props} />;
     default:
       return <div />;
   }

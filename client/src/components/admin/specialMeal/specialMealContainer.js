@@ -9,14 +9,13 @@ import {
   today,
 } from '../../../helpers/moment';
 import {
-  formatToYearDateForm,
+  formatToMonthDateForm,
   formatToYYYYMM,
   formatToDateForm,
   formatToYYYYMMDD,
 } from '../../../utils/date';
 import DateButtons from '../../../shared/form/dateButtons';
 import Paper from '../../../shared/paper';
-import Table from './specialMealTable';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
@@ -39,6 +38,11 @@ const ModalControlloer = Loader({
   loader: () => import('./modalController' /* webpackChunkName: 'BankModal' */),
 });
 
+const Table = Loader({
+  loader: () =>
+    import('./specialMealTable' /* webpackChunkName: 'BankModal' */),
+});
+
 const SpecialMealContainer = ({
   date,
   clickedUserData,
@@ -54,13 +58,13 @@ const SpecialMealContainer = ({
     resetClickedItemData,
     resetSelectedItemValue,
   },
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   modalActions: { showModal, hideModal },
   addFlashMessage,
   getUsers,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
+  const formattedDate = formatToMonthDateForm(date);
 
   const [specialMeal, setSpecialMeal] = useState(null);
   // show modal
@@ -88,7 +92,7 @@ const SpecialMealContainer = ({
     fetchData(date);
     return () =>
       Promise.all([
-        resetDate(),
+        resetDateDaily(),
         hideModal(),
         selectedRow && offFocusOnSelectdRow(),
         clickedUserData.length !== 0 && resetClickedItemData(),
@@ -121,18 +125,22 @@ const SpecialMealContainer = ({
   };
 
   return (
-    <div className="container-a w-95">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+    <div className="container-a r--w-98">
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={resetDateDaily}
+      >
         특식 관리
       </h2>
       <DateButtons
-        reload={true}
-        monthlyUnit={true}
-        startTime={twoYearsAgo}
-        endTime={inTwoYears}
-        formattedDate={formattedDate}
         date={date}
-        updateDate={updateDate}
+        reload={true}
+        unit="mm"
+        formattedDate={formattedDate}
+        startTime={`${twoYearsAgo}01`}
+        endTime={`${inTwoYears}01`}
+        updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
@@ -160,30 +168,30 @@ const SpecialMealContainer = ({
           />
         </div>
       </div>
-      {specialMeal && (
-        <Paper
-          component={
-            <React.Fragment>
-              {specialMeal.length !== 0 ? (
-                <Table
-                  users={specialMeal}
-                  selectedRow={selectedRow}
-                  clickedUserData={clickedUserData}
-                  selectedItemValue={selectedItemValue}
-                  saveClickedItemData={saveClickedItemData}
-                  handleButtonClick={handleButtonClick}
-                  formatToDateForm={formatToDateForm}
-                  handleTableRowClick={handleTableRowClick}
-                  formatToYYYYMMDD={formatToYYYYMMDD}
-                  today={today}
-                />
-              ) : (
-                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-              )}
-            </React.Fragment>
-          }
-        />
-      )}
+      <Paper
+        id="print"
+        isDivided={false}
+        component={
+          <React.Fragment>
+            {specialMeal && specialMeal.length !== 0 ? (
+              <Table
+                users={specialMeal}
+                selectedRow={selectedRow}
+                clickedUserData={clickedUserData}
+                selectedItemValue={selectedItemValue}
+                saveClickedItemData={saveClickedItemData}
+                handleButtonClick={handleButtonClick}
+                formatToDateForm={formatToDateForm}
+                handleTableRowClick={handleTableRowClick}
+                formatToYYYYMMDD={formatToYYYYMMDD}
+                today={today}
+              />
+            ) : (
+              <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+            )}
+          </React.Fragment>
+        }
+      />
       <IconMessage
         name="info"
         width="20"

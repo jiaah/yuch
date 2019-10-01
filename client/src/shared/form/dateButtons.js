@@ -14,23 +14,23 @@ import {
 
 const DateButtons = ({
   reload,
-  monthlyUnit,
+  unit,
   startTime,
   endTime,
   dateForwardMessage,
   formattedDate,
-  // state
-  date,
+  // funcs
+  fetchData,
+  // global state
+  date, // * always should be YYYYMMDD *
   // actions
   updateDate,
   addFlashMessage,
-  // funcs
-  fetchData,
 }) => {
   const handleDateBackward = async newDate => {
     if (newDate >= startTime) {
       await updateDate(newDate);
-      fetchData(newDate);
+      await fetchData(newDate);
       if (reload) {
         return window.location.reload(true);
       }
@@ -42,7 +42,7 @@ const DateButtons = ({
   const handleDateForward = async newDate => {
     if (newDate < endTime) {
       await updateDate(newDate);
-      fetchData(newDate);
+      await fetchData(newDate);
       if (reload) {
         return window.location.reload(true);
       }
@@ -86,19 +86,27 @@ const DateButtons = ({
 
   return (
     <div>
-      <IconButton
-        name="arrowLeft"
-        width="20"
-        height="22"
-        viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToYearBefore : moveToAWeekBefore}
-      />
+      {unit !== 'yy' && (
+        <IconButton
+          name="arrowLeft"
+          width="20"
+          height="22"
+          viewBox="0 0 30 30"
+          handleClick={unit === 'mm' ? moveToYearBefore : moveToAWeekBefore}
+        />
+      )}
       <IconButton
         name="arrowBack"
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToAMonthBefore : moveToADayBefore}
+        handleClick={
+          unit === 'mm'
+            ? moveToAMonthBefore
+            : unit === 'yy'
+              ? moveToYearBefore
+              : moveToADayBefore
+        }
       />
       {formattedDate}
       <IconButton
@@ -106,15 +114,23 @@ const DateButtons = ({
         width="40"
         height="40"
         viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToAMonthAfter : moveToADayAfter}
+        handleClick={
+          unit === 'mm'
+            ? moveToAMonthAfter
+            : unit === 'yy'
+              ? moveToAYearAfter
+              : moveToADayAfter
+        }
       />
-      <IconButton
-        name="arrowRight"
-        width="20"
-        height="22"
-        viewBox="0 0 30 30"
-        handleClick={monthlyUnit ? moveToAYearAfter : moveToAWeekAfter}
-      />
+      {unit !== 'yy' && (
+        <IconButton
+          name="arrowRight"
+          width="20"
+          height="22"
+          viewBox="0 0 30 30"
+          handleClick={unit === 'mm' ? moveToAYearAfter : moveToAWeekAfter}
+        />
+      )}
     </div>
   );
 };

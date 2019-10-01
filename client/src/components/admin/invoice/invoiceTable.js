@@ -5,31 +5,28 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
-import RatesTableRow from './ratesTableRow';
-import * as data from '../../../data/data';
+import { invoiceColumns } from '../../../data/data';
+import InvoiceTableRow from './invoiceTableRow';
 
 const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: {
-    width: '100%',
-  },
+  table: { width: '100%' },
 });
 
-const RatesTable = ({
+const InvoiceTable = ({
   classes: { tableWrapper, table },
   // local states
   order,
   orderBy,
   sortedData,
   selectedRow,
-  // global states
-  selectedItemValue,
+  // global state
+  searchedValue,
   // fncs
   handleRequestSort,
-  handleEditUserBtnClick,
-  handleTableRowClick,
+  onfocusOnSelectdRow,
 }) => {
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
@@ -41,24 +38,19 @@ const RatesTable = ({
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
-            list={data.cateringRatesTableHeadColumns}
+            list={invoiceColumns}
           />
           <TableBody>
             {sortedData.length !== 0 &&
-              sortedData.map((row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <RatesTableRow
-                    key={row.userId}
-                    row={row}
-                    labelId={labelId}
-                    selectedItemValue={selectedItemValue}
-                    selectedRow={selectedRow}
-                    handleTableRowClick={handleTableRowClick}
-                    handleEditUserBtnClick={handleEditUserBtnClick}
-                  />
-                );
-              })}
+              sortedData.map(row => (
+                <InvoiceTableRow
+                  key={row.userId}
+                  row={row}
+                  selectedRow={selectedRow}
+                  searchedValue={searchedValue}
+                  onfocusOnSelectdRow={onfocusOnSelectdRow}
+                />
+              ))}
             {emptyRows > 0 && <TableRow style={{ height: 49 * emptyRows }} />}
           </TableBody>
         </Table>
@@ -67,4 +59,4 @@ const RatesTable = ({
   );
 };
 
-export default withStyles(styles)(RatesTable);
+export default withStyles(styles)(InvoiceTable);

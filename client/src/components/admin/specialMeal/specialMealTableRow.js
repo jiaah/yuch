@@ -11,13 +11,14 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const SpecialMealTableRow = ({
-  classes: { resize, tableRow },
+  classes: { resize, point },
   row,
   labelId,
-  upComingEventId,
+  // upComingEventId,
   // local state
   selectedRow,
   // global state
@@ -36,7 +37,7 @@ const SpecialMealTableRow = ({
   const isHandledRow =
     (userId && userId === row.userId) ||
     (companyName === row.companyName && date === row.date);
-  const isUpcomingEvent = upComingEventId === row.id;
+  // const isUpcomingEvent = upComingEventId === row.id;
 
   return (
     <TableRow
@@ -45,7 +46,8 @@ const SpecialMealTableRow = ({
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
-      selected={isUpcomingEvent || isHandledRow || selectedRow === row.id}
+      // selected={isUpcomingEvent || isHandledRow || selectedRow === row.id}
+      selected={isHandledRow || selectedRow === row.id}
     >
       <TableCell padding="checkbox">
         <div className="flex flex-row-m" data-testid="bank-account--tablerow">
@@ -65,7 +67,12 @@ const SpecialMealTableRow = ({
           />
         </div>
       </TableCell>
-      <TableCell component="th" id={labelId} scope="row" className={resize}>
+      <TableCell
+        component="th"
+        id={labelId}
+        scope="row"
+        className={`${resize} ${point}`}
+      >
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>

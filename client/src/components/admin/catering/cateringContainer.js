@@ -19,7 +19,7 @@ import * as selectedActions from '../../../actions/selectedAction';
 const CateringContainer = ({
   date,
   selectedItemValue,
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   cateringActions: { fetchUsersCatering, updateUserCatering },
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
@@ -54,7 +54,7 @@ const CateringContainer = ({
   useEffect(() => {
     fetchData(date);
     return () => {
-      resetDate();
+      resetDateDaily();
       resetSelectedItemValue();
     };
   }, []);
@@ -74,18 +74,22 @@ const CateringContainer = ({
   const handleResetSearch = () => {};
 
   return (
-    <div className="r--w-70 container-a max-width-1500">
-      <h2 className="pointer" title="오늘 날짜로 돌아가기" onClick={resetDate}>
+    <div className="container-a r--w-70">
+      <h2
+        className="pointer"
+        title="오늘 날짜로 돌아가기"
+        onClick={resetDateDaily}
+      >
         식수 현황
       </h2>
       <DateButtons
+        date={date}
         reload={true}
-        monthlyUnit={false}
+        unit="dd"
         formattedDate={formattedDate}
         startTime={startTime}
         endTime={inAWeek}
-        date={date}
-        updateDate={updateDate}
+        updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."

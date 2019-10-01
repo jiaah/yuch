@@ -12,56 +12,42 @@ const styles = theme => ({
   point: { fontWeight: 'bold' },
 });
 
-const SpecialMealTableRow = ({
+const RevenueTableRow = ({
   classes: { resize, point },
   row,
   selectedRow,
   // func
-  formatToDateForm,
+  revenueFormat,
   onfocusOnSelectdRow,
 }) => {
-  const formattedDate = formatToDateForm(row.date);
+  const formattedDate = revenueFormat(row.date);
+
   return (
     <TableRow
       key={row.id}
-      onClick={() => onfocusOnSelectdRow(row.id)}
+      onClick={() => onfocusOnSelectdRow(row.date)}
       role="checkbox"
-      aria-checked={selectedRow === row.id}
+      aria-checked={selectedRow === row.date}
       tabIndex={-1}
-      selected={selectedRow === row.id}
+      selected={selectedRow === row.date}
     >
       <TableCell align="right" className={`${resize} ${point}`}>
-        {row.companyName}
-      </TableCell>
-      <TableCell align="right" className={resize}>
         {formattedDate}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.time}
+        {row.sumTotalInvoice}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sideDish}
+        {row.sumTotalSpecialMeal}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.quantity}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.mealPrice}
+        {row.sumTotalResto}
       </TableCell>
       <TableCell align="right" className={resize}>
         {row.sumTotal}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.address}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.contactNo}
-      </TableCell>
-      <TableCell align="right" className={resize}>
-        {row.note}
       </TableCell>
     </TableRow>
   );
 };
 
-export default withStyles(styles)(SpecialMealTableRow);
+export default withStyles(styles)(RevenueTableRow);

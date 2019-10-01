@@ -13,11 +13,12 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
   textField: { width: 60 },
 });
 
 const CateringTableRow = ({
-  classes: { resize, textField },
+  classes: { resize, textField, point },
   // var
   row,
   labelId,
@@ -133,7 +134,7 @@ const CateringTableRow = ({
           id={labelId}
           scope="row"
           padding="none"
-          className={resize}
+          className={`${resize} ${point}`}
         >
           {companyName}
         </TableCell>

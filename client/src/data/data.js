@@ -90,7 +90,7 @@ export const navAdminItems = {
   2: [
     {
       id: 11,
-      name: '회사별 거래명세서',
+      name: '거래 명세서',
       to: '/admin/invoice/users',
     },
     {
@@ -383,5 +383,161 @@ export const specialMealTableHeadColumns = [
     numeric: true,
     disablePadding: false,
     label: '인보이스 포함',
+  },
+];
+
+export const clientSpecialMealTableHeadColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'time',
+    numeric: true,
+    disablePadding: false,
+    label: '시간',
+  },
+  {
+    id: 'sideDish',
+    numeric: true,
+    disablePadding: false,
+    label: '반찬수',
+  },
+  {
+    id: 'quantity',
+    numeric: true,
+    disablePadding: false,
+    label: '식수량',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계금액',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+  {
+    id: 'note',
+    numeric: true,
+    disablePadding: false,
+    label: '메모',
+  },
+];
+
+export const invoiceColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계금액',
+  },
+];
+
+export const userInvoiceColumns = [
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'lunchQty',
+    numeric: true,
+    disablePadding: false,
+    label: '중식',
+  },
+  {
+    id: 'dinnerQty',
+    numeric: true,
+    disablePadding: false,
+    label: '석식',
+  },
+  {
+    id: 'lateNightSnackQty',
+    numeric: true,
+    disablePadding: false,
+    label: '야식',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'total',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
+  },
+];
+
+export const revenueColumns = [
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'sumTotalInvoice',
+    numeric: true,
+    disablePadding: false,
+    label: '위탁급식',
+  },
+  {
+    id: 'sumTotalSpecialMeal',
+    numeric: true,
+    disablePadding: false,
+    label: '특식',
+  },
+  {
+    id: 'sumTotalResto',
+    numeric: true,
+    disablePadding: false,
+    label: '레스토랑',
+  },
+  {
+    id: 'sumTotal',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
   },
 ];

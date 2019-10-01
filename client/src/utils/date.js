@@ -43,7 +43,7 @@ export const yearAfter = date =>
 
 const lastMonth = moment()
   .add(-1, 'months')
-  .format('YYYYMMDD');
+  .format('YYYYMM');
 
 export const firstDayOfLastMonth = () => {
   const value = `${lastMonth}01`;
@@ -53,13 +53,25 @@ export const firstDayOfLastMonth = () => {
 export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
-export const formatToYearDateForm = date =>
+export const formatToMonthDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년 MM 월');
 
+export const formatToYearDateForm = date =>
+  moment(date, 'YYYYMMDD').format('YYYY 년');
+
+export const formatToYYYY = date => moment(date).format('YYYY');
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
 export const formatWithDash = date => moment(date).format('YYYY-MM-DD');
 export const formatWithSlash = date => moment(date).format('YYYY/MM/DD');
+
+export const invoiceFormat = value => {
+  const date = moment(value).format('DD');
+  const day = moment(value).format('ddd');
+  return { date, day };
+};
+
+export const revenueFormat = value => moment(value, 'YYYYMM').format('MM');
 
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {

@@ -12,10 +12,11 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const RatesTableRow = ({
-  classes: { resize },
+  classes: { resize, point },
   row,
   labelId,
   selectedRow,
@@ -54,7 +55,7 @@ const RatesTableRow = ({
           id={labelId}
           scope="row"
           padding="none"
-          className={resize}
+          className={`${resize} ${point}`}
         >
           {row.companyName}
         </TableCell>

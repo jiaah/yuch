@@ -50,17 +50,27 @@ const AdminAccount = Loader({
 
 const RestoSales = Loader({
   loader: () =>
-    import('../src/components/sales/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
+    import('../src/components/admin/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
 });
 
 const AdminCatering = Loader({
   loader: () =>
-    import('../src/components/sales/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
 const AdminSpecailMeal = Loader({
   loader: () =>
-    import('../src/components/sales/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+});
+
+const AdminInvoice = Loader({
+  loader: () =>
+    import('../src/components/admin/invoice/invoiceContainer' /* webpackChunkName: 'AdminCatering' */),
+});
+
+const Revenue = Loader({
+  loader: () =>
+    import('../src/components/admin/revenue/revenueContainer' /* webpackChunkName: 'AdminCatering' */),
 });
 
 /* --- USER --- */
@@ -80,6 +90,11 @@ const UserSpecialMeal = Loader({
 });
 
 /* --- ECS --- */
+const Invoice = Loader({
+  loader: () =>
+    import('../src/components/invoice/invoiceContainer' /* webpackChunkName: 'NoMatch' */),
+});
+
 const NoMatch = Loader({
   loader: () =>
     import('../src/components/noMatch' /* webpackChunkName: 'NoMatch' */),
@@ -111,6 +126,13 @@ const routes = () => (
         path="/admin/count/specialmeal"
         component={AdminGuards(AdminSpecailMeal)}
       />
+      {/* 인보이스 */}
+      <Route
+        exact
+        path="/admin/invoice/users"
+        component={AdminGuards(AdminInvoice)}
+      />
+      <Route exact path="/admin/revenue" component={AdminGuards(Revenue)} />
       {/* 고객관리 */}
       <Route
         exact
@@ -133,6 +155,8 @@ const routes = () => (
         path="/admin/account/bank"
         component={AdminGuards(BankAccount)}
       />
+      {/* Invoice */}
+      <Route exact path="/invoice/user" component={Invoice} />
       {/* --- USER --- */}
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
       <Route

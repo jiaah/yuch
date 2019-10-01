@@ -15,7 +15,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const RestoContainer = ({
   date,
   restoSales,
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   restoActions: { getRestoSales, updateRestoSales, resetRestoSales },
   addFlashMessage,
 }) => {
@@ -48,11 +48,11 @@ const RestoContainer = ({
     } else {
       dataFilter(date);
     }
-    return () => Promise.all([resetRestoSales(), resetDate()]);
+    return () => Promise.all([resetRestoSales(), resetDateDaily()]);
   }, []);
 
   const resetToToday = async () => {
-    await resetDate();
+    await resetDateDaily();
     return window.location.reload(true);
   };
 
@@ -71,13 +71,13 @@ const RestoContainer = ({
       {resto && (
         <React.Fragment>
           <DateButtons
+            date={date}
             reload={true}
+            unit="dd"
+            formattedDate={formattedDate}
             startTime={lastMonth}
             endTime={tomorrow}
-            monthlyUnit={false}
-            formattedDate={formattedDate}
-            date={date}
-            updateDate={updateDate}
+            updateDate={updateDateDaily}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
             dateForwardMessage="존재하지 않는 페이지입니다."

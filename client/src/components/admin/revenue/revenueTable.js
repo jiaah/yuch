@@ -6,8 +6,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
-import { clientSpecialMealTableHeadColumns } from '../../../data/data';
-import SpecialMealTableRow from './specialMealTableRow';
+import { revenueColumns } from '../../../data/data';
+import RevenueTableRow from './revenueTableRow';
 
 const styles = () => ({
   tableWrapper: {
@@ -16,11 +16,11 @@ const styles = () => ({
   table: { minWidth: 470 },
 });
 
-const SpecialMealTable = ({
+const RevenueTable = ({
   classes: { tableWrapper, table },
   data,
   // func
-  formatToDateForm,
+  revenueFormat,
 }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const onfocusOnSelectdRow = id => setSelectedRow(id);
@@ -38,16 +38,16 @@ const SpecialMealTable = ({
   return (
     <div id="print" className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
-        <EnhancedTableHead list={clientSpecialMealTableHeadColumns} />
+        <EnhancedTableHead list={revenueColumns} />
         <TableBody data-testid="bank-account--table">
           {data &&
             data.length !== 0 &&
             data.map(row => (
-              <SpecialMealTableRow
+              <RevenueTableRow
                 key={row.id}
                 row={row}
+                revenueFormat={revenueFormat}
                 selectedRow={selectedRow}
-                formatToDateForm={formatToDateForm}
                 onfocusOnSelectdRow={onfocusOnSelectdRow}
               />
             ))}
@@ -60,4 +60,4 @@ const SpecialMealTable = ({
   );
 };
 
-export default withStyles(styles)(SpecialMealTable);
+export default withStyles(styles)(RevenueTable);

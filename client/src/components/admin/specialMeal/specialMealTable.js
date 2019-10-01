@@ -8,13 +8,12 @@ import TableCell from '@material-ui/core/TableCell';
 import EnhancedTableHead from '../../../shared/tableHead';
 import { specialMealTableHeadColumns } from '../../../data/data';
 import SpecialMealTableRow from './specialMealTableRow';
-import Address from '../../../../assets/icons/address';
 
 const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-  table: { minWidth: 470 },
+  table: { width: '100%' },
 });
 
 const SpecialMealTable = ({
@@ -56,9 +55,9 @@ const SpecialMealTable = ({
 
   const emptyRows = users && 9 - users.length;
 
-  const formattedData = users.map(u => formatToYYYYMMDD(u.date));
-  const upComingEventIndex = formattedData.findIndex(i => i >= today);
-  const upComingEventId = users[upComingEventIndex].id;
+  // const formattedData = users.map(u => formatToYYYYMMDD(u.date));
+  // const upComingEventIndex = formattedData.findIndex(i => i >= today);
+  // const upComingEventId = users[upComingEventIndex].id;
 
   return (
     <div id="print" className={tableWrapper}>
@@ -80,13 +79,15 @@ const SpecialMealTable = ({
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
-                  upComingEventId={upComingEventId}
+                  // upComingEventId={upComingEventId}
                 />
               );
             })}
-          <TableRow style={{ height: 49 * emptyRows }}>
-            <TableCell colSpan={6} />
-          </TableRow>
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 49 * emptyRows }}>
+              <TableCell colSpan={13} />
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </div>

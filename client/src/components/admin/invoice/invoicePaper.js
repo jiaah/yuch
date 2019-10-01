@@ -2,19 +2,17 @@ import React from 'react';
 /* --- Components --- */
 import { stableSort, getSorting } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
-import RatesTable from './ratesTable';
+import RatesTable from './invoiceTable';
 
-const RatesPaper = ({
+const InvoicePaper = ({
   // local state
-  users,
+  data,
   selectedRow,
   // global state
-  selectedItemValue,
-  // funcs
-  handleEditUserBtnClick,
-  handleTableRowClick,
+  searchedValue,
+  // func
+  onfocusOnSelectdRow,
 }) => {
-  // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('asc');
   // selected column
   const [orderBy, setOrderBy] = React.useState('companyName');
@@ -27,17 +25,17 @@ const RatesPaper = ({
 
   let sortedDataA;
   let sortedDataB;
-  if (users && users.length <= 10) {
-    sortedDataA = stableSort(users, getSorting(order, orderBy));
+  if (data && data.length <= 10) {
+    sortedDataA = stableSort(data, getSorting(order, orderBy));
     sortedDataB = [];
   }
-  if (users && users.length > 10) {
+  if (data && data.length > 10) {
     const line =
-      users.length % 2 === 0 ? users.length / 2 : users.length / 2 + 0.5;
-    sortedDataA = stableSort(users, getSorting(order, orderBy)).slice(0, line);
-    sortedDataB = stableSort(users, getSorting(order, orderBy)).slice(
+      data.length % 2 === 0 ? data.length / 2 : data.length / 2 + 0.5;
+    sortedDataA = stableSort(data, getSorting(order, orderBy)).slice(0, line);
+    sortedDataB = stableSort(data, getSorting(order, orderBy)).slice(
       line,
-      users.length,
+      data.length,
     );
   }
 
@@ -51,10 +49,9 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataA}
             handleRequestSort={handleRequestSort}
-            selectedItemValue={selectedItemValue}
-            handleEditUserBtnClick={handleEditUserBtnClick}
             selectedRow={selectedRow}
-            handleTableRowClick={handleTableRowClick}
+            searchedValue={searchedValue}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
           />
         }
       />
@@ -67,10 +64,9 @@ const RatesPaper = ({
             orderBy={orderBy}
             sortedData={sortedDataB}
             handleRequestSort={handleRequestSort}
-            selectedItemValue={selectedItemValue}
-            handleEditUserBtnClick={handleEditUserBtnClick}
             selectedRow={selectedRow}
-            handleTableRowClick={handleTableRowClick}
+            searchedValue={searchedValue}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
           />
         }
       />
@@ -78,4 +74,4 @@ const RatesPaper = ({
   );
 };
 
-export default RatesPaper;
+export default InvoicePaper;

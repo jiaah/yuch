@@ -11,10 +11,11 @@ const styles = theme => ({
       fontSize: '15.5px',
     },
   },
+  point: { fontWeight: 'bold' },
 });
 
 const BankTableRow = ({
-  classes: { resize },
+  classes: { resize, point },
   handleTableRowClick,
   handleEditBtnClick,
   handleDeleteBtnClick,
@@ -48,7 +49,12 @@ const BankTableRow = ({
         />
       </div>
     </TableCell>
-    <TableCell component="th" id={labelId} scope="row" className={resize}>
+    <TableCell
+      component="th"
+      id={labelId}
+      scope="row"
+      className={`${resize} ${point}`}
+    >
       {row.accountHolder}
     </TableCell>
     <TableCell align="right" className={resize}>
