@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 /* --- Components --- */
-import { twoYearsAgo, nextMonth } from '../../helpers/moment';
+import { twoYearsAgo, thisMonthYYYYMM } from '../../helpers/moment';
 import {
   formatToYearDateForm,
   formatToYYYYMM,
@@ -22,12 +22,11 @@ import * as invoiceActions from '../../actions/invoiceAction';
 
 const InvoiceContainer = ({
   date,
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { resetDateMm },
   invoiceActions: { getUserInvoice },
   addFlashMessage,
 }) => {
   const [data, setData] = useState(null);
-  console.log('data: ', data);
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
@@ -49,23 +48,26 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDate();
+    return () => resetDateMm();
   }, []);
 
   return (
     <div className="container-a r--w-80 invoice-width">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={resetDateMm}
+      >
         {name}
       </h2>
       <DateButtons
         reload={true}
         monthlyUnit={true}
+        renderLastMonth={true}
         startTime={twoYearsAgo}
-        endTime={nextMonth}
+        endTime={`${thisMonthYYYYMM}01`}
         formattedDate={formattedDate}
         date={date}
-        updateDate={updateDate}
-        addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
       />
@@ -95,7 +97,7 @@ const InvoiceContainer = ({
             }
           />
         )}
-        <div className="flex justify-between mt3">
+        <div className="flex justify-between mt3 pw1">
           <p>bank account info</p>
           <p>
             성명
@@ -112,7 +114,7 @@ const InvoiceContainer = ({
 };
 
 const mapStateToProps = state => ({
-  date: state.dateTracker.date,
+  date: state.dateTracker.dateMm,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

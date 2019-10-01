@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, nextMonth } from '../../../helpers/moment';
+import { twoYearsAgo, thisMonthYYYYMM } from '../../../helpers/moment';
 import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
@@ -18,7 +18,7 @@ import { resetSelectedItemValue } from '../../../actions/selectedAction';
 const InvoiceContainer = ({
   date,
   searchedValue,
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { resetDateMm },
   invoiceActions: { getUsersInvoice, updateUsersInvoice },
   addFlashMessage,
   resetSelectedItemValue,
@@ -55,23 +55,26 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDate();
+    return () => resetDateMm();
   }, []);
 
   return (
     <div className="container-a r--w-80">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={resetDateMm}
+      >
         거래 명세서
       </h2>
       <DateButtons
         reload={true}
         monthlyUnit={true}
+        renderLastMonth={true}
         startTime={twoYearsAgo}
-        endTime={nextMonth}
+        endTime={`${thisMonthYYYYMM}01`}
         formattedDate={formattedDate}
         date={date}
-        updateDate={updateDate}
-        addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />
@@ -112,7 +115,7 @@ const InvoiceContainer = ({
 };
 
 const mapStateToProps = state => ({
-  date: state.dateTracker.date,
+  date: state.dateTracker.dateMm,
   searchedValue: state.selected.value,
 });
 const mapDispatchToProps = dispatch => ({

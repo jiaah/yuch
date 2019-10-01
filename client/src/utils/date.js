@@ -43,7 +43,7 @@ export const yearAfter = date =>
 
 const lastMonth = moment()
   .add(-1, 'months')
-  .format('YYYYMMDD');
+  .format('YYYYMM');
 
 export const firstDayOfLastMonth = () => {
   const value = `${lastMonth}01`;

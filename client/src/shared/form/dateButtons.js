@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 /* --- Components --- */
 import IconButton from './iconButton';
 import {
@@ -11,25 +12,34 @@ import {
   yearBefore,
   yearAfter,
 } from '../../utils/date';
+/* --- Actions --- */
+import { updateDate, updateDateMm } from '../../actions/dateTrackerAction';
+import { addFlashMessage } from '../../actions/messageAction';
 
 const DateButtons = ({
   reload,
   monthlyUnit,
+  renderLastMonth,
   startTime,
   endTime,
   dateForwardMessage,
   formattedDate,
-  // state
+  // funcs
+  fetchData,
+  // global state
   date,
   // actions
   updateDate,
+  updateDateMm,
   addFlashMessage,
-  // funcs
-  fetchData,
 }) => {
   const handleDateBackward = async newDate => {
     if (newDate >= startTime) {
-      await updateDate(newDate);
+      if (renderLastMonth) {
+        await updateDateMm(newDate);
+      } else {
+        await updateDate(newDate);
+      }
       fetchData(newDate);
       if (reload) {
         return window.location.reload(true);
@@ -41,7 +51,11 @@ const DateButtons = ({
 
   const handleDateForward = async newDate => {
     if (newDate < endTime) {
-      await updateDate(newDate);
+      if (renderLastMonth) {
+        await updateDateMm(newDate);
+      } else {
+        await updateDate(newDate);
+      }
       fetchData(newDate);
       if (reload) {
         return window.location.reload(true);
@@ -119,4 +133,14 @@ const DateButtons = ({
   );
 };
 
-export default DateButtons;
+const mapDispatchToProps = dispatch => ({
+  updateDate: date => dispatch(updateDate(date)),
+  updateDateMm: date => dispatch(updateDateMm(date)),
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(DateButtons);

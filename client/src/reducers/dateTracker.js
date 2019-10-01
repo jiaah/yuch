@@ -1,8 +1,9 @@
 import * as types from '../actions/actionTypes';
-import { today } from '../helpers/moment';
+import { today, lastMonthYYYYMM } from '../helpers/moment';
 
 const initialState = {
   date: today,
+  dateMm: `${lastMonthYYYYMM}01`,
 };
 
 const dateTracker = (state = initialState, action) => {
@@ -16,6 +17,16 @@ const dateTracker = (state = initialState, action) => {
       return {
         ...state,
         date: today,
+      };
+    case types.UPDATE_DATE_MM:
+      return {
+        ...state,
+        dateMm: action.payload,
+      };
+    case types.RESET_DATE_MM:
+      return {
+        ...state,
+        dateMm: `${lastMonthYYYYMM}01`,
       };
     default:
       return state;

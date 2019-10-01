@@ -47,3 +47,10 @@ export const twoYearsAgo = moment()
 export const inTwoYears = moment()
   .add(2, 'years')
   .format('YYYY/MM');
+
+// invoice;
+export const lastMonthYYYYMM = moment()
+  .add(-1, 'months')
+  .format('YYYYMM');
+
+export const thisMonthYYYYMM = moment().format('YYYYMM');
