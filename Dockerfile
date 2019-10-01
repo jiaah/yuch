@@ -1,5 +1,6 @@
 FROM node:10
 
+# env for nodejs
 ARG NODE_ENV=production
 
 # Install PM2
