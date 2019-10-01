@@ -53,8 +53,11 @@ export const firstDayOfLastMonth = () => {
 export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
-export const formatToYearDateForm = date =>
+export const formatToMonthDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년 MM 월');
+
+export const formatToYearDateForm = date =>
+  moment(date, 'YYYYMMDD').format('YYYY 년');
 
 export const formatToYYYY = date => moment(date).format('YYYY');
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');

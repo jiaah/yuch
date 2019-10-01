@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, thisMonthYYYYMM } from '../../../helpers/moment';
-import { formatToYearDateForm, formatToYYYYMM } from '../../../utils/date';
+import { thisMonthYYYYMM } from '../../../helpers/moment';
+import { formatToMonthDateForm, formatToYYYYMM } from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -18,13 +18,13 @@ import { resetSelectedItemValue } from '../../../actions/selectedAction';
 const InvoiceContainer = ({
   date,
   searchedValue,
-  dateTrackerActions: { resetDateMm },
+  dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUsersInvoice, updateUsersInvoice },
   addFlashMessage,
   resetSelectedItemValue,
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
+  const formattedDate = formatToMonthDateForm(date);
   const [data, setData] = useState([]);
 
   const [selectedRow, setSelectedRow] = useState(null);
@@ -55,7 +55,7 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDateMm();
+    return () => resetDateMonthly();
   }, []);
 
   return (
@@ -63,18 +63,19 @@ const InvoiceContainer = ({
       <h2
         className="pointer"
         title="오늘 일자로 돌아가기"
-        onClick={resetDateMm}
+        onClick={resetDateMonthly}
       >
         거래 명세서
       </h2>
       <DateButtons
-        reload={true}
-        monthlyUnit={true}
-        renderLastMonth={true}
-        startTime={twoYearsAgo}
-        endTime={`${thisMonthYYYYMM}01`}
-        formattedDate={formattedDate}
         date={date}
+        reload={true}
+        unit="mm"
+        formattedDate={formattedDate}
+        startTime="20191001"
+        endTime={`${thisMonthYYYYMM}01`}
+        updateDate={updateDateMonthly}
+        addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
       />

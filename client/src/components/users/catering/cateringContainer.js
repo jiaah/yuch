@@ -20,7 +20,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const CateringContainer = ({
   id,
   date,
-  dateTrackerActions: { updateDate, resetDate },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
@@ -49,7 +49,7 @@ const CateringContainer = ({
     // page open -> default date, 'today'
     // browser refresh -> keep the changed date
     fetchData(date);
-    return () => resetDate();
+    return () => resetDateDaily();
   }, []);
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
@@ -64,19 +64,23 @@ const CateringContainer = ({
 
   return (
     <div className="container-b">
-      <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
+      <h2
+        className="pointer"
+        title="오늘 일자로 돌아가기"
+        onClick={resetDateDaily}
+      >
         식수현황
       </h2>
       {catering && (
         <React.Fragment>
           <DateButtons
-            reload={true}
-            startTime={startTime}
-            endTime={endDate}
-            formattedDate={formattedDate}
-            monthlyUnit={false}
             date={date}
-            updateDate={updateDate}
+            reload={true}
+            unit="dd"
+            formattedDate={formattedDate}
+            startTime={startTime}
+            endTime={inAWeek}
+            updateDate={updateDateDaily}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
             dateForwardMessage={message}

@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 /* --- Components --- */
-import { twoYearsAgo, thisMonthYYYYMM } from '../../helpers/moment';
+import { thisMonthYYYYMM } from '../../helpers/moment';
 import {
-  formatToYearDateForm,
+  formatToMonthDateForm,
   formatToYYYYMM,
   invoiceFormat,
 } from '../../utils/date';
@@ -22,14 +22,14 @@ import * as invoiceActions from '../../actions/invoiceAction';
 
 const InvoiceContainer = ({
   date,
-  dateTrackerActions: { resetDateMm },
+  dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUserInvoice },
   addFlashMessage,
 }) => {
   const [data, setData] = useState(null);
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
-  const formattedDate = formatToYearDateForm(date);
+  const formattedDate = formatToMonthDateForm(date);
 
   const parsed = queryString.parse(location.search);
   const { id, name } = parsed;
@@ -48,7 +48,7 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDateMm();
+    return () => resetDateMonthly();
   }, []);
 
   return (
@@ -56,18 +56,19 @@ const InvoiceContainer = ({
       <h2
         className="pointer"
         title="오늘 일자로 돌아가기"
-        onClick={resetDateMm}
+        onClick={resetDateMonthly}
       >
         {name}
       </h2>
       <DateButtons
-        reload={true}
-        monthlyUnit={true}
-        renderLastMonth={true}
-        startTime={twoYearsAgo}
-        endTime={`${thisMonthYYYYMM}01`}
-        formattedDate={formattedDate}
         date={date}
+        reload={true}
+        unit="mm"
+        formattedDate={formattedDate}
+        startTime="20191001"
+        endTime={`${thisMonthYYYYMM}01`}
+        updateDate={updateDateMonthly}
+        addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
       />
