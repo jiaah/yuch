@@ -34,6 +34,8 @@ const {
 exports.seed = async knex => {
   await knex('users').del();
   await knex('meal_price').del();
+  await knex('restaurant').del();
+  await knex('special_meal').del();
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(PASSWORD, salt);
