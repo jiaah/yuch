@@ -43,9 +43,6 @@ const SpecialMealTableRow = ({
         {lateNightSnackQty}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {quantity}
-      </TableCell>
-      <TableCell align="right" className={resize}>
         {formatNumber(mealPrice)}
       </TableCell>
       <TableCell align="right" className={resize}>

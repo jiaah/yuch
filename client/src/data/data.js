@@ -496,12 +496,6 @@ export const userInvoiceColumns = [
     label: '야식',
   },
   {
-    id: 'totalQty',
-    numeric: true,
-    disablePadding: false,
-    label: '총식수',
-  },
-  {
     id: 'mealPrice',
     numeric: true,
     disablePadding: false,

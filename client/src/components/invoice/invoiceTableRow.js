@@ -41,9 +41,6 @@ const InvoiceTableRow = ({
         {row.lateNightSnackQty}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {totalQty}
-      </TableCell>
-      <TableCell align="right" className={resize}>
         {formattedMealPrice}
       </TableCell>
       <TableCell align="right" className={resize}>

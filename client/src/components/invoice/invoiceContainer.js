@@ -27,6 +27,7 @@ const InvoiceContainer = ({
   addFlashMessage,
 }) => {
   const [data, setData] = useState(null);
+  console.log('data: ', data);
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
@@ -86,11 +87,26 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      {data && (
-        <Paper
-          component={<InvoiceTable data={data} invoiceFormat={invoiceFormat} />}
-        />
-      )}
+      <div id="print">
+        {data && (
+          <Paper
+            component={
+              <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
+            }
+          />
+        )}
+        <div className="flex justify-between mt3">
+          <p>bank account info</p>
+          <p>
+            성명
+            :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
+          </p>
+          <p>유청</p>
+        </div>
+        <div className="float-right mt3 mr5">
+          <p>서명 후 돌려주세요. 감사합니다.</p>
+        </div>
+      </div>
     </div>
   );
 };

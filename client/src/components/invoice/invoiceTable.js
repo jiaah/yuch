@@ -20,7 +20,7 @@ const styles = () => ({
     overflowX: 'auto',
   },
   table: { minWidth: 470 },
-  specialColumn: { color: '#023864', paddingLeft: 53 },
+  specialColumn: { color: '#023864', paddingLeft: 15 },
   font: { fontWeight: 'bold' },
 });
 
@@ -29,6 +29,7 @@ const InvoiceTable = ({
   data,
   invoiceFormat,
 }) => {
+  const { caterings, mealPrice, specialMeals, sumTotal } = data;
   const TAX_RATE = 0.07;
 
   const ccyFormat = num => `${num.toFixed(2)}`;
@@ -41,32 +42,32 @@ const InvoiceTable = ({
     return formattedNum;
   };
 
-  const invoiceTaxes = TAX_RATE * data.sumTotal;
-  const invoiceTotal = invoiceTaxes + data.sumTotal;
+  const invoiceTaxes = TAX_RATE * sumTotal;
+  const invoiceTotal = invoiceTaxes + sumTotal;
 
   return (
-    <div id="print" className={tableWrapper}>
+    <div className={tableWrapper}>
       <Table className={table} aria-labelledby="tableTitle">
         <EnhancedTableHead list={userInvoiceColumns} />
         <TableBody data-testid="bank-account--table">
-          {data.caterings.length !== 0 &&
-            data.caterings.map(row => (
+          {caterings.length !== 0 &&
+            caterings.map(row => (
               <InvoiceTabelRow
                 key={row.date}
                 row={row}
-                mealPrice={data.mealPrice}
+                mealPrice={mealPrice}
                 formatNumber={formatNumber}
                 invoiceFormat={invoiceFormat}
               />
             ))}
-          {data.specialMeals.length !== 0 && (
+          {specialMeals.length !== 0 && (
             <React.Fragment>
               <TableRow>
                 <TableCell colSpan={7} align="left" className={specialColumn}>
                   [ 특식 ]
                 </TableCell>
               </TableRow>
-              {data.specialMeals.map(row => (
+              {specialMeals.map(row => (
                 <SpecialMealTableRow
                   key={row.date}
                   row={row}
@@ -77,12 +78,12 @@ const InvoiceTable = ({
             </React.Fragment>
           )}
           <TableRow>
-            <TableCell rowSpan={3} />
+            {/* <TableCell rowSpan={3} /> */}
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align="right">{combinedFormat(data.sumTotal)}</TableCell>
+            <TableCell align="right">{combinedFormat(sumTotal)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
