@@ -1,7 +1,7 @@
 FROM node:10
 
 # env for nodejs
-ARG NODE_ENV=production
+ENV NODE_ENV production
 
 # Install PM2
 RUN npm install -g pm2
