@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 /* --- Components --- */
 import IconButton from './iconButton';
 import {
@@ -23,7 +22,7 @@ const DateButtons = ({
   // funcs
   fetchData,
   // global state
-  date,
+  date, // * always should be YYYYMMDD *
   // actions
   updateDate,
   addFlashMessage,

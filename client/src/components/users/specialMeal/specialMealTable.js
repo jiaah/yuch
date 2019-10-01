@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,6 +22,17 @@ const SpecialMealTable = ({
   // func
   formatToDateForm,
 }) => {
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onfocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
+
+  useEffect(
+    () => () => {
+      offFocusOnSelectdRow();
+    },
+    [],
+  );
+
   const emptyRows = data && 3 - data.length;
 
   return (
@@ -35,7 +46,9 @@ const SpecialMealTable = ({
               <SpecialMealTableRow
                 key={row.id}
                 row={row}
+                selectedRow={selectedRow}
                 formatToDateForm={formatToDateForm}
+                onfocusOnSelectdRow={onfocusOnSelectdRow}
               />
             ))}
           <TableRow style={{ height: 49 * emptyRows }}>

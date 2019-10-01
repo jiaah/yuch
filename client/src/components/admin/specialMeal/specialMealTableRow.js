@@ -18,7 +18,7 @@ const SpecialMealTableRow = ({
   classes: { resize, point },
   row,
   labelId,
-  upComingEventId,
+  // upComingEventId,
   // local state
   selectedRow,
   // global state
@@ -37,7 +37,7 @@ const SpecialMealTableRow = ({
   const isHandledRow =
     (userId && userId === row.userId) ||
     (companyName === row.companyName && date === row.date);
-  const isUpcomingEvent = upComingEventId === row.id;
+  // const isUpcomingEvent = upComingEventId === row.id;
 
   return (
     <TableRow
@@ -46,7 +46,8 @@ const SpecialMealTableRow = ({
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
-      selected={isUpcomingEvent || isHandledRow || selectedRow === row.id}
+      // selected={isUpcomingEvent || isHandledRow || selectedRow === row.id}
+      selected={isHandledRow || selectedRow === row.id}
     >
       <TableCell padding="checkbox">
         <div className="flex flex-row-m" data-testid="bank-account--tablerow">

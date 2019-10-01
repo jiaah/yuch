@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
@@ -15,20 +15,11 @@ const styles = theme => ({
 const SpecialMealTableRow = ({
   classes: { resize, point },
   row,
+  selectedRow,
   // func
   formatToDateForm,
+  onfocusOnSelectdRow,
 }) => {
-  const [selectedRow, setSelectedRow] = useState(null);
-  const onfocusOnSelectdRow = id => setSelectedRow(id);
-  const offFocusOnSelectdRow = () => setSelectedRow(null);
-
-  useEffect(
-    () => () => {
-      offFocusOnSelectdRow();
-    },
-    [],
-  );
-
   const formattedDate = formatToDateForm(row.date);
   return (
     <TableRow

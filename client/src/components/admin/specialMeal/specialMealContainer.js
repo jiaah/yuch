@@ -58,7 +58,7 @@ const SpecialMealContainer = ({
     resetClickedItemData,
     resetSelectedItemValue,
   },
-  dateTrackerActions: { updateDateMonthly, resetDateMonthly },
+  dateTrackerActions: { updateDateDaily, resetDateDaily },
   modalActions: { showModal, hideModal },
   addFlashMessage,
   getUsers,
@@ -92,7 +92,7 @@ const SpecialMealContainer = ({
     fetchData(date);
     return () =>
       Promise.all([
-        resetDateMonthly(),
+        resetDateDaily(),
         hideModal(),
         selectedRow && offFocusOnSelectdRow(),
         clickedUserData.length !== 0 && resetClickedItemData(),
@@ -129,7 +129,7 @@ const SpecialMealContainer = ({
       <h2
         className="pointer"
         title="오늘 일자로 돌아가기"
-        onClick={resetDateMonthly}
+        onClick={resetDateDaily}
       >
         특식 관리
       </h2>
@@ -140,7 +140,7 @@ const SpecialMealContainer = ({
         formattedDate={formattedDate}
         startTime={`${twoYearsAgo}01`}
         endTime={`${inTwoYears}01`}
-        updateDate={updateDateMonthly}
+        updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="존재하지 않는 페이지입니다."
@@ -237,7 +237,7 @@ const SpecialMealContainer = ({
 };
 
 const mapStateToProps = state => ({
-  date: state.dateTracker.dateMm,
+  date: state.dateTracker.date,
   clickedUserData: state.selected.data,
   selectedItemValue: state.selected.value,
 });
