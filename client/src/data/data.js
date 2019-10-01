@@ -469,3 +469,48 @@ export const invoiceColumns = [
     label: '합계금액',
   },
 ];
+
+export const userInvoiceColumns = [
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'lunchQty',
+    numeric: true,
+    disablePadding: false,
+    label: '중식',
+  },
+  {
+    id: 'dinnerQty',
+    numeric: true,
+    disablePadding: false,
+    label: '석식',
+  },
+  {
+    id: 'lateNightSnackQty',
+    numeric: true,
+    disablePadding: false,
+    label: '야식',
+  },
+  {
+    id: 'totalQty',
+    numeric: true,
+    disablePadding: false,
+    label: '총식수',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'total',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
+  },
+];

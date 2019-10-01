@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 /* --- Components --- */
 import { twoYearsAgo, nextMonth } from '../../helpers/moment';
-import { formatToYearDateForm, formatToYYYYMM } from '../../utils/date';
+import {
+  formatToYearDateForm,
+  formatToYYYYMM,
+  invoiceFormat,
+} from '../../utils/date';
 import { printDiv } from '../../utils/print';
 import DateButtons from '../../shared/form/dateButtons';
 import IconButton from '../../shared/form/iconButton';
+import Paper from '../../shared/paper';
+import InvoiceTable from './invoiceTable';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -46,7 +52,7 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div className="container-a pw3">
+    <div className="container-a r--w-80 invoice-width">
       <h2 className="pointer" title="오늘 일자로 돌아가기" onClick={resetDate}>
         {name}
       </h2>
@@ -60,7 +66,7 @@ const InvoiceContainer = ({
         updateDate={updateDate}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
-        dateForwardMessage="존재하지 않는 페이지입니다."
+        dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
       />
       <div className="paper-label-box justify-end">
         <Link to="/admin/invoice/users">
@@ -80,6 +86,11 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
+      {data && (
+        <Paper
+          component={<InvoiceTable data={data} invoiceFormat={invoiceFormat} />}
+        />
+      )}
     </div>
   );
 };
