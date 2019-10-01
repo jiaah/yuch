@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:10-alpine
 
 # env for nodejs
 ENV NODE_ENV production
