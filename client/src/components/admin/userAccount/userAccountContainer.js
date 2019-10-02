@@ -155,11 +155,15 @@ const UserAccountContainer = ({
       </div>
       <Paper
         component={
-          <UserTable
-            handleEditUserBtnClick={handleEditUserBtnClick}
-            users={selctedUsers}
-            selectedSearchItem={selectedSearchItem}
-          />
+          allUsers.length !== 0 ? (
+            <UserTable
+              handleEditUserBtnClick={handleEditUserBtnClick}
+              users={selctedUsers}
+              selectedSearchItem={selectedSearchItem}
+            />
+          ) : (
+            <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+          )
         }
       />
       <IconMessage

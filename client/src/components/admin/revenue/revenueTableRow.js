@@ -24,7 +24,6 @@ const RevenueTableRow = ({
 
   return (
     <TableRow
-      key={row.id}
       onClick={() => onfocusOnSelectdRow(row.date)}
       role="checkbox"
       aria-checked={selectedRow === row.date}

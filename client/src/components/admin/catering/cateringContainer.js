@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { inAWeek } from '../../../helpers/moment';
-import { formatToDateForm, firstDayOfLastMonth } from '../../../utils/date';
+import { formatToDateForm } from '../../../utils/date';
+import { admin } from '../../../data/data.js';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -24,7 +25,7 @@ const CateringContainer = ({
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState(null);
+  const [catering, setCatering] = useState([]);
 
   // switch text <-> textfield
   const [editIndex, setEditIndex] = useState(null);
@@ -38,16 +39,13 @@ const CateringContainer = ({
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
-  const startTime = firstDayOfLastMonth();
 
   const fetchData = async when => {
     const res = await fetchUsersCatering(when);
 
     if (res.error) {
-      setCatering();
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-
     return setCatering(res);
   };
 
@@ -87,7 +85,7 @@ const CateringContainer = ({
         reload={true}
         unit="dd"
         formattedDate={formattedDate}
-        startTime={startTime}
+        startTime={admin.startTime}
         endTime={inAWeek}
         updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
@@ -109,21 +107,19 @@ const CateringContainer = ({
             handleClick={() => printDiv('print')}
           />
         </div>
-        {catering && (
-          <CateringPaper
-            users={catering}
-            selectedItemValue={selectedItemValue}
-            updateUserCatering={updateUserCatering}
-            addFlashMessage={addFlashMessage}
-            saveSelectedItemValue={saveSelectedItemValue}
-            resetSelectedItemValue={resetSelectedItemValue}
-            startEditing={startEditing}
-            endEditing={endEditing}
-            editIndex={editIndex}
-            handleTableRowClick={handleTableRowClick}
-            selectedRow={selectedRow}
-          />
-        )}
+        <CateringPaper
+          users={catering}
+          selectedItemValue={selectedItemValue}
+          updateUserCatering={updateUserCatering}
+          addFlashMessage={addFlashMessage}
+          saveSelectedItemValue={saveSelectedItemValue}
+          resetSelectedItemValue={resetSelectedItemValue}
+          startEditing={startEditing}
+          endEditing={endEditing}
+          editIndex={editIndex}
+          handleTableRowClick={handleTableRowClick}
+          selectedRow={selectedRow}
+        />
       </div>
       {adminCateringMsg}
     </div>

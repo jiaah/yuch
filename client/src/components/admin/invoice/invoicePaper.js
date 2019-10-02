@@ -41,35 +41,45 @@ const InvoicePaper = ({
 
   return (
     <div id="print" className="paper">
-      <Paper
-        isDivided={true}
-        component={
-          <RatesTable
-            order={order}
-            orderBy={orderBy}
-            sortedData={sortedDataA}
-            handleRequestSort={handleRequestSort}
-            selectedRow={selectedRow}
-            searchedValue={searchedValue}
-            onfocusOnSelectdRow={onfocusOnSelectdRow}
+      {data.length !== 0 ? (
+        <React.Fragment>
+          <Paper
+            isDivided={true}
+            component={
+              <RatesTable
+                order={order}
+                orderBy={orderBy}
+                sortedData={sortedDataA}
+                handleRequestSort={handleRequestSort}
+                selectedRow={selectedRow}
+                searchedValue={searchedValue}
+                onfocusOnSelectdRow={onfocusOnSelectdRow}
+              />
+            }
           />
-        }
-      />
-      <Paper
-        isDivided={true}
-        classname="paper--sec"
-        component={
-          <RatesTable
-            order={order}
-            orderBy={orderBy}
-            sortedData={sortedDataB}
-            handleRequestSort={handleRequestSort}
-            selectedRow={selectedRow}
-            searchedValue={searchedValue}
-            onfocusOnSelectdRow={onfocusOnSelectdRow}
+          <Paper
+            isDivided={true}
+            classname="paper--sec"
+            component={
+              <RatesTable
+                order={order}
+                orderBy={orderBy}
+                sortedData={sortedDataB}
+                handleRequestSort={handleRequestSort}
+                selectedRow={selectedRow}
+                searchedValue={searchedValue}
+                onfocusOnSelectdRow={onfocusOnSelectdRow}
+              />
+            }
           />
-        }
-      />
+        </React.Fragment>
+      ) : (
+        <Paper
+          component={
+            <h3 className="mt4 mb4">발행된 거래 명세서가 없습니다.</h3>
+          }
+        />
+      )}
     </div>
   );
 };
