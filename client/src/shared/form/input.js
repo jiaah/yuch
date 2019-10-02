@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { getIn } from 'formik';
 
 const styles = theme => ({
+  // auth, admin & user account
   textField: {
     width: 300,
     margin: '20px 14px',
