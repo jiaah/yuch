@@ -41,7 +41,7 @@ export const navClient = [
   {
     id: 3,
     name: '인보이스',
-    to: '/user/invoice',
+    to: '/invoice/user',
     className: 'c-text',
   },
   {

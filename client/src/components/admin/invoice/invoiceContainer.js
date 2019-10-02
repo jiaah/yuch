@@ -57,7 +57,7 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDateMonthly();
+    // return () => resetDateMonthly();
   }, []);
 
   return (

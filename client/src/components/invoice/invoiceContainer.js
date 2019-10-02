@@ -22,6 +22,9 @@ import * as invoiceActions from '../../actions/invoiceAction';
 
 const InvoiceContainer = ({
   date,
+  isAdmin,
+  userId,
+  companyName,
   dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUserInvoice },
   addFlashMessage,
@@ -32,7 +35,9 @@ const InvoiceContainer = ({
   const formattedDate = formatToMonthDateForm(date);
 
   const parsed = queryString.parse(location.search);
-  const { id, name } = parsed;
+  // getting userId & companyName from differnt places depend on the user type.
+  const id = isAdmin ? parsed.id : userId;
+  const name = isAdmin ? parsed.name : companyName;
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
@@ -48,7 +53,7 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDateMonthly();
+    // return () => resetDateMonthly();
   }, []);
 
   return (
@@ -117,6 +122,9 @@ const InvoiceContainer = ({
 
 const mapStateToProps = state => ({
   date: state.dateTracker.dateMm,
+  isAdmin: state.auth.isAdmin,
+  userId: state.auth.id,
+  companyName: state.auth.companyName,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

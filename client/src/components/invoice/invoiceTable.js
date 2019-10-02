@@ -30,7 +30,7 @@ const InvoiceTable = ({
   invoiceFormat,
 }) => {
   const { caterings, mealPrice, specialMeals, sumTotal } = data;
-  const TAX_RATE = 0.07;
+  const TAX_RATE = 0.1;
 
   const ccyFormat = num => `${num.toFixed(2)}`;
   const formatNumber = num =>
