@@ -139,6 +139,7 @@ const RatesContainer = ({
         handleEditUserBtnClick={handleEditUserBtnClick}
         selectedRow={selectedRow}
         handleTableRowClick={handleTableRowClick}
+        isAdminVerified={isAdminVerified}
       />
       {isAdminVerified &&
         clickedUserData.length !== 0 && (

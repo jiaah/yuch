@@ -11,13 +11,16 @@ export const formattedTmr = moment()
 // export const timeToNow = moment().toNow();
 
 // reserve mealPrice date
+export const lastMonth = moment()
+  .add(-1, 'months')
+  .format('YYYY/MM');
 export const thisMonth = moment().format('YYYY/MM');
 export const nextMonth = moment()
   .add(1, 'months')
   .format('YYYY/MM');
-export const inTwoMonths = moment()
-  .add(2, 'months')
-  .format('YYYY/MM');
+// export const inTwoMonths = moment()
+//   .add(2, 'months')
+//   .format('YYYY/MM');
 
 // reservation
 export const inThreeDays = moment()
@@ -35,9 +38,6 @@ export const inAWeek = moment()
 export const tomorrow = moment()
   .add(1, 'day')
   .format('YYYYMMDD');
-export const lastMonth = moment()
-  .add(-1, 'months')
-  .format('YYYY/MM');
 
 // special_meal
 export const twoYearsAgo = moment()

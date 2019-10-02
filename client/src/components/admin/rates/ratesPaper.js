@@ -10,6 +10,7 @@ const RatesPaper = ({
   selectedRow,
   // global state
   selectedItemValue,
+  isAdminVerified,
   // funcs
   handleEditUserBtnClick,
   handleTableRowClick,
@@ -77,10 +78,12 @@ const RatesPaper = ({
             }
           />
         </React.Fragment>
-      ) : (
+      ) : isAdminVerified ? (
         <Paper
           component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
         />
+      ) : (
+        <Paper />
       )}
     </div>
   );
