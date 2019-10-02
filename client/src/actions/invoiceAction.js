@@ -19,7 +19,7 @@ export const getUsersInvoice = date => async dispatch => {
 export const updateUsersInvoice = date => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUsersInvoice' });
   try {
-    const res = await Axios.patch('/invoice/users', date);
+    const res = await Axios.patch('/invoice/users', { date });
     dispatch({ type: types.HTTP_SUCCESS, api: 'updateUsersInvoice' });
     return res;
   } catch (error) {

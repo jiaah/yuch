@@ -59,6 +59,11 @@ const InvoiceContainer = ({
     fetchData(date);
   }, []);
 
+  const updateInvoice = () => {
+    const yyyymm = formatToYYYYMM(date);
+    updateUsersInvoice(yyyymm);
+  };
+
   return (
     <div className="container-a r--w-80">
       <h2
@@ -92,7 +97,7 @@ const InvoiceContainer = ({
             width="32"
             height="32"
             viewBox="0 0 25 25"
-            handleClick={() => updateUsersInvoice(date)}
+            handleClick={updateInvoice}
           />
 
           <IconButton
