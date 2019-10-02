@@ -10,6 +10,7 @@ import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from './invoicePaper';
+import IconMessage from '../../../shared/iconMessage';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -110,6 +111,18 @@ const InvoiceContainer = ({
         selectedRow={selectedRow}
         searchedValue={searchedValue}
         onfocusOnSelectdRow={onfocusOnSelectdRow}
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text="업체에 등록되어있는 특식이 포함된 합계입니다."
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info"
       />
     </div>
   );

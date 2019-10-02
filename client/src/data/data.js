@@ -80,11 +80,16 @@ export const navAdminItems = {
     },
     {
       id: 12,
+      name: '식당 식수',
+      to: '/admin/count/restaurant/companies/dd',
+    },
+    {
+      id: 13,
       name: '식당 매출',
       to: '/admin/count/restaurant/dd',
     },
     {
-      id: 13,
+      id: 14,
       name: '특식',
       to: '/admin/count/specialmeal',
     },

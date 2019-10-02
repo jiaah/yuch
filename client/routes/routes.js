@@ -53,6 +53,11 @@ const RestoSales = Loader({
     import('../src/components/admin/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
 });
 
+const RestoQty = Loader({
+  loader: () =>
+    import('../src/components/admin/restoQty/restoQtyContainer' /* webpackChunkName: 'RestoSales' */),
+});
+
 const AdminCatering = Loader({
   loader: () =>
     import('../src/components/admin/catering/cateringContainer' /* webpackChunkName: 'AdminCatering' */),
@@ -115,6 +120,11 @@ const routes = () => (
         exact
         path="/admin/count/catering/dd"
         component={AdminGuards(AdminCatering)}
+      />
+      <Route
+        exact
+        path="/admin/count/restaurant/companies/dd"
+        component={AdminGuards(RestoQty)}
       />
       <Route
         exact

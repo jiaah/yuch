@@ -28,13 +28,11 @@ const InvoiceContainer = ({
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
   const [data, setData] = useState([]);
-  console.log('data: ', data);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyy = formatToYYYY(when);
     const res = await getRevenue(yyyy);
-    console.log('res: ', res);
 
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
