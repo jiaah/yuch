@@ -36,7 +36,7 @@ const RatesTable = ({
   return (
     <React.Fragment>
       <div className={tableWrapper}>
-        <Table className={table} aria-labelledby="tableTitle">
+        <Table className={table} aria-labelledby="rates" size="small">
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}

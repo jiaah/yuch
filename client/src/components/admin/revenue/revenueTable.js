@@ -37,7 +37,7 @@ const RevenueTable = ({
 
   return (
     <div id="print" className={tableWrapper}>
-      <Table className={table} aria-labelledby="tableTitle">
+      <Table className={table} aria-labelledby="revenue">
         <EnhancedTableHead list={revenueColumns} />
         <TableBody data-testid="bank-account--table">
           {data &&

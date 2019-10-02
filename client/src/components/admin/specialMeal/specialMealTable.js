@@ -61,7 +61,7 @@ const SpecialMealTable = ({
 
   return (
     <div id="print" className={tableWrapper}>
-      <Table className={table} aria-labelledby="tableTitle">
+      <Table className={table} aria-labelledby="admin-specialmeal" size="small">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
           {users &&

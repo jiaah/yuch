@@ -29,7 +29,7 @@ const UserTableRow = ({
 
   if (row.bankAccount) {
     const { accountHolder, bankName, accountNo } = row.bankAccount;
-    bankAccount = { accountHolder, bankName, accountNo: accountNo.slice(0, 8) };
+    bankAccount = { accountHolder, bankName, accountNo: accountNo.slice(0, 6) };
   } else {
     bankAccount = { accountHolder: '', bankName: '', accountNo: '' };
   }
@@ -98,8 +98,6 @@ const UserTableRow = ({
         </TableCell>
         <TableCell align="right" className={resize}>
           {bankAccount.accountHolder}
-          &#8201;&#8201;&#8201;
-          {bankAccount.bankName}
           &#8201;&#8201;&#8201;
           {bankAccount.accountNo}
         </TableCell>

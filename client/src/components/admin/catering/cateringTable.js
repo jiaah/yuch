@@ -85,7 +85,7 @@ const CateringTable = ({
   return (
     <React.Fragment>
       <div className={tableWrapper}>
-        <Table className={table} aria-labelledby="tableTitle">
+        <Table className={table} aria-labelledby="catering" size="small">
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
