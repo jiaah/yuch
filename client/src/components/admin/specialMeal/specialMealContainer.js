@@ -32,6 +32,8 @@ import {
   adminSpecialMealMsg,
   adminSpecialMealMsgA,
   adminSpecialMealMsgB,
+  adminSpecialMealMsgC,
+  updateRateMessageC,
 } from '../../../data/message';
 
 const ModalControlloer = Loader({
@@ -200,7 +202,7 @@ const SpecialMealContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
-        text={adminSpecialMealMsgA}
+        text={adminSpecialMealMsg}
         position="end"
         iconBoxStyle="mt3 pw1"
         textStyle="icon-message--info"
@@ -212,7 +214,43 @@ const SpecialMealContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
+        text={adminSpecialMealMsgA}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
         text={adminSpecialMealMsgB}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminSpecialMealMsgC}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={updateRateMessageC}
         position="end"
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"

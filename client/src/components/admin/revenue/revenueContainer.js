@@ -94,7 +94,7 @@ const RevenueContainer = ({
         text="식당 식수 리스트에 등록되어있는 고객사는 레스토랑으로 분류됩니다."
         position="end"
         iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
+        textStyle="icon-message--info f-mimi"
       />
     </div>
   );
