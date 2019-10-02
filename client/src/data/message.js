@@ -215,7 +215,7 @@ export const adminCateringMsg = (
       <Link className="c-point2 td-none" to="/admin/invoice/users">
         &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
       </Link>{' '}
-      클릭&#46;
+      클릭
     </p>
     <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
@@ -301,15 +301,15 @@ export const restoSalesMsg = (
     </p>
     <p className="f-mini">
       &#42; <span className="c-point2">지난 달의 매출을 변경</span> 한 경우에는{' '}
-      <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요.&#46;
+      <span className="c-point2">반드시 매출 업데이트</span>를 해주세요&#46;
     </p>
     <p className="f-mini pt3">
-      [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
+      [ 매출 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
         &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
       </Link>{' '}
-      클릭&#46;
+      클릭
     </p>
   </div>
 );
@@ -367,7 +367,7 @@ export const adminSpecialMealMsgA = (
 export const adminSpecialMealMsgB = (
   <p className="f-mini">
     월말 거래명세서 포함여부 변경을 원한다면, 등록된 특식을 삭제한 후
-    재등록하여주세요.
+    재등록하여주세요&#46;
   </p>
 );
 
