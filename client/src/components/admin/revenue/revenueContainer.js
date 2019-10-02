@@ -8,6 +8,7 @@ import {
   formatToYYYY,
   revenueFormat,
 } from '../../../utils/date';
+import { admin } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import IconButton from '../../../shared/form/iconButton';
@@ -33,6 +34,7 @@ const InvoiceContainer = ({
     // YYYYMMDD -> YYYYMM
     const yyyy = formatToYYYY(when);
     const res = await getRevenue(yyyy);
+    console.log('res: ', res);
 
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -59,7 +61,7 @@ const InvoiceContainer = ({
         reload={true}
         unit="yy"
         formattedDate={formattedDate}
-        startTime="20190101"
+        startTime={`${admin.revenueStartTime}0101`}
         endTime={`${nextYear}0101`}
         updateDate={updateDateYearly}
         addFlashMessage={addFlashMessage}

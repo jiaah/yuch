@@ -112,10 +112,29 @@ export const adminVerificationMessageOnDelete = (
   </React.Fragment>
 );
 
-export const updateRateMessage = (
+export const updateRateMessageA = (
   <React.Fragment>
-    <span className="c-point2">선택한 달 1일부터</span>
+    선택한 달 <span className="c-point2">1일부터</span>
     &#8201; 가격변동이 적용됩니다&#46;
+  </React.Fragment>
+);
+
+export const updateRateMessageB = (
+  <React.Fragment>
+    <span className="c-point2">지난 달의 식수 가격을 변동</span>
+    한다면, <span className="c-point2">반드시 인보이스 재발행</span>을
+    해주세요&#46;
+  </React.Fragment>
+);
+
+export const updateRateMessageC = (
+  <React.Fragment>
+    인보이스 재발행&#58; &#39;인보이스 &#62; 거래명세서&#39;
+    &#8201;&#8594;&#8199;
+    <Link className="c-point2 td-none" to="/admin/invoice/users">
+      인보이스 업데이트 버튼
+    </Link>{' '}
+    클릭
   </React.Fragment>
 );
 
@@ -188,17 +207,22 @@ export const adminCateringMsg = (
       수 있습니다&#46;
     </p>
     <p className="f-mini pt2">
-      &#42; <span className="c-point2">인보이스 발행 후 식수변경</span>을 한
-      경우에는 <span className="c-point2">반드시</span> 인보이스 페이지에서{' '}
-      <Link className="c-point2 td-none" to="/admin/invoice/users">
-        {' '}
-        업데이트 버튼
-      </Link>
-      을 눌러주시기 바랍니다&#46;
+      &#42;{' '}
+      <span className="c-point2">인보이스가 발행 된 지난 달의 식수변경</span>을
+      한 경우에는 <span className="c-point2">반드시 인보이스 재발행</span>을
+      해주세요.&#46;
     </p>
-    <p className="f-mini pt2">
-      &#42; <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는
-      방법. <br />
+    <p className="f-mini pt3">
+      [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
+      &#8201;&#8594;&#8199;
+      <Link className="c-point2 td-none" to="/admin/invoice/users">
+        인보이스 업데이트 버튼
+      </Link>{' '}
+      을 클릭&#46;
+    </p>
+    <p className="f-mini pt3">
+      [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
+      <br />
       고객 계정을 활성화 &#8201;&#8594;&#8199;
       <Link className="c-text td-none" to="/admin/count/catering/dd">
         &#39;식수현황 &#62; 위탁급식식수&#39;

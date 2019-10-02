@@ -44,7 +44,7 @@ const RevenueTable = ({
             data.length !== 0 &&
             data.map(row => (
               <RevenueTableRow
-                key={row.id}
+                key={row.date}
                 row={row}
                 revenueFormat={revenueFormat}
                 selectedRow={selectedRow}

@@ -1,5 +1,7 @@
 export const admin = {
   companyName: '유청',
+  startTime: '20191001',
+  revenueStartTime: '2019',
 };
 
 export const navHome = [

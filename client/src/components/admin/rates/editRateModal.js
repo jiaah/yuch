@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import RateForm from './editRateForm';
-import { thisMonth, nextMonth, inTwoMonths } from '../../../helpers/moment';
+import { thisMonth, nextMonth, lastMonth } from '../../../helpers/moment';
 import { reservePriceValidation } from '../../formValidation';
 
 const EditRateModal = ({
@@ -60,7 +60,7 @@ const EditRateModal = ({
                   reserveDate={clickedUserData.reserveDate}
                   thisMonth={thisMonth}
                   nextMonth={nextMonth}
-                  inTwoMonths={inTwoMonths}
+                  lastMonth={lastMonth}
                   handleSelectChange={handleSelectChange}
                 />
               </Form>

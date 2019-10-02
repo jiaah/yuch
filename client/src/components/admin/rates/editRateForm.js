@@ -4,14 +4,18 @@ import FormikField from '../../../shared/form/formikField';
 import ExpireDateSelect from './expireDateSelect';
 import FormButton from '../../../shared/form/formButton';
 import IconMessage from '../../../shared/iconMessage';
-import * as data from '../../../data/message';
+import {
+  updateRateMessageA,
+  updateRateMessageB,
+  updateRateMessageC,
+} from '../../../data/message';
 
 const EditUserForm = ({
   selectedDate,
   reserveDate,
   thisMonth,
   nextMonth,
-  inTwoMonths,
+  lastMonth,
   handleSelectChange,
   isSubmitting,
 }) => (
@@ -30,7 +34,7 @@ const EditUserForm = ({
           reserveDate={reserveDate || selectedDate}
           thisMonth={thisMonth}
           nextMonth={nextMonth}
-          inTwoMonths={inTwoMonths}
+          lastMonth={lastMonth}
           handleSelectChange={handleSelectChange}
         />
       </div>
@@ -49,8 +53,32 @@ const EditUserForm = ({
       viewBox="0 0 20 20"
       fillOuter="#2196F3"
       fillInner="#ffffff"
-      text={data.updateRateMessage}
-      position="center"
+      text={updateRateMessageA}
+      position="end"
+      textStyle="icon-message--info f-mini"
+    />
+    <IconMessage
+      name="info"
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fillOuter="#2196F3"
+      fillInner="#ffffff"
+      text={updateRateMessageB}
+      position="end"
+      iconBoxStyle="mt2"
+      textStyle="icon-message--info f-mini"
+    />
+    <IconMessage
+      name="info"
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fillOuter="#2196F3"
+      fillInner="#ffffff"
+      text={updateRateMessageC}
+      position="end"
+      iconBoxStyle="mt2"
       textStyle="icon-message--info f-mini"
     />
   </React.Fragment>

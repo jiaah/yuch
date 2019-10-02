@@ -10,6 +10,7 @@ const RatesPaper = ({
   selectedRow,
   // global state
   selectedItemValue,
+  isAdminVerified,
   // funcs
   handleEditUserBtnClick,
   handleTableRowClick,
@@ -43,37 +44,47 @@ const RatesPaper = ({
 
   return (
     <div id="print" className="paper">
-      <Paper
-        isDivided={true}
-        component={
-          <RatesTable
-            order={order}
-            orderBy={orderBy}
-            sortedData={sortedDataA}
-            handleRequestSort={handleRequestSort}
-            selectedItemValue={selectedItemValue}
-            handleEditUserBtnClick={handleEditUserBtnClick}
-            selectedRow={selectedRow}
-            handleTableRowClick={handleTableRowClick}
+      {users.length !== 0 ? (
+        <React.Fragment>
+          <Paper
+            isDivided={true}
+            component={
+              <RatesTable
+                order={order}
+                orderBy={orderBy}
+                sortedData={sortedDataA}
+                handleRequestSort={handleRequestSort}
+                selectedItemValue={selectedItemValue}
+                handleEditUserBtnClick={handleEditUserBtnClick}
+                selectedRow={selectedRow}
+                handleTableRowClick={handleTableRowClick}
+              />
+            }
           />
-        }
-      />
-      <Paper
-        isDivided={true}
-        classname="paper--sec"
-        component={
-          <RatesTable
-            order={order}
-            orderBy={orderBy}
-            sortedData={sortedDataB}
-            handleRequestSort={handleRequestSort}
-            selectedItemValue={selectedItemValue}
-            handleEditUserBtnClick={handleEditUserBtnClick}
-            selectedRow={selectedRow}
-            handleTableRowClick={handleTableRowClick}
+          <Paper
+            isDivided={true}
+            classname="paper--sec"
+            component={
+              <RatesTable
+                order={order}
+                orderBy={orderBy}
+                sortedData={sortedDataB}
+                handleRequestSort={handleRequestSort}
+                selectedItemValue={selectedItemValue}
+                handleEditUserBtnClick={handleEditUserBtnClick}
+                selectedRow={selectedRow}
+                handleTableRowClick={handleTableRowClick}
+              />
+            }
           />
-        }
-      />
+        </React.Fragment>
+      ) : isAdminVerified ? (
+        <Paper
+          component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
+        />
+      ) : (
+        <Paper />
+      )}
     </div>
   );
 };

@@ -21,20 +21,20 @@ const ExpireDateSelect = ({
   reserveDate,
   thisMonth,
   nextMonth,
-  inTwoMonths,
+  lastMonth,
   handleSelectChange,
   classes,
 }) => (
   <FormControl className={classes.formControl}>
-    <InputLabel required={true}>적용일자 (YYYY/MM)</InputLabel>
+    <InputLabel required={true}>적용일자 (YYYY/MM/01)</InputLabel>
     <Select
       value={reserveDate}
       onChange={handleSelectChange}
       renderValue={value => value}
     >
+      <MenuItem value={lastMonth}>{lastMonth}</MenuItem>
       <MenuItem value={thisMonth}>{thisMonth}</MenuItem>
       <MenuItem value={nextMonth}>{nextMonth}</MenuItem>
-      <MenuItem value={inTwoMonths}>{inTwoMonths}</MenuItem>
     </Select>
   </FormControl>
 );

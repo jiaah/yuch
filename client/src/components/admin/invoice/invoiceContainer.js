@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { thisMonthYYYYMM } from '../../../helpers/moment';
 import { formatToMonthDateForm, formatToYYYYMM } from '../../../utils/date';
+import { admin } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -72,8 +73,9 @@ const InvoiceContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        startTime="20191001"
-        endTime={`${thisMonthYYYYMM}01`}
+        startTime={admin.startTime}
+        // endTime={`${thisMonthYYYYMM}01`}
+        endTime="20300101"
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
@@ -102,15 +104,13 @@ const InvoiceContainer = ({
           />
         </div>
       </div>
-      {data && (
-        <Paper
-          id="print"
-          data={data}
-          selectedRow={selectedRow}
-          searchedValue={searchedValue}
-          onfocusOnSelectdRow={onfocusOnSelectdRow}
-        />
-      )}
+      <Paper
+        id="print"
+        data={data}
+        selectedRow={selectedRow}
+        searchedValue={searchedValue}
+        onfocusOnSelectdRow={onfocusOnSelectdRow}
+      />
     </div>
   );
 };
