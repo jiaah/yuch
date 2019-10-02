@@ -84,7 +84,7 @@ const CateringPaper = ({
 
   return (
     <div id="print" className="paper">
-      {users.length !== 0 ? (
+      {users.length !== 0 && users.length > 10 ? (
         <React.Fragment>
           <Paper
             isDivided={true}
@@ -132,6 +132,28 @@ const CateringPaper = ({
             }
           />
         </React.Fragment>
+      ) : users.length !== 0 && users.length <= 10 ? (
+        <Paper
+          component={
+            <CateringTable
+              sortedData={sortedDataA}
+              selectedItemValue={selectedItemValue}
+              updateUserCatering={updateUserCatering}
+              saveSelectedItemValue={saveSelectedItemValue}
+              resetSelectedItemValue={resetSelectedItemValue}
+              startEditing={startEditing}
+              endEditing={endEditing}
+              editIndex={editIndex}
+              handleTableRowClick={handleTableRowClick}
+              selectedRow={selectedRow}
+              handleUpdate={handleUpdate}
+              validation={validation}
+              lunchQtyErr={lunchQtyErr}
+              dinnerQtyErr={dinnerQtyErr}
+              lateNightSnackQtyErr={lateNightSnackQtyErr}
+            />
+          }
+        />
       ) : (
         <Paper
           component={

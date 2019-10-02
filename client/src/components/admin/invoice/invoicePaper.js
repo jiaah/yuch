@@ -41,7 +41,7 @@ const InvoicePaper = ({
 
   return (
     <div id="print" className="paper">
-      {data.length !== 0 ? (
+      {data.length !== 0 && data.length > 10 ? (
         <React.Fragment>
           <Paper
             isDivided={true}
@@ -73,6 +73,20 @@ const InvoicePaper = ({
             }
           />
         </React.Fragment>
+      ) : data.length !== 0 && data.length <= 10 ? (
+        <Paper
+          component={
+            <RatesTable
+              order={order}
+              orderBy={orderBy}
+              sortedData={sortedDataA}
+              handleRequestSort={handleRequestSort}
+              selectedRow={selectedRow}
+              searchedValue={searchedValue}
+              onfocusOnSelectdRow={onfocusOnSelectdRow}
+            />
+          }
+        />
       ) : (
         <Paper
           component={

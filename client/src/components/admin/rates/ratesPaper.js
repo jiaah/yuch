@@ -25,7 +25,7 @@ const RatesPaper = ({
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
   };
-
+  console.log(users.length);
   let sortedDataA;
   let sortedDataB;
   if (users && users.length <= 10) {
@@ -44,7 +44,7 @@ const RatesPaper = ({
 
   return (
     <div id="print" className="paper">
-      {users.length !== 0 ? (
+      {users.length !== 0 && users.length > 10 ? (
         <React.Fragment>
           <Paper
             isDivided={true}
@@ -78,6 +78,21 @@ const RatesPaper = ({
             }
           />
         </React.Fragment>
+      ) : users.length !== 0 && users.length <= 10 ? (
+        <Paper
+          component={
+            <RatesTable
+              order={order}
+              orderBy={orderBy}
+              sortedData={sortedDataA}
+              handleRequestSort={handleRequestSort}
+              selectedItemValue={selectedItemValue}
+              handleEditUserBtnClick={handleEditUserBtnClick}
+              selectedRow={selectedRow}
+              handleTableRowClick={handleTableRowClick}
+            />
+          }
+        />
       ) : isAdminVerified ? (
         <Paper
           component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}

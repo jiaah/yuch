@@ -153,45 +153,46 @@ const SpecialMealContainer = ({
         />
         <div>
           <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
-          <IconButton
             handleClick={() => handleButtonClick('create')}
             name="add"
             width="30"
             height="30"
             viewBox="0 0 24 24"
           />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
         </div>
       </div>
-      <Paper
-        id="print"
-        isDivided={false}
-        component={
-          <React.Fragment>
-            {specialMeal && specialMeal.length !== 0 ? (
-              <Table
-                users={specialMeal}
-                selectedRow={selectedRow}
-                clickedUserData={clickedUserData}
-                selectedItemValue={selectedItemValue}
-                saveClickedItemData={saveClickedItemData}
-                handleButtonClick={handleButtonClick}
-                formatToDateForm={formatToDateForm}
-                handleTableRowClick={handleTableRowClick}
-                formatToYYYYMMDD={formatToYYYYMMDD}
-                today={today}
-              />
-            ) : (
-              <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-            )}
-          </React.Fragment>
-        }
-      />
+      <div id="print">
+        <Paper
+          isDivided={false}
+          component={
+            <React.Fragment>
+              {specialMeal && specialMeal.length !== 0 ? (
+                <Table
+                  users={specialMeal}
+                  selectedRow={selectedRow}
+                  clickedUserData={clickedUserData}
+                  selectedItemValue={selectedItemValue}
+                  saveClickedItemData={saveClickedItemData}
+                  handleButtonClick={handleButtonClick}
+                  formatToDateForm={formatToDateForm}
+                  handleTableRowClick={handleTableRowClick}
+                  formatToYYYYMMDD={formatToYYYYMMDD}
+                  today={today}
+                />
+              ) : (
+                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+              )}
+            </React.Fragment>
+          }
+        />
+      </div>
       <IconMessage
         name="info"
         width="20"

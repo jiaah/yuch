@@ -57,7 +57,6 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    // return () => resetDateMonthly();
   }, []);
 
   return (
@@ -75,8 +74,7 @@ const InvoiceContainer = ({
         unit="mm"
         formattedDate={formattedDate}
         startTime={admin.startTime}
-        // endTime={`${thisMonthYYYYMM}01`}
-        endTime="20300101"
+        endTime={`${thisMonthYYYYMM}01`}
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
@@ -96,6 +94,7 @@ const InvoiceContainer = ({
             viewBox="0 0 25 25"
             handleClick={() => updateUsersInvoice(date)}
           />
+
           <IconButton
             name="print"
             width="32"
@@ -105,13 +104,14 @@ const InvoiceContainer = ({
           />
         </div>
       </div>
-      <Paper
-        id="print"
-        data={data}
-        selectedRow={selectedRow}
-        searchedValue={searchedValue}
-        onfocusOnSelectdRow={onfocusOnSelectdRow}
-      />
+      <div id="print">
+        <Paper
+          data={data}
+          selectedRow={selectedRow}
+          searchedValue={searchedValue}
+          onfocusOnSelectdRow={onfocusOnSelectdRow}
+        />
+      </div>
       <IconMessage
         name="info"
         width="20"

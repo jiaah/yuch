@@ -53,7 +53,6 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    // return () => resetDateMonthly();
   }, []);
 
   return (
@@ -72,7 +71,6 @@ const InvoiceContainer = ({
         formattedDate={formattedDate}
         startTime="20191001"
         endTime={`${thisMonthYYYYMM}01`}
-        // endTime="20300101"
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}

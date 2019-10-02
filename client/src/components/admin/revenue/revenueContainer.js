@@ -76,12 +76,14 @@ const RevenueContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      {data && (
-        <Paper
-          id="print"
-          component={<Table data={data} revenueFormat={revenueFormat} />}
-        />
-      )}
+      <div id="print">
+        {data.length !== 0 && (
+          <Paper
+            id="print"
+            component={<Table data={data} revenueFormat={revenueFormat} />}
+          />
+        )}
+      </div>
       <IconMessage
         name="info"
         width="20"
