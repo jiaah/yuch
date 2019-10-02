@@ -102,7 +102,7 @@ export const navAdminItems = {
     },
     {
       id: 12,
-      name: '매출 현황',
+      name: '유청 매출 현황',
       to: '/admin/revenue',
     },
   ],

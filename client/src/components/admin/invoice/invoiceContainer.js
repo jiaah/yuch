@@ -71,7 +71,7 @@ const InvoiceContainer = ({
         title="오늘 일자로 돌아가기"
         onClick={resetDateMonthly}
       >
-        거래 명세서
+        고객사 매출 현황
       </h2>
       <DateButtons
         date={date}

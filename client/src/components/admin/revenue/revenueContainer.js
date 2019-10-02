@@ -53,7 +53,7 @@ const RevenueContainer = ({
         title="오늘 일자로 돌아가기"
         onClick={resetDateYearly}
       >
-        거래 명세서
+        유청 매출 현황
       </h2>
       <DateButtons
         date={date}
