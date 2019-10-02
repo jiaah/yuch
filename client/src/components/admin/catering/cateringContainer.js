@@ -78,7 +78,7 @@ const CateringContainer = ({
         title="오늘 날짜로 돌아가기"
         onClick={resetDateDaily}
       >
-        식수 현황
+        위탁급식 식수 현황
       </h2>
       <DateButtons
         date={date}

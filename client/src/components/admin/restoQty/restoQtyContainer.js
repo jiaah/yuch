@@ -78,7 +78,7 @@ const RestoQtyContainer = ({
         title="오늘 날짜로 돌아가기"
         onClick={resetDateDaily}
       >
-        식수 현황
+        식당 식수 현황
       </h2>
       <DateButtons
         date={date}
