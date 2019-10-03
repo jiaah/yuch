@@ -14,7 +14,7 @@ const styles = theme => ({
   point: { fontWeight: 'bold' },
 });
 
-const BankTableRow = ({
+const EmployeeTableRow = ({
   classes: { resize, point },
   handleTableRowClick,
   handleEditBtnClick,
@@ -66,4 +66,4 @@ const BankTableRow = ({
   </TableRow>
 );
 
-export default withStyles(styles)(BankTableRow);
+export default withStyles(styles)(EmployeeTableRow);

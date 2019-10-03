@@ -3,16 +3,23 @@ import React from 'react';
 import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
-const BankForm = ({ isSubmitting }) => (
+const Form = ({ isSubmitting }) => (
   <div className=" mt4">
     <div className="mh1 media--justify-around">
+      <FormikField
+        label="직원명"
+        name="name"
+        type="text"
+        icon="filledUser"
+        styleName="textFieldC"
+        required
+      />
       <FormikField
         label="예금주"
         name="accountHolder"
         type="text"
         icon="filledUser"
         styleName="textFieldC"
-        placeholder="유청"
         required
       />
       <FormikField
@@ -21,16 +28,37 @@ const BankForm = ({ isSubmitting }) => (
         type="text"
         icon="bank"
         styleName="textFieldC"
-        placeholder="농협"
         required
       />
       <FormikField
-        label="은행명"
+        label="계좌번호"
         name="accountNo"
         type="text"
-        icon="bankAccount"
+        icon=""
         styleName="textFieldC"
-        placeholder="054 - 745 - 0999"
+        required
+      />
+      <FormikField
+        label="직원명"
+        name="contactNo"
+        type="text"
+        icon="phone"
+        styleName="textFieldC"
+        required
+      />
+      <FormikField
+        label="주소"
+        name="address"
+        type="text"
+        icon="address"
+        styleName="textFieldC"
+      />
+      <FormikField
+        label="시작일"
+        name="startedAt"
+        type="date"
+        icon="calendar"
+        styleName="textFieldC"
         required
       />
     </div>
@@ -44,4 +72,4 @@ const BankForm = ({ isSubmitting }) => (
   </div>
 );
 
-export default BankForm;
+export default Form;

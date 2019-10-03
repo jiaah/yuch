@@ -1,17 +1,26 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
-import BankForm from './bankForm';
+import EmployeeForm from './Form';
 import { createBankAccountMsg } from '../../../data/message';
+import { formattedToday } from '../../../helpers/moment';
 
-const CreateBankFormBox = ({
+const CreateFormBox = ({
   bankAccountValidation,
   createBankAccount,
   handleCloseModal,
   addFlashMessage,
-  bankAccount,
+  data,
 }) => {
-  const values = { accountHolder: '', bankName: '', accountNo: '' };
+  const values = {
+    name: '',
+    accountHolder: '',
+    bankName: '',
+    accountNo: '',
+    contactNo: '',
+    address: '',
+    startedAt: formattedToday,
+  };
   const handleCreateBankAccount = async (
     values,
     { setSubmitting, resetForm },
@@ -31,14 +40,14 @@ const CreateBankFormBox = ({
   };
   return (
     <React.Fragment>
-      {bankAccount.length >= 4 ? (
+      {data.length >= 4 ? (
         <React.Fragment>{createBankAccountMsg}</React.Fragment>
       ) : (
         <Formik
           initialValues={values}
           render={props => (
             <Form className="mh1">
-              <BankForm {...props} />
+              <EmployeeForm {...props} />
             </Form>
           )}
           onSubmit={handleCreateBankAccount}
@@ -49,4 +58,4 @@ const CreateBankFormBox = ({
   );
 };
 
-export default CreateBankFormBox;
+export default CreateFormBox;

@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import { getIn } from 'formik';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   // auth, admin & user account
@@ -75,6 +77,7 @@ const styles = theme => ({
 
 const Input = ({
   classes,
+  icon,
   styleName,
   field: { name, value, onBlur },
   form: { errors, touched, setFieldValue },
@@ -128,7 +131,9 @@ const Input = ({
       name === 'note' ||
       name === 'time' ||
       name === 'date' ||
-      name === 'businessNo'
+      name === 'businessNo' ||
+      name === 'name' ||
+      name === 'startedAt'
     ) {
       value = inputValue;
     }
@@ -137,19 +142,29 @@ const Input = ({
   };
 
   return (
-    <React.Fragment>
-      <TextField
-        name={name}
-        value={value || ''}
-        onChange={e => change(e, name, true)}
-        onBlur={onBlur}
-        {...props}
-        className={classes[styleName]}
-        helperText={isTouched && errorMessage}
-        error={isTouched && Boolean(errorMessage)}
-        inputProps={{ 'data-testid': name, tabIndex: name }}
-      />
-    </React.Fragment>
+    <TextField
+      name={name}
+      value={value || ''}
+      onChange={e => change(e, name, true)}
+      onBlur={onBlur}
+      {...props}
+      className={classes[styleName]}
+      helperText={isTouched && errorMessage}
+      error={isTouched && Boolean(errorMessage)}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Icon
+              name={icon}
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+            />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 

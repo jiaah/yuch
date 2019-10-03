@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
 import { stableSort, getSorting } from '../../../utils/sort';
-import BankTableRow from './bankTableRow';
+import EmployeeTableRow from './TableRow';
 
 const styles = () => ({
   tableWrapper: {
@@ -16,10 +16,10 @@ const styles = () => ({
   table: { minWidth: 470 },
 });
 
-const BankTable = ({
+const EmployeeTable = ({
   classes: { tableWrapper, table },
   bankAccountTableHeadColumns,
-  bankAccount,
+  data,
   saveClickedItemData,
   saveSelectedItemValue,
   handleButtonClick,
@@ -28,7 +28,7 @@ const BankTable = ({
   const handleTableRowClick = id => setSelected(id);
 
   const getClickedUserData = async bankId => {
-    const bankData = await bankAccount.filter(b => b.id === bankId);
+    const bankData = await data.filter(b => b.id === bankId);
     return bankData[0];
   };
 
@@ -43,31 +43,29 @@ const BankTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = bankAccount && 7 - bankAccount.length;
+  const emptyRows = data && 7 - data.length;
 
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="bank" size="small">
         <EnhancedTableHead list={bankAccountTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
-          {bankAccount &&
-            bankAccount.length !== 0 &&
-            stableSort(bankAccount, getSorting('asc', 'id')).map(
-              (row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <BankTableRow
-                    key={row.id}
-                    handleTableRowClick={handleTableRowClick}
-                    handleEditBtnClick={handleEditBtnClick}
-                    handleDeleteBtnClick={handleDeleteBtnClick}
-                    row={row}
-                    selected={selected}
-                    labelId={labelId}
-                  />
-                );
-              },
-            )}
+          {data &&
+            data.length !== 0 &&
+            stableSort(data, getSorting('asc', 'id')).map((row, index) => {
+              const labelId = `enhanced-table-checkbox-${index}`;
+              return (
+                <EmployeeTableRow
+                  key={row.id}
+                  handleTableRowClick={handleTableRowClick}
+                  handleEditBtnClick={handleEditBtnClick}
+                  handleDeleteBtnClick={handleDeleteBtnClick}
+                  row={row}
+                  selected={selected}
+                  labelId={labelId}
+                />
+              );
+            })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 49 * emptyRows }}>
               <TableCell colSpan={6} />
@@ -79,4 +77,4 @@ const BankTable = ({
   );
 };
 
-export default withStyles(styles)(BankTable);
+export default withStyles(styles)(EmployeeTable);

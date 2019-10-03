@@ -1,9 +1,9 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
-import BankForm from './bankForm';
+import EmployeeForm from './Form';
 
-const EditBankFormBox = ({
+const EditFormBox = ({
   bankAccountValidation,
   editBankAccount,
   handleCloseModal,
@@ -32,7 +32,7 @@ const EditBankFormBox = ({
       initialValues={clickedUserData}
       render={props => (
         <Form className="mh1">
-          <BankForm {...props} />
+          <EmployeeForm {...props} />
         </Form>
       )}
       onSubmit={handleEditBankAccount}
@@ -41,4 +41,4 @@ const EditBankFormBox = ({
   );
 };
 
-export default EditBankFormBox;
+export default EditFormBox;

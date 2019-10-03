@@ -7,7 +7,7 @@ const nameRegExp = /^[a-zA-Z가-힣0-9@#()*_-\s]{2,20}$/;
 // 영.숫자 조합
 const engNumRegExp = /^[a-zA-Z0-9_]+$/;
 const phoneRegExp = /^([0-9]{2}|[0-9]{3})-([0-9]{3}|[0-9]{4})-[0-9]{4}$/;
-const bankRegExp = /^([0-9]{3}|[0-9]{4})-([0-9]{2}|[0-9]{4})-([0-9]{4}|[0-9]{6}|[0-9]{7})$/;
+const bankRegExp = /^([0-9]{3}|[0-9]{4})-([0-9]{3}|[0-9]{2}|[0-9]{4})-([0-9]{4}|[0-9]{6}|[0-9]{7})$/;
 const businessRegExp = /^([0-9]{3})-([0-9]{2})-([0-9]{5})$/;
 
 export const userAccountValidation = Yup.object({

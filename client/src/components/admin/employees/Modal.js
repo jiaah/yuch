@@ -2,32 +2,29 @@ import React from 'react';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import Loader from '../../loader';
-import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 
-const CreateBankFormBox = Loader({
+const CreateFormBox = Loader({
   loader: () =>
-    import('./createBankFormBox' /* webpackChunkName: 'CreateBankFormBox' */),
+    import('./createFormBox' /* webpackChunkName: 'CreateFormBox' */),
 });
 
-const EditBankFormBox = Loader({
-  loader: () =>
-    import('./editBankFormBox' /* webpackChunkName: 'EditBankFormBox' */),
+const EditFormBox = Loader({
+  loader: () => import('./editFormBox' /* webpackChunkName: 'EditFormBox' */),
 });
 
-const DeleteBankFormBox = Loader({
+const DeleteFormBox = Loader({
   loader: () =>
-    import('./deleteBankFormBox' /* webpackChunkName: 'DeleteBankFormBox' */),
+    import('./deleteFormBox' /* webpackChunkName: 'DeleteFormBox' */),
 });
 
-const BankModal = ({
+const EmployeeModal = ({
   bankAccountValidation,
   // local states
   clickedBtn,
-  bankAccount,
+  data,
   // global states
   clickedUserData,
   selectedSearchItem,
-  isAdminVerified,
   // actions
   hideModal,
   resetClickedItemData,
@@ -59,7 +56,7 @@ const BankModal = ({
       component={
         <React.Fragment>
           {clickedBtn === 'edit' ? (
-            <EditBankFormBox
+            <EditFormBox
               bankAccountValidation={bankAccountValidation}
               editBankAccount={editBankAccount}
               handleCloseModal={handleCloseModal}
@@ -67,20 +64,20 @@ const BankModal = ({
               clickedUserData={clickedUserData}
             />
           ) : clickedBtn === 'create' ? (
-            <CreateBankFormBox
+            <CreateFormBox
               bankAccountValidation={bankAccountValidation}
               createBankAccount={createBankAccount}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              bankAccount={bankAccount}
+              data={data}
             />
           ) : clickedBtn === 'delete' ? (
-            <DeleteBankFormBox
+            <DeleteFormBox
               deleteBankAccount={deleteBankAccount}
               selectedSearchItem={selectedSearchItem}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              bankAccount={bankAccount}
+              data={data}
             />
           ) : null}
         </React.Fragment>
@@ -89,4 +86,4 @@ const BankModal = ({
   );
 };
 
-export default BankModal;
+export default EmployeeModal;

@@ -59,7 +59,7 @@ const BankAccountContainer = ({
     return () => {
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedSearchItem && resetSelectedItemValue(),
       ]);
     };
   }, []);
@@ -118,7 +118,7 @@ const BankAccountContainer = ({
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"
       />
-      {clickedBtn !== null && (
+      {clickedBtn && (
         <BankModal
           resetClickedItemData={resetClickedItemData}
           hideModal={hideModal}

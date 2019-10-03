@@ -5,25 +5,20 @@ import { bindActionCreators } from 'redux';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Loader from '../../loader';
-import BankTable from './bankTable';
+import Table from './Table';
 import { bankAccountTableHeadColumns } from '../../../data/data';
-import {
-  bankAccountPageInfoA,
-  bankAccountPageInfoB,
-} from '../../../data/message';
 import { bankAccountValidation } from '../../formValidation';
-import IconMessage from '../../../shared/iconMessage';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as bankActions from '../../../actions/bankAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 
-const BankModal = Loader({
-  loader: () => import('./bankModal' /* webpackChunkName: 'BankModal' */),
+const Modal = Loader({
+  loader: () => import('./Modal' /* webpackChunkName: 'Modal' */),
 });
 
-const BankAccountContainer = ({
+const Container = ({
   modalActions: { showModal, hideModal },
   bankActions: {
     getBankAccount,
@@ -41,14 +36,14 @@ const BankAccountContainer = ({
   clickedUserData,
   selectedSearchItem,
 }) => {
-  const [bankAccount, setBankAccount] = useState([]);
+  const [data, setData] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchBankAccount = async () => {
     const bankAccounts = await getBankAccount();
     if (bankAccounts.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-    return setBankAccount(bankAccounts);
+    return setData(bankAccounts);
   };
 
   useEffect(() => {
@@ -56,7 +51,7 @@ const BankAccountContainer = ({
     return () => {
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedSearchItem && resetSelectedItemValue(),
       ]);
     };
   }, []);
@@ -81,9 +76,9 @@ const BankAccountContainer = ({
       </div>
       <Paper
         component={
-          <BankTable
+          <Table
             bankAccountTableHeadColumns={bankAccountTableHeadColumns}
-            bankAccount={bankAccount}
+            data={data}
             clickedBtn={clickedBtn}
             saveClickedItemData={saveClickedItemData}
             saveSelectedItemValue={saveSelectedItemValue}
@@ -91,32 +86,8 @@ const BankAccountContainer = ({
           />
         }
       />
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={bankAccountPageInfoA}
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
-      />
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={bankAccountPageInfoB}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
-      />
-      {clickedBtn !== null && (
-        <BankModal
+      {clickedBtn && (
+        <Modal
           resetClickedItemData={resetClickedItemData}
           hideModal={hideModal}
           bankAccountValidation={bankAccountValidation}
@@ -128,7 +99,7 @@ const BankAccountContainer = ({
           deleteBankAccount={deleteBankAccount}
           addFlashMessage={addFlashMessage}
           resetSelectedItemValue={resetSelectedItemValue}
-          bankAccount={bankAccount}
+          data={data}
         />
       )}
     </div>
@@ -151,4 +122,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BankAccountContainer);
+)(Container);

@@ -3,12 +3,12 @@ import React from 'react';
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
 import { deleteBankAccountMsg } from '../../../data/message';
 
-const DeleteBankFormBox = ({
+const DeleteFormBox = ({
   deleteBankAccount,
   selectedSearchItem,
   addFlashMessage,
   handleCloseModal,
-  bankAccount,
+  data,
 }) => {
   const handleDeleteUser = async () => {
     const res = await deleteBankAccount(selectedSearchItem);
@@ -24,7 +24,7 @@ const DeleteBankFormBox = ({
 
   return (
     <React.Fragment>
-      {bankAccount.length < 2 ? (
+      {data.length < 2 ? (
         <React.Fragment>{deleteBankAccountMsg}</React.Fragment>
       ) : (
         <AdminVerificationContainer
@@ -36,4 +36,4 @@ const DeleteBankFormBox = ({
   );
 };
 
-export default DeleteBankFormBox;
+export default DeleteFormBox;

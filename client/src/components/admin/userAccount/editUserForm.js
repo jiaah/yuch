@@ -64,7 +64,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           label="사업자번호"
           name="businessNo"
           type="text"
-          icon="bankAccount"
+          icon=""
           styleName="textFieldC"
           placeholder="000-00-00000"
           required
