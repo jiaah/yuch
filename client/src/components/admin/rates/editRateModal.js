@@ -45,32 +45,30 @@ const EditRateModal = ({
     return window.location.reload(true);
   };
   return (
-    <div className="container">
-      <Modal
-        title={title}
-        handleClose={closeModal}
-        component={
-          <Formik
-            initialValues={values}
-            render={props => (
-              <Form>
-                <RateForm
-                  {...props}
-                  selectedDate={selectedDate}
-                  reserveDate={clickedUserData.reserveDate}
-                  thisMonth={thisMonth}
-                  nextMonth={nextMonth}
-                  lastMonth={lastMonth}
-                  handleSelectChange={handleSelectChange}
-                />
-              </Form>
-            )}
-            validationSchema={reservePriceValidation}
-            onSubmit={handleSubmit}
-          />
-        }
-      />
-    </div>
+    <Modal
+      title={title}
+      handleClose={closeModal}
+      component={
+        <Formik
+          initialValues={values}
+          render={props => (
+            <Form>
+              <RateForm
+                {...props}
+                selectedDate={selectedDate}
+                reserveDate={clickedUserData.reserveDate}
+                thisMonth={thisMonth}
+                nextMonth={nextMonth}
+                lastMonth={lastMonth}
+                handleSelectChange={handleSelectChange}
+              />
+            </Form>
+          )}
+          validationSchema={reservePriceValidation}
+          onSubmit={handleSubmit}
+        />
+      }
+    />
   );
 };
 

@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { thisMonthYYYYMM } from '../../../helpers/moment';
-import { formatToMonthDateForm, formatToYYYYMM } from '../../../utils/date';
+import {
+  formatToMonthDateForm,
+  formatToYYYYMM,
+  MMFormatToYYMM,
+} from '../../../utils/date';
 import { adminInvoiceMsg } from '../../../data/message';
 import { admin } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
@@ -12,17 +16,27 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from './invoicePaper';
 import IconMessage from '../../../shared/iconMessage';
+import Loader from '../../loader';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as invoiceActions from '../../../actions/invoiceAction';
 import { resetSelectedItemValue } from '../../../actions/selectedAction';
+import * as modalActions from '../../../actions/modalAction';
+
+const UpdateInvoiceModal = Loader({
+  loader: () =>
+    import('./updateInvoiceModal' /* webpackChunkName: 'updateInvoiceModal' */),
+});
 
 const InvoiceContainer = ({
   date,
+  show,
   searchedValue,
+  updateInvoiceMonth,
   dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUsersInvoice, updateUsersInvoice },
+  modalActions: { showModal, hideModal },
   addFlashMessage,
   resetSelectedItemValue,
 }) => {
@@ -60,11 +74,6 @@ const InvoiceContainer = ({
     fetchData(date);
   }, []);
 
-  const updateInvoice = () => {
-    const yyyymm = formatToYYYYMM(date);
-    updateUsersInvoice(yyyymm);
-  };
-
   return (
     <div className="container-a r--w-80">
       <h2
@@ -98,7 +107,7 @@ const InvoiceContainer = ({
             width="32"
             height="32"
             viewBox="0 0 25 25"
-            handleClick={updateInvoice}
+            handleClick={showModal}
           />
 
           <IconButton
@@ -154,6 +163,15 @@ const InvoiceContainer = ({
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"
       />
+      {show && (
+        <UpdateInvoiceModal
+          updateInvoiceMonth={updateInvoiceMonth}
+          updateUsersInvoice={updateUsersInvoice}
+          addFlashMessage={addFlashMessage}
+          hideModal={hideModal}
+          MMFormatToYYMM={MMFormatToYYMM}
+        />
+      )}
     </div>
   );
 };
@@ -161,6 +179,8 @@ const InvoiceContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.dateMm,
   searchedValue: state.selected.value,
+  show: state.modal.show,
+  updateInvoiceMonth: state.selected.updateInvoice,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
@@ -168,6 +188,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addFlashMessage(variant, message)),
   invoiceActions: bindActionCreators(invoiceActions, dispatch),
   resetSelectedItemValue: () => dispatch(resetSelectedItemValue()),
+  modalActions: bindActionCreators(modalActions, dispatch),
 });
 
 export default connect(

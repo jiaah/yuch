@@ -70,8 +70,9 @@ export const invoiceFormat = value => {
   const day = moment(value).format('ddd');
   return { date, day };
 };
+export const MMFormatToYYMM = date => moment(date, 'MM').format('YYYYMM');
 
-export const revenueFormat = value => moment(value, 'YYYYMM').format('MM');
+export const revenueFormat = date => moment(date, 'YYYYMM').format('MM');
 
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {

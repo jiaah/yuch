@@ -25,7 +25,7 @@ const RatesPaper = ({
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
   };
-  console.log(users.length);
+
   let sortedDataA;
   let sortedDataB;
   if (users && users.length <= 10) {
