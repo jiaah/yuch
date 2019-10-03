@@ -14,7 +14,6 @@ const DeleteUserFormBox = ({
   bankAccount,
 }) => {
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    console.log('values: ', values);
     const { companyName, ...others } = values;
     const userInfo = { companyName, ...others, nextMonth };
 

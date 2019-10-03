@@ -126,11 +126,21 @@ export const navAdminItems = {
   4: [
     {
       id: 11,
+      name: `협력 업체`,
+      to: '/admin/account/partners',
+    },
+    {
+      id: 12,
+      name: `${admin.companyName} 직원`,
+      to: '/admin/account/employees',
+    },
+    {
+      id: 13,
       name: `${admin.companyName} 계정`,
       to: '/admin/account',
     },
     {
-      id: 12,
+      id: 14,
       name: `${admin.companyName} 계좌`,
       to: '/admin/account/bank',
     },
