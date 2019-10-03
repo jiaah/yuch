@@ -63,6 +63,45 @@ export const userAccountValidation = Yup.object({
     .required('사업자번호를 입력하세요.'),
 });
 
+export const editUserAccountValidation = Yup.object({
+  companyName: Yup.string('')
+    .matches(
+      nameRegExp,
+      '특수문자는 @#())*_- 만 입력가능합니다 (띄어쓰기 가능)',
+    )
+    .max(20, '20글자 아래로 입력해주세요.')
+    .required('업체명을 입력해주세요.'),
+  username: Yup.string('')
+    .lowercase('소문자로 입력해주세요.')
+    .matches(/^\S+$/, '글자를 붙여쓰세요.')
+    .matches(engNumRegExp, '특수문자는 _ 만 사용 가능합니다.')
+    .max(12, '12글자 아래로 입력해주세요.')
+    .required('고객 로그인 아이디를 입력하세요.'),
+  contactNo: Yup.string()
+    .matches(phoneRegExp, "' - '를 포함한 숫자를 입력해주세요.")
+    .required('연락처를 입력하세요.'),
+  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+  address: Yup.string(''),
+  lunchQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 숫자를 입력해 주세요.'),
+  dinnerQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 숫자를 입력해 주세요.'),
+  lateNightSnackQty: Yup.number()
+    .nullable()
+    .typeError('숫자만 입력하세요.')
+    .integer('1이상의 숫자를 입력해 주세요.')
+    .positive('1이상의 숫자를 입력해 주세요.'),
+  businessNo: Yup.string()
+    .matches(businessRegExp, "' - '를 포함한 숫자를 입력해주세요.")
+    .required('사업자번호를 입력하세요.'),
+});
+
 export const loginValidation = Yup.object({
   username: Yup.string('')
     .trim()

@@ -27,7 +27,7 @@ const EditUserModal = ({
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
-  userAccountValidation,
+  editUserAccountValidation,
   resetPasswordValidation,
 }) => {
   const [subModal, setSubModal] = useState(null);
@@ -75,7 +75,7 @@ const EditUserModal = ({
             handleCloseModal={handleCloseModal}
             addFlashMessage={addFlashMessage}
             clickedUserData={clickedUserData}
-            userAccountValidation={userAccountValidation}
+            editUserAccountValidation={editUserAccountValidation}
             editUser={editUser}
             bankAccount={bankAccount}
           />

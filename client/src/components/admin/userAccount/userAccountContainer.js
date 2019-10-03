@@ -12,6 +12,7 @@ import { ratesPageInfo } from '../../../data/message';
 import Select from '../../../shared/form/select';
 import {
   userAccountValidation,
+  editUserAccountValidation,
   resetPasswordValidation,
 } from '../../formValidation';
 /* --- Actions --- */
@@ -202,7 +203,7 @@ const UserAccountContainer = ({
           bankAccount={bankAccount}
           handleEndingService={handleEndingService}
           resetPassword={resetPassword}
-          userAccountValidation={userAccountValidation}
+          editUserAccountValidation={editUserAccountValidation}
           resetPasswordValidation={resetPasswordValidation}
         />
       ) : null}

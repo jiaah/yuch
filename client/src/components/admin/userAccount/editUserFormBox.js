@@ -9,11 +9,12 @@ const DeleteUserFormBox = ({
   handleCloseModal,
   addFlashMessage,
   clickedUserData,
-  userAccountValidation,
+  editUserAccountValidation,
   editUser,
   bankAccount,
 }) => {
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
+    console.log('values: ', values);
     const { companyName, ...others } = values;
     const userInfo = { companyName, ...others, nextMonth };
 
@@ -42,7 +43,7 @@ const DeleteUserFormBox = ({
         </Form>
       )}
       onSubmit={handleEditUser}
-      validationSchema={userAccountValidation}
+      validationSchema={editUserAccountValidation}
     />
   );
 };
