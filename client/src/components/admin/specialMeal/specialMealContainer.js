@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import {
-  twoYearsAgo,
-  inTwoYears,
-  formattedTmr,
-  today,
-} from '../../../helpers/moment';
+import { inTwoYears, formattedTmr, today } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
@@ -20,6 +15,7 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import Loader from '../../loader';
+import { admin } from '../../../data/data';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -32,6 +28,8 @@ import {
   adminSpecialMealMsg,
   adminSpecialMealMsgA,
   adminSpecialMealMsgB,
+  adminSpecialMealMsgC,
+  updateRateMessageC,
 } from '../../../data/message';
 
 const ModalControlloer = Loader({
@@ -138,7 +136,7 @@ const SpecialMealContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        startTime="20191001"
+        startTime={admin.startTime}
         endTime={`${inTwoYears}01`}
         updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
@@ -153,45 +151,46 @@ const SpecialMealContainer = ({
         />
         <div>
           <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
-          <IconButton
             handleClick={() => handleButtonClick('create')}
             name="add"
             width="30"
             height="30"
             viewBox="0 0 24 24"
           />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
         </div>
       </div>
-      <Paper
-        id="print"
-        isDivided={false}
-        component={
-          <React.Fragment>
-            {specialMeal && specialMeal.length !== 0 ? (
-              <Table
-                users={specialMeal}
-                selectedRow={selectedRow}
-                clickedUserData={clickedUserData}
-                selectedItemValue={selectedItemValue}
-                saveClickedItemData={saveClickedItemData}
-                handleButtonClick={handleButtonClick}
-                formatToDateForm={formatToDateForm}
-                handleTableRowClick={handleTableRowClick}
-                formatToYYYYMMDD={formatToYYYYMMDD}
-                today={today}
-              />
-            ) : (
-              <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-            )}
-          </React.Fragment>
-        }
-      />
+      <div id="print">
+        <Paper
+          isDivided={false}
+          component={
+            <React.Fragment>
+              {specialMeal && specialMeal.length !== 0 ? (
+                <Table
+                  users={specialMeal}
+                  selectedRow={selectedRow}
+                  clickedUserData={clickedUserData}
+                  selectedItemValue={selectedItemValue}
+                  saveClickedItemData={saveClickedItemData}
+                  handleButtonClick={handleButtonClick}
+                  formatToDateForm={formatToDateForm}
+                  handleTableRowClick={handleTableRowClick}
+                  formatToYYYYMMDD={formatToYYYYMMDD}
+                  today={today}
+                />
+              ) : (
+                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+              )}
+            </React.Fragment>
+          }
+        />
+      </div>
       <IconMessage
         name="info"
         width="20"
@@ -199,7 +198,7 @@ const SpecialMealContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
-        text={adminSpecialMealMsgA}
+        text={adminSpecialMealMsg}
         position="end"
         iconBoxStyle="mt3 pw1"
         textStyle="icon-message--info"
@@ -211,7 +210,43 @@ const SpecialMealContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
+        text={adminSpecialMealMsgA}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
         text={adminSpecialMealMsgB}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminSpecialMealMsgC}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={updateRateMessageC}
         position="end"
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"

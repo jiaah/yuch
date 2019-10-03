@@ -3,24 +3,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { thisMonthYYYYMM } from '../../../helpers/moment';
-import { formatToMonthDateForm, formatToYYYYMM } from '../../../utils/date';
+import {
+  formatToMonthDateForm,
+  formatToYYYYMM,
+  formatSlashToYYMM,
+  selectOptionsYYYYMM,
+} from '../../../utils/date';
+import { adminInvoiceMsg } from '../../../data/message';
 import { admin } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from './invoicePaper';
+import IconMessage from '../../../shared/iconMessage';
+import Loader from '../../loader';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as invoiceActions from '../../../actions/invoiceAction';
 import { resetSelectedItemValue } from '../../../actions/selectedAction';
+import * as modalActions from '../../../actions/modalAction';
+
+const UpdateInvoiceModal = Loader({
+  loader: () =>
+    import('./updateInvoiceModal' /* webpackChunkName: 'updateInvoiceModal' */),
+});
 
 const InvoiceContainer = ({
   date,
+  show,
   searchedValue,
+  updateInvoiceMonth,
   dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUsersInvoice, updateUsersInvoice },
+  modalActions: { showModal, hideModal },
   addFlashMessage,
   resetSelectedItemValue,
 }) => {
@@ -56,7 +73,6 @@ const InvoiceContainer = ({
 
   useEffect(() => {
     fetchData(date);
-    return () => resetDateMonthly();
   }, []);
 
   return (
@@ -66,7 +82,7 @@ const InvoiceContainer = ({
         title="오늘 일자로 돌아가기"
         onClick={resetDateMonthly}
       >
-        거래 명세서
+        고객사 매출 현황
       </h2>
       <DateButtons
         date={date}
@@ -74,8 +90,7 @@ const InvoiceContainer = ({
         unit="mm"
         formattedDate={formattedDate}
         startTime={admin.startTime}
-        // endTime={`${thisMonthYYYYMM}01`}
-        endTime="20300101"
+        endTime={`${thisMonthYYYYMM}01`}
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
@@ -93,8 +108,9 @@ const InvoiceContainer = ({
             width="32"
             height="32"
             viewBox="0 0 25 25"
-            handleClick={() => updateUsersInvoice(date)}
+            handleClick={showModal}
           />
+
           <IconButton
             name="print"
             width="32"
@@ -104,13 +120,60 @@ const InvoiceContainer = ({
           />
         </div>
       </div>
-      <Paper
-        id="print"
-        data={data}
-        selectedRow={selectedRow}
-        searchedValue={searchedValue}
-        onfocusOnSelectdRow={onfocusOnSelectdRow}
+      <div id="print">
+        <Paper
+          data={data}
+          selectedRow={selectedRow}
+          searchedValue={searchedValue}
+          onfocusOnSelectdRow={onfocusOnSelectdRow}
+        />
+      </div>
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text="고객사에 등록되어있는 특식이 포함된 합계입니다."
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info f-mini"
       />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text="고객사별 거래명세서를 보시려면 고객사명을 클릭하여주세요."
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info f-mini"
+      />
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminInvoiceMsg}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info"
+      />
+      {show && (
+        <UpdateInvoiceModal
+          updateInvoiceMonth={updateInvoiceMonth}
+          updateUsersInvoice={updateUsersInvoice}
+          addFlashMessage={addFlashMessage}
+          hideModal={hideModal}
+          formatSlashToYYMM={formatSlashToYYMM}
+          selectOptionsYYYYMM={selectOptionsYYYYMM}
+        />
+      )}
     </div>
   );
 };
@@ -118,6 +181,8 @@ const InvoiceContainer = ({
 const mapStateToProps = state => ({
   date: state.dateTracker.dateMm,
   searchedValue: state.selected.value,
+  show: state.modal.show,
+  updateInvoiceMonth: state.selected.updateInvoice,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
@@ -125,6 +190,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addFlashMessage(variant, message)),
   invoiceActions: bindActionCreators(invoiceActions, dispatch),
   resetSelectedItemValue: () => dispatch(resetSelectedItemValue()),
+  modalActions: bindActionCreators(modalActions, dispatch),
 });
 
 export default connect(

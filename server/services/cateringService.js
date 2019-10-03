@@ -73,7 +73,6 @@ const findOneByUserIdWithDate = async (userId, date) => {
       .innerJoin('users', 'users.id', 'catering.userId')
       .where({ userId, date: formatedDate })
       .first();
-    console.log(result);
 
     if (!result) {
       if (![0, 6].includes(dayOfWeek)) {
@@ -127,7 +126,7 @@ const findOneByUserIdWithDate = async (userId, date) => {
       result.lateNightSnackQty = null;
     }
 
-    console.log(result);
+    // console.log(result);
 
     return result;
   } catch (error) {

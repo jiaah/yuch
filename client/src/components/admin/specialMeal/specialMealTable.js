@@ -55,13 +55,13 @@ const SpecialMealTable = ({
 
   const emptyRows = users && 9 - users.length;
 
-  // const formattedData = users.map(u => formatToYYYYMMDD(u.date));
-  // const upComingEventIndex = formattedData.findIndex(i => i >= today);
-  // const upComingEventId = users[upComingEventIndex].id;
+  const formattedData = users.map(u => formatToYYYYMMDD(u.date));
+  const upComingEventIndex = formattedData.findIndex(i => i >= today);
+  const upComingEventId = users[upComingEventIndex].id;
 
   return (
     <div id="print" className={tableWrapper}>
-      <Table className={table} aria-labelledby="tableTitle">
+      <Table className={table} aria-labelledby="admin-specialmeal" size="small">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
           {users &&
@@ -79,7 +79,7 @@ const SpecialMealTable = ({
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
-                  // upComingEventId={upComingEventId}
+                  upComingEventId={upComingEventId}
                 />
               );
             })}

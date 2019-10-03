@@ -41,7 +41,7 @@ export const navClient = [
   {
     id: 3,
     name: '인보이스',
-    to: '/user/invoice',
+    to: '/invoice/user',
     className: 'c-text',
   },
   {
@@ -80,11 +80,16 @@ export const navAdminItems = {
     },
     {
       id: 12,
+      name: '식당 식수',
+      to: '/admin/count/restaurant/companies/dd',
+    },
+    {
+      id: 13,
       name: '식당 매출',
       to: '/admin/count/restaurant/dd',
     },
     {
-      id: 13,
+      id: 14,
       name: '특식',
       to: '/admin/count/specialmeal',
     },
@@ -97,7 +102,7 @@ export const navAdminItems = {
     },
     {
       id: 12,
-      name: '매출 현황',
+      name: '유청 매출 현황',
       to: '/admin/revenue',
     },
   ],
@@ -111,6 +116,11 @@ export const navAdminItems = {
       id: 12,
       name: '고객 계정',
       to: '/admin/account/users',
+    },
+    {
+      id: 13,
+      name: '고객 사업자번호',
+      to: '/admin/account/business',
     },
   ],
   4: [
@@ -204,6 +214,12 @@ export const userAccountTableHeadColumns = [
     numeric: true,
     disablePadding: false,
     label: '주소',
+  },
+  {
+    id: 'businessNo',
+    numeric: true,
+    disablePadding: false,
+    label: '사업자번호',
   },
   {
     id: 'businessType',
@@ -541,5 +557,20 @@ export const revenueColumns = [
     numeric: true,
     disablePadding: false,
     label: '합계',
+  },
+];
+
+export const userBusinessColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'businessNo',
+    numeric: true,
+    disablePadding: false,
+    label: '사업자 번호',
   },
 ];

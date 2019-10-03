@@ -11,6 +11,7 @@ export const getUsersInvoice = date => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getUsersInvoice',
+      status: error.response.status,
       error: 'Getting Users Invoice failed.',
     });
   }
@@ -19,13 +20,14 @@ export const getUsersInvoice = date => async dispatch => {
 export const updateUsersInvoice = date => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUsersInvoice' });
   try {
-    const res = await Axios.patch('/invoice/users', date);
+    const res = await Axios.patch('/invoice/users', { date });
     dispatch({ type: types.HTTP_SUCCESS, api: 'updateUsersInvoice' });
     return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'updateUsersInvoice',
+      status: error.response.status,
       error: 'Updating Users Invoice failed.',
     });
   }
@@ -41,6 +43,7 @@ export const getUserInvoice = (id, date) => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getUserInvoice',
+      status: error.response.status,
       error: 'Getting User Invoice failed.',
     });
   }
@@ -56,6 +59,7 @@ export const getRevenue = date => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getRevenue',
+      status: error.response.status,
       error: 'Getting Revenue failed.',
     });
   }
@@ -71,6 +75,7 @@ export const getYuchRevenue = date => async dispatch => {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getYuchRevenue',
+      status: error.response.status,
       error: 'Getting YuchRevenue failed.',
     });
   }

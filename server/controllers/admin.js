@@ -93,6 +93,7 @@ exports.createUser = (req, res) => {
     address,
     mealPrice,
     businessType,
+    businessNo,
   } = req.body.userInfo;
   return util.bcryptPassword(password).then(hashedPassword =>
     knex('users')
@@ -108,6 +109,7 @@ exports.createUser = (req, res) => {
         bankAccountId,
         address,
         businessType,
+        businessNo,
       })
       .returning('id')
       .then(user => {
@@ -139,6 +141,7 @@ exports.editUserByAdmin = (req, res) => {
     bankAccountId,
     address,
     businessType,
+    businessNo,
     // mealPrice,
     // nextMonth,
   } = req.body.userInfo;
@@ -158,6 +161,7 @@ exports.editUserByAdmin = (req, res) => {
         bankAccountId,
         address,
         businessType,
+        businessNo,
         updated_at: knex.raw('NOW()'),
       })
       // .then(() =>
@@ -203,6 +207,7 @@ exports.getUsersList = async (req, res, next) => {
         'users.bankAccountId',
         'users.address',
         'users.businessType',
+        'users.businessNo',
         'users.updated_at',
         raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
         'meal_price.mealPrice',
@@ -233,6 +238,7 @@ exports.getUsersList = async (req, res, next) => {
         'users.bankAccountId',
         'users.address',
         'users.businessType',
+        'users.businessNo',
         'users.updated_at',
         raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
         'meal_price.mealPrice',
@@ -253,6 +259,19 @@ exports.getUsersList = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+// get users business number list
+exports.getUsersBusinessNoList = async (req, res, next) => {
+  knex('users')
+    .whereNot('users.isAdmin', true)
+    .where(builder => {
+      builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+    })
+    .select('users.companyName', 'users.businessNo')
+    .orderBy('users.companyName', 'asc')
+    .then(users => res.status(200).json(users))
+    .catch(err => res.status(500).json(err));
 };
 
 // get catering meal prices of all clients & users id, companyName*

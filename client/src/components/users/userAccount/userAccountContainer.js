@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
-import { editUserAccountValidation } from '../../formValidation';
 import ChangePwContainer from '../../auth/password/changePwContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
@@ -41,7 +40,7 @@ const AdminAccountContainer = ({
         유청 서비스를 이용하시는 고객님의 기본정보와 식수량 설정
       </p>
       <Paper
-        classname="box-container"
+        classname="center"
         component={
           <React.Fragment>
             <h3 className="flex justify-start">Profile</h3>
@@ -51,7 +50,6 @@ const AdminAccountContainer = ({
               !pwdOpen && (
                 <UserFormBox
                   userData={userData}
-                  editUserAccountValidation={editUserAccountValidation}
                   editUserAccount={editUserAccount}
                   updateCompanyName={updateCompanyName}
                   addFlashMessage={addFlashMessage}

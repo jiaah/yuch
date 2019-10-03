@@ -10,15 +10,7 @@ import {
   updateRateMessageC,
 } from '../../../data/message';
 
-const EditUserForm = ({
-  selectedDate,
-  reserveDate,
-  thisMonth,
-  nextMonth,
-  lastMonth,
-  handleSelectChange,
-  isSubmitting,
-}) => (
+const EditRateForm = ({ selectedDate, handleSelectChange, isSubmitting }) => (
   <React.Fragment>
     <div className="mh2 media--justify-center">
       <div className="mh1">
@@ -31,10 +23,7 @@ const EditUserForm = ({
           required
         />
         <ExpireDateSelect
-          reserveDate={reserveDate || selectedDate}
-          thisMonth={thisMonth}
-          nextMonth={nextMonth}
-          lastMonth={lastMonth}
+          reserveDate={selectedDate}
           handleSelectChange={handleSelectChange}
         />
       </div>
@@ -84,4 +73,4 @@ const EditUserForm = ({
   </React.Fragment>
 );
 
-export default EditUserForm;
+export default EditRateForm;

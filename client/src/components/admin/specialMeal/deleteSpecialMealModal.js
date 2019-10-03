@@ -23,18 +23,16 @@ const DeleteModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        title=""
-        handleClose={() => hideModal()}
-        component={
-          <AdminVerificationContainer
-            handleAdminVerificationSuccess={handleDeleteUser}
-            confirmType="delete"
-          />
-        }
-      />
-    </div>
+    <Modal
+      title=""
+      handleClose={() => hideModal()}
+      component={
+        <AdminVerificationContainer
+          handleAdminVerificationSuccess={handleDeleteUser}
+          confirmType="delete"
+        />
+      }
+    />
   );
 };
 

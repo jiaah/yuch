@@ -41,6 +41,14 @@ module.exports = () => {
 
   // get users profile
   router.get('/users', onlyLoggedIn, adminController.getUsersList);
+
+  // get users businessNo
+  router.get(
+    '/users/business',
+    onlyLoggedIn,
+    adminController.getUsersBusinessNoList,
+  );
+
   // get catering meal prices of all clients
   router.get(
     '/users/catering/rates',

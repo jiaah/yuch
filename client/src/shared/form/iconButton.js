@@ -16,7 +16,7 @@ const IconButton = ({
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  const outerColor = isHovered ? '#ed6802' : '#E8716F';
+  const outerColor = isHovered ? '#fab812' : '#E8716F';
   const selectedColor = color === 'white' ? '#ffffff' : outerColor;
 
   return (

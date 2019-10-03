@@ -33,7 +33,7 @@ const InvoiceTable = ({
   return (
     <React.Fragment>
       <div className={tableWrapper}>
-        <Table className={table} aria-labelledby="tableTitle">
+        <Table className={table} aria-labelledby="brief-invoice" size="small">
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}

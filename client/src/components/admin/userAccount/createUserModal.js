@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
-import { addUserAccountValidation } from '../../formValidation';
 import { emptyStrToNull } from '../../../utils/reformat';
 
 const UserAccountModal = ({
@@ -17,6 +16,7 @@ const UserAccountModal = ({
   resetSelectedItemValue,
   // fncs from parent component
   handleCloseModal,
+  userAccountValidation,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -73,27 +73,26 @@ const UserAccountModal = ({
     lateNightSnackQty: '',
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
+    businessNo: '',
   };
 
   return (
-    <div className="container">
-      <Modal
-        title="신규업체 등록"
-        handleClose={handleCloseModal}
-        component={
-          <Formik
-            initialValues={values}
-            render={props => (
-              <Form>
-                <CreateUserForm {...props} bankAccount={bankAccount} />
-              </Form>
-            )}
-            onSubmit={handleCreateUser}
-            validationSchema={addUserAccountValidation}
-          />
-        }
-      />
-    </div>
+    <Modal
+      title="신규업체 등록"
+      handleClose={handleCloseModal}
+      component={
+        <Formik
+          initialValues={values}
+          render={props => (
+            <Form>
+              <CreateUserForm {...props} bankAccount={bankAccount} />
+            </Form>
+          )}
+          onSubmit={handleCreateUser}
+          validationSchema={userAccountValidation}
+        />
+      }
+    />
   );
 };
 

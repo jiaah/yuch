@@ -70,8 +70,10 @@ export const invoiceFormat = value => {
   const day = moment(value).format('ddd');
   return { date, day };
 };
+export const formatSlashToYYMM = date =>
+  moment(date, 'YYYY/MM').format('YYYYMM');
 
-export const revenueFormat = value => moment(value, 'YYYYMM').format('MM');
+export const revenueFormat = date => moment(date, 'YYYYMM').format('MM');
 
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {
@@ -98,3 +100,11 @@ export const isDinnerQtyChangeDisabled = date => {
   }
   return true;
 };
+
+export const selectOptionsYYYYMM = arr =>
+  arr.map(i => {
+    const date = moment()
+      .add(i, 'months')
+      .format('YYYY/MM');
+    return { value: date };
+  });

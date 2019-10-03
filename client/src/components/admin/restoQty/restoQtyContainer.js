@@ -10,14 +10,14 @@ import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import CateringPaper from './cateringPaper';
+import CateringPaper from './restoQtyPaper';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
-const CateringContainer = ({
+const RestoQtyContainer = ({
   date,
   selectedItemValue,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
@@ -78,7 +78,7 @@ const CateringContainer = ({
         title="오늘 날짜로 돌아가기"
         onClick={resetDateDaily}
       >
-        위탁급식 식수 현황
+        식당 식수 현황
       </h2>
       <DateButtons
         date={date}
@@ -142,4 +142,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CateringContainer);
+)(RestoQtyContainer);

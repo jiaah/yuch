@@ -63,54 +63,50 @@ const BankModal = ({
   // when clickedBtn is 'create' or 'edit', check admin password first then renders form.
   // when clickedBtn is 'delete, check admin password only when account length is bigger than 1.
   return (
-    <div className="container">
-      <Modal
-        title={title}
-        handleClose={handleCloseModal}
-        component={
-          <React.Fragment>
-            {clickedBtn !== null &&
-              clickedBtn !== 'delete' &&
-              !isAdminVerified && (
-                <AdminVerificationContainer
-                  handleAdminVerificationSuccess={
-                    handleAdminVerificationSuccess
-                  }
-                  confirmType={clickedBtn}
-                />
-              )}
-            {isAdminVerified ? (
-              clickedBtn === 'edit' ? (
-                <EditBankFormBox
-                  bankAccountValidation={bankAccountValidation}
-                  editBankAccount={editBankAccount}
-                  handleCloseModal={handleCloseModal}
-                  addFlashMessage={addFlashMessage}
-                  clickedUserData={clickedUserData}
-                />
-              ) : clickedBtn === 'create' ? (
-                <CreateBankFormBox
-                  bankAccountValidation={bankAccountValidation}
-                  createBankAccount={createBankAccount}
-                  handleCloseModal={handleCloseModal}
-                  addFlashMessage={addFlashMessage}
-                  bankAccount={bankAccount}
-                />
-              ) : null
-            ) : null}
-            {clickedBtn === 'delete' && (
-              <DeleteBankFormBox
-                deleteBankAccount={deleteBankAccount}
-                selectedSearchItem={selectedSearchItem}
+    <Modal
+      title={title}
+      handleClose={handleCloseModal}
+      component={
+        <React.Fragment>
+          {clickedBtn !== null &&
+            clickedBtn !== 'delete' &&
+            !isAdminVerified && (
+              <AdminVerificationContainer
+                handleAdminVerificationSuccess={handleAdminVerificationSuccess}
+                confirmType={clickedBtn}
+              />
+            )}
+          {isAdminVerified ? (
+            clickedBtn === 'edit' ? (
+              <EditBankFormBox
+                bankAccountValidation={bankAccountValidation}
+                editBankAccount={editBankAccount}
+                handleCloseModal={handleCloseModal}
+                addFlashMessage={addFlashMessage}
+                clickedUserData={clickedUserData}
+              />
+            ) : clickedBtn === 'create' ? (
+              <CreateBankFormBox
+                bankAccountValidation={bankAccountValidation}
+                createBankAccount={createBankAccount}
                 handleCloseModal={handleCloseModal}
                 addFlashMessage={addFlashMessage}
                 bankAccount={bankAccount}
               />
-            )}
-          </React.Fragment>
-        }
-      />
-    </div>
+            ) : null
+          ) : null}
+          {clickedBtn === 'delete' && (
+            <DeleteBankFormBox
+              deleteBankAccount={deleteBankAccount}
+              selectedSearchItem={selectedSearchItem}
+              handleCloseModal={handleCloseModal}
+              addFlashMessage={addFlashMessage}
+              bankAccount={bankAccount}
+            />
+          )}
+        </React.Fragment>
+      }
+    />
   );
 };
 

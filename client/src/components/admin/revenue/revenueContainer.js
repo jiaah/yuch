@@ -14,12 +14,13 @@ import DateButtons from '../../../shared/form/dateButtons';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Table from './revenueTable';
+import IconMessage from '../../../shared/iconMessage';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as invoiceActions from '../../../actions/invoiceAction';
 
-const InvoiceContainer = ({
+const RevenueContainer = ({
   date,
   dateTrackerActions: { updateDateYearly, resetDateYearly },
   invoiceActions: { getRevenue },
@@ -28,13 +29,11 @@ const InvoiceContainer = ({
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
   const [data, setData] = useState([]);
-  console.log('data: ', data);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
     const yyyy = formatToYYYY(when);
     const res = await getRevenue(yyyy);
-    console.log('res: ', res);
 
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -54,7 +53,7 @@ const InvoiceContainer = ({
         title="오늘 일자로 돌아가기"
         onClick={resetDateYearly}
       >
-        거래 명세서
+        유청 매출 현황
       </h2>
       <DateButtons
         date={date}
@@ -77,12 +76,26 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      {data && (
-        <Paper
-          id="print"
-          component={<Table data={data} revenueFormat={revenueFormat} />}
-        />
-      )}
+      <div id="print">
+        {data.length !== 0 && (
+          <Paper
+            id="print"
+            component={<Table data={data} revenueFormat={revenueFormat} />}
+          />
+        )}
+      </div>
+      <IconMessage
+        name="info"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text="식당 식수 리스트에 등록되어있는 고객사는 레스토랑으로 분류됩니다."
+        position="end"
+        iconBoxStyle="mt3 pw1"
+        textStyle="icon-message--info f-mimi"
+      />
     </div>
   );
 };
@@ -100,4 +113,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(InvoiceContainer);
+)(RevenueContainer);

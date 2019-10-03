@@ -42,6 +42,27 @@ export const editAdminAccount = (id, values) => async dispatch => {
 };
 
 /* --- Users --- */
+// get users business numbers
+export const getUsersBusinessNo = () => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getUsersBusinessNo' });
+  try {
+    const res = await Axios.get('/admin/users/business');
+    const { data } = res;
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getUsersBusinessNo',
+    });
+    return data;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getUsersBusinessNo',
+      status: error.response.status,
+      error: 'Getting Users Business Number is failed',
+    });
+  }
+};
+
 // get users account
 export const getUsers = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getUsers' });

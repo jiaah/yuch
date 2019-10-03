@@ -2,17 +2,15 @@ import React from 'react';
 /* --- Components --- */
 import { stableSort, getSorting } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
-import RatesTable from './ratesTable';
+import BusinessNoTable from './userBusinessNoTable';
 
-const RatesPaper = ({
+const BusinessNoPaper = ({
   // local state
   users,
   selectedRow,
   // global state
   selectedItemValue,
-  isAdminVerified,
   // funcs
-  handleEditUserBtnClick,
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
@@ -49,13 +47,12 @@ const RatesPaper = ({
           <Paper
             isDivided={true}
             component={
-              <RatesTable
+              <BusinessNoTable
                 order={order}
                 orderBy={orderBy}
                 sortedData={sortedDataA}
                 handleRequestSort={handleRequestSort}
                 selectedItemValue={selectedItemValue}
-                handleEditUserBtnClick={handleEditUserBtnClick}
                 selectedRow={selectedRow}
                 handleTableRowClick={handleTableRowClick}
               />
@@ -65,13 +62,12 @@ const RatesPaper = ({
             isDivided={true}
             classname="paper--sec"
             component={
-              <RatesTable
+              <BusinessNoTable
                 order={order}
                 orderBy={orderBy}
                 sortedData={sortedDataB}
                 handleRequestSort={handleRequestSort}
                 selectedItemValue={selectedItemValue}
-                handleEditUserBtnClick={handleEditUserBtnClick}
                 selectedRow={selectedRow}
                 handleTableRowClick={handleTableRowClick}
               />
@@ -81,27 +77,24 @@ const RatesPaper = ({
       ) : users.length !== 0 && users.length <= 10 ? (
         <Paper
           component={
-            <RatesTable
+            <BusinessNoTable
               order={order}
               orderBy={orderBy}
               sortedData={sortedDataA}
               handleRequestSort={handleRequestSort}
               selectedItemValue={selectedItemValue}
-              handleEditUserBtnClick={handleEditUserBtnClick}
               selectedRow={selectedRow}
               handleTableRowClick={handleTableRowClick}
             />
           }
         />
-      ) : isAdminVerified ? (
+      ) : (
         <Paper
           component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
         />
-      ) : (
-        <Paper />
       )}
     </div>
   );
 };
 
-export default RatesPaper;
+export default BusinessNoPaper;

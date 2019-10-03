@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 /* --- Components --- */
 import Loader from '../../loader';
-import {
-  editUserAccountValidation,
-  resetPasswordValidation,
-} from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
@@ -31,6 +27,8 @@ const EditUserModal = ({
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
+  userAccountValidation,
+  resetPasswordValidation,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
@@ -43,49 +41,47 @@ const EditUserModal = ({
     : clickedUserData.endDate;
 
   return (
-    <div className="container">
-      <Modal
-        title={title}
-        handleClose={() => {
-          if (subModal === null) {
-            return handleCloseModal();
-          }
-          return closeSubModal();
-        }}
-        component={
-          subModal === 'service' ? (
-            <EndService
-              closeSubModal={closeSubModal}
-              handleCloseModal={handleCloseModal}
-              addFlashMessage={addFlashMessage}
-              userId={clickedUserData.id}
-              formattedUserEndDate={formattedUserEndDate}
-              handleEndingService={handleEndingService}
-              formatToYYYYMMDD={formatToYYYYMMDD}
-            />
-          ) : subModal === 'password' ? (
-            <ResetPassword
-              handleCloseModal={handleCloseModal}
-              closeSubModal={closeSubModal}
-              addFlashMessage={addFlashMessage}
-              resetPassword={resetPassword}
-              resetPasswordValidation={resetPasswordValidation}
-              clickedUserData={clickedUserData}
-            />
-          ) : (
-            <EditUserFormBox
-              showSubModal={showSubModal}
-              handleCloseModal={handleCloseModal}
-              addFlashMessage={addFlashMessage}
-              clickedUserData={clickedUserData}
-              editUserAccountValidation={editUserAccountValidation}
-              editUser={editUser}
-              bankAccount={bankAccount}
-            />
-          )
+    <Modal
+      title={title}
+      handleClose={() => {
+        if (subModal === null) {
+          return handleCloseModal();
         }
-      />
-    </div>
+        return closeSubModal();
+      }}
+      component={
+        subModal === 'service' ? (
+          <EndService
+            closeSubModal={closeSubModal}
+            handleCloseModal={handleCloseModal}
+            addFlashMessage={addFlashMessage}
+            userId={clickedUserData.id}
+            formattedUserEndDate={formattedUserEndDate}
+            handleEndingService={handleEndingService}
+            formatToYYYYMMDD={formatToYYYYMMDD}
+          />
+        ) : subModal === 'password' ? (
+          <ResetPassword
+            handleCloseModal={handleCloseModal}
+            closeSubModal={closeSubModal}
+            addFlashMessage={addFlashMessage}
+            resetPassword={resetPassword}
+            resetPasswordValidation={resetPasswordValidation}
+            clickedUserData={clickedUserData}
+          />
+        ) : (
+          <EditUserFormBox
+            showSubModal={showSubModal}
+            handleCloseModal={handleCloseModal}
+            addFlashMessage={addFlashMessage}
+            clickedUserData={clickedUserData}
+            userAccountValidation={userAccountValidation}
+            editUser={editUser}
+            bankAccount={bankAccount}
+          />
+        )
+      }
+    />
   );
 };
 

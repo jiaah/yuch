@@ -47,7 +47,7 @@ const BankTable = ({
 
   return (
     <div className={tableWrapper}>
-      <Table className={table} aria-labelledby="tableTitle">
+      <Table className={table} aria-labelledby="bank" size="small">
         <EnhancedTableHead list={bankAccountTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
           {bankAccount &&

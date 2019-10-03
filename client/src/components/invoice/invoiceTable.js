@@ -20,7 +20,7 @@ const styles = () => ({
     overflowX: 'auto',
   },
   table: { minWidth: 470 },
-  specialColumn: { color: '#023864', paddingLeft: 15 },
+  specialColumn: { color: '#023864', paddingLeft: 35 },
   font: { fontWeight: 'bold' },
 });
 
@@ -30,7 +30,7 @@ const InvoiceTable = ({
   invoiceFormat,
 }) => {
   const { caterings, mealPrice, specialMeals, sumTotal } = data;
-  const TAX_RATE = 0.07;
+  const TAX_RATE = 0.1;
 
   const ccyFormat = num => `${num.toFixed(2)}`;
   const formatNumber = num =>
@@ -47,7 +47,7 @@ const InvoiceTable = ({
 
   return (
     <div className={tableWrapper}>
-      <Table className={table} aria-labelledby="tableTitle">
+      <Table className={table} aria-labelledby="invoice" size="small">
         <EnhancedTableHead list={userInvoiceColumns} />
         <TableBody data-testid="bank-account--table">
           {caterings.length !== 0 &&
@@ -78,7 +78,6 @@ const InvoiceTable = ({
             </React.Fragment>
           )}
           <TableRow>
-            {/* <TableCell rowSpan={3} /> */}
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />

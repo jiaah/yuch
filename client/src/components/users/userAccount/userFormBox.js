@@ -2,10 +2,10 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import UserForm from './userForm';
+import { userAccountValidation } from '../../formValidation';
 
 const UserFormBox = ({
   userData,
-  editUserAccountValidation,
   editUserAccount,
   updateCompanyName,
   addFlashMessage,
@@ -45,7 +45,7 @@ const UserFormBox = ({
         </Form>
       )}
       onSubmit={handleEditAdmin}
-      validationSchema={editUserAccountValidation}
+      validationSchema={userAccountValidation}
     />
   );
 };

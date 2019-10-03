@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 /* --- Components --- */
 import Paper from '../../../shared/paper';
-import CateringTable from './cateringTable';
+import Table from '../catering/cateringTable';
 
 const CateringPaper = ({
   // local state
@@ -20,19 +20,6 @@ const CateringPaper = ({
   endEditing,
   handleTableRowClick,
 }) => {
-  let sortedDataA;
-  let sortedDataB;
-  if (users && users.length <= 10) {
-    sortedDataA = users;
-    sortedDataB = [];
-  }
-  if (users && users.length > 10) {
-    const line =
-      users.length % 2 === 0 ? users.length / 2 : users.length / 2 + 0.5;
-    sortedDataA = users.slice(0, line);
-    sortedDataB = users.slice(line, users.length);
-  }
-
   // error handler
   const [lunchQtyErr, setLunchQtyErr] = useState(false);
   const [dinnerQtyErr, setDinnerQtyErr] = useState(false);
@@ -84,36 +71,12 @@ const CateringPaper = ({
 
   return (
     <div id="print" className="paper">
-      {users.length !== 0 && users.length > 10 ? (
+      {users.length !== 0 ? (
         <React.Fragment>
           <Paper
-            isDivided={true}
             component={
-              <CateringTable
-                sortedData={sortedDataA}
-                selectedItemValue={selectedItemValue}
-                updateUserCatering={updateUserCatering}
-                saveSelectedItemValue={saveSelectedItemValue}
-                resetSelectedItemValue={resetSelectedItemValue}
-                startEditing={startEditing}
-                endEditing={endEditing}
-                editIndex={editIndex}
-                handleTableRowClick={handleTableRowClick}
-                selectedRow={selectedRow}
-                handleUpdate={handleUpdate}
-                validation={validation}
-                lunchQtyErr={lunchQtyErr}
-                dinnerQtyErr={dinnerQtyErr}
-                lateNightSnackQtyErr={lateNightSnackQtyErr}
-              />
-            }
-          />
-          <Paper
-            classname="paper--sec"
-            isDivided={true}
-            component={
-              <CateringTable
-                sortedData={sortedDataB}
+              <Table
+                sortedData={users}
                 selectedItemValue={selectedItemValue}
                 updateUserCatering={updateUserCatering}
                 saveSelectedItemValue={saveSelectedItemValue}
@@ -132,33 +95,9 @@ const CateringPaper = ({
             }
           />
         </React.Fragment>
-      ) : users.length !== 0 && users.length <= 10 ? (
-        <Paper
-          component={
-            <CateringTable
-              sortedData={sortedDataA}
-              selectedItemValue={selectedItemValue}
-              updateUserCatering={updateUserCatering}
-              saveSelectedItemValue={saveSelectedItemValue}
-              resetSelectedItemValue={resetSelectedItemValue}
-              startEditing={startEditing}
-              endEditing={endEditing}
-              editIndex={editIndex}
-              handleTableRowClick={handleTableRowClick}
-              selectedRow={selectedRow}
-              handleUpdate={handleUpdate}
-              validation={validation}
-              lunchQtyErr={lunchQtyErr}
-              dinnerQtyErr={dinnerQtyErr}
-              lateNightSnackQtyErr={lateNightSnackQtyErr}
-            />
-          }
-        />
       ) : (
         <Paper
-          component={
-            <h3 className="mt4 mb4">등록된 위탁급식 고객이 없습니다.</h3>
-          }
+          component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}
         />
       )}
     </div>

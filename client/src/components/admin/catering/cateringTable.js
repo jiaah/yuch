@@ -24,24 +24,24 @@ const CateringTable = ({
   sortedData,
   editIndex,
   selectedRow,
+  lunchQtyErr,
+  dinnerQtyErr,
+  lateNightSnackQtyErr,
   // global states
   selectedItemValue,
   // actions
   updateUserCatering,
-  addFlashMessage,
   saveSelectedItemValue,
   resetSelectedItemValue,
   // fncs
   startEditing,
   endEditing,
   handleTableRowClick,
+  handleUpdate,
+  validation,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);
-  // error handler
-  const [lunchQtyErr, setLunchQtyErr] = useState(false);
-  const [dinnerQtyErr, setDinnerQtyErr] = useState(false);
-  const [lateNightSnackQtyErr, setLateNightSnackQtyErr] = useState(false);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
@@ -62,50 +62,6 @@ const CateringTable = ({
     );
   };
 
-  const validation = values => {
-    if (typeof values.lunchQty !== 'number' && values.lunchQty !== null) {
-      setLunchQtyErr(true);
-    } else {
-      setLunchQtyErr(false);
-    }
-    if (typeof values.dinnerQty !== 'number' && values.dinnerQty !== null) {
-      setDinnerQtyErr(true);
-    } else {
-      setDinnerQtyErr(false);
-    }
-    if (
-      typeof values.lateNightSnackQty !== 'number' &&
-      values.lateNightSnackQty !== null
-    ) {
-      setLateNightSnackQtyErr(true);
-    } else {
-      setLateNightSnackQtyErr(false);
-    }
-  };
-
-  const handleApiRequest = async (userId, values) => {
-    if (!lunchQtyErr && !dinnerQtyErr && !lateNightSnackQtyErr) {
-      const res = await updateUserCatering(userId, values);
-      if (res.error) {
-        addFlashMessage(
-          'error',
-          `${
-            values.companyName
-          } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
-        );
-      } else {
-        await Promise.all([
-          addFlashMessage(
-            'success',
-            `${values.companyName} 식수 등록되었습니다.`,
-          ),
-          endEditing(),
-        ]);
-        window.location.reload(true);
-      }
-    }
-  };
-
   const updateMealQty = async userId => {
     await setSubmitting(true);
     const values = await dataToDisplay.filter(row => {
@@ -122,14 +78,14 @@ const CateringTable = ({
     });
 
     await validation(values[0]);
-    await handleApiRequest(userId, values[0]);
+    await handleUpdate(userId, values[0]);
     return setSubmitting(false);
   };
 
   return (
     <React.Fragment>
       <div className={tableWrapper}>
-        <Table className={table} aria-labelledby="tableTitle">
+        <Table className={table} aria-labelledby="catering" size="small">
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&

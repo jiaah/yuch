@@ -116,50 +116,48 @@ const createModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        title="특식 등록"
-        handleClose={() => hideModal()}
-        component={
-          <React.Fragment>
-            <div className="special-meal-select-user--box">
-              <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.selectedUser}
-                      onChange={handleChange('selectedUser')}
-                      value="selectedUser"
-                    />
-                  }
-                  label="유청 고객 등록하기"
-                  className={checkbox}
-                />
-                {state.selectedUser && (
-                  <SearchBar
-                    data={state.users}
-                    handleSuggestionSelected={handleSuggestionSelected}
-                    handleResetSearch={handleResetSearch}
-                    isSecondSearchBar={true}
+    <Modal
+      title="특식 등록"
+      handleClose={() => hideModal()}
+      component={
+        <React.Fragment>
+          <div className="special-meal-select-user--box">
+            <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={state.selectedUser}
+                    onChange={handleChange('selectedUser')}
+                    value="selectedUser"
                   />
-                )}
-              </div>
-              {adminSpecialMealMsg}
-            </div>
-            <Formik
-              initialValues={state.inputValues}
-              onSubmit={handleSubmit}
-              render={props => (
-                <Form>
-                  <SpecialMealForm {...props} />
-                </Form>
+                }
+                label="유청 고객 등록하기"
+                className={checkbox}
+              />
+              {state.selectedUser && (
+                <SearchBar
+                  data={state.users}
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={handleResetSearch}
+                  isSecondSearchBar={true}
+                />
               )}
-              validationSchema={specialMealValidation}
-            />
-          </React.Fragment>
-        }
-      />
-    </div>
+            </div>
+            {adminSpecialMealMsg}
+          </div>
+          <Formik
+            initialValues={state.inputValues}
+            onSubmit={handleSubmit}
+            render={props => (
+              <Form>
+                <SpecialMealForm {...props} />
+              </Form>
+            )}
+            validationSchema={specialMealValidation}
+          />
+        </React.Fragment>
+      }
+    />
   );
 };
 

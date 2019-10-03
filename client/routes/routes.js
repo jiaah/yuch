@@ -28,9 +28,10 @@ const Reset = Loader({
 });
 
 /* --- ADMIN --- */
-const UserAccountForAdmin = Loader({
+// 유청계정
+const AdminAccount = Loader({
   loader: () =>
-    import('../src/components/admin/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
 });
 
 const BankAccount = Loader({
@@ -38,19 +39,31 @@ const BankAccount = Loader({
     import('../src/components/admin/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
 });
 
+// 고객관리
 const CateringRates = Loader({
   loader: () =>
-    import('../src/components/admin/rates/ratesContainer' /* webpackChunkName: 'CateringRatesAccount' */),
+    import('../src/components/admin/rates/ratesContainer' /* webpackChunkName: 'CateringRates' */),
 });
 
-const AdminAccount = Loader({
+const UserAccountForAdmin = Loader({
   loader: () =>
-    import('../src/components/admin/adminAccount/adminAccountContainer' /* webpackChunkName: 'AdminAccount' */),
+    import('../src/components/admin/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccountForAdmin' */),
 });
 
+const UserBusinessNo = Loader({
+  loader: () =>
+    import('../src/components/admin/userBusinessNo/userBusinessNoContainer' /* webpackChunkName: 'UserBusinessNo' */),
+});
+
+// 식수현황
 const RestoSales = Loader({
   loader: () =>
     import('../src/components/admin/resto/restoContainer' /* webpackChunkName: 'RestoSales' */),
+});
+
+const RestoQty = Loader({
+  loader: () =>
+    import('../src/components/admin/restoQty/restoQtyContainer' /* webpackChunkName: 'RestoQty' */),
 });
 
 const AdminCatering = Loader({
@@ -60,17 +73,18 @@ const AdminCatering = Loader({
 
 const AdminSpecailMeal = Loader({
   loader: () =>
-    import('../src/components/admin/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/specialMeal/specialMealContainer' /* webpackChunkName: 'AdminSpecailMeal' */),
 });
 
+// 인보이스
 const AdminInvoice = Loader({
   loader: () =>
-    import('../src/components/admin/invoice/invoiceContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/invoice/invoiceContainer' /* webpackChunkName: 'AdminInvoice' */),
 });
 
 const Revenue = Loader({
   loader: () =>
-    import('../src/components/admin/revenue/revenueContainer' /* webpackChunkName: 'AdminCatering' */),
+    import('../src/components/admin/revenue/revenueContainer' /* webpackChunkName: 'Revenue' */),
 });
 
 /* --- USER --- */
@@ -81,18 +95,18 @@ const UserAccount = Loader({
 
 const UserCatering = Loader({
   loader: () =>
-    import('../src/components/users/catering/cateringContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/users/catering/cateringContainer' /* webpackChunkName: 'UserCatering' */),
 });
 
 const UserSpecialMeal = Loader({
   loader: () =>
-    import('../src/components/users/specialMeal/specialMealContainer' /* webpackChunkName: 'UserAccount' */),
+    import('../src/components/users/specialMeal/specialMealContainer' /* webpackChunkName: 'UserSpecialMeal' */),
 });
 
 /* --- ECS --- */
 const Invoice = Loader({
   loader: () =>
-    import('../src/components/invoice/invoiceContainer' /* webpackChunkName: 'NoMatch' */),
+    import('../src/components/invoice/invoiceContainer' /* webpackChunkName: 'Invoice' */),
 });
 
 const NoMatch = Loader({
@@ -115,6 +129,11 @@ const routes = () => (
         exact
         path="/admin/count/catering/dd"
         component={AdminGuards(AdminCatering)}
+      />
+      <Route
+        exact
+        path="/admin/count/restaurant/companies/dd"
+        component={AdminGuards(RestoQty)}
       />
       <Route
         exact
@@ -143,6 +162,11 @@ const routes = () => (
         exact
         path="/admin/account/users"
         component={AdminGuards(UserAccountForAdmin)}
+      />
+      <Route
+        exact
+        path="/admin/account/business"
+        component={AdminGuards(UserBusinessNo)}
       />
       {/* 유청계정 */}
       <Route

@@ -20,7 +20,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="filledUser"
           styleName="textFieldC"
-          placeholder="(한글) 유청"
+          placeholder="유청"
           required
         />
         <FormikField
@@ -29,7 +29,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="user"
           styleName="textFieldC"
-          placeholder="(영문) yucheong"
+          placeholder="(영문) yuchung"
           required
         />
         <FormikField
@@ -38,7 +38,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="text"
           icon="phone"
           styleName="textFieldC"
-          placeholder="054-745-0999"
+          placeholder="000-000-0000"
           required
         />
       </div>
@@ -57,17 +57,27 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           type="email"
           icon="email"
           styleName="textFieldC"
+          placeholder="yuchung@hanmail.net"
           required
         />
         <FormikField
-          label="주소"
-          name="address"
+          label="사업자번호"
+          name="businessNo"
           type="text"
-          icon="address"
+          icon="bankAccount"
           styleName="textFieldC"
+          placeholder="000-00-00000"
+          required
         />
       </div>
     </div>
+    <FormikField
+      label="주소"
+      name="address"
+      type="text"
+      icon="address"
+      styleName="textFieldH"
+    />
     <div className="flex justify-center">
       <FormikField
         label="중식 식수량"
