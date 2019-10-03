@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import {
-  twoYearsAgo,
-  inTwoYears,
-  formattedTmr,
-  today,
-} from '../../../helpers/moment';
+import { inTwoYears, formattedTmr, today } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
@@ -20,6 +15,7 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import Loader from '../../loader';
+import { admin } from '../../../data/data';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -140,7 +136,7 @@ const SpecialMealContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        startTime="20191001"
+        startTime={admin.startTime}
         endTime={`${inTwoYears}01`}
         updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}

@@ -15,6 +15,7 @@ import DateButtons from '../../shared/form/dateButtons';
 import IconButton from '../../shared/form/iconButton';
 import Paper from '../../shared/paper';
 import InvoiceTable from './invoiceTable';
+import { admin } from '../../data/data';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -69,7 +70,7 @@ const InvoiceContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        startTime="20191001"
+        startTime={admin.startTime}
         endTime={`${thisMonthYYYYMM}01`}
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
