@@ -2,9 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-/* --- Components --- */
-import IconButton from '../../../shared/form/iconButton';
-import { thisMonth } from '../../../helpers/moment';
 
 const styles = theme => ({
   resize: {
@@ -18,59 +15,27 @@ const styles = theme => ({
 const BusinessNoTableRow = ({
   classes: { resize, point },
   row,
-  labelId,
   selectedRow,
   selectedItemValue,
   handleTableRowClick,
-  handleEditUserBtnClick,
-}) => {
-  // if change mealPrice of this month, display the new price value in only reserveData column.
-  const newMealPrice = row.reserveDate === thisMonth ? '' : row.mealPrice;
-
-  return (
-    <React.Fragment>
-      <TableRow
-        key={row.userId}
-        role="checkbox"
-        tabIndex={-1}
-        aria-checked={selectedRow === row.userId}
-        selected={
-          selectedItemValue === row.companyName ||
-          selectedItemValue === row.userId ||
-          selectedRow === row.userId
-        }
-        onClick={() => handleTableRowClick(row.userId)}
-      >
-        <TableCell padding="checkbox">
-          <IconButton
-            name="edit"
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            handleClick={e => handleEditUserBtnClick(e, row.userId)}
-          />
-        </TableCell>
-        <TableCell
-          component="th"
-          id={labelId}
-          scope="row"
-          padding="none"
-          className={`${resize} ${point}`}
-        >
-          {row.companyName}
-        </TableCell>
-        <TableCell align="right" className={resize}>
-          {newMealPrice}
-        </TableCell>
-        <TableCell align="right" className={resize}>
-          {row.reservePrice}
-        </TableCell>
-        <TableCell align="right" className={resize}>
-          {row.reserveDate}
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
-};
+}) => (
+  <React.Fragment>
+    <TableRow
+      tabIndex={-1}
+      aria-checked={selectedRow === row.companyName}
+      selected={
+        selectedItemValue === row.companyName || selectedRow === row.companyName
+      }
+      onClick={() => handleTableRowClick(row.companyName)}
+    >
+      <TableCell align="right" className={`${resize} ${point}`}>
+        {row.companyName}
+      </TableCell>
+      <TableCell align="right" className={resize}>
+        {row.businessNo}
+      </TableCell>
+    </TableRow>
+  </React.Fragment>
+);
 
 export default withStyles(styles)(BusinessNoTableRow);

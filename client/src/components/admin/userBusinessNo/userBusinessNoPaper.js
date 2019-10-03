@@ -10,9 +10,7 @@ const BusinessNoPaper = ({
   selectedRow,
   // global state
   selectedItemValue,
-  isAdminVerified,
   // funcs
-  handleEditUserBtnClick,
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
@@ -55,7 +53,6 @@ const BusinessNoPaper = ({
                 sortedData={sortedDataA}
                 handleRequestSort={handleRequestSort}
                 selectedItemValue={selectedItemValue}
-                handleEditUserBtnClick={handleEditUserBtnClick}
                 selectedRow={selectedRow}
                 handleTableRowClick={handleTableRowClick}
               />
@@ -71,7 +68,6 @@ const BusinessNoPaper = ({
                 sortedData={sortedDataB}
                 handleRequestSort={handleRequestSort}
                 selectedItemValue={selectedItemValue}
-                handleEditUserBtnClick={handleEditUserBtnClick}
                 selectedRow={selectedRow}
                 handleTableRowClick={handleTableRowClick}
               />
@@ -87,18 +83,15 @@ const BusinessNoPaper = ({
               sortedData={sortedDataA}
               handleRequestSort={handleRequestSort}
               selectedItemValue={selectedItemValue}
-              handleEditUserBtnClick={handleEditUserBtnClick}
               selectedRow={selectedRow}
               handleTableRowClick={handleTableRowClick}
             />
           }
         />
-      ) : isAdminVerified ? (
+      ) : (
         <Paper
           component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
         />
-      ) : (
-        <Paper />
       )}
     </div>
   );

@@ -6,33 +6,16 @@ import BusinessNoPaper from './userBusinessNoPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import {
-  keepScrollPosition,
-  saveYposition,
-} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
-import * as rateActions from '../../../actions/rateAction';
+import { getUsersBusinessNo } from '../../../actions/adminAccountAction';
 import * as selectedActions from '../../../actions/selectedAction';
-import * as modalActions from '../../../actions/modalAction';
 import { addFlashMessage } from '../../../actions/messageAction';
-import { handleAdminVerificationStatus } from '../../../actions/authAction';
 
 const BusinessNoContainer = ({
-  rateActions: { getCateringRates, updateReservedPrice },
-  modalActions: { showModal, hideModal },
-  selectedActions: {
-    saveSelectedItemValue,
-    resetSelectedItemValue,
-    saveClickedItemData,
-    resetClickedItemData,
-  },
-  handleAdminVerificationStatus,
+  getUsersBusinessNo,
+  selectedActions: { resetSelectedItemValue },
   addFlashMessage,
-  isAdminVerified,
   selectedItemValue,
-  clickedUserData,
-  show,
-  updateRatesMonth,
 }) => {
   const [data, setData] = useState([]);
 
@@ -41,8 +24,8 @@ const BusinessNoContainer = ({
   const setfocusOnSelectdRow = id => setSelectedRow(id);
   const removeFocusOnSelectdRow = () => setSelectedRow(null);
 
-  const fetchCateringRates = async () => {
-    const res = await getCateringRates();
+  const fetchData = async () => {
+    const res = await getUsersBusinessNo();
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
@@ -50,74 +33,29 @@ const BusinessNoContainer = ({
   };
 
   useEffect(() => {
-    // opens the admin password checking modal on page load
-    if (!isAdminVerified) {
-      showModal();
-    }
-    fetchCateringRates();
-    keepScrollPosition();
-    return () =>
-      Promise.all([
-        clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedItemValue !== null && resetSelectedItemValue(),
-        isAdminVerified && handleAdminVerificationStatus(),
-        show && hideModal(),
-        renderAllUsers(),
-      ]);
+    fetchData();
+    return () => {
+      if (selectedItemValue) resetSelectedItemValue();
+    };
   }, []);
-
-  const getClickedUserData = async id => {
-    const userData = await data.filter(user => user.userId === id);
-    return userData[0];
-  };
-
-  // [ Focus on row ]
-  // - editing a row : permanent focus (global state)
-  // - searching a row : permanent focus (global state)
-  // * editing & searching use the same state to prevent duplicated rows.
-
-  const handleEditUserBtnClick = async (e, id) => {
-    e.preventDefault();
-    const userData = await getClickedUserData(id);
-    // to render clicked user data in textField
-    await saveClickedItemData(userData);
-    // set focus on editing row
-    await saveSelectedItemValue(userData.userId);
-    // to prevent from having multiple selected rows.
-    if (selectedRow) await removeFocusOnSelectdRow();
-    return showModal();
-  };
 
   const handleTableRowClick = id => {
     setfocusOnSelectdRow(id);
-    // unselect the selected row to prevent from having multiple selected rows.
     if (selectedItemValue) resetSelectedItemValue();
   };
 
-  // funcions that runs after search component
   const handleSuggestionSelected = () => {
     if (selectedRow) removeFocusOnSelectdRow();
   };
-  const handleResetSearch = () => resetSelectedItemValue();
-  const renderAllUsers = () => resetSelectedItemValue();
-
-  // only renders mealprice data when admin user is confirmedconsole.log();
-  const dataToRender = isAdminVerified ? data : [];
 
   return (
-    <div className="container-a r--w-80">
-      <h2
-        className="pointer"
-        title="모든 고객 계정 보기"
-        onClick={renderAllUsers}
-      >
-        식수가격
-      </h2>
+    <div className="container-a r--w-40">
+      <h2>고객 사업자 번호</h2>
       <div className="paper-label-box flex justify-between">
         <SearchBar
           data={data}
           handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearch}
+          handleResetSearch={() => {}}
         />
         <IconButton
           name="print"
@@ -128,13 +66,10 @@ const BusinessNoContainer = ({
         />
       </div>
       <BusinessNoPaper
-        data={data}
-        users={dataToRender}
+        users={data}
         selectedItemValue={selectedItemValue}
-        handleEditUserBtnClick={handleEditUserBtnClick}
         selectedRow={selectedRow}
         handleTableRowClick={handleTableRowClick}
-        isAdminVerified={isAdminVerified}
       />
     </div>
   );
@@ -142,20 +77,13 @@ const BusinessNoContainer = ({
 
 const mapStateToProps = state => ({
   selectedItemValue: state.selected.value,
-  clickedUserData: state.selected.data,
-  isAdminVerified: state.isAdminVerified.isAdminVerified,
-  show: state.modal.show,
-  updateRatesMonth: state.selected.updateMealPrice,
 });
 
 const mapDispatchToProps = dispatch => ({
-  rateActions: bindActionCreators(rateActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
-  modalActions: bindActionCreators(modalActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
-  handleAdminVerificationStatus: () =>
-    dispatch(handleAdminVerificationStatus()),
+  getUsersBusinessNo: () => dispatch(getUsersBusinessNo()),
 });
 
 export default connect(

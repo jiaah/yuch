@@ -261,6 +261,19 @@ exports.getUsersList = async (req, res, next) => {
   }
 };
 
+// get users business number list
+exports.getUsersBusinessNoList = async (req, res, next) => {
+  knex('users')
+    .whereNot('users.isAdmin', true)
+    .where(builder => {
+      builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+    })
+    .select('users.companyName', 'users.businessNo')
+    .orderBy('users.companyName', 'asc')
+    .then(users => res.status(200).json(users))
+    .catch(err => res.status(500).json(err));
+};
+
 // get catering meal prices of all clients & users id, companyName*
 exports.getCateringRates = (req, res) => {
   knex('meal_price')

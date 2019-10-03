@@ -559,3 +559,18 @@ export const revenueColumns = [
     label: '합계',
   },
 ];
+
+export const userBusinessColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'businessNo',
+    numeric: true,
+    disablePadding: false,
+    label: '사업자 번호',
+  },
+];
