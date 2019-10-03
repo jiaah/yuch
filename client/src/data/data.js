@@ -117,6 +117,11 @@ export const navAdminItems = {
       name: '고객 계정',
       to: '/admin/account/users',
     },
+    {
+      id: 13,
+      name: '고객 사업자번호',
+      to: '/admin/account/business',
+    },
   ],
   4: [
     {
