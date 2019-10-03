@@ -6,7 +6,8 @@ import { thisMonthYYYYMM } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
-  MMFormatToYYMM,
+  formatSlashToYYMM,
+  invoiceSelectOptions,
 } from '../../../utils/date';
 import { adminInvoiceMsg } from '../../../data/message';
 import { admin } from '../../../data/data.js';
@@ -169,7 +170,8 @@ const InvoiceContainer = ({
           updateUsersInvoice={updateUsersInvoice}
           addFlashMessage={addFlashMessage}
           hideModal={hideModal}
-          MMFormatToYYMM={MMFormatToYYMM}
+          formatSlashToYYMM={formatSlashToYYMM}
+          invoiceSelectOptions={invoiceSelectOptions}
         />
       )}
     </div>

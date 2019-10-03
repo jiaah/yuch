@@ -1,12 +1,12 @@
 import * as types from '../actions/actionTypes';
-import { lastMonthMM } from '../helpers/moment';
+import { lastMonth } from '../helpers/moment';
 
 const initialState = {
   value: null,
   secondValue: null,
   data: [],
   users: '활성 계정',
-  updateInvoice: lastMonthMM,
+  updateInvoice: lastMonth,
 };
 
 const selectedItem = (state = initialState, action) => {
@@ -51,7 +51,7 @@ const selectedItem = (state = initialState, action) => {
     case types.RESET_SELECT_VALUE: {
       let resetValue;
       if (action.name === 'users') resetValue = '활성 계정';
-      if (action.name === 'updateInvoice') resetValue = lastMonthMM;
+      if (action.name === 'updateInvoice') resetValue = lastMonth;
 
       return {
         ...state,
