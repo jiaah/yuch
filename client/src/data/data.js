@@ -211,6 +211,12 @@ export const userAccountTableHeadColumns = [
     label: '주소',
   },
   {
+    id: 'businessNo',
+    numeric: true,
+    disablePadding: false,
+    label: '사업자번호',
+  },
+  {
     id: 'businessType',
     numeric: true,
     disablePadding: false,

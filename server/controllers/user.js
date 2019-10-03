@@ -20,6 +20,7 @@ exports.getMe = (req, res) => {
       'users.dinnerQty',
       'users.bankAccountId',
       'users.address',
+      'users.businessNo',
       'meal_price.mealPrice',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
@@ -38,6 +39,7 @@ exports.editUser = (req, res) => {
     lunchQty,
     dinnerQty,
     address,
+    businessNo,
   } = req.body.userInfo;
 
   return knex('users')
@@ -51,6 +53,7 @@ exports.editUser = (req, res) => {
       lunchQty,
       dinnerQty,
       address,
+      businessNo,
       updated_at: new Date().toISOString(),
     })
     .then(() => res.status(200).json())

@@ -10,6 +10,10 @@ import IconMessage from '../../../shared/iconMessage';
 import Paper from '../../../shared/paper';
 import { ratesPageInfo } from '../../../data/message';
 import Select from '../../../shared/form/select';
+import {
+  userAccountValidation,
+  resetPasswordValidation,
+} from '../../formValidation';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -186,6 +190,7 @@ const UserAccountContainer = ({
           selectedSearchItem={selectedSearchItem}
           resetSelectedItemValue={resetSelectedItemValue}
           bankAccount={bankAccount}
+          userAccountValidation={userAccountValidation}
         />
       ) : clickedBtn === 'edit' && clickedUserData ? (
         <EditUserModal
@@ -197,6 +202,8 @@ const UserAccountContainer = ({
           bankAccount={bankAccount}
           handleEndingService={handleEndingService}
           resetPassword={resetPassword}
+          userAccountValidation={userAccountValidation}
+          resetPasswordValidation={resetPasswordValidation}
         />
       ) : null}
     </div>

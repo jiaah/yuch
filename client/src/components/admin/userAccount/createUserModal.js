@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
-import { addUserAccountValidation } from '../../formValidation';
 import { emptyStrToNull } from '../../../utils/reformat';
 
 const UserAccountModal = ({
@@ -17,6 +16,7 @@ const UserAccountModal = ({
   resetSelectedItemValue,
   // fncs from parent component
   handleCloseModal,
+  userAccountValidation,
 }) => {
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
@@ -73,6 +73,7 @@ const UserAccountModal = ({
     lateNightSnackQty: '',
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
+    businessNo: '',
   };
 
   return (
@@ -88,7 +89,7 @@ const UserAccountModal = ({
             </Form>
           )}
           onSubmit={handleCreateUser}
-          validationSchema={addUserAccountValidation}
+          validationSchema={userAccountValidation}
         />
       }
     />

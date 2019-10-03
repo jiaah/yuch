@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import UserFormBox from './userFormBox';
-import { editUserAccountValidation } from '../../formValidation';
 import ChangePwContainer from '../../auth/password/changePwContainer';
 import Paper from '../../../shared/paper';
 /* --- Actions --- */
@@ -51,7 +50,6 @@ const AdminAccountContainer = ({
               !pwdOpen && (
                 <UserFormBox
                   userData={userData}
-                  editUserAccountValidation={editUserAccountValidation}
                   editUserAccount={editUserAccount}
                   updateCompanyName={updateCompanyName}
                   addFlashMessage={addFlashMessage}

@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 /* --- Components --- */
 import Loader from '../../loader';
-import {
-  editUserAccountValidation,
-  resetPasswordValidation,
-} from '../../formValidation';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
 import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
@@ -31,6 +27,8 @@ const EditUserModal = ({
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
+  userAccountValidation,
+  resetPasswordValidation,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
@@ -77,7 +75,7 @@ const EditUserModal = ({
             handleCloseModal={handleCloseModal}
             addFlashMessage={addFlashMessage}
             clickedUserData={clickedUserData}
-            editUserAccountValidation={editUserAccountValidation}
+            userAccountValidation={userAccountValidation}
             editUser={editUser}
             bankAccount={bankAccount}
           />

@@ -105,6 +105,9 @@ const UserTableRow = ({
           {row.address}
         </TableCell>
         <TableCell align="right" className={resize}>
+          {row.businessNo}
+        </TableCell>
+        <TableCell align="right" className={resize}>
           {businessType}
         </TableCell>
         <TableCell align="right" className={resize}>

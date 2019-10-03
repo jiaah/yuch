@@ -9,7 +9,7 @@ const DeleteUserFormBox = ({
   handleCloseModal,
   addFlashMessage,
   clickedUserData,
-  editUserAccountValidation,
+  userAccountValidation,
   editUser,
   bankAccount,
 }) => {
@@ -42,7 +42,7 @@ const DeleteUserFormBox = ({
         </Form>
       )}
       onSubmit={handleEditUser}
-      validationSchema={editUserAccountValidation}
+      validationSchema={userAccountValidation}
     />
   );
 };

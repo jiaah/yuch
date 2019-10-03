@@ -12,7 +12,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="filledUser"
       styleName="textField"
-      placeholder="(한글) 유청"
       required
     />
     <FormikField
@@ -21,7 +20,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="user"
       styleName="textField"
-      placeholder="(영문) yucheong"
       required
     />
     <FormikField
@@ -30,7 +28,7 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="phone"
       styleName="textField"
-      placeholder="054 - 745 - 0999"
+      placeholder="000-0000-0000"
       required
     />
     <FormikField
@@ -39,8 +37,16 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="email"
       icon="email"
       styleName="textField"
-      placeholder="sleket12@hanmail.net"
+      placeholder="yuchung@hanmail.net"
       required
+    />
+    <FormikField
+      label="사업자번호"
+      name="businessNo"
+      type="text"
+      icon="bankAccount"
+      styleName="textField"
+      placeholder="000-00-00000"
     />
     <div className="flex justify-center">
       <FormikField
@@ -49,7 +55,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         type="text"
         icon="catering"
         styleName="textFieldB"
-        placeholder="70"
       />
       <FormikField
         label="석식 식수량"
@@ -57,7 +62,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         type="text"
         icon="catering"
         styleName="textFieldB"
-        placeholder="35"
       />
     </div>
     <FormikField
@@ -66,7 +70,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="money"
       styleName="textField"
-      placeholder="5000"
       disabled
     />
     <FormikField
@@ -75,7 +78,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="address"
       styleName="textField"
-      placeholder="황성동 1071-1번지 강남골프장 맞은편"
     />
     <div>
       <Button

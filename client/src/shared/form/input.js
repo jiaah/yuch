@@ -127,7 +127,8 @@ const Input = ({
       name === 'accountNo' ||
       name === 'note' ||
       name === 'time' ||
-      name === 'date'
+      name === 'date' ||
+      name === 'businessNo'
     ) {
       value = inputValue;
     }
