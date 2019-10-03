@@ -63,3 +63,12 @@
     width: 40vw;
   }
 }
+
+// admin, user account
+.r--w-30 {
+  width: 90vw;
+
+  @include for-tablet-portrait-up {
+    width: 50vw;
+  }
+}

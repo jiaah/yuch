@@ -49,7 +49,7 @@ const BusinessNoContainer = ({
   };
 
   return (
-    <div className="container-a r--w-40">
+    <div className="container-a r--w-30">
       <h2>고객 사업자 번호</h2>
       <div className="paper-label-box flex justify-between">
         <SearchBar

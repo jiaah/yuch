@@ -68,7 +68,6 @@ const RatesContainer = ({
         selectedItemValue !== null && resetSelectedItemValue(),
         isAdminVerified && handleAdminVerificationStatus(),
         show && hideModal(),
-        renderAllUsers(),
       ]);
   }, []);
 
@@ -104,26 +103,18 @@ const RatesContainer = ({
   const handleSuggestionSelected = () => {
     if (selectedRow) removeFocusOnSelectdRow();
   };
-  const handleResetSearch = () => resetSelectedItemValue();
-  const renderAllUsers = () => resetSelectedItemValue();
 
   // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
 
   return (
     <div className="container-a r--w-80">
-      <h2
-        className="pointer"
-        title="모든 고객 계정 보기"
-        onClick={renderAllUsers}
-      >
-        식수가격
-      </h2>
+      <h2>식수가격</h2>
       <div className="paper-label-box flex justify-between">
         <SearchBar
           data={data}
           handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearch}
+          handleResetSearch={() => {}}
         />
         <IconButton
           name="print"
