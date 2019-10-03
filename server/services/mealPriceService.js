@@ -9,7 +9,10 @@ const getMealPriceByUserIdWithDate = async (userId, date) => {
       .where({ userId })
       .whereRaw(`'${date}' BETWEEN "startedAt" AND "endedAt"`)
       .first();
-    return Number(row.mealPrice);
+    if (row && row.mealPrice) {
+      return Number(row.mealPrice);
+    }
+    return 0;
   } catch (error) {
     throw error;
   }
