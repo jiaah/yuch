@@ -12,8 +12,11 @@ import {
 } from '../../actions/selectedAction';
 
 const styles = theme => ({
-  formControl: {
+  users: {
     margin: theme.spacing(-1.4, 1.3, 0, 0),
+  },
+  regular: {
+    margin: '1em',
   },
   text: {
     fontSize: '0.9em',
@@ -32,7 +35,7 @@ const styles = theme => ({
 });
 
 const SelectForm = ({
-  classes: { formControl, text, small, large },
+  classes: { users, text, small, large, regular },
   label,
   name,
   options,
@@ -56,6 +59,13 @@ const SelectForm = ({
   }
   if (size === 'large') {
     width = large;
+  }
+
+  let formControl;
+  if (name === 'users') {
+    formControl = users;
+  } else {
+    formControl = regular;
   }
 
   return (

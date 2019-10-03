@@ -37,24 +37,23 @@ const UpdateInvoiceModal = ({
       title="인보이스/매출 업데이트"
       handleClose={hideModal}
       component={
-        <form onSubmit={handleUpdate} className="media--justify-center pt5 pb4">
-          <div className="">
-            <Select
-              label="업데이트 월"
-              name="updateInvoice"
-              size="large"
-              selectedValue={updateInvoiceMonth}
-              options={updateInvoiceSelectOptions}
+        <form onSubmit={handleUpdate} className="media--justify-center pt4 pb3">
+          <Select
+            label="월 (MM)"
+            name="updateInvoice"
+            size="large"
+            selectedValue={updateInvoiceMonth}
+            options={updateInvoiceSelectOptions}
+          />
+          <div className="mt2">
+            <FormButton
+              typeValue="submit"
+              variantValue="contained"
+              buttonName="저장"
+              width="medium"
+              isSubmitting={isSubmitting}
             />
           </div>
-
-          <FormButton
-            typeValue="submit"
-            variantValue="contained"
-            buttonName="저장"
-            width="medium"
-            isSubmitting={isSubmitting}
-          />
         </form>
       }
     />
