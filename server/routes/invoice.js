@@ -22,7 +22,7 @@ module.exports = () => {
     isAdmin,
     [check('date').matches(/^[0-9]{6}$/)],
     validation,
-    invoiceController.lists,
+    invoiceController.update,
   );
 
   /* --- Client --- */
