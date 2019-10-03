@@ -40,7 +40,7 @@ const UpdateInvoiceModal = ({
       title="인보이스/매출 업데이트"
       handleClose={hideModal}
       component={
-        <form onSubmit={handleUpdate} className="media--justify-center pt4 pb3">
+        <form onSubmit={handleUpdate} className="media--justify-center pt3 pb3">
           <Select
             label="변경일자(YYYY/MM)"
             name="updateInvoice"
