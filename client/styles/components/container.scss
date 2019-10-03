@@ -68,7 +68,7 @@
 .r--w-30 {
   width: 90vw;
 
-  @include for-tablet-portrait-up {
+  @include for-x-tablet-portrait-up {
     width: 50vw;
   }
 }
