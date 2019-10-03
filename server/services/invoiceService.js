@@ -4,6 +4,7 @@ const cateringService = require('../services/cateringService');
 const specialService = require('../services/specialService');
 const mealPriceService = require('../services/mealPriceService');
 const userService = require('../services/userService');
+const bankAccountService = require('../services/bankAccountService');
 const Users = require('../models/Users');
 
 const Lists = async (startedAt, endedAt) => {
@@ -84,10 +85,12 @@ const invoiceExist = async (userId, date) => {
 
 const findOne = async (userId, startedAt, endedAt) => {
   try {
-    const result = await Users.query()
-      .select('companyName')
+    const user = await Users.query()
+      .select('companyName', 'bankAccountId')
       .where({ id: userId })
       .first();
+
+    const result = { companyName: user.companyName };
 
     result.userId = userId;
     result.mealPrice = await mealPriceService.getMealPriceByUserIdWithDate(
@@ -95,9 +98,13 @@ const findOne = async (userId, startedAt, endedAt) => {
       endedAt,
     );
 
-    result.invoice = await Invoice.query()
-      .where({ userId, date: startedAt })
-      .first();
+    const bankAccount = await bankAccountService.getOneById(user.bankAccountId);
+
+    if (bankAccount) {
+      result.bankAccount = bankAccount;
+    } else {
+      result.bankAccount = null;
+    }
 
     const cateringSumTotal = await cateringService.getSumTotalByUserIdWithRangeDate(
       userId,
@@ -114,9 +121,13 @@ const findOne = async (userId, startedAt, endedAt) => {
 
     result.sumTotal = cateringSumTotal + specialSumTotal;
 
-    if (!result.invoice) {
+    const invoice = await Invoice.query()
+      .where({ userId, date: startedAt })
+      .first();
+
+    if (!invoice) {
       // insert Invoice
-      const insertedInvoice = await Invoice.query().insert({
+      await Invoice.query().insert({
         userId,
         mealPrice: result.mealPrice,
         date: startedAt,
@@ -124,11 +135,11 @@ const findOne = async (userId, startedAt, endedAt) => {
         updated_at: new Date().toISOString(),
       });
 
-      result.invoice = {
-        invoiceId: insertedInvoice.id,
-        mealPrice: result.mealPrice,
-        sumTotal: cateringSumTotal,
-      };
+      // result.invoice = {
+      //   invoiceId: insertedInvoice.id,
+      //   mealPrice: result.mealPrice,
+      //   sumTotal: cateringSumTotal,
+      // };
     }
 
     result.caterings = await cateringService.getListsByUserIdWithRangeDate(
