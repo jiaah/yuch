@@ -76,24 +76,22 @@ const UserAccountModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        title="신규업체 등록"
-        handleClose={handleCloseModal}
-        component={
-          <Formik
-            initialValues={values}
-            render={props => (
-              <Form>
-                <CreateUserForm {...props} bankAccount={bankAccount} />
-              </Form>
-            )}
-            onSubmit={handleCreateUser}
-            validationSchema={addUserAccountValidation}
-          />
-        }
-      />
-    </div>
+    <Modal
+      title="신규업체 등록"
+      handleClose={handleCloseModal}
+      component={
+        <Formik
+          initialValues={values}
+          render={props => (
+            <Form>
+              <CreateUserForm {...props} bankAccount={bankAccount} />
+            </Form>
+          )}
+          onSubmit={handleCreateUser}
+          validationSchema={addUserAccountValidation}
+        />
+      }
+    />
   );
 };
 

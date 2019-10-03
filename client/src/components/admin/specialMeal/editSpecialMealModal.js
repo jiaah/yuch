@@ -34,24 +34,22 @@ const EditModal = ({
   };
 
   return (
-    <div className="container">
-      <Modal
-        title="특식 등록"
-        handleClose={() => hideModal()}
-        component={
-          <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            render={props => (
-              <Form>
-                <SpecialMealForm {...props} users={users} />
-              </Form>
-            )}
-            validationSchema={specialMealValidation}
-          />
-        }
-      />
-    </div>
+    <Modal
+      title="특식 등록"
+      handleClose={() => hideModal()}
+      component={
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          render={props => (
+            <Form>
+              <SpecialMealForm {...props} users={users} />
+            </Form>
+          )}
+          validationSchema={specialMealValidation}
+        />
+      }
+    />
   );
 };
 

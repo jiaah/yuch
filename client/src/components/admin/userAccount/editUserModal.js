@@ -43,49 +43,47 @@ const EditUserModal = ({
     : clickedUserData.endDate;
 
   return (
-    <div className="container">
-      <Modal
-        title={title}
-        handleClose={() => {
-          if (subModal === null) {
-            return handleCloseModal();
-          }
-          return closeSubModal();
-        }}
-        component={
-          subModal === 'service' ? (
-            <EndService
-              closeSubModal={closeSubModal}
-              handleCloseModal={handleCloseModal}
-              addFlashMessage={addFlashMessage}
-              userId={clickedUserData.id}
-              formattedUserEndDate={formattedUserEndDate}
-              handleEndingService={handleEndingService}
-              formatToYYYYMMDD={formatToYYYYMMDD}
-            />
-          ) : subModal === 'password' ? (
-            <ResetPassword
-              handleCloseModal={handleCloseModal}
-              closeSubModal={closeSubModal}
-              addFlashMessage={addFlashMessage}
-              resetPassword={resetPassword}
-              resetPasswordValidation={resetPasswordValidation}
-              clickedUserData={clickedUserData}
-            />
-          ) : (
-            <EditUserFormBox
-              showSubModal={showSubModal}
-              handleCloseModal={handleCloseModal}
-              addFlashMessage={addFlashMessage}
-              clickedUserData={clickedUserData}
-              editUserAccountValidation={editUserAccountValidation}
-              editUser={editUser}
-              bankAccount={bankAccount}
-            />
-          )
+    <Modal
+      title={title}
+      handleClose={() => {
+        if (subModal === null) {
+          return handleCloseModal();
         }
-      />
-    </div>
+        return closeSubModal();
+      }}
+      component={
+        subModal === 'service' ? (
+          <EndService
+            closeSubModal={closeSubModal}
+            handleCloseModal={handleCloseModal}
+            addFlashMessage={addFlashMessage}
+            userId={clickedUserData.id}
+            formattedUserEndDate={formattedUserEndDate}
+            handleEndingService={handleEndingService}
+            formatToYYYYMMDD={formatToYYYYMMDD}
+          />
+        ) : subModal === 'password' ? (
+          <ResetPassword
+            handleCloseModal={handleCloseModal}
+            closeSubModal={closeSubModal}
+            addFlashMessage={addFlashMessage}
+            resetPassword={resetPassword}
+            resetPasswordValidation={resetPasswordValidation}
+            clickedUserData={clickedUserData}
+          />
+        ) : (
+          <EditUserFormBox
+            showSubModal={showSubModal}
+            handleCloseModal={handleCloseModal}
+            addFlashMessage={addFlashMessage}
+            clickedUserData={clickedUserData}
+            editUserAccountValidation={editUserAccountValidation}
+            editUser={editUser}
+            bankAccount={bankAccount}
+          />
+        )
+      }
+    />
   );
 };
 
