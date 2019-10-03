@@ -22,7 +22,9 @@ const EditRateModal = ({
     </React.Fragment>
   );
 
-  const [selectedDate, setSelectedDate] = React.useState(nextMonth);
+  const [selectedDate, setSelectedDate] = React.useState(
+    clickedUserData.reserveDate || nextMonth,
+  );
   const reservePrice = clickedUserData.reservePrice;
   const values = { reservePrice };
 
@@ -38,11 +40,16 @@ const EditRateModal = ({
         'error',
         `고객 계정 수정에 실패하였습니다. 다시 시도해 주세요.`,
       );
-      return setSubmitting(false);
+    } else {
+      await saveYposition();
+      await Promise.all([resetForm({}), closeModal()]);
+      addFlashMessage(
+        'success',
+        ` ${clickedUserData.companyName} 식수가격이 수정되었습니다.`,
+      );
+      window.location.reload(true);
     }
-    await saveYposition();
-    await Promise.all([resetForm({}), closeModal()]);
-    return window.location.reload(true);
+    return setSubmitting(false);
   };
   return (
     <Modal
@@ -56,7 +63,6 @@ const EditRateModal = ({
               <RateForm
                 {...props}
                 selectedDate={selectedDate}
-                reserveDate={clickedUserData.reserveDate}
                 thisMonth={thisMonth}
                 nextMonth={nextMonth}
                 lastMonth={lastMonth}

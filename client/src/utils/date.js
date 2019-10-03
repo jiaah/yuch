@@ -101,9 +101,10 @@ export const isDinnerQtyChangeDisabled = date => {
   return true;
 };
 
-export const invoiceSelectOptions = [1, 2].map(i => {
-  const date = moment()
-    .add(`-${i}`, 'months')
-    .format('YYYY/MM');
-  return { value: date };
-});
+export const selectOptionsYYYYMM = arr =>
+  arr.map(i => {
+    const date = moment()
+      .add(i, 'months')
+      .format('YYYY/MM');
+    return { value: date };
+  });

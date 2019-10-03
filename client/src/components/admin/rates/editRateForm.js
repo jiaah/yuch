@@ -12,7 +12,6 @@ import {
 
 const EditUserForm = ({
   selectedDate,
-  reserveDate,
   thisMonth,
   nextMonth,
   lastMonth,
@@ -31,7 +30,7 @@ const EditUserForm = ({
           required
         />
         <ExpireDateSelect
-          reserveDate={reserveDate || selectedDate}
+          reserveDate={selectedDate}
           thisMonth={thisMonth}
           nextMonth={nextMonth}
           lastMonth={lastMonth}

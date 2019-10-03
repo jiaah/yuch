@@ -7,7 +7,7 @@ import {
   formatToMonthDateForm,
   formatToYYYYMM,
   formatSlashToYYMM,
-  invoiceSelectOptions,
+  selectOptionsYYYYMM,
 } from '../../../utils/date';
 import { adminInvoiceMsg } from '../../../data/message';
 import { admin } from '../../../data/data.js';
@@ -171,7 +171,7 @@ const InvoiceContainer = ({
           addFlashMessage={addFlashMessage}
           hideModal={hideModal}
           formatSlashToYYMM={formatSlashToYYMM}
-          invoiceSelectOptions={invoiceSelectOptions}
+          selectOptionsYYYYMM={selectOptionsYYYYMM}
         />
       )}
     </div>

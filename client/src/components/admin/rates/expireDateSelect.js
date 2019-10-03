@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { selectOptionsYYYYMM } from '../../../utils/date';
 
 const styles = theme => ({
   formControl: {
@@ -19,24 +20,26 @@ const styles = theme => ({
 
 const ExpireDateSelect = ({
   reserveDate,
-  thisMonth,
-  nextMonth,
-  lastMonth,
   handleSelectChange,
-  classes,
-}) => (
-  <FormControl className={classes.formControl}>
-    <InputLabel required={true}>적용일자 (YYYY/MM/01)</InputLabel>
-    <Select
-      value={reserveDate}
-      onChange={handleSelectChange}
-      renderValue={value => value}
-    >
-      <MenuItem value={lastMonth}>{lastMonth}</MenuItem>
-      <MenuItem value={thisMonth}>{thisMonth}</MenuItem>
-      <MenuItem value={nextMonth}>{nextMonth}</MenuItem>
-    </Select>
-  </FormControl>
-);
+  classes: { formControl, font },
+}) => {
+  const options = selectOptionsYYYYMM([1, 0, -1]);
+  return (
+    <FormControl className={formControl}>
+      <InputLabel required={true}>적용일자 (YYYY/MM/01)</InputLabel>
+      <Select
+        value={reserveDate}
+        onChange={handleSelectChange}
+        renderValue={value => value}
+      >
+        {options.map(item => (
+          <MenuItem key={item.value} className={font} value={item.value}>
+            {item.value}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
 
 export default withStyles(styles)(ExpireDateSelect);

@@ -10,7 +10,6 @@ export const formattedTmr = moment()
   .format('YYYY-MM-DD');
 // export const timeToNow = moment().toNow();
 
-// reserve mealPrice date
 export const lastMonth = moment()
   .add(-1, 'months')
   .format('YYYY/MM');

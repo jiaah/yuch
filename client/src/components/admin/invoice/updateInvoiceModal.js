@@ -13,7 +13,7 @@ const UpdateInvoiceModal = ({
   updateUsersInvoice,
   // func
   formatSlashToYYMM,
-  invoiceSelectOptions,
+  selectOptionsYYYYMM,
 }) => {
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -33,6 +33,8 @@ const UpdateInvoiceModal = ({
 
   useEffect(() => () => hideModal(), []);
 
+  const selectOptions = selectOptionsYYYYMM([-1, -2]);
+
   return (
     <Modal
       title="인보이스/매출 업데이트"
@@ -44,7 +46,7 @@ const UpdateInvoiceModal = ({
             name="updateInvoice"
             size="large"
             selectedValue={updateInvoiceMonth}
-            options={invoiceSelectOptions}
+            options={selectOptions}
           />
           <div className="mt2">
             <FormButton

@@ -38,6 +38,7 @@ const RatesContainer = ({
   selectedItemValue,
   clickedUserData,
   show,
+  updateRatesMonth,
 }) => {
   const [data, setData] = useState([]);
 
@@ -149,6 +150,7 @@ const RatesContainer = ({
             updateReservedPrice={updateReservedPrice}
             addFlashMessage={addFlashMessage}
             saveYposition={saveYposition}
+            updateRatesMonth={updateRatesMonth}
           />
         )}
       <AdminVerificationModal />
@@ -161,6 +163,7 @@ const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   isAdminVerified: state.isAdminVerified.isAdminVerified,
   show: state.modal.show,
+  updateRatesMonth: state.selected.updateMealPrice,
 });
 
 const mapDispatchToProps = dispatch => ({

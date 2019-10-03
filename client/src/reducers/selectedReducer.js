@@ -1,5 +1,5 @@
 import * as types from '../actions/actionTypes';
-import { lastMonth } from '../helpers/moment';
+import { lastMonth, nextMonth } from '../helpers/moment';
 
 const initialState = {
   value: null,
@@ -7,6 +7,7 @@ const initialState = {
   data: [],
   users: '활성 계정',
   updateInvoice: lastMonth,
+  updateMealPrice: nextMonth,
 };
 
 const selectedItem = (state = initialState, action) => {
@@ -52,6 +53,7 @@ const selectedItem = (state = initialState, action) => {
       let resetValue;
       if (action.name === 'users') resetValue = '활성 계정';
       if (action.name === 'updateInvoice') resetValue = lastMonth;
+      if (action.name === 'updateMealPrice') resetValue = nextMonth;
 
       return {
         ...state,
