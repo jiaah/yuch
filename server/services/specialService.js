@@ -75,19 +75,21 @@ const listsByDateRange = async (startedAt, endedAt) => {
   try {
     const results = await SpecialMeal.query()
       .select(
-        'id',
+        'special_meal.id',
         'userId',
-        'companyName',
+        'special_meal.companyName',
         'mealPrice',
         'date',
         'time',
         'sideDish',
         'quantity',
         'sumTotal',
-        'address',
-        'contactNo',
-        'note',
+        'special_meal.address',
+        'special_meal.contactNo',
+        'special_meal.note',
+        raw('users.created_at').as('createdAt'),
       )
+      .leftJoin('users', 'users.id', 'special_meal.userId')
       .whereBetween('date', [startedAt, endedAt])
       .orderBy('date', 'asc')
       .orderBy('time', 'asc');

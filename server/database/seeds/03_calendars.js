@@ -6,7 +6,7 @@ exports.seed = async knex => {
   const calendars = [];
 
   for (let i = 0; i < 30000; i++) {
-    const date = moment('2019-01-01')
+    const date = moment('2010-01-01')
       .add(i, 'days')
       .format('YYYY-MM-DD');
     calendars.push({ date });

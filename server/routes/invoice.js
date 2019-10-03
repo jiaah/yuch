@@ -6,21 +6,21 @@ const isAdmin = require('../lib/isAdmin');
 const invoiceController = require('../controllers/invoice');
 
 module.exports = () => {
+  /* --- Client  --- */
+  router.get(
+    '/users',
+    onlyLoggedIn,
+    [query('date').matches(/^[0-9]{6}$/)],
+    validation,
+    invoiceController.lists,
+  );
+
   /* --- ADMIN  --- */
   router.patch(
     '/users',
     onlyLoggedIn,
     isAdmin,
     [check('date').matches(/^[0-9]{6}$/)],
-    validation,
-    invoiceController.update,
-  );
-
-  /* --- Client  --- */
-  router.get(
-    '/users',
-    onlyLoggedIn,
-    [query('date').matches(/^[0-9]{6}$/)],
     validation,
     invoiceController.lists,
   );
