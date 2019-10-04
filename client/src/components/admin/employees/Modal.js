@@ -20,7 +20,6 @@ const DeleteFormBox = Loader({
 
 const EmployeeModal = ({
   // local states
-  data,
   clickedBtn,
   // global states
   clickedUserData,

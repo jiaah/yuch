@@ -129,7 +129,6 @@ const Container = ({
       </div>
       {clickedBtn && (
         <Modal
-          data={data}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
           selectedSearchItem={selectedSearchItem}

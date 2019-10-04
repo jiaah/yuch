@@ -9,7 +9,7 @@ const Form = ({ isSubmitting }) => (
       <div className="media--flex-column-m">
         <FormikField
           label="직원명"
-          name="name"
+          name="companyName"
           type="text"
           icon="filledUser"
           styleName="textFieldC"

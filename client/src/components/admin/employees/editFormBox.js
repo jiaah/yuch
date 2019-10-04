@@ -19,14 +19,17 @@ const EditFormBox = ({
   ) => {
     const res = await editEmployee(values);
     if (!res.error) {
-      addFlashMessage('success', `${values.name} 님의 정보를 수정하였습니다.`);
+      addFlashMessage(
+        'success',
+        `${values.companyName} 님의 정보를 수정하였습니다.`,
+      );
       await Promise.all([resetForm({}), handleCloseModal()]);
       window.location.reload(true);
     } else {
       addFlashMessage(
         'error',
         `${
-          values.name
+          values.companyName
         } 님의 정보 수정에 실패하였습니다. 이미 등록한 직원인지 확인하신 후, 다시 시도해주세요.`,
       );
     }

@@ -593,7 +593,7 @@ export const employeeColumns = [
     label: '',
   },
   {
-    id: 'name',
+    id: 'companyName',
     numeric: true,
     disablePadding: false,
     label: '고객명',
@@ -624,7 +624,7 @@ export const employeeColumns = [
     label: '주소',
   },
   {
-    id: 'startedAt',
+    id: 'startTime',
     numeric: true,
     disablePadding: false,
     label: '시작일',

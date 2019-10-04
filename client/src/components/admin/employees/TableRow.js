@@ -36,8 +36,8 @@ const EmployeeTableRow = ({
     tabIndex={-1}
     selected={
       selectedRow === row.id ||
-      selectedSearchItem === row.name ||
-      clickedUserData.name === row.name
+      selectedSearchItem === row.companyName ||
+      clickedUserData.companyName === row.companyName
     }
   >
     <TableCell padding="checkbox">
@@ -64,7 +64,7 @@ const EmployeeTableRow = ({
       scope="row"
       className={`${resize} ${point}`}
     >
-      {row.name}
+      {row.companyName}
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.accountHolder}
@@ -82,7 +82,7 @@ const EmployeeTableRow = ({
       {row.address}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.startedAt}
+      {row.startTime}
     </TableCell>
   </TableRow>
 );

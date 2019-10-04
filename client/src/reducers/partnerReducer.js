@@ -13,11 +13,11 @@ const partner = (state = initialState, action) => {
     case types.UPDATE_PARTNERS: {
       const index =
         state.data.length !== 0 &&
-        state.data.findIndex(s => s.name === payload.name);
+        state.data.findIndex(s => s.companyName === payload.companyName);
 
       if (index !== -1) {
         const newObj = state.data.map(
-          s => (s.name === payload.name ? payload : s),
+          s => (s.companyName === payload.companyName ? payload : s),
         );
         return {
           ...state,
