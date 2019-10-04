@@ -34,7 +34,7 @@ const Form = ({ isSubmitting }) => (
         label="계좌번호"
         name="accountNo"
         type="text"
-        icon=""
+        icon="payment"
         styleName="textFieldC"
         required
       />

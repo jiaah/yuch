@@ -141,6 +141,24 @@ const Input = ({
     return setFieldValue(name, value, shouldValidate);
   };
 
+  if (
+    name === 'password' ||
+    name === 'newPassword' ||
+    name === 'confirmPassword'
+  ) {
+    return (
+      <TextField
+        name={name}
+        value={value || ''}
+        onChange={e => change(e, name, true)}
+        onBlur={onBlur}
+        {...props}
+        className={classes[styleName]}
+        helperText={isTouched && errorMessage}
+        error={isTouched && Boolean(errorMessage)}
+      />
+    );
+  }
   return (
     <TextField
       name={name}

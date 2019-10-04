@@ -10,7 +10,8 @@ import Phone from './phone';
 import Email from './email';
 import Catering from './catering';
 import Bank from './bank';
-import BankAccount from './bankAccount';
+import Payment from './payment';
+import Ratio from './ratio';
 import Error from './error';
 import Info from './info';
 import Success from './success';
@@ -56,8 +57,10 @@ const Icon = props => {
       return <Catering {...props} />;
     case 'bank':
       return <Bank {...props} />;
-    case 'bankAccount':
-      return <BankAccount {...props} />;
+    case 'payment':
+      return <Payment {...props} />;
+    case 'ratio':
+      return <Ratio {...props} />;
     case 'error':
       return <Error {...props} />;
     case 'info':
