@@ -6,8 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
-import { stableSort, getSorting } from '../../../utils/sort';
-import EmployeeTableRow from './TableRow';
+import EmployeeTableRow from './employeeTableRow';
 
 const styles = () => ({
   tableWrapper: {
@@ -57,7 +56,7 @@ const EmployeeTable = ({
         <TableBody data-testid="bank-account--table">
           {data &&
             data.length !== 0 &&
-            stableSort(data, getSorting('asc', 'id')).map((row, index) => {
+            data.map((row, index) => {
               const labelId = `enhanced-table-checkbox-${index}`;
               return (
                 <EmployeeTableRow

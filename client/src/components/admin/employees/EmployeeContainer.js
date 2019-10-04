@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Loader from '../../loader';
-import Table from './Table';
+import Table from './employeeTable';
 import { employeeColumns } from '../../../data/data';
 import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -16,7 +16,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as partnerActions from '../../../actions/partnerAction';
 
 const Modal = Loader({
-  loader: () => import('./Modal' /* webpackChunkName: 'Modal' */),
+  loader: () => import('./modal' /* webpackChunkName: 'Modal' */),
 });
 
 const Container = ({
@@ -36,8 +36,8 @@ const Container = ({
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
-  data,
 }) => {
+  const [data, setData] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   // selected row on click
@@ -45,14 +45,15 @@ const Container = ({
   const onFocusOnSelectdRow = id => setSelectedRow(id);
   const offFocusOnSelectdRow = () => setSelectedRow(null);
 
-  const fetchBankAccount = async () => {
+  const fetchData = async () => {
     const res = await getEmployees();
     if (res.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+    return setData(res);
   };
 
   useEffect(() => {
-    fetchBankAccount();
+    fetchData();
     return () => {
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
@@ -149,7 +150,7 @@ const Container = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
-  data: state.partner.data,
+  partners: state.partner.data,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -12,7 +12,11 @@ module.exports = () => {
     onlyLoggedIn,
     partnerController.deleteEmployee,
   );
-  /* --- Partners --- */
 
+  /* --- Partners --- */
+  router.get('/business', onlyLoggedIn, partnerController.getPartners);
+  router.post('/business', onlyLoggedIn, partnerController.createPartner);
+  router.patch('/business/:id', onlyLoggedIn, partnerController.updatePartner);
+  router.delete('/business/:id', onlyLoggedIn, partnerController.deletePartner);
   return router;
 };

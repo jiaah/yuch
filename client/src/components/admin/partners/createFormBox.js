@@ -5,9 +5,9 @@ import EmployeeForm from './form';
 import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
-  employeeValidation,
+  partnerValidation,
   // actions
-  createEmployee,
+  createPartner,
   addFlashMessage,
   saveClickedItemData,
   // func
@@ -19,6 +19,8 @@ const CreateFormBox = ({
     bankName: '',
     accountNo: '',
     contactNo: '',
+    address: '',
+    startedAt: formattedToday,
   };
   const handleCreateBankAccount = async (
     values,
@@ -27,9 +29,12 @@ const CreateFormBox = ({
     // to focus the created row
     await saveClickedItemData(values);
 
-    const res = await createEmployee(values);
+    const res = await createPartner(values);
     if (!res.error) {
-      addFlashMessage('success', `${values.companyName} 님을 등록하였습니다.`);
+      addFlashMessage(
+        'success',
+        `${values.companyName} 거래처를 등록하였습니다.`,
+      );
       await Promise.all([resetForm({}), handleCloseModal()]);
       window.location.reload(true);
     } else {
@@ -37,7 +42,7 @@ const CreateFormBox = ({
         'error',
         `${
           values.companyName
-        } 님의 정보 수정에 실패하였습니다. 이미 등록한 직원인지 확인하신 후, 다시 시도해주세요.`,
+        } 님의 정보 수정에 실패하였습니다. 이미 등록한 거래처인지 확인하신 후, 다시 시도해주세요.`,
       );
     }
     return setSubmitting(false);
@@ -51,7 +56,7 @@ const CreateFormBox = ({
         </Form>
       )}
       onSubmit={handleCreateBankAccount}
-      validationSchema={employeeValidation}
+      validationSchema={partnerValidation}
     />
   );
 };

@@ -1,6 +1,7 @@
 import { Axios } from './axios';
 import * as types from './actionTypes';
 
+/* --- Employees --- */
 export const getEmployees = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getEmployees' });
   try {
@@ -78,6 +79,89 @@ export const deleteEmployee = id => async dispatch => {
       api: 'deleteEmployee',
       status: error.response.status,
       error: 'Deleting Employee is failed.',
+    });
+  }
+};
+
+/* --- Partners --- */
+
+export const getPartners = () => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getPartners' });
+  try {
+    const res = await Axios.get('/partner/business');
+    const { data } = res;
+    dispatch({
+      type: types.FETCH_PARTNERS,
+      api: 'getPartners',
+      payload: data,
+    });
+    return data;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getPartners',
+      status: error.response.status,
+      error: 'Getting Partners is failed.',
+    });
+  }
+};
+
+export const createPartner = values => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'createPartner' });
+  try {
+    const res = await Axios.post('/partner/business', values);
+    dispatch({
+      type: types.UPDATE_PARTNERS,
+      api: 'createPartner',
+      payload: values,
+    });
+    return res;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'createPartner',
+      status: error.response.status,
+      error: 'Creating Partner is failed.',
+    });
+  }
+};
+
+export const editPartner = values => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'editPartner' });
+  try {
+    const res = await Axios.patch(`/partner/business/${values.id}`, values);
+    dispatch({
+      type: types.UPDATE_PARTNERS,
+      api: 'editPartner',
+      payload: values,
+    });
+    return res;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'editPartner',
+      status: error.response.status,
+      error: 'Editing Partner is failed.',
+    });
+  }
+};
+
+export const deletePartner = id => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'deletePartner' });
+  try {
+    const res = await Axios.delete(`/partner/business/${id}`);
+    dispatch({
+      type: types.DELETE_PARTNERS,
+      api: 'deletePartner',
+      payload: { id },
+    });
+    return res;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'deletePartner',
+      status: error.response.status,
+      error: 'Deleting Partner is failed.',
     });
   }
 };

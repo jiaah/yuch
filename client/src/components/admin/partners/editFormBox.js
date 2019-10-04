@@ -4,11 +4,11 @@ import { Formik, Form } from 'formik';
 import EmployeeForm from './form';
 
 const EditFormBox = ({
-  employeeValidation,
+  partnerValidation,
   // global state
   clickedUserData,
   // actions
-  editEmployee,
+  editPartner,
   addFlashMessage,
   // func
   handleCloseModal,
@@ -17,11 +17,11 @@ const EditFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
-    const res = await editEmployee(values);
+    const res = await editPartner(values);
     if (!res.error) {
       addFlashMessage(
         'success',
-        `${values.companyName} 님의 정보를 수정하였습니다.`,
+        `${values.companyName} 거래처 정보를 수정하였습니다.`,
       );
       await Promise.all([resetForm({}), handleCloseModal()]);
       window.location.reload(true);
@@ -30,7 +30,7 @@ const EditFormBox = ({
         'error',
         `${
           values.companyName
-        } 님의 정보 수정에 실패하였습니다. 이미 등록한 직원인지 확인하신 후, 다시 시도해주세요.`,
+        } 님의 정보 수정에 실패하였습니다. 이미 등록한 거래처인지 확인하신 후, 다시 시도해주세요.`,
       );
     }
     return setSubmitting(false);
@@ -44,7 +44,7 @@ const EditFormBox = ({
         </Form>
       )}
       onSubmit={handleEditBankAccount}
-      validationSchema={employeeValidation}
+      validationSchema={partnerValidation}
     />
   );
 };

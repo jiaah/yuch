@@ -630,3 +630,37 @@ export const employeeColumns = [
     label: '시작일',
   },
 ];
+
+export const partnerColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '업체명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+];
