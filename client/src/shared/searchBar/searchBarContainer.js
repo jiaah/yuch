@@ -74,9 +74,19 @@ const SearchBar = ({
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
-    const suggestion = await data
-      .sort()
-      .filter(u => u.companyName.match(regex));
+    const suggestion = await data.sort().filter(u => {
+      let values;
+      if (u.companyName) {
+        values = u.companyName.match(regex);
+      }
+      if (u.name) {
+        values = u.name.match(regex);
+      }
+      if (u.username) {
+        values = u.username.match(regex);
+      }
+      return values;
+    });
 
     return setSuggestions(suggestion);
   };
@@ -90,7 +100,7 @@ const SearchBar = ({
   };
 
   const suggestionSelected = user => {
-    setInputValue(user.companyName); // display the selected value in search bar
+    setInputValue(user.companyName || user.name); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
     if (!isSecondSearchBar) saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux

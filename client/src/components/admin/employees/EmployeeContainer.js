@@ -7,6 +7,8 @@ import Paper from '../../../shared/paper';
 import Loader from '../../loader';
 import Table from './Table';
 import { employeeColumns } from '../../../data/data';
+import { printDiv } from '../../../utils/print';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -59,10 +61,20 @@ const Container = ({
     Promise.all([setClickedBtn(sub), showModal()]);
   };
 
+  // off row focus
+  const handleSuggestionSelected = () => {};
+
+  const renderAllUsers = () => {};
+
   return (
     <div className="container-a r--w-80">
       <h2>유청 직원</h2>
-      <div className="paper-label-box justify-end">
+      <div className="paper-label-box justify-between">
+        <SearchBar
+          data={data}
+          handleSuggestionSelected={handleSuggestionSelected}
+          handleResetSearch={renderAllUsers}
+        />
         <div className="flex">
           <IconButton
             handleClick={() => handleButtonClick('create')}
@@ -71,24 +83,33 @@ const Container = ({
             height="30"
             viewBox="0 0 24 24"
           />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
         </div>
       </div>
-      <Paper
-        component={
-          data && data.length !== 0 ? (
-            <Table
-              data={data}
-              clickedBtn={clickedBtn}
-              saveClickedItemData={saveClickedItemData}
-              saveSelectedItemValue={saveSelectedItemValue}
-              handleButtonClick={handleButtonClick}
-              employeeColumns={employeeColumns}
-            />
-          ) : (
-            <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
-          )
-        }
-      />
+      <div id="print">
+        <Paper
+          component={
+            data && data.length !== 0 ? (
+              <Table
+                data={data}
+                clickedBtn={clickedBtn}
+                saveClickedItemData={saveClickedItemData}
+                saveSelectedItemValue={saveSelectedItemValue}
+                handleButtonClick={handleButtonClick}
+                employeeColumns={employeeColumns}
+              />
+            ) : (
+              <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+            )
+          }
+        />
+      </div>
       {clickedBtn && (
         <Modal
           data={data}

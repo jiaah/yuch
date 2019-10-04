@@ -116,8 +116,6 @@ const SpecialMealContainer = ({
 
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
-    // search
-    if (selectedItemValue) resetSelectedItemValue();
     // create & edit & delete
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
