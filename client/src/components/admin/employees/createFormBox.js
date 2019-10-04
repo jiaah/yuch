@@ -7,10 +7,13 @@ import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
   bankAccountValidation,
-  createBankAccount,
-  handleCloseModal,
-  addFlashMessage,
+  // local state
   data,
+  // actions
+  createEmployee,
+  addFlashMessage,
+  // func
+  handleCloseModal,
 }) => {
   const values = {
     name: '',
@@ -25,7 +28,7 @@ const CreateFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
-    const res = await createBankAccount(values);
+    const res = await createEmployee(values);
     if (!res.error) {
       await Promise.all([resetForm({}), handleCloseModal()]);
       return window.location.reload(true);
@@ -51,7 +54,7 @@ const CreateFormBox = ({
             </Form>
           )}
           onSubmit={handleCreateBankAccount}
-          validationSchema={bankAccountValidation}
+          // validationSchema={bankAccountValidation}
         />
       )}
     </React.Fragment>

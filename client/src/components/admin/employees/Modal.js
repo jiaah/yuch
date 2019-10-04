@@ -20,25 +20,25 @@ const DeleteFormBox = Loader({
 const EmployeeModal = ({
   bankAccountValidation,
   // local states
-  clickedBtn,
   data,
+  clickedBtn,
   // global states
   clickedUserData,
   selectedSearchItem,
   // actions
   hideModal,
+  addFlashMessage,
   resetClickedItemData,
   resetSelectedItemValue,
-  createBankAccount,
-  editBankAccount,
-  deleteBankAccount,
-  addFlashMessage,
+  createEmployee,
+  editEmployee,
+  deleteEmployee,
 }) => {
   const title =
     clickedBtn === 'edit'
-      ? '은행계좌 수정'
+      ? '직원정보 수정'
       : clickedBtn === 'create'
-        ? '은행계좌 등록'
+        ? '직원정보 등록'
         : null;
 
   const handleCloseModal = async () => {
@@ -58,7 +58,7 @@ const EmployeeModal = ({
           {clickedBtn === 'edit' ? (
             <EditFormBox
               bankAccountValidation={bankAccountValidation}
-              editBankAccount={editBankAccount}
+              editEmployee={editEmployee}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               clickedUserData={clickedUserData}
@@ -66,18 +66,17 @@ const EmployeeModal = ({
           ) : clickedBtn === 'create' ? (
             <CreateFormBox
               bankAccountValidation={bankAccountValidation}
-              createBankAccount={createBankAccount}
+              createEmployee={createEmployee}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               data={data}
             />
           ) : clickedBtn === 'delete' ? (
             <DeleteFormBox
-              deleteBankAccount={deleteBankAccount}
+              deleteEmployee={deleteEmployee}
               selectedSearchItem={selectedSearchItem}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              data={data}
             />
           ) : null}
         </React.Fragment>

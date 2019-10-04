@@ -10,9 +10,9 @@ import { employeeColumns } from '../../../data/data';
 import { bankAccountValidation } from '../../formValidation';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
-import * as bankActions from '../../../actions/bankAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { addFlashMessage } from '../../../actions/messageAction';
+import * as partnerActions from '../../../actions/partnerAction';
 
 const Modal = Loader({
   loader: () => import('./Modal' /* webpackChunkName: 'Modal' */),
@@ -20,17 +20,17 @@ const Modal = Loader({
 
 const Container = ({
   modalActions: { showModal, hideModal },
-  bankActions: {
-    getBankAccount,
-    createBankAccount,
-    editBankAccount,
-    deleteBankAccount,
-  },
   selectedActions: {
     saveClickedItemData,
     resetClickedItemData,
     saveSelectedItemValue,
     resetSelectedItemValue,
+  },
+  partnerActions: {
+    getEmployees,
+    createEmployee,
+    editEmployee,
+    deleteEmployee,
   },
   addFlashMessage,
   clickedUserData,
@@ -40,10 +40,10 @@ const Container = ({
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchBankAccount = async () => {
-    const bankAccounts = await getBankAccount();
-    if (bankAccounts.error)
+    const res = await getEmployees();
+    if (res.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-    return setData(bankAccounts);
+    return setData(res);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Container = ({
   };
 
   return (
-    <div className="container-a r--w-60">
+    <div className="container-a r--w-80">
       <h2>유청 직원</h2>
       <div className="paper-label-box justify-end">
         <div className="flex">
@@ -76,30 +76,34 @@ const Container = ({
       </div>
       <Paper
         component={
-          <Table
-            employeeColumns={employeeColumns}
-            data={data}
-            clickedBtn={clickedBtn}
-            saveClickedItemData={saveClickedItemData}
-            saveSelectedItemValue={saveSelectedItemValue}
-            handleButtonClick={handleButtonClick}
-          />
+          data && data.length !== 0 ? (
+            <Table
+              data={data}
+              clickedBtn={clickedBtn}
+              employeeColumns={employeeColumns}
+              saveClickedItemData={saveClickedItemData}
+              saveSelectedItemValue={saveSelectedItemValue}
+              handleButtonClick={handleButtonClick}
+            />
+          ) : (
+            <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+          )
         }
       />
       {clickedBtn && (
         <Modal
-          resetClickedItemData={resetClickedItemData}
-          hideModal={hideModal}
-          bankAccountValidation={bankAccountValidation}
+          data={data}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
           selectedSearchItem={selectedSearchItem}
-          createBankAccount={createBankAccount}
-          editBankAccount={editBankAccount}
-          deleteBankAccount={deleteBankAccount}
+          hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           resetSelectedItemValue={resetSelectedItemValue}
-          data={data}
+          resetClickedItemData={resetClickedItemData}
+          createEmployee={createEmployee}
+          editEmployee={editEmployee}
+          deleteEmployee={deleteEmployee}
+          bankAccountValidation={bankAccountValidation}
         />
       )}
     </div>
@@ -113,10 +117,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(modalActions, dispatch),
-  bankActions: bindActionCreators(bankActions, dispatch),
   selectedActions: bindActionCreators(selectedActions, dispatch),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
+  partnerActions: bindActionCreators(partnerActions, dispatch),
 });
 
 export default connect(

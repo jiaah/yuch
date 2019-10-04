@@ -20,7 +20,6 @@ const Form = ({ isSubmitting }) => (
         type="text"
         icon="filledUser"
         styleName="textFieldC"
-        required
       />
       <FormikField
         label="은행명"
@@ -28,7 +27,6 @@ const Form = ({ isSubmitting }) => (
         type="text"
         icon="bank"
         styleName="textFieldC"
-        required
       />
       <FormikField
         label="계좌번호"
@@ -36,7 +34,6 @@ const Form = ({ isSubmitting }) => (
         type="text"
         icon="payment"
         styleName="textFieldC"
-        required
       />
       <FormikField
         label="연락처"
@@ -59,7 +56,6 @@ const Form = ({ isSubmitting }) => (
         type="date"
         icon="calendar"
         styleName="textFieldC"
-        required
       />
     </div>
     <FormButton

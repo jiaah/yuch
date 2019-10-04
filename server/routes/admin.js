@@ -66,5 +66,6 @@ module.exports = () => {
     validation,
     adminController.updateReservedPrice,
   );
+
   return router;
 };

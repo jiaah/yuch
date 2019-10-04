@@ -587,6 +587,12 @@ export const userBusinessColumns = [
 
 export const employeeColumns = [
   {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
     id: 'name',
     numeric: true,
     disablePadding: false,

@@ -31,13 +31,13 @@ const EmployeeTable = ({
   const handleTableRowClick = id => setSelected(id);
 
   const getClickedUserData = async bankId => {
-    const bankData = await data.filter(b => b.id === bankId);
-    return bankData[0];
+    const filteredData = await data.filter(b => b.id === bankId);
+    return filteredData[0];
   };
 
   const handleEditBtnClick = async id => {
-    const bankData = await getClickedUserData(id);
-    await saveClickedItemData(bankData);
+    const clickedData = await getClickedUserData(id);
+    await saveClickedItemData(clickedData);
     return handleButtonClick('edit');
   };
 
@@ -71,7 +71,7 @@ const EmployeeTable = ({
             })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 49 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <TableCell colSpan={8} />
             </TableRow>
           )}
         </TableBody>

@@ -5,16 +5,19 @@ import EmployeeForm from './Form';
 
 const EditFormBox = ({
   bankAccountValidation,
-  editBankAccount,
-  handleCloseModal,
-  addFlashMessage,
+  // global state
   clickedUserData,
+  // actions
+  editEmployee,
+  addFlashMessage,
+  // func
+  handleCloseModal,
 }) => {
   const handleEditBankAccount = async (
     values,
     { setSubmitting, resetForm },
   ) => {
-    const res = await editBankAccount(values);
+    const res = await editEmployee(values);
     if (!res.error) {
       await Promise.all([resetForm({}), handleCloseModal()]);
       return window.location.reload(true);
@@ -36,7 +39,7 @@ const EditFormBox = ({
         </Form>
       )}
       onSubmit={handleEditBankAccount}
-      validationSchema={bankAccountValidation}
+      // validationSchema={bankAccountValidation}
     />
   );
 };

@@ -1,17 +1,18 @@
 import React from 'react';
 /* --- Components --- */
 import AdminVerificationContainer from '../../../shared/adminVerification/adminVerificationContainer';
-import { deleteBankAccountMsg } from '../../../data/message';
 
 const DeleteFormBox = ({
-  deleteBankAccount,
+  // global state
   selectedSearchItem,
+  // actions
+  deleteEmployee,
   addFlashMessage,
+  // funcs
   handleCloseModal,
-  data,
 }) => {
   const handleDeleteUser = async () => {
-    const res = await deleteBankAccount(selectedSearchItem);
+    const res = await deleteEmployee(selectedSearchItem);
     if (!res.error) {
       await handleCloseModal();
       return window.location.reload(true);
@@ -23,16 +24,10 @@ const DeleteFormBox = ({
   };
 
   return (
-    <React.Fragment>
-      {data.length < 2 ? (
-        <React.Fragment>{deleteBankAccountMsg}</React.Fragment>
-      ) : (
-        <AdminVerificationContainer
-          handleAdminVerificationSuccess={handleDeleteUser}
-          confirmType="delete"
-        />
-      )}
-    </React.Fragment>
+    <AdminVerificationContainer
+      handleAdminVerificationSuccess={handleDeleteUser}
+      confirmType="delete"
+    />
   );
 };
 
