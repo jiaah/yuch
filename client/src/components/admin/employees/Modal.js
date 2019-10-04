@@ -2,6 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import Loader from '../../loader';
+import { employeeValidation } from '../../formValidation';
 
 const CreateFormBox = Loader({
   loader: () =>
@@ -18,7 +19,6 @@ const DeleteFormBox = Loader({
 });
 
 const EmployeeModal = ({
-  bankAccountValidation,
   // local states
   data,
   clickedBtn,
@@ -57,7 +57,7 @@ const EmployeeModal = ({
         <React.Fragment>
           {clickedBtn === 'edit' ? (
             <EditFormBox
-              bankAccountValidation={bankAccountValidation}
+              employeeValidation={employeeValidation}
               editEmployee={editEmployee}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
@@ -65,7 +65,7 @@ const EmployeeModal = ({
             />
           ) : clickedBtn === 'create' ? (
             <CreateFormBox
-              bankAccountValidation={bankAccountValidation}
+              employeeValidation={employeeValidation}
               createEmployee={createEmployee}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}

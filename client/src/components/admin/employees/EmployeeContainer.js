@@ -7,7 +7,6 @@ import Paper from '../../../shared/paper';
 import Loader from '../../loader';
 import Table from './Table';
 import { employeeColumns } from '../../../data/data';
-import { bankAccountValidation } from '../../formValidation';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -80,10 +79,10 @@ const Container = ({
             <Table
               data={data}
               clickedBtn={clickedBtn}
-              employeeColumns={employeeColumns}
               saveClickedItemData={saveClickedItemData}
               saveSelectedItemValue={saveSelectedItemValue}
               handleButtonClick={handleButtonClick}
+              employeeColumns={employeeColumns}
             />
           ) : (
             <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
@@ -103,7 +102,6 @@ const Container = ({
           createEmployee={createEmployee}
           editEmployee={editEmployee}
           deleteEmployee={deleteEmployee}
-          bankAccountValidation={bankAccountValidation}
         />
       )}
     </div>

@@ -6,7 +6,7 @@ import { createBankAccountMsg } from '../../../data/message';
 import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
-  bankAccountValidation,
+  employeeValidation,
   // local state
   data,
   // actions
@@ -54,7 +54,7 @@ const CreateFormBox = ({
             </Form>
           )}
           onSubmit={handleCreateBankAccount}
-          // validationSchema={bankAccountValidation}
+          validationSchema={employeeValidation}
         />
       )}
     </React.Fragment>

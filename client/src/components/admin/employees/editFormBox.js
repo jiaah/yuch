@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import EmployeeForm from './Form';
 
 const EditFormBox = ({
-  bankAccountValidation,
+  employeeValidation,
   // global state
   clickedUserData,
   // actions
@@ -39,7 +39,7 @@ const EditFormBox = ({
         </Form>
       )}
       onSubmit={handleEditBankAccount}
-      // validationSchema={bankAccountValidation}
+      validationSchema={employeeValidation}
     />
   );
 };

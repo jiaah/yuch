@@ -272,3 +272,25 @@ export const specialMealValidation = Yup.object({
   address: Yup.string('').nullable(),
   note: Yup.string('').nullable(),
 });
+
+export const employeeValidation = Yup.object({
+  name: Yup.string('')
+    .matches(nameRegExp, '특수문자는 !@#)(* 만 입력가능합니다 (띄어쓰기 가능)')
+    .max(20, '20글자 아래로 입력해주세요.')
+    .required('고객명을 입력해주세요.'),
+  contactNo: Yup.string()
+    .matches(phoneRegExp, "' - '를 포함한 숫자를 입력해주세요.")
+    .required('연락처를 입력하세요.'),
+  address: Yup.string(''),
+  accountHolder: Yup.string('').matches(
+    nameRegExp,
+    '한글, 숫자, 특수문자 !@#)(* 만 입력하세요 (띄어쓰기 가능)',
+  ),
+  bankName: Yup.string('')
+    .matches(hangulRegExp, '한글만 입력하세요.')
+    .matches(/^\S+$/, '글자를 붙여쓰세요.'),
+  accountNo: Yup.string('' - '를 포함해서 계좌번호를 입력하세요.').matches(
+    bankRegExp,
+    '유효한 계좌번호 형식이 아닙니다.',
+  ),
+});
