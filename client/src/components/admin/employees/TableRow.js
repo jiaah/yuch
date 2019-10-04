@@ -55,6 +55,9 @@ const EmployeeTableRow = ({
       scope="row"
       className={`${resize} ${point}`}
     >
+      {row.name}
+    </TableCell>
+    <TableCell align="right" className={resize}>
       {row.accountHolder}
     </TableCell>
     <TableCell align="right" className={resize}>
@@ -62,6 +65,15 @@ const EmployeeTableRow = ({
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.accountNo}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.contactNo}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.address}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.startedAt}
     </TableCell>
   </TableRow>
 );

@@ -584,3 +584,43 @@ export const userBusinessColumns = [
     label: '사업자 번호',
   },
 ];
+
+export const employeeColumns = [
+  {
+    id: 'name',
+    numeric: true,
+    disablePadding: false,
+    label: '고객명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
+  },
+  {
+    id: 'startedAt',
+    numeric: true,
+    disablePadding: false,
+    label: '시작일',
+  },
+];

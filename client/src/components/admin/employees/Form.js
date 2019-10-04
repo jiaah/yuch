@@ -39,7 +39,7 @@ const Form = ({ isSubmitting }) => (
         required
       />
       <FormikField
-        label="직원명"
+        label="연락처"
         name="contactNo"
         type="text"
         icon="phone"

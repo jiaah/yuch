@@ -6,7 +6,7 @@ import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Loader from '../../loader';
 import Table from './Table';
-import { bankAccountTableHeadColumns } from '../../../data/data';
+import { employeeColumns } from '../../../data/data';
 import { bankAccountValidation } from '../../formValidation';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
@@ -77,7 +77,7 @@ const Container = ({
       <Paper
         component={
           <Table
-            bankAccountTableHeadColumns={bankAccountTableHeadColumns}
+            employeeColumns={employeeColumns}
             data={data}
             clickedBtn={clickedBtn}
             saveClickedItemData={saveClickedItemData}

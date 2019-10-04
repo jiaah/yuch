@@ -18,10 +18,13 @@ const styles = () => ({
 
 const EmployeeTable = ({
   classes: { tableWrapper, table },
-  bankAccountTableHeadColumns,
+  employeeColumns,
+  // local state
   data,
+  // actions
   saveClickedItemData,
   saveSelectedItemValue,
+  // funcs
   handleButtonClick,
 }) => {
   const [selected, setSelected] = React.useState('');
@@ -48,7 +51,7 @@ const EmployeeTable = ({
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="bank" size="small">
-        <EnhancedTableHead list={bankAccountTableHeadColumns} />
+        <EnhancedTableHead list={employeeColumns} />
         <TableBody data-testid="bank-account--table">
           {data &&
             data.length !== 0 &&
