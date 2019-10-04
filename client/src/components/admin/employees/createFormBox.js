@@ -19,6 +19,8 @@ const CreateFormBox = ({
     bankName: '',
     accountNo: '',
     contactNo: '',
+    address: '',
+    startedAt: formattedToday,
   };
   const handleCreateBankAccount = async (
     values,

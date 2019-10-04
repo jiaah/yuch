@@ -63,7 +63,7 @@ const Container = ({
   }, []);
 
   const handleButtonClick = sub => {
-    Promise.all([setClickedBtn(sub), showModal()]);
+    Promise.all([setClickedBtn(sub), showModal(), offFocusOnSelectdRow()]);
   };
 
   // Row Focusing

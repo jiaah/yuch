@@ -22,6 +22,7 @@ const EmployeeTableRow = ({
   selectedRow,
   // global state
   selectedSearchItem,
+
   clickedUserData,
   // funcs
   handleTableRowClick,
@@ -32,7 +33,7 @@ const EmployeeTableRow = ({
     key={row.id}
     onClick={() => handleTableRowClick(row.id)}
     role="checkbox"
-    aria-checked={selectedRow === row.id}
+    // aria-checked={selectedRow === row.id}
     tabIndex={-1}
     selected={
       selectedRow === row.id ||
