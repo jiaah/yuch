@@ -18,7 +18,7 @@ const SpecialMealTableRow = ({
   classes: { resize, point },
   row,
   labelId,
-  upComingEventId,
+  upComingEvent,
   // local state
   selectedRow,
   // global state
@@ -37,7 +37,7 @@ const SpecialMealTableRow = ({
   const isHandledRow =
     (userId && userId === row.userId) ||
     (companyName === row.companyName && date === row.date);
-  const isUpcomingEvent = upComingEventId === row.id;
+  const isUpcomingEvent = upComingEvent && upComingEvent.id === row.id;
 
   return (
     <TableRow

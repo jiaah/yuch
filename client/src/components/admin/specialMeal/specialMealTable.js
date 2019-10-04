@@ -57,7 +57,7 @@ const SpecialMealTable = ({
 
   const formattedData = users.map(u => formatToYYYYMMDD(u.date));
   const upComingEventIndex = formattedData.findIndex(i => i >= today);
-  const upComingEventId = users[upComingEventIndex].id;
+  const upComingEvent = users[upComingEventIndex];
 
   return (
     <div id="print" className={tableWrapper}>
@@ -79,7 +79,7 @@ const SpecialMealTable = ({
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
-                  upComingEventId={upComingEventId}
+                  upComingEvent={upComingEvent}
                 />
               );
             })}
