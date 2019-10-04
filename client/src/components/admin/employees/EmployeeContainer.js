@@ -36,8 +36,8 @@ const Container = ({
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
+  data,
 }) => {
-  const [data, setData] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   // selected row on click
@@ -49,7 +49,6 @@ const Container = ({
     const res = await getEmployees();
     if (res.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-    return setData(res);
   };
 
   useEffect(() => {
@@ -79,7 +78,7 @@ const Container = ({
     if (selectedRow) offFocusOnSelectdRow();
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
-  console.log('clickedUserData: ', clickedUserData);
+
   return (
     <div className="container-a r--w-80">
       <h2>유청 직원</h2>
@@ -151,6 +150,7 @@ const Container = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
+  data: state.partner.data,
 });
 
 const mapDispatchToProps = dispatch => ({

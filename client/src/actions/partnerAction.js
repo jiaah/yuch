@@ -5,12 +5,13 @@ export const getEmployees = () => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getEmployees' });
   try {
     const res = await Axios.get('/partner/employees');
-
+    const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.FETCH_PARTNERS,
       api: 'getEmployees',
+      payload: data,
     });
-    return res.data;
+    return data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -25,7 +26,11 @@ export const createEmployee = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createEmployee' });
   try {
     const res = await Axios.post('/partner/employee', values);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'createEmployee' });
+    dispatch({
+      type: types.UPDATE_PARTNERS,
+      api: 'createEmployee',
+      payload: values,
+    });
     return res;
   } catch (error) {
     return dispatch({
@@ -41,7 +46,11 @@ export const editEmployee = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editEmployee' });
   try {
     const res = await Axios.patch(`/partner/employee/${values.id}`, values);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'editEmployee' });
+    dispatch({
+      type: types.UPDATE_PARTNERS,
+      api: 'editEmployee',
+      payload: values,
+    });
     return res;
   } catch (error) {
     return dispatch({
@@ -57,7 +66,11 @@ export const deleteEmployee = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteEmployee' });
   try {
     const res = await Axios.delete(`/partner/employee/${id}`);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteEmployee' });
+    dispatch({
+      type: types.DELETE_PARTNERS,
+      api: 'deleteEmployee',
+      payload: { id },
+    });
     return res;
   } catch (error) {
     return dispatch({

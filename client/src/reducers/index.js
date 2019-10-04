@@ -10,6 +10,7 @@ import selected from './selectedReducer';
 import userCatering from './userCatering';
 import dateTracker from './dateTracker';
 import resto from './restoReducer';
+import partner from './partnerReducer';
 
 export default history =>
   combineReducers({
@@ -23,4 +24,5 @@ export default history =>
     userCatering,
     dateTracker,
     resto,
+    partner,
   });

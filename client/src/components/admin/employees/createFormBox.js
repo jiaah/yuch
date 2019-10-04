@@ -27,7 +27,6 @@ const CreateFormBox = ({
     { setSubmitting, resetForm },
   ) => {
     // to focus the created row
-    console.log('values: ', values);
     await saveClickedItemData(values);
 
     const res = await createEmployee(values);
