@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import InputBase from '@material-ui/core/InputBase';
@@ -103,7 +103,8 @@ const SearchBar = ({
     setInputValue(user.companyName || user.name); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    if (!isSecondSearchBar) saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
+    if (!isSecondSearchBar)
+      saveSelectedItemValue(user.companyName || user.name); // make the selected value accesible in a parents component via redux
     return handleSuggestionSelected(user);
   };
 
@@ -112,6 +113,13 @@ const SearchBar = ({
     if (!isSecondSearchBar) resetSelectedItemValue();
     return handleResetSearch();
   };
+
+  useEffect(
+    () => () => {
+      resetSearch();
+    },
+    [],
+  );
 
   const open = Boolean(anchorEl);
 

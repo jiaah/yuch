@@ -28,6 +28,7 @@ const EmployeeModal = ({
   // actions
   hideModal,
   addFlashMessage,
+  saveClickedItemData,
   resetClickedItemData,
   resetSelectedItemValue,
   createEmployee,
@@ -69,7 +70,7 @@ const EmployeeModal = ({
               createEmployee={createEmployee}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              data={data}
+              saveClickedItemData={saveClickedItemData}
             />
           ) : clickedBtn === 'delete' ? (
             <DeleteFormBox

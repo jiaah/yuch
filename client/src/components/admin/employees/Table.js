@@ -21,15 +21,17 @@ const EmployeeTable = ({
   employeeColumns,
   // local state
   data,
+  selectedRow,
+  // global state
+  selectedSearchItem,
+  clickedUserData,
   // actions
   saveClickedItemData,
   saveSelectedItemValue,
   // funcs
   handleButtonClick,
+  handleTableRowClick,
 }) => {
-  const [selected, setSelected] = React.useState('');
-  const handleTableRowClick = id => setSelected(id);
-
   const getClickedUserData = async bankId => {
     const filteredData = await data.filter(b => b.id === bankId);
     return filteredData[0];
@@ -64,8 +66,10 @@ const EmployeeTable = ({
                   handleEditBtnClick={handleEditBtnClick}
                   handleDeleteBtnClick={handleDeleteBtnClick}
                   row={row}
-                  selected={selected}
                   labelId={labelId}
+                  selectedRow={selectedRow}
+                  selectedSearchItem={selectedSearchItem}
+                  clickedUserData={clickedUserData}
                 />
               );
             })}

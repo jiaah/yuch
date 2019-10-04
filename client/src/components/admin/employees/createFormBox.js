@@ -2,16 +2,14 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import EmployeeForm from './Form';
-import { createBankAccountMsg } from '../../../data/message';
 import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
   employeeValidation,
-  // local state
-  data,
   // actions
   createEmployee,
   addFlashMessage,
+  saveClickedItemData,
   // func
   handleCloseModal,
 }) => {
@@ -28,36 +26,36 @@ const CreateFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
+    // to focus the created row
+    console.log('values: ', values);
+    await saveClickedItemData(values);
+
     const res = await createEmployee(values);
     if (!res.error) {
+      addFlashMessage('success', `${values.name} 님을 등록하였습니다.`);
       await Promise.all([resetForm({}), handleCloseModal()]);
-      return window.location.reload(true);
+      window.location.reload(true);
+    } else {
+      addFlashMessage(
+        'error',
+        `${
+          values.name
+        } 님의 정보 수정에 실패하였습니다. 이미 등록한 직원인지 확인하신 후, 다시 시도해주세요.`,
+      );
     }
-    addFlashMessage(
-      'error',
-      `${
-        values.accountHolder
-      } 님의 은행계좌 등록에 실패하였습니다. 이미 등록한 계좌정보인지 확인하신후, 다시 시도해주세요.`,
-    );
     return setSubmitting(false);
   };
   return (
-    <React.Fragment>
-      {data.length >= 4 ? (
-        <React.Fragment>{createBankAccountMsg}</React.Fragment>
-      ) : (
-        <Formik
-          initialValues={values}
-          render={props => (
-            <Form className="mh1">
-              <EmployeeForm {...props} />
-            </Form>
-          )}
-          onSubmit={handleCreateBankAccount}
-          validationSchema={employeeValidation}
-        />
+    <Formik
+      initialValues={values}
+      render={props => (
+        <Form className="mh1">
+          <EmployeeForm {...props} />
+        </Form>
       )}
-    </React.Fragment>
+      onSubmit={handleCreateBankAccount}
+      validationSchema={employeeValidation}
+    />
   );
 };
 

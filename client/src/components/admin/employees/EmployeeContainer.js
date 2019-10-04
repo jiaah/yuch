@@ -40,6 +40,11 @@ const Container = ({
   const [data, setData] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
+  // selected row on click
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onFocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
+
   const fetchBankAccount = async () => {
     const res = await getEmployees();
     if (res.error)
@@ -61,11 +66,20 @@ const Container = ({
     Promise.all([setClickedBtn(sub), showModal()]);
   };
 
-  // off row focus
-  const handleSuggestionSelected = () => {};
-
-  const renderAllUsers = () => {};
-
+  // Row Focusing
+  const handleTableRowClick = id => {
+    // select
+    onFocusOnSelectdRow(id);
+    // search
+    if (selectedSearchItem) resetSelectedItemValue();
+    // create, edit
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  };
+  const handleSuggestionSelected = () => {
+    if (selectedRow) offFocusOnSelectdRow();
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  };
+  console.log('clickedUserData: ', clickedUserData);
   return (
     <div className="container-a r--w-80">
       <h2>유청 직원</h2>
@@ -73,7 +87,7 @@ const Container = ({
         <SearchBar
           data={data}
           handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={renderAllUsers}
+          handleResetSearch={() => {}}
         />
         <div className="flex">
           <IconButton
@@ -99,10 +113,14 @@ const Container = ({
               <Table
                 data={data}
                 clickedBtn={clickedBtn}
+                selectedRow={selectedRow}
+                selectedSearchItem={selectedSearchItem}
                 saveClickedItemData={saveClickedItemData}
                 saveSelectedItemValue={saveSelectedItemValue}
                 handleButtonClick={handleButtonClick}
+                handleTableRowClick={handleTableRowClick}
                 employeeColumns={employeeColumns}
+                clickedUserData={clickedUserData}
               />
             ) : (
               <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
@@ -119,6 +137,7 @@ const Container = ({
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
           resetSelectedItemValue={resetSelectedItemValue}
+          saveClickedItemData={saveClickedItemData}
           resetClickedItemData={resetClickedItemData}
           createEmployee={createEmployee}
           editEmployee={editEmployee}
