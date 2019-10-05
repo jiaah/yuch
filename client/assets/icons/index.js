@@ -34,7 +34,7 @@ import Money from './money';
 import Note from './note';
 import Calendar from './calendar';
 import Time from './time';
-import List from './List';
+import List from './list';
 import Update from './update';
 
 const Icon = props => {

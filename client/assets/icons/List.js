@@ -2,7 +2,7 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const List = ({ name, width, height, viewBox, fillOuter }) => (
-  <Tooltip title="고객사 매출 현황" aria-label="return to List">
+  <Tooltip title="모든 고객 매출보기" aria-label="return to List">
     <svg
       width={width}
       height={height}

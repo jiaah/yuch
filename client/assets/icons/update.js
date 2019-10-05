@@ -2,7 +2,7 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const Update = ({ name, width, height, viewBox, fillOuter }) => (
-  <Tooltip title="업데이트" aria-label="update">
+  <Tooltip title="인보이스/매출 업데이트" aria-label="update">
     <svg
       width={width}
       height={height}
