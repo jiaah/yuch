@@ -6,9 +6,15 @@ import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Loader from '../../loader';
 import Table from './employeeTable';
-import { employeeColumns } from '../../../data/data';
+import ContactTable from './employeeContactTable';
+import {
+  employeeColumns,
+  employeeContactColumns,
+  admin,
+} from '../../../data/data';
 import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import Select from '../../../shared/form/select';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -36,6 +42,7 @@ const Container = ({
   addFlashMessage,
   clickedUserData,
   selectedSearchItem,
+  employees,
 }) => {
   const [data, setData] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -82,7 +89,7 @@ const Container = ({
 
   return (
     <div className="container-a r--w-80">
-      <h2>유청 직원</h2>
+      <h2>{`${admin.companyName} 직원`}</h2>
       <div className="paper-label-box justify-between">
         <SearchBar
           data={data}
@@ -90,13 +97,21 @@ const Container = ({
           handleResetSearch={() => {}}
         />
         <div className="flex">
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
+          <Select
+            label=""
+            name="employees"
+            selectedValue={employees}
+            options={[{ value: '전체' }, { value: '전화번호' }]}
           />
+          {employees === '전체' && (
+            <IconButton
+              handleClick={() => handleButtonClick('create')}
+              name="add"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+            />
+          )}
           <IconButton
             name="print"
             width="32"
@@ -107,9 +122,13 @@ const Container = ({
         </div>
       </div>
       <div id="print">
-        <Paper
-          component={
-            data && data.length !== 0 ? (
+        {data && data.length === 0 ? (
+          <Paper
+            component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
+          />
+        ) : employees === '전체' ? (
+          <Paper
+            component={
               <Table
                 data={data}
                 clickedBtn={clickedBtn}
@@ -121,12 +140,25 @@ const Container = ({
                 handleTableRowClick={handleTableRowClick}
                 employeeColumns={employeeColumns}
                 clickedUserData={clickedUserData}
+                employees={employees}
               />
-            ) : (
-              <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
-            )
-          }
-        />
+            }
+          />
+        ) : (
+          <Paper
+            isDivided={true}
+            classname="center"
+            component={
+              <ContactTable
+                data={data}
+                selectedRow={selectedRow}
+                selectedSearchItem={selectedSearchItem}
+                handleTableRowClick={handleTableRowClick}
+                employeeContactColumns={employeeContactColumns}
+              />
+            }
+          />
+        )}
       </div>
       {clickedBtn && (
         <Modal
@@ -150,6 +182,7 @@ const Container = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
+  employees: state.selected.employees,
   partners: state.partner.data,
 });
 

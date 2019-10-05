@@ -83,7 +83,7 @@ const UserAccountContainer = ({
     return () => {
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
+        selectedSearchItem && resetSelectedItemValue(),
         selectedSearchItem && renderAllUsers(),
       ]);
     };

@@ -125,14 +125,14 @@ export const navAdminItems = {
   ],
   4: [
     {
-      id: 11,
-      name: `협력 업체`,
-      to: '/admin/account/partners',
+      id: 12,
+      name: `직원`,
+      to: '/admin/account/employees',
     },
     {
-      id: 12,
-      name: `${admin.companyName} 직원`,
-      to: '/admin/account/employees',
+      id: 11,
+      name: `거래처`,
+      to: '/admin/account/partners',
     },
     {
       id: 13,
@@ -596,7 +596,7 @@ export const employeeColumns = [
     id: 'companyName',
     numeric: true,
     disablePadding: false,
-    label: '고객명',
+    label: '직원명',
   },
   {
     id: 'accountHolder',
@@ -656,6 +656,21 @@ export const partnerColumns = [
     numeric: true,
     disablePadding: false,
     label: '계좌번호',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+];
+
+export const employeeContactColumns = [
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '직원명',
   },
   {
     id: 'contactNo',
