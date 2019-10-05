@@ -10,11 +10,12 @@ const styles = theme => ({
     },
   },
   font: { color: '#605E5E' },
-  point: { color: '#E8716F' },
+  pointSun: { color: '#E8716F' },
+  pointSat: { colot: '#2196F3' },
 });
 
 const SpecialMealTableRow = ({
-  classes: { resize, point, font },
+  classes: { resize, pointSun, pointSat, font },
   row,
   formatNumber,
   invoiceFormat,
@@ -26,7 +27,7 @@ const SpecialMealTableRow = ({
   const lateNightSnackQty = time >= '19 : 00' ? quantity : null;
 
   const { date, day } = invoiceFormat(row.date);
-  const isWeekend = (day === 'Sat' || day === 'Sun') && point;
+  const isWeekend = day === 'Sat' ? pointSat : day === 'Sun' ? pointSun : null;
 
   return (
     <TableRow tabIndex={-1}>

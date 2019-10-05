@@ -30,7 +30,7 @@ const InvoiceContainer = ({
   invoiceActions: { getUserInvoice },
   addFlashMessage,
 }) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToMonthDateForm(date);
@@ -57,9 +57,9 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div className="container-a r--w-80 invoice-width">
+    <div id="print" className="container-a r--w-80 invoice-width">
       <h2
-        className="pointer"
+        className="pointer center"
         title="오늘 일자로 돌아가기"
         onClick={resetDateMonthly}
       >
@@ -70,16 +70,14 @@ const InvoiceContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        // startTime={admin.startTime}
-        startTime="20181010"
-        // endTime={`${thisMonthYYYYMM}01`}
-        endTime="20201010"
+        startTime={admin.startTime}
+        endTime={`${thisMonthYYYYMM}01`}
         updateDate={updateDateMonthly}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}
         dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
       />
-      <div className="paper-label-box justify-end">
+      <div className="paper-label-box--invoice justify-end">
         <Link to="/admin/invoice/users">
           <IconButton
             name="list"
@@ -97,26 +95,34 @@ const InvoiceContainer = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      <div id="print">
-        {data && (
-          <Paper
-            component={
-              <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
-            }
-          />
+      {data &&
+        data.length !== 0 && (
+          <React.Fragment>
+            <Paper
+              component={
+                <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
+              }
+            />
+
+            <div className="flex justify-between mt3 pw1">
+              <p>
+                {data.bankAccount.accountHolder}
+                &#8199;
+                {data.bankAccount.accountNo}
+                &#8199;
+                {data.bankAccount.bankName}
+              </p>
+              <p>
+                성명
+                :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
+              </p>
+              <p>{admin.companyName}</p>
+            </div>
+            <div className="float-right mt3 mr5">
+              <p>서명 후 돌려주세요. 감사합니다.</p>
+            </div>
+          </React.Fragment>
         )}
-        <div className="flex justify-between mt3 pw1">
-          <p>bank account info</p>
-          <p>
-            성명
-            :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
-          </p>
-          <p>유청</p>
-        </div>
-        <div className="float-right mt3 mr5">
-          <p>서명 후 돌려주세요. 감사합니다.</p>
-        </div>
-      </div>
     </div>
   );
 };
