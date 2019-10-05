@@ -46,15 +46,3 @@
 .paper-label-box--number {
   margin: auto 0 auto 1em;
 }
-
-.paper-label-box--invoice {
-  display: flex;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-bottom: .2em;
-
-  @include for-m-desktop-up {
-    padding-left: 3.5em;
-    padding-right: 3.5em;
-  }
-}

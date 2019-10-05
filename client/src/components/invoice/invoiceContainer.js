@@ -77,7 +77,7 @@ const InvoiceContainer = ({
         fetchData={fetchData}
         dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
       />
-      <div className="paper-label-box--invoice justify-end">
+      <div className="paper-label-box justify-end">
         <Link to="/admin/invoice/users">
           <IconButton
             name="list"

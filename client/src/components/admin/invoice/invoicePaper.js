@@ -40,7 +40,7 @@ const InvoicePaper = ({
   }
 
   return (
-    <div id="print" className="paper">
+    <div className="paper">
       {data.length !== 0 && data.length > 10 ? (
         <React.Fragment>
           <Paper

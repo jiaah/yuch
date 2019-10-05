@@ -76,7 +76,7 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div className="container-a r--w-80">
+    <div id="print" className="container-a r--w-80">
       <h2
         className="pointer"
         title="오늘 일자로 돌아가기"
@@ -120,7 +120,7 @@ const InvoiceContainer = ({
           />
         </div>
       </div>
-      <div id="print">
+      <div>
         <Paper
           data={data}
           selectedRow={selectedRow}
