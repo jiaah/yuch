@@ -91,34 +91,38 @@ const Container = ({
     <div className="container-a r--w-80">
       <h2>{`${admin.companyName} 직원`}</h2>
       <div className="paper-label-box justify-between">
-        <SearchBar
-          data={data}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
-        />
+        <div>
+          <SearchBar
+            data={data}
+            handleSuggestionSelected={handleSuggestionSelected}
+            handleResetSearch={() => {}}
+          />
+        </div>
         <div className="flex">
           <Select
             label=""
             name="employees"
             selectedValue={employees}
-            options={[{ value: '전체' }, { value: '전화번호' }]}
+            options={[{ value: '전체' }, { value: '연락처' }]}
           />
           {employees === '전체' && (
             <IconButton
               handleClick={() => handleButtonClick('create')}
-              name="add"
+              name="personAdd"
               width="30"
               height="30"
               viewBox="0 0 24 24"
             />
           )}
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
+          <div className="tablet employee-icon-print">
+            <IconButton
+              name="print"
+              width="32"
+              height="32"
+              viewBox="0 0 25 25"
+              handleClick={() => printDiv('print')}
+            />
+          </div>
         </div>
       </div>
       <div id="print">
