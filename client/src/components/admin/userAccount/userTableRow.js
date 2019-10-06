@@ -21,9 +21,9 @@ const UserTableRow = ({
   handleTableRowClick,
   handleEditUserBtnClick,
   row,
-  selected,
+  selectedRow,
   labelId,
-  selectedSearchItem,
+  clickedUserData,
 }) => {
   let bankAccount;
 
@@ -53,8 +53,11 @@ const UserTableRow = ({
         key={row.id}
         role="checkbox"
         tabIndex={-1}
-        aria-checked={selected === row.id}
-        selected={selected === row.id || selectedSearchItem === row.id}
+        aria-checked={selectedRow === row.id}
+        selected={
+          selectedRow === row.id ||
+          clickedUserData.companyName === row.companyName
+        }
         onClick={() => handleTableRowClick(row.id)}
       >
         <TableCell padding="checkbox">

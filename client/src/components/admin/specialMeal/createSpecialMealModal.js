@@ -22,6 +22,8 @@ const createModal = ({
   classes: { checkbox },
   formattedTmr,
   adminSpecialMealMsg,
+  // global state
+  clickedUserData,
   // actions
   hideModal,
   createSpecialMeal,
@@ -29,6 +31,7 @@ const createModal = ({
   getUsers,
   resetSelectedItemValue,
   saveClickedItemData,
+  resetClickedItemData,
 }) => {
   const initValues = {
     companyName: '',
@@ -84,6 +87,7 @@ const createModal = ({
 
   useEffect(() => {
     fetchUsersData();
+    if (clickedUserData.length !== 0) resetClickedItemData();
     return () => {
       handleResetSearch();
     };
@@ -101,7 +105,7 @@ const createModal = ({
     if (!res.error) {
       // to keep the created row on focus after re-render
       await saveClickedItemData(sendingData);
-      Promise.all([
+      await Promise.all([
         // render all users list if it's filtered by searching
         resetSelectedItemValue(),
         hideModal(),
@@ -110,7 +114,7 @@ const createModal = ({
       ]);
       window.location.reload(true);
     } else {
-      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      await addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
     return setSubmitting(false);
   };

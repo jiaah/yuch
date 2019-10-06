@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CreateUserForm from './createUserForm';
@@ -9,15 +9,22 @@ const UserAccountModal = ({
   // local states
   bankAccount,
   // global states
+  clickedUserData,
   selectedSearchItem,
   // actions
   createUser,
   addFlashMessage,
+  saveClickedItemData,
+  resetClickedItemData,
   resetSelectedItemValue,
   // fncs from parent component
   handleCloseModal,
   userAccountValidation,
 }) => {
+  useEffect(() => {
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  }, []);
+
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const {
       companyName,
@@ -44,18 +51,20 @@ const UserAccountModal = ({
     const res = await createUser(userInfo);
 
     if (!res.error) {
+      await saveClickedItemData(userInfo);
       await Promise.all([
         resetForm({}),
         handleCloseModal(),
         // to ensure to display all users list when reload page
-        selectedSearchItem !== null ? resetSelectedItemValue() : null,
+        selectedSearchItem ? resetSelectedItemValue() : null,
       ]);
-      return window.location.reload(true);
+      window.location.reload(true);
+    } else {
+      await addFlashMessage(
+        'error',
+        `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 고객인지 확인해주세요.`,
+      );
     }
-    addFlashMessage(
-      'error',
-      `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 고객인지 확인해주세요.`,
-    );
     return setSubmitting(false);
   };
 

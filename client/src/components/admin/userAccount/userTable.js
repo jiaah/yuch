@@ -24,17 +24,18 @@ const UserTable = ({
   classes: { tableWrapper, table },
   // local states
   users,
+  selectedRow,
   // global states
+  clickedUserData,
   selectedSearchItem,
   // fncs from parent component
   handleEditUserBtnClick,
+  handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
   const [order, setOrder] = React.useState('desc');
   // selected column
   const [orderBy, setOrderBy] = React.useState('updated_at');
-  // selected row
-  const [selected, setSelected] = React.useState('');
   // page
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -45,7 +46,6 @@ const UserTable = ({
     setOrderBy(property);
   };
 
-  const handleTableRowClick = id => setSelected(id);
   const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = event => setRowsPerPage(+event.target.value);
 
@@ -79,9 +79,9 @@ const UserTable = ({
                       handleTableRowClick={handleTableRowClick}
                       handleEditUserBtnClick={handleEditUserBtnClick}
                       row={row}
-                      selected={selected}
+                      selectedRow={selectedRow}
                       labelId={labelId}
-                      selectedSearchItem={selectedSearchItem}
+                      clickedUserData={clickedUserData}
                     />
                   );
                 })}

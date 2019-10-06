@@ -29,6 +29,7 @@ const ModalController = ({
   deleteSpecialMeal,
   resetSelectedItemValue,
   saveClickedItemData,
+  resetClickedItemData,
   getUsers,
 }) => (
   <React.Fragment>
@@ -42,6 +43,8 @@ const ModalController = ({
         adminSpecialMealMsg={adminSpecialMealMsg}
         resetSelectedItemValue={resetSelectedItemValue}
         saveClickedItemData={saveClickedItemData}
+        resetClickedItemData={resetClickedItemData}
+        clickedUserData={clickedUserData}
       />
     )}
     {clickedBtn === 'edit' && (
@@ -49,15 +52,15 @@ const ModalController = ({
         hideModal={hideModal}
         addFlashMessage={addFlashMessage}
         updateSpecialMeal={updateSpecialMeal}
-        clickedUserData={clickedUserData}
+        clickedUserData={clickedUserData[0]}
       />
-    )}{' '}
+    )}
     {clickedBtn === 'delete' && (
       <DeleteModal
         hideModal={hideModal}
         addFlashMessage={addFlashMessage}
         deleteSpecialMeal={deleteSpecialMeal}
-        clickedUserData={clickedUserData}
+        clickedUserData={clickedUserData[0]}
       />
     )}
   </React.Fragment>

@@ -70,6 +70,7 @@ const Container = ({
     // create, edit
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
+
   const handleSuggestionSelected = () => {
     if (selectedRow) offFocusOnSelectdRow();
     if (clickedUserData.length !== 0) resetClickedItemData();
@@ -115,7 +116,7 @@ const Container = ({
                 handleButtonClick={handleButtonClick}
                 handleTableRowClick={handleTableRowClick}
                 partnerColumns={partnerColumns}
-                clickedUserData={clickedUserData}
+                clickedUserData={clickedUserData[0] || clickedUserData}
               />
             ) : (
               <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>

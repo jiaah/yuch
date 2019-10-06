@@ -173,7 +173,7 @@ const SpecialMealContainer = ({
                 <Table
                   users={specialMeal}
                   selectedRow={selectedRow}
-                  clickedUserData={clickedUserData}
+                  clickedUserData={clickedUserData[0] || clickedUserData}
                   selectedItemValue={selectedItemValue}
                   saveClickedItemData={saveClickedItemData}
                   handleButtonClick={handleButtonClick}
@@ -261,6 +261,7 @@ const SpecialMealContainer = ({
           deleteSpecialMeal={deleteSpecialMeal}
           resetSelectedItemValue={resetSelectedItemValue}
           saveClickedItemData={saveClickedItemData}
+          resetClickedItemData={resetClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
         />

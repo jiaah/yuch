@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import EmployeeForm from './form';
-import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
   partnerValidation,
+  // global state
+  clickedUserData,
   // actions
   createPartner,
   addFlashMessage,
   saveClickedItemData,
+  resetClickedItemData,
   // func
   handleCloseModal,
 }) => {
@@ -20,6 +22,11 @@ const CreateFormBox = ({
     accountNo: '',
     contactNo: '',
   };
+
+  useEffect(() => {
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  }, []);
+
   const handleCreatePartner = async (values, { setSubmitting, resetForm }) => {
     // to focus the created row
     await saveClickedItemData(values);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import EmployeeForm from './form';
@@ -6,10 +6,13 @@ import { formattedToday } from '../../../helpers/moment';
 
 const CreateFormBox = ({
   employeeValidation,
+  // global state
+  clickedUserData,
   // actions
   createEmployee,
   addFlashMessage,
   saveClickedItemData,
+  resetClickedItemData,
   // func
   handleCloseModal,
 }) => {
@@ -22,6 +25,11 @@ const CreateFormBox = ({
     address: '',
     startedAt: formattedToday,
   };
+
+  useEffect(() => {
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  }, []);
+
   const handleCreateBankAccount = async (
     values,
     { setSubmitting, resetForm },

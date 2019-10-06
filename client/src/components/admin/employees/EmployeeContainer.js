@@ -143,7 +143,7 @@ const Container = ({
                 handleButtonClick={handleButtonClick}
                 handleTableRowClick={handleTableRowClick}
                 employeeColumns={employeeColumns}
-                clickedUserData={clickedUserData}
+                clickedUserData={clickedUserData[0] || clickedUserData}
                 employees={employees}
               />
             }

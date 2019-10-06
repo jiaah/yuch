@@ -79,7 +79,6 @@ const RatesContainer = ({
   const handleEditUserBtnClick = async (e, id) => {
     e.preventDefault();
     const userData = await getClickedUserData(id);
-    // to render clicked user data in textField
     await saveClickedItemData(userData);
     return Promise.all([showModal(), offFocusOnSelectdRow()]);
   };

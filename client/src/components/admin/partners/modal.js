@@ -61,7 +61,7 @@ const EmployeeModal = ({
               editPartner={editPartner}
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
-              clickedUserData={clickedUserData}
+              clickedUserData={clickedUserData[0]}
             />
           ) : clickedBtn === 'create' ? (
             <CreateFormBox
@@ -70,6 +70,8 @@ const EmployeeModal = ({
               handleCloseModal={handleCloseModal}
               addFlashMessage={addFlashMessage}
               saveClickedItemData={saveClickedItemData}
+              resetClickedItemData={resetClickedItemData}
+              clickedUserData={clickedUserData}
             />
           ) : clickedBtn === 'delete' ? (
             <DeleteFormBox
