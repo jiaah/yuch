@@ -69,7 +69,6 @@ const findOneByUserIdWithDate = async (userId, date) => {
         'catering.lateNightSnackQty',
         raw('to_char("startDate", \'YYYYMMDD\')').as('startDate'),
         raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
-        // raw('users.created_at').as('createdAt'),
       )
       .innerJoin('users', 'users.id', 'catering.userId')
       .where({ userId, date: formatedDate })
@@ -94,7 +93,6 @@ const findOneByUserIdWithDate = async (userId, date) => {
             'catering.lateNightSnackQty',
             raw('to_char("startDate", \'YYYYMMDD\')').as('startDate'),
             raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
-            // raw('users.created_at').as('createdAt'),
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
@@ -106,7 +104,6 @@ const findOneByUserIdWithDate = async (userId, date) => {
           lunchQty: null,
           dinnerQty: null,
           lateNightSnackQty: null,
-          // createdAt: null,
         };
       }
     }
