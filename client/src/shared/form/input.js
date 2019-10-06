@@ -133,7 +133,7 @@ const Input = ({
       name === 'date' ||
       name === 'businessNo' ||
       name === 'name' ||
-      name === 'startedAt'
+      name === 'startDate'
     ) {
       value = inputValue;
     }

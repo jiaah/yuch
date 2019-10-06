@@ -79,6 +79,24 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       icon="address"
       styleName="textField"
     />
+    <div className="flex justify-center">
+      <FormikField
+        label="서비스 시작일"
+        name="startDate"
+        type="text"
+        icon="calendar"
+        styleName="textFieldB"
+        disabled
+      />
+      <FormikField
+        label="서비스 종료일"
+        name="endDate"
+        type="text"
+        icon="calendar"
+        styleName="textFieldB"
+        disabled
+      />
+    </div>
     <div>
       <Button
         typeValue="button"

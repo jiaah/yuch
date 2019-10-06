@@ -83,7 +83,7 @@ const EmployeeTableRow = ({
       {row.address}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.startTime}
+      {row.startDate}
     </TableCell>
   </TableRow>
 );

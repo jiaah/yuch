@@ -45,7 +45,8 @@ const UserTableRow = ({
   // display new mealPrice if reserveDate is thisMonth.
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
-  const formattedDate = row.endDate && formatWithSlash(row.endDate);
+  const formattedStartDate = row.startDate && formatWithSlash(row.startDate);
+  const formattedEndDate = row.endDate && formatWithSlash(row.endDate);
 
   return (
     <React.Fragment>
@@ -114,7 +115,10 @@ const UserTableRow = ({
           {businessType}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {formattedDate}
+          {formattedStartDate}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {formattedEndDate}
         </TableCell>
       </TableRow>
     </React.Fragment>

@@ -238,10 +238,16 @@ export const userAccountTableHeadColumns = [
     label: '비지니스',
   },
   {
+    id: 'startDate',
+    numeric: true,
+    disablePadding: false,
+    label: '시작일',
+  },
+  {
     id: 'endDate',
     numeric: true,
     disablePadding: false,
-    label: '서비스 종료일자',
+    label: '종료일',
   },
 ];
 
@@ -624,7 +630,7 @@ export const employeeColumns = [
     label: '주소',
   },
   {
-    id: 'startTime',
+    id: 'startDate',
     numeric: true,
     disablePadding: false,
     label: '시작일',

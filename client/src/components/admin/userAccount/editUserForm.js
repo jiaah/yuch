@@ -41,6 +41,13 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           placeholder="000-000-0000"
           required
         />
+        <FormikField
+          label="주소"
+          name="address"
+          type="text"
+          icon="address"
+          styleName="textFieldC"
+        />
       </div>
       <div className="media--flex-column-m">
         <FormikField
@@ -69,15 +76,16 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           placeholder="000-00-00000"
           required
         />
+        <FormikField
+          label="서비스 시작일"
+          name="startDate"
+          type="date"
+          icon="calendar"
+          styleName="textFieldC"
+          required
+        />
       </div>
     </div>
-    <FormikField
-      label="주소"
-      name="address"
-      type="text"
-      icon="address"
-      styleName="textFieldH"
-    />
     <div className="flex justify-center">
       <FormikField
         label="중식 식수량"

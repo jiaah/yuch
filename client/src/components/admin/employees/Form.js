@@ -25,7 +25,7 @@ const Form = ({ isSubmitting }) => (
         />
         <FormikField
           label="시작일"
-          name="startedAt"
+          name="startDate"
           type="date"
           icon="calendar"
           styleName="textFieldC"
