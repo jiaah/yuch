@@ -98,6 +98,7 @@ const CateringContainer = ({
         <div className="paper-label-box justify-between">
           <SearchBar
             data={catering}
+            searchingProp="companyName"
             handleSuggestionSelected={handleSuggestionSelected}
             handleResetSearch={handleResetSearch}
           />

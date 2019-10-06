@@ -144,6 +144,7 @@ const SpecialMealContainer = ({
       <div className="paper-label-box justify-between">
         <SearchBar
           data={specialMeal}
+          searchingProp="companyName"
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={renderAllUsers}
         />

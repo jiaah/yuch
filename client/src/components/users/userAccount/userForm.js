@@ -38,6 +38,7 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       icon="email"
       styleName="textField"
       placeholder="yuchung@hanmail.net"
+      required
     />
     <FormikField
       label="사업자번호"

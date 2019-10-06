@@ -65,7 +65,7 @@ const EmployeeTableRow = ({
       scope="row"
       className={`${resize} ${point}`}
     >
-      {row.companyName}
+      {row.name}
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.accountHolder}

@@ -14,6 +14,7 @@ const AutoCompletePaper = ({
   anchorEl,
   suggestions,
   suggestionSelected,
+  searchingProp,
 }) => {
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
@@ -23,6 +24,7 @@ const AutoCompletePaper = ({
       <SuggestionsList
         suggestions={suggestions}
         suggestionSelected={suggestionSelected}
+        searchingProp={searchingProp}
       />
     );
   };

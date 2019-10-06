@@ -99,6 +99,7 @@ const InvoiceContainer = ({
       <div className="paper-label-box justify-between">
         <SearchBar
           data={data}
+          searchingProp="companyName"
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={() => {}}
         />

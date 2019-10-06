@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 /* --- Components --- */
 import Paper from '../../../shared/paper';
 import CateringTable from './cateringTable';
+import { divideInTow } from '../../../utils/sort';
 
 const CateringPaper = ({
   // local state
@@ -20,19 +21,6 @@ const CateringPaper = ({
   endEditing,
   handleTableRowClick,
 }) => {
-  let sortedDataA;
-  let sortedDataB;
-  if (users && users.length <= 10) {
-    sortedDataA = users;
-    sortedDataB = [];
-  }
-  if (users && users.length > 10) {
-    const line =
-      users.length % 2 === 0 ? users.length / 2 : users.length / 2 + 0.5;
-    sortedDataA = users.slice(0, line);
-    sortedDataB = users.slice(line, users.length);
-  }
-
   // error handler
   const [lunchQtyErr, setLunchQtyErr] = useState(false);
   const [dinnerQtyErr, setDinnerQtyErr] = useState(false);
@@ -81,6 +69,8 @@ const CateringPaper = ({
       }
     }
   };
+
+  const { sortedDataA, sortedDataB } = divideInTow(users);
 
   return (
     <div id="print" className="paper">

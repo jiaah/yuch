@@ -105,7 +105,8 @@ const Input = ({
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      } else {
+      }
+      if (inputValue === '') {
         value = null;
       }
     }
@@ -116,25 +117,7 @@ const Input = ({
       name === 'confirmPassword'
     ) {
       value = inputValue.toLowerCase();
-    }
-    // manually need to add all names or number input value will set to string instead of null when it's empty.
-    if (
-      name === 'companyName' ||
-      name === 'contactNo' ||
-      name === 'address' ||
-      name === 'email' ||
-      name === 'bankAccountId' ||
-      name === 'businessType' ||
-      name === 'accountHolder' ||
-      name === 'bankName' ||
-      name === 'accountNo' ||
-      name === 'note' ||
-      name === 'time' ||
-      name === 'date' ||
-      name === 'businessNo' ||
-      name === 'name' ||
-      name === 'startDate'
-    ) {
+    } else {
       value = inputValue;
     }
 

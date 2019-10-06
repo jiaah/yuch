@@ -599,7 +599,7 @@ export const employeeColumns = [
     label: '',
   },
   {
-    id: 'companyName',
+    id: 'name',
     numeric: true,
     disablePadding: false,
     label: '직원명',
@@ -673,7 +673,7 @@ export const partnerColumns = [
 
 export const employeeContactColumns = [
   {
-    id: 'companyName',
+    id: 'name',
     numeric: true,
     disablePadding: false,
     label: '직원명',

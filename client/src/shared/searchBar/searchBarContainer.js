@@ -59,6 +59,7 @@ const styles = theme => ({
 const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
+  searchingProp,
   // for special_meal create modal
   isSecondSearchBar,
   // actions
@@ -76,7 +77,7 @@ const SearchBar = ({
     const regex = await new RegExp(`^${wordToMatch}`, 'gi');
     const suggestion = await data
       .sort()
-      .filter(u => u.companyName.match(regex));
+      .filter(u => u[searchingProp].match(regex));
     return setSuggestions(suggestion);
   };
 
@@ -88,12 +89,12 @@ const SearchBar = ({
     if (value.length > 0) getSuggestions(value);
   };
 
-  const suggestionSelected = user => {
-    setInputValue(user.companyName); // display the selected value in search bar
+  const suggestionSelected = data => {
+    setInputValue(data[searchingProp]); // display the selected value in search bar
     setAnchorEl(null); // close autocomplete popper
     setSuggestions([]); // reset autoComplete matching suggestions
-    if (!isSecondSearchBar) saveSelectedItemValue(user.companyName); // make the selected value accesible in a parents component via redux
-    return handleSuggestionSelected(user);
+    if (!isSecondSearchBar) saveSelectedItemValue(data[searchingProp]); // make the selected value accesible in a parents component via redux
+    return handleSuggestionSelected(data);
   };
 
   const resetSearch = () => {
@@ -147,6 +148,7 @@ const SearchBar = ({
           anchorEl={anchorEl}
           suggestions={suggestions}
           suggestionSelected={suggestionSelected}
+          searchingProp={searchingProp}
         />
       )}
     </React.Fragment>

@@ -79,6 +79,7 @@ const CreateUserForm = props => {
             icon="email"
             styleName="textFieldC"
             placeholder="yuchung@hanmail.net"
+            required
           />
           <FormikField
             label="사업자번호"

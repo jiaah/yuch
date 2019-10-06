@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 /* --- Components --- */
 import Paper from '../../../shared/paper';
 import Table from '../catering/cateringTable';
+import { divideInTow } from '../../../utils/sort';
 
 const CateringPaper = ({
   // local state
@@ -69,14 +70,40 @@ const CateringPaper = ({
     }
   };
 
+  const { sortedDataA, sortedDataB } = divideInTow(users);
+
   return (
     <div id="print" className="paper">
-      {users.length !== 0 ? (
+      {users.length !== 0 && users.length > 10 ? (
         <React.Fragment>
           <Paper
+            isDivided={true}
             component={
               <Table
-                sortedData={users}
+                sortedData={sortedDataA}
+                selectedItemValue={selectedItemValue}
+                updateUserCatering={updateUserCatering}
+                saveSelectedItemValue={saveSelectedItemValue}
+                resetSelectedItemValue={resetSelectedItemValue}
+                startEditing={startEditing}
+                endEditing={endEditing}
+                editIndex={editIndex}
+                handleTableRowClick={handleTableRowClick}
+                selectedRow={selectedRow}
+                handleUpdate={handleUpdate}
+                validation={validation}
+                lunchQtyErr={lunchQtyErr}
+                dinnerQtyErr={dinnerQtyErr}
+                lateNightSnackQtyErr={lateNightSnackQtyErr}
+              />
+            }
+          />
+          <Paper
+            classname="paper--sec"
+            isDivided={true}
+            component={
+              <Table
+                sortedData={sortedDataB}
                 selectedItemValue={selectedItemValue}
                 updateUserCatering={updateUserCatering}
                 saveSelectedItemValue={saveSelectedItemValue}
@@ -95,6 +122,28 @@ const CateringPaper = ({
             }
           />
         </React.Fragment>
+      ) : users.length !== 0 && users.length <= 10 ? (
+        <Paper
+          component={
+            <Table
+              sortedData={sortedDataA}
+              selectedItemValue={selectedItemValue}
+              updateUserCatering={updateUserCatering}
+              saveSelectedItemValue={saveSelectedItemValue}
+              resetSelectedItemValue={resetSelectedItemValue}
+              startEditing={startEditing}
+              endEditing={endEditing}
+              editIndex={editIndex}
+              handleTableRowClick={handleTableRowClick}
+              selectedRow={selectedRow}
+              handleUpdate={handleUpdate}
+              validation={validation}
+              lunchQtyErr={lunchQtyErr}
+              dinnerQtyErr={dinnerQtyErr}
+              lateNightSnackQtyErr={lateNightSnackQtyErr}
+            />
+          }
+        />
       ) : (
         <Paper
           component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}

@@ -4,7 +4,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
-import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
+import EnhancedTableHead from '../../../shared/tableHead';
 import BusinessNoTableRow from './userBusinessNoTableRow';
 import { userBusinessColumns } from '../../../data/data';
 
@@ -20,14 +20,11 @@ const styles = () => ({
 const BusinessNoTable = ({
   classes: { tableWrapper, table },
   // local states
-  order,
-  orderBy,
   sortedData,
   selectedRow,
   // global states
   selectedItemValue,
   // fncs
-  handleRequestSort,
   handleTableRowClick,
 }) => {
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
@@ -36,12 +33,7 @@ const BusinessNoTable = ({
     <React.Fragment>
       <div className={tableWrapper}>
         <Table className={table} aria-labelledby="rates" size="small">
-          <EnhancedTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            list={userBusinessColumns}
-          />
+          <EnhancedTableHead list={userBusinessColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
               sortedData.map(row => (

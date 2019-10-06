@@ -54,6 +54,7 @@ const BusinessNoContainer = ({
       <div className="paper-label-box flex justify-between">
         <SearchBar
           data={data}
+          searchingProp="companyName"
           handleSuggestionSelected={handleSuggestionSelected}
           handleResetSearch={() => {}}
         />

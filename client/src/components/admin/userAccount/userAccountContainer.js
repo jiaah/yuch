@@ -136,6 +136,7 @@ const UserAccountContainer = ({
           <div className="mr3">
             <SearchBar
               data={selctedUsers}
+              searchingProp="companyName"
               handleSuggestionSelected={handleSuggestionSelected}
               handleResetSearch={() => {}}
             />

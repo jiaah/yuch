@@ -94,6 +94,7 @@ const Container = ({
         <div>
           <SearchBar
             data={data}
+            searchingProp="name"
             handleSuggestionSelected={handleSuggestionSelected}
             handleResetSearch={() => {}}
           />
