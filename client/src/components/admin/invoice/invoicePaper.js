@@ -87,13 +87,7 @@ const InvoicePaper = ({
             />
           }
         />
-      ) : (
-        <Paper
-          component={
-            <h3 className="mt4 mb4">발행된 거래 명세서가 없습니다.</h3>
-          }
-        />
-      )}
+      ) : null}
     </div>
   );
 };

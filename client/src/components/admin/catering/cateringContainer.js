@@ -16,6 +16,7 @@ import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
+import { hideModal } from '../../../actions/modalAction';
 
 const CateringContainer = ({
   date,
@@ -52,8 +53,11 @@ const CateringContainer = ({
   useEffect(() => {
     fetchData(date);
     return () => {
-      resetDateDaily();
-      resetSelectedItemValue();
+      Promise.all([
+        resetDateDaily(),
+        selectedItemValue && resetSelectedItemValue(),
+        show && hideModal(),
+      ]);
     };
   }, []);
 
