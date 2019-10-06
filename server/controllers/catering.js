@@ -20,12 +20,12 @@ exports.getOne = async (req, res, next) => {
 
 exports.setOne = async (req, res, next) => {
   try {
-    const { updateDate, lunchQty, dinnerQty, lateNightSnackQty } = req.body;
+    const { date, lunchQty, dinnerQty, lateNightSnackQty } = req.body;
     const { userId } = req.params;
 
     const catering = await cateringService.updateByUserIdWithDate(
       userId,
-      updateDate,
+      date,
       lunchQty,
       dinnerQty,
       lateNightSnackQty,

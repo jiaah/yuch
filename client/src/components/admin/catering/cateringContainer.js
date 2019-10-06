@@ -56,7 +56,6 @@ const CateringContainer = ({
       Promise.all([
         resetDateDaily(),
         selectedItemValue && resetSelectedItemValue(),
-        show && hideModal(),
       ]);
     };
   }, []);

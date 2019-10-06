@@ -31,7 +31,7 @@ const UpdateInvoiceModal = ({
     return setSubmitting(false);
   };
 
-  useEffect(() => () => hideModal(), []);
+  useEffect(() => () => show && hideModal(), []);
 
   const selectOptions = selectOptionsYYYYMM([-1, -2]);
 
