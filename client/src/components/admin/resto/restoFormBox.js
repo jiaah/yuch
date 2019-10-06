@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import RestoForm from './restoForm';
 import { restoSalesValidation } from '../../formValidation';
 
 const RestoFormBox = ({ resto, date, updateRestoSales, addFlashMessage }) => {
-  useEffect(() => {}, [resto]);
   const { lunch, dinner } = resto;
 
   const handleUpdateRestoSales = async (values, { setSubmitting }) => {
