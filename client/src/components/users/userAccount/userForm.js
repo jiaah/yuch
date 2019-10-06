@@ -54,14 +54,21 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         name="lunchQty"
         type="text"
         icon="catering"
-        styleName="textFieldB"
+        styleName="textFieldI"
       />
       <FormikField
         label="석식 식수량"
         name="dinnerQty"
         type="text"
         icon="catering"
-        styleName="textFieldB"
+        styleName="textFieldI"
+      />
+      <FormikField
+        label="야식 식수량"
+        name="lateNightSnackQty"
+        type="text"
+        icon="catering"
+        styleName="textFieldI"
       />
     </div>
     <FormikField

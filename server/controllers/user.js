@@ -18,9 +18,11 @@ exports.getMe = (req, res) => {
       'users.email',
       'users.lunchQty',
       'users.dinnerQty',
+      'users.lateNightSnackQty',
       'users.bankAccountId',
       'users.address',
       'users.businessNo',
+      'users.endDate',
       'meal_price.mealPrice',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')

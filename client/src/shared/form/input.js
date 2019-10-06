@@ -22,7 +22,7 @@ const styles = theme => ({
       width: 520,
     },
   },
-  // lunchQty, dinnerQty
+  // admin: lunchQty, dinnerQty, lateNightSnackQty
   textFieldB: {
     width: 142,
     margin: '20px 14px',
@@ -71,6 +71,14 @@ const styles = theme => ({
     width: 260,
     [theme.breakpoints.up('md')]: {
       width: 580,
+    },
+  },
+  // user: lunchQty, dinnerQty, lateNightSnackQty
+  textFieldI: {
+    width: 82,
+    margin: '20px 14px',
+    [theme.breakpoints.up('md')]: {
+      width: 148,
     },
   },
 });

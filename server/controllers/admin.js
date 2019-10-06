@@ -209,6 +209,7 @@ exports.getUsersList = async (req, res, next) => {
         'users.businessType',
         'users.businessNo',
         'users.updated_at',
+        'users.endDate',
         raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
         'meal_price.mealPrice',
         'meal_price.reservePrice',
