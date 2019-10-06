@@ -41,7 +41,7 @@ const BankAccount = Loader({
 
 const EmployeesAccount = Loader({
   loader: () =>
-    import('../src/components/admin/employees/employeeContainer' /* webpackChunkName: 'EmployeesAccount' */),
+    import('../src/components/admin/employees/employeesContainer' /* webpackChunkName: 'EmployeesAccount' */),
 });
 
 const PartnerAccount = Loader({

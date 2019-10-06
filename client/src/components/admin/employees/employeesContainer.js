@@ -22,7 +22,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as partnerActions from '../../../actions/partnerAction';
 
 const Modal = Loader({
-  loader: () => import('./modal' /* webpackChunkName: 'Modal' */),
+  loader: () => import('./employeeModal' /* webpackChunkName: 'Modal' */),
 });
 
 const Container = ({

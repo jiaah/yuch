@@ -83,6 +83,7 @@ const UserAccountModal = ({
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
     businessNo: '',
+    startTime: '',
   };
 
   return (
