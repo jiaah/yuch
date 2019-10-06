@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import Modal from '../../../shared/modal';
 import RateForm from './editRateForm';
 import { reservePriceValidation } from '../../formValidation';
+import { nextMonth } from '../../../helpers/moment';
 
 const EditRateModal = ({
   // global states

@@ -20,10 +20,7 @@ const CreateFormBox = ({
     accountNo: '',
     contactNo: '',
   };
-  const handleCreateBankAccount = async (
-    values,
-    { setSubmitting, resetForm },
-  ) => {
+  const handleCreatePartner = async (values, { setSubmitting, resetForm }) => {
     // to focus the created row
     await saveClickedItemData(values);
 
@@ -53,7 +50,7 @@ const CreateFormBox = ({
           <EmployeeForm {...props} />
         </Form>
       )}
-      onSubmit={handleCreateBankAccount}
+      onSubmit={handleCreatePartner}
       validationSchema={partnerValidation}
     />
   );

@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const selectedItem = (state = initialState, action) => {
+  const { data } = action;
   switch (action.type) {
     case types.SAVE_SELECTED_ITEM_VALUE:
       return {
@@ -36,7 +37,7 @@ const selectedItem = (state = initialState, action) => {
     case types.SAVE_CLICKED_ITEM_DATA:
       return {
         ...state,
-        data: action.data,
+        data: [...state.data, ...data],
       };
     case types.RESET_CLICKED_ITEM_DATA:
       return {

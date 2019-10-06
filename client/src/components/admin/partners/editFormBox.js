@@ -13,10 +13,7 @@ const EditFormBox = ({
   // func
   handleCloseModal,
 }) => {
-  const handleEditBankAccount = async (
-    values,
-    { setSubmitting, resetForm },
-  ) => {
+  const handleEditPartner = async (values, { setSubmitting, resetForm }) => {
     const res = await editPartner(values);
     if (!res.error) {
       addFlashMessage(
@@ -43,7 +40,7 @@ const EditFormBox = ({
           <EmployeeForm {...props} />
         </Form>
       )}
-      onSubmit={handleEditBankAccount}
+      onSubmit={handleEditPartner}
       validationSchema={partnerValidation}
     />
   );

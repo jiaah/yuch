@@ -27,7 +27,6 @@ const RatesContainer = ({
   rateActions: { getCateringRates, updateReservedPrice },
   modalActions: { showModal, hideModal },
   selectedActions: {
-    saveSelectedItemValue,
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
@@ -35,7 +34,7 @@ const RatesContainer = ({
   handleAdminVerificationStatus,
   addFlashMessage,
   isAdminVerified,
-  selectedItemValue,
+  selectedSearchItem,
   clickedUserData,
   show,
   updateRatesMonth,
@@ -44,11 +43,12 @@ const RatesContainer = ({
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
-  const setfocusOnSelectdRow = id => setSelectedRow(id);
-  const removeFocusOnSelectdRow = () => setSelectedRow(null);
+  const onFocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
+
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
@@ -65,7 +65,7 @@ const RatesContainer = ({
     return () =>
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedItemValue !== null && resetSelectedItemValue(),
+        selectedSearchItem && resetSelectedItemValue(),
         isAdminVerified && handleAdminVerificationStatus(),
         show && hideModal(),
       ]);
@@ -76,32 +76,24 @@ const RatesContainer = ({
     return userData[0];
   };
 
-  // [ Focus on row ]
-  // - editing a row : permanent focus (global state)
-  // - searching a row : permanent focus (global state)
-  // * editing & searching use the same state to prevent duplicated rows.
-
   const handleEditUserBtnClick = async (e, id) => {
     e.preventDefault();
     const userData = await getClickedUserData(id);
     // to render clicked user data in textField
     await saveClickedItemData(userData);
-    // set focus on editing row
-    await saveSelectedItemValue(userData.userId);
-    // to prevent from having multiple selected rows.
-    if (selectedRow) await removeFocusOnSelectdRow();
-    return showModal();
+    return Promise.all([showModal(), offFocusOnSelectdRow()]);
   };
 
   const handleTableRowClick = id => {
-    setfocusOnSelectdRow(id);
-    // unselect the selected row to prevent from having multiple selected rows.
-    if (selectedItemValue) resetSelectedItemValue();
+    onFocusOnSelectdRow(id);
+    if (selectedSearchItem) resetSelectedItemValue();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   // funcions that runs after search component
   const handleSuggestionSelected = () => {
-    if (selectedRow) removeFocusOnSelectdRow();
+    if (selectedRow) offFocusOnSelectdRow();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   // only renders mealprice data when admin user is confirmedconsole.log();
@@ -127,16 +119,17 @@ const RatesContainer = ({
       <RatesPaper
         data={data}
         users={dataToRender}
-        selectedItemValue={selectedItemValue}
-        handleEditUserBtnClick={handleEditUserBtnClick}
         selectedRow={selectedRow}
+        selectedSearchItem={selectedSearchItem}
+        clickedUserData={clickedUserData[0] || clickedUserData}
+        handleEditUserBtnClick={handleEditUserBtnClick}
         handleTableRowClick={handleTableRowClick}
         isAdminVerified={isAdminVerified}
       />
       {isAdminVerified &&
         clickedUserData.length !== 0 && (
           <EditRateModal
-            clickedUserData={clickedUserData}
+            clickedUserData={clickedUserData[0]}
             hideModal={hideModal}
             updateReservedPrice={updateReservedPrice}
             addFlashMessage={addFlashMessage}
@@ -150,7 +143,7 @@ const RatesContainer = ({
 };
 
 const mapStateToProps = state => ({
-  selectedItemValue: state.selected.value,
+  selectedSearchItem: state.selected.value,
   clickedUserData: state.selected.data,
   isAdminVerified: state.isAdminVerified.isAdminVerified,
   show: state.modal.show,
