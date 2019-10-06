@@ -22,6 +22,7 @@ exports.getMe = (req, res) => {
       'users.bankAccountId',
       'users.address',
       'users.businessNo',
+      'users.startDate',
       'users.endDate',
       'meal_price.mealPrice',
     )
@@ -40,6 +41,7 @@ exports.editUser = (req, res) => {
     email,
     lunchQty,
     dinnerQty,
+    lateNightSnackQty,
     address,
     businessNo,
   } = req.body.userInfo;
@@ -54,6 +56,7 @@ exports.editUser = (req, res) => {
       email,
       lunchQty,
       dinnerQty,
+      lateNightSnackQty,
       address,
       businessNo,
       updated_at: new Date().toISOString(),

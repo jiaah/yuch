@@ -108,3 +108,13 @@ export const selectOptionsYYYYMM = arr =>
       .format('YYYY/MM');
     return { value: date };
   });
+
+export const userEndDate = (data, limitedDate) => {
+  let endDate;
+  if (data && data.endDate && data.endDate <= limitedDate) {
+    endDate = data.endDate;
+  } else {
+    endDate = limitedDate;
+  }
+  return endDate;
+};

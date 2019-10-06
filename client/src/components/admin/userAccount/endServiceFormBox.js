@@ -10,8 +10,7 @@ const AdminVerificationContainer = Loader({
 });
 
 const EndServiceFormBox = ({
-  userId,
-  formattedUserEndDate,
+  clickedUserData,
   // actions
   handleEndingService,
   addFlashMessage,
@@ -22,8 +21,8 @@ const EndServiceFormBox = ({
 }) => {
   // state endService & date -> values from db : fomattedToday
   const [state, setState] = useState({
-    endService: !!formattedUserEndDate,
-    endDate: formattedUserEndDate || formattedToday,
+    endService: !!clickedUserData.endDate,
+    endDate: clickedUserData.endDate || formattedToday,
   });
   const { endService, endDate } = state;
   const [isSubmitting, setSubmitting] = useState(false);
@@ -43,7 +42,11 @@ const EndServiceFormBox = ({
   const handleSubmit = async () => {
     await setSubmitting(true);
     const formattedDate = formatToYYYYMMDD(endDate);
-    const res = await handleEndingService(userId, endService, formattedDate);
+    const res = await handleEndingService(
+      clickedUserData.id,
+      endService,
+      formattedDate,
+    );
 
     await offVerification();
     if (!res.error) {
@@ -59,13 +62,13 @@ const EndServiceFormBox = ({
     return setSubmitting(false);
   };
 
-  const checkedDate = formatToYYYYMMDD(endDate);
+  // const checkedDate = formatToYYYYMMDD(endDate);
 
   return (
     <div>
       {!verification ? (
         <EndServiceForm
-          checkedDate={checkedDate}
+          // checkedDate={checkedDate}
           isSubmitting={isSubmitting}
           endService={endService}
           endDate={endDate}

@@ -12,10 +12,17 @@ const DeleteUserFormBox = ({
   editUserAccountValidation,
   editUser,
   bankAccount,
+  formatToYYYYMMDD,
 }) => {
   const handleEditUser = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, ...others } = values;
-    const userInfo = { companyName, ...others, nextMonth };
+    const { companyName, startDate, ...others } = values;
+    const formattedDate = formatToYYYYMMDD(startDate);
+    const userInfo = {
+      companyName,
+      startDate: formattedDate,
+      ...others,
+      nextMonth,
+    };
 
     const res = await editUser(userInfo);
     if (!res.error) {

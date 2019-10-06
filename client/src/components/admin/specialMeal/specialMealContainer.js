@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { inTwoYears, formattedTmr, today } from '../../../helpers/moment';
+import { inONEYear, formattedTmr, today } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
@@ -135,7 +135,7 @@ const SpecialMealContainer = ({
         unit="mm"
         formattedDate={formattedDate}
         startTime={admin.startTime}
-        endTime={`${inTwoYears}01`}
+        endTime={`${inONEYear}01`}
         updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}

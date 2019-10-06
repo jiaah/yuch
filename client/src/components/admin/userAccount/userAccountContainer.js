@@ -15,6 +15,7 @@ import {
   editUserAccountValidation,
   resetPasswordValidation,
 } from '../../formValidation';
+import { formatToYYYYMMDD } from '../../../utils/date';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -70,6 +71,7 @@ const UserAccountContainer = ({
 
   const fetchUsersData = async () => {
     const data = await getUsers();
+    console.log('data: ', data);
 
     if (data.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -206,6 +208,7 @@ const UserAccountContainer = ({
           bankAccount={bankAccount}
           userAccountValidation={userAccountValidation}
           clickedUserData={clickedUserData}
+          formatToYYYYMMDD={formatToYYYYMMDD}
         />
       ) : clickedBtn === 'edit' && clickedUserData.length !== 0 ? (
         <EditUserModal
@@ -219,6 +222,7 @@ const UserAccountContainer = ({
           resetPassword={resetPassword}
           editUserAccountValidation={editUserAccountValidation}
           resetPasswordValidation={resetPasswordValidation}
+          formatToYYYYMMDD={formatToYYYYMMDD}
         />
       ) : null}
     </div>

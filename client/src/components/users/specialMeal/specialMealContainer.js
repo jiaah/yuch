@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { twoYearsAgo, inTwoYears } from '../../../helpers/moment';
+import { inONEYear } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
@@ -18,6 +18,7 @@ import { userSpecialMealNotice } from '../../../data/message';
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as specialMealActions from '../../../actions/specialMealAction';
+import { admin } from '../../../data/data';
 
 const SpecialMealContainer = ({
   userId,
@@ -63,8 +64,8 @@ const SpecialMealContainer = ({
         reload={true}
         unit="mm"
         formattedDate={formattedDate}
-        startTime={`${twoYearsAgo}01`}
-        endTime={`${inTwoYears}01`}
+        startTime={admin.startTime}
+        endTime={`${inONEYear}01`}
         updateDate={updateDateDaily}
         addFlashMessage={addFlashMessage}
         fetchData={fetchData}

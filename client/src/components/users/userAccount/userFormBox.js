@@ -45,8 +45,8 @@ const UserFormBox = ({
 
   const inputValues = {
     ...others,
-    startDate: formattedStartDate,
-    endDate: formattedEndDate,
+    startDate: startDate ? formattedStartDate : '',
+    endDate: endDate ? formattedEndDate : '',
   };
   return (
     <Formik

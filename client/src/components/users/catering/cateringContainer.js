@@ -8,6 +8,7 @@ import {
   isDinnerQtyChangeDisabled,
   formatToYYYYMMDD,
   formatToDateForm,
+  userEndDate,
 } from '../../../utils/date';
 import { userCateringMsg } from '../../../data/message';
 import CateringFormBox from './cateringFormBox';
@@ -25,10 +26,10 @@ const CateringContainer = ({
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
-  const [startTime, setStartTime] = useState('');
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
+    console.log('res: ', res);
 
     if (res.error) {
       setCatering({
@@ -40,8 +41,6 @@ const CateringContainer = ({
       });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    const startDate = await formatToYYYYMMDD(res.createdAt);
-    await setStartTime(startDate);
     return setCatering(res);
   };
 
@@ -54,11 +53,15 @@ const CateringContainer = ({
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
-  const endDate = catering && catering.endDate ? catering.endDate : inAWeek;
+
+  const startDate = catering && catering.startDate;
+  const endDate = userEndDate(catering, inAWeek);
+
   const formattedEndDate =
     catering && catering.endDate && formatToDateForm(catering.endDate);
+
   const message =
-    catering && catering.endDate
+    catering && catering.endDate && catering.endDate <= inAWeek
       ? `${formattedEndDate} 일자로 고객님의 위탁급식 서비스가 종료될 예정입니다.`
       : '7일 내의 식수량만 미리 등록 할 수 있습니다.';
 
@@ -78,7 +81,7 @@ const CateringContainer = ({
             reload={true}
             unit="dd"
             formattedDate={formattedDate}
-            startTime={startTime}
+            startTime={startDate}
             endTime={endDate}
             updateDate={updateDateDaily}
             addFlashMessage={addFlashMessage}

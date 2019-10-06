@@ -20,6 +20,7 @@ const UserAccountModal = ({
   // fncs from parent component
   handleCloseModal,
   userAccountValidation,
+  formatToYYYYMMDD,
 }) => {
   useEffect(() => {
     if (clickedUserData.length !== 0) resetClickedItemData();
@@ -32,6 +33,7 @@ const UserAccountModal = ({
       lunchQty,
       dinnerQty,
       lateNightSnackQty,
+      startDate,
       ...others
     } = values;
 
@@ -39,12 +41,14 @@ const UserAccountModal = ({
     const newLunch = await emptyStrToNull(lunchQty);
     const newDinner = await emptyStrToNull(dinnerQty);
     const newLatNightSnack = await emptyStrToNull(lateNightSnackQty);
+    const formattedDate = formatToYYYYMMDD(startDate);
 
     const userInfo = {
       companyName,
       lunchQty: newLunch,
       dinnerQty: newDinner,
       lateNightSnackQty: newLatNightSnack,
+      startDate: formattedDate,
       ...others,
     };
 

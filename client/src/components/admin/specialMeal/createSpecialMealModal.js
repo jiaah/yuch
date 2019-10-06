@@ -141,6 +141,7 @@ const createModal = ({
               {state.selectedUser && (
                 <SearchBar
                   data={state.users}
+                  searchingProp="companyName"
                   handleSuggestionSelected={handleSuggestionSelected}
                   handleResetSearch={handleResetSearch}
                   isSecondSearchBar={true}
