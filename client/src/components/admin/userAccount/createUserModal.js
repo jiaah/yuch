@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
-import { emptyStrToNull } from '../../../utils/reformat';
 
 const UserAccountModal = ({
   // local states
@@ -27,27 +26,12 @@ const UserAccountModal = ({
   }, []);
 
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const {
-      companyName,
-      confirmPassword,
-      lunchQty,
-      dinnerQty,
-      lateNightSnackQty,
-      startDate,
-      ...others
-    } = values;
+    const { companyName, confirmPassword, startDate, ...others } = values;
 
-    // re-assign to null if value is empty.
-    const newLunch = await emptyStrToNull(lunchQty);
-    const newDinner = await emptyStrToNull(dinnerQty);
-    const newLatNightSnack = await emptyStrToNull(lateNightSnackQty);
     const formattedDate = formatToYYYYMMDD(startDate);
 
     const userInfo = {
       companyName,
-      lunchQty: newLunch,
-      dinnerQty: newDinner,
-      lateNightSnackQty: newLatNightSnack,
       startDate: formattedDate,
       ...others,
     };
@@ -80,10 +64,10 @@ const UserAccountModal = ({
     contactNo: '',
     email: '',
     address: '',
-    mealPrice: '',
-    lunchQty: '',
-    dinnerQty: '',
-    lateNightSnackQty: '',
+    mealPrice: null,
+    lunchQty: null,
+    dinnerQty: null,
+    lateNightSnackQty: null,
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
     businessNo: '',

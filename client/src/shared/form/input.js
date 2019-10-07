@@ -107,14 +107,12 @@ const Input = ({
       name === 'reservePrice' ||
       name === 'lunch' ||
       name === 'dinner' ||
-      name === 'quantity' ||
-      name === 'sideDish'
+      name === 'quantity'
     ) {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      }
-      if (inputValue === '') {
+      } else {
         value = null;
       }
     }
@@ -125,7 +123,25 @@ const Input = ({
       name === 'confirmPassword'
     ) {
       value = inputValue.toLowerCase();
-    } else {
+    }
+
+    if (
+      name === 'name' ||
+      name === 'companyName' ||
+      name === 'address' ||
+      name === 'contactNo' ||
+      name === 'email' ||
+      name === 'businessNo' ||
+      name === 'startDate' ||
+      name === 'endDate' ||
+      name === 'date' ||
+      name === 'time' ||
+      name === 'sideDish' ||
+      name === 'note' ||
+      name === 'accountHolder' ||
+      name === 'bankName' ||
+      name === 'accountNo'
+    ) {
       value = inputValue;
     }
 

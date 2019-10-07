@@ -6,7 +6,6 @@ import { inAWeek, dateInKorean } from '../../../helpers/moment';
 import {
   isLunchQtyChangeDisabled,
   isDinnerQtyChangeDisabled,
-  formatToYYYYMMDD,
   formatToDateForm,
   userEndDate,
 } from '../../../utils/date';
@@ -29,7 +28,6 @@ const CateringContainer = ({
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
-    console.log('res: ', res);
 
     if (res.error) {
       setCatering({

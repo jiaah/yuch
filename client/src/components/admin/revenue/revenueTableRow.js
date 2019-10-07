@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+/* --- Components --- */
+import { formatNumber } from '../../../utils/reformat';
 
 const styles = theme => ({
   resize: {
@@ -21,6 +23,7 @@ const RevenueTableRow = ({
   onfocusOnSelectdRow,
 }) => {
   const formattedDate = revenueFormat(row.date);
+  const formattedSumTotal = formatNumber(row.sumTotal);
 
   return (
     <TableRow
@@ -43,7 +46,7 @@ const RevenueTableRow = ({
         {row.sumTotalResto}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sumTotal}
+        {formattedSumTotal}
       </TableCell>
     </TableRow>
   );

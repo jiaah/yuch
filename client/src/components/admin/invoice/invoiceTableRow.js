@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from 'react-router-dom';
-import { formatNumber } from '../../../utils/price';
+import { formatNumber } from '../../../utils/reformat';
 
 const styles = theme => ({
   resize: {

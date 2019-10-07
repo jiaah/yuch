@@ -9,7 +9,7 @@ import EnhancedTableHead from '../../shared/tableHead';
 import { userInvoiceColumns } from '../../data/data';
 import InvoiceTabelRow from './invoiceTableRow';
 import Loader from '../loader';
-import { formatNumber, combinedFormat } from '../../utils/price';
+import { formatNumber, combinedFormat } from '../../utils/reformat';
 
 const SpecialMealTableRow = Loader({
   loader: () =>
