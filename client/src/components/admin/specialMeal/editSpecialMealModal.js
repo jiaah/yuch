@@ -18,7 +18,7 @@ const EditModal = ({
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await setSubmitting(true);
-    const sendingData = { id, userId: '', ...values };
+    const sendingData = { id, userId: userId || '', ...values };
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([

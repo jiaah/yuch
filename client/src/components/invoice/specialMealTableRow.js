@@ -11,7 +11,7 @@ const styles = theme => ({
   },
   font: { color: '#605E5E' },
   pointSun: { color: '#E8716F' },
-  pointSat: { colot: '#2196F3' },
+  pointSat: { color: '#2196F3' },
 });
 
 const SpecialMealTableRow = ({

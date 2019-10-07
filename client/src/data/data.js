@@ -1,6 +1,6 @@
 export const admin = {
   companyName: '유청',
-  startTime: '20191001',
+  startTime: '20190901',
   revenueStartTime: '2019',
 };
 

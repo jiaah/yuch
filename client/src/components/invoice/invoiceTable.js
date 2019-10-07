@@ -9,6 +9,7 @@ import EnhancedTableHead from '../../shared/tableHead';
 import { userInvoiceColumns } from '../../data/data';
 import InvoiceTabelRow from './invoiceTableRow';
 import Loader from '../loader';
+import { formatNumber, combinedFormat } from '../../utils/price';
 
 const SpecialMealTableRow = Loader({
   loader: () =>
@@ -32,18 +33,13 @@ const InvoiceTable = ({
   const { caterings, mealPrice, specialMeals, sumTotal } = data;
   const TAX_RATE = 0.1;
 
-  const ccyFormat = num => `${num.toFixed(2)}`;
-  const formatNumber = num =>
-    num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-
-  const combinedFormat = num => {
-    const cyyFormattedNum = ccyFormat(num);
-    const formattedNum = formatNumber(cyyFormattedNum);
-    return formattedNum;
-  };
-
   const invoiceTaxes = TAX_RATE * sumTotal;
   const invoiceTotal = invoiceTaxes + sumTotal;
+
+  const formattedSubTotal = combinedFormat(sumTotal);
+  const formattedTax = `${(TAX_RATE * 100).toFixed(0)} %`;
+  const formattedInvoiceTaxes = combinedFormat(invoiceTaxes);
+  const formattedInvoiceTotal = combinedFormat(invoiceTotal);
 
   return (
     <div className={tableWrapper}>
@@ -82,19 +78,17 @@ const InvoiceTable = ({
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align="right">{combinedFormat(sumTotal)}</TableCell>
+            <TableCell align="right">{formattedSubTotal}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
-            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-              0,
-            )} %`}</TableCell>
-            <TableCell align="right">{combinedFormat(invoiceTaxes)}</TableCell>
+            <TableCell align="right">{formattedTax}</TableCell>
+            <TableCell align="right">{formattedInvoiceTaxes}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2}>Total</TableCell>
             <TableCell align="right" className={font}>
-              {combinedFormat(invoiceTotal)}
+              {formattedInvoiceTotal}
             </TableCell>
           </TableRow>
         </TableBody>

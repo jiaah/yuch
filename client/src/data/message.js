@@ -131,7 +131,7 @@ export const updateRateMessageC = (
     인보이스 재발행&#58; &#39;인보이스 &#62; 거래명세서&#39;
     &#8201;&#8594;&#8199;
     <Link className="c-point2 td-none" to="/admin/invoice/users">
-      &#39;인보이스&#47;매출&#39; 업데이트 버튼
+      &#39;인보이스&#39; 업데이트 버튼
     </Link>{' '}
     클릭
   </p>
@@ -213,7 +213,7 @@ export const adminCateringMsg = (
       [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 업데이트 버튼
       </Link>{' '}
       클릭
     </p>
@@ -299,7 +299,7 @@ export const restoSalesMsg = (
       <br />
       &#42; 지난 일자에 대한 매출액 변경은 이전 달 까지만 가능합니다&#46; <br />
     </p>
-    <p className="f-mini">
+    {/* <p className="f-mini">
       &#42; <span className="c-point2">지난 달의 매출을 변경</span> 한 경우에는{' '}
       <span className="c-point2">반드시 매출 업데이트</span>를 해주세요&#46;
     </p>
@@ -307,10 +307,10 @@ export const restoSalesMsg = (
       [ 매출 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 업데이트 버튼
       </Link>{' '}
       클릭
-    </p>
+    </p> */}
   </div>
 );
 
@@ -371,23 +371,22 @@ export const adminSpecialMealMsgB = (
   </p>
 );
 
-export const adminSpecialMealMsgC = (
-  <p className="f-mini">
-    <span className="c-point2">지난 달의 특식을 변동</span>한 경우,{' '}
-    <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요&#46;
-  </p>
-);
+// export const adminSpecialMealMsgC = (
+//   <p className="f-mini">
+//     <span className="c-point2">지난 달의 특식을 변동</span>한 경우,{' '}
+//     <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요&#46;
+//   </p>
+// );
 
 export const adminInvoiceMsg = (
   <p className="f-mini">
     <span className="c-point2">
-      <span className="b">지난 달</span>의 식수 or 식수가격 or 특식 or 레스토랑
-      매출을 변경
+      <span className="b">지난 달</span>의 식수 or 식수가격을 변경
     </span>
     한 경우에는 <br />
     <span className="b c-point2">반드시</span> 우측 상단의
     <span className="c-point2">
-      &#8201;&#39;인보이스&#47;매출&#39;&#8199;
+      &#8201;&#39;인보이스&#39;&#8199;
       <span className="b">업데이트 버튼</span>
       &#8201;
     </span>
