@@ -25,8 +25,9 @@ const UpdateInvoiceModal = ({
     if (res.error) {
       await addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     } else {
-      await hideModal();
       await addFlashMessage('success', '성공적으로 업데이트 되었습니다');
+      hideModal();
+      window.location.reload(true);
     }
     return setSubmitting(false);
   };
@@ -37,7 +38,7 @@ const UpdateInvoiceModal = ({
 
   return (
     <Modal
-      title="인보이스/매출 업데이트"
+      title="인보이스 업데이트"
       handleClose={hideModal}
       component={
         <div className="media--justify-center pt3 pb3">

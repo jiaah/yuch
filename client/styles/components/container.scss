@@ -85,7 +85,7 @@
     width: 50vw;
   }
 
-  @include for-m-desktop-up {
+  @include for-big-desktop-up {
     width: 30vw;
   }
 }
