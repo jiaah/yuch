@@ -116,9 +116,7 @@ exports.createUser = (req, res) => {
       .returning('id')
       .then(user => {
         const userId = user[0];
-        const startedAt = moment()
-          .startOf('month')
-          .format('YYYY-MM-DD');
+        const startedAt = startDate;
         return knex('meal_price').insert({
           mealPrice,
           userId,

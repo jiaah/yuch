@@ -225,11 +225,12 @@ const updateByUserIdWithDate = async (
   }
 };
 
-const getLists = async date => {
+const getLists = async (date, businessType) => {
   try {
     const results = [];
     const users = await Users.query()
-      .where({ isAdmin: false, businessType: 'catering' })
+      .where({ isAdmin: false, businessType })
+      .whereRaw('"startDate" <= NOW()')
       .where(builder => {
         builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
       })
