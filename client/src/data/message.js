@@ -347,7 +347,7 @@ export const userSpecialMealNotice = (
 export const adminSpecialMealMsg = (
   <p className="f-mini">
     유청 고객사가 등록된 특식의 계산서는{' '}
-    <span className="c-point2">월말 거래명세서에 포함</span>
+    <span className="c-point2">고객사의 월말 거래명세서에 포함</span>
     되고, <br />
     등록된 내역을 <span className="c-point2">고객사가 볼 수 있으며</span>
     ,&#8199;

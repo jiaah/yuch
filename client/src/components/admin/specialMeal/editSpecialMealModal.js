@@ -19,34 +19,24 @@ const EditModal = ({
   const { id, userId, ...initialValues } = clickedUserData;
 
   const [state, setState] = useState({
-    id,
-    userId,
-    selectedUser: !!userId,
+    userId: clickedUserData.userId,
+    selectedUser: !!clickedUserData.userId,
   });
 
   const handleChange = name => async event => {
     const checked = event.target.checked;
-
-    if (checked) {
-      return setState({
-        ...state,
-        [name]: checked,
-        userId: clickedUserData.userId,
-      });
-    }
-    if (!checked) {
-      return setState({
-        ...state,
-        [name]: checked,
-        userId: null,
-      });
-    }
+    return setState({
+      ...state,
+      [name]: checked,
+    });
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    const { id, userId } = state;
+    const userId = state.selectedUser ? state.userId : null;
+    const id = clickedUserData.id;
     await setSubmitting(true);
     const sendingData = { id, userId, ...values };
+
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
