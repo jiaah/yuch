@@ -25,7 +25,7 @@ const UpdateInvoiceModal = ({
     if (res.error) {
       await addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     } else {
-      // await hideModal();
+      await hideModal();
       await addFlashMessage('success', '성공적으로 업데이트 되었습니다');
     }
     return setSubmitting(false);
