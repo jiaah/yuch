@@ -76,58 +76,59 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-80">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={resetDateMonthly}
-      >
-        고객사 매출 현황
-      </h2>
-      <DateButtons
-        date={date}
-        reload={true}
-        unit="mm"
-        formattedDate={formattedDate}
-        startTime={admin.startTime}
-        endTime={`${thisMonthYYYYMM}01`}
-        updateDate={updateDateMonthly}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        dateForwardMessage="존재하지 않는 페이지입니다."
-      />
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={data}
-          searchingProp="companyName"
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
-        />
-        <div className="flex">
-          <IconButton
-            name="update"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={showModal}
+    <div className="container-a r--w-80">
+      <div id="print">
+        <div className="print-width">
+          <h2
+            className="pointer"
+            title="오늘 일자로 돌아가기"
+            onClick={resetDateMonthly}
+          >
+            고객사 매출 현황
+          </h2>
+          <DateButtons
+            date={date}
+            reload={true}
+            unit="mm"
+            formattedDate={formattedDate}
+            startTime={admin.startTime}
+            endTime={`${thisMonthYYYYMM}01`}
+            updateDate={updateDateMonthly}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            dateForwardMessage="존재하지 않는 페이지입니다."
           />
-
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
+          <div className="paper-label-box justify-between">
+            <SearchBar
+              data={data}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
+            />
+            <div className="flex">
+              <IconButton
+                name="update"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={showModal}
+              />
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
+          </div>
+          <Paper
+            data={data}
+            selectedRow={selectedRow}
+            searchedValue={searchedValue}
+            onfocusOnSelectdRow={onfocusOnSelectdRow}
           />
         </div>
-      </div>
-      <div>
-        <Paper
-          data={data}
-          selectedRow={selectedRow}
-          searchedValue={searchedValue}
-          onfocusOnSelectdRow={onfocusOnSelectdRow}
-        />
       </div>
       <IconMessage
         name="info"

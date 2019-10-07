@@ -33,6 +33,7 @@ const IconButton = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       disabled={!!disabled}
+      className="no-print"
     >
       <Icon
         name={name}

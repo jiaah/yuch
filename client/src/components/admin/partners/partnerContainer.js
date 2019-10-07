@@ -77,33 +77,33 @@ const Container = ({
   };
 
   return (
-    <div className="container-a r--w-70">
-      <h2>거래처</h2>
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={data}
-          searchingProp="companyName"
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
-        />
-        <div className="flex">
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
+    <div id="print" className="container-a r--w-70">
+      <div className="print-width">
+        <h2>거래처</h2>
+        <div className="paper-label-box justify-between">
+          <SearchBar
+            data={data}
+            searchingProp="companyName"
+            handleSuggestionSelected={handleSuggestionSelected}
+            handleResetSearch={() => {}}
           />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
+          <div className="flex">
+            <IconButton
+              handleClick={() => handleButtonClick('create')}
+              name="add"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+            />
+            <IconButton
+              name="print"
+              width="32"
+              height="32"
+              viewBox="0 0 25 25"
+              handleClick={() => printDiv('print')}
+            />
+          </div>
         </div>
-      </div>
-      <div id="print">
         <Paper
           component={
             data && data.length !== 0 ? (
@@ -124,22 +124,22 @@ const Container = ({
             )
           }
         />
+        {clickedBtn && (
+          <Modal
+            clickedBtn={clickedBtn}
+            clickedUserData={clickedUserData}
+            selectedSearchItem={selectedSearchItem}
+            hideModal={hideModal}
+            addFlashMessage={addFlashMessage}
+            resetSelectedItemValue={resetSelectedItemValue}
+            saveClickedItemData={saveClickedItemData}
+            resetClickedItemData={resetClickedItemData}
+            createPartner={createPartner}
+            editPartner={editPartner}
+            deletePartner={deletePartner}
+          />
+        )}
       </div>
-      {clickedBtn && (
-        <Modal
-          clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData}
-          selectedSearchItem={selectedSearchItem}
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          resetSelectedItemValue={resetSelectedItemValue}
-          saveClickedItemData={saveClickedItemData}
-          resetClickedItemData={resetClickedItemData}
-          createPartner={createPartner}
-          editPartner={editPartner}
-          deletePartner={deletePartner}
-        />
-      )}
     </div>
   );
 };

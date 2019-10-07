@@ -16,7 +16,7 @@ const BusinessNoPaper = ({
   const { sortedDataA, sortedDataB } = divideInTow(users);
 
   return (
-    <div id="print" className="paper">
+    <div className="paper">
       {users.length !== 0 && users.length > 10 ? (
         <React.Fragment>
           <Paper

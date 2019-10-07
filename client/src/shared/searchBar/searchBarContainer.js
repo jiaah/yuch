@@ -114,7 +114,7 @@ const SearchBar = ({
 
   return (
     <React.Fragment>
-      <div className={`flex flex-row-m ${search}`} onKeyUp={handleOnKeyUp}>
+      <div className={`flex flex-row-m ${search} `} onKeyUp={handleOnKeyUp}>
         <div className={searchIcon}>
           <Icon
             name="search"

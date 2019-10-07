@@ -60,7 +60,7 @@ const SpecialMealTable = ({
   const upComingEvent = users[upComingEventIndex];
 
   return (
-    <div id="print" className={tableWrapper}>
+    <div className={tableWrapper}>
       <Table className={table} aria-labelledby="admin-specialmeal" size="small">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">

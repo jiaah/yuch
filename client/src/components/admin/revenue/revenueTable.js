@@ -36,7 +36,7 @@ const RevenueTable = ({
   const emptyRows = data && 3 - data.length;
 
   return (
-    <div id="print" className={tableWrapper}>
+    <div className={tableWrapper}>
       <Table className={table} aria-labelledby="revenue">
         <EnhancedTableHead list={revenueColumns} />
         <TableBody data-testid="bank-account--table">

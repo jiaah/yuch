@@ -99,45 +99,47 @@ const RatesContainer = ({
   const dataToRender = isAdminVerified ? data : [];
 
   return (
-    <div className="container-a r--w-80">
-      <h2>식수가격</h2>
-      <div className="paper-label-box flex justify-between">
-        <SearchBar
-          data={data}
-          searchingProp="companyName"
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
-        />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
-      </div>
-      <RatesPaper
-        data={data}
-        users={dataToRender}
-        selectedRow={selectedRow}
-        selectedSearchItem={selectedSearchItem}
-        clickedUserData={clickedUserData[0] || clickedUserData}
-        handleEditUserBtnClick={handleEditUserBtnClick}
-        handleTableRowClick={handleTableRowClick}
-        isAdminVerified={isAdminVerified}
-      />
-      {isAdminVerified &&
-        clickedUserData.length !== 0 && (
-          <EditRateModal
-            clickedUserData={clickedUserData[0]}
-            hideModal={hideModal}
-            updateReservedPrice={updateReservedPrice}
-            addFlashMessage={addFlashMessage}
-            saveYposition={saveYposition}
-            updateRatesMonth={updateRatesMonth}
+    <div id="print" className="container-a r--w-80">
+      <div className="print-width">
+        <h2>식수가격</h2>
+        <div className="paper-label-box flex justify-between">
+          <SearchBar
+            data={data}
+            searchingProp="companyName"
+            handleSuggestionSelected={handleSuggestionSelected}
+            handleResetSearch={() => {}}
           />
-        )}
-      <AdminVerificationModal />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
+        <RatesPaper
+          data={data}
+          users={dataToRender}
+          selectedRow={selectedRow}
+          selectedSearchItem={selectedSearchItem}
+          clickedUserData={clickedUserData[0] || clickedUserData}
+          handleEditUserBtnClick={handleEditUserBtnClick}
+          handleTableRowClick={handleTableRowClick}
+          isAdminVerified={isAdminVerified}
+        />
+        {isAdminVerified &&
+          clickedUserData.length !== 0 && (
+            <EditRateModal
+              clickedUserData={clickedUserData[0]}
+              hideModal={hideModal}
+              updateReservedPrice={updateReservedPrice}
+              addFlashMessage={addFlashMessage}
+              saveYposition={saveYposition}
+              updateRatesMonth={updateRatesMonth}
+            />
+          )}
+        <AdminVerificationModal />
+      </div>
     </div>
   );
 };

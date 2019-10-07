@@ -75,54 +75,58 @@ const CateringContainer = ({
 
   return (
     <div className="container-a r--w-70">
-      <h2
-        className="pointer"
-        title="오늘 날짜로 돌아가기"
-        onClick={resetDateDaily}
-      >
-        위탁급식 식수 현황
-      </h2>
-      <DateButtons
-        date={date}
-        reload={true}
-        unit="dd"
-        formattedDate={formattedDate}
-        startTime={admin.startTime}
-        endTime={inAWeek}
-        updateDate={updateDateDaily}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
-      />
-      <div className="center">
-        <div className="paper-label-box justify-between">
-          <SearchBar
-            data={catering}
-            searchingProp="companyName"
-            handleSuggestionSelected={handleSuggestionSelected}
-            handleResetSearch={handleResetSearch}
+      <div id="print">
+        <div className="print-width">
+          <h2
+            className="pointer"
+            title="오늘 날짜로 돌아가기"
+            onClick={resetDateDaily}
+          >
+            위탁급식 식수 현황
+          </h2>
+          <DateButtons
+            date={date}
+            reload={true}
+            unit="dd"
+            formattedDate={formattedDate}
+            startTime={admin.startTime}
+            endTime={inAWeek}
+            updateDate={updateDateDaily}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
           />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
+          <div className="center">
+            <div className="paper-label-box justify-between">
+              <SearchBar
+                data={catering}
+                searchingProp="companyName"
+                handleSuggestionSelected={handleSuggestionSelected}
+                handleResetSearch={handleResetSearch}
+              />
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
+            <CateringPaper
+              users={catering}
+              selectedItemValue={selectedItemValue}
+              updateUserCatering={updateUserCatering}
+              addFlashMessage={addFlashMessage}
+              saveSelectedItemValue={saveSelectedItemValue}
+              resetSelectedItemValue={resetSelectedItemValue}
+              startEditing={startEditing}
+              endEditing={endEditing}
+              editIndex={editIndex}
+              handleTableRowClick={handleTableRowClick}
+              selectedRow={selectedRow}
+            />
+          </div>
         </div>
-        <CateringPaper
-          users={catering}
-          selectedItemValue={selectedItemValue}
-          updateUserCatering={updateUserCatering}
-          addFlashMessage={addFlashMessage}
-          saveSelectedItemValue={saveSelectedItemValue}
-          resetSelectedItemValue={resetSelectedItemValue}
-          startEditing={startEditing}
-          endEditing={endEditing}
-          editIndex={editIndex}
-          handleTableRowClick={handleTableRowClick}
-          selectedRow={selectedRow}
-        />
       </div>
       {adminCateringMsg}
     </div>

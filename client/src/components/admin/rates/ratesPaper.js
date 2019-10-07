@@ -34,7 +34,7 @@ const RatesPaper = ({
   );
 
   return (
-    <div id="print" className="paper">
+    <div className="paper">
       {isAdminVerified && users.length !== 0 ? (
         users.length > 10 ? (
           <React.Fragment>

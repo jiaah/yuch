@@ -121,73 +121,75 @@ const SpecialMealContainer = ({
 
   return (
     <div className="container-a r--w-98">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={resetDateDaily}
-      >
-        특식 관리
-      </h2>
-      <DateButtons
-        date={date}
-        reload={true}
-        unit="mm"
-        formattedDate={formattedDate}
-        startTime={admin.startTime}
-        endTime={`${inONEYear}01`}
-        updateDate={updateDateDaily}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        dateForwardMessage="존재하지 않는 페이지입니다."
-      />
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={specialMeal}
-          searchingProp="companyName"
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={renderAllUsers}
-        />
-        <div>
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
+      <div id="print">
+        <div className="print-width">
+          <h2
+            className="pointer"
+            title="오늘 일자로 돌아가기"
+            onClick={resetDateDaily}
+          >
+            특식 관리
+          </h2>
+          <DateButtons
+            date={date}
+            reload={true}
+            unit="mm"
+            formattedDate={formattedDate}
+            startTime={admin.startTime}
+            endTime={`${inONEYear}01`}
+            updateDate={updateDateDaily}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            dateForwardMessage="존재하지 않는 페이지입니다."
           />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
+          <div className="paper-label-box justify-between">
+            <SearchBar
+              data={specialMeal}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={renderAllUsers}
+            />
+            <div>
+              <IconButton
+                handleClick={() => handleButtonClick('create')}
+                name="add"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+              />
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
+          </div>
+          <Paper
+            isDivided={false}
+            component={
+              <React.Fragment>
+                {specialMeal && specialMeal.length !== 0 ? (
+                  <Table
+                    users={specialMeal}
+                    selectedRow={selectedRow}
+                    clickedUserData={clickedUserData[0] || clickedUserData}
+                    selectedItemValue={selectedItemValue}
+                    saveClickedItemData={saveClickedItemData}
+                    handleButtonClick={handleButtonClick}
+                    formatToDateForm={formatToDateForm}
+                    handleTableRowClick={handleTableRowClick}
+                    formatToYYYYMMDD={formatToYYYYMMDD}
+                    today={today}
+                  />
+                ) : (
+                  <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+                )}
+              </React.Fragment>
+            }
           />
         </div>
-      </div>
-      <div id="print">
-        <Paper
-          isDivided={false}
-          component={
-            <React.Fragment>
-              {specialMeal && specialMeal.length !== 0 ? (
-                <Table
-                  users={specialMeal}
-                  selectedRow={selectedRow}
-                  clickedUserData={clickedUserData[0] || clickedUserData}
-                  selectedItemValue={selectedItemValue}
-                  saveClickedItemData={saveClickedItemData}
-                  handleButtonClick={handleButtonClick}
-                  formatToDateForm={formatToDateForm}
-                  handleTableRowClick={handleTableRowClick}
-                  formatToYYYYMMDD={formatToYYYYMMDD}
-                  today={today}
-                />
-              ) : (
-                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-              )}
-            </React.Fragment>
-          }
-        />
       </div>
       <IconMessage
         name="info"
