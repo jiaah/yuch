@@ -152,6 +152,7 @@ const findOne = async (userId, startedAt, endedAt) => {
       startedAt,
       endedAt,
     );
+
     result.specialMeals = await specialService.getListsByUserIdWithRangeDate(
       userId,
       startedAt,
