@@ -360,14 +360,14 @@ export const adminSpecialMealMsg = (
 export const adminSpecialMealMsgA = (
   <p className="f-mini">
     월말 거래명세서와 <span className="c-point2">별개로 정산</span>을 원하시면,
-    고객 등록을 선택하지 마세요.
+    &#8201;&#39;유청 고객 거래 명세서에 등록&#39;&#8199;을 선택하지 마세요.
   </p>
 );
 
 export const adminSpecialMealMsgB = (
   <p className="f-mini">
-    월말 거래명세서 포함여부 변경을 원한다면, 등록된 특식을 삭제한 후
-    재등록하여주세요&#46;
+    유청 고객 거래 명세서에 등록되지 않은 특식을 등록하고자 하시면, 변경하고자
+    하는 특식을 삭제한 후 재등록하여주세요&#46;
   </p>
 );
 
