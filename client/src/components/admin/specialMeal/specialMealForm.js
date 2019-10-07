@@ -1,13 +1,59 @@
 import React from 'react';
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 /* --- Components --- */
+import { withStyles } from '@material-ui/core/styles';
 import FormikField from '../../../shared/form/formikField';
 import TextArea from '../../../shared/form/textAreaFormik';
 import FormButton from '../../../shared/form/formButton';
 import TimeField from '../../../shared/form/timeField';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 
-const SpecialMealForm = ({ isSubmitting }) => (
+const styles = theme => ({
+  checkbox: {
+    marginRight: '-3px',
+    [theme.breakpoints.up('md')]: {
+      marginRight: '-11px',
+    },
+  },
+});
+
+const SpecialMealForm = ({
+  classes: { checkbox },
+  isSubmitting,
+  handleSuggestionSelected,
+  handleChange,
+  state,
+  adminSpecialMealMsg,
+  clickedBtn,
+}) => (
   <React.Fragment>
+    <div className="special-meal-select-user--box">
+      <div className="flex media--justify-around mt4 mb2 special-meal-select-user">
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={state.selectedUser}
+              onChange={handleChange('selectedUser')}
+              value="selectedUser"
+            />
+          }
+          label="유청 고객 등록하기"
+          className={checkbox}
+        />
+        {state.selectedUser &&
+          clickedBtn === 'create' && (
+            <SearchBar
+              data={state.users}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
+              isSecondSearchBar={true}
+            />
+          )}
+      </div>
+      {state.selectedUser && adminSpecialMealMsg}
+    </div>
     <div className="mt4 mb2 media--justify-around">
       <div className="media--flex-column-m">
         <FormikField
@@ -92,4 +138,4 @@ const SpecialMealForm = ({ isSubmitting }) => (
   </React.Fragment>
 );
 
-export default SpecialMealForm;
+export default withStyles(styles)(SpecialMealForm);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
@@ -6,6 +6,7 @@ import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
 
 const EditModal = ({
+  adminSpecialMealMsg,
   // state
   clickedUserData,
   users,
@@ -13,15 +14,43 @@ const EditModal = ({
   addFlashMessage,
   updateSpecialMeal,
   hideModal,
+  resetSelectedItemValue,
 }) => {
   const { id, userId, ...initialValues } = clickedUserData;
 
+  const [state, setState] = useState({
+    id,
+    userId,
+    selectedUser: !!userId,
+  });
+
+  const handleChange = name => async event => {
+    const checked = event.target.checked;
+
+    if (checked) {
+      return setState({
+        ...state,
+        [name]: checked,
+        userId: clickedUserData.userId,
+      });
+    }
+    if (!checked) {
+      return setState({
+        ...state,
+        [name]: checked,
+        userId: null,
+      });
+    }
+  };
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const { id, userId } = state;
     await setSubmitting(true);
-    const sendingData = { id, userId: userId || '', ...values };
+    const sendingData = { id, userId, ...values };
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
+        resetSelectedItemValue(),
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
@@ -43,7 +72,13 @@ const EditModal = ({
           onSubmit={handleSubmit}
           render={props => (
             <Form>
-              <SpecialMealForm {...props} users={users} />
+              <SpecialMealForm
+                {...props}
+                users={users}
+                handleChange={handleChange}
+                state={state}
+                adminSpecialMealMsg={adminSpecialMealMsg}
+              />
             </Form>
           )}
           validationSchema={specialMealValidation}

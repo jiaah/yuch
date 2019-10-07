@@ -40,21 +40,27 @@ const ModalController = ({
         addFlashMessage={addFlashMessage}
         createSpecialMeal={createSpecialMeal}
         getUsers={getUsers}
-        adminSpecialMealMsg={adminSpecialMealMsg}
         resetSelectedItemValue={resetSelectedItemValue}
         saveClickedItemData={saveClickedItemData}
         resetClickedItemData={resetClickedItemData}
         clickedUserData={clickedUserData}
+        clickedBtn={clickedBtn}
+        adminSpecialMealMsg={adminSpecialMealMsg}
       />
     )}
-    {clickedBtn === 'edit' && (
-      <EditModal
-        hideModal={hideModal}
-        addFlashMessage={addFlashMessage}
-        updateSpecialMeal={updateSpecialMeal}
-        clickedUserData={clickedUserData[0]}
-      />
-    )}
+    {clickedBtn === 'edit' &&
+      clickedUserData.length !== 0 && (
+        <EditModal
+          hideModal={hideModal}
+          addFlashMessage={addFlashMessage}
+          updateSpecialMeal={updateSpecialMeal}
+          clickedUserData={clickedUserData[0]}
+          adminSpecialMealMsg={adminSpecialMealMsg}
+          getUsers={getUsers}
+          resetSelectedItemValue={resetSelectedItemValue}
+          resetClickedItemData={resetClickedItemData}
+        />
+      )}
     {clickedBtn === 'delete' && (
       <DeleteModal
         hideModal={hideModal}
