@@ -91,7 +91,7 @@ const getSumTotalResto = async (startDate, endDate) => {
     .select(raw('sum(lunch + dinner)').as('sumTotal'))
     .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
     .first();
-  return result.sumTotal || 0;
+  return Number(result.sumTotal) || 0;
 };
 
 const getSumTotalSpecialMeal = async (startDate, endDate) => {
@@ -100,7 +100,7 @@ const getSumTotalSpecialMeal = async (startDate, endDate) => {
       .select(raw('sum("sumTotal")').as('sumTotal'))
       .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
       .first();
-    return result.sumTotal || 0;
+    return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
   }
@@ -111,7 +111,7 @@ const getSumTotalInvoice = async date => {
     const result = await Invoice.query()
       .select(raw('sum("sumTotal")').as('sumTotal'))
       .where({ date });
-    return result.sumTotal || 0;
+    return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
   }

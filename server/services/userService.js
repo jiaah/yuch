@@ -29,7 +29,7 @@ const isActive = async id => {
 
 const isAdmin = async id => {
   const user = await Users.query().findById(id);
-  return user.isAdmin;
+  return user && user.isAdmin;
 };
 
 const findOneById = async id => Users.query().findById(id);
