@@ -57,10 +57,10 @@ const SpecialMealTable = ({
 
   const formattedData = users.map(u => formatToYYYYMMDD(u.date));
   const upComingEventIndex = formattedData.findIndex(i => i >= today);
-  const upComingEventId = users[upComingEventIndex].id;
+  const upComingEvent = users[upComingEventIndex];
 
   return (
-    <div id="print" className={tableWrapper}>
+    <div className={tableWrapper}>
       <Table className={table} aria-labelledby="admin-specialmeal" size="small">
         <EnhancedTableHead list={specialMealTableHeadColumns} />
         <TableBody data-testid="bank-account--table">
@@ -79,7 +79,7 @@ const SpecialMealTable = ({
                   formatToDateForm={formatToDateForm}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
-                  upComingEventId={upComingEventId}
+                  upComingEvent={upComingEvent}
                 />
               );
             })}

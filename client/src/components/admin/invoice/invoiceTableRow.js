@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from 'react-router-dom';
+import { formatNumber } from '../../../utils/reformat';
 
 const styles = theme => ({
   resize: {
@@ -21,30 +22,34 @@ const SpecialMealTableRow = ({
   searchedValue,
   // func
   onfocusOnSelectdRow,
-}) => (
-  <TableRow
-    key={row.userId}
-    onClick={() => onfocusOnSelectdRow(row.userId)}
-    role="checkbox"
-    aria-checked={selectedRow === row.userId}
-    tabIndex={-1}
-    selected={selectedRow === row.userId || searchedValue === row.companyName}
-  >
-    <TableCell align="right" className={resize}>
-      <Link
-        className="td-none c-point2 fw6"
-        to={`/invoice/user?name=${row.companyName}&id=${row.userId}`}
-      >
-        {row.companyName}
-      </Link>
-    </TableCell>
-    <TableCell align="right" className={resize}>
-      {row.mealPrice}
-    </TableCell>
-    <TableCell align="right" className={resize}>
-      {row.sumTotal}
-    </TableCell>
-  </TableRow>
-);
+}) => {
+  const formattedSumTotal = formatNumber(row.sumTotal);
+
+  return (
+    <TableRow
+      key={row.userId}
+      onClick={() => onfocusOnSelectdRow(row.userId)}
+      role="checkbox"
+      aria-checked={selectedRow === row.userId}
+      tabIndex={-1}
+      selected={selectedRow === row.userId || searchedValue === row.companyName}
+    >
+      <TableCell align="right" className={resize}>
+        <Link
+          className="td-none c-point2 fw6"
+          to={`/invoice/user?name=${row.companyName}&id=${row.userId}`}
+        >
+          {row.companyName}
+        </Link>
+      </TableCell>
+      <TableCell align="right" className={resize}>
+        {row.mealPrice}
+      </TableCell>
+      <TableCell align="right" className={resize}>
+        {formattedSumTotal}
+      </TableCell>
+    </TableRow>
+  );
+};
 
 export default withStyles(styles)(SpecialMealTableRow);

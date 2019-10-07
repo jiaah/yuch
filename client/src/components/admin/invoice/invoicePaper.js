@@ -1,6 +1,6 @@
 import React from 'react';
 /* --- Components --- */
-import { stableSort, getSorting } from '../../../utils/sort';
+import { divideInTwoWithSort } from '../../../utils/sort';
 import Paper from '../../../shared/paper';
 import RatesTable from './invoiceTable';
 
@@ -14,7 +14,6 @@ const InvoicePaper = ({
   onfocusOnSelectdRow,
 }) => {
   const [order, setOrder] = React.useState('asc');
-  // selected column
   const [orderBy, setOrderBy] = React.useState('companyName');
 
   const handleRequestSort = (event, property) => {
@@ -23,24 +22,14 @@ const InvoicePaper = ({
     setOrderBy(property);
   };
 
-  let sortedDataA;
-  let sortedDataB;
-  if (data && data.length <= 10) {
-    sortedDataA = stableSort(data, getSorting(order, orderBy));
-    sortedDataB = [];
-  }
-  if (data && data.length > 10) {
-    const line =
-      data.length % 2 === 0 ? data.length / 2 : data.length / 2 + 0.5;
-    sortedDataA = stableSort(data, getSorting(order, orderBy)).slice(0, line);
-    sortedDataB = stableSort(data, getSorting(order, orderBy)).slice(
-      line,
-      data.length,
-    );
-  }
+  const { sortedDataA, sortedDataB } = divideInTwoWithSort(
+    data,
+    order,
+    orderBy,
+  );
 
   return (
-    <div id="print" className="paper">
+    <div className="paper">
       {data.length !== 0 && data.length > 10 ? (
         <React.Fragment>
           <Paper
@@ -87,13 +76,7 @@ const InvoicePaper = ({
             />
           }
         />
-      ) : (
-        <Paper
-          component={
-            <h3 className="mt4 mb4">발행된 거래 명세서가 없습니다.</h3>
-          }
-        />
-      )}
+      ) : null}
     </div>
   );
 };

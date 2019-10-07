@@ -54,14 +54,21 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
         name="lunchQty"
         type="text"
         icon="catering"
-        styleName="textFieldB"
+        styleName="textFieldI"
       />
       <FormikField
         label="석식 식수량"
         name="dinnerQty"
         type="text"
         icon="catering"
-        styleName="textFieldB"
+        styleName="textFieldI"
+      />
+      <FormikField
+        label="야식 식수량"
+        name="lateNightSnackQty"
+        type="text"
+        icon="catering"
+        styleName="textFieldI"
       />
     </div>
     <FormikField
@@ -79,6 +86,24 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       icon="address"
       styleName="textField"
     />
+    <div className="flex justify-center">
+      <FormikField
+        label="서비스 시작일"
+        name="startDate"
+        type="text"
+        icon="calendar"
+        styleName="textFieldB"
+        disabled
+      />
+      <FormikField
+        label="서비스 종료일"
+        name="endDate"
+        type="text"
+        icon="calendar"
+        styleName="textFieldB"
+        disabled
+      />
+    </div>
     <div>
       <Button
         typeValue="button"

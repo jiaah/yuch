@@ -1,19 +1,24 @@
 const moment = require('moment');
 const { raw } = require('objection');
 const Catering = require('../models/Catering');
+const Calendars = require('../models/Calendars');
 const Users = require('../models/Users');
 
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) =>
-  Catering.query()
+  Calendars.query()
     .select(
-      raw('to_char("date", \'YYYYMMDD\')').as('date'),
+      raw('to_char(calendars."date", \'YYYYMMDD\')').as('date'),
       'lunchQty',
       'dinnerQty',
       'lateNightSnackQty',
     )
-    .where({ userId })
-    .whereBetween('date', [startDate, endDate])
-    .orderBy('date', 'asc');
+    .leftJoin('catering', qb => {
+      qb.on('catering.date', '=', 'calendars.date').andOn(
+        raw(`catering."userId" = '${userId}'`),
+      );
+    })
+    .whereBetween('calendars.date', [startDate, endDate])
+    .orderBy('calendars.date', 'asc');
 
 const getSumTotalByUserIdWithRangeDate = async (
   userId,
@@ -67,8 +72,8 @@ const findOneByUserIdWithDate = async (userId, date) => {
         'catering.lunchQty',
         'catering.dinnerQty',
         'catering.lateNightSnackQty',
-        'users.endDate',
-        raw('users.created_at').as('createdAt'),
+        raw('to_char("startDate", \'YYYYMMDD\')').as('startDate'),
+        raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
       )
       .innerJoin('users', 'users.id', 'catering.userId')
       .where({ userId, date: formatedDate })
@@ -91,8 +96,8 @@ const findOneByUserIdWithDate = async (userId, date) => {
             'catering.lunchQty',
             'catering.dinnerQty',
             'catering.lateNightSnackQty',
-            'users.endDate',
-            raw('users.created_at').as('createdAt'),
+            raw('to_char("startDate", \'YYYYMMDD\')').as('startDate'),
+            raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
           )
           .innerJoin('users', 'users.id', 'catering.userId')
           .where({ userId, date: formatedDate })
@@ -104,7 +109,6 @@ const findOneByUserIdWithDate = async (userId, date) => {
           lunchQty: null,
           dinnerQty: null,
           lateNightSnackQty: null,
-          createdAt: null,
         };
       }
     }
@@ -221,11 +225,12 @@ const updateByUserIdWithDate = async (
   }
 };
 
-const getLists = async date => {
+const getLists = async (date, businessType) => {
   try {
     const results = [];
     const users = await Users.query()
-      .where({ isAdmin: false, businessType: 'catering' })
+      .where({ isAdmin: false, businessType })
+      .whereRaw('"startDate" <= NOW()')
       .where(builder => {
         builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
       })

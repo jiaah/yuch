@@ -3,6 +3,14 @@
    License: none (public domain)
 */
 
+@page {
+  size: auto;
+  /* auto is the initial value */
+
+  /* this affects the margin in the printer settings */
+  margin: 20mm;
+}
+
 html,
 body,
 div,
@@ -153,6 +161,9 @@ html {
 body {
   min-height: 100%;
   height: 100%;
+
+  /* this affects the margin on the content before sending to printer */
+  margin: 0px;
 }
 
 #root {

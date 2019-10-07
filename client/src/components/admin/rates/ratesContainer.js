@@ -27,7 +27,6 @@ const RatesContainer = ({
   rateActions: { getCateringRates, updateReservedPrice },
   modalActions: { showModal, hideModal },
   selectedActions: {
-    saveSelectedItemValue,
     resetSelectedItemValue,
     saveClickedItemData,
     resetClickedItemData,
@@ -35,7 +34,7 @@ const RatesContainer = ({
   handleAdminVerificationStatus,
   addFlashMessage,
   isAdminVerified,
-  selectedItemValue,
+  selectedSearchItem,
   clickedUserData,
   show,
   updateRatesMonth,
@@ -44,11 +43,12 @@ const RatesContainer = ({
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
-  const setfocusOnSelectdRow = id => setSelectedRow(id);
-  const removeFocusOnSelectdRow = () => setSelectedRow(null);
+  const onFocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
 
   const fetchCateringRates = async () => {
     const res = await getCateringRates();
+
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
@@ -65,7 +65,7 @@ const RatesContainer = ({
     return () =>
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedItemValue !== null && resetSelectedItemValue(),
+        selectedSearchItem && resetSelectedItemValue(),
         isAdminVerified && handleAdminVerificationStatus(),
         show && hideModal(),
       ]);
@@ -76,81 +76,76 @@ const RatesContainer = ({
     return userData[0];
   };
 
-  // [ Focus on row ]
-  // - editing a row : permanent focus (global state)
-  // - searching a row : permanent focus (global state)
-  // * editing & searching use the same state to prevent duplicated rows.
-
   const handleEditUserBtnClick = async (e, id) => {
     e.preventDefault();
     const userData = await getClickedUserData(id);
-    // to render clicked user data in textField
     await saveClickedItemData(userData);
-    // set focus on editing row
-    await saveSelectedItemValue(userData.userId);
-    // to prevent from having multiple selected rows.
-    if (selectedRow) await removeFocusOnSelectdRow();
-    return showModal();
+    return Promise.all([showModal(), offFocusOnSelectdRow()]);
   };
 
   const handleTableRowClick = id => {
-    setfocusOnSelectdRow(id);
-    // unselect the selected row to prevent from having multiple selected rows.
-    if (selectedItemValue) resetSelectedItemValue();
+    onFocusOnSelectdRow(id);
+    if (selectedSearchItem) resetSelectedItemValue();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   // funcions that runs after search component
   const handleSuggestionSelected = () => {
-    if (selectedRow) removeFocusOnSelectdRow();
+    if (selectedRow) offFocusOnSelectdRow();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
 
   return (
-    <div className="container-a r--w-80">
-      <h2>식수가격</h2>
-      <div className="paper-label-box flex justify-between">
-        <SearchBar
-          data={data}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
-        />
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
-        />
-      </div>
-      <RatesPaper
-        data={data}
-        users={dataToRender}
-        selectedItemValue={selectedItemValue}
-        handleEditUserBtnClick={handleEditUserBtnClick}
-        selectedRow={selectedRow}
-        handleTableRowClick={handleTableRowClick}
-        isAdminVerified={isAdminVerified}
-      />
-      {isAdminVerified &&
-        clickedUserData.length !== 0 && (
-          <EditRateModal
-            clickedUserData={clickedUserData}
-            hideModal={hideModal}
-            updateReservedPrice={updateReservedPrice}
-            addFlashMessage={addFlashMessage}
-            saveYposition={saveYposition}
-            updateRatesMonth={updateRatesMonth}
+    <div id="print" className="container-a r--w-80">
+      <div className="print-width">
+        <h2>식수가격</h2>
+        <div className="paper-label-box flex justify-between">
+          <SearchBar
+            data={data}
+            searchingProp="companyName"
+            handleSuggestionSelected={handleSuggestionSelected}
+            handleResetSearch={() => {}}
           />
-        )}
-      <AdminVerificationModal />
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
+        <RatesPaper
+          data={data}
+          users={dataToRender}
+          selectedRow={selectedRow}
+          selectedSearchItem={selectedSearchItem}
+          clickedUserData={clickedUserData[0] || clickedUserData}
+          handleEditUserBtnClick={handleEditUserBtnClick}
+          handleTableRowClick={handleTableRowClick}
+          isAdminVerified={isAdminVerified}
+        />
+        {isAdminVerified &&
+          clickedUserData.length !== 0 && (
+            <EditRateModal
+              clickedUserData={clickedUserData[0]}
+              hideModal={hideModal}
+              updateReservedPrice={updateReservedPrice}
+              addFlashMessage={addFlashMessage}
+              saveYposition={saveYposition}
+              updateRatesMonth={updateRatesMonth}
+            />
+          )}
+        <AdminVerificationModal />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  selectedItemValue: state.selected.value,
+  selectedSearchItem: state.selected.value,
   clickedUserData: state.selected.data,
   isAdminVerified: state.isAdminVerified.isAdminVerified,
   show: state.modal.show,

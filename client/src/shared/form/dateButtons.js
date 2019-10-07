@@ -85,7 +85,7 @@ const DateButtons = ({
   };
 
   return (
-    <div>
+    <React.Fragment>
       {unit !== 'yy' && (
         <IconButton
           name="arrowLeft"
@@ -131,7 +131,7 @@ const DateButtons = ({
           handleClick={unit === 'mm' ? moveToAYearAfter : moveToAWeekAfter}
         />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

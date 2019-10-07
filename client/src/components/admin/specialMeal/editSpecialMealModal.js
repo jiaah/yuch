@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
@@ -6,6 +6,7 @@ import SpecialMealForm from './specialMealForm';
 import { specialMealValidation } from '../../formValidation';
 
 const EditModal = ({
+  adminSpecialMealMsg,
   // state
   clickedUserData,
   users,
@@ -13,15 +14,34 @@ const EditModal = ({
   addFlashMessage,
   updateSpecialMeal,
   hideModal,
+  resetSelectedItemValue,
 }) => {
   const { id, userId, ...initialValues } = clickedUserData;
 
+  const [state, setState] = useState({
+    userId: clickedUserData.userId,
+    selectedUser: !!clickedUserData.userId,
+    companyName: initialValues.companyName,
+  });
+
+  const handleChange = name => async event => {
+    const checked = event.target.checked;
+    return setState({
+      ...state,
+      [name]: checked,
+    });
+  };
+
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const userId = state.selectedUser ? state.userId : null;
+    const id = clickedUserData.id;
     await setSubmitting(true);
-    const sendingData = { id, userId: '', ...values };
+    const sendingData = { id, userId, ...values };
+
     const res = await updateSpecialMeal(sendingData);
     if (!res.error) {
       Promise.all([
+        resetSelectedItemValue(),
         hideModal(),
         resetForm({}),
         addFlashMessage('success', `저장되었습니다.`),
@@ -43,7 +63,13 @@ const EditModal = ({
           onSubmit={handleSubmit}
           render={props => (
             <Form>
-              <SpecialMealForm {...props} users={users} />
+              <SpecialMealForm
+                {...props}
+                users={users}
+                handleChange={handleChange}
+                state={state}
+                adminSpecialMealMsg={adminSpecialMealMsg}
+              />
             </Form>
           )}
           validationSchema={specialMealValidation}

@@ -21,14 +21,22 @@ const getRevenues = async (startDate, endDate) => {
       const subEndDate = moment(date)
         .endOf('month')
         .format('YYYY-MM-DD');
-
-      const sumTotalResto = await getSumTotalResto(subStartDate, subEndDate);
+      const sumTotalInvoiceRestaurant = await getSumTotalInvoice(
+        subStartDate,
+        'restaurant',
+      );
+      const sumTotalResto =
+        (await getSumTotalResto(subStartDate, subEndDate)) +
+        sumTotalInvoiceRestaurant;
       const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
         subEndDate,
       );
 
-      const sumTotalInvoice = await getSumTotalInvoice(subStartDate);
+      const sumTotalInvoice = await getSumTotalInvoice(
+        subStartDate,
+        'catering',
+      );
 
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
@@ -63,7 +71,14 @@ const getTotalRevenues = async (startDate, endDate) => {
         .endOf('month')
         .format('YYYY-MM-DD');
 
-      const sumTotalResto = await getSumTotalResto(subStartDate, subEndDate);
+      const sumTotalInvoiceRestaurant = await getSumTotalInvoice(
+        subStartDate,
+        'restaurant',
+      );
+
+      const sumTotalResto =
+        (await getSumTotalResto(subStartDate, subEndDate)) +
+        sumTotalInvoiceRestaurant;
       const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
         subEndDate,
@@ -91,7 +106,8 @@ const getSumTotalResto = async (startDate, endDate) => {
     .select(raw('sum(lunch + dinner)').as('sumTotal'))
     .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
     .first();
-  return result.sumTotal || 0;
+
+  return Number(result.sumTotal) || 0;
 };
 
 const getSumTotalSpecialMeal = async (startDate, endDate) => {
@@ -100,18 +116,19 @@ const getSumTotalSpecialMeal = async (startDate, endDate) => {
       .select(raw('sum("sumTotal")').as('sumTotal'))
       .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
       .first();
-    return result.sumTotal || 0;
+    return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
   }
 };
 
-const getSumTotalInvoice = async date => {
+const getSumTotalInvoice = async (date, businessType) => {
   try {
     const result = await Invoice.query()
       .select(raw('sum("sumTotal")').as('sumTotal'))
-      .where({ date });
-    return result.sumTotal || 0;
+      .innerJoin('users', 'users.id', 'invoice.userId')
+      .where({ date, businessType });
+    return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
   }

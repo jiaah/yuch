@@ -18,9 +18,12 @@ exports.getMe = (req, res) => {
       'users.email',
       'users.lunchQty',
       'users.dinnerQty',
+      'users.lateNightSnackQty',
       'users.bankAccountId',
       'users.address',
       'users.businessNo',
+      'users.startDate',
+      'users.endDate',
       'meal_price.mealPrice',
     )
     .leftJoin('meal_price', 'users.id', 'meal_price.userId')
@@ -38,6 +41,7 @@ exports.editUser = (req, res) => {
     email,
     lunchQty,
     dinnerQty,
+    lateNightSnackQty,
     address,
     businessNo,
   } = req.body.userInfo;
@@ -52,6 +56,7 @@ exports.editUser = (req, res) => {
       email,
       lunchQty,
       dinnerQty,
+      lateNightSnackQty,
       address,
       businessNo,
       updated_at: new Date().toISOString(),

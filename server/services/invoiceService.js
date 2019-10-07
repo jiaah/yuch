@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+const { raw } = require('objection');
 const Invoice = require('../models/Invoice');
 const cateringService = require('../services/cateringService');
 const specialService = require('../services/specialService');
@@ -12,6 +13,10 @@ const Lists = async (startedAt, endedAt) => {
     const results = [];
     const users = await Users.query()
       .whereNot('username', 'yuch')
+      .whereRaw('"startDate" <= NOW()')
+      // .where(builder => {
+      //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+      // })
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
@@ -86,11 +91,15 @@ const invoiceExist = async (userId, date) => {
 const findOne = async (userId, startedAt, endedAt) => {
   try {
     const user = await Users.query()
-      .select('companyName', 'bankAccountId')
+      .select(
+        'companyName',
+        'bankAccountId',
+        raw('to_char("startDate", \'YYYYMMDD\')').as('startDate'),
+      )
       .where({ id: userId })
       .first();
 
-    const result = { companyName: user.companyName };
+    const result = { companyName: user.companyName, startDate: user.startDate };
 
     result.userId = userId;
     result.mealPrice = await mealPriceService.getMealPriceByUserIdWithDate(
@@ -147,6 +156,7 @@ const findOne = async (userId, startedAt, endedAt) => {
       startedAt,
       endedAt,
     );
+
     result.specialMeals = await specialService.getListsByUserIdWithRangeDate(
       userId,
       startedAt,

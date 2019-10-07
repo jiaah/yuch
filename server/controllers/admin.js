@@ -94,6 +94,7 @@ exports.createUser = (req, res) => {
     mealPrice,
     businessType,
     businessNo,
+    startDate,
   } = req.body.userInfo;
   return util.bcryptPassword(password).then(hashedPassword =>
     knex('users')
@@ -110,13 +111,12 @@ exports.createUser = (req, res) => {
         address,
         businessType,
         businessNo,
+        startDate,
       })
       .returning('id')
       .then(user => {
         const userId = user[0];
-        const startedAt = moment()
-          .startOf('month')
-          .format('YYYY-MM-DD');
+        const startedAt = startDate;
         return knex('meal_price').insert({
           mealPrice,
           userId,
@@ -142,6 +142,7 @@ exports.editUserByAdmin = (req, res) => {
     address,
     businessType,
     businessNo,
+    startDate,
     // mealPrice,
     // nextMonth,
   } = req.body.userInfo;
@@ -162,6 +163,7 @@ exports.editUserByAdmin = (req, res) => {
         address,
         businessType,
         businessNo,
+        startDate,
         updated_at: knex.raw('NOW()'),
       })
       // .then(() =>
@@ -209,7 +211,10 @@ exports.getUsersList = async (req, res, next) => {
         'users.businessType',
         'users.businessNo',
         'users.updated_at',
-        raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
+        'users.startDate',
+        'users.endDate',
+        raw('to_char("startDate", \'YYYY-MM-DD\')').as('startDate'),
+        raw('to_char("endDate", \'YYYY-MM-DD\')').as('endDate'),
         'meal_price.mealPrice',
         'meal_price.reservePrice',
         'meal_price.reserveDate',
@@ -240,7 +245,8 @@ exports.getUsersList = async (req, res, next) => {
         'users.businessType',
         'users.businessNo',
         'users.updated_at',
-        raw('to_char("endDate", \'YYYYMMDD\')').as('endDate'),
+        raw('to_char("startDate", \'YYYY-MM-DD\')').as('startDate'),
+        raw('to_char("endDate", \'YYYY-MM-DD\')').as('endDate'),
         'meal_price.mealPrice',
         'meal_price.reservePrice',
         'meal_price.reserveDate',

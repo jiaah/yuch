@@ -47,55 +47,55 @@ const RevenueContainer = ({
   }, []);
 
   return (
-    <div className="container-a r--w-80">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={resetDateYearly}
-      >
-        유청 매출 현황
-      </h2>
-      <DateButtons
-        date={date}
-        reload={true}
-        unit="yy"
-        formattedDate={formattedDate}
-        startTime={`${admin.revenueStartTime}0101`}
-        endTime={`${nextYear}0101`}
-        updateDate={updateDateYearly}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        dateForwardMessage="존재하지 않는 페이지입니다."
-      />
-      <div className="paper-label-box justify-end">
-        <IconButton
-          name="print"
-          width="32"
-          height="32"
-          viewBox="0 0 25 25"
-          handleClick={() => printDiv('print')}
+    <div id="print" className="container-a r--w-80">
+      <div className="print-width">
+        <h2
+          className="pointer"
+          title="오늘 일자로 돌아가기"
+          onClick={resetDateYearly}
+        >
+          유청 매출 현황
+        </h2>
+        <DateButtons
+          date={date}
+          reload={true}
+          unit="yy"
+          formattedDate={formattedDate}
+          startTime={`${admin.startYear}0101`}
+          endTime={`${nextYear}0101`}
+          updateDate={updateDateYearly}
+          addFlashMessage={addFlashMessage}
+          fetchData={fetchData}
+          dateForwardMessage="존재하지 않는 페이지입니다."
         />
-      </div>
-      <div id="print">
+        <div className="paper-label-box justify-end">
+          <IconButton
+            name="print"
+            width="32"
+            height="32"
+            viewBox="0 0 25 25"
+            handleClick={() => printDiv('print')}
+          />
+        </div>
         {data.length !== 0 && (
           <Paper
             id="print"
             component={<Table data={data} revenueFormat={revenueFormat} />}
           />
         )}
+        <IconMessage
+          name="info"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fillOuter="#2196F3"
+          fillInner="#ffffff"
+          text="식당 식수 리스트에 등록되어있는 고객사는 레스토랑으로 분류됩니다."
+          position="end"
+          iconBoxStyle="mt3 pw1"
+          textStyle="icon-message--info f-mimi"
+        />
       </div>
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text="식당 식수 리스트에 등록되어있는 고객사는 레스토랑으로 분류됩니다."
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info f-mimi"
-      />
     </div>
   );
 };

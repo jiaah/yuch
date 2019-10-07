@@ -4,6 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
+import { formatNumber } from '../../../utils/reformat';
 
 const styles = theme => ({
   resize: {
@@ -18,7 +19,7 @@ const SpecialMealTableRow = ({
   classes: { resize, point },
   row,
   labelId,
-  upComingEventId,
+  upComingEvent,
   // local state
   selectedRow,
   // global state
@@ -32,12 +33,14 @@ const SpecialMealTableRow = ({
   const { userId, companyName, date } = clickedUserData;
 
   const formattedDate = formatToDateForm(row.date);
+  const formattedSumTotal = formatNumber(row.sumTotal);
+
   const payment = row.userId ? 'YES' : '';
 
   const isHandledRow =
     (userId && userId === row.userId) ||
     (companyName === row.companyName && date === row.date);
-  const isUpcomingEvent = upComingEventId === row.id;
+  const isUpcomingEvent = upComingEvent && upComingEvent.id === row.id;
 
   return (
     <TableRow
@@ -90,7 +93,7 @@ const SpecialMealTableRow = ({
         {row.mealPrice}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sumTotal}
+        {formattedSumTotal}
       </TableCell>
       <TableCell align="right" className={resize}>
         {row.address}

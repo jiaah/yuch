@@ -24,7 +24,7 @@ module.exports = () => {
     '/user/:userId',
     onlyLoggedIn,
     [
-      check('updateDate')
+      check('date')
         .matches(/^[0-9]{8}$/)
         .isISO8601(),
     ],

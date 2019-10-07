@@ -2,7 +2,8 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 /* --- Components --- */
 import UserForm from './userForm';
-import { userAccountValidation } from '../../formValidation';
+import { editUserAccountValidation } from '../../formValidation';
+import { formatWithSlash } from '../../../utils/date';
 
 const UserFormBox = ({
   userData,
@@ -36,16 +37,27 @@ const UserFormBox = ({
     }
     return setSubmitting(false);
   };
+
+  const { startDate, endDate, ...others } = userData;
+
+  const formattedStartDate = formatWithSlash(startDate);
+  const formattedEndDate = formatWithSlash(endDate);
+
+  const inputValues = {
+    ...others,
+    startDate: startDate ? formattedStartDate : '',
+    endDate: endDate ? formattedEndDate : '',
+  };
   return (
     <Formik
-      initialValues={userData}
+      initialValues={inputValues}
       render={props => (
         <Form className="flex flex-column-m items-center justify-center">
           <UserForm {...props} openPasswordForm={openPasswordForm} />
         </Form>
       )}
       onSubmit={handleEditAdmin}
-      validationSchema={userAccountValidation}
+      validationSchema={editUserAccountValidation}
     />
   );
 };

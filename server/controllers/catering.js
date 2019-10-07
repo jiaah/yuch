@@ -20,12 +20,12 @@ exports.getOne = async (req, res, next) => {
 
 exports.setOne = async (req, res, next) => {
   try {
-    const { updateDate, lunchQty, dinnerQty, lateNightSnackQty } = req.body;
+    const { date, lunchQty, dinnerQty, lateNightSnackQty } = req.body;
     const { userId } = req.params;
 
     const catering = await cateringService.updateByUserIdWithDate(
       userId,
-      updateDate,
+      date,
       lunchQty,
       dinnerQty,
       lateNightSnackQty,
@@ -40,11 +40,20 @@ exports.setOne = async (req, res, next) => {
 exports.getLists = async (req, res, next) => {
   try {
     const { date } = req.query;
+    const businessType = 'catering';
+    const caterings = await cateringService.getLists(date, businessType);
 
-    // const parsedDate = moment(date, 'YYYYMMDD');
-    // const formatedDate = parsedDate.format('YYYY-MM-DD');
+    return res.status(200).json(caterings);
+  } catch (error) {
+    next(error);
+  }
+};
 
-    const caterings = await cateringService.getLists(date);
+exports.getRestaurantLists = async (req, res, next) => {
+  try {
+    const { date } = req.query;
+    const businessType = 'restaurant';
+    const caterings = await cateringService.getLists(date, businessType);
 
     return res.status(200).json(caterings);
   } catch (error) {

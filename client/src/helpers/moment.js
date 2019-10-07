@@ -39,12 +39,8 @@ export const tomorrow = moment()
   .format('YYYYMMDD');
 
 // special_meal
-export const twoYearsAgo = moment()
-  .add(-2, 'years')
-  .format('YYYYMM');
-
-export const inTwoYears = moment()
-  .add(2, 'years')
+export const inONEYear = moment()
+  .add(1, 'years')
   .format('YYYYMM');
 
 // invoice;

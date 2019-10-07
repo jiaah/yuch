@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Loader from '../../loader';
 import Modal from '../../../shared/modal';
 import EditUserFormBox from './editUserFormBox';
-import { formatWithDash, formatToYYYYMMDD } from '../../../utils/date';
 
 const ResetPassword = Loader({
   loader: () =>
@@ -27,18 +26,15 @@ const EditUserModal = ({
   handleEndingService,
   // fncs from parent component
   handleCloseModal,
-  userAccountValidation,
+  editUserAccountValidation,
   resetPasswordValidation,
+  formatToYYYYMMDD,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
   const closeSubModal = () => setSubModal(null);
 
   const title = subModal ? `${clickedUserData.companyName}` : '고객 계정';
-
-  const formattedUserEndDate = clickedUserData.endDate
-    ? formatWithDash(clickedUserData.endDate)
-    : clickedUserData.endDate;
 
   return (
     <Modal
@@ -55,10 +51,9 @@ const EditUserModal = ({
             closeSubModal={closeSubModal}
             handleCloseModal={handleCloseModal}
             addFlashMessage={addFlashMessage}
-            userId={clickedUserData.id}
-            formattedUserEndDate={formattedUserEndDate}
             handleEndingService={handleEndingService}
             formatToYYYYMMDD={formatToYYYYMMDD}
+            clickedUserData={clickedUserData}
           />
         ) : subModal === 'password' ? (
           <ResetPassword
@@ -75,9 +70,10 @@ const EditUserModal = ({
             handleCloseModal={handleCloseModal}
             addFlashMessage={addFlashMessage}
             clickedUserData={clickedUserData}
-            userAccountValidation={userAccountValidation}
+            editUserAccountValidation={editUserAccountValidation}
             editUser={editUser}
             bankAccount={bankAccount}
+            formatToYYYYMMDD={formatToYYYYMMDD}
           />
         )
       }

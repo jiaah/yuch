@@ -16,8 +16,10 @@ const AdminAccountContainer = ({
 }) => {
   const [userData, setUserData] = useState(null);
   const [pwdOpen, setPwdOpen] = useState(false);
+
   const fetchUserData = async () => {
     const res = await getMe(id);
+
     if (res.error) {
       // to render the form
       // setting default userData to {} would not render server data

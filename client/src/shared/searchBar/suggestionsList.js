@@ -1,14 +1,18 @@
 import React from 'react';
 
-const SuggestionsList = ({ suggestions, suggestionSelected }) => (
+const SuggestionsList = ({
+  suggestions,
+  suggestionSelected,
+  searchingProp,
+}) => (
   <ul>
     {suggestions.map(u => (
       <li
-        key={u.companyName}
+        key={u[searchingProp]}
         className="autoComplete-item"
         onClick={() => suggestionSelected(u)}
       >
-        <div className="pa3">{u.companyName}</div>
+        <div className="pa3">{u[searchingProp]}</div>
       </li>
     ))}
   </ul>

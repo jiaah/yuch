@@ -1,7 +1,7 @@
 export const admin = {
   companyName: '유청',
-  startTime: '20191001',
-  revenueStartTime: '2019',
+  startTime: '20190901',
+  startYear: '2019',
 };
 
 export const navHome = [
@@ -125,12 +125,22 @@ export const navAdminItems = {
   ],
   4: [
     {
+      id: 12,
+      name: `직원`,
+      to: '/admin/account/employees',
+    },
+    {
       id: 11,
+      name: `거래처`,
+      to: '/admin/account/partners',
+    },
+    {
+      id: 13,
       name: `${admin.companyName} 계정`,
       to: '/admin/account',
     },
     {
-      id: 12,
+      id: 14,
       name: `${admin.companyName} 계좌`,
       to: '/admin/account/bank',
     },
@@ -228,10 +238,16 @@ export const userAccountTableHeadColumns = [
     label: '비지니스',
   },
   {
+    id: 'startDate',
+    numeric: true,
+    disablePadding: false,
+    label: '시작일',
+  },
+  {
     id: 'endDate',
     numeric: true,
     disablePadding: false,
-    label: '서비스 종료일자',
+    label: '종료일',
   },
 ];
 
@@ -572,5 +588,122 @@ export const userBusinessColumns = [
     numeric: true,
     disablePadding: false,
     label: '사업자 번호',
+  },
+];
+
+export const employeeColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'name',
+    numeric: true,
+    disablePadding: false,
+    label: '직원명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
+  },
+  {
+    id: 'startDate',
+    numeric: true,
+    disablePadding: false,
+    label: '시작일',
+  },
+];
+
+export const partnerColumns = [
+  {
+    id: '1',
+    numeric: true,
+    disablePadding: true,
+    label: '',
+  },
+  {
+    id: 'companyName',
+    numeric: true,
+    disablePadding: false,
+    label: '업체명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+];
+
+export const employeeContactColumns = [
+  {
+    id: 'name',
+    numeric: true,
+    disablePadding: false,
+    label: '직원명',
+  },
+  {
+    id: 'contactNo',
+    numeric: true,
+    disablePadding: false,
+    label: '연락처',
+  },
+];
+
+export const employeeBankColumns = [
+  {
+    id: 'name',
+    numeric: true,
+    disablePadding: false,
+    label: '직원명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
   },
 ];

@@ -25,10 +25,10 @@ const BankForm = ({ isSubmitting }) => (
         required
       />
       <FormikField
-        label="은행명"
+        label="계좌번호"
         name="accountNo"
         type="text"
-        icon="bankAccount"
+        icon="payment"
         styleName="textFieldC"
         placeholder="054 - 745 - 0999"
         required

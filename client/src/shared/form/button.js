@@ -25,6 +25,7 @@ const button = ({
   classes,
   className,
   testId,
+  isSubmitting,
 }) => {
   let widthValue = '';
   let paddingValue = '';
@@ -49,6 +50,7 @@ const button = ({
       size="small"
       style={{ width: widthValue, padding: paddingValue }}
       className={`${className} ${classes.button}`}
+      disabled={!!isSubmitting}
     >
       {buttonName}
     </Button>

@@ -20,11 +20,7 @@ const RestoContainer = ({
   restoActions: { getRestoSales, updateRestoSales, resetRestoSales },
   addFlashMessage,
 }) => {
-  const [resto, setResto] = useState({
-    date: dateInKorean,
-    lunch: null,
-    dinner: null,
-  });
+  const [resto, setResto] = useState(null);
 
   const dataFilter = when => {
     // use global state so that it doesn't loose the data.
@@ -36,10 +32,15 @@ const RestoContainer = ({
     const res = await getRestoSales(when);
 
     if (res.error) {
+      setResto({
+        date: dateInKorean,
+        lunch: null,
+        dinner: null,
+      });
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
     const todayData = res[res.length - 1];
-    return setResto({ ...resto, todayData });
+    return setResto({ ...resto, ...todayData });
   };
 
   useEffect(() => {

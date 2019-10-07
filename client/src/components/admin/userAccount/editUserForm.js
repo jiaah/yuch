@@ -41,6 +41,13 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           placeholder="000-000-0000"
           required
         />
+        <FormikField
+          label="주소"
+          name="address"
+          type="text"
+          icon="address"
+          styleName="textFieldC"
+        />
       </div>
       <div className="media--flex-column-m">
         <FormikField
@@ -64,20 +71,21 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           label="사업자번호"
           name="businessNo"
           type="text"
-          icon="bankAccount"
+          icon="payment"
           styleName="textFieldC"
           placeholder="000-00-00000"
           required
         />
+        <FormikField
+          label="서비스 시작일"
+          name="startDate"
+          type="date"
+          icon="calendar"
+          styleName="textFieldC"
+          required
+        />
       </div>
     </div>
-    <FormikField
-      label="주소"
-      name="address"
-      type="text"
-      icon="address"
-      styleName="textFieldH"
-    />
     <div className="flex justify-center">
       <FormikField
         label="중식 식수량"
@@ -103,14 +111,14 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
     </div>
     <RadioButtonFormControl
       label="비지니스 타입"
-      icon="bankAccount"
+      icon="ratio"
       formClassName="form--radioBtn"
       component={<BusinessTypeOptions name="businessType" />}
       required
     />
     <RadioButtonFormControl
       label="입금 계좌번호"
-      icon="bankAccount"
+      icon="ratio"
       formClassName="form--radioBtn"
       component={
         <BankAccountOptions name="bankAccountId" bankAccount={bankAccount} />

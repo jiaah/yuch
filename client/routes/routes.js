@@ -39,6 +39,16 @@ const BankAccount = Loader({
     import('../src/components/admin/bankAccount/bankAccountContainer' /* webpackChunkName: 'BankAccount' */),
 });
 
+const EmployeesAccount = Loader({
+  loader: () =>
+    import('../src/components/admin/employees/employeesContainer' /* webpackChunkName: 'EmployeesAccount' */),
+});
+
+const PartnerAccount = Loader({
+  loader: () =>
+    import('../src/components/admin/partners/partnerContainer' /* webpackChunkName: 'PartnerAccount' */),
+});
+
 // 고객관리
 const CateringRates = Loader({
   loader: () =>
@@ -178,6 +188,16 @@ const routes = () => (
         exact
         path="/admin/account/bank"
         component={AdminGuards(BankAccount)}
+      />
+      <Route
+        exact
+        path="/admin/account/employees"
+        component={AdminGuards(EmployeesAccount)}
+      />
+      <Route
+        exact
+        path="/admin/account/partners"
+        component={AdminGuards(PartnerAccount)}
       />
       {/* Invoice */}
       <Route exact path="/invoice/user" component={Invoice} />

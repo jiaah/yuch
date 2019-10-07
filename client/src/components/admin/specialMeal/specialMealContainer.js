@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
-import { inTwoYears, formattedTmr, today } from '../../../helpers/moment';
+import { inONEYear, formattedTmr, today } from '../../../helpers/moment';
 import {
   formatToMonthDateForm,
   formatToYYYYMM,
@@ -26,10 +26,9 @@ import { getUsers } from '../../../actions/adminAccountAction';
 import IconMessage from '../../../shared/iconMessage';
 import {
   adminSpecialMealMsg,
+  adminSpecialMealunregisteredMsg,
   adminSpecialMealMsgA,
   adminSpecialMealMsgB,
-  adminSpecialMealMsgC,
-  updateRateMessageC,
 } from '../../../data/message';
 
 const ModalControlloer = Loader({
@@ -116,80 +115,81 @@ const SpecialMealContainer = ({
 
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
-    // search
-    if (selectedItemValue) resetSelectedItemValue();
     // create & edit & delete
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   return (
     <div className="container-a r--w-98">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={resetDateDaily}
-      >
-        특식 관리
-      </h2>
-      <DateButtons
-        date={date}
-        reload={true}
-        unit="mm"
-        formattedDate={formattedDate}
-        startTime={admin.startTime}
-        endTime={`${inTwoYears}01`}
-        updateDate={updateDateDaily}
-        addFlashMessage={addFlashMessage}
-        fetchData={fetchData}
-        dateForwardMessage="존재하지 않는 페이지입니다."
-      />
-      <div className="paper-label-box justify-between">
-        <SearchBar
-          data={specialMeal}
-          handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={renderAllUsers}
-        />
-        <div>
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
+      <div id="print">
+        <div className="print-width">
+          <h2
+            className="pointer"
+            title="오늘 일자로 돌아가기"
+            onClick={resetDateDaily}
+          >
+            특식 관리
+          </h2>
+          <DateButtons
+            date={date}
+            reload={true}
+            unit="mm"
+            formattedDate={formattedDate}
+            startTime={admin.startTime}
+            endTime={`${inONEYear}01`}
+            updateDate={updateDateDaily}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            dateForwardMessage="존재하지 않는 페이지입니다."
           />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
+          <div className="paper-label-box justify-between">
+            <SearchBar
+              data={specialMeal}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={renderAllUsers}
+            />
+            <div>
+              <IconButton
+                handleClick={() => handleButtonClick('create')}
+                name="add"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+              />
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
+          </div>
+          <Paper
+            isDivided={false}
+            component={
+              <React.Fragment>
+                {specialMeal && specialMeal.length !== 0 ? (
+                  <Table
+                    users={specialMeal}
+                    selectedRow={selectedRow}
+                    clickedUserData={clickedUserData[0] || clickedUserData}
+                    selectedItemValue={selectedItemValue}
+                    saveClickedItemData={saveClickedItemData}
+                    handleButtonClick={handleButtonClick}
+                    formatToDateForm={formatToDateForm}
+                    handleTableRowClick={handleTableRowClick}
+                    formatToYYYYMMDD={formatToYYYYMMDD}
+                    today={today}
+                  />
+                ) : (
+                  <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+                )}
+              </React.Fragment>
+            }
           />
         </div>
-      </div>
-      <div id="print">
-        <Paper
-          isDivided={false}
-          component={
-            <React.Fragment>
-              {specialMeal && specialMeal.length !== 0 ? (
-                <Table
-                  users={specialMeal}
-                  selectedRow={selectedRow}
-                  clickedUserData={clickedUserData}
-                  selectedItemValue={selectedItemValue}
-                  saveClickedItemData={saveClickedItemData}
-                  handleButtonClick={handleButtonClick}
-                  formatToDateForm={formatToDateForm}
-                  handleTableRowClick={handleTableRowClick}
-                  formatToYYYYMMDD={formatToYYYYMMDD}
-                  today={today}
-                />
-              ) : (
-                <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-              )}
-            </React.Fragment>
-          }
-        />
       </div>
       <IconMessage
         name="info"
@@ -227,30 +227,6 @@ const SpecialMealContainer = ({
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"
       />
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={adminSpecialMealMsgC}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
-      />
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={updateRateMessageC}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
-      />
       {clickedBtn && (
         <ModalControlloer
           clickedBtn={clickedBtn}
@@ -263,8 +239,10 @@ const SpecialMealContainer = ({
           deleteSpecialMeal={deleteSpecialMeal}
           resetSelectedItemValue={resetSelectedItemValue}
           saveClickedItemData={saveClickedItemData}
+          resetClickedItemData={resetClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
+          adminSpecialMealunregisteredMsg={adminSpecialMealunregisteredMsg}
         />
       )}
     </div>

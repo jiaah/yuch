@@ -83,7 +83,7 @@ const BankModal = ({
                 editBankAccount={editBankAccount}
                 handleCloseModal={handleCloseModal}
                 addFlashMessage={addFlashMessage}
-                clickedUserData={clickedUserData}
+                clickedUserData={clickedUserData[0]}
               />
             ) : clickedBtn === 'create' ? (
               <CreateBankFormBox

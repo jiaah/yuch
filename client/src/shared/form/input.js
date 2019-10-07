@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import { getIn } from 'formik';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '../../../assets/icons';
 
 const styles = theme => ({
   // auth, admin & user account
@@ -20,7 +22,7 @@ const styles = theme => ({
       width: 520,
     },
   },
-  // lunchQty, dinnerQty
+  // admin: lunchQty, dinnerQty, lateNightSnackQty
   textFieldB: {
     width: 142,
     margin: '20px 14px',
@@ -71,10 +73,19 @@ const styles = theme => ({
       width: 580,
     },
   },
+  // user: lunchQty, dinnerQty, lateNightSnackQty
+  textFieldI: {
+    width: 82,
+    margin: '20px 14px',
+    [theme.breakpoints.up('md')]: {
+      width: 148,
+    },
+  },
 });
 
 const Input = ({
   classes,
+  icon,
   styleName,
   field: { name, value, onBlur },
   form: { errors, touched, setFieldValue },
@@ -96,8 +107,7 @@ const Input = ({
       name === 'reservePrice' ||
       name === 'lunch' ||
       name === 'dinner' ||
-      name === 'quantity' ||
-      name === 'sideDish'
+      name === 'quantity'
     ) {
       // to avoid isNaN('') === false, use parseInt('') // output: NaN
       if (inputValue !== '') {
@@ -114,21 +124,23 @@ const Input = ({
     ) {
       value = inputValue.toLowerCase();
     }
-    // manually need to add all names or number input value will set to string instead of null when it's empty.
+
     if (
+      name === 'name' ||
       name === 'companyName' ||
-      name === 'contactNo' ||
       name === 'address' ||
+      name === 'contactNo' ||
       name === 'email' ||
-      name === 'bankAccountId' ||
-      name === 'businessType' ||
+      name === 'businessNo' ||
+      name === 'startDate' ||
+      name === 'endDate' ||
+      name === 'date' ||
+      name === 'time' ||
+      name === 'sideDish' ||
+      name === 'note' ||
       name === 'accountHolder' ||
       name === 'bankName' ||
-      name === 'accountNo' ||
-      name === 'note' ||
-      name === 'time' ||
-      name === 'date' ||
-      name === 'businessNo'
+      name === 'accountNo'
     ) {
       value = inputValue;
     }
@@ -136,8 +148,12 @@ const Input = ({
     return setFieldValue(name, value, shouldValidate);
   };
 
-  return (
-    <React.Fragment>
+  if (
+    name === 'password' ||
+    name === 'newPassword' ||
+    name === 'confirmPassword'
+  ) {
+    return (
       <TextField
         name={name}
         value={value || ''}
@@ -147,9 +163,33 @@ const Input = ({
         className={classes[styleName]}
         helperText={isTouched && errorMessage}
         error={isTouched && Boolean(errorMessage)}
-        inputProps={{ 'data-testid': name, tabIndex: name }}
       />
-    </React.Fragment>
+    );
+  }
+  return (
+    <TextField
+      name={name}
+      value={value || ''}
+      onChange={e => change(e, name, true)}
+      onBlur={onBlur}
+      {...props}
+      className={classes[styleName]}
+      helperText={isTouched && errorMessage}
+      error={isTouched && Boolean(errorMessage)}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Icon
+              name={icon}
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+            />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 

@@ -12,8 +12,10 @@ import { ratesPageInfo } from '../../../data/message';
 import Select from '../../../shared/form/select';
 import {
   userAccountValidation,
+  editUserAccountValidation,
   resetPasswordValidation,
 } from '../../formValidation';
+import { formatToYYYYMMDD } from '../../../utils/date';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -53,6 +55,11 @@ const UserAccountContainer = ({
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
 
+  // selected row on click
+  const [selectedRow, setSelectedRow] = useState(null);
+  const onFocusOnSelectdRow = id => setSelectedRow(id);
+  const offFocusOnSelectdRow = () => setSelectedRow(null);
+
   const { activeUsers, inActiveUsers, allUsers } = users;
 
   const selctedUsers =
@@ -82,23 +89,25 @@ const UserAccountContainer = ({
     return () => {
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
-        selectedSearchItem !== null && resetSelectedItemValue(),
-        selectedSearchItem && renderAllUsers(),
+        selectedSearchItem && resetSelectedItemValue(),
       ]);
     };
   }, []);
 
-  const handleCloseModal = () => {
-    if (clickedBtn === 'edit') {
-      resetClickedItemData();
-    }
-    return hideModal();
+  const handleCloseModal = () => hideModal();
+
+  // Row Focusing
+  const handleTableRowClick = id => {
+    onFocusOnSelectdRow(id);
+    if (selectedSearchItem) resetSelectedItemValue();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   const handleButtonClick = sub =>
     Promise.all([
       setClickedBtn(sub), // to select modal (edit, create) to open
       showModal(),
+      offFocusOnSelectdRow(),
     ]);
 
   const getClickedUserData = async userId => {
@@ -114,9 +123,9 @@ const UserAccountContainer = ({
     return handleButtonClick('edit');
   };
 
-  // Render all users list from a selected user list [Search]
-  const renderAllUsers = () => {
-    if (selectedSearchItem) resetSelectedItemValue();
+  const handleSuggestionSelected = () => {
+    if (selectedRow) offFocusOnSelectdRow();
+    if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
   return (
@@ -128,8 +137,9 @@ const UserAccountContainer = ({
           <div className="mr3">
             <SearchBar
               data={selctedUsers}
-              handleSuggestionSelected={() => {}}
-              handleResetSearch={renderAllUsers}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
             />
           </div>
           <p className="f-mini paper-label-box--number tablet">
@@ -164,6 +174,9 @@ const UserAccountContainer = ({
               handleEditUserBtnClick={handleEditUserBtnClick}
               users={selctedUsers}
               selectedSearchItem={selectedSearchItem}
+              clickedUserData={clickedUserData[0] || clickedUserData}
+              handleTableRowClick={handleTableRowClick}
+              selectedRow={selectedRow}
             />
           ) : (
             <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
@@ -188,22 +201,27 @@ const UserAccountContainer = ({
           createUser={createUser}
           addFlashMessage={addFlashMessage}
           selectedSearchItem={selectedSearchItem}
+          saveClickedItemData={saveClickedItemData}
+          resetClickedItemData={resetClickedItemData}
           resetSelectedItemValue={resetSelectedItemValue}
           bankAccount={bankAccount}
           userAccountValidation={userAccountValidation}
+          clickedUserData={clickedUserData}
+          formatToYYYYMMDD={formatToYYYYMMDD}
         />
-      ) : clickedBtn === 'edit' && clickedUserData ? (
+      ) : clickedBtn === 'edit' && clickedUserData.length !== 0 ? (
         <EditUserModal
           handleCloseModal={handleCloseModal}
           editUser={editUser}
           clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData}
+          clickedUserData={clickedUserData[0]}
           addFlashMessage={addFlashMessage}
           bankAccount={bankAccount}
           handleEndingService={handleEndingService}
           resetPassword={resetPassword}
-          userAccountValidation={userAccountValidation}
+          editUserAccountValidation={editUserAccountValidation}
           resetPasswordValidation={resetPasswordValidation}
+          formatToYYYYMMDD={formatToYYYYMMDD}
         />
       ) : null}
     </div>

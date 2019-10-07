@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 /* --- Components --- */
 import Modal from '../../../shared/modal';
 import Select from '../../../shared/form/select';
-import FormButton from '../../../shared/form/formButton';
+import Button from '../../../shared/form/button';
 
 const UpdateInvoiceModal = ({
   // global states
@@ -23,10 +23,11 @@ const UpdateInvoiceModal = ({
     const res = await updateUsersInvoice(formattedDate);
 
     if (res.error) {
-      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      await addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     } else {
-      addFlashMessage('success', '성공적으로 업데이트 되었습니다');
+      await addFlashMessage('success', '성공적으로 업데이트 되었습니다');
       hideModal();
+      window.location.reload(true);
     }
     return setSubmitting(false);
   };
@@ -37,10 +38,10 @@ const UpdateInvoiceModal = ({
 
   return (
     <Modal
-      title="인보이스/매출 업데이트"
+      title="인보이스 업데이트"
       handleClose={hideModal}
       component={
-        <form onSubmit={handleUpdate} className="media--justify-center pt3 pb3">
+        <div className="media--justify-center pt3 pb3">
           <Select
             label="변경일자(YYYY/MM)"
             name="updateInvoice"
@@ -49,15 +50,16 @@ const UpdateInvoiceModal = ({
             options={selectOptions}
           />
           <div className="mt2">
-            <FormButton
+            <Button
               typeValue="submit"
               variantValue="contained"
               buttonName="업데이트"
               width="medium"
               isSubmitting={isSubmitting}
+              handleButtonClick={handleUpdate}
             />
           </div>
-        </form>
+        </div>
       }
     />
   );

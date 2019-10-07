@@ -21,9 +21,9 @@ const UserTableRow = ({
   handleTableRowClick,
   handleEditUserBtnClick,
   row,
-  selected,
+  selectedRow,
   labelId,
-  selectedSearchItem,
+  clickedUserData,
 }) => {
   let bankAccount;
 
@@ -45,7 +45,8 @@ const UserTableRow = ({
   // display new mealPrice if reserveDate is thisMonth.
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
-  const formattedDate = row.endDate && formatWithSlash(row.endDate);
+  const formattedStartDate = row.startDate && formatWithSlash(row.startDate);
+  const formattedEndDate = row.endDate && formatWithSlash(row.endDate);
 
   return (
     <React.Fragment>
@@ -53,8 +54,11 @@ const UserTableRow = ({
         key={row.id}
         role="checkbox"
         tabIndex={-1}
-        aria-checked={selected === row.id}
-        selected={selected === row.id || selectedSearchItem === row.id}
+        aria-checked={selectedRow === row.id}
+        selected={
+          selectedRow === row.id ||
+          clickedUserData.companyName === row.companyName
+        }
         onClick={() => handleTableRowClick(row.id)}
       >
         <TableCell padding="checkbox">
@@ -111,7 +115,10 @@ const UserTableRow = ({
           {businessType}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {formattedDate}
+          {formattedStartDate}
+        </TableCell>
+        <TableCell align="right" className={resize}>
+          {formattedEndDate}
         </TableCell>
       </TableRow>
     </React.Fragment>

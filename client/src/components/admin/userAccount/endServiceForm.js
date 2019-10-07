@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Icon from '../../../../assets/icons';
 /* --- Components --- */
-import { firstDayOfLastMonth } from '../../../utils/date';
+// import { firstDayOfLastMonth } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
 import {
   endServiceMessageA,
@@ -16,7 +16,7 @@ import {
 import FormButton from '../../../shared/form/formButton';
 
 const EndServiceForm = ({
-  checkedDate,
+  // checkedDate,
   // localState
   isSubmitting,
   endService,
@@ -47,8 +47,8 @@ const EndServiceForm = ({
           value={endDate}
           margin="normal"
           className="end-of-service-date"
-          error={firstDayOfLastMonth() > checkedDate}
-          helperText="지난달 1일부터 선택가능"
+          // error={firstDayOfLastMonth() > checkedDate}
+          // helperText="지난달 1일부터 선택가능"
           onChange={handleChange('endDate')}
           required={endService}
           disabled={!endService}

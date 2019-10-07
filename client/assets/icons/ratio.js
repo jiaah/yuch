@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BankAccount = ({ name, width, height, viewBox, fill }) => (
+const Ratio = ({ name, width, height, viewBox, fill }) => (
   <svg
     width={width}
     height={height}
@@ -9,7 +9,7 @@ const BankAccount = ({ name, width, height, viewBox, fill }) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path fill={fill} d="M0 0h24v24H0V0z" />
-    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
+    <path d="M19 12h-2v3h-3v2h5v-5zM7 9h3V7H5v5h2V9zm14-6H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16.01H3V4.99h18v14.02z" />
   </svg>
 );
-export default BankAccount;
+export default Ratio;

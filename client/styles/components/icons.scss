@@ -1,7 +1,6 @@
 .svg-icon {
   display: inline-block;
   vertical-align: middle;
-
 }
 
 .icon-filledLock,
@@ -17,11 +16,13 @@
 .icon-money,
 .icon-note,
 .icon-calendar,
-.icon-time {
+.icon-time,
+.icon-bank,
+.icon-payment {
   margin-top: 6px;
 }
 
-.icon-bankAccount {
+.icon-ratio {
   position: relative;
   top: -2px;
   left: 2px;
@@ -45,7 +46,8 @@
 .icon-print,
 .icon-list,
 .icon-update,
-.icon-add {
+.icon-add,
+.icon-personAdd {
   margin-top: 4px;
 }
 

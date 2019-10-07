@@ -131,7 +131,7 @@ export const updateRateMessageC = (
     인보이스 재발행&#58; &#39;인보이스 &#62; 거래명세서&#39;
     &#8201;&#8594;&#8199;
     <Link className="c-point2 td-none" to="/admin/invoice/users">
-      &#39;인보이스&#47;매출&#39; 업데이트 버튼
+      &#39;인보이스&#39; 업데이트 버튼
     </Link>{' '}
     클릭
   </p>
@@ -181,7 +181,7 @@ export const userCateringMsg = (
     <p className="pb3 b">
       중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 09 시 00
       분<br />
-      석식/야식 &#58;&#8199; &#126; 금일 13 시 30 분<br />
+      석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 13 시 30 분<br />
     </p>
     <p className="f-mini">
       &#42; 변경 가능시간이 지난 후, 변경을 원하시면 {admin.companyName}
@@ -213,7 +213,7 @@ export const adminCateringMsg = (
       [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 업데이트 버튼
       </Link>{' '}
       클릭
     </p>
@@ -299,7 +299,7 @@ export const restoSalesMsg = (
       <br />
       &#42; 지난 일자에 대한 매출액 변경은 이전 달 까지만 가능합니다&#46; <br />
     </p>
-    <p className="f-mini">
+    {/* <p className="f-mini">
       &#42; <span className="c-point2">지난 달의 매출을 변경</span> 한 경우에는{' '}
       <span className="c-point2">반드시 매출 업데이트</span>를 해주세요&#46;
     </p>
@@ -307,10 +307,10 @@ export const restoSalesMsg = (
       [ 매출 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#47;매출&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 업데이트 버튼
       </Link>{' '}
       클릭
-    </p>
+    </p> */}
   </div>
 );
 
@@ -346,8 +346,8 @@ export const userSpecialMealNotice = (
 
 export const adminSpecialMealMsg = (
   <p className="f-mini">
-    유청 고객사가 등록된 특식의 계산서는{' '}
-    <span className="c-point2">월말 거래명세서에 포함</span>
+    특식의 계산서는{' '}
+    <span className="c-point2">고객사의 월말 거래명세서에 포함</span>
     되고, <br />
     등록된 내역을 <span className="c-point2">고객사가 볼 수 있으며</span>
     ,&#8199;
@@ -357,37 +357,44 @@ export const adminSpecialMealMsg = (
     라고 표시됩니다.
   </p>
 );
+
+export const adminSpecialMealunregisteredMsg = (
+  <p className="f-mini">
+    <span className="c-point2">등록된 고객사가 없습니다.</span>
+    &#8199;등록해주세요.
+  </p>
+);
+
 export const adminSpecialMealMsgA = (
   <p className="f-mini">
     월말 거래명세서와 <span className="c-point2">별개로 정산</span>을 원하시면,
-    고객 등록을 선택하지 마세요.
+    &#8201;&#39;유청 고객 거래 명세서에 등록&#39;&#8199;을 선택하지 마세요.
   </p>
 );
 
 export const adminSpecialMealMsgB = (
   <p className="f-mini">
-    월말 거래명세서 포함여부 변경을 원한다면, 등록된 특식을 삭제한 후
-    재등록하여주세요&#46;
+    유청 고객 거래 명세서에 등록되지 않은 특식을 등록하고자 하시면, 변경하고자
+    하는 특식을 삭제한 후 재등록하여주세요&#46;
   </p>
 );
 
-export const adminSpecialMealMsgC = (
-  <p className="f-mini">
-    <span className="c-point2">지난 달의 특식을 변동</span>한 경우,{' '}
-    <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요&#46;
-  </p>
-);
+// export const adminSpecialMealMsgC = (
+//   <p className="f-mini">
+//     <span className="c-point2">지난 달의 특식을 변동</span>한 경우,{' '}
+//     <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요&#46;
+//   </p>
+// );
 
 export const adminInvoiceMsg = (
   <p className="f-mini">
     <span className="c-point2">
-      <span className="b">지난 달</span>의 식수 or 식수가격 or 특식 or 레스토랑
-      매출을 변경
+      <span className="b">지난 달</span>의 식수 or 식수가격을 변경
     </span>
     한 경우에는 <br />
     <span className="b c-point2">반드시</span> 우측 상단의
     <span className="c-point2">
-      &#8201;&#39;인보이스&#47;매출&#39;&#8199;
+      &#8201;&#39;인보이스&#39;&#8199;
       <span className="b">업데이트 버튼</span>
       &#8201;
     </span>

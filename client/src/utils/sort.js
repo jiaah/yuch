@@ -22,3 +22,38 @@ export const getSorting = (order, orderBy) =>
   order === 'desc'
     ? (a, b) => desc(a, b, orderBy)
     : (a, b) => -desc(a, b, orderBy);
+
+export const divideInTow = data => {
+  let sortedDataA;
+  let sortedDataB;
+  if (data && data.length <= 10) {
+    sortedDataA = data;
+    sortedDataB = [];
+  }
+  if (data && data.length > 10) {
+    const line =
+      data.length % 2 === 0 ? data.length / 2 : data.length / 2 + 0.5;
+    sortedDataA = data.slice(0, line);
+    sortedDataB = data.slice(line, data.length);
+  }
+  return { sortedDataA, sortedDataB };
+};
+
+export const divideInTwoWithSort = (data, order, orderBy) => {
+  let sortedDataA;
+  let sortedDataB;
+  if (data && data.length <= 10) {
+    sortedDataA = stableSort(data, getSorting(order, orderBy));
+    sortedDataB = [];
+  }
+  if (data && data.length > 10) {
+    const line =
+      data.length % 2 === 0 ? data.length / 2 : data.length / 2 + 0.5;
+    sortedDataA = stableSort(data, getSorting(order, orderBy)).slice(0, line);
+    sortedDataB = stableSort(data, getSorting(order, orderBy)).slice(
+      line,
+      data.length,
+    );
+  }
+  return { sortedDataA, sortedDataB };
+};
