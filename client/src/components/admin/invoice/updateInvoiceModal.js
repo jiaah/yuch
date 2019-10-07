@@ -21,7 +21,6 @@ const UpdateInvoiceModal = ({
     await setSubmitting(true);
     const formattedDate = formatSlashToYYMM(updateInvoiceMonth);
     const res = await updateUsersInvoice(formattedDate);
-    console.log('res: ', res);
 
     if (res.error) {
       await addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
