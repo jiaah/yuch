@@ -3,11 +3,11 @@ const invoiceService = require('../services/invoiceService');
 
 exports.update = async (req, res, next) => {
   try {
-    const { date } = req.query;
+    const { date } = req.body;
 
     const parsedDate = moment(`${date}01`, 'YYYYMMDD');
     const startedAt = parsedDate.format('YYYY-MM-DD');
-    const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
+    const endedAt = parsedDate.endOf('months').format('YYYY-MM-DD');
 
     await invoiceService.Lists(startedAt, endedAt);
 

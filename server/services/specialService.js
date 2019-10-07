@@ -1,20 +1,39 @@
 const moment = require('moment');
 const { raw } = require('objection');
+const Calendars = require('../models/Calendars');
 const SpecialMeal = require('../models/SpecialMeal');
 
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) => {
+  // const results = Calendars.query()
+  //   .select(
+  //     raw('id').as('specialId'),
+  //     'special_meal.date',
+  //     'time',
+  //     'mealPrice',
+  //     'quantity',
+  //     raw('("mealPrice" * "quantity")').as('sumTotal'),
+  //   )
+  //   .leftJoin('special_meal', qb => {
+  //     qb.on('special_meal.date', '=', 'calendars.date').andOn(
+  //       raw(`special_meal."userId" = '${userId}'`),
+  //     );
+  //   })
+  //   .whereBetween('calendars.date', [startDate, endDate])
+  //   .orderBy('calendars.date', 'asc');
+
   const results = await SpecialMeal.query()
     .select(
       raw('id').as('specialId'),
-      'date',
+      'special_meal.date',
       'time',
       'mealPrice',
       'quantity',
       raw('("mealPrice" * "quantity")').as('sumTotal'),
     )
+    .rightJoin('calendars', 'calendars.date', 'special_meal.date')
     .where({ userId })
-    .whereBetween('date', [startDate, endDate])
-    .orderBy('date', 'asc');
+    .whereBetween('special_meal.date', [startDate, endDate])
+    .orderBy('special_meal.date', 'asc');
 
   results.map(result => formatDateTime(result));
 
