@@ -13,6 +13,10 @@ const Lists = async (startedAt, endedAt) => {
     const results = [];
     const users = await Users.query()
       .whereNot('username', 'yuch')
+      .whereRaw('"startDate" <= NOW()')
+      // .where(builder => {
+      //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+      // })
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
