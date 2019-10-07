@@ -10,6 +10,7 @@ import ContactTable from './employeeContactTable';
 import {
   employeeColumns,
   employeeContactColumns,
+  employeeBankColumns,
   admin,
 } from '../../../data/data';
 import { printDiv } from '../../../utils/print';
@@ -87,11 +88,18 @@ const Container = ({
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
+  const pageWidth =
+    employees === '전체'
+      ? 'r--w-80'
+      : employees === '연락처'
+        ? 'r--w-30'
+        : 'r--w-40';
+
   return (
-    <div id="print" className="container-a r--w-80">
+    <div id="print" className={`container-a ${pageWidth}`}>
       <div className="print-width">
         <h2>{`${admin.companyName} 직원`}</h2>
-        <div className="paper-label-box justify-between">
+        <div className="paper-label-box justify-between pt2">
           <div>
             <SearchBar
               data={data}
@@ -154,10 +162,9 @@ const Container = ({
                 />
               }
             />
-          ) : employees === '계좌' ? (
+          ) : employees === '연락처' ? (
             <Paper
-              isDivided={true}
-              classname="center"
+              // classname="center"
               component={
                 <ContactTable
                   data={data}
@@ -165,20 +172,21 @@ const Container = ({
                   selectedSearchItem={selectedSearchItem}
                   handleTableRowClick={handleTableRowClick}
                   employeeContactColumns={employeeContactColumns}
+                  listType="contact"
                 />
               }
             />
           ) : (
             <Paper
-              isDivided={true}
-              classname="center"
+              // classname="center"
               component={
                 <ContactTable
                   data={data}
                   selectedRow={selectedRow}
                   selectedSearchItem={selectedSearchItem}
                   handleTableRowClick={handleTableRowClick}
-                  employeeContactColumns={employeeContactColumns}
+                  employeeBankColumns={employeeBankColumns}
+                  listType="bank"
                 />
               }
             />

@@ -77,7 +77,7 @@ const Container = ({
   };
 
   return (
-    <div id="print" className="container-a r--w-70">
+    <div id="print" className="container-a r--w-50">
       <div className="print-width">
         <h2>거래처</h2>
         <div className="paper-label-box justify-between">

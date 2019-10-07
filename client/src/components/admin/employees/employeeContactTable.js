@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
 import EmployeeContactTableRow from './employeeContactTableRow';
+import EmployeeBankTableRow from './employeeBankTableRow';
 
 const styles = () => ({
   tableWrapper: {
@@ -17,6 +18,8 @@ const styles = () => ({
 
 const EmployeeTable = ({
   classes: { tableWrapper, table },
+  listType,
+  employeeBankColumns,
   employeeContactColumns,
   // local state
   data,
@@ -27,21 +30,38 @@ const EmployeeTable = ({
   handleTableRowClick,
 }) => {
   const emptyRows = data && 7 - data.length;
+
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="bank" size="small">
-        <EnhancedTableHead list={employeeContactColumns} />
+        <EnhancedTableHead
+          list={
+            listType === 'bank' ? employeeBankColumns : employeeContactColumns
+          }
+        />
         <TableBody data-testid="bank-account--table">
           {data &&
             data.length !== 0 &&
             data.map(row => (
-              <EmployeeContactTableRow
-                key={row.id}
-                handleTableRowClick={handleTableRowClick}
-                row={row}
-                selectedRow={selectedRow}
-                selectedSearchItem={selectedSearchItem}
-              />
+              <React.Fragment>
+                {listType === 'bank' ? (
+                  <EmployeeBankTableRow
+                    key={row.id}
+                    handleTableRowClick={handleTableRowClick}
+                    row={row}
+                    selectedRow={selectedRow}
+                    selectedSearchItem={selectedSearchItem}
+                  />
+                ) : (
+                  <EmployeeContactTableRow
+                    key={row.id}
+                    handleTableRowClick={handleTableRowClick}
+                    row={row}
+                    selectedRow={selectedRow}
+                    selectedSearchItem={selectedSearchItem}
+                  />
+                )}
+              </React.Fragment>
             ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 49 * emptyRows }}>

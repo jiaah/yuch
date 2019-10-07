@@ -42,7 +42,7 @@
   }
 }
 
-// bank account
+
 .r--w-60 {
   width: 90vw;
 
@@ -51,7 +51,20 @@
   }
 }
 
-// admin, user account
+// partner
+.r--w-50 {
+  width: 90vw;
+
+  @include for-desktop-up {
+    width: 70vw;
+  }
+
+  @include for-m-desktop-up {
+    width: 50vw;
+  }
+}
+
+// admin, user account, bank account
 .r--w-40 {
   width: 90vw;
 
@@ -64,11 +77,15 @@
   }
 }
 
-// admin, user account
+// businessNo, contactNo
 .r--w-30 {
   width: 90vw;
 
   @include for-x-tablet-portrait-up {
     width: 50vw;
+  }
+
+  @include for-m-desktop-up {
+    width: 30vw;
   }
 }

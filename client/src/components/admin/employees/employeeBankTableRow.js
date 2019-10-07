@@ -32,7 +32,13 @@ const EmployeeTableRow = ({
       {row.name}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.contactNo}
+      {row.accountHolder}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.bankName}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.accountNo}
     </TableCell>
   </TableRow>
 );

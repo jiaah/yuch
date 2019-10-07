@@ -52,7 +52,7 @@ const BusinessNoContainer = ({
     <div id="print" className="container-a r--w-30">
       <div className="print-width">
         <h2>고객 사업자 번호</h2>
-        <div className="paper-label-box flex justify-between">
+        <div className="paper-label-box flex justify-between pt2">
           <SearchBar
             data={data}
             searchingProp="companyName"

@@ -685,3 +685,25 @@ export const employeeContactColumns = [
     label: '연락처',
   },
 ];
+
+export const employeeBankColumns = [
+  {
+    id: 'name',
+    numeric: true,
+    disablePadding: false,
+    label: '직원명',
+  },
+  {
+    id: 'accountHolder',
+    numeric: true,
+    disablePadding: false,
+    label: '예금주',
+  },
+  { id: 'bankName', numeric: true, disablePadding: false, label: '은행명' },
+  {
+    id: 'accountNo',
+    numeric: true,
+    disablePadding: false,
+    label: '계좌번호',
+  },
+];
