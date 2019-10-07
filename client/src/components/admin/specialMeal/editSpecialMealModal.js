@@ -21,6 +21,7 @@ const EditModal = ({
   const [state, setState] = useState({
     userId: clickedUserData.userId,
     selectedUser: !!clickedUserData.userId,
+    companyName: initialValues.companyName,
   });
 
   const handleChange = name => async event => {

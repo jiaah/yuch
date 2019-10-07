@@ -22,20 +22,22 @@ const SpecialMealForm = ({
   classes: { checkbox },
   isSubmitting,
   handleSuggestionSelected,
+  handleResetSearch,
   handleChange,
   state,
   adminSpecialMealMsg,
+  adminSpecialMealunregisteredMsg,
   clickedBtn,
 }) => {
   let labelValue;
   if (clickedBtn === 'create') {
-    labelValue = '유청 고객 거래 명세서에 등록';
+    labelValue = '고객사 거래 명세서에 등록';
   }
   if (clickedBtn !== 'create' && state.userId) {
-    labelValue = '월말 거래 명세서에 포함';
+    labelValue = `${state.companyName} 고객사 월말 거래 명세서에 포함`;
   }
-  if (clickedBtn !== 'create' && !state.userId) {
-    labelValue = '유청 고객사 월말 거래 명세서에 포함되지 않습니다.';
+  if (clickedBtn !== 'create' && !state.selectedUser) {
+    labelValue = `고객사 월말 거래 명세서에 포함되지 않습니다.`;
   }
 
   return (
@@ -60,12 +62,16 @@ const SpecialMealForm = ({
                 data={state.users}
                 searchingProp="companyName"
                 handleSuggestionSelected={handleSuggestionSelected}
-                handleResetSearch={() => {}}
+                handleResetSearch={handleResetSearch}
                 isSecondSearchBar={true}
               />
             )}
         </div>
-        {state.selectedUser && adminSpecialMealMsg}
+        {state.selectedUser && state.userId && adminSpecialMealMsg}
+        {clickedBtn === 'create' &&
+          state.selectedUser &&
+          !state.userId &&
+          adminSpecialMealunregisteredMsg}
       </div>
       <div className="mt4 mb2 media--justify-around">
         <div className="media--flex-column-m">

@@ -26,6 +26,7 @@ import { getUsers } from '../../../actions/adminAccountAction';
 import IconMessage from '../../../shared/iconMessage';
 import {
   adminSpecialMealMsg,
+  adminSpecialMealunregisteredMsg,
   adminSpecialMealMsgA,
   adminSpecialMealMsgB,
 } from '../../../data/message';
@@ -239,6 +240,7 @@ const SpecialMealContainer = ({
           resetClickedItemData={resetClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
+          adminSpecialMealunregisteredMsg={adminSpecialMealunregisteredMsg}
         />
       )}
     </div>

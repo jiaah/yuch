@@ -8,6 +8,7 @@ import { specialMealValidation } from '../../formValidation';
 const createModal = ({
   formattedTmr,
   adminSpecialMealMsg,
+  adminSpecialMealunregisteredMsg,
   // local state
   clickedBtn,
   // global state
@@ -52,6 +53,13 @@ const createModal = ({
           contactNo: modalSearchedUser.contactNo,
         },
       });
+  };
+
+  const handleResetSearch = () => {
+    setState({
+      ...state,
+      userId: null,
+    });
   };
 
   // yuch client selection checkbox
@@ -112,7 +120,11 @@ const createModal = ({
                 handleChange={handleChange}
                 state={state}
                 adminSpecialMealMsg={adminSpecialMealMsg}
+                adminSpecialMealunregisteredMsg={
+                  adminSpecialMealunregisteredMsg
+                }
                 handleSuggestionSelected={handleSuggestionSelected}
+                handleResetSearch={handleResetSearch}
                 clickedBtn={clickedBtn}
               />
             </Form>

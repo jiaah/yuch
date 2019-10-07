@@ -346,7 +346,7 @@ export const userSpecialMealNotice = (
 
 export const adminSpecialMealMsg = (
   <p className="f-mini">
-    유청 고객사가 등록된 특식의 계산서는{' '}
+    특식의 계산서는{' '}
     <span className="c-point2">고객사의 월말 거래명세서에 포함</span>
     되고, <br />
     등록된 내역을 <span className="c-point2">고객사가 볼 수 있으며</span>
@@ -357,6 +357,14 @@ export const adminSpecialMealMsg = (
     라고 표시됩니다.
   </p>
 );
+
+export const adminSpecialMealunregisteredMsg = (
+  <p className="f-mini">
+    <span className="c-point2">등록된 고객사가 없습니다.</span>
+    &#8199;등록해주세요.
+  </p>
+);
+
 export const adminSpecialMealMsgA = (
   <p className="f-mini">
     월말 거래명세서와 <span className="c-point2">별개로 정산</span>을 원하시면,

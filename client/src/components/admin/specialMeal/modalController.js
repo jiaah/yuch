@@ -19,6 +19,7 @@ const ModalController = ({
   clickedBtn,
   formattedTmr,
   adminSpecialMealMsg,
+  adminSpecialMealunregisteredMsg,
   // globalState
   clickedUserData,
   // actions
@@ -46,6 +47,7 @@ const ModalController = ({
         clickedUserData={clickedUserData}
         clickedBtn={clickedBtn}
         adminSpecialMealMsg={adminSpecialMealMsg}
+        adminSpecialMealunregisteredMsg={adminSpecialMealunregisteredMsg}
       />
     )}
     {clickedBtn === 'edit' &&
