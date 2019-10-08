@@ -38,8 +38,6 @@ const getRevenues = async (startDate, endDate) => {
         'catering',
       );
 
-      console.log('sumTotalInvoice', sumTotalInvoice);
-
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
       const result = {
@@ -135,7 +133,6 @@ const getSumTotalInvoice = async (date, businessType) => {
       .where({ date, businessType })
       .first();
 
-    console.log('result', result);
     return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
