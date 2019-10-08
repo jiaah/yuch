@@ -87,7 +87,7 @@ exports.resetQty = async (req, res, next) => {
       await cateringService.resetQty(userId, formatedDate);
     } else {
       // active of user service
-      await userService.active(userId);
+      await userService.active(userId, formatedDate);
     }
 
     return res.status(200).json();
