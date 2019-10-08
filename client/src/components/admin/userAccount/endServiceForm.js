@@ -48,10 +48,9 @@ const EndServiceForm = ({
           margin="normal"
           className="end-of-service-date"
           // error={firstDayOfLastMonth() > checkedDate}
-          // helperText="지난달 1일부터 선택가능"
+          // helperText="서비스 적용 일자를 선택해주세요."
           onChange={handleChange('endDate')}
-          required={endService}
-          disabled={!endService}
+          required
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -67,6 +66,11 @@ const EndServiceForm = ({
           }}
         />
       </div>
+      <p className="f-mini">
+        서비스가&#8199;
+        <span className="c-point2">{endService ? '종료' : '활성화'}</span>
+        &#8201;된 상태입니다.
+      </p>
       <FormButton
         typeValue="submit"
         variantValue="contained"

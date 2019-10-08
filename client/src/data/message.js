@@ -237,7 +237,7 @@ export const adminCateringMsg = (
 export const endServiceMessageA = (
   <React.Fragment>
     <span className="c-point2">
-      선택한 날로부터 저장된 모든 위탁급식 식수량이 삭제
+      서비스 종료를 선택한 날로부터 저장된 모든 위탁급식 식수량이 삭제
     </span>
     되며&#44;&#8201; 이 날 이후로는 의도치 않은 식수량 등록을 방지하기위해, 이
     고객의 계정은 <span className="c-point2">휴면계정으로 전환</span>
