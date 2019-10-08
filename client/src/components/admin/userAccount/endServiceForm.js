@@ -20,6 +20,7 @@ const EndServiceForm = ({
   // localState
   isSubmitting,
   endService,
+  startDate,
   endDate,
   // funcs
   handleChange,
@@ -42,9 +43,9 @@ const EndServiceForm = ({
         </div>
         <TextField
           id="endDate"
-          label="적용 일자"
+          label={endService ? '서비스 종료 일자' : '서비스 시작 일자'}
           type="date"
-          value={endDate}
+          value={endService ? endDate : startDate}
           margin="normal"
           className="end-of-service-date"
           // error={firstDayOfLastMonth() > checkedDate}
@@ -71,6 +72,13 @@ const EndServiceForm = ({
         <span className="c-point2">{endService ? '종료' : '활성화'}</span>
         &#8201;된 상태입니다.
       </p>
+      {!endService && (
+        <p className="f-mini">
+          재활성화 하였다면 반드시{' '}
+          <span className="c-point2">시작일자를 수정</span>
+          해주세요.{' '}
+        </p>
+      )}
       <FormButton
         typeValue="submit"
         variantValue="contained"
