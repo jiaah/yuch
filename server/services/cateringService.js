@@ -230,10 +230,11 @@ const getLists = async (date, businessType) => {
     const results = [];
     const users = await Users.query()
       .where({ isAdmin: false, businessType })
+      // .where(builder => {
+      //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+      // })
       .whereRaw('"startDate" <= NOW()')
-      .where(builder => {
-        builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
-      })
+      .whereRaw('"endDate" > NOW()')
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax

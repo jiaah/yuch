@@ -20,13 +20,13 @@ exports.loginUser = async (req, res, next) => {
       throw error;
     }
 
-    const isActive = await userService.isActive(user.id);
+    // const isActive = await userService.isActive(user.id);
 
-    if (!isActive) {
-      error = new Error('Inactivated user');
-      error.status = 401;
-      throw error;
-    }
+    // if (!isActive) {
+    //   error = new Error('Inactivated user');
+    //   error.status = 401;
+    //   throw error;
+    // }
 
     const isMatch = await util.comparePassword(password, user.password);
 

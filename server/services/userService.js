@@ -8,9 +8,10 @@ const inActive = async (userId, endDate) =>
     updated_at: new Date().toISOString(),
   });
 
-const active = async userId =>
+const active = async (userId, startDate) =>
   Users.query().patchAndFetchById(userId, {
-    endDate: null,
+    startDate,
+    endDate: '9999-12-31',
     updated_at: new Date().toISOString(),
   });
 
