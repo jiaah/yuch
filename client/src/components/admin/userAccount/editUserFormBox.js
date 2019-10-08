@@ -31,7 +31,7 @@ const DeleteUserFormBox = ({
     }
     addFlashMessage(
       'error',
-      `${companyName} 고객 계정 수정에 실패하였습니다. 다른 고객계정과 중복되는 부분이 있는지 확인해주세요.`,
+      `${companyName} 고객 계정 수정에 실패하였습니다. 다른 고객계정과 중복되는 업체명, 아이디, 이메일이 있는지 확인해주세요.`,
     );
     return setSubmitting(false);
   };
