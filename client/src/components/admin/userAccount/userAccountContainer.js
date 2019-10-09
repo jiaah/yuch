@@ -16,6 +16,7 @@ import {
   resetPasswordValidation,
 } from '../../formValidation';
 import { formatToYYYYMMDD } from '../../../utils/date';
+import { formattedToday } from '../../../helpers/moment';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -228,6 +229,7 @@ const UserAccountContainer = ({
           editUserAccountValidation={editUserAccountValidation}
           resetPasswordValidation={resetPasswordValidation}
           formatToYYYYMMDD={formatToYYYYMMDD}
+          formattedToday={formattedToday}
         />
       ) : null}
     </div>

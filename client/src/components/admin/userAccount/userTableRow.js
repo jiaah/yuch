@@ -46,7 +46,11 @@ const UserTableRow = ({
   const newMealPrice =
     row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
   const formattedStartDate = row.startDate && formatWithSlash(row.startDate);
-  const formattedEndDate = row.endDate && formatWithSlash(row.endDate);
+
+  const formattedEndDate =
+    row.endDate && row.endDate === '9999-12-31'
+      ? null
+      : formatWithSlash(row.endDate);
 
   return (
     <React.Fragment>

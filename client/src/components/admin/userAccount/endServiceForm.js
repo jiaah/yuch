@@ -24,6 +24,7 @@ const EndServiceForm = ({
   // funcs
   handleChange,
   onVerification,
+  formattedToday,
 }) => (
   <form onSubmit={onVerification}>
     <div className="mh2">

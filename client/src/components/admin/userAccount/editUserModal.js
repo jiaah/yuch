@@ -29,6 +29,7 @@ const EditUserModal = ({
   editUserAccountValidation,
   resetPasswordValidation,
   formatToYYYYMMDD,
+  formattedToday,
 }) => {
   const [subModal, setSubModal] = useState(null);
   const showSubModal = sub => setSubModal(sub);
@@ -54,6 +55,7 @@ const EditUserModal = ({
             handleEndingService={handleEndingService}
             formatToYYYYMMDD={formatToYYYYMMDD}
             clickedUserData={clickedUserData}
+            formattedToday={formattedToday}
           />
         ) : subModal === 'password' ? (
           <ResetPassword
