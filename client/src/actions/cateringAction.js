@@ -67,7 +67,7 @@ export const updateUsersCatering = data => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUsersCatering' });
 
   try {
-    const res = await Axios.patch('catering/users', data);
+    const res = await Axios.patch('/catering/users', data);
     dispatch({
       type: types.UPDATE_USER_CATERING,
       payload: res.data,

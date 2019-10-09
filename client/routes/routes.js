@@ -65,6 +65,11 @@ const UserBusinessNo = Loader({
     import('../src/components/admin/userBusinessNo/userBusinessNoContainer' /* webpackChunkName: 'UserBusinessNo' */),
 });
 
+const UserGuide = Loader({
+  loader: () =>
+    import('../src/components/admin/userGuide' /* webpackChunkName: 'UserGuide' */),
+});
+
 // 식수현황
 const RestoSales = Loader({
   loader: () =>
@@ -177,6 +182,11 @@ const routes = () => (
         exact
         path="/admin/account/business"
         component={AdminGuards(UserBusinessNo)}
+      />
+      <Route
+        exact
+        path="/admin/account/user/guide"
+        component={AdminGuards(UserGuide)}
       />
       {/* 유청계정 */}
       <Route

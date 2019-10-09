@@ -50,7 +50,7 @@ const UserAccountModal = ({
     } else {
       await addFlashMessage(
         'error',
-        `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 고객인지 확인해주세요.`,
+        `${companyName} 고객 등록에 실패하였습니다. 이미 존재하는 고객이거나, 다른 고객 계정과 중복되는 업체명, 아이디, 이메일이 있는지 확인해주세요.`,
       );
     }
     return setSubmitting(false);

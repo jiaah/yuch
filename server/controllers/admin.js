@@ -224,9 +224,11 @@ exports.getUsersList = async (req, res, next) => {
       .whereRaw(
         'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
       )
-      .where(builder => {
-        builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
-      })
+      .whereRaw('"startDate" <= NOW()')
+      .whereRaw('"endDate" > NOW()')
+      // .where(builder => {
+      //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+      // })
       .orderBy('users.updated_at', 'desc');
 
     result.inActiveUsers = await Users.query()
@@ -256,7 +258,12 @@ exports.getUsersList = async (req, res, next) => {
       .whereRaw(
         'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
       )
-      .whereRaw('"endDate" < NOW()')
+      // .whereRaw('"endDate" < NOW()')
+      .where(builder => {
+        builder
+          .whereRaw('"startDate" > NOW()')
+          .orWhereRaw('"endDate" <= NOW()');
+      })
       .orderBy('users.updated_at', 'desc');
 
     result.bankAccounts = await BankAccount.query();
@@ -287,9 +294,11 @@ exports.getCateringRates = (req, res) => {
     .whereRaw(
       'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
     )
-    .where(builder => {
-      builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
-    })
+    // .where(builder => {
+    //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
+    // })
+    .whereRaw('"startDate" <= NOW()')
+    .whereRaw('"endDate" > NOW()')
     .select(
       'meal_price.id',
       'meal_price.userId',

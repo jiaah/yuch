@@ -20,13 +20,13 @@ exports.loginUser = async (req, res, next) => {
       throw error;
     }
 
-    const isActive = await userService.isActive(user.id);
+    // const isActive = await userService.isActive(user.id);
 
-    if (!isActive) {
-      error = new Error('Inactivated user');
-      error.status = 401;
-      throw error;
-    }
+    // if (!isActive) {
+    //   error = new Error('Inactivated user');
+    //   error.status = 401;
+    //   throw error;
+    // }
 
     const isMatch = await util.comparePassword(password, user.password);
 
@@ -44,6 +44,8 @@ exports.loginUser = async (req, res, next) => {
     return res.status(200).json({
       id: user.id,
       companyName: user.companyName,
+      startDate: user.startDate,
+      endDate: user.endDate,
       isAdmin: user.isAdmin,
       refreshToken,
     });

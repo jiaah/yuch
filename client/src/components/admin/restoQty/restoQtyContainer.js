@@ -14,14 +14,16 @@ import CateringPaper from './restoQtyPaper';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
+import { fetchUsersResto } from '../../../actions/restoAction';
 import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const RestoQtyContainer = ({
   date,
   selectedItemValue,
+  fetchUsersResto,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
-  cateringActions: { fetchUsersCatering, updateUserCatering },
+  cateringActions: { updateUserCatering },
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
@@ -41,7 +43,7 @@ const RestoQtyContainer = ({
   const formattedDate = formatToDateForm(date);
 
   const fetchData = async when => {
-    const res = await fetchUsersCatering(when);
+    const res = await fetchUsersResto(when);
 
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -142,6 +144,7 @@ const mapDispatchToProps = dispatch => ({
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
   selectedActions: bindActionCreators(selectedActions, dispatch),
+  fetchUsersResto: date => dispatch(fetchUsersResto(date)),
 });
 
 export default connect(

@@ -4,7 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
-import { thisMonth } from '../../../helpers/moment';
+import { thisMonth, lastMonth } from '../../../helpers/moment';
 
 const styles = theme => ({
   resize: {
@@ -26,7 +26,10 @@ const RatesTableRow = ({
   handleEditUserBtnClick,
 }) => {
   // if change mealPrice of this month, display the new price value in only reserveData column.
-  const newMealPrice = row.reserveDate === thisMonth ? '' : row.mealPrice;
+  const newMealPrice =
+    row.reserveDate === thisMonth || row.reserveDate === lastMonth
+      ? ''
+      : row.mealPrice;
 
   return (
     <React.Fragment>

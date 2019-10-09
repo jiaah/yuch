@@ -84,7 +84,10 @@ const getTotalRevenues = async (startDate, endDate) => {
         subEndDate,
       );
 
-      const sumTotalInvoice = await getSumTotalInvoice(subStartDate);
+      const sumTotalInvoice = await getSumTotalInvoice(
+        subStartDate,
+        'catering',
+      );
 
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
@@ -127,7 +130,9 @@ const getSumTotalInvoice = async (date, businessType) => {
     const result = await Invoice.query()
       .select(raw('sum("sumTotal")').as('sumTotal'))
       .innerJoin('users', 'users.id', 'invoice.userId')
-      .where({ date, businessType });
+      .where({ date, businessType })
+      .first();
+
     return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;

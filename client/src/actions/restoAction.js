@@ -1,6 +1,29 @@
 import { Axios } from './axios';
 import * as types from './actionTypes';
 
+// restaurant clients 식수
+export const fetchUsersResto = date => async dispatch => {
+  console.log(' date: ', date);
+  dispatch({ type: types.HTTP_REQUEST, api: 'fetchUserResto' });
+
+  try {
+    const res = await Axios.get(`/resto/users`, { params: { date } });
+    const { data } = res;
+    dispatch({
+      type: types.FETCH_USERS_CATERING,
+      payload: data,
+    });
+    return data;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'fetchUserResto',
+      status: error.response.status,
+      error: "Fetching user's resto data failed.",
+    });
+  }
+};
+
 export const getRestoSales = date => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'getRestoSales' });
   try {

@@ -72,6 +72,7 @@ const EndServiceFormBox = ({
           isSubmitting={isSubmitting}
           endService={endService}
           endDate={endDate}
+          startDate={clickedUserData.startDate}
           handleChange={handleChange}
           onVerification={onVerification}
         />

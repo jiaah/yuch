@@ -111,10 +111,17 @@ export const selectOptionsYYYYMM = arr =>
 
 export const userEndDate = (data, limitedDate) => {
   let endDate;
-  if (data && data.endDate && data.endDate <= limitedDate) {
+  if (data && data.endDate <= limitedDate) {
     endDate = data.endDate;
   } else {
     endDate = limitedDate;
   }
   return endDate;
+};
+
+export const isActiveUser = (startDate, endDate) => {
+  const formattedStartDate = formatWithDash(startDate);
+  const today = moment().format('YYYY-MM-DD');
+  const isActive = moment(today).isBetween(formattedStartDate, endDate, 'days');
+  return isActive;
 };

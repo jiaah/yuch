@@ -28,11 +28,13 @@ const RadioButtonFormControl = ({
   formLabelClassName,
   classes: { formControl, formLabel },
   required,
+  disabled,
 }) => (
   <FormControl
     component="fieldset"
     required={!!required}
     className={formControl}
+    disabled={!!disabled}
   >
     <div className={formClassName}>
       <div className={`flex ${formLabelClassName}`}>
