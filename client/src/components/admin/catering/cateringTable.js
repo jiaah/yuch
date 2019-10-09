@@ -30,7 +30,6 @@ const CateringTable = ({
   // global states
   selectedItemValue,
   // actions
-  updateUserCatering,
   saveSelectedItemValue,
   resetSelectedItemValue,
   // fncs
@@ -97,7 +96,6 @@ const CateringTable = ({
                     row={row}
                     labelId={labelId}
                     selectedItemValue={selectedItemValue}
-                    updateUserCatering={updateUserCatering}
                     handleChange={handleChange}
                     updateMealQty={updateMealQty}
                     startEditing={startEditing}
