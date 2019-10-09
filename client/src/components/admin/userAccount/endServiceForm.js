@@ -10,7 +10,6 @@ import IconMessage from '../../../shared/iconMessage';
 import {
   endServiceMessageA,
   endServiceMessageB,
-  endServiceMessageC,
   endServiceMessageD,
 } from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
@@ -97,18 +96,6 @@ const EndServiceForm = ({
       text={endServiceMessageA}
       position="start"
       iconBoxStyle="pw2"
-      textStyle="icon-message--info f-mini"
-    />
-    <IconMessage
-      name="info"
-      width="15"
-      height="18"
-      viewBox="0 0 20 20"
-      fillOuter="#2196F3"
-      fillInner="#ffffff"
-      text={endServiceMessageC}
-      position="start"
-      iconBoxStyle="pw2 pt3"
       textStyle="icon-message--info f-mini"
     />
     <IconMessage

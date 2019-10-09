@@ -47,6 +47,7 @@ exports.seed = async knex => {
     contactNo: CONTACT_NO,
     email: EMAIL,
     isAdmin: IS_ADMIN,
+    startDate: '20190901',
   });
 
   // const fakeUsers = [];

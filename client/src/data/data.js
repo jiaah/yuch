@@ -122,6 +122,11 @@ export const navAdminItems = {
       name: '고객 사업자번호',
       to: '/admin/account/business',
     },
+    {
+      id: 14,
+      name: '고객 가이드',
+      to: '/admin/account/user/guide',
+    },
   ],
   4: [
     {

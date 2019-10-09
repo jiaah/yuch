@@ -8,7 +8,10 @@ import FormButton from '../../../shared/form/formButton';
 import Button from '../../../shared/form/button';
 import IconButton from '../../../shared/form/iconButton';
 import IconMessage from '../../../shared/iconMessage';
-import { endOfServiceMegInEditForm } from '../../../data/message';
+import {
+  endOfServiceMegInEditForm,
+  editUserAccountMsg,
+} from '../../../data/message';
 
 const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
   <React.Fragment>
@@ -115,6 +118,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
       formClassName="form--radioBtn"
       component={<BusinessTypeOptions name="businessType" />}
       required
+      disabled
     />
     <RadioButtonFormControl
       label="입금 계좌번호"
@@ -166,6 +170,18 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         />
       </div>
     </div>
+    <IconMessage
+      name="info"
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fillOuter="#2196F3"
+      fillInner="#ffffff"
+      text={editUserAccountMsg}
+      position="center"
+      iconBoxStyle="mt4"
+      textStyle="icon-message--info f-mini"
+    />
   </React.Fragment>
 );
 

@@ -131,7 +131,7 @@ export const updateRateMessageC = (
     인보이스 재발행&#58; &#39;인보이스 &#62; 거래명세서&#39;
     &#8201;&#8594;&#8199;
     <Link className="c-point2 td-none" to="/admin/invoice/users">
-      &#39;인보이스&#39; 업데이트 버튼
+      &#39;인보이스&#39; 재발행 버튼
     </Link>{' '}
     클릭
   </p>
@@ -200,12 +200,22 @@ export const adminCateringMsg = (
     </p>
     <p className="f-mini">
       &#42; {admin.companyName}
-      고객은 상단의 변경가능시간에만 식수변경이 가능합니다&#46;
+      고객은 상단의 변경가능시간에만 식수변경 가능합니다&#46;
       <br />
       &#42; {admin.companyName}은 지난 일자에 대한 식수변경을 이전 달 1일까지 할
       수 있습니다&#46;
     </p>
-    <p className="f-mini">
+    <p className="f-mini pt3">
+      &#42; 서비스가 종료된 고객은 반드시 거래명세서와 매출의 오류를
+      방지하기위해
+      <br />
+      <Link className="c-point2 td-none" to="/admin/account/users">
+        &#39;고객관리&#8201;&#62;&#8201;고객계정&#8201;&#62;&#8201;수정&#8201;&#62;&#8201;서비스
+        종료&#39;
+      </Link>{' '}
+      를 해주세요.
+    </p>
+    {/* <p className="f-mini">
       &#42; <span className="c-point2">지난 달의 식수변경</span>을 한 경우에는{' '}
       <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요.&#46;
     </p>
@@ -213,10 +223,10 @@ export const adminCateringMsg = (
       [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 재발행 버튼
       </Link>{' '}
       클릭
-    </p>
+    </p> */}
     <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
       <br />
@@ -236,25 +246,22 @@ export const adminCateringMsg = (
 
 export const endServiceMessageA = (
   <React.Fragment>
-    <span className="c-point2">
-      서비스 종료를 선택한 날로부터 저장된 모든 위탁급식 식수량이 삭제
-    </span>
-    되며&#44;&#8201; 이 날 이후로는 의도치 않은 식수량 등록을 방지하기위해, 이
-    고객의 계정은 <span className="c-point2">휴면계정으로 전환</span>
-    되어 로그인을 할 수가 없게됩니다 &#46;&#8199;
+    서비스 종료 일자를 기준으로 저장된 모든{' '}
+    <span className="c-point2">위탁급식 식수량이 삭제</span>
+    됩니다&#46;
   </React.Fragment>
 );
 
-export const endServiceMessageC = (
-  <React.Fragment>
-    휴먼계정으로 전환된 이 고객의 정보는{' '}
-    <Link className="c-point2 td-none" to="/admin/account/users">
-      {' '}
-      &#39;고객관리 &#62; 고객계정&#39;
-    </Link>{' '}
-    에서 확인하실 수 있습니다.
-  </React.Fragment>
-);
+// export const endServiceMessageC = (
+//   <React.Fragment>
+//     휴먼계정으로 전환된 이 고객의 정보는{' '}
+//     <Link className="c-point2 td-none" to="/admin/account/users">
+//       {' '}
+//       &#39;고객관리 &#62; 고객계정&#39;
+//     </Link>{' '}
+//     에서 확인하실 수 있습니다.
+//   </React.Fragment>
+// );
 
 export const endServiceMessageD = (
   <React.Fragment>
@@ -290,34 +297,42 @@ export const restoSalesMsg = (
     <p className="f-mini">
       &#42;{' '}
       <span className="c-point2">
-        식당 식수에 따로 등록하는 고객에 대한 매출액을 제외한{' '}
+        식당 식수에 등록하는 고객 매출을 제외한{' '}
         <span className="b">매출 총액</span>
       </span>
       을 입력 해주세요&#46; <br />
-      &#42; 식당 식수에 등록하는 고객에 대한 매출액은 월말 정산에 자동으로
-      식당매출에 포함됩니다.
-      <br />
-      &#42; 지난 일자에 대한 매출액 변경은 이전 달 까지만 가능합니다&#46; <br />
+      &#42; 식당 식수에 등록하는 고객에 대한 매출액은 식당매출에 포함됩니다.
+      {/* <br />
+      &#42; 지난 일자에 대한 매출액 변경은 이전 달 까지만 가능합니다&#46; <br /> */}
     </p>
     {/* <p className="f-mini">
       &#42; <span className="c-point2">지난 달의 매출을 변경</span> 한 경우에는{' '}
-      <span className="c-point2">반드시 매출 업데이트</span>를 해주세요&#46;
+      <span className="c-point2">반드시 매출 재발행</span>를 해주세요&#46;
     </p>
     <p className="f-mini pt3">
       [ 매출 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
       &#8201;&#8594;&#8199;
       <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#39;&#8201; 업데이트 버튼
+        &#39;인보이스&#39;&#8201; 재발행 버튼
       </Link>{' '}
       클릭
     </p> */}
   </div>
 );
 
+export const editUserAccountMsg = (
+  <p className="f-mini">
+    &#8201;비지니스 타입 변경은 불가능합니다. 새로운 계정을 생성하여주세요&#46;
+    <br />
+    &#40; 동일한 업체명&#44; 아이디&#44; 이메일 사용불가 &#41;
+  </p>
+);
+
 export const endOfServiceMegInEditForm = (
   <React.Fragment>
-    &#91;&#8201;휴면계정 설정&#8201;&#93;&#8199;지정된 일자로부터 저장된 <br />
-    모든 식수량이 삭제됩니다&#44;
+    &#91;&#8201;서비스 종료 설정&#8201;&#93;&#8199;지정된 일자로부터 저장된{' '}
+    <br />
+    모든 식수량이 삭제됩니다&#46;
   </React.Fragment>
 );
 
@@ -368,7 +383,7 @@ export const adminSpecialMealunregisteredMsg = (
 export const adminSpecialMealMsgA = (
   <p className="f-mini">
     월말 거래명세서와 <span className="c-point2">별개로 정산</span>을 원하시면,
-    &#8201;&#39;유청 고객 거래 명세서에 등록&#39;&#8199;을 선택하지 마세요.
+    &#8201;&#39;유청 고객 거래 명세서 등록&#39;&#8201;을 선택하지 마세요.
   </p>
 );
 
@@ -395,7 +410,7 @@ export const adminInvoiceMsg = (
     <span className="b c-point2">반드시</span> 우측 상단의
     <span className="c-point2">
       &#8201;&#39;인보이스&#39;&#8199;
-      <span className="b">업데이트 버튼</span>
+      <span className="b">재발행 버튼</span>
       &#8201;
     </span>
     을 클릭하세요&#46;

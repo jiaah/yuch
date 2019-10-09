@@ -25,6 +25,7 @@ const CateringContainer = ({
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
+  console.log('catering: ', catering);
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
@@ -55,11 +56,10 @@ const CateringContainer = ({
   const startDate = catering && catering.startDate;
   const endDate = userEndDate(catering, inAWeek);
 
-  const formattedEndDate =
-    catering && catering.endDate && formatToDateForm(catering.endDate);
+  const formattedEndDate = catering && formatToDateForm(catering.endDate);
 
   const message =
-    catering && catering.endDate && catering.endDate <= inAWeek
+    catering && catering.endDate <= inAWeek
       ? `${formattedEndDate} 일자로 고객님의 위탁급식 서비스가 종료될 예정입니다.`
       : '7일 내의 식수량만 미리 등록 할 수 있습니다.';
 
