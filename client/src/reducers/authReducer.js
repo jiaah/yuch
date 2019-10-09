@@ -15,15 +15,25 @@ const auth = (state = initialState, action) => {
 
   switch (action.type) {
     case types.USER_LOGIN: {
-      const isActive = isActiveUser(payload.startDate, '9999-12-31');
+      const {
+        id,
+        companyName,
+        isAdmin,
+        keekMeLoggedIn,
+        startDate,
+        endDate,
+      } = payload;
+
+      const isActive = isActiveUser(startDate, endDate);
+
       return {
         ...state,
         isLoggedIn: true,
-        id: payload.id,
-        companyName: payload.companyName,
-        isAdmin: payload.isAdmin,
+        id,
+        companyName,
+        isAdmin,
         isActive,
-        keekMeLoggedIn: payload.keepMeLoggedIn,
+        keekMeLoggedIn,
       };
     }
     case types.USER_LOGOUT:
