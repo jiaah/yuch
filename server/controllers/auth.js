@@ -44,6 +44,8 @@ exports.loginUser = async (req, res, next) => {
     return res.status(200).json({
       id: user.id,
       companyName: user.companyName,
+      startDate: user.startDate,
+      endDate: user.endDate,
       isAdmin: user.isAdmin,
       refreshToken,
     });

@@ -14,14 +14,14 @@ export const userLogin = (
       username,
       password,
     });
-    const { id, companyName, isAdmin, refreshToken } = res.data;
+    const { refreshToken, ...others } = res.data;
     const tokenData = {
       token: res.headers.authorization.split(' ')[1],
       refreshToken,
     };
     dispatch({
       type: types.USER_LOGIN,
-      payload: { id, companyName, isAdmin, keekMeLoggedIn },
+      payload: { ...others, keekMeLoggedIn },
     });
     return tokenData;
   } catch (error) {
