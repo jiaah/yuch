@@ -38,7 +38,13 @@ const UserAccountContainer = ({
   clickedUserData,
   selectedSearchItem,
   modalActions: { showModal, hideModal },
-  adminActions: { getUsers, createUser, editUser, handleEndingService },
+  adminActions: {
+    getUsers,
+    createUser,
+    editUser,
+    handleEndingService,
+    getUserRates,
+  },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,

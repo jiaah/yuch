@@ -26,11 +26,12 @@ export const getAdmin = id => async dispatch => {
 export const editAdminAccount = (id, values) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editAdminAccount' });
   try {
-    await Axios.patch(`/admin/edit/${id}`, { values });
-    return dispatch({
+    const res = await Axios.patch(`/admin/edit/${id}`, { values });
+    dispatch({
       type: types.HTTP_SUCCESS,
       api: 'editAdminAccount',
     });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -88,8 +89,9 @@ export const getUsers = () => async dispatch => {
 export const createUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createUser' });
   try {
-    await Axios.post('/admin/user/register', { userInfo });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
+    const res = await Axios.post('/admin/user/register', { userInfo });
+    dispatch({ type: types.HTTP_SUCCESS, api: 'createUser' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -103,10 +105,11 @@ export const createUser = userInfo => async dispatch => {
 export const editUser = userInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editUser' });
   try {
-    await Axios.patch(`/admin/user/edit/${userInfo.id}`, {
+    const res = await Axios.patch(`/admin/user/edit/${userInfo.id}`, {
       userInfo,
     });
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
+    dispatch({ type: types.HTTP_SUCCESS, api: 'editUser' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -120,8 +123,9 @@ export const editUser = userInfo => async dispatch => {
 export const deleteUser = userId => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteUser' });
   try {
-    await Axios.delete(`/admin/user/delete/${userId}`);
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
+    const res = await Axios.delete(`/admin/user/delete/${userId}`);
+    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteUser' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -139,20 +143,40 @@ export const handleEndingService = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'endService' });
   try {
-    await Axios.patch(`/catering/endofservice/user/${userId}`, {
+    const res = await Axios.patch(`/catering/endofservice/user/${userId}`, {
       endService,
       date: formattedDate,
     });
-    return dispatch({
+    dispatch({
       type: types.HTTP_SUCCESS,
       api: 'endService',
     });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'endService',
       status: error.response.status,
       error: 'Updating ending service failed.',
+    });
+  }
+};
+
+export const getUserRates = id => async dispatch => {
+  dispatch({ type: types.HTTP_REQUEST, api: 'getUserRates' });
+  try {
+    const res = await Axios.get(`/admin/mealPrices/${id}`);
+    dispatch({
+      type: types.HTTP_SUCCESS,
+      api: 'getUserRates',
+    });
+    return res;
+  } catch (error) {
+    return dispatch({
+      type: types.HTTP_FAILURE,
+      api: 'getUserRates',
+      status: error.response.status,
+      error: 'Getting UserRates failed.',
     });
   }
 };
