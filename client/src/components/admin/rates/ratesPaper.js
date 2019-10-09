@@ -35,7 +35,7 @@ const RatesPaper = ({
 
   return (
     <div className="paper">
-      {isAdminVerified && users.length !== 0 ? (
+      {isAdminVerified ? (
         users.length > 10 ? (
           <React.Fragment>
             <Paper
@@ -72,7 +72,7 @@ const RatesPaper = ({
               }
             />
           </React.Fragment>
-        ) : users.length <= 10 ? (
+        ) : users.length <= 10 && users.length !== 0 ? (
           <Paper
             component={
               <RatesTable
@@ -94,7 +94,15 @@ const RatesPaper = ({
           />
         ) : null
       ) : null}
-      {!isAdminVerified && <Paper />}
+      {!isAdminVerified && (
+        <Paper
+          component={
+            <h3 className="mt4 mb4">
+              브라우저 새로고침을 하여, 관리자 인증을 해주세요.
+            </h3>
+          }
+        />
+      )}
     </div>
   );
 };
