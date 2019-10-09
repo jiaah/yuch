@@ -23,7 +23,7 @@ exports.lists = async (req, res, next) => {
 
     const parsedDate = moment(`${date}01`, 'YYYYMMDD');
     const startedAt = parsedDate.format('YYYY-MM-DD');
-    const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
+    const endedAt = parsedDate.endOf('months').format('YYYY-MM-DD');
 
     const results = await invoiceService.Lists(startedAt, endedAt);
 
@@ -40,7 +40,7 @@ exports.findOne = async (req, res, next) => {
 
     const parsedDate = moment(`${date}01`, 'YYYYMMDD');
     const startedAt = parsedDate.format('YYYY-MM-DD');
-    const endedAt = parsedDate.endOf('month').format('YYYY-MM-DD');
+    const endedAt = parsedDate.endOf('months').format('YYYY-MM-DD');
 
     const result = await invoiceService.findOne(userId, startedAt, endedAt);
 
