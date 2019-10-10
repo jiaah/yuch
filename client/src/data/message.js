@@ -231,7 +231,7 @@ export const adminCateringMsg = (
       </Link>{' '}
       클릭
     </p> */}
-    <p className="f-mini pt3">
+    {/* <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
       <br />
       고객 계정을 활성화 &#8201;&#8594;&#8199;
@@ -244,7 +244,7 @@ export const adminCateringMsg = (
         인보이스 재발행
       </Link>
       &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
-    </p>
+    </p> */}
   </div>
 );
 
