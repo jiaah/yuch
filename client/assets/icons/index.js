@@ -36,6 +36,7 @@ import Calendar from './calendar';
 import Time from './time';
 import List from './list';
 import Update from './update';
+import Contact from './contact';
 
 const Icon = props => {
   switch (props.name) {
@@ -109,6 +110,8 @@ const Icon = props => {
       return <List {...props} />;
     case 'update':
       return <Update {...props} />;
+    case 'contact':
+      return <Contact {...props} />;
     default:
       return <div />;
   }
