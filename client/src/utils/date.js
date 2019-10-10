@@ -51,7 +51,7 @@ export const firstDayOfLastMonth = () => {
 };
 
 export const firstDayOfYYYYMMDD = date => {
-  const parsedDate = moment(date, 'YYYYMM');
+  const parsedDate = moment(date).format('YYYYMM');
   const formattedDate = `${parsedDate}01`;
   return formattedDate;
 };
