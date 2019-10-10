@@ -129,7 +129,7 @@ const getSumTotalResto = async (startDate, endDate) => {
 
 const getSumTotalSpecialMeal = async (startDate, endDate, isUserIdRequired) => {
   try {
-    const qb = await SpecialMeal.query()
+    const qb = SpecialMeal.query()
       .select(raw('sum("sumTotal")').as('sumTotal'))
       .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`);
 
@@ -139,7 +139,7 @@ const getSumTotalSpecialMeal = async (startDate, endDate, isUserIdRequired) => {
       qb.whereNull('userId');
     }
 
-    qb.first();
+    const result = await qb.first();
     return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;
