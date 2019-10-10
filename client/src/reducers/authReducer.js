@@ -7,6 +7,7 @@ const initialState = {
   companyName: '',
   isAdmin: false,
   isActive: false,
+  businessType: 'catering',
   keekMeLoggedIn: false,
 };
 
@@ -22,6 +23,7 @@ const auth = (state = initialState, action) => {
         keekMeLoggedIn,
         startDate,
         endDate,
+        businessType,
       } = payload;
 
       const isActive = isActiveUser(startDate, endDate);
@@ -33,6 +35,7 @@ const auth = (state = initialState, action) => {
         companyName,
         isAdmin,
         isActive,
+        businessType,
         keekMeLoggedIn,
       };
     }

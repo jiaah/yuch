@@ -47,6 +47,7 @@ exports.loginUser = async (req, res, next) => {
       startDate: user.startDate,
       endDate: user.endDate,
       isAdmin: user.isAdmin,
+      businessType: user.businessType,
       refreshToken,
     });
   } catch (err) {

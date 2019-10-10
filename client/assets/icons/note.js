@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Note = ({ name, width, height, viewBox, fill }) => (
+const Note = ({ name, width, height, viewBox, fillOuter }) => (
   <svg
     width={width}
     height={height}
@@ -8,8 +8,11 @@ const Note = ({ name, width, height, viewBox, fill }) => (
     className={`svg-icon icon-${name} || ''`}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path fill={fill} d="M0 0h24v24H0V0z" />
-    <path d="M16 4H4c-1.1 0-2 .9-2 2v12.01c0 1.1.9 1.99 2 1.99h16c1.1 0 2-.9 2-2v-8l-6-6zM4 18.01V6h11v5h5v7.01H4z" />
+    <path fill="none" d="M0 0h24v24H0V0z" />
+    <path
+      fill={fillOuter}
+      d="M16 4H4c-1.1 0-2 .9-2 2v12.01c0 1.1.9 1.99 2 1.99h16c1.1 0 2-.9 2-2v-8l-6-6zM4 18.01V6h11v5h5v7.01H4z"
+    />
   </svg>
 );
 export default Note;

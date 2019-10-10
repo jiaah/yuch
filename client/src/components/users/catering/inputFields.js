@@ -2,7 +2,11 @@ import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
 
-const InputFields = ({ isLunchQtyDisabled, isDinnerQtyDisabled }) => (
+const InputFields = ({
+  isLunchQtyDisabled,
+  isDinnerQtyDisabled,
+  businessType,
+}) => (
   <div className="pb3">
     <div className="phone">
       <FormikField
@@ -30,7 +34,7 @@ const InputFields = ({ isLunchQtyDisabled, isDinnerQtyDisabled }) => (
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
-        disabled={isDinnerQtyDisabled}
+        disabled={isDinnerQtyDisabled || businessType === 'restaurant'}
       />
     </div>
     <table className="desktop">
@@ -71,7 +75,7 @@ const InputFields = ({ isLunchQtyDisabled, isDinnerQtyDisabled }) => (
               icon="catering"
               styleName="textFieldC"
               variant="outlined"
-              disabled={isDinnerQtyDisabled}
+              disabled={isDinnerQtyDisabled || businessType === 'restaurant'}
             />
           </td>
         </tr>
