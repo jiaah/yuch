@@ -13,10 +13,8 @@ const Lists = async (startedAt, endedAt) => {
     const results = [];
     const users = await Users.query()
       .whereNot('username', 'yuch')
-      .whereRaw('"startDate" <= NOW()')
-      // .where(builder => {
-      //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
-      // })
+      .whereRaw(`"startDate" <= '${startedAt}'`)
+      .whereRaw(`"endDate" >= '${endedAt}'`)
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
@@ -61,14 +59,12 @@ const Lists = async (startedAt, endedAt) => {
         });
       }
 
-      if (await userService.isActive) {
-        results.push({
-          userId: user.id,
-          companyName: user.companyName,
-          mealPrice,
-          sumTotal,
-        });
-      }
+      results.push({
+        userId: user.id,
+        companyName: user.companyName,
+        mealPrice,
+        sumTotal,
+      });
     }
 
     return results;
