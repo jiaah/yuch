@@ -1,3 +1,4 @@
+// startTime must be fist day of month
 export const admin = {
   companyName: '유청',
   startTime: '20190901',

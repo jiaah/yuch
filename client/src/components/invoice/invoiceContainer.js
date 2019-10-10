@@ -9,6 +9,7 @@ import {
   formatToMonthDateForm,
   formatToYYYYMM,
   invoiceFormat,
+  firstDayOfYYYYMMDD,
 } from '../../utils/date';
 import { printDiv } from '../../utils/print';
 import DateButtons from '../../shared/form/dateButtons';
@@ -52,6 +53,8 @@ const InvoiceContainer = ({
     return setData(res);
   };
 
+  const parsedStartDate = firstDayOfYYYYMMDD(data.startDate);
+
   useEffect(() => {
     fetchData(date);
   }, []);
@@ -71,7 +74,7 @@ const InvoiceContainer = ({
           reload={true}
           unit="mm"
           formattedDate={formattedDate}
-          startTime={data.startDate}
+          startTime={parsedStartDate}
           endTime={`${thisMonthYYYYMM}01`}
           updateDate={updateDateMonthly}
           addFlashMessage={addFlashMessage}

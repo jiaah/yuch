@@ -50,6 +50,12 @@ export const firstDayOfLastMonth = () => {
   return value;
 };
 
+export const firstDayOfYYYYMMDD = date => {
+  const parsedDate = moment(date, 'YYYYMM');
+  const formattedDate = `${parsedDate}01`;
+  return formattedDate;
+};
+
 export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
