@@ -61,6 +61,11 @@
   }
 }
 
+@mixin print {
+  @media print {
+    @content;
+  }
+}
 
 /* print media */
 @media print {

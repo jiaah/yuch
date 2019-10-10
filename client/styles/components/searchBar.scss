@@ -7,3 +7,9 @@
   width: 100%;
   background-color: $c-hover-bg
 }
+
+.search-box {
+  @include print {
+    display: none;
+  }
+}
