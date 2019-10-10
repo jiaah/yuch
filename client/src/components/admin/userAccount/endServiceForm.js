@@ -24,7 +24,6 @@ const EndServiceForm = ({
   // funcs
   handleChange,
   onVerification,
-  formattedToday,
 }) => (
   <form onSubmit={onVerification}>
     <div className="mh2">
@@ -42,7 +41,7 @@ const EndServiceForm = ({
           />
         </div>
         <TextField
-          id="endDate"
+          id={endService ? 'endDate' : 'startDate'}
           label={endService ? '서비스 종료 일자' : '서비스 시작 일자'}
           type="date"
           value={endService ? endDate : startDate}
@@ -50,7 +49,7 @@ const EndServiceForm = ({
           className="end-of-service-date"
           // error={firstDayOfLastMonth() > checkedDate}
           // helperText="서비스 적용 일자를 선택해주세요."
-          onChange={handleChange('endDate')}
+          onChange={handleChange(endService ? 'endDate' : 'startDate')}
           required
           InputProps={{
             startAdornment: (

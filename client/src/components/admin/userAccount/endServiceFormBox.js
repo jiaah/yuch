@@ -29,8 +29,11 @@ const EndServiceFormBox = ({
   const [state, setState] = useState({
     endService: clickedUserData.endDate !== '9999-12-31',
     endDate: endDateToDisplay,
+    startDate: clickedUserData.startDate,
   });
-  const { endService, endDate } = state;
+
+  const { endService, endDate, startDate } = state;
+
   const [isSubmitting, setSubmitting] = useState(false);
   const [verification, setVerification] = useState(false);
 
@@ -78,10 +81,9 @@ const EndServiceFormBox = ({
           isSubmitting={isSubmitting}
           endService={endService}
           endDate={endDate}
-          startDate={clickedUserData.startDate}
+          startDate={startDate}
           handleChange={handleChange}
           onVerification={onVerification}
-          formattedToday={formattedToday}
         />
       ) : (
         <AdminVerificationContainer
