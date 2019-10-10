@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
-import Paper from '../../../shared/paper';
 import Loader from '../../loader';
 import Table from './employeeTable';
 import ContactTable from './employeeContactTable';
@@ -16,6 +15,7 @@ import {
 import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Select from '../../../shared/form/select';
+import Paper from './employeesPaper';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -45,7 +45,7 @@ const Container = ({
   selectedSearchItem,
   employees,
 }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   // selected row on click
@@ -88,7 +88,7 @@ const Container = ({
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
-  const pageWidth =
+  const width =
     employees === '전체'
       ? 'r--w-80'
       : employees === '연락처'
@@ -96,7 +96,7 @@ const Container = ({
         : 'r--w-40';
 
   return (
-    <div id="print" className={`container-a ${pageWidth}`}>
+    <div id="print" className={`container-a ${width}`}>
       <div className="print-width">
         <h2>{`${admin.companyName} 직원`}</h2>
         <div className="paper-label-box justify-between pt2">
@@ -139,59 +139,21 @@ const Container = ({
             </div>
           </div>
         </div>
-        <div id="print">
-          {data && data.length === 0 ? (
-            <Paper
-              component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
-            />
-          ) : employees === '전체' ? (
-            <Paper
-              component={
-                <Table
-                  data={data}
-                  clickedBtn={clickedBtn}
-                  selectedRow={selectedRow}
-                  selectedSearchItem={selectedSearchItem}
-                  saveClickedItemData={saveClickedItemData}
-                  saveSelectedItemValue={saveSelectedItemValue}
-                  handleButtonClick={handleButtonClick}
-                  handleTableRowClick={handleTableRowClick}
-                  employeeColumns={employeeColumns}
-                  clickedUserData={clickedUserData[0] || clickedUserData}
-                  employees={employees}
-                />
-              }
-            />
-          ) : employees === '연락처' ? (
-            <Paper
-              // classname="center"
-              component={
-                <ContactTable
-                  data={data}
-                  selectedRow={selectedRow}
-                  selectedSearchItem={selectedSearchItem}
-                  handleTableRowClick={handleTableRowClick}
-                  employeeContactColumns={employeeContactColumns}
-                  listType="contact"
-                />
-              }
-            />
-          ) : (
-            <Paper
-              // classname="center"
-              component={
-                <ContactTable
-                  data={data}
-                  selectedRow={selectedRow}
-                  selectedSearchItem={selectedSearchItem}
-                  handleTableRowClick={handleTableRowClick}
-                  employeeBankColumns={employeeBankColumns}
-                  listType="bank"
-                />
-              }
-            />
-          )}
-        </div>
+        <Paper
+          data={data}
+          clickedBtn={clickedBtn}
+          selectedRow={selectedRow}
+          employees={employees}
+          clickedUserData={clickedUserData}
+          selectedSearchItem={selectedSearchItem}
+          saveClickedItemData={saveClickedItemData}
+          saveSelectedItemValue={saveSelectedItemValue}
+          handleButtonClick={handleButtonClick}
+          handleTableRowClick={handleTableRowClick}
+          employeeColumns={employeeColumns}
+          employeeContactColumns={employeeContactColumns}
+          employeeBankColumns={employeeBankColumns}
+        />
       </div>
       {clickedBtn && (
         <Modal

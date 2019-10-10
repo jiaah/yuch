@@ -74,10 +74,10 @@ const CateringPaper = ({
 
   return (
     <div className="paper">
-      {users.length !== 0 ? (
+      {users && users.length !== 0 ? (
         <React.Fragment>
           <Paper
-            isDivided={true}
+            isDivided={users.length > 10 && true}
             component={
               <CateringTable
                 sortedData={sortedDataA}

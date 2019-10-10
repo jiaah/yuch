@@ -43,7 +43,7 @@ const InvoiceContainer = ({
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToMonthDateForm(date);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const [selectedRow, setSelectedRow] = useState(null);
   const onfocusOnSelectdRow = id => {

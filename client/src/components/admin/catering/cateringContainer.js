@@ -25,7 +25,7 @@ const CateringContainer = ({
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState([]);
+  const [catering, setCatering] = useState(null);
 
   // switch text <-> textfield
   const [editIndex, setEditIndex] = useState(null);

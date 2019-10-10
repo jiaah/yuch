@@ -44,7 +44,7 @@ const BankAccountContainer = ({
   selectedSearchItem,
   isAdminVerified,
 }) => {
-  const [bankAccount, setBankAccount] = useState([]);
+  const [bankAccount, setBankAccount] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   const fetchBankAccount = async () => {

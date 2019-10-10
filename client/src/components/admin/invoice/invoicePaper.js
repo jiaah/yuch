@@ -30,10 +30,10 @@ const InvoicePaper = ({
 
   return (
     <div className="paper">
-      {data.length !== 0 ? (
+      {data && data.length !== 0 ? (
         <React.Fragment>
           <Paper
-            isDivided={true}
+            isDivided={data.length > 10 && true}
             component={
               <RatesTable
                 order={order}

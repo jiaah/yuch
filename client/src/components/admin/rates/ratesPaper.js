@@ -36,15 +36,15 @@ const RatesPaper = ({
   return (
     <div className="paper">
       {isAdminVerified ? (
-        users.length > 10 ? (
+        users && users.length !== 0 ? (
           <React.Fragment>
             <Paper
-              isDivided={true}
+              isDivided={users.length > 10 && true}
               component={
                 <RatesTable
                   order={order}
                   orderBy={orderBy}
-                  sortedData={sortedDataB}
+                  sortedData={sortedDataA}
                   handleRequestSort={handleRequestSort}
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
@@ -54,47 +54,32 @@ const RatesPaper = ({
                 />
               }
             />
-            <Paper
-              isDivided={true}
-              classname="paper--sec"
-              component={
-                <RatesTable
-                  order={order}
-                  orderBy={orderBy}
-                  sortedData={sortedDataB}
-                  handleRequestSort={handleRequestSort}
-                  selectedRow={selectedRow}
-                  clickedUserData={clickedUserData}
-                  selectedSearchItem={selectedSearchItem}
-                  handleEditUserBtnClick={handleEditUserBtnClick}
-                  handleTableRowClick={handleTableRowClick}
-                />
-              }
-            />
-          </React.Fragment>
-        ) : users.length <= 10 && users.length !== 0 ? (
-          <Paper
-            component={
-              <RatesTable
-                order={order}
-                orderBy={orderBy}
-                sortedData={sortedDataA}
-                handleRequestSort={handleRequestSort}
-                selectedRow={selectedRow}
-                clickedUserData={clickedUserData}
-                selectedSearchItem={selectedSearchItem}
-                handleEditUserBtnClick={handleEditUserBtnClick}
-                handleTableRowClick={handleTableRowClick}
+            {users.length > 10 && (
+              <Paper
+                isDivided={true}
+                classname="paper--sec"
+                component={
+                  <RatesTable
+                    order={order}
+                    orderBy={orderBy}
+                    sortedData={sortedDataB}
+                    handleRequestSort={handleRequestSort}
+                    selectedRow={selectedRow}
+                    clickedUserData={clickedUserData}
+                    selectedSearchItem={selectedSearchItem}
+                    handleEditUserBtnClick={handleEditUserBtnClick}
+                    handleTableRowClick={handleTableRowClick}
+                  />
+                }
               />
-            }
-          />
-        ) : users.length === 0 ? (
+            )}
+          </React.Fragment>
+        ) : (
           <Paper
             component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
           />
-        ) : null
-      ) : null}
-      {!isAdminVerified && (
+        )
+      ) : (
         <Paper
           component={
             <h3 className="mt4 mb4">

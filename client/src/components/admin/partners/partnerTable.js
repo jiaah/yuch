@@ -19,7 +19,7 @@ const PartnerTable = ({
   classes: { tableWrapper, table },
   partnerColumns,
   // local state
-  data,
+  sortedData,
   selectedRow,
   // global state
   selectedSearchItem,
@@ -32,7 +32,7 @@ const PartnerTable = ({
   handleTableRowClick,
 }) => {
   const getClickedUserData = async bankId => {
-    const filteredData = await data.filter(b => b.id === bankId);
+    const filteredData = await sortedData.filter(b => b.id === bankId);
     return filteredData[0];
   };
 
@@ -47,16 +47,16 @@ const PartnerTable = ({
     return handleButtonClick('delete');
   };
 
-  const emptyRows = data && 7 - data.length;
+  const emptyRows = sortedData && 7 - sortedData.length;
 
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="bank" size="small">
         <EnhancedTableHead list={partnerColumns} />
         <TableBody data-testid="bank-account--table">
-          {data &&
-            data.length !== 0 &&
-            data.map((row, index) => {
+          {sortedData &&
+            sortedData.length !== 0 &&
+            sortedData.map((row, index) => {
               const labelId = `enhanced-table-checkbox-${index}`;
               return (
                 <PartnerTableRow
