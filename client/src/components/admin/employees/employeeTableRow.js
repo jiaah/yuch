@@ -30,7 +30,7 @@ const EmployeeTableRow = ({
   handleDeleteBtnClick,
 }) => (
   <TableRow
-    key={row.id}
+    key={row.name}
     onClick={() => handleTableRowClick(row.id)}
     role="checkbox"
     // aria-checked={selectedRow === row.id}

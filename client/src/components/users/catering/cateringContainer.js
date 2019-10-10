@@ -20,6 +20,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 const CateringContainer = ({
   id,
   isActive,
+  businessType,
   date,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
   cateringActions: { fetchUserCatering, updateUserCatering },
@@ -94,6 +95,7 @@ const CateringContainer = ({
                 addFlashMessage={addFlashMessage}
                 isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
                 isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+                businessType={businessType}
               />
             </div>
           </React.Fragment>
@@ -117,6 +119,7 @@ const CateringContainer = ({
 const mapStateToProps = state => ({
   id: state.auth.id,
   isActive: state.auth.isActive,
+  businessType: state.auth.businessType,
   date: state.dateTracker.date,
   catering: state.httpHandler.data,
 });

@@ -14,8 +14,7 @@ const styles = () => ({
     margin: '25px 14px',
   },
   textFieldA: {
-    width: 120,
-    // fontSize: '20px',
+    width: 180,
     marginTop: '-4px',
   },
 });
@@ -51,9 +50,9 @@ const UserGuide = ({ classes: { textField, textFieldA } }) => {
             onChange={e => handleChange(e, 'companyName')}
             className={textFieldA}
           />
-          <p className="ml3 f-large">
+          <p className="ml3 f-regular">
             고객님, &#8199;
-            <span className="b">환영합니다</span>.
+            <span className="b f-regular">환영합니다</span>.
           </p>
         </div>
         <p className="mt5 f-large lh-2">

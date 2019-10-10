@@ -32,14 +32,14 @@
 .paper-label-box {
   display: flex;
   // write justify-between or end ..etc in component to be reusable
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: .5em;
+  padding-right: .5em;
   margin-top: 1em;
   margin-bottom: .5em;
 
   @include for-m-desktop-up {
-    padding-left: 3.5em;
-    padding-right: 3.5em;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }
 

@@ -28,7 +28,7 @@ const RevenueContainer = ({
 }) => {
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const fetchData = async when => {
     // YYYYMMDD -> YYYYMM
@@ -77,12 +77,13 @@ const RevenueContainer = ({
             handleClick={() => printDiv('print')}
           />
         </div>
-        {data.length !== 0 && (
-          <Paper
-            id="print"
-            component={<Table data={data} revenueFormat={revenueFormat} />}
-          />
-        )}
+        {data &&
+          data.length !== 0 && (
+            <Paper
+              id="print"
+              component={<Table data={data} revenueFormat={revenueFormat} />}
+            />
+          )}
         <IconMessage
           name="info"
           width="20"

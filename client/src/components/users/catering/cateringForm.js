@@ -7,11 +7,13 @@ const CateringForm = ({
   isSubmitting,
   isLunchQtyDisabled,
   isDinnerQtyDisabled,
+  businessType,
 }) => (
   <React.Fragment>
     <InputFields
       isLunchQtyDisabled={isLunchQtyDisabled}
       isDinnerQtyDisabled={isDinnerQtyDisabled}
+      businessType={businessType}
     />
     <FormButton
       typeValue="submit"

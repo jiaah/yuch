@@ -60,7 +60,7 @@ const EmployeeTable = ({
               const labelId = `enhanced-table-checkbox-${index}`;
               return (
                 <EmployeeTableRow
-                  key={row.id}
+                  key={row.name}
                   handleTableRowClick={handleTableRowClick}
                   handleEditBtnClick={handleEditBtnClick}
                   handleDeleteBtnClick={handleDeleteBtnClick}
