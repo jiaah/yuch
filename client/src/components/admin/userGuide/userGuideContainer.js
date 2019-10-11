@@ -55,7 +55,7 @@ const UserGuide = ({
   return (
     <div id="print" className="container-a r--w-60">
       <div className="print-width guide f-regular lh-2">
-        <div className="flex justify-between pb4 mt2 ml2">
+        <div className="flex justify-between pb4">
           <img className="guide--yuch-logo" src={logo} alt="logo" />
           <div className="flex">
             <Select
@@ -107,7 +107,7 @@ const UserGuide = ({
           />
         )}
         <p className={`b ${margin}`}>유청 서비스를 이용해 주셔서 감사합니다.</p>
-        <p className={`b ${margin} guide--footer`}>
+        <p className={`${margin} guide--footer c-text2`}>
           위탁급식 전문업체 | 성당, 교회 각종 행사모임 출장 뷔페 | 가정식 한식
           뷔폐
         </p>
