@@ -8,12 +8,23 @@ import { withStyles } from '@material-ui/core/styles';
 import EnhancedTableHead from '../../../shared/tableHead';
 import Modal from '../../../shared/modal';
 
-const styles = () => ({
+const styles = theme => ({
   point: { fontWeight: 'bold', color: '#E8716F' },
+  table: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 400,
+    },
+  },
+  resize: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '15.5px',
+    },
+  },
 });
 
 const MealPriceModal = ({
-  classes: { point },
+  classes: { point, table, resize },
   clickedUserData,
   getUserRates,
   hideModal,
@@ -35,8 +46,12 @@ const MealPriceModal = ({
       title={clickedUserData.companyName}
       handleClose={() => hideModal()}
       component={
-        <div className="mh2 media--justify-center">
-          <Table aria-labelledby="mealPrice" size="small">
+        <div className="mh2">
+          <Table
+            aria-labelledby="mealPrice"
+            size="small"
+            className={`${table} center`}
+          >
             <EnhancedTableHead list={userMealPriceColumns} />
             <TableBody>
               {data &&
@@ -50,13 +65,22 @@ const MealPriceModal = ({
                     return (
                       // eslint-disable-next-line react/no-array-index-key
                       <TableRow key={index}>
-                        <TableCell align="right" className={`${focus}`}>
+                        <TableCell
+                          align="right"
+                          className={`${focus} ${resize}`}
+                        >
                           {row.startedAt}
                         </TableCell>
-                        <TableCell align="right" className={`${focus}`}>
+                        <TableCell
+                          align="right"
+                          className={`${focus} ${resize}`}
+                        >
                           {endDate}
                         </TableCell>
-                        <TableCell align="right" className={`${focus}`}>
+                        <TableCell
+                          align="right"
+                          className={`${focus} ${resize}`}
+                        >
                           {row.mealPrice}
                         </TableCell>
                       </TableRow>
