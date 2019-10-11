@@ -1,4 +1,5 @@
 const { raw } = require('objection');
+const moment = require('moment');
 const knex = require('../database');
 const util = require('../lib/util');
 const Users = require('../models/Users');
@@ -95,6 +96,7 @@ exports.createUser = (req, res) => {
     businessNo,
     startDate,
   } = req.body.userInfo;
+
   return util.bcryptPassword(password).then(hashedPassword =>
     knex('users')
       .insert({
@@ -115,7 +117,9 @@ exports.createUser = (req, res) => {
       .returning('id')
       .then(user => {
         const userId = user[0];
-        const startedAt = startDate;
+        const startedAt = moment(startDate, 'YYYYMMDD')
+          .startOf('month')
+          .format('YYYY-MM-DD');
         return knex('meal_price').insert({
           mealPrice,
           userId,
