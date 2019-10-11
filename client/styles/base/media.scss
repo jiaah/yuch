@@ -66,23 +66,3 @@
     @content;
   }
 }
-
-/* print media */
-@media print {
-  .no-print {
-    display: none;
-  }
-
-  .print-width {
-    width: 99%;
-    height: 100%;
-    margin: auto;
-    text-align: center;
-    padding-top: 5px;
-  }
-
-  // .print-breakBefore {
-  //   // force 2 pages at times when it possibly could have fit on one
-  //   page-break-before: always;
-  // }
-}

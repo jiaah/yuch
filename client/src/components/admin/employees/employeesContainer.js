@@ -118,6 +118,7 @@ const Container = ({
                 { value: '계좌' },
                 { value: '연락처' },
               ]}
+              size="small"
             />
             {employees === '전체' && (
               <IconButton

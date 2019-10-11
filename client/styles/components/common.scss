@@ -16,3 +16,26 @@
     margin: 3em;
   }
 }
+
+/* print media */
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  .print-width {
+    width: 99%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
+  }
+
+  .print-breakAfter {
+    page-break-after: auto;
+  }
+
+  .print-tr {
+    page-break-inside: avoid;
+  }
+}

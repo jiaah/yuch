@@ -70,7 +70,8 @@ const SelectForm = ({
   }
   if (name === 'guide') {
     formControl = guide;
-  } else {
+  }
+  if (name === 'updateInvoice') {
     formControl = regular;
   }
 
