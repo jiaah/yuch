@@ -17,6 +17,10 @@ import {
 } from '../../formValidation';
 import { formatToYYYYMMDD } from '../../../utils/date';
 import { formattedToday } from '../../../helpers/moment';
+import {
+  userMealPriceColumns,
+  userAccountTableHeadColumns,
+} from '../../../data/data';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -32,6 +36,11 @@ const CreateUserModal = Loader({
 const EditUserModal = Loader({
   loader: () =>
     import('./editUserModal' /* webpackChunkName: 'EditAccountModal' */),
+});
+
+const MealPriceModal = Loader({
+  loader: () =>
+    import('./mealPriceModal' /* webpackChunkName: 'MealPriceModal' */),
 });
 
 const UserAccountContainer = ({
@@ -117,17 +126,21 @@ const UserAccountContainer = ({
       offFocusOnSelectdRow(),
     ]);
 
-  const getClickedUserData = async userId => {
+  const saveUserData = async userId => {
     const userData = await selctedUsers.filter(user => user.id === userId);
-    return userData[0];
+    return saveClickedItemData(userData[0]);
   };
 
   const handleEditUserBtnClick = async (e, userId) => {
     e.preventDefault();
-    const userData = await getClickedUserData(userId);
-    // to display user's data on edit modal
-    await saveClickedItemData(userData);
+    await saveUserData(userId);
     return handleButtonClick('edit');
+  };
+
+  const handleUserMealPriceBtnClick = async (e, userId) => {
+    e.preventDefault();
+    await saveUserData(userId);
+    return handleButtonClick('mealPrice');
   };
 
   const handleSuggestionSelected = () => {
@@ -179,11 +192,13 @@ const UserAccountContainer = ({
           allUsers && allUsers.length !== 0 ? (
             <UserTable
               handleEditUserBtnClick={handleEditUserBtnClick}
+              handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
               users={selctedUsers}
               selectedSearchItem={selectedSearchItem}
               clickedUserData={clickedUserData[0] || clickedUserData}
               handleTableRowClick={handleTableRowClick}
               selectedRow={selectedRow}
+              userAccountTableHeadColumns={userAccountTableHeadColumns}
             />
           ) : (
             <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
@@ -230,6 +245,13 @@ const UserAccountContainer = ({
           resetPasswordValidation={resetPasswordValidation}
           formatToYYYYMMDD={formatToYYYYMMDD}
           formattedToday={formattedToday}
+        />
+      ) : clickedBtn === 'mealPrice' && clickedUserData.length !== 0 ? (
+        <MealPriceModal
+          clickedUserData={clickedUserData[0]}
+          hideModal={hideModal}
+          getUserRates={getUserRates}
+          userMealPriceColumns={userMealPriceColumns}
         />
       ) : null}
     </div>

@@ -19,6 +19,7 @@ const UserTableRow = ({
   classes: { resize, point },
   handleTableRowClick,
   handleEditUserBtnClick,
+  handleUserMealPriceBtnClick,
   row,
   selectedRow,
   labelId,
@@ -103,7 +104,7 @@ const UserTableRow = ({
             width="19"
             height="19"
             viewBox="0 0 24 24"
-            handleClick={e => handleEditUserBtnClick(e, row.id)}
+            handleClick={e => handleUserMealPriceBtnClick(e, row.id)}
           />
         </TableCell>
         <TableCell align="right" className={resize}>

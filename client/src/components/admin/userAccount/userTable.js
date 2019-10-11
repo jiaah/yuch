@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import EnhancedTableHead from '../../../shared/tableHeadwithSortLabel';
 import { stableSort, getSorting } from '../../../utils/sort';
 import UserTableRow from './userTableRow';
-import * as data from '../../../data/data';
 
 const styles = () => ({
   tableWrapper: {
@@ -22,6 +21,7 @@ const styles = () => ({
 
 const UserTable = ({
   classes: { tableWrapper, table },
+  userAccountTableHeadColumns,
   // local states
   users,
   selectedRow,
@@ -30,6 +30,7 @@ const UserTable = ({
   selectedSearchItem,
   // fncs from parent component
   handleEditUserBtnClick,
+  handleUserMealPriceBtnClick,
   handleTableRowClick,
 }) => {
   // order by 'desc' / 'asc'
@@ -64,7 +65,7 @@ const UserTable = ({
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
-            list={data.userAccountTableHeadColumns}
+            list={userAccountTableHeadColumns}
           />
           <TableBody>
             {users &&
@@ -78,6 +79,7 @@ const UserTable = ({
                       key={row.id}
                       handleTableRowClick={handleTableRowClick}
                       handleEditUserBtnClick={handleEditUserBtnClick}
+                      handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
                       row={row}
                       selectedRow={selectedRow}
                       labelId={labelId}

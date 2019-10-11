@@ -713,3 +713,24 @@ export const employeeBankColumns = [
     label: '계좌번호',
   },
 ];
+
+export const userMealPriceColumns = [
+  {
+    id: 'startedAt',
+    numeric: true,
+    disablePadding: false,
+    label: '시작일',
+  },
+  {
+    id: 'endedAt',
+    numeric: true,
+    disablePadding: false,
+    label: '종료일',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+];

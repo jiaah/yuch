@@ -6,7 +6,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
-import { stableSort, getSorting } from '../../../utils/sort';
 import BankTableRow from './bankTableRow';
 
 const styles = () => ({
@@ -52,22 +51,20 @@ const BankTable = ({
         <TableBody data-testid="bank-account--table">
           {bankAccount &&
             bankAccount.length !== 0 &&
-            stableSort(bankAccount, getSorting('asc', 'id')).map(
-              (row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <BankTableRow
-                    key={row.id}
-                    handleTableRowClick={handleTableRowClick}
-                    handleEditBtnClick={handleEditBtnClick}
-                    handleDeleteBtnClick={handleDeleteBtnClick}
-                    row={row}
-                    selected={selected}
-                    labelId={labelId}
-                  />
-                );
-              },
-            )}
+            bankAccount.map((row, index) => {
+              const labelId = `enhanced-table-checkbox-${index}`;
+              return (
+                <BankTableRow
+                  key={row.id}
+                  handleTableRowClick={handleTableRowClick}
+                  handleEditBtnClick={handleEditBtnClick}
+                  handleDeleteBtnClick={handleDeleteBtnClick}
+                  row={row}
+                  selected={selected}
+                  labelId={labelId}
+                />
+              );
+            })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 49 * emptyRows }}>
               <TableCell colSpan={6} />

@@ -4,7 +4,7 @@ import FormikField from '../../../shared/form/formikField';
 import FormButton from '../../../shared/form/formButton';
 
 const BankForm = ({ isSubmitting }) => (
-  <div className=" mt4">
+  <div className="mt4">
     <div className="mh1 media--justify-around">
       <FormikField
         label="예금주"

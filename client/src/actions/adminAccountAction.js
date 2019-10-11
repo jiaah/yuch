@@ -170,7 +170,7 @@ export const getUserRates = id => async dispatch => {
       type: types.HTTP_SUCCESS,
       api: 'getUserRates',
     });
-    return res;
+    return res.data;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
