@@ -86,14 +86,16 @@ const CateringTableRow = ({
         {currentlyEditing ? (
           <React.Fragment>
             <TableCell padding="checkbox">
-              <IconFormButton
-                name="done"
-                width="19"
-                height="19"
-                viewBox="0 0 24 24"
-                isSubmitting={isSubmitting}
-                handleClick={() => updateMealQty(userId)}
-              />
+              <div className="table-btn--done">
+                <IconFormButton
+                  name="done"
+                  width="19"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  isSubmitting={isSubmitting}
+                  handleClick={() => updateMealQty(userId)}
+                />
+              </div>
             </TableCell>
             <TableCell padding="checkbox">
               <div className="table-btn--close">
