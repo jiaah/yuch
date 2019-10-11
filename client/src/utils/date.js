@@ -128,6 +128,17 @@ export const userEndDate = (data, limitedDate) => {
 export const isActiveUser = (startDate, endDate) => {
   const formattedStartDate = formatWithDash(startDate);
   const today = moment().format('YYYY-MM-DD');
-  const isActive = moment(today).isBetween(formattedStartDate, endDate, 'days');
+  const isActive = moment(today).isBetween(
+    formattedStartDate,
+    endDate,
+    'days',
+    '[)',
+  );
+  return isActive;
+};
+
+export const isThisMonth = (startDate, endDate) => {
+  const today = moment().format('YYYY-MM-DD');
+  const isActive = moment(today).isBetween(startDate, endDate, 'months', '[]');
   return isActive;
 };

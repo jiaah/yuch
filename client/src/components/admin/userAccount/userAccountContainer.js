@@ -15,7 +15,7 @@ import {
   editUserAccountValidation,
   resetPasswordValidation,
 } from '../../formValidation';
-import { formatToYYYYMMDD } from '../../../utils/date';
+import { formatToYYYYMMDD, isThisMonth } from '../../../utils/date';
 import { formattedToday } from '../../../helpers/moment';
 import {
   userMealPriceColumns,
@@ -252,6 +252,7 @@ const UserAccountContainer = ({
           hideModal={hideModal}
           getUserRates={getUserRates}
           userMealPriceColumns={userMealPriceColumns}
+          isThisMonth={isThisMonth}
         />
       ) : null}
     </div>

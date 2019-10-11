@@ -29,6 +29,7 @@ const MealPriceModal = ({
   getUserRates,
   hideModal,
   userMealPriceColumns,
+  isThisMonth,
 }) => {
   const [data, setData] = useState(null);
 
@@ -60,7 +61,9 @@ const MealPriceModal = ({
                   if (index < 3) {
                     const endDate =
                       row.endedAt === '9999-12-31' ? '-' : row.endedAt;
-                    const focus = row.endedAt === '9999-12-31' ? point : null;
+                    const focus = isThisMonth(row.startedAt, row.endedAt)
+                      ? point
+                      : null;
 
                     return (
                       // eslint-disable-next-line react/no-array-index-key
