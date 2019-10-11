@@ -12,7 +12,7 @@ const getsByUserId = async userId => {
         raw('to_char("endedAt", \'YYYY-MM-DD\')').as('endedAt'),
       )
       .where({ userId })
-      .orderBy('startedAt', 'ASC');
+      .orderBy('startedAt', 'DESC');
   } catch (error) {
     throw error;
   }
