@@ -4,17 +4,17 @@ const Invoice = require('../models/Invoice');
 const cateringService = require('../services/cateringService');
 const specialService = require('../services/specialService');
 const mealPriceService = require('../services/mealPriceService');
-const userService = require('../services/userService');
 const bankAccountService = require('../services/bankAccountService');
 const Users = require('../models/Users');
 
-const Lists = async (startedAt, endedAt) => {
+const Lists = async (date, startedAt, endedAt) => {
   try {
     const results = [];
     const users = await Users.query()
       .whereNot('username', 'yuch')
-      .whereRaw(`"startDate" <= '${startedAt}'`)
-      .whereRaw(`"endDate" >= '${endedAt}'`)
+
+      .whereRaw(`to_char("startDate", 'YYYYMM') <= '${date}'`)
+      .whereRaw(`to_char("endDate", 'YYYYMM') >= '${date}'`)
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax
