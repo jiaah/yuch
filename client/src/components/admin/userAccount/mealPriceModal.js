@@ -44,10 +44,10 @@ const MealPriceModal = ({
 
   return (
     <Modal
-      title={clickedUserData.companyName}
+      title={`${clickedUserData.companyName} 식수가격표`}
       handleClose={() => hideModal()}
       component={
-        <div className="mh2">
+        <div className="mh2 user-mealPrice">
           <Table
             aria-labelledby="mealPrice"
             size="small"

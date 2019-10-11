@@ -72,3 +72,15 @@
 .guide--margin {
   margin-top: 3em;
 }
+
+.user-mealPrice {
+  border: 1px solid #fac59c;
+  padding: .5em;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include for-desktop-up {
+    width: 76%;
+    padding: 1.5em;
+  }
+}
