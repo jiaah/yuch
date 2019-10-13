@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 /* --- Components --- */
-import { formattedToday } from '../../../helpers/moment';
 import EndServiceForm from './endServiceForm';
 import Loader from '../../loader';
 
@@ -18,13 +17,23 @@ const EndServiceFormBox = ({
   formatToYYYYMMDD,
   closeSubModal,
   handleCloseModal,
+  formattedToday,
 }) => {
   // state endService & date -> values from db : fomattedToday
+
+  const endDateToDisplay =
+    clickedUserData.endDate !== '9999-12-31'
+      ? clickedUserData.endDate
+      : formattedToday;
+
   const [state, setState] = useState({
-    endService: !!clickedUserData.endDate,
-    endDate: clickedUserData.endDate || formattedToday,
+    endService: clickedUserData.endDate !== '9999-12-31',
+    endDate: endDateToDisplay,
+    startDate: clickedUserData.startDate,
   });
-  const { endService, endDate } = state;
+
+  const { endService, endDate, startDate } = state;
+
   const [isSubmitting, setSubmitting] = useState(false);
   const [verification, setVerification] = useState(false);
 
@@ -72,7 +81,7 @@ const EndServiceFormBox = ({
           isSubmitting={isSubmitting}
           endService={endService}
           endDate={endDate}
-          startDate={clickedUserData.startDate}
+          startDate={startDate}
           handleChange={handleChange}
           onVerification={onVerification}
         />

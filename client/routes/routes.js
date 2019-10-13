@@ -67,7 +67,7 @@ const UserBusinessNo = Loader({
 
 const UserGuide = Loader({
   loader: () =>
-    import('../src/components/admin/userGuide' /* webpackChunkName: 'UserGuide' */),
+    import('../src/components/admin/userGuide/userGuideContainer' /* webpackChunkName: 'UserGuide' */),
 });
 
 // 식수현황

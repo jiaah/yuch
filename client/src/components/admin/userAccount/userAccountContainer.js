@@ -16,6 +16,7 @@ import {
   resetPasswordValidation,
 } from '../../formValidation';
 import { formatToYYYYMMDD } from '../../../utils/date';
+import { formattedToday } from '../../../helpers/moment';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -38,7 +39,13 @@ const UserAccountContainer = ({
   clickedUserData,
   selectedSearchItem,
   modalActions: { showModal, hideModal },
-  adminActions: { getUsers, createUser, editUser, handleEndingService },
+  adminActions: {
+    getUsers,
+    createUser,
+    editUser,
+    handleEndingService,
+    getUserRates,
+  },
   selectedActions: {
     resetSelectedItemValue,
     saveClickedItemData,
@@ -48,9 +55,9 @@ const UserAccountContainer = ({
   resetPassword,
 }) => {
   const [users, setUsers] = useState({
-    activeUsers: [],
-    inActiveUsers: [],
-    allUsers: [],
+    activeUsers: null,
+    inActiveUsers: null,
+    allUsers: null,
   });
   const [bankAccount, setBankAccount] = useState([]);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -144,7 +151,7 @@ const UserAccountContainer = ({
           </div>
           <p className="f-mini paper-label-box--number tablet">
             총 고객 수&#8201;&#8201;
-            <span className="b">{selctedUsers.length}</span>
+            <span className="b">{selctedUsers && selctedUsers.length}</span>
           </p>
         </div>
         <div className="flex">
@@ -169,7 +176,7 @@ const UserAccountContainer = ({
       </div>
       <Paper
         component={
-          allUsers.length !== 0 ? (
+          allUsers && allUsers.length !== 0 ? (
             <UserTable
               handleEditUserBtnClick={handleEditUserBtnClick}
               users={selctedUsers}
@@ -222,6 +229,7 @@ const UserAccountContainer = ({
           editUserAccountValidation={editUserAccountValidation}
           resetPasswordValidation={resetPasswordValidation}
           formatToYYYYMMDD={formatToYYYYMMDD}
+          formattedToday={formattedToday}
         />
       ) : null}
     </div>

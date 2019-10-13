@@ -28,15 +28,22 @@ const getRevenues = async (startDate, endDate) => {
       const sumTotalResto =
         (await getSumTotalResto(subStartDate, subEndDate)) +
         sumTotalInvoiceRestaurant;
+
       const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
         subEndDate,
+        true,
       );
 
-      const sumTotalInvoice = await getSumTotalInvoice(
+      const sumTotalInvoiceSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
-        'catering',
+        subEndDate,
+        false,
       );
+
+      const sumTotalInvoice =
+        (await getSumTotalInvoice(subStartDate, 'catering')) +
+        sumTotalInvoiceSpecialMeal;
 
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
@@ -79,15 +86,22 @@ const getTotalRevenues = async (startDate, endDate) => {
       const sumTotalResto =
         (await getSumTotalResto(subStartDate, subEndDate)) +
         sumTotalInvoiceRestaurant;
+
       const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
         subEndDate,
+        true,
       );
 
-      const sumTotalInvoice = await getSumTotalInvoice(
+      const sumTotalInvoiceSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
-        'catering',
+        subEndDate,
+        false,
       );
+
+      const sumTotalInvoice =
+        (await getSumTotalInvoice(subStartDate, 'catering')) +
+        sumTotalInvoiceSpecialMeal;
 
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
@@ -113,12 +127,19 @@ const getSumTotalResto = async (startDate, endDate) => {
   return Number(result.sumTotal) || 0;
 };
 
-const getSumTotalSpecialMeal = async (startDate, endDate) => {
+const getSumTotalSpecialMeal = async (startDate, endDate, isUserIdRequired) => {
   try {
-    const result = await SpecialMeal.query()
+    const qb = SpecialMeal.query()
       .select(raw('sum("sumTotal")').as('sumTotal'))
-      .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`)
-      .first();
+      .whereRaw(`date BETWEEN '${startDate}' AND '${endDate}'`);
+
+    if (isUserIdRequired) {
+      qb.whereNotNull('userId');
+    } else {
+      qb.whereNull('userId');
+    }
+
+    const result = await qb.first();
     return Number(result.sumTotal) || 0;
   } catch (error) {
     throw error;

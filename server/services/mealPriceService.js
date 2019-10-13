@@ -1,6 +1,22 @@
 const moment = require('moment');
+const { raw } = require('objection');
 const { transaction } = require('objection');
 const MealPrice = require('../models/MealPrice');
+
+const getsByUserId = async userId => {
+  try {
+    return MealPrice.query()
+      .select(
+        'mealPrice',
+        raw('to_char("startedAt", \'YYYY-MM-DD\')').as('startedAt'),
+        raw('to_char("endedAt", \'YYYY-MM-DD\')').as('endedAt'),
+      )
+      .where({ userId })
+      .orderBy('startedAt', 'ASC');
+  } catch (error) {
+    throw error;
+  }
+};
 
 const getMealPriceByUserIdWithDate = async (userId, date) => {
   try {
@@ -100,4 +116,5 @@ const reserveMealPrice = async (userId, mealPrice, reserveDate) => {
 module.exports = {
   getMealPriceByUserIdWithDate,
   reserveMealPrice,
+  getsByUserId,
 };

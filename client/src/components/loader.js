@@ -3,21 +3,19 @@ import Loadable from 'react-loadable';
 import Loading from './loading';
 
 const MessageBox = (props, msg) => (
-  <div className="error--container">
-    <div id="notfound">
-      <div className="notfound">
-        <div className="notfound-404">
-          <h1>Oops!</h1>
-          <h2>{msg}</h2>
-        </div>
-        <button
-          className="routing-retry--btn"
-          type="button"
-          onClick={props.retry}
-        >
-          Retry
-        </button>
+  <div id="notfound">
+    <div className="notfound">
+      <div className="notfound-404">
+        <h1>Oops!</h1>
+        <h2>{msg}</h2>
       </div>
+      <button
+        className="routing-retry--btn"
+        type="button"
+        onClick={props.retry}
+      >
+        Retry
+      </button>
     </div>
   </div>
 );

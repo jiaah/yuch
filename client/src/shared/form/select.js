@@ -15,6 +15,9 @@ const styles = theme => ({
   users: {
     margin: theme.spacing(-1.4, 1.3, 0, 0),
   },
+  guide: {
+    margin: theme.spacing(1.4, 1.3, 0, 0),
+  },
   regular: {
     margin: '1em',
   },
@@ -35,7 +38,7 @@ const styles = theme => ({
 });
 
 const SelectForm = ({
-  classes: { users, text, small, large, regular },
+  classes: { users, text, small, large, regular, guide },
   label,
   name,
   options,
@@ -64,30 +67,35 @@ const SelectForm = ({
   let formControl;
   if (name === 'users' || name === 'employees') {
     formControl = users;
+  }
+  if (name === 'guide') {
+    formControl = guide;
   } else {
     formControl = regular;
   }
 
   return (
-    <FormControl variant="outlined" className={`${formControl} ${width}`}>
-      <InputLabel htmlFor="filled-age-simple">{label}</InputLabel>
-      <Select
-        value={selectedValue}
-        renderValue={selectedValue => selectedValue}
-        onChange={handleChange}
-        className={font}
-        inputProps={{
-          name,
-          id: 'users-active-status',
-        }}
-      >
-        {options.map(item => (
-          <MenuItem key={item.value} className={font} value={item.value}>
-            {item.value}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <div className="no-print">
+      <FormControl variant="outlined" className={`${formControl} ${width}`}>
+        <InputLabel htmlFor="filled-age-simple">{label}</InputLabel>
+        <Select
+          value={selectedValue}
+          renderValue={selectedValue => selectedValue}
+          onChange={handleChange}
+          className={font}
+          inputProps={{
+            name,
+            id: 'users-active-status',
+          }}
+        >
+          {options.map(item => (
+            <MenuItem key={item.value} className={font} value={item.value}>
+              {item.value}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
   );
 };
 

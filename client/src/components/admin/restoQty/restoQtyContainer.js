@@ -10,7 +10,7 @@ import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import CateringPaper from './restoQtyPaper';
+import CateringPaper from '../catering/cateringPaper';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -27,7 +27,7 @@ const RestoQtyContainer = ({
   selectedActions: { saveSelectedItemValue, resetSelectedItemValue },
   addFlashMessage,
 }) => {
-  const [catering, setCatering] = useState([]);
+  const [catering, setCatering] = useState(null);
 
   // switch text <-> textfield
   const [editIndex, setEditIndex] = useState(null);

@@ -10,6 +10,7 @@ const CateringFormBox = ({
   addFlashMessage,
   isLunchQtyDisabled,
   isDinnerQtyDisabled,
+  businessType,
 }) => {
   const handleUpdateCatering = async (values, { setSubmitting }) => {
     const updateDate = catering.date;
@@ -40,6 +41,7 @@ const CateringFormBox = ({
             {...props}
             isLunchQtyDisabled={isLunchQtyDisabled}
             isDinnerQtyDisabled={isDinnerQtyDisabled}
+            businessType={businessType}
           />
         </Form>
       )}

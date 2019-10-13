@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
-import Paper from '../../../shared/paper';
+import Paper from './partnerPaper';
 import Loader from '../../loader';
-import Table from './partnerTable';
 import { partnerColumns } from '../../../data/data';
 import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -32,7 +31,7 @@ const Container = ({
   clickedUserData,
   selectedSearchItem,
 }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
 
   // selected row on click
@@ -105,24 +104,15 @@ const Container = ({
           </div>
         </div>
         <Paper
-          component={
-            data && data.length !== 0 ? (
-              <Table
-                data={data}
-                clickedBtn={clickedBtn}
-                selectedRow={selectedRow}
-                selectedSearchItem={selectedSearchItem}
-                saveClickedItemData={saveClickedItemData}
-                saveSelectedItemValue={saveSelectedItemValue}
-                handleButtonClick={handleButtonClick}
-                handleTableRowClick={handleTableRowClick}
-                partnerColumns={partnerColumns}
-                clickedUserData={clickedUserData[0] || clickedUserData}
-              />
-            ) : (
-              <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
-            )
-          }
+          data={data}
+          selectedRow={selectedRow}
+          selectedSearchItem={selectedSearchItem}
+          saveClickedItemData={saveClickedItemData}
+          saveSelectedItemValue={saveSelectedItemValue}
+          handleButtonClick={handleButtonClick}
+          handleTableRowClick={handleTableRowClick}
+          partnerColumns={partnerColumns}
+          clickedUserData={clickedUserData}
         />
         {clickedBtn && (
           <Modal

@@ -185,6 +185,10 @@ export const userCateringMsg = (
     </p>
     <p className="f-mini">
       &#42; 변경 가능시간이 지난 후, 변경을 원하시면 {admin.companyName}
+      으로 문의해주시기 바랍니다&#46; <br />
+      &#42; {admin.companyName}
+      식당 이용 고객님은 홈페이지에서 야식을 신청할 수 없습니다. 야식 배달은{' '}
+      {admin.companyName}
       으로 문의해주시기 바랍니다&#46;
     </p>
   </div>
@@ -227,7 +231,7 @@ export const adminCateringMsg = (
       </Link>{' '}
       클릭
     </p> */}
-    <p className="f-mini pt3">
+    {/* <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
       <br />
       고객 계정을 활성화 &#8201;&#8594;&#8199;
@@ -240,7 +244,7 @@ export const adminCateringMsg = (
         인보이스 재발행
       </Link>
       &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
-    </p>
+    </p> */}
   </div>
 );
 
@@ -347,11 +351,11 @@ export const userSpecialMealNotice = (
       반찬 &#40;10가지&#41;&#8199;&#8199;&#8199;&#8199;10&#44;000 원
     </p>
     <p className="f-mini">
-      &#42; 특식 신청 또는 변경을 원하시면 유청에{' '}
-      <span className="c-point2">전화문의</span> 주시기 바랍니다&#46;
+      &#42; <span className="c-point2">각종 행사 모임 출장 뷔폐</span>
       <br />
       &#42; 특식의 반찬수와 가격은 조정가능합니다&#46; <br />
-      &#42; <span className="c-point2">각종 행사 모임 출장 뷔폐</span>
+      &#42; 특식 신청 또는 변경을 원하시면 유청에{' '}
+      <span className="c-point2">전화문의</span> 주시기 바랍니다&#46;
       <br />
       &#42; 월말 거래명세서에 포함되는 특식만 리스트에 보입니다. 별개로
       정산하신다면 시스템에 등록되지 않습니다.

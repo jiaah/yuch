@@ -4,7 +4,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
-import { thisMonth } from '../../../helpers/moment';
 import { formatWithSlash } from '../../../utils/date';
 
 const styles = theme => ({
@@ -42,11 +41,12 @@ const UserTableRow = ({
         ? '식당'
         : null;
 
-  // display new mealPrice if reserveDate is thisMonth.
-  const newMealPrice =
-    row.reserveDate === thisMonth ? row.reservePrice : row.mealPrice;
   const formattedStartDate = row.startDate && formatWithSlash(row.startDate);
-  const formattedEndDate = row.endDate && formatWithSlash(row.endDate);
+
+  const formattedEndDate =
+    row.endDate && row.endDate === '9999-12-31'
+      ? null
+      : formatWithSlash(row.endDate);
 
   return (
     <React.Fragment>
@@ -98,7 +98,13 @@ const UserTableRow = ({
           {row.lateNightSnackQty}
         </TableCell>
         <TableCell align="right" className={resize}>
-          {newMealPrice}
+          <IconButton
+            name="note"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            handleClick={e => handleEditUserBtnClick(e, row.id)}
+          />
         </TableCell>
         <TableCell align="right" className={resize}>
           {bankAccount.accountHolder}

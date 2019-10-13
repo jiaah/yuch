@@ -8,6 +8,7 @@ const initialState = {
   users: '활성 계정',
   updateInvoice: lastMonth,
   employees: '전체',
+  guide: '식수 변경',
 };
 
 const selectedItem = (state = initialState, action) => {
@@ -55,6 +56,7 @@ const selectedItem = (state = initialState, action) => {
       if (action.name === 'users') resetValue = '활성 계정';
       if (action.name === 'updateInvoice') resetValue = lastMonth;
       if (action.name === 'employees') resetValue = '전체';
+      if (action.name === 'guide') resetValue = '식수 변경';
 
       return {
         ...state,

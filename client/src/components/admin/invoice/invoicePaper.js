@@ -30,10 +30,10 @@ const InvoicePaper = ({
 
   return (
     <div className="paper">
-      {data.length !== 0 && data.length > 10 ? (
+      {data && data.length !== 0 ? (
         <React.Fragment>
           <Paper
-            isDivided={true}
+            isDivided={data.length > 10 && true}
             component={
               <RatesTable
                 order={order}
@@ -46,37 +46,27 @@ const InvoicePaper = ({
               />
             }
           />
-          <Paper
-            isDivided={true}
-            classname="paper--sec"
-            component={
-              <RatesTable
-                order={order}
-                orderBy={orderBy}
-                sortedData={sortedDataB}
-                handleRequestSort={handleRequestSort}
-                selectedRow={selectedRow}
-                searchedValue={searchedValue}
-                onfocusOnSelectdRow={onfocusOnSelectdRow}
-              />
-            }
-          />
-        </React.Fragment>
-      ) : data.length !== 0 && data.length <= 10 ? (
-        <Paper
-          component={
-            <RatesTable
-              order={order}
-              orderBy={orderBy}
-              sortedData={sortedDataA}
-              handleRequestSort={handleRequestSort}
-              selectedRow={selectedRow}
-              searchedValue={searchedValue}
-              onfocusOnSelectdRow={onfocusOnSelectdRow}
+          {data.length > 10 && (
+            <Paper
+              isDivided={true}
+              classname="paper--sec"
+              component={
+                <RatesTable
+                  order={order}
+                  orderBy={orderBy}
+                  sortedData={sortedDataB}
+                  handleRequestSort={handleRequestSort}
+                  selectedRow={selectedRow}
+                  searchedValue={searchedValue}
+                  onfocusOnSelectdRow={onfocusOnSelectdRow}
+                />
+              }
             />
-          }
-        />
-      ) : null}
+          )}
+        </React.Fragment>
+      ) : (
+        <Paper component={<h3 className="mt4 mb4">데이터가 없습니다.</h3>} />
+      )}
     </div>
   );
 };

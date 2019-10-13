@@ -228,13 +228,15 @@ const updateByUserIdWithDate = async (
 const getLists = async (date, businessType) => {
   try {
     const results = [];
+    const parsedDate = moment(date, 'YYYYMMDD');
+    const formatedDate = parsedDate.format('YYYY-MM-DD');
     const users = await Users.query()
       .where({ isAdmin: false, businessType })
       // .where(builder => {
       //   builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
       // })
-      .whereRaw('"startDate" <= NOW()')
-      .whereRaw('"endDate" > NOW()')
+      .whereRaw(`"startDate" <= '${formatedDate}'`)
+      .whereRaw(`"endDate" > '${formatedDate}'`)
       .orderBy('companyName', 'asc');
 
     // eslint-disable-next-line no-restricted-syntax

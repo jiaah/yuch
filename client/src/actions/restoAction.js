@@ -3,7 +3,6 @@ import * as types from './actionTypes';
 
 // restaurant clients 식수
 export const fetchUsersResto = date => async dispatch => {
-  console.log(' date: ', date);
   dispatch({ type: types.HTTP_REQUEST, api: 'fetchUserResto' });
 
   try {

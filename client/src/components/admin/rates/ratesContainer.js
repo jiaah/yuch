@@ -39,7 +39,7 @@ const RatesContainer = ({
   show,
   updateRatesMonth,
 }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);

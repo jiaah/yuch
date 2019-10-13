@@ -74,15 +74,14 @@ const CateringPaper = ({
 
   return (
     <div className="paper">
-      {users.length !== 0 && users.length > 10 ? (
+      {users && users.length !== 0 ? (
         <React.Fragment>
           <Paper
-            isDivided={true}
+            isDivided={users.length > 10 && true}
             component={
               <CateringTable
                 sortedData={sortedDataA}
                 selectedItemValue={selectedItemValue}
-                updateUserCatering={updateUserCatering}
                 saveSelectedItemValue={saveSelectedItemValue}
                 resetSelectedItemValue={resetSelectedItemValue}
                 startEditing={startEditing}
@@ -98,57 +97,34 @@ const CateringPaper = ({
               />
             }
           />
-          <Paper
-            classname="paper--sec"
-            isDivided={true}
-            component={
-              <CateringTable
-                sortedData={sortedDataB}
-                selectedItemValue={selectedItemValue}
-                updateUserCatering={updateUserCatering}
-                saveSelectedItemValue={saveSelectedItemValue}
-                resetSelectedItemValue={resetSelectedItemValue}
-                startEditing={startEditing}
-                endEditing={endEditing}
-                editIndex={editIndex}
-                handleTableRowClick={handleTableRowClick}
-                selectedRow={selectedRow}
-                handleUpdate={handleUpdate}
-                validation={validation}
-                lunchQtyErr={lunchQtyErr}
-                dinnerQtyErr={dinnerQtyErr}
-                lateNightSnackQtyErr={lateNightSnackQtyErr}
-              />
-            }
-          />
-        </React.Fragment>
-      ) : users.length !== 0 && users.length <= 10 ? (
-        <Paper
-          component={
-            <CateringTable
-              sortedData={sortedDataA}
-              selectedItemValue={selectedItemValue}
-              updateUserCatering={updateUserCatering}
-              saveSelectedItemValue={saveSelectedItemValue}
-              resetSelectedItemValue={resetSelectedItemValue}
-              startEditing={startEditing}
-              endEditing={endEditing}
-              editIndex={editIndex}
-              handleTableRowClick={handleTableRowClick}
-              selectedRow={selectedRow}
-              handleUpdate={handleUpdate}
-              validation={validation}
-              lunchQtyErr={lunchQtyErr}
-              dinnerQtyErr={dinnerQtyErr}
-              lateNightSnackQtyErr={lateNightSnackQtyErr}
+          {users.length > 10 && (
+            <Paper
+              classname="paper--sec"
+              isDivided={true}
+              component={
+                <CateringTable
+                  sortedData={sortedDataB}
+                  selectedItemValue={selectedItemValue}
+                  saveSelectedItemValue={saveSelectedItemValue}
+                  resetSelectedItemValue={resetSelectedItemValue}
+                  startEditing={startEditing}
+                  endEditing={endEditing}
+                  editIndex={editIndex}
+                  handleTableRowClick={handleTableRowClick}
+                  selectedRow={selectedRow}
+                  handleUpdate={handleUpdate}
+                  validation={validation}
+                  lunchQtyErr={lunchQtyErr}
+                  dinnerQtyErr={dinnerQtyErr}
+                  lateNightSnackQtyErr={lateNightSnackQtyErr}
+                />
+              }
             />
-          }
-        />
+          )}
+        </React.Fragment>
       ) : (
         <Paper
-          component={
-            <h3 className="mt4 mb4">등록된 위탁급식 고객이 없습니다.</h3>
-          }
+          component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}
         />
       )}
     </div>

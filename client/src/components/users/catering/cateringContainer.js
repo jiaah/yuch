@@ -19,13 +19,14 @@ import { addFlashMessage } from '../../../actions/messageAction';
 
 const CateringContainer = ({
   id,
+  isActive,
+  businessType,
   date,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
   cateringActions: { fetchUserCatering, updateUserCatering },
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
-  console.log('catering: ', catering);
 
   const fetchData = async when => {
     const res = await fetchUserCatering(id, when);
@@ -63,47 +64,62 @@ const CateringContainer = ({
       ? `${formattedEndDate} 일자로 고객님의 위탁급식 서비스가 종료될 예정입니다.`
       : '7일 내의 식수량만 미리 등록 할 수 있습니다.';
 
-  return (
-    <div className="container-b">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={resetDateDaily}
-      >
-        식수현황
-      </h2>
-      {catering && (
-        <React.Fragment>
-          <DateButtons
-            date={date}
-            reload={true}
-            unit="dd"
-            formattedDate={formattedDate}
-            startTime={startDate}
-            endTime={endDate}
-            updateDate={updateDateDaily}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            dateForwardMessage={message}
-          />
-          <div className="input-table">
-            <CateringFormBox
-              catering={catering}
-              updateUserCatering={updateUserCatering}
+  if (isActive) {
+    return (
+      <div className="container-b">
+        <h2
+          className="pointer"
+          title="오늘 일자로 돌아가기"
+          onClick={resetDateDaily}
+        >
+          식수현황
+        </h2>
+        {catering && (
+          <React.Fragment>
+            <DateButtons
+              date={date}
+              reload={true}
+              unit="dd"
+              formattedDate={formattedDate}
+              startTime={startDate}
+              endTime={endDate}
+              updateDate={updateDateDaily}
               addFlashMessage={addFlashMessage}
-              isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
-              isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+              fetchData={fetchData}
+              dateForwardMessage={message}
             />
-          </div>
-        </React.Fragment>
-      )}
-      {userCateringMsg}
+            <div className="input-table">
+              <CateringFormBox
+                catering={catering}
+                updateUserCatering={updateUserCatering}
+                addFlashMessage={addFlashMessage}
+                isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
+                isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+                businessType={businessType}
+              />
+            </div>
+          </React.Fragment>
+        )}
+        {userCateringMsg}
+      </div>
+    );
+  }
+
+  return (
+    <div id="notfound">
+      <div className="notfound">
+        <h2>
+          유청 서비스가 시작되지 않았거나 종료되어 식수신청을 할 수 없습니다.
+        </h2>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   id: state.auth.id,
+  isActive: state.auth.isActive,
+  businessType: state.auth.businessType,
   date: state.dateTracker.date,
   catering: state.httpHandler.data,
 });
