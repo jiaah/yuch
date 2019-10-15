@@ -66,7 +66,7 @@ const styles = theme => ({
       width: 260,
     },
   },
-  // special_meal
+  // address
   textFieldH: {
     width: 260,
     [theme.breakpoints.up('md')]: {

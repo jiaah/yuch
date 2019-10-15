@@ -44,23 +44,16 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
           placeholder="000-000-0000"
           required
         />
-        <FormikField
-          label="주소"
-          name="address"
-          type="text"
-          icon="address"
-          styleName="textFieldC"
-        />
       </div>
       <div className="media--flex-column-m">
-        <FormikField
+        {/* <FormikField
           label="식수가격"
           name="mealPrice"
           type="text"
           icon="money"
           styleName="textFieldC"
           disabled
-        />
+        /> */}
         <FormikField
           label="이메일"
           name="email"
@@ -112,6 +105,13 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
         styleName="textFieldD"
       />
     </div>
+    <FormikField
+      label="주소"
+      name="address"
+      type="text"
+      icon="address"
+      styleName="textFieldH"
+    />
     <RadioButtonFormControl
       label="비지니스 타입"
       icon="ratio"
