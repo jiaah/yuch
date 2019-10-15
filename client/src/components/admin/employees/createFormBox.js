@@ -23,7 +23,7 @@ const CreateFormBox = ({
     accountNo: '',
     contactNo: '',
     address: '',
-    startedAt: formattedToday,
+    startDate: formattedToday,
   };
 
   useEffect(() => {

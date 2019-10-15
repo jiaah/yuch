@@ -308,7 +308,7 @@ export const cateringRatesTableHeadColumns = [
     id: 'reserveDate',
     numeric: true,
     disablePadding: false,
-    label: '적용되는 일자',
+    label: '적용일자',
   },
 ];
 

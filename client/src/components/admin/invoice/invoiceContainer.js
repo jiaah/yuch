@@ -74,8 +74,9 @@ const InvoiceContainer = ({
     fetchData(date);
   }, []);
 
+  const width = data && data.length > 10 ? 'r--w-80' : 'r--w-50';
   return (
-    <div className="container-a r--w-80">
+    <div className={`container-a ${width}`}>
       <div id="print">
         <div className="print-width">
           <h2

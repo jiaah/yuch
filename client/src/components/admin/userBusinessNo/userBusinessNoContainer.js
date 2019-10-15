@@ -48,8 +48,10 @@ const BusinessNoContainer = ({
     if (selectedRow) removeFocusOnSelectdRow();
   };
 
+  const width = data && data.length > 10 ? 'r--w-60' : 'r--w-30';
+
   return (
-    <div id="print" className="container-a r--w-30">
+    <div id="print" className={`container-a ${width}`}>
       <div className="print-width">
         <h2>고객 사업자 번호</h2>
         <div className="paper-label-box flex justify-between pt2">

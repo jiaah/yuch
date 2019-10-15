@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import Loader from '../../loader';
-import Table from './employeeTable';
-import ContactTable from './employeeContactTable';
 import {
   employeeColumns,
   employeeContactColumns,

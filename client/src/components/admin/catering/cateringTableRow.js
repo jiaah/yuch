@@ -110,15 +110,13 @@ const CateringTableRow = ({
         ) : (
           <React.Fragment>
             <TableCell padding="checkbox">
-              <div className="table-btn--edit">
-                <IconButton
-                  name="edit"
-                  width="19"
-                  height="19"
-                  viewBox="0 0 24 24"
-                  handleClick={e => handleEditBtnClick(e, userId)}
-                />
-              </div>
+              <IconButton
+                name="edit"
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                handleClick={e => handleEditBtnClick(e, userId)}
+              />
             </TableCell>
             <TableCell
               component="th"

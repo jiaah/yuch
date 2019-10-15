@@ -75,8 +75,10 @@ const Container = ({
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
+  const width = data && data.length > 10 ? 'r--w-98' : 'r--w-50';
+
   return (
-    <div id="print" className="container-a r--w-50">
+    <div id="print" className={`container-a ${width}`}>
       <div className="print-width">
         <h2>거래처</h2>
         <div className="paper-label-box justify-between">

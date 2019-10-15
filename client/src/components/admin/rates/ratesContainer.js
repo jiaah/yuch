@@ -97,9 +97,9 @@ const RatesContainer = ({
 
   // only renders mealprice data when admin user is confirmedconsole.log();
   const dataToRender = isAdminVerified ? data : [];
-
+  const width = data && data.length > 10 ? 'w-90' : 'r--w-50';
   return (
-    <div id="print" className="container-a r--w-80">
+    <div id="print" className={`container-a ${width}`}>
       <div className="print-width">
         <h2>식수가격</h2>
         <div className="paper-label-box flex justify-between">
