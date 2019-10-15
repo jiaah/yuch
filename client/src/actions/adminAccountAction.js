@@ -139,13 +139,13 @@ export const deleteUser = userId => async dispatch => {
 export const handleEndingService = (
   userId,
   endService,
-  formattedDate,
+  date,
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'endService' });
   try {
     const res = await Axios.patch(`/catering/endofservice/user/${userId}`, {
       endService,
-      date: formattedDate,
+      date,
     });
     dispatch({
       type: types.HTTP_SUCCESS,
