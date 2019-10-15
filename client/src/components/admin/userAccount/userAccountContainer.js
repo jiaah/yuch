@@ -230,6 +230,7 @@ const UserAccountContainer = ({
           userAccountValidation={userAccountValidation}
           clickedUserData={clickedUserData}
           formatToYYYYMMDD={formatToYYYYMMDD}
+          formattedToday={formattedToday}
         />
       ) : clickedBtn === 'edit' && clickedUserData.length !== 0 ? (
         <EditUserModal

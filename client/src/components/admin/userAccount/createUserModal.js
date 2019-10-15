@@ -20,6 +20,7 @@ const UserAccountModal = ({
   handleCloseModal,
   userAccountValidation,
   formatToYYYYMMDD,
+  formattedToday,
 }) => {
   useEffect(() => {
     if (clickedUserData.length !== 0) resetClickedItemData();
@@ -71,7 +72,7 @@ const UserAccountModal = ({
     bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
     businessType: 'catering',
     businessNo: '',
-    startDate: '',
+    startDate: formattedToday,
   };
 
   return (
