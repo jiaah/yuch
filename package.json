@@ -35,7 +35,7 @@
     "prod:client": "cross-env NODE_ENV=production webpack --config=webpack.prod.js --watch",
     "build:prod": "cross-env NODE_ENV=production webpack --config=webpack.prod.js",
     "prestart": "knex migrate:latest",
-    "start": "cross-env NODE_ENV=development node ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www",
     "heroku-postbuild": "npm run build:prod",
     "configure": "./bin/configuredb.sh",
     "test": "cross-env NODE_ENV=test jest --coverage --watch",
