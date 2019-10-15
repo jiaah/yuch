@@ -1,3 +1,5 @@
 apps:
-  - script: ./bin/www
-    name: app
+  - name: app
+    script: npm
+    args: start
+
