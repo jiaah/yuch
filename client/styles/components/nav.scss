@@ -1,9 +1,11 @@
 .nav {
   z-index: 10;
   background-color: #ffffff;
-  letter-spacing: 1.2px;
   padding: .5em .7em 0 .7em;
 
+  @include for-big-desktop-up {
+    letter-spacing: 1.2px;
+  }
 }
 
 .contact {
@@ -71,7 +73,11 @@
 }
 
 .nav-menu--btn {
-  width: 8em;
+  width: 5em;
+
+  @include for-big-desktop-up {
+    width: 8em;
+  }
 }
 
 .nav-menu--btn:focus,

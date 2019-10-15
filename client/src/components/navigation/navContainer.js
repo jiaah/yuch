@@ -25,7 +25,7 @@ const NavContainer = ({
   };
 
   return (
-    <div className="nav relative">
+    <div className="nav relative w-100">
       <Navbar isLoggedIn={isLoggedIn} handleUserLogout={handleUserLogout} />
       <div className="tc">
         <Link className="td-none" to="/">
