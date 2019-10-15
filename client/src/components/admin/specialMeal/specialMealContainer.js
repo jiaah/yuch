@@ -122,7 +122,7 @@ const SpecialMealContainer = ({
   return (
     <div className="container-a r--w-98">
       <div id="print">
-        <div className="print-width">
+        <div className="print-width print-tc">
           <h2
             className="pointer"
             title="오늘 일자로 돌아가기"

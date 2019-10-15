@@ -68,6 +68,9 @@ export const formatToDayDateForm = date =>
 export const formatToYearDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년');
 
+export const formatToTimeForm = time =>
+  moment(time, 'hh:mm').format('hh 시 mm 분');
+
 export const formatToYYYY = date => moment(date).format('YYYY');
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');

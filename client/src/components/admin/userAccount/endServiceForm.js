@@ -103,7 +103,7 @@ const EndServiceForm = ({
       fillInner="#ffffff"
       text={endServiceMessageB}
       position="center"
-      iconBoxStyle="pw2 pt3"
+      iconBoxStyle="pw2"
       textStyle="icon-message--info f-mini"
     />
   </form>

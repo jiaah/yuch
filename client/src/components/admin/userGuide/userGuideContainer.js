@@ -54,7 +54,7 @@ const UserGuide = ({
 
   return (
     <div id="print" className="container-a r--w-60">
-      <div className="print-width guide f-regular lh-2">
+      <div className="print-width print-tc guide f-regular lh-2">
         <div className="flex justify-between pb4 pt2">
           <img className="guide--yuch-logo" src={logo} alt="logo" />
           <div className="flex">

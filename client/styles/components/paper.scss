@@ -34,12 +34,15 @@
   // write justify-between or end ..etc in component to be reusable
   padding-left: .5em;
   padding-right: .5em;
-  margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: .3em;
 
   @include for-m-desktop-up {
     padding-left: 2.5em;
     padding-right: 2.5em;
+  }
+
+  @include print {
+    margin-top: 1em;
   }
 }
 

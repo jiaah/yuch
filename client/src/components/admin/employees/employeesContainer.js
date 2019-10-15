@@ -90,12 +90,12 @@ const Container = ({
     employees === '전체'
       ? 'r--w-80'
       : employees === '연락처'
-        ? 'r--w-30'
-        : 'r--w-40';
+        ? 'r--w-40'
+        : 'r--w-50';
 
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width">
+      <div className="print-width print-tc">
         <h2>{`${admin.companyName} 직원`}</h2>
         <div className="paper-label-box justify-between pt2">
           <div>

@@ -77,7 +77,7 @@ const RestoQtyContainer = ({
   return (
     <div className={`container-a ${width}`}>
       <div id="print">
-        <div className="print-width">
+        <div className="print-width print-tc">
           <h2
             className="pointer"
             title="오늘 날짜로 돌아가기"

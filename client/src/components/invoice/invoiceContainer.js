@@ -62,74 +62,79 @@ const InvoiceContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-80 invoice-width">
-      <img className="guide--yuch-logo-s dn only-print" src={logo} alt="logo" />
+    <div id="print" className="container-a r--w-50 invoice-width">
       <div className="print-width">
-        <h2
-          className="pointer center"
-          title="오늘 일자로 돌아가기"
-          onClick={resetDateMonthly}
-        >
-          {name}
-        </h2>
-        <DateButtons
-          date={date}
-          reload={true}
-          unit="mm"
-          formattedDate={formattedDate}
-          startTime={parsedStartDate}
-          endTime={`${thisMonthYYYYMM}01`}
-          updateDate={updateDateMonthly}
-          addFlashMessage={addFlashMessage}
-          fetchData={fetchData}
-          dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
+        <img
+          className="guide--yuch-logo-s dn only-print"
+          src={logo}
+          alt="logo"
         />
-        <div className="paper-label-box justify-end noprint">
-          <Link to="/admin/invoice/users">
+        <div className="print-tc">
+          <h2
+            className="pointer center"
+            title="오늘 일자로 돌아가기"
+            onClick={resetDateMonthly}
+          >
+            {name}
+          </h2>
+          <DateButtons
+            date={date}
+            reload={true}
+            unit="mm"
+            formattedDate={formattedDate}
+            startTime={parsedStartDate}
+            endTime={`${thisMonthYYYYMM}01`}
+            updateDate={updateDateMonthly}
+            addFlashMessage={addFlashMessage}
+            fetchData={fetchData}
+            dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
+          />
+          <div className="paper-label-box justify-end noprint">
+            <Link to="/admin/invoice/users">
+              <IconButton
+                name="list"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => {}}
+              />
+            </Link>
             <IconButton
-              name="list"
+              name="print"
               width="32"
               height="32"
               viewBox="0 0 25 25"
-              handleClick={() => {}}
+              handleClick={() => printDiv('print')}
             />
-          </Link>
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
+          </div>
+          {data &&
+            data.length !== 0 && (
+              <React.Fragment>
+                <Paper
+                  component={
+                    <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
+                  }
+                />
+                <div className="flex justify-between mt3 pw1">
+                  <p>
+                    {data.bankAccount.accountHolder}
+                    &#8199;
+                    {data.bankAccount.accountNo}
+                    &#8199;
+                    {data.bankAccount.bankName}
+                  </p>
+                  <p>
+                    성명
+                    :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
+                  </p>
+                  <p>{admin.companyName}</p>
+                </div>
+                <div className="float-right mt3 mr5">
+                  <p>서명 후 돌려주세요. 감사합니다.</p>
+                </div>
+              </React.Fragment>
+            )}
         </div>
-        {data &&
-          data.length !== 0 && (
-            <React.Fragment>
-              <Paper
-                component={
-                  <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
-                }
-              />
-
-              <div className="flex justify-between mt3 pw1">
-                <p>
-                  {data.bankAccount.accountHolder}
-                  &#8199;
-                  {data.bankAccount.accountNo}
-                  &#8199;
-                  {data.bankAccount.bankName}
-                </p>
-                <p>
-                  성명
-                  :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
-                </p>
-                <p>{admin.companyName}</p>
-              </div>
-              <div className="float-right mt3 mr5">
-                <p>서명 후 돌려주세요. 감사합니다.</p>
-              </div>
-            </React.Fragment>
-          )}
       </div>
     </div>
   );

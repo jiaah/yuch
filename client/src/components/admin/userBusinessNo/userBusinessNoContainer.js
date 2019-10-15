@@ -52,7 +52,7 @@ const BusinessNoContainer = ({
 
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width">
+      <div className="print-width print-tc">
         <h2>고객 사업자 번호</h2>
         <div className="paper-label-box flex justify-between pt2">
           <SearchBar

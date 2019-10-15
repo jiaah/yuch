@@ -100,7 +100,7 @@ const RatesContainer = ({
   const width = data && data.length > 10 ? 'w-90' : 'r--w-50';
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width">
+      <div className="print-width print-tc">
         <h2>식수가격</h2>
         <div className="paper-label-box flex justify-between">
           <SearchBar
