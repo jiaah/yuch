@@ -37,7 +37,7 @@
 .r--w-70 {
   width: 90vw;
 
-  @include for-desktop-up {
+  @include for-m-desktop-up {
     width: 70vw;
   }
 }
@@ -46,7 +46,7 @@
 .r--w-60 {
   width: 90vw;
 
-  @include for-desktop-up {
+  @include for-m-desktop-up {
     width: 60vw;
   }
 }

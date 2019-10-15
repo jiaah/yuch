@@ -54,7 +54,7 @@ exports.seed = async knex => {
 
   const fakeUsers = [];
   const fakeMealPrices = [];
-  const desiredFakeUsers = 15;
+  const desiredFakeUsers = 6;
 
   for (let i = 0; i < desiredFakeUsers; i++) {
     const tempUser = createFakeUser();
