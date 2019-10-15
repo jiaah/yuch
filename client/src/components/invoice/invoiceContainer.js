@@ -21,6 +21,8 @@ import { admin } from '../../data/data';
 import * as dateTrackerActiions from '../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../actions/messageAction';
 import * as invoiceActions from '../../actions/invoiceAction';
+/* --- images --- */
+import logo from '../../../assets/img/yuch-logo.png';
 
 const InvoiceContainer = ({
   date,
@@ -61,6 +63,7 @@ const InvoiceContainer = ({
 
   return (
     <div id="print" className="container-a r--w-80 invoice-width">
+      <img className="guide--yuch-logo-s dn only-print" src={logo} alt="logo" />
       <div className="print-width">
         <h2
           className="pointer center"
