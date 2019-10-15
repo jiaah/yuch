@@ -68,6 +68,7 @@ export const formatToYearDateForm = date =>
 export const formatToYYYY = date => moment(date).format('YYYY');
 export const formatToYYYYMM = date => moment(date).format('YYYYMM');
 export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
+
 export const formatWithDash = date => moment(date).format('YYYY-MM-DD');
 export const formatWithSlash = date => moment(date).format('YYYY/MM/DD');
 
@@ -127,10 +128,12 @@ export const userEndDate = (data, limitedDate) => {
 
 export const isActiveUser = (startDate, endDate) => {
   const formattedStartDate = formatWithDash(startDate);
+  const formattedEndDate = formatWithDash(endDate);
   const today = moment().format('YYYY-MM-DD');
+
   const isActive = moment(today).isBetween(
     formattedStartDate,
-    endDate,
+    formattedEndDate,
     'days',
     '[)',
   );

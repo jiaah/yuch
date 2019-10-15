@@ -42,11 +42,13 @@ const UserFormBox = ({
 
   const formattedStartDate = formatWithSlash(startDate);
   const formattedEndDate = formatWithSlash(endDate);
+  const endDateToDisplay =
+    endDate && formattedEndDate === '9999/12/31' ? null : formattedEndDate;
 
   const inputValues = {
     ...others,
     startDate: startDate ? formattedStartDate : '',
-    endDate: endDate ? formattedEndDate : '',
+    endDate: endDate ? endDateToDisplay : '',
   };
   return (
     <Formik
