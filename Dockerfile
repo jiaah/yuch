@@ -1,31 +1,27 @@
-FROM node:8
+FROM node:10-alpine
 
-ARG NODE_ENV=production
+# env for nodejs
+ENV NODE_ENV production
 
 # Install PM2
 RUN npm install -g pm2
 
-RUN apt-get update
-
 # set workdir
-RUN mkdir -p /app
 WORKDIR /app
 
-RUN mkdir -p /app/image
-RUN mkdir -p /app/volumes
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
+RUN npm install --only=dev
 
-# add package.json
-COPY package.json /app
+# Bundle app source
+COPY . .
 
-# install dependencies
-RUN npm install --production
-
-# add source code
-COPY server /app
-COPY process.yml /app
+# build frontend
+RUN npm run predeploy
 
 # Expose port
-EXPOSE 3000
+EXPOSE 9080
 
 # serve with pm2
-CMD [ "pm2-docker", "process.yml" ]
+CMD [ "pm2-runtime", "process.yml" ]
