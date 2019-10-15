@@ -60,7 +60,10 @@ export const formatToDateForm = date =>
   moment(date).format('MM 월 DD 일 (ddd)');
 
 export const formatToMonthDateForm = date =>
-  moment(date, 'YYYYMMDD').format('YYYY 년 MM 월');
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY 년 MM 월');
+
+export const formatToDayDateForm = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY 년 MM 월 DD 일');
 
 export const formatToYearDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년');

@@ -102,6 +102,11 @@ const Revenue = Loader({
     import('../src/components/admin/revenue/revenueContainer' /* webpackChunkName: 'Revenue' */),
 });
 
+const SpecialMealInvoice = Loader({
+  loader: () =>
+    import('../src/components/invoice/specialMealInvoice' /* webpackChunkName: 'SpecialMealInvoice' */),
+});
+
 /* --- USER --- */
 const UserAccount = Loader({
   loader: () =>
@@ -211,6 +216,11 @@ const routes = () => (
       />
       {/* Invoice */}
       <Route exact path="/invoice/user" component={Invoice} />
+      <Route
+        exact
+        path="/invoice/special-meal"
+        component={SpecialMealInvoice}
+      />
       {/* --- USER --- */}
       <Route exact path="/user/catering" component={UserGuards(UserCatering)} />
       <Route

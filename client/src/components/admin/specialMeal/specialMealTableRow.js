@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from 'react-router-dom';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import { formatNumber } from '../../../utils/reformat';
@@ -28,6 +29,7 @@ const SpecialMealTableRow = ({
   handleTableRowClick,
   handleEditBtnClick,
   handleDeleteBtnClick,
+  getClickedUserData,
   formatToDateForm,
 }) => {
   const { userId, companyName, date } = clickedUserData;
@@ -75,7 +77,13 @@ const SpecialMealTableRow = ({
         scope="row"
         className={`${resize} ${point}`}
       >
-        {row.companyName}
+        <Link
+          className="td-none c-text"
+          to={`/invoice/special-meal?name=${row.companyName}`}
+          onClick={() => getClickedUserData(row.id)}
+        >
+          {row.companyName}
+        </Link>
       </TableCell>
       <TableCell align="right" className={resize}>
         {formattedDate}

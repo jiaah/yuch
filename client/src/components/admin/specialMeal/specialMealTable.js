@@ -35,12 +35,11 @@ const SpecialMealTable = ({
 }) => {
   const getClickedUserData = async id => {
     const filteredData = await users.filter(b => b.id === id);
-    return filteredData[0];
+    return saveClickedItemData(filteredData[0]);
   };
 
   const handleEditBtnClick = async id => {
-    const selectedData = await getClickedUserData(id);
-    await saveClickedItemData(selectedData);
+    await getClickedUserData(id);
     return handleButtonClick('edit');
   };
 
@@ -80,6 +79,7 @@ const SpecialMealTable = ({
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
                   upComingEvent={upComingEvent}
+                  getClickedUserData={getClickedUserData}
                 />
               );
             })}
