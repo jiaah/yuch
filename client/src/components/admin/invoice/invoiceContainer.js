@@ -9,7 +9,6 @@ import {
   formatSlashToYYMM,
   selectOptionsYYYYMM,
 } from '../../../utils/date';
-import { adminInvoiceMsg } from '../../../data/message';
 import { admin } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
@@ -92,12 +91,11 @@ const InvoiceContainer = ({
             unit="mm"
             formattedDate={formattedDate}
             startTime={admin.startTime}
-            // endTime={`${thisMonthYYYYMM}01`}
-            endTime="20201010"
+            endTime={`${thisMonthYYYYMM}01`}
             updateDate={updateDateMonthly}
             addFlashMessage={addFlashMessage}
             fetchData={fetchData}
-            dateForwardMessage="존재하지 않는 페이지입니다."
+            dateForwardMessage="매월 1일에 발급됩니다."
           />
           <div className="paper-label-box justify-between">
             <SearchBar
@@ -133,7 +131,7 @@ const InvoiceContainer = ({
       </div>
       <IconMessage
         name="info"
-        width="20"
+        width="17"
         height="20"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
@@ -145,7 +143,7 @@ const InvoiceContainer = ({
       />
       <IconMessage
         name="info"
-        width="20"
+        width="17"
         height="20"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
@@ -154,18 +152,6 @@ const InvoiceContainer = ({
         position="end"
         iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={adminInvoiceMsg}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
       />
       {show && (
         <UpdateInvoiceModal

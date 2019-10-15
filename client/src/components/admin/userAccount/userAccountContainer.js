@@ -207,7 +207,7 @@ const UserAccountContainer = ({
       />
       <IconMessage
         name="info"
-        width="20"
+        width="17"
         height="20"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"

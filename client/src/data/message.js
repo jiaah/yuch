@@ -121,7 +121,7 @@ export const updateRateMessageA = (
 
 export const updateRateMessageB = (
   <p className="f-mini">
-    <span className="c-point2">지난 달의 식수 가격을 변동</span>한 경우,{' '}
+    <span className="c-point2">지난 달의 식수 가격을 변동</span>할 경우,{' '}
     <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요&#46;
   </p>
 );
@@ -141,7 +141,7 @@ export const ratesPageInfo = (
   <p className="f-mini">
     <span className="c-point2">식수가격 변동</span>은 상단의 메뉴&#8201;&#8201;
     <Link className="c-point2 td-none" to="/admin/account/rates">
-      &#39;유청계정 &#62; 식수가격&#39;
+      &#39;고객관리 &#62; 식수가격&#39;
     </Link>
     &#8201; 에서 할 수 있습니다&#46;
   </p>
@@ -219,9 +219,9 @@ export const adminCateringMsg = (
       </Link>{' '}
       를 해주세요.
     </p>
-    {/* <p className="f-mini">
+    <p className="f-mini pt3">
       &#42; <span className="c-point2">지난 달의 식수변경</span>을 한 경우에는{' '}
-      <span className="c-point2">반드시 인보이스 재발행</span>을 해주세요.&#46;
+      <span className="c-point2">반드시 인보이스를 재발행</span> 해주세요&#46;
     </p>
     <p className="f-mini pt3">
       [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
@@ -230,7 +230,7 @@ export const adminCateringMsg = (
         &#39;인보이스&#39;&#8201; 재발행 버튼
       </Link>{' '}
       클릭
-    </p> */}
+    </p>
     {/* <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
       <br />
@@ -267,27 +267,27 @@ export const endServiceMessageA = (
 //   </React.Fragment>
 // );
 
-export const endServiceMessageD = (
-  <React.Fragment>
-    휴먼계정으로 전환된 후에 이전의 식수량 변경을 원하실 경우 : <br />
-    고객 계정을 활성화 &#8201;&#8594;&#8199;
-    <Link className="c-point2 td-none" to="/admin/count/catering/dd">
-      &#39;식수현황 &#62; 위탁급식식수&#39;
-    </Link>{' '}
-    에서 변경&#8199;&#8594;&#8199;
-    <Link className="c-point2 td-none" to="/admin/invoice/users">
-      인보이스 재발행
-    </Link>
-    <br />
-    &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
-  </React.Fragment>
-);
+// export const endServiceMessageD = (
+//   <React.Fragment>
+//     휴먼계정으로 전환된 후에 이전의 식수량 변경을 원하실 경우 : <br />
+//     고객 계정을 활성화 &#8201;&#8594;&#8199;
+//     <Link className="c-point2 td-none" to="/admin/count/catering/dd">
+//       &#39;식수현황 &#62; 위탁급식식수&#39;
+//     </Link>{' '}
+//     에서 변경&#8199;&#8594;&#8199;
+//     <Link className="c-point2 td-none" to="/admin/invoice/users">
+//       인보이스 재발행
+//     </Link>
+//     <br />
+//     &#8199;&#8594;&#8199; 다시 휴먼계정으로 전환
+//   </React.Fragment>
+// );
 
 export const endServiceMessageB = (
   <React.Fragment>
-    고객의 서비스를 다시 활성화 시키시려면,&#8199; &#39;서비스종료&#39;
-    &#8201;&#8201;체크박스를 해지하고 <br />
-    저장버튼을 클릭해주세요&#44;
+    고객의 서비스를 다시 활성화 시키시려면,&#8201; &#39;서비스종료&#39; &#8201;
+    체크박스를 <br />
+    해지하고 저장버튼을 클릭해주세요&#44;
   </React.Fragment>
 );
 
@@ -405,18 +405,18 @@ export const adminSpecialMealMsgB = (
 //   </p>
 // );
 
-export const adminInvoiceMsg = (
-  <p className="f-mini">
-    <span className="c-point2">
-      <span className="b">지난 달</span>의 식수 or 식수가격을 변경
-    </span>
-    한 경우에는 <br />
-    <span className="b c-point2">반드시</span> 우측 상단의
-    <span className="c-point2">
-      &#8201;&#39;인보이스&#39;&#8199;
-      <span className="b">재발행 버튼</span>
-      &#8201;
-    </span>
-    을 클릭하세요&#46;
-  </p>
-);
+// export const adminInvoiceMsg = (
+//   <p className="f-mini">
+//     <span className="c-point2">
+//       <span className="b">지난 달</span>의 식수 or 식수가격을 변경
+//     </span>
+//     한 경우에는 <br />
+//     <span className="b c-point2">반드시</span> 우측 상단의
+//     <span className="c-point2">
+//       &#8201;&#39;인보이스&#39;&#8199;
+//       <span className="b">재발행 버튼</span>
+//       &#8201;
+//     </span>
+//     을 클릭하세요&#46;
+//   </p>
+// );

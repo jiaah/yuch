@@ -69,7 +69,7 @@ const BankAccountContainer = ({
   };
 
   return (
-    <div className="container-a r--w-40">
+    <div className="container-a r--w-50">
       <h2>유청 은행 계좌</h2>
       <div className="paper-label-box justify-end">
         <div className="flex">
@@ -96,7 +96,7 @@ const BankAccountContainer = ({
       />
       <IconMessage
         name="info"
-        width="20"
+        width="17"
         height="20"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
@@ -108,7 +108,7 @@ const BankAccountContainer = ({
       />
       <IconMessage
         name="info"
-        width="20"
+        width="17"
         height="20"
         viewBox="0 0 20 20"
         fillOuter="#2196F3"

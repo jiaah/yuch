@@ -7,11 +7,7 @@ import Icon from '../../../../assets/icons';
 /* --- Components --- */
 // import { firstDayOfLastMonth } from '../../../utils/date';
 import IconMessage from '../../../shared/iconMessage';
-import {
-  endServiceMessageA,
-  endServiceMessageB,
-  endServiceMessageD,
-} from '../../../data/message';
+import { endServiceMessageA, endServiceMessageB } from '../../../data/message';
 import FormButton from '../../../shared/form/formButton';
 
 const EndServiceForm = ({
@@ -88,13 +84,13 @@ const EndServiceForm = ({
     </div>
     <IconMessage
       name="info"
-      width="33"
+      width="15"
       height="18"
       viewBox="0 0 20 20"
       fillOuter="#2196F3"
       fillInner="#ffffff"
       text={endServiceMessageA}
-      position="start"
+      position="center"
       iconBoxStyle="pw2"
       textStyle="icon-message--info f-mini"
     />
@@ -105,20 +101,8 @@ const EndServiceForm = ({
       viewBox="0 0 20 20"
       fillOuter="#2196F3"
       fillInner="#ffffff"
-      text={endServiceMessageD}
-      position="start"
-      iconBoxStyle="pw2 pt3"
-      textStyle="icon-message--info f-mini"
-    />
-    <IconMessage
-      name="info"
-      width="15"
-      height="18"
-      viewBox="0 0 20 20"
-      fillOuter="#2196F3"
-      fillInner="#ffffff"
       text={endServiceMessageB}
-      position="start"
+      position="center"
       iconBoxStyle="pw2 pt3"
       textStyle="icon-message--info f-mini"
     />

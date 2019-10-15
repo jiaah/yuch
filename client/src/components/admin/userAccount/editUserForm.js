@@ -172,7 +172,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
     </div>
     <IconMessage
       name="info"
-      width="18"
+      width="15"
       height="18"
       viewBox="0 0 20 20"
       fillOuter="#2196F3"

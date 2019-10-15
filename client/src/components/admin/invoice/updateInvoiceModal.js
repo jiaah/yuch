@@ -38,7 +38,7 @@ const UpdateInvoiceModal = ({
 
   return (
     <Modal
-      title="인보이스 업데이트"
+      title="인보이스 재발행"
       handleClose={hideModal}
       component={
         <div className="media--justify-center pt3 pb3">
