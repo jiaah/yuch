@@ -21,22 +21,22 @@ const SpecialMealInvoice = ({ clickedUserData }) => {
     sumTotal,
   } = clickedUserData[0];
 
-  const TAX_RATE = 0.1;
+  // const TAX_RATE = 0.1;
 
-  const invoiceTaxes = TAX_RATE * sumTotal;
-  const invoiceTotal = invoiceTaxes + sumTotal;
+  // const invoiceTaxes = TAX_RATE * sumTotal;
+  // const invoiceTotal = invoiceTaxes + sumTotal;
 
   const formattedSubTotal = combinedFormat(sumTotal);
-  const formattedTax = `${(TAX_RATE * 100).toFixed(0)} %`;
-  const formattedInvoiceTaxes = combinedFormat(invoiceTaxes);
-  const formattedInvoiceTotal = combinedFormat(invoiceTotal);
+  // const formattedTax = `${(TAX_RATE * 100).toFixed(0)} %`;
+  // const formattedInvoiceTaxes = combinedFormat(invoiceTaxes);
+  // const formattedInvoiceTotal = combinedFormat(invoiceTotal);
 
   const formattedMealPrice = formatNumber(mealPrice);
   const formattedDate = formatToDayDateForm(date);
   const formattedTime = formatToTimeForm(time);
 
   return (
-    <div className="r--w-60 center mt4" id="print">
+    <div className="r--w-60 center mt5" id="print">
       <div className="print-width">
         <div className="float-right mt2">
           <IconButton
