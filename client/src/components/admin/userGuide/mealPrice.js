@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Icon from '../../../../assets/icons/index';
+import { admin } from '../../../data/data';
 
 const MealPrice = ({
   handleChange,
@@ -64,11 +65,12 @@ const MealPrice = ({
         <Icon name="contact" width="30" height="30" viewBox="0 0 35 35" />
         <a
           className="td-none c-point2"
-          href="tel:+82-10-8034-0057"
+          href={`tel:${admin.contactNo3Link}`}
           aria-label="dial a phone call"
         >
-          054 &#46; &#8201;745&#8200; &#46; 0999 &#8199;| |&#8199; 010 &#46;
-          8034 &#46; 0057
+          {admin.contactNo2}
+          &#8199; | | &#8199;
+          {admin.contactNo3}
         </a>
       </div>
     </React.Fragment>
