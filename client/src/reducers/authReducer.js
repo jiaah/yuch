@@ -8,7 +8,7 @@ const initialState = {
   isAdmin: false,
   isActive: false,
   businessType: 'catering',
-  keekMeLoggedIn: false,
+  keepMeLoggedIn: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const auth = (state = initialState, action) => {
         id,
         companyName,
         isAdmin,
-        keekMeLoggedIn,
+        keepMeLoggedIn,
         startDate,
         endDate,
         businessType,
@@ -36,7 +36,7 @@ const auth = (state = initialState, action) => {
         isAdmin,
         isActive,
         businessType,
-        keekMeLoggedIn,
+        keepMeLoggedIn,
       };
     }
     case types.USER_LOGOUT:

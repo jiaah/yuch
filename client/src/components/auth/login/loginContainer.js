@@ -25,6 +25,7 @@ export const Login = ({
   const { loggedInUser, loginFailed } = data.message.auth;
 
   const [keepMeLoggedIn, setKeepMeLoggedIn] = useState(false);
+
   const handleKeepMeLoggedIn = () => setKeepMeLoggedIn(!keepMeLoggedIn);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -73,7 +74,8 @@ const mapStateToProps = state => ({
   isLoggedInState: state.auth.isLoggedIn,
 });
 const mapDispatchToProps = dispatch => ({
-  userLogin: (username, password) => dispatch(userLogin(username, password)),
+  userLogin: (username, password, keepMeLoggedIn) =>
+    dispatch(userLogin(username, password, keepMeLoggedIn)),
   addFlashMessage: (variant, message) =>
     dispatch(addFlashMessage(variant, message)),
 });

@@ -6,7 +6,7 @@ import { clearStorage } from '../../localStorage';
 export const userLogin = (
   username,
   password,
-  keekMeLoggedIn,
+  keepMeLoggedIn,
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'login' });
   try {
@@ -21,7 +21,7 @@ export const userLogin = (
     };
     dispatch({
       type: types.USER_LOGIN,
-      payload: { ...others, keekMeLoggedIn },
+      payload: { ...others, keepMeLoggedIn },
     });
     return tokenData;
   } catch (error) {
