@@ -84,9 +84,11 @@ const SpecialMealInvoice = ({ clickedUserData }) => {
                 {formattedMealPrice}
               </div>
               <div className="flex justify-end mt2">
-                SumTotal&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;
-                {formattedSubTotal}
-                <br />
+                합계&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;
+                {/* &#8199;&#8199;&#8199;&#8199;&#8199; */}
+                <p className="b">{formattedSubTotal}</p>
+                &#8199;원
+                {/* <br />
                 Tax&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;
                 {formattedTax}
                 &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;
@@ -94,7 +96,7 @@ const SpecialMealInvoice = ({ clickedUserData }) => {
                 <br />
                 Total
                 &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8201;
-                {formattedInvoiceTotal}
+                {formattedInvoiceTotal} */}
               </div>
               <div className="mt4 flex justify-center">
                 <p className="mr4">위와 같이 공급합니다.</p>
