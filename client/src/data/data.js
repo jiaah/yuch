@@ -3,6 +3,11 @@ export const admin = {
   companyName: '유청',
   startTime: '20190901',
   startYear: '2019',
+  contactNo1: '(054) 745 - 0999',
+  contactNo1Link: '+82-54-745-0999',
+  contactNo2: '054 . 745 . 0999',
+  contactNo3: '010 . 8034 . 0057',
+  contactNo3Link: '+82-10-8034-0057',
 };
 
 export const navHome = [

@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatNumber, combinedFormat } from '../../utils/reformat';
-import Paper from '../../shared/paper';
+import { formatNumber, combinedFormat } from '../../../utils/reformat';
+import Paper from '../../../shared/paper';
 /* --- images --- */
-import logo from '../../../assets/img/yuch-logo.png';
+import logo from '../../../../assets/img/yuch-logo.png';
 /* --- Components --- */
-import { formatToDayDateForm, formatToTimeForm } from '../../utils/date';
-import { printDiv } from '../../utils/print';
-import IconButton from '../../shared/form/iconButton';
+import { formatToDayDateForm, formatToTimeForm } from '../../../utils/date';
+import { printDiv } from '../../../utils/print';
+import IconButton from '../../../shared/form/iconButton';
+import { admin } from '../../../data/data';
 
 const SpecialMealInvoice = ({ clickedUserData }) => {
   const {
@@ -52,8 +53,10 @@ const SpecialMealInvoice = ({ clickedUserData }) => {
               <div className="flex justify-between">
                 <img className="guide--yuch-logo" src={logo} alt="logo" />
                 <p className="company-contact lh-1">
-                  &#8201;출장뷔페 / 위탁급식
-                  <br />( 054 ) - 645 - 0999
+                  출장뷔페 / 위탁급식
+                  <br />
+                  &#8201;
+                  {admin.contactNo1}
                 </p>
               </div>
               <h2 className="tc mb3 mt2">거래 명세서</h2>

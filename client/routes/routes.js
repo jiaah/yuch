@@ -104,7 +104,7 @@ const Revenue = Loader({
 
 const SpecialMealInvoice = Loader({
   loader: () =>
-    import('../src/components/invoice/specialMealInvoice' /* webpackChunkName: 'SpecialMealInvoice' */),
+    import('../src/components/admin/specialMeal/specialMealInvoice' /* webpackChunkName: 'SpecialMealInvoice' */),
 });
 
 /* --- USER --- */

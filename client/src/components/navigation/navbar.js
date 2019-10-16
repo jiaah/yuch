@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { admin } from '../../data/data';
 
 const Navbar = ({ isLoggedIn, handleUserLogout }) => (
   <div className="flex justify-between">
     <a
       className="contact mh-auto f-mini td-none white"
-      href="tel:+82-54-745-0999"
+      href={`tel:${admin.contactNo1Link}`}
     >
-      상담전화&#8201;
-      <span>&#8201;&#40;054&#41; 745&#8201;&#45;&#8201;0999</span>
+      상담전화&#8199;
+      {admin.contactNo1}
+      <span />
     </a>
     {/* calling isLoggedIn() directly from localStoragy does not re-render the component on router history change. */}
     {isLoggedIn ? (

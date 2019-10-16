@@ -2,6 +2,7 @@ import React from 'react';
 /* --- Component --- */
 import Loader from '../loader';
 import Icon from '../../../assets/icons/index';
+import { admin } from '../../data/data';
 
 const Map = Loader({
   loader: () => import('./map' /* webpackChunkName: 'Map' */),
@@ -70,12 +71,12 @@ class Board extends React.Component {
                   />
                   <a
                     className="td-none c-point2"
-                    href="tel:+82-10-8034-0057"
+                    href={`tel:${admin.contactNo3Link}`}
                     aria-label="dial a phone call"
                   >
-                    054 &#46; &#8201;745&#8200; &#46; 0999
+                    {admin.contactNo2}
                     <br />
-                    010 &#46; 8034 &#46; 0057
+                    {admin.contactNo3}
                   </a>
                 </div>
               </div>

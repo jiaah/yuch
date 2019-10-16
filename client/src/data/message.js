@@ -25,7 +25,10 @@ export const headerMsgB = (
     </h1>
     <p className="white">* 인원에 따라 가격 상이함.</p>
     <div className="mt4">
-      <a className="header--contact td-none" href="tel:+82-10-8034-0057">
+      <a
+        className="header--contact td-none"
+        href={`tel:${admin.contactNo3Link}`}
+      >
         전화문의 및 상담환영
       </a>
     </div>
