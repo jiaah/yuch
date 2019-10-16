@@ -178,9 +178,7 @@ export const bankAccountValidation = Yup.object({
       '한글, 숫자, 특수문자 !@#)(* 만 입력하세요 (띄어쓰기 가능)',
     )
     .required('은행명을 입력하세요.'),
-  accountNo: Yup.string('')
-    .matches(bankRegExp, '유효한 계좌번호 형식이 아닙니다.')
-    .required('' - '를 포함해서 계좌번호를 입력하세요.'),
+  accountNo: Yup.string('').required('' - '를 포함해서 계좌번호를 입력하세요.'),
 });
 
 export const adminAccountValidation = Yup.object({
@@ -292,10 +290,7 @@ export const employeeValidation = Yup.object({
     nameRegExp,
     '한글, 숫자, 특수문자 !@#)(* 만 입력하세요 (띄어쓰기 가능)',
   ),
-  accountNo: Yup.string('' - '를 포함해서 계좌번호를 입력하세요.').matches(
-    bankRegExp,
-    '유효한 계좌번호 형식이 아닙니다.',
-  ),
+  accountNo: Yup.string('' - '를 포함해서 계좌번호를 입력하세요.'),
 });
 
 export const partnerValidation = Yup.object({
@@ -314,8 +309,5 @@ export const partnerValidation = Yup.object({
     nameRegExp,
     '한글, 숫자, 특수문자 !@#)(* 만 입력하세요 (띄어쓰기 가능)',
   ),
-  accountNo: Yup.string('' - '를 포함해서 계좌번호를 입력하세요.').matches(
-    bankRegExp,
-    '유효한 계좌번호 형식이 아닙니다.',
-  ),
+  accountNo: Yup.string('' - '를 포함해서 계좌번호를 입력하세요.'),
 });

@@ -88,7 +88,6 @@ const CreateUserForm = props => {
             icon="payment"
             styleName="textFieldC"
             placeholder="000-00-00000"
-            required
           />
           <FormikField
             label="서비스 시작일"
