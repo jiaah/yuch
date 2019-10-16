@@ -75,7 +75,7 @@
 .nav-menu--btn {
   width: 5em;
 
-  @include for-big-desktop-up {
+  @include for-tablet-portrait-up {
     width: 8em;
   }
 }

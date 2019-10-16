@@ -7,10 +7,10 @@ import {
 
 export const isTokenExpiredError = error => {
   const status = error.response ? error.response.status : null;
+  console.log('status: ', status);
   const originalRequest = error.config;
 
   if (status === 401 && !originalRequest._retry) {
-    originalRequest._retry = true;
     return true;
   }
 };
@@ -18,6 +18,8 @@ export const isTokenExpiredError = error => {
 export const resetTokenAndReattemptRequest = async error => {
   const originalRequest = error.config;
   const refreshToken = await getRefreshToken();
+
+  originalRequest._retry = true;
 
   if (!refreshToken) {
     return Promise.reject(error);
@@ -43,9 +45,8 @@ export const resetTokenAndReattemptRequest = async error => {
 
     // change authorization header
     Axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
-
     // return originalRequest object with Axios
-    return Axios(originalRequest);
+    return Axios.request(originalRequest);
   } catch (error) {
     return Promise.reject(error);
   }

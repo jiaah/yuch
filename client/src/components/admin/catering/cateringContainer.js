@@ -73,7 +73,7 @@ const CateringContainer = ({
 
   const handleResetSearch = () => {};
 
-  const width = catering && catering.length > 10 ? 'w-90' : 'r--w-50';
+  const width = catering && catering.length > 10 ? 'w-80' : 'r--w-50';
   return (
     <div className={`container-a ${width}`}>
       <div id="print">
