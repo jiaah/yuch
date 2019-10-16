@@ -40,8 +40,11 @@ export const userAccountValidation = Yup.object({
   mealPrice: Yup.number()
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
-  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+    .positive('1이상의 숫자를 입력해 주세요.')
+    .required('식수가격을 입력하세요.'),
+  email: Yup.string()
+    .email('이메일 주소가 유효하지 않습니다.')
+    .required('이메일을 입력하세요.'),
   address: Yup.string(''),
   lunchQty: Yup.number()
     .nullable()
@@ -81,7 +84,9 @@ export const editUserAccountValidation = Yup.object({
   contactNo: Yup.string()
     .matches(phoneRegExp, "' - '를 포함한 숫자를 입력해주세요.")
     .required('연락처를 입력하세요.'),
-  email: Yup.string().email('이메일 주소가 유효하지 않습니다.'),
+  email: Yup.string()
+    .email('이메일 주소가 유효하지 않습니다.')
+    .required('이메일을 입력하세요.'),
   address: Yup.string(''),
   lunchQty: Yup.number()
     .nullable()

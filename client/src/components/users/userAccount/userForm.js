@@ -46,7 +46,6 @@ const UserForm = ({ isSubmitting, openPasswordForm }) => (
       type="text"
       icon="bankAccount"
       styleName="textField"
-      placeholder="000-00-00000"
     />
     <div className="flex justify-center">
       <FormikField
