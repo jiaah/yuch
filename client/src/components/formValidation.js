@@ -58,9 +58,10 @@ export const userAccountValidation = Yup.object({
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.'),
-  businessNo: Yup.string()
-    .matches(businessRegExp, "' - '를 포함한 숫자를 입력해주세요.")
-    .required('사업자번호를 입력하세요.'),
+  businessNo: Yup.string().matches(
+    businessRegExp,
+    "' - '를 포함한 숫자를 입력해주세요.",
+  ),
 });
 
 export const editUserAccountValidation = Yup.object({
@@ -97,9 +98,10 @@ export const editUserAccountValidation = Yup.object({
     .typeError('숫자만 입력하세요.')
     .integer('1이상의 숫자를 입력해 주세요.')
     .positive('1이상의 숫자를 입력해 주세요.'),
-  businessNo: Yup.string()
-    .matches(businessRegExp, "' - '를 포함한 숫자를 입력해주세요.")
-    .required('사업자번호를 입력하세요.'),
+  businessNo: Yup.string().matches(
+    businessRegExp,
+    "' - '를 포함한 숫자를 입력해주세요.",
+  ),
 });
 
 export const loginValidation = Yup.object({
