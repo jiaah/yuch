@@ -10,7 +10,6 @@ const MessagesList = ({
   variant,
   message,
   httpStatus,
-
   removeFlashMessage,
 }) => (
   <React.Fragment>

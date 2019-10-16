@@ -21,12 +21,18 @@ const UserGuards = Component => {
 
       if (
         (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) ||
-        !isLoggedIn ||
-        httpStatus === 401 ||
-        !getToken ||
-        !getRefreshToken
+        !isLoggedIn
       ) {
-        addFlashMessage('warning', '로그인을 해주세요.');
+        await addFlashMessage('warning', '로그인을 해주세요.');
+        await userLogout(id);
+        return history.push('/');
+      }
+
+      if (httpStatus === 401 || !getToken || !getRefreshToken) {
+        await addFlashMessage(
+          'warning',
+          '유효하지 않은 토근입니다. 로그인을 해주세요.',
+        );
         await userLogout(id);
         return history.push('/');
       }

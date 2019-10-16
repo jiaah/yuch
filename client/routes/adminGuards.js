@@ -25,14 +25,24 @@ const AdminGuards = Component => {
 
       if (
         (!keepMeLoggedIn && !sessionStorage.getItem('keepMeLoggedIn')) || // if user reopen the browser ( keepMeLoggedIn is false)
-        !isLoggedIn ||
-        !isAdmin || // if logged in user is not admin
-        httpStatus === 401 // token authentication failure on API request by a loggedIn user
-        // !getToken ||
-        // !getRefreshToken // In case token doesn't exist, but somehow isLoggedIn in redux-store is true.
+        !isLoggedIn
       ) {
+        await addFlashMessage('warning', '로그인을 해주세요.');
         await userLogout(id);
-        addFlashMessage('warning', '로그인을 해주세요.');
+        return history.push('/login');
+      }
+
+      if (
+        !isAdmin || // if logged in user is not admin
+        httpStatus === 401 || // token authentication failure on API request by a loggedIn user
+        !getToken ||
+        !getRefreshToken // In case token doesn't exist, but somehow isLoggedIn in redux-store is true.
+      ) {
+        await addFlashMessage(
+          'warning',
+          '유효하지 않은 토근입니다. 로그인을 해주세요.',
+        );
+        await userLogout(id);
         return history.push('/login');
       }
     };
