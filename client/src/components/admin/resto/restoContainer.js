@@ -25,6 +25,14 @@ const RestoContainer = ({
   const dataFilter = when => {
     // use global state so that it doesn't loose the data.
     const filteredData = restoSales && restoSales.filter(r => r.date === when);
+    if (filteredData.length === 0) {
+      return setResto(prevState => ({
+        ...prevState,
+        date: when,
+        lunch: null,
+        dinner: null,
+      }));
+    }
     return setResto(prevState => ({ ...prevState, ...filteredData[0] }));
   };
 
@@ -46,18 +54,12 @@ const RestoContainer = ({
   useEffect(() => {
     // non-interactive data with clients
     // do not make api GET request every render
-    if (restoSales.length === 0) {
-      fetchData(date);
-    } else {
-      dataFilter(date);
-    }
+    fetchData(date);
+
     return () => Promise.all([resetRestoSales(), resetDateDaily()]);
   }, []);
 
-  const resetToToday = async () => {
-    await resetDateDaily();
-    return window.location.reload(true);
-  };
+  const resetToToday = () => resetDateDaily();
 
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
@@ -74,14 +76,14 @@ const RestoContainer = ({
       <React.Fragment>
         <DateButtons
           date={date}
-          reload={true}
+          reload={false}
           unit="dd"
           formattedDate={formattedDate}
           startTime={admin.startTime}
           endTime={tomorrow}
           updateDate={updateDateDaily}
           addFlashMessage={addFlashMessage}
-          fetchData={fetchData}
+          fetchData={dataFilter}
           dateForwardMessage="존재하지 않는 페이지입니다."
         />
         {resto && (

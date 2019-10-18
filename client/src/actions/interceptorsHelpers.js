@@ -7,7 +7,6 @@ import {
 
 export const isTokenExpiredError = error => {
   const status = error.response ? error.response.status : null;
-  console.log('status: ', status);
   const originalRequest = error.config;
 
   if (status === 401 && !originalRequest._retry) {
@@ -29,6 +28,7 @@ export const resetTokenAndReattemptRequest = async error => {
     const res = await Axios.post('/auth/refresh', {
       refreshToken,
     });
+
     const newRefreshToken = res.data.refreshToken;
     const newToken = res.headers.authorization.split(' ')[1];
 
@@ -46,7 +46,7 @@ export const resetTokenAndReattemptRequest = async error => {
     // change authorization header
     Axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
     // return originalRequest object with Axios
-    return Axios.request(originalRequest);
+    return Axios(originalRequest);
   } catch (error) {
     return Promise.reject(error);
   }

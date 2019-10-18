@@ -111,6 +111,7 @@ const createModal = ({
       handleClose={() => hideModal()}
       component={
         <Formik
+          enableReinitialize
           initialValues={state.inputValues}
           onSubmit={handleSubmit}
           render={props => (

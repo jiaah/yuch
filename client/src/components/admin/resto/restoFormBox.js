@@ -25,6 +25,7 @@ const RestoFormBox = ({ resto, date, updateRestoSales, addFlashMessage }) => {
 
   return (
     <Formik
+      enableReinitialize
       initialValues={inputValues}
       render={props => (
         <Form className="flex flex-column-m items-center justify-center">

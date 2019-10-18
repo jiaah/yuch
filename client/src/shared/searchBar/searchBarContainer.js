@@ -68,7 +68,7 @@ const SearchBar = ({
   handleSuggestionSelected,
   handleResetSearch,
 }) => {
-  const [inputValue, setInputValue] = useState(inputValue);
+  const [inputValue, setInputValue] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
 
