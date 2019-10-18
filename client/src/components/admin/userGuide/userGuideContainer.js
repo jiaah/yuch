@@ -25,6 +25,7 @@ const styles = () => ({
   textFieldA: {
     width: 180,
     marginTop: '-4px',
+    paddingLeft: '30px',
   },
   textFieldB: {
     width: 70,
@@ -41,8 +42,7 @@ const UserGuide = ({
   guide,
   adminActions: { getUsers, getUserRates },
 }) => {
-  const [data, setData] = useState({ users: null });
-  const [input, setInput] = useState({
+  const initInput = {
     companyName: '',
     username: '',
     password: '',
@@ -52,7 +52,10 @@ const UserGuide = ({
     year: '',
     month: '',
     day: '',
-  });
+  };
+
+  const [data, setData] = useState({ users: null });
+  const [input, setInput] = useState(initInput);
 
   const fetchData = async () => {
     const resA = await getUsers();
@@ -99,6 +102,8 @@ const UserGuide = ({
     }
   };
 
+  const handleResetSearc = () => setInput({ ...input, ...initInput });
+
   const handleChange = (e, name) =>
     setInput({ ...input, [name]: e.target.value });
 
@@ -111,7 +116,7 @@ const UserGuide = ({
           data={data.users}
           searchingProp="companyName"
           handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={() => {}}
+          handleResetSearch={handleResetSearc}
         />
         <div className="flex">
           <Select
