@@ -15,9 +15,6 @@ const styles = theme => ({
   users: {
     margin: theme.spacing(-1.4, 1.3, 0, 0),
   },
-  guide: {
-    margin: theme.spacing(1.4, 1.3, 0, 0),
-  },
   regular: {
     margin: '1em',
   },
@@ -38,7 +35,7 @@ const styles = theme => ({
 });
 
 const SelectForm = ({
-  classes: { users, text, small, large, regular, guide },
+  classes: { users, text, small, large, regular },
   label,
   name,
   options,
@@ -65,11 +62,8 @@ const SelectForm = ({
   }
 
   let formControl;
-  if (name === 'users' || name === 'employees') {
+  if (name === 'users' || name === 'employees' || name === 'guide') {
     formControl = users;
-  }
-  if (name === 'guide') {
-    formControl = guide;
   }
   if (name === 'updateInvoice') {
     formControl = regular;

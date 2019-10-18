@@ -10,7 +10,7 @@ const MealPrice = ({
   textFieldB,
   textFieldC,
 }) => {
-  const { mealPrice, newMealPrice, month, day } = state;
+  const { mealPrice, newMealPrice, year, month, day } = state;
   return (
     <React.Fragment>
       <p className="guide--margin">
@@ -38,6 +38,13 @@ const MealPrice = ({
         <p>원 으로</p>
       </div>
       <div className="guide--margin flex justify-center">
+        <TextField
+          name="year"
+          value={year || ''}
+          onChange={e => handleChange(e, 'year')}
+          className={textFieldC}
+        />
+        <p>년</p>
         <TextField
           name="month"
           value={month || ''}
