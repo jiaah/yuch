@@ -8,7 +8,7 @@ export const getEmployees = () => async dispatch => {
     const res = await Axios.get('/partner/employees');
     const { data } = res;
     dispatch({
-      type: types.FETCH_PARTNERS,
+      type: types.FETCH_DATA,
       api: 'getEmployees',
       payload: data,
     });
@@ -28,7 +28,7 @@ export const createEmployee = values => async dispatch => {
   try {
     const res = await Axios.post('/partner/employee', values);
     dispatch({
-      type: types.UPDATE_PARTNERS,
+      type: types.UPDATE_DATA,
       api: 'createEmployee',
       payload: values,
     });
@@ -48,7 +48,7 @@ export const editEmployee = values => async dispatch => {
   try {
     const res = await Axios.patch(`/partner/employee/${values.id}`, values);
     dispatch({
-      type: types.UPDATE_PARTNERS,
+      type: types.UPDATE_DATA,
       api: 'editEmployee',
       payload: values,
     });
@@ -68,7 +68,7 @@ export const deleteEmployee = id => async dispatch => {
   try {
     const res = await Axios.delete(`/partner/employee/${id}`);
     dispatch({
-      type: types.DELETE_PARTNERS,
+      type: types.DELETE_DATA,
       api: 'deleteEmployee',
       payload: { id },
     });
@@ -91,7 +91,7 @@ export const getPartners = () => async dispatch => {
     const res = await Axios.get('/partner/business');
     const { data } = res;
     dispatch({
-      type: types.FETCH_PARTNERS,
+      type: types.FETCH_DATA,
       api: 'getPartners',
       payload: data,
     });
@@ -111,7 +111,7 @@ export const createPartner = values => async dispatch => {
   try {
     const res = await Axios.post('/partner/business', values);
     dispatch({
-      type: types.UPDATE_PARTNERS,
+      type: types.UPDATE_DATA,
       api: 'createPartner',
       payload: values,
     });
@@ -131,7 +131,7 @@ export const editPartner = values => async dispatch => {
   try {
     const res = await Axios.patch(`/partner/business/${values.id}`, values);
     dispatch({
-      type: types.UPDATE_PARTNERS,
+      type: types.UPDATE_DATA,
       api: 'editPartner',
       payload: values,
     });
@@ -151,7 +151,7 @@ export const deletePartner = id => async dispatch => {
   try {
     const res = await Axios.delete(`/partner/business/${id}`);
     dispatch({
-      type: types.DELETE_PARTNERS,
+      type: types.DELETE_DATA,
       api: 'deletePartner',
       payload: { id },
     });

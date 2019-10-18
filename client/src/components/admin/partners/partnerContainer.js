@@ -139,7 +139,7 @@ const Container = ({
 const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
-  partners: state.partner.data,
+  partners: state.data.data,
 });
 
 const mapDispatchToProps = dispatch => ({

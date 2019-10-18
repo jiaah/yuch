@@ -5,12 +5,12 @@ const initialState = { data: [] };
 const partner = (state = initialState, action) => {
   const { payload } = action;
   switch (action.type) {
-    case types.FETCH_PARTNERS:
+    case types.FETCH_DATA:
       return {
         ...state,
         data: payload,
       };
-    case types.UPDATE_PARTNERS: {
+    case types.UPDATE_DATA: {
       const index =
         state.data.length !== 0 &&
         state.data.findIndex(s => s.companyName === payload.companyName);
@@ -29,13 +29,13 @@ const partner = (state = initialState, action) => {
         data: [...state.data, ...payload],
       };
     }
-    case types.DELETE_PARTNERS: {
+    case types.DELETE_DATA: {
       return {
         ...state,
         data: state.data.filter(s => s.id !== payload.id),
       };
     }
-    case types.RESET_PARTNERS:
+    case types.RESET_DATA:
       return {
         ...state,
         data: [],

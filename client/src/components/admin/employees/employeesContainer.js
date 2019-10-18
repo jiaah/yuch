@@ -177,7 +177,7 @@ const mapStateToProps = state => ({
   clickedUserData: state.selected.data,
   selectedSearchItem: state.selected.value,
   employees: state.selected.employees,
-  partners: state.partner.data,
+  partners: state.data.data,
 });
 
 const mapDispatchToProps = dispatch => ({

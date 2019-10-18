@@ -281,7 +281,7 @@ export const specialMealValidation = Yup.object({
 });
 
 export const employeeValidation = Yup.object({
-  companyName: Yup.string('')
+  name: Yup.string('')
     .matches(nameRegExp, '특수문자는 !@#)(* 만 입력가능합니다 (띄어쓰기 가능)')
     .max(20, '20글자 아래로 입력해주세요.')
     .required('고객명을 입력해주세요.'),
@@ -289,6 +289,7 @@ export const employeeValidation = Yup.object({
     .matches(phoneRegExp, "' - '를 포함한 숫자를 입력해주세요.")
     .required('연락처를 입력하세요.'),
   address: Yup.string(''),
+  date: Yup.date(),
   accountHolder: Yup.string('').matches(
     nameRegExp,
     '한글, 숫자, 특수문자 !@#)(* 만 입력하세요 (띄어쓰기 가능)',
