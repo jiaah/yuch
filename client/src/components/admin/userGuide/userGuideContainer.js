@@ -24,8 +24,7 @@ const styles = () => ({
   },
   textFieldA: {
     width: 180,
-    marginTop: '-4px',
-    paddingLeft: '30px',
+    marginTop: '-2px',
   },
   textFieldB: {
     width: 70,
@@ -107,7 +106,7 @@ const UserGuide = ({
   const handleChange = (e, name) =>
     setInput({ ...input, [name]: e.target.value });
 
-  const margin = guide === '회원 등록' ? 'mt3' : 'guide--margin';
+  const margin = guide === '회원 등록' ? 'mt4' : 'mt5';
 
   return (
     <div className="container-a r--w-60">
@@ -136,52 +135,54 @@ const UserGuide = ({
         </div>
       </div>
       <div id="print">
-        <div className="print-width print-tc guide f-regular lh-2">
-          <img
-            className="flex justify-start pb4 pt2 guide--yuch-logo"
-            src={logo}
-            alt="logo"
-          />
-          <div className="flex justify-center">
-            <TextField
-              name="companyName"
-              value={input.companyName || ''}
-              onChange={e => handleChange(e, 'companyName')}
-              className={textFieldA}
+        <div className="print-width print-tc ">
+          <div className="guide f-regular lh-2">
+            <img
+              className="flex justify-start pb4 pt2 guide--yuch-logo"
+              src={logo}
+              alt="logo"
             />
-            <p className="ml3">
-              고객님, &#8199;
-              {guide === '회원 등록' && (
-                <React.Fragment>
-                  <span className="b">환영합니다</span>.
-                </React.Fragment>
-              )}
+            <div className="flex justify-center">
+              <TextField
+                name="companyName"
+                value={input.companyName || ''}
+                onChange={e => handleChange(e, 'companyName')}
+                className={textFieldA}
+              />
+              <p className="ml3">
+                고객님, &#8199;
+                {guide === '회원 등록' && (
+                  <React.Fragment>
+                    <span className="b">환영합니다</span>.
+                  </React.Fragment>
+                )}
+              </p>
+            </div>
+            {guide === '회원 등록' && (
+              <Welcome
+                handleChange={handleChange}
+                adminCompanyName={admin.companyName}
+                state={input}
+                textField={textField}
+              />
+            )}
+            {guide === '식수 변경' && (
+              <MealPrice
+                handleChange={handleChange}
+                adminCompanyName={admin.companyName}
+                state={input}
+                textFieldB={textFieldB}
+                textFieldC={textFieldC}
+              />
+            )}
+            <p className={`b ${margin}`}>
+              유청 서비스를 이용해 주셔서 감사합니다.
+            </p>
+            <p className={`${margin} f-xs c-text2`}>
+              위탁급식 전문업체 | 성당, 교회 각종 행사모임 출장 뷔페 | 가정식
+              한식 뷔폐
             </p>
           </div>
-          {guide === '회원 등록' && (
-            <Welcome
-              handleChange={handleChange}
-              adminCompanyName={admin.companyName}
-              state={input}
-              textField={textField}
-            />
-          )}
-          {guide === '식수 변경' && (
-            <MealPrice
-              handleChange={handleChange}
-              adminCompanyName={admin.companyName}
-              state={input}
-              textFieldB={textFieldB}
-              textFieldC={textFieldC}
-            />
-          )}
-          <p className={`b ${margin}`}>
-            유청 서비스를 이용해 주셔서 감사합니다.
-          </p>
-          <p className={`${margin} guide--footer c-text2`}>
-            위탁급식 전문업체 | 성당, 교회 각종 행사모임 출장 뷔페 | 가정식 한식
-            뷔폐
-          </p>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiInputBase: {
-      // input: { paddingLeft: 10 },
+      input: { paddingLeft: 5 },
     },
   },
 });

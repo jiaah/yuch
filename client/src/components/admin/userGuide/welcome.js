@@ -46,7 +46,11 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
           className={textField}
         />
       </div>
-      <p className="guide--margin">
+      <p className="c-text2 mt2 f-xs">
+        &#42; 웹 브라우저는 &#39;인터넷 익스플로러&#39;가 아닌 &#39;구글
+        크롬&#39;을 사용하여 주시기 바랍니다.
+      </p>
+      <p className="mt4">
         고객님께 언제나 따뜻하고 포근한 집밥을 전해드리기위해 <br />
         최선을 다하겠습니다.
       </p>
