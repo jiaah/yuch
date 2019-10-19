@@ -11,6 +11,7 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from './cateringPaper';
+import ErrorBoundary from '../../errorBoundary';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -51,6 +52,7 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData(date);
+
     return () => {
       Promise.all([
         resetDateDaily(),
@@ -76,60 +78,62 @@ const CateringContainer = ({
   const width = catering && catering.length > 10 ? 'w-80' : 'r--w-50';
   return (
     <div className={`container-a ${width}`}>
-      <div id="print">
-        <div className="print-width print-tc">
-          <h2
-            className="pointer"
-            title="오늘 날짜로 돌아가기"
-            onClick={resetDateDaily}
-          >
-            위탁급식 식수 현황
-          </h2>
-          <DateButtons
-            date={date}
-            reload={true}
-            unit="dd"
-            formattedDate={formattedDate}
-            startTime={admin.startTime}
-            endTime={inAWeek}
-            updateDate={updateDateDaily}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
-          />
-          <div className="center">
-            <div className="paper-label-box justify-between">
-              <SearchBar
-                data={catering}
-                searchingProp="companyName"
-                handleSuggestionSelected={handleSuggestionSelected}
-                handleResetSearch={handleResetSearch}
-              />
-              <IconButton
-                name="print"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={() => printDiv('print')}
+      <ErrorBoundary>
+        <div id="print">
+          <div className="print-width print-tc">
+            <h2
+              className="pointer"
+              title="오늘 날짜로 돌아가기"
+              onClick={resetDateDaily}
+            >
+              위탁급식 식수 현황
+            </h2>
+            <DateButtons
+              date={date}
+              reload={true}
+              unit="dd"
+              formattedDate={formattedDate}
+              startTime={admin.startTime}
+              endTime={inAWeek}
+              updateDate={updateDateDaily}
+              addFlashMessage={addFlashMessage}
+              fetchData={fetchData}
+              dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
+            />
+            <div className="center">
+              <div className="paper-label-box justify-between">
+                <SearchBar
+                  data={catering}
+                  searchingProp="companyName"
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={handleResetSearch}
+                />
+                <IconButton
+                  name="print"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 25 25"
+                  handleClick={() => printDiv('print')}
+                />
+              </div>
+              <CateringPaper
+                users={catering}
+                selectedItemValue={selectedItemValue}
+                updateUserCatering={updateUserCatering}
+                addFlashMessage={addFlashMessage}
+                saveSelectedItemValue={saveSelectedItemValue}
+                resetSelectedItemValue={resetSelectedItemValue}
+                startEditing={startEditing}
+                endEditing={endEditing}
+                editIndex={editIndex}
+                handleTableRowClick={handleTableRowClick}
+                selectedRow={selectedRow}
               />
             </div>
-            <CateringPaper
-              users={catering}
-              selectedItemValue={selectedItemValue}
-              updateUserCatering={updateUserCatering}
-              addFlashMessage={addFlashMessage}
-              saveSelectedItemValue={saveSelectedItemValue}
-              resetSelectedItemValue={resetSelectedItemValue}
-              startEditing={startEditing}
-              endEditing={endEditing}
-              editIndex={editIndex}
-              handleTableRowClick={handleTableRowClick}
-              selectedRow={selectedRow}
-            />
           </div>
         </div>
-      </div>
-      {adminCateringMsg}
+        {adminCateringMsg}
+      </ErrorBoundary>
     </div>
   );
 };

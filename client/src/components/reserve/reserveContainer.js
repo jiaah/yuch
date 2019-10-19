@@ -10,7 +10,7 @@ import * as moment from '../../helpers/moment';
 import ReserveMessage from './reserveMessage';
 import Modal from '../../shared/modal';
 /* --- Actions --- */
-import * as reserveActions from '../../actions/reserveAction';
+import * as reserveActions from '../../actions/mailAction';
 import * as modalActions from '../../actions/modalAction';
 
 const Form = Loader({
