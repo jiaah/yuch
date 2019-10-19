@@ -149,6 +149,7 @@
     "terser-webpack-plugin": "^1.1.0",
     "toposort": "^1.0.6",
     "vanilla-lazyload": "^8.17.0",
+    "victory": "^33.1.1",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-dev-middleware": "^3.7.0",
