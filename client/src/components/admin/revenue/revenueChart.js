@@ -30,7 +30,7 @@ const RevenueChart = ({ data, list, listB, revenueFormat, formatNumber }) => (
             <VictoryChart
               title="revenue"
               padding={{ top: 40, left: 80, right: 10, bottom: 30 }}
-              domainPadding={{ x: [0, 20], y: [0, 20] }}
+              domainPadding={{ x: [0, 5], y: [0, 5] }}
               containerComponent={<VictoryVoronoiContainer />}
             >
               {listB.map(l => (

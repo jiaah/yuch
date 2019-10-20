@@ -28,7 +28,7 @@ const RevenueChart = ({ data, item, classname, height }) => (
           title={item.name}
           height={height}
           padding={{ top: 30, left: 80, right: 10, bottom: 30 }}
-          domainPadding={{ x: [0, 10], y: [0, 10] }}
+          domainPadding={{ x: [0, 5], y: [0, 5] }}
           containerComponent={<VictoryVoronoiContainer />}
         >
           <VictoryGroup
