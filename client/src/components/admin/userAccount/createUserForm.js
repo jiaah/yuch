@@ -36,7 +36,7 @@ const CreateUserForm = props => {
             label="비밀번호"
             name="password"
             styleName="textFieldC"
-            placeholder="(숫자 or 숫자+영문 조합)"
+            placeholder="(연락처) 00000000000"
             required
           />
           <PasswordField
