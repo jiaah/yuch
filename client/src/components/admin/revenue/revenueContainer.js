@@ -77,7 +77,7 @@ const RevenueContainer = ({
         <div className="paper-label-box justify-end">
           {visualization === 'chart' ? (
             <IconButton
-              name="list"
+              name="tableChart"
               width="32"
               height="32"
               viewBox="0 0 25 25"
@@ -85,7 +85,7 @@ const RevenueContainer = ({
             />
           ) : (
             <IconButton
-              name="list"
+              name="showChart"
               width="32"
               height="32"
               viewBox="0 0 25 25"

@@ -37,9 +37,15 @@ import Time from './time';
 import List from './list';
 import Update from './update';
 import Contact from './contact';
+import ShowChart from './showChart';
+import TableChart from './tableChart';
 
 const Icon = props => {
   switch (props.name) {
+    case 'showChart':
+      return <ShowChart {...props} />;
+    case 'tableChart':
+      return <TableChart {...props} />;
     case 'close':
       return <Close {...props} />;
     case 'filledUser':
