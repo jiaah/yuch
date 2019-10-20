@@ -33,7 +33,6 @@ exports.listsByMonthly = async (req, res, next) => {
 exports.listsYuchByMonthly = async (req, res, next) => {
   try {
     const { date } = req.query;
-
     const parsedDate = moment(`${date}0101`, 'YYYYMMDD');
 
     const startedAt = parsedDate.format('YYYY-MM-DD');

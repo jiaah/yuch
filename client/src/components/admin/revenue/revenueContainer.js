@@ -8,7 +8,13 @@ import {
   formatToYYYY,
   revenueFormat,
 } from '../../../utils/date';
-import { admin, revenueColumns, revenueChartlist } from '../../../data/data.js';
+import {
+  admin,
+  revenueColumns,
+  revenueChartlist,
+  revenueChartMultiLines,
+} from '../../../data/data.js';
+import { formatNumber } from '../../../utils/reformat';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import IconButton from '../../../shared/form/iconButton';
@@ -16,8 +22,6 @@ import Paper from '../../../shared/paper';
 import Table from './revenueTable';
 import IconMessage from '../../../shared/iconMessage';
 import RevenueChart from './revenueChart';
-/* --- Components --- */
-import { formatNumber } from '../../../utils/reformat';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -53,7 +57,7 @@ const RevenueContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-60">
+    <div id="print" className="container-a r--w-50">
       <div className="print-width print-tc">
         <h2
           className="pointer"
@@ -114,16 +118,15 @@ const RevenueContainer = ({
               }
             />
           )}
-        {data &&
-          data.length !== 0 &&
-          visualization === 'chart' && (
-            <RevenueChart
-              data={data}
-              revenueFormat={revenueFormat}
-              formatNumber={formatNumber}
-              list={revenueChartlist}
-            />
-          )}
+        {visualization === 'chart' && (
+          <RevenueChart
+            data={data}
+            formatNumber={formatNumber}
+            revenueFormat={revenueFormat}
+            list={revenueChartlist}
+            listB={revenueChartMultiLines}
+          />
+        )}
         <IconMessage
           name="info"
           width="17"

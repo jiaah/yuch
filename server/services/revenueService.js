@@ -87,12 +87,10 @@ const getTotalRevenues = async (startDate, endDate) => {
       const subEndDate = moment(date)
         .endOf('month')
         .format('YYYY-MM-DD');
-
       const sumTotalInvoiceRestaurant = await getSumTotalInvoice(
         subStartDate,
         'restaurant',
       );
-
       const sumTotalResto =
         (await getSumTotalResto(subStartDate, subEndDate)) +
         sumTotalInvoiceRestaurant;
@@ -100,23 +98,20 @@ const getTotalRevenues = async (startDate, endDate) => {
       const sumTotalSpecialMeal = await getSumTotalSpecialMeal(
         subStartDate,
         subEndDate,
-        true,
       );
 
-      const sumTotalInvoiceSpecialMeal = await getSumTotalSpecialMeal(
+      const sumTotalInvoice = await getSumTotalInvoice(
         subStartDate,
-        subEndDate,
-        false,
+        'catering',
       );
-
-      const sumTotalInvoice =
-        (await getSumTotalInvoice(subStartDate, 'catering')) +
-        sumTotalInvoiceSpecialMeal;
 
       const sumTotal = sumTotalResto + sumTotalSpecialMeal + sumTotalInvoice;
 
       const result = {
         date: moment(date).format('YYYYMM'),
+        sumTotalResto,
+        sumTotalSpecialMeal,
+        sumTotalInvoice,
         sumTotal,
       };
       results.push(result);

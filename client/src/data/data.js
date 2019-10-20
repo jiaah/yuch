@@ -740,8 +740,12 @@ export const userMealPriceColumns = [
   },
 ];
 
-export const revenueChartlist = [
-  { label: '위탁급식', name: 'sumTotalInvoice', color: '#D164E8' },
+export const revenueChartMultiLines = [
   { label: '레스토랑', name: 'sumTotalResto', color: '#3ab61a' },
   { label: '특식', name: 'sumTotalSpecialMeal', color: '#43a4f3' },
+];
+
+export const revenueChartlist = [
+  { label: '위탁급식', name: 'sumTotalInvoice', color: '#D164E8' },
+  { label: '유청', name: 'sumTotal', color: '#ed6802' },
 ];
