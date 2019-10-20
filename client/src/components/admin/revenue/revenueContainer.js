@@ -57,7 +57,7 @@ const RevenueContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-50">
+    <div id="print" className="container-a r--w-60">
       <div className="print-width print-tc">
         <h2
           className="pointer"

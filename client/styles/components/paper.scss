@@ -22,10 +22,11 @@
 }
 
 .paper--sec {
-  margin-top: 3em;
+  margin-top: 2em;
 
   @include for-m-desktop-up {
     margin-top: 0;
+    margin-left: 2em;
   }
 }
 

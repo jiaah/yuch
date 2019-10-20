@@ -12,9 +12,9 @@ import Paper from '../../../shared/paper';
 import { formatNumber } from '../../../utils/reformat';
 import { revenueFormat } from '../../../utils/date';
 
-const RevenueChart = ({ data, item }) => (
+const RevenueChart = ({ data, item, classname, height }) => (
   <Paper
-    classname="mt4"
+    classname={classname}
     component={
       <React.Fragment>
         <div className="flex f-regular mt2 ml2">
@@ -26,8 +26,9 @@ const RevenueChart = ({ data, item }) => (
         </div>
         <VictoryChart
           title={item.name}
-          padding={{ top: 40, left: 80, right: 10, bottom: 30 }}
-          domainPadding={{ x: [0, 20], y: [0, 20] }}
+          height={height}
+          padding={{ top: 30, left: 80, right: 10, bottom: 30 }}
+          domainPadding={{ x: [0, 10], y: [0, 10] }}
           containerComponent={<VictoryVoronoiContainer />}
         >
           <VictoryGroup
@@ -50,5 +51,4 @@ const RevenueChart = ({ data, item }) => (
     }
   />
 );
-
 export default RevenueChart;
