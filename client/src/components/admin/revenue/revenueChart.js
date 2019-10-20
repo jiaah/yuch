@@ -9,13 +9,7 @@ import {
 } from 'victory';
 import Paper from '../../../shared/paper';
 
-const list = [
-  { label: '위탁급식', name: 'sumTotalInvoice', color: '#D164E8' },
-  { label: '레스토랑', name: 'sumTotalResto', color: '#3ab61a' },
-  { label: '특식', name: 'sumTotalSpecialMeal', color: '#43a4f3' },
-];
-
-const Graph = ({ data, revenueFormat, formatNumber }) => (
+const RevenueChart = ({ data, list, revenueFormat, formatNumber }) => (
   <React.Fragment>
     <Paper
       component={
@@ -94,4 +88,4 @@ const Graph = ({ data, revenueFormat, formatNumber }) => (
   </React.Fragment>
 );
 
-export default Graph;
+export default RevenueChart;

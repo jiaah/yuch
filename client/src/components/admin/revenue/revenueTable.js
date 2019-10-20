@@ -6,7 +6,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../../shared/tableHead';
-import { revenueColumns } from '../../../data/data';
 import RevenueTableRow from './revenueTableRow';
 
 const styles = () => ({
@@ -19,6 +18,7 @@ const styles = () => ({
 const RevenueTable = ({
   classes: { tableWrapper, table },
   data,
+  revenueColumns,
   // func
   revenueFormat,
   formatNumber,

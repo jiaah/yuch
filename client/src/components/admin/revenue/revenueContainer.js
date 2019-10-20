@@ -8,14 +8,14 @@ import {
   formatToYYYY,
   revenueFormat,
 } from '../../../utils/date';
-import { admin } from '../../../data/data.js';
+import { admin, revenueColumns, revenueChartlist } from '../../../data/data.js';
 import { printDiv } from '../../../utils/print';
 import DateButtons from '../../../shared/form/dateButtons';
 import IconButton from '../../../shared/form/iconButton';
 import Paper from '../../../shared/paper';
 import Table from './revenueTable';
 import IconMessage from '../../../shared/iconMessage';
-import Graph from './revenueGraph';
+import RevenueChart from './revenueChart';
 /* --- Components --- */
 import { formatNumber } from '../../../utils/reformat';
 /* --- Actions --- */
@@ -32,7 +32,7 @@ const RevenueContainer = ({
   // YYYYMMDD -> 'YYYY 년 MM 월'
   const formattedDate = formatToYearDateForm(date);
   const [data, setData] = useState(null);
-  const [visualization, setVisualization] = useState('graph');
+  const [visualization, setVisualization] = useState('chart');
 
   const dataVisualization = option => setVisualization(option);
 
@@ -75,7 +75,7 @@ const RevenueContainer = ({
           dateForwardMessage="존재하지 않는 페이지입니다."
         />
         <div className="paper-label-box justify-end">
-          {visualization === 'graph' ? (
+          {visualization === 'chart' ? (
             <IconButton
               name="list"
               width="32"
@@ -89,7 +89,7 @@ const RevenueContainer = ({
               width="32"
               height="32"
               viewBox="0 0 25 25"
-              handleClick={() => dataVisualization('graph')}
+              handleClick={() => dataVisualization('chart')}
             />
           )}
           <IconButton
@@ -107,6 +107,7 @@ const RevenueContainer = ({
               component={
                 <Table
                   data={data}
+                  revenueColumns={revenueColumns}
                   revenueFormat={revenueFormat}
                   formatNumber={formatNumber}
                 />
@@ -115,11 +116,12 @@ const RevenueContainer = ({
           )}
         {data &&
           data.length !== 0 &&
-          visualization === 'graph' && (
-            <Graph
+          visualization === 'chart' && (
+            <RevenueChart
               data={data}
               revenueFormat={revenueFormat}
               formatNumber={formatNumber}
+              list={revenueChartlist}
             />
           )}
         <IconMessage
