@@ -44,7 +44,7 @@ const MealPriceModal = ({
 
   return (
     <Modal
-      title={`${clickedUserData.companyName} 식수가격표`}
+      title={clickedUserData.companyName}
       handleClose={() => hideModal()}
       component={
         <div className="mh2 user-mealPrice">
