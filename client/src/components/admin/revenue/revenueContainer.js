@@ -16,6 +16,8 @@ import Paper from '../../../shared/paper';
 import Table from './revenueTable';
 import IconMessage from '../../../shared/iconMessage';
 import Graph from './revenueGraph';
+/* --- Components --- */
+import { formatNumber } from '../../../utils/reformat';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -102,13 +104,23 @@ const RevenueContainer = ({
           data.length !== 0 &&
           visualization === 'table' && (
             <Paper
-              component={<Table data={data} revenueFormat={revenueFormat} />}
+              component={
+                <Table
+                  data={data}
+                  revenueFormat={revenueFormat}
+                  formatNumber={formatNumber}
+                />
+              }
             />
           )}
         {data &&
           data.length !== 0 &&
           visualization === 'graph' && (
-            <Graph data={data} revenueFormat={revenueFormat} />
+            <Graph
+              data={data}
+              revenueFormat={revenueFormat}
+              formatNumber={formatNumber}
+            />
           )}
         <IconMessage
           name="info"

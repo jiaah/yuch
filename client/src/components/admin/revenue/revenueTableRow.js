@@ -2,8 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-/* --- Components --- */
-import { formatNumber } from '../../../utils/reformat';
 
 const styles = theme => ({
   resize: {
@@ -20,6 +18,7 @@ const RevenueTableRow = ({
   selectedRow,
   // func
   revenueFormat,
+  formatNumber,
   onfocusOnSelectdRow,
 }) => {
   const formattedDate = revenueFormat(row.date);

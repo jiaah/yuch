@@ -21,6 +21,7 @@ const RevenueTable = ({
   data,
   // func
   revenueFormat,
+  formatNumber,
 }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const onfocusOnSelectdRow = id => setSelectedRow(id);
@@ -47,6 +48,7 @@ const RevenueTable = ({
                 key={row.date}
                 row={row}
                 revenueFormat={revenueFormat}
+                formatNumber={formatNumber}
                 selectedRow={selectedRow}
                 onfocusOnSelectdRow={onfocusOnSelectdRow}
               />
