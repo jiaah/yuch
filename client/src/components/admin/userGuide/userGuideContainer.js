@@ -68,37 +68,27 @@ const UserGuide = ({
 
   const handleSuggestionSelected = async searched => {
     const { id, companyName, username, email, contactNo } = searched;
-    let rates;
+    const rates = await getUserRates(id);
 
-    if (guide === '회원 등록') {
-      // set contactNo as password
-      const array = contactNo.split('');
-      const newArr = array.filter(i => i !== '-');
-      const password = newArr.join('');
+    // set contactNo as password
+    const splittedContact = contactNo.split('');
+    const filteredContact = splittedContact.filter(i => i !== '-');
+    const password = filteredContact.join('');
 
-      return setInput({
-        ...input,
-        companyName,
-        username,
-        email,
-        password,
-      });
-    }
+    const splittedDate = rates[0].startedAt.split('');
 
-    if (guide === '식수 변경') {
-      rates = await getUserRates(id);
-      const array = rates[0].startedAt.split('');
-
-      return setInput({
-        ...input,
-        companyName,
-        mealPrice: rates[1].mealPrice,
-        newMealPrice: rates[0].mealPrice,
-        year: array.slice(0, 4).join(''),
-        month: array.slice(5, 7).join(''),
-        day: array.slice(8, 10).join(''),
-      });
-    }
+    return setInput({
+      ...input,
+      companyName,
+      username,
+      email,
+      password,
+      mealPrice: rates[1].mealPrice,
+      newMealPrice: rates[0].mealPrice,
+      year: splittedDate.slice(0, 4).join(''),
+      month: splittedDate.slice(5, 7).join(''),
+      day: splittedDate.slice(8, 10).join(''),
+    });
   };
 
   const handleResetSearc = () => setInput({ ...input, ...initInput });
