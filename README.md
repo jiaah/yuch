@@ -7,12 +7,12 @@
 
 ## Features
 ### Client
-- Manages user's account
+- Manages client account
 - Makes lunch & dinner request
 - Issues Invoice
 
 ### Company
-- Manages company's account, client accounts
+- Manages company account, client accounts
 - (catering) Manages lunch & dinner requests of all clients & special meal sales
 - (restaurant) Manages lunch & dinner sales 
-- Views Revenue with table Chart and Graph
+- Views revenue with table chart and graph
