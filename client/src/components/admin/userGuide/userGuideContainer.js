@@ -68,14 +68,14 @@ const UserGuide = ({
 
   const handleSuggestionSelected = async searched => {
     const { id, companyName, username, email, contactNo } = searched;
+    // render meal price
     const rates = await getUserRates(id);
+    const splittedDate = rates[0].startedAt.split('');
 
     // set contactNo as password
     const splittedContact = contactNo.split('');
     const filteredContact = splittedContact.filter(i => i !== '-');
     const password = filteredContact.join('');
-
-    const splittedDate = rates[0].startedAt.split('');
 
     return setInput({
       ...input,
