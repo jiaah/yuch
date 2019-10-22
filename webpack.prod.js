@@ -37,7 +37,14 @@ const config = {
       name: 'manifest',
     },
   },
-  plugins: [new BrotliPlugin()],
+  plugins: [
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+  ],
 };
 
 module.exports = merge(baseConfig, config);
