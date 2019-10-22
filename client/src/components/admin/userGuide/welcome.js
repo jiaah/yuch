@@ -5,7 +5,7 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
   const { username, password, mealPrice, email } = state;
   return (
     <React.Fragment>
-      <p className="guide--margin">
+      <p className="mt4">
         {adminCompanyName}은 소중한 고객님께 더 나은 서비스를 제공하고자&#8201;
         <br />
         <span className="b c-blue">자동화된 시스템 </span>

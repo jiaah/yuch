@@ -93,7 +93,7 @@ const UserGuide = ({
     });
   };
 
-  const handleResetSearc = () => setInput({ ...input, ...initInput });
+  const handleResetSearch = () => setInput({ ...input, ...initInput });
 
   const handleChange = (e, name) =>
     setInput({ ...input, [name]: e.target.value });
@@ -107,7 +107,7 @@ const UserGuide = ({
           data={data.users}
           searchingProp="companyName"
           handleSuggestionSelected={handleSuggestionSelected}
-          handleResetSearch={handleResetSearc}
+          handleResetSearch={handleResetSearch}
         />
         <div className="flex">
           <Select
