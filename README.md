@@ -1,7 +1,7 @@
 # Catering Management System
 
 ## Purpose
-- Automates lunch and dinner order process.
+- Catering order management system.
 - Issues monthly invoice.
 - Tracks company revenue.
 
