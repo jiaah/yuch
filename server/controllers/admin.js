@@ -228,15 +228,15 @@ exports.getUsersList = async (req, res, next) => {
         'users.endDate',
         raw('to_char("startDate", \'YYYY-MM-DD\')').as('startDate'),
         raw('to_char("endDate", \'YYYY-MM-DD\')').as('endDate'),
-        // 'meal_price.mealPrice',
+        'meal_price.mealPrice',
         // 'meal_price.reservePrice',
         // 'meal_price.reserveDate',
       )
       .whereNot('username', 'yuch')
-      // .leftJoin('meal_price', 'users.id', 'meal_price.userId')
-      // .whereRaw(
-      //   'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
-      // )
+      .leftJoin('meal_price', 'users.id', 'meal_price.userId')
+      .whereRaw(
+        'CURRENT_DATE BETWEEN meal_price."startedAt" AND meal_price."endedAt"',
+      )
       .whereRaw('"startDate" <= NOW()')
       .whereRaw('"endDate" > NOW()')
       // .where(builder => {

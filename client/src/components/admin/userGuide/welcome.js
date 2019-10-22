@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
-  const { username, password, email } = state;
+  const { username, password, mealPrice, email } = state;
   return (
     <React.Fragment>
       <p className="guide--margin">
@@ -36,6 +36,13 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
           label="비밀번호"
           value={password || ''}
           onChange={e => handleChange(e, 'password')}
+          className={textField}
+        />
+        <TextField
+          name="mealPrice"
+          label="식수가격"
+          value={mealPrice || ''}
+          onChange={e => handleChange(e, 'mealPrice')}
           className={textField}
         />
         <TextField

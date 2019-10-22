@@ -67,8 +67,10 @@ const UserGuide = ({
   }, []);
 
   const handleSuggestionSelected = async searched => {
-    const { id, companyName, username, email, contactNo } = searched;
-    // render meal price
+    // user data (mealPrice : current mealPrice)
+    const { id, companyName, username, email, contactNo, mealPrice } = searched;
+
+    // render meal prices
     const rates = await getUserRates(id);
     const splittedDate = rates[0].startedAt.split('');
 
@@ -83,8 +85,8 @@ const UserGuide = ({
       username,
       email,
       password,
-      mealPrice: rates[1].mealPrice,
-      newMealPrice: rates[0].mealPrice,
+      mealPrice: rates.length > 1 ? rates[1].mealPrice : mealPrice,
+      newMealPrice: rates.length > 1 ? rates[0].mealPrice : '##',
       year: splittedDate.slice(0, 4).join(''),
       month: splittedDate.slice(5, 7).join(''),
       day: splittedDate.slice(8, 10).join(''),
