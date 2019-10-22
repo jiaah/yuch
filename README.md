@@ -2,24 +2,17 @@
 
 ## Purpose
 - Automates lunch and dinner order process.
-- Issues Monthly bill.
+- Issues monthly invoice.
 - Tracks company revenue.
 
 ## Features
 ### Client
-- Manages user's account
-- Makes lunch & dinner request of the day
-- Invoice ( issue monthly )
+- Manages client account
+- Makes lunch & dinner request
+- Issues Invoice
 
 ### Company
-- Manages company's account
-- Manages company’s bank accounts
-- Manages client accounts
-- Manages a table of meal prices of all the clients
-
-- (catering & restaurant) Manages tables of lunch & dinner requests of the day from all the clients
-- (restaurant) Manages lunch & dinner income of the day
-- Manages special meals
-
-- Displays a table of each client's bill balance
-- Displays a graph of monthly revenue of restaurant, catering business and total
+- Manages company account, client accounts
+- (catering) Manages lunch & dinner requests of all clients & special meal sales
+- (restaurant) Manages lunch & dinner sales 
+- Views revenue with table chart and graph
