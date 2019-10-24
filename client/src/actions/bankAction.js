@@ -24,8 +24,9 @@ export const getBankAccount = () => async dispatch => {
 export const createBankAccount = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createBankAccount' });
   try {
-    await Axios.post('/admin/bankaccount', values);
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'createBankAccount' });
+    const res = await Axios.post('/admin/bankaccount', values);
+    dispatch({ type: types.HTTP_SUCCESS, api: 'createBankAccount' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -39,8 +40,9 @@ export const createBankAccount = values => async dispatch => {
 export const editBankAccount = values => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'editBankAccount' });
   try {
-    await Axios.patch(`/admin/bankaccount/${values.id}`, values);
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'editBankAccount' });
+    const res = await Axios.patch(`/admin/bankaccount/${values.id}`, values);
+    dispatch({ type: types.HTTP_SUCCESS, api: 'editBankAccount' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,
@@ -54,8 +56,9 @@ export const editBankAccount = values => async dispatch => {
 export const deleteBankAccount = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteBankAccount' });
   try {
-    await Axios.delete(`/admin/bankaccount/${id}`);
-    return dispatch({ type: types.HTTP_SUCCESS, api: 'deleteBankAccount' });
+    const res = await Axios.delete(`/admin/bankaccount/${id}`);
+    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteBankAccount' });
+    return res;
   } catch (error) {
     return dispatch({
       type: types.HTTP_FAILURE,

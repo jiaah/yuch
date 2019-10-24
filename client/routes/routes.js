@@ -60,6 +60,11 @@ const UserAccountForAdmin = Loader({
     import('../src/components/admin/userAccount/userAccountContainer' /* webpackChunkName: 'UserAccountForAdmin' */),
 });
 
+const Delivery = Loader({
+  loader: () =>
+    import('../src/components/admin/delivery/deliveryContainer' /* webpackChunkName: 'Delivery' */),
+});
+
 const UserBusinessNo = Loader({
   loader: () =>
     import('../src/components/admin/userBusinessNo/userBusinessNoContainer' /* webpackChunkName: 'UserBusinessNo' */),
@@ -182,6 +187,11 @@ const routes = () => (
         exact
         path="/admin/account/users"
         component={AdminGuards(UserAccountForAdmin)}
+      />
+      <Route
+        exact
+        path="/admin/account/delivery"
+        component={AdminGuards(Delivery)}
       />
       <Route
         exact

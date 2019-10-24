@@ -124,14 +124,19 @@ export const navAdminItems = {
       to: '/admin/account/users',
     },
     {
-      id: 13,
+      id: 14,
       name: '고객 사업자번호',
       to: '/admin/account/business',
     },
     {
-      id: 14,
+      id: 15,
       name: '고객 가이드',
       to: '/admin/account/user/guide',
+    },
+    {
+      id: 13,
+      name: '배달 루트',
+      to: '/admin/account/delivery',
     },
   ],
   4: [
