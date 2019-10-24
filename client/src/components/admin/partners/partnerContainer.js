@@ -123,7 +123,6 @@ const Container = ({
             selectedSearchItem={selectedSearchItem}
             hideModal={hideModal}
             addFlashMessage={addFlashMessage}
-            resetSelectedItemValue={resetSelectedItemValue}
             saveClickedItemData={saveClickedItemData}
             resetClickedItemData={resetClickedItemData}
             createPartner={createPartner}

@@ -29,7 +29,6 @@ const EmployeeModal = ({
   addFlashMessage,
   saveClickedItemData,
   resetClickedItemData,
-  resetSelectedItemValue,
   createPartner,
   editPartner,
   deletePartner,
@@ -41,25 +40,17 @@ const EmployeeModal = ({
         ? '거래처 등록'
         : null;
 
-  const handleCloseModal = async () => {
-    await Promise.all([
-      clickedUserData.length !== 0 ? resetClickedItemData() : null,
-      selectedSearchItem !== null ? resetSelectedItemValue() : null,
-    ]);
-    return hideModal();
-  };
-
   return (
     <Modal
       title={title}
-      handleClose={handleCloseModal}
+      handleClose={hideModal}
       component={
         <React.Fragment>
           {clickedBtn === 'edit' ? (
             <EditFormBox
               partnerValidation={partnerValidation}
               editPartner={editPartner}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
               clickedUserData={clickedUserData[0]}
             />
@@ -67,7 +58,7 @@ const EmployeeModal = ({
             <CreateFormBox
               partnerValidation={partnerValidation}
               createPartner={createPartner}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
               saveClickedItemData={saveClickedItemData}
               resetClickedItemData={resetClickedItemData}
@@ -77,7 +68,7 @@ const EmployeeModal = ({
             <DeleteFormBox
               deletePartner={deletePartner}
               selectedSearchItem={selectedSearchItem}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
             />
           ) : null}

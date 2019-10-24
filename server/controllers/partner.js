@@ -4,6 +4,7 @@ const knex = require('../database');
 exports.getEmployees = (req, res) =>
   knex('employees')
     .select('*')
+    .orderBy('name', 'asc')
     .then(data => res.status(200).json(data))
     .catch(err => res.status(409).json(err));
 
@@ -39,6 +40,7 @@ exports.deleteEmployee = (req, res) => {
 exports.getPartners = (req, res) =>
   knex('partners')
     .select('*')
+    .orderBy('updated_at', 'desc')
     .then(data => res.status(200).json(data))
     .catch(err => res.status(409).json(err));
 
@@ -54,7 +56,7 @@ exports.updatePartner = (req, res) => {
   return knex('partners')
     .where({ id })
     .first()
-    .update({ ...req.body })
+    .update({ ...req.body, updated_at: knex.raw('NOW()') })
     .then(() => res.status(200).json())
     .catch(err => res.status(409).json(err));
 };
