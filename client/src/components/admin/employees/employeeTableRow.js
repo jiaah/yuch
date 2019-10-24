@@ -37,8 +37,8 @@ const EmployeeTableRow = ({
     tabIndex={-1}
     selected={
       selectedRow === row.id ||
-      selectedSearchItem === row.companyName ||
-      clickedUserData.companyName === row.companyName
+      selectedSearchItem === row.name ||
+      clickedUserData.name === row.name
     }
   >
     <TableCell padding="checkbox">
@@ -84,6 +84,9 @@ const EmployeeTableRow = ({
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.startDate}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.position}
     </TableCell>
   </TableRow>
 );

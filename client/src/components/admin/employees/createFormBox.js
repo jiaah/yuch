@@ -7,6 +7,7 @@ import { formattedToday } from '../../../helpers/moment';
 const CreateFormBox = ({
   employeeValidation,
   // global state
+  position,
   clickedUserData,
   // actions
   createEmployee,
@@ -34,10 +35,12 @@ const CreateFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
-    // to focus the created row
-    await saveClickedItemData(values);
+    const data = { ...values, position };
 
-    const res = await createEmployee(values);
+    // to focus the created row
+    await saveClickedItemData(data);
+
+    const res = await createEmployee(data);
     if (!res.error) {
       addFlashMessage('success', `성공적으로 등록하였습니다.`);
       await Promise.all([resetForm({}), handleCloseModal()]);
@@ -55,7 +58,7 @@ const CreateFormBox = ({
       initialValues={values}
       render={props => (
         <Form className="mh1">
-          <EmployeeForm {...props} />
+          <EmployeeForm {...props} position={position} />
         </Form>
       )}
       onSubmit={handleCreateBankAccount}

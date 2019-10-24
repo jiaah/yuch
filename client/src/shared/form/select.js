@@ -5,6 +5,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '../../../assets/icons';
 /* --- Actions --- */
 import {
   saveSelectValue,
@@ -14,6 +16,11 @@ import {
 const styles = theme => ({
   users: {
     margin: theme.spacing(-1.4, 1.3, 0, 0),
+  },
+  inputC: {
+    margin: theme.spacing(2, 1, 1, 1),
+    // marginRight: theme.spacing(1),
+    width: 260,
   },
   regular: {
     margin: '1em',
@@ -32,10 +39,11 @@ const styles = theme => ({
   large: {
     width: 200,
   },
+  labelPosition: { marginTop: '9.7px', marginLeft: '-13.8px' },
 });
 
 const SelectForm = ({
-  classes: { users, text, small, large, regular },
+  classes: { users, text, small, large, regular, inputC, labelPosition },
   label,
   name,
   options,
@@ -65,6 +73,9 @@ const SelectForm = ({
   if (name === 'users' || name === 'employees' || name === 'guide') {
     formControl = users;
   }
+  if (name === 'position') {
+    formControl = inputC;
+  }
   if (name === 'updateInvoice') {
     formControl = regular;
   }
@@ -72,7 +83,9 @@ const SelectForm = ({
   return (
     <div className="no-print">
       <FormControl variant="outlined" className={`${formControl} ${width}`}>
-        <InputLabel htmlFor="filled-age-simple">{label}</InputLabel>
+        <InputLabel htmlFor="filled-age-simple" className={labelPosition}>
+          {label}
+        </InputLabel>
         <Select
           value={selectedValue}
           renderValue={selectedValue => selectedValue}

@@ -22,6 +22,7 @@ const EmployeeModal = ({
   // local states
   clickedBtn,
   // global states
+  position,
   clickedUserData,
   selectedSearchItem,
   // actions
@@ -29,7 +30,6 @@ const EmployeeModal = ({
   addFlashMessage,
   saveClickedItemData,
   resetClickedItemData,
-  resetSelectedItemValue,
   createEmployee,
   editEmployee,
   deleteEmployee,
@@ -41,33 +41,27 @@ const EmployeeModal = ({
         ? '직원정보 등록'
         : null;
 
-  const handleCloseModal = async () => {
-    await Promise.all([
-      clickedUserData.length !== 0 ? resetClickedItemData() : null,
-      selectedSearchItem !== null ? resetSelectedItemValue() : null,
-    ]);
-    return hideModal();
-  };
-
   return (
     <Modal
       title={title}
-      handleClose={handleCloseModal}
+      handleClose={hideModal}
       component={
         <React.Fragment>
           {clickedBtn === 'edit' ? (
             <EditFormBox
+              position={position}
               employeeValidation={employeeValidation}
               editEmployee={editEmployee}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
               clickedUserData={clickedUserData[0]}
             />
           ) : clickedBtn === 'create' ? (
             <CreateFormBox
+              position={position}
               employeeValidation={employeeValidation}
               createEmployee={createEmployee}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
               saveClickedItemData={saveClickedItemData}
               resetClickedItemData={resetClickedItemData}
@@ -77,7 +71,7 @@ const EmployeeModal = ({
             <DeleteFormBox
               deleteEmployee={deleteEmployee}
               selectedSearchItem={selectedSearchItem}
-              handleCloseModal={handleCloseModal}
+              handleCloseModal={hideModal}
               addFlashMessage={addFlashMessage}
             />
           ) : null}

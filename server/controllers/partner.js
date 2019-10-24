@@ -42,13 +42,12 @@ exports.getPartners = (req, res) =>
     .then(data => res.status(200).json(data))
     .catch(err => res.status(409).json(err));
 
-exports.createPartner = (req, res) => {
-  console.log(req.body);
-  return knex('partners')
+exports.createPartner = (req, res) =>
+  knex('partners')
     .insert({ ...req.body })
     .then(() => res.status(200).json())
     .catch(err => res.status(500).json(err));
-};
+
 exports.updatePartner = (req, res) => {
   const id = req.params.id;
 

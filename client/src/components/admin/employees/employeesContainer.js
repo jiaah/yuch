@@ -42,6 +42,7 @@ const Container = ({
   clickedUserData,
   selectedSearchItem,
   employees,
+  position,
 }) => {
   const [data, setData] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
@@ -156,12 +157,12 @@ const Container = ({
       </div>
       {clickedBtn && (
         <Modal
+          position={position}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData}
           selectedSearchItem={selectedSearchItem}
           hideModal={hideModal}
           addFlashMessage={addFlashMessage}
-          resetSelectedItemValue={resetSelectedItemValue}
           saveClickedItemData={saveClickedItemData}
           resetClickedItemData={resetClickedItemData}
           createEmployee={createEmployee}
@@ -178,6 +179,7 @@ const mapStateToProps = state => ({
   selectedSearchItem: state.selected.value,
   employees: state.selected.employees,
   partners: state.data.data,
+  position: state.selected.position,
 });
 
 const mapDispatchToProps = dispatch => ({

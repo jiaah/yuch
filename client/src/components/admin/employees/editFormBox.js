@@ -6,6 +6,7 @@ import EmployeeForm from './form';
 const EditFormBox = ({
   employeeValidation,
   // global state
+  position,
   clickedUserData,
   // actions
   editEmployee,
@@ -17,7 +18,9 @@ const EditFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
-    const res = await editEmployee(values);
+    const data = { ...values, position };
+
+    const res = await editEmployee(data);
     if (!res.error) {
       addFlashMessage(
         'success',
@@ -40,7 +43,7 @@ const EditFormBox = ({
       initialValues={clickedUserData}
       render={props => (
         <Form className="mh1">
-          <EmployeeForm {...props} />
+          <EmployeeForm {...props} position={position} />
         </Form>
       )}
       onSubmit={handleEditBankAccount}

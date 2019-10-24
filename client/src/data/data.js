@@ -646,6 +646,12 @@ export const employeeColumns = [
     disablePadding: false,
     label: '시작일',
   },
+  {
+    id: 'position',
+    numeric: true,
+    disablePadding: false,
+    label: '직책',
+  },
 ];
 
 export const partnerColumns = [
