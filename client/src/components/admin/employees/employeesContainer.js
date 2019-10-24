@@ -14,7 +14,7 @@ import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Select from '../../../shared/form/select';
 import Paper from './employeesPaper';
-import { reOrder } from './reOrder';
+import { orderByPositions } from '../../../utils/reOrder';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -57,7 +57,7 @@ const Container = ({
     const res = await getEmployees();
 
     if (!res.error) {
-      const orderedData = await reOrder(res);
+      const orderedData = await orderByPositions(res);
       return setData(orderedData);
     }
     return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');

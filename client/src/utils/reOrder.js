@@ -1,4 +1,4 @@
-export const reOrder = async data => {
+export const orderByPositions = async data => {
   const positions = [
     '사장',
     '부사장',

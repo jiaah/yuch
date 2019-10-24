@@ -4,6 +4,7 @@ const knex = require('../database');
 const util = require('../lib/util');
 const Users = require('../models/Users');
 const BankAccount = require('../models/BankAccount');
+// const Employees = require('../models/Employees');
 
 const mealPriceService = require('../services/mealPriceService');
 
@@ -209,6 +210,7 @@ exports.getUsersList = async (req, res, next) => {
   try {
     const result = {};
     result.activeUsers = await Users.query()
+      // .eager('bankAccount', 'employees')
       .eager('bankAccount')
       .select(
         'users.id',
@@ -245,6 +247,7 @@ exports.getUsersList = async (req, res, next) => {
       .orderBy('users.updated_at', 'desc');
 
     result.inActiveUsers = await Users.query()
+      // .eager('bankAccount', 'employees')
       .eager('bankAccount')
       .select(
         'users.id',
@@ -272,6 +275,9 @@ exports.getUsersList = async (req, res, next) => {
       .orderBy('users.updated_at', 'desc');
 
     result.bankAccounts = await BankAccount.query();
+    // result.employees = await Employees.query()
+    //   .where('position', '기사')
+    //   .orderBy('name', 'asc');
 
     return res.status(200).json(result);
   } catch (err) {
