@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,6 +25,7 @@ const CateringTableRow = ({
   // global state
   selectedItemValue,
   // local state
+  inputs,
   editIndex,
   isSubmitting,
   selectedRow,
@@ -41,6 +42,19 @@ const CateringTableRow = ({
   saveSelectedItemValue,
   resetSelectedItemValue,
 }) => {
+  // create input refs
+  const inputRefs = inputs && useRef(inputs.map(() => React.createRef()));
+  // move focus to next input ref
+  const handleKeyPress = (e, id) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      if (id === inputs.length - 1) {
+        return updateMealQty(userId);
+      }
+      return inputRefs.current[id].current.focus();
+    }
+  };
+
   const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
   const currentlyEditing = editIndex === userId;
 
@@ -144,6 +158,8 @@ const CateringTableRow = ({
               value={lunch}
               className={textField}
               error={lunchQtyErr}
+              inputRef={inputRefs.current[0]}
+              onKeyDown={e => handleKeyPress(e, 1)}
             />
           ) : (
             `${lunch}`
@@ -157,6 +173,8 @@ const CateringTableRow = ({
               value={dinner}
               className={textField}
               error={dinnerQtyErr}
+              inputRef={inputRefs.current[1]}
+              onKeyDown={e => handleKeyPress(e, 2)}
             />
           ) : (
             `${dinner}`
@@ -170,6 +188,8 @@ const CateringTableRow = ({
               value={lateNightSnack}
               className={textField}
               error={lateNightSnackQtyErr}
+              inputRef={inputRefs.current[2]}
+              onKeyDown={e => handleKeyPress(e, inputs.length - 1)}
             />
           ) : (
             `${lateNightSnack}`

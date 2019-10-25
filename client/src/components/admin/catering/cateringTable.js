@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableHead from '../../../shared/tableHead';
 import CateringTableRow from './cateringTableRow';
 import * as data from '../../../data/data';
+import { createInputArray } from '../../../utils/refs';
 
 const styles = () => ({
   tableWrapper: {
@@ -41,6 +42,18 @@ const CateringTable = ({
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);
+  const [inputs, setInputs] = useState(null);
+
+  // create inputs array to map it with ref
+  const createInputArrayForRefs = async () => {
+    // 4 -> number of inputs + submit button
+    const res = await createInputArray(4);
+    return setInputs(res);
+  };
+
+  useEffect(() => {
+    createInputArrayForRefs();
+  }, []);
 
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
@@ -109,6 +122,7 @@ const CateringTable = ({
                     lunchQtyErr={lunchQtyErr}
                     dinnerQtyErr={dinnerQtyErr}
                     lateNightSnackQtyErr={lateNightSnackQtyErr}
+                    inputs={inputs}
                   />
                 );
               })}
