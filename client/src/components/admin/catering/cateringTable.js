@@ -7,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableHead from '../../../shared/tableHead';
 import CateringTableRow from './cateringTableRow';
 import * as data from '../../../data/data';
-import { createInputArray } from '../../../utils/refs';
+import { createForLoopArray } from '../../../utils/loop';
 
 const styles = () => ({
   tableWrapper: {
@@ -47,7 +47,7 @@ const CateringTable = ({
   // create inputs array to map it with ref
   const createInputArrayForRefs = async () => {
     // 4 -> number of inputs + submit button
-    const res = await createInputArray(4);
+    const res = await createForLoopArray(4, 'input');
     return setInputs(res);
   };
 
