@@ -17,7 +17,6 @@ const styles = theme => ({
 const EmployeeTableRow = ({
   classes: { resize, point },
   row,
-  labelId,
   // local state
   selectedRow,
   // global state
@@ -61,7 +60,7 @@ const EmployeeTableRow = ({
     </TableCell>
     <TableCell
       component="th"
-      id={labelId}
+      id={row.id}
       scope="row"
       className={`${resize} ${point}`}
     >

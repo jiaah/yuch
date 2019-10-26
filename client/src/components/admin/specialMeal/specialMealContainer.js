@@ -19,6 +19,7 @@ import { admin } from '../../../data/data';
 import {
   keepScrollPosition,
   saveYposition,
+  scrollToElement,
 } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
@@ -113,10 +114,12 @@ const SpecialMealContainer = ({
   };
 
   // off row focus
-  const handleSuggestionSelected = () => {
-    if (selectedRow) offFocusOnSelectdRow();
-    if (clickedUserData.length !== 0) resetClickedItemData();
-  };
+  const handleSuggestionSelected = data =>
+    Promise.all([
+      scrollToElement(data.id),
+      selectedRow && offFocusOnSelectdRow(),
+      clickedUserData.length !== 0 && resetClickedItemData(),
+    ]);
 
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {

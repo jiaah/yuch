@@ -78,6 +78,7 @@ const SpecialMealTableRow = ({
         className={`${resize} ${point}`}
       >
         <Link
+          id={row.id}
           className="td-none c-text"
           to={`/invoice/special-meal?name=${row.companyName}`}
           onClick={() => getClickedUserData(row.id)}

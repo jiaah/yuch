@@ -56,22 +56,18 @@ const EmployeeTable = ({
         <TableBody data-testid="bank-account--table">
           {data &&
             data.length !== 0 &&
-            data.map((row, index) => {
-              const labelId = `enhanced-table-checkbox-${index}`;
-              return (
-                <EmployeeTableRow
-                  key={row.name}
-                  handleTableRowClick={handleTableRowClick}
-                  handleEditBtnClick={handleEditBtnClick}
-                  handleDeleteBtnClick={handleDeleteBtnClick}
-                  row={row}
-                  labelId={labelId}
-                  selectedRow={selectedRow}
-                  selectedSearchItem={selectedSearchItem}
-                  clickedUserData={clickedUserData}
-                />
-              );
-            })}
+            data.map(row => (
+              <EmployeeTableRow
+                key={row.name}
+                handleTableRowClick={handleTableRowClick}
+                handleEditBtnClick={handleEditBtnClick}
+                handleDeleteBtnClick={handleDeleteBtnClick}
+                row={row}
+                selectedRow={selectedRow}
+                selectedSearchItem={selectedSearchItem}
+                clickedUserData={clickedUserData}
+              />
+            ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 49 * emptyRows }}>
               <TableCell colSpan={8} />

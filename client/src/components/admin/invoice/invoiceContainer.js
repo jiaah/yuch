@@ -17,6 +17,7 @@ import IconButton from '../../../shared/form/iconButton';
 import Paper from './invoicePaper';
 import IconMessage from '../../../shared/iconMessage';
 import Loader from '../../loader';
+import { scrollToElement } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../../actions/messageAction';
@@ -50,12 +51,14 @@ const InvoiceContainer = ({
     resetSelectedItemValue();
   };
   const offFocusOnSelectdRow = () => setSelectedRow(null);
-  const handleSuggestionSelected = () => offFocusOnSelectdRow();
+  const handleSuggestionSelected = data =>
+    Promise.all([scrollToElement(data.userId), offFocusOnSelectdRow()]);
 
   // keep scroll position between sales table and invoice
   const keepScrollPosition = async () => {
     if (sessionStorage.currentYOffset !== undefined) {
       const jumpTo = await sessionStorage.currentYOffset;
+
       window.scrollTo(0, jumpTo);
     }
   };

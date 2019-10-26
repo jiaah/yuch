@@ -72,21 +72,17 @@ const UserTable = ({
               users.length !== 0 &&
               stableSort(usersToDisplay, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
-                  return (
-                    <UserTableRow
-                      key={row.id}
-                      handleTableRowClick={handleTableRowClick}
-                      handleEditUserBtnClick={handleEditUserBtnClick}
-                      handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
-                      row={row}
-                      selectedRow={selectedRow}
-                      labelId={labelId}
-                      clickedUserData={clickedUserData}
-                    />
-                  );
-                })}
+                .map(row => (
+                  <UserTableRow
+                    key={row.id}
+                    handleTableRowClick={handleTableRowClick}
+                    handleEditUserBtnClick={handleEditUserBtnClick}
+                    handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
+                    row={row}
+                    selectedRow={selectedRow}
+                    clickedUserData={clickedUserData}
+                  />
+                ))}
             {emptyRows > 0 && (
               <TableRow style={{ height: 49 * emptyRows }}>
                 <TableCell colSpan={13} />

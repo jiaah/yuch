@@ -292,7 +292,7 @@ exports.getUsersBusinessNoList = async (req, res, next) => {
     .where(builder => {
       builder.whereRaw('"endDate" >= NOW()').orWhereNull('endDate');
     })
-    .select('users.companyName', 'users.businessNo')
+    .select('users.id', 'users.companyName', 'users.businessNo')
     .orderBy('users.companyName', 'asc')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json(err));

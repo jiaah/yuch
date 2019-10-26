@@ -18,7 +18,6 @@ const styles = theme => ({
 const RatesTableRow = ({
   classes: { resize, point },
   row,
-  labelId,
   selectedRow,
   clickedUserData,
   selectedSearchItem,
@@ -56,7 +55,7 @@ const RatesTableRow = ({
         </TableCell>
         <TableCell
           component="th"
-          id={labelId}
+          id={row.userId}
           scope="row"
           padding="none"
           className={`${resize} ${point}`}

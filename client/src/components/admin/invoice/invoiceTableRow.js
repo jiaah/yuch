@@ -37,6 +37,7 @@ const SpecialMealTableRow = ({
     >
       <TableCell align="right" className={resize}>
         <Link
+          id={row.userId}
           className="td-none c-point2 fw6"
           to={`/invoice/user?name=${row.companyName}&id=${row.userId}`}
           onClick={saveYposition}

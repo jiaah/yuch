@@ -28,7 +28,7 @@ const BusinessNoTableRow = ({
       }
       onClick={() => handleTableRowClick(row.companyName)}
     >
-      <TableCell align="right" className={`${resize} ${point}`}>
+      <TableCell id={row.id} align="right" className={`${resize} ${point}`}>
         {row.companyName}
       </TableCell>
       <TableCell align="right" className={resize}>

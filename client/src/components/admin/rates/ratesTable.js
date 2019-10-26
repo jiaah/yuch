@@ -46,21 +46,17 @@ const RatesTable = ({
           />
           <TableBody>
             {sortedData.length !== 0 &&
-              sortedData.map((row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <RatesTableRow
-                    key={row.userId}
-                    row={row}
-                    labelId={labelId}
-                    clickedUserData={clickedUserData}
-                    selectedSearchItem={selectedSearchItem}
-                    selectedRow={selectedRow}
-                    handleTableRowClick={handleTableRowClick}
-                    handleEditUserBtnClick={handleEditUserBtnClick}
-                  />
-                );
-              })}
+              sortedData.map(row => (
+                <RatesTableRow
+                  key={row.userId}
+                  row={row}
+                  clickedUserData={clickedUserData}
+                  selectedSearchItem={selectedSearchItem}
+                  selectedRow={selectedRow}
+                  handleTableRowClick={handleTableRowClick}
+                  handleEditUserBtnClick={handleEditUserBtnClick}
+                />
+              ))}
             {emptyRows > 0 && <TableRow style={{ height: 49 * emptyRows }} />}
           </TableBody>
         </Table>

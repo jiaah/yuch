@@ -14,6 +14,7 @@ import CateringPaper from '../catering/cateringPaper';
 import {
   keepScrollPosition,
   saveYposition,
+  scrollToElement,
 } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
@@ -71,10 +72,12 @@ const RestoQtyContainer = ({
     if (selectedItemValue) resetSelectedItemValue();
   };
 
-  const handleSuggestionSelected = () => {
-    if (editIndex) endEditing();
-    if (selectedRow) offFocusOnSelectdRow();
-  };
+  const handleSuggestionSelected = data =>
+    Promise.all([
+      scrollToElement(data.userId),
+      editIndex && endEditing(),
+      selectedRow && offFocusOnSelectdRow(),
+    ]);
 
   const handleResetSearch = () => {};
 

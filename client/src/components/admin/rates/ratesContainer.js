@@ -11,6 +11,7 @@ import AdminVerificationModal from '../../../shared/adminVerification/adminVerif
 import {
   keepScrollPosition,
   saveYposition,
+  scrollToElement,
 } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as rateActions from '../../../actions/rateAction';
@@ -90,7 +91,8 @@ const RatesContainer = ({
   };
 
   // funcions that runs after search component
-  const handleSuggestionSelected = () => {
+  const handleSuggestionSelected = data => {
+    scrollToElement(data.userId);
     if (selectedRow) offFocusOnSelectdRow();
     if (clickedUserData.length !== 0) resetClickedItemData();
   };

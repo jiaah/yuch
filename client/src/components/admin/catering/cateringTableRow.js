@@ -21,7 +21,6 @@ const CateringTableRow = ({
   classes: { resize, textField, point },
   // var
   row,
-  // labelId,
   // global state
   selectedItemValue,
   // local state

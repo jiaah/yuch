@@ -22,7 +22,6 @@ const UserTableRow = ({
   handleUserMealPriceBtnClick,
   row,
   selectedRow,
-  labelId,
   clickedUserData,
 }) => {
   let bankAccount;
@@ -73,7 +72,7 @@ const UserTableRow = ({
         </TableCell>
         <TableCell
           component="th"
-          id={labelId}
+          id={row.id}
           scope="row"
           padding="none"
           className={`${resize} ${point}`}

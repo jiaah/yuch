@@ -101,12 +101,10 @@ const CateringTable = ({
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
-              dataToDisplay.map((row, index) => (
-                // const labelId = `enhanced-table-checkbox-${index}`;
+              dataToDisplay.map(row => (
                 <CateringTableRow
                   key={row.userId}
                   row={row}
-                  // labelId={labelId}
                   selectedItemValue={selectedItemValue}
                   handleChange={handleChange}
                   updateMealQty={updateMealQty}

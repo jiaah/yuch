@@ -6,6 +6,7 @@ import BusinessNoPaper from './userBusinessNoPaper';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
+import { scrollToElement } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import { getUsersBusinessNo } from '../../../actions/adminAccountAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -44,7 +45,8 @@ const BusinessNoContainer = ({
     if (selectedItemValue) resetSelectedItemValue();
   };
 
-  const handleSuggestionSelected = () => {
+  const handleSuggestionSelected = data => {
+    scrollToElement(data.id);
     if (selectedRow) removeFocusOnSelectdRow();
   };
 

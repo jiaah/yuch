@@ -11,6 +11,7 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import {
   keepScrollPosition,
   saveYposition,
+  scrollToElement,
 } from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
@@ -80,7 +81,8 @@ const Container = ({
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
-  const handleSuggestionSelected = () => {
+  const handleSuggestionSelected = data => {
+    scrollToElement(data.id);
     if (selectedRow) offFocusOnSelectdRow();
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
