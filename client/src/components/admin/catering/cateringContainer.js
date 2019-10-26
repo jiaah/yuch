@@ -73,12 +73,12 @@ const CateringContainer = ({
     if (tagName !== 'INPUT' && selectedItemValue) resetSelectedItemValue();
   };
 
-  const handleSuggestionSelected = data => {
-    scrollToElement(data.userId);
-
-    if (editIndex) endEditing();
-    if (selectedRow) offFocusOnSelectdRow();
-  };
+  const handleSuggestionSelected = data =>
+    Promise.all([
+      scrollToElement(data.userId),
+      editIndex && endEditing(),
+      selectedRow && offFocusOnSelectdRow(),
+    ]);
 
   const handleResetSearch = () => {};
 
