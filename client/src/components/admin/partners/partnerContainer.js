@@ -8,6 +8,10 @@ import Loader from '../../loader';
 import { partnerColumns } from '../../../data/data';
 import { printDiv } from '../../../utils/print';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -43,7 +47,8 @@ const Container = ({
     const res = await getPartners();
     if (res.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-    return setData(res);
+    await setData(res);
+    return keepScrollPosition();
   };
 
   useEffect(() => {
@@ -57,7 +62,12 @@ const Container = ({
   }, []);
 
   const handleButtonClick = sub => {
-    Promise.all([setClickedBtn(sub), showModal(), offFocusOnSelectdRow()]);
+    Promise.all([
+      saveYposition(),
+      setClickedBtn(sub),
+      showModal(),
+      offFocusOnSelectdRow(),
+    ]);
   };
 
   // Row Focusing
@@ -105,17 +115,19 @@ const Container = ({
             />
           </div>
         </div>
-        <Paper
-          data={data}
-          selectedRow={selectedRow}
-          selectedSearchItem={selectedSearchItem}
-          saveClickedItemData={saveClickedItemData}
-          saveSelectedItemValue={saveSelectedItemValue}
-          handleButtonClick={handleButtonClick}
-          handleTableRowClick={handleTableRowClick}
-          partnerColumns={partnerColumns}
-          clickedUserData={clickedUserData}
-        />
+        {data && (
+          <Paper
+            data={data}
+            selectedRow={selectedRow}
+            selectedSearchItem={selectedSearchItem}
+            saveClickedItemData={saveClickedItemData}
+            saveSelectedItemValue={saveSelectedItemValue}
+            handleButtonClick={handleButtonClick}
+            handleTableRowClick={handleTableRowClick}
+            partnerColumns={partnerColumns}
+            clickedUserData={clickedUserData}
+          />
+        )}
         {clickedBtn && (
           <Modal
             clickedBtn={clickedBtn}

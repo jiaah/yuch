@@ -52,6 +52,14 @@ const InvoiceContainer = ({
   const offFocusOnSelectdRow = () => setSelectedRow(null);
   const handleSuggestionSelected = () => offFocusOnSelectdRow();
 
+  // keep scroll position between sales table and invoice
+  const keepScrollPosition = async () => {
+    if (sessionStorage.currentYOffset !== undefined) {
+      const jumpTo = await sessionStorage.currentYOffset;
+      window.scrollTo(0, jumpTo);
+    }
+  };
+
   useEffect(
     () => () => {
       offFocusOnSelectdRow();
@@ -67,7 +75,8 @@ const InvoiceContainer = ({
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setData(res);
+    await setData(res);
+    return keepScrollPosition();
   };
 
   useEffect(() => {

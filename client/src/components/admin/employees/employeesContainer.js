@@ -15,6 +15,10 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import Select from '../../../shared/form/select';
 import Paper from './employeesPaper';
 import { orderByPositions } from '../../../utils/reOrder';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as modalActions from '../../../actions/modalAction';
 import * as selectedActions from '../../../actions/selectedAction';
@@ -58,7 +62,8 @@ const Container = ({
 
     if (!res.error) {
       const orderedData = await orderByPositions(res);
-      return setData(orderedData);
+      await setData(orderedData);
+      return keepScrollPosition();
     }
     return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
   };
@@ -73,9 +78,13 @@ const Container = ({
     };
   }, []);
 
-  const handleButtonClick = sub => {
-    Promise.all([setClickedBtn(sub), showModal(), offFocusOnSelectdRow()]);
-  };
+  const handleButtonClick = sub =>
+    Promise.all([
+      saveYposition(),
+      setClickedBtn(sub),
+      showModal(),
+      offFocusOnSelectdRow(),
+    ]);
 
   // Row Focusing
   const handleTableRowClick = id => {
@@ -143,21 +152,23 @@ const Container = ({
             </div>
           </div>
         </div>
-        <Paper
-          data={data}
-          clickedBtn={clickedBtn}
-          selectedRow={selectedRow}
-          employees={employees}
-          clickedUserData={clickedUserData}
-          selectedSearchItem={selectedSearchItem}
-          saveClickedItemData={saveClickedItemData}
-          saveSelectedItemValue={saveSelectedItemValue}
-          handleButtonClick={handleButtonClick}
-          handleTableRowClick={handleTableRowClick}
-          employeeColumns={employeeColumns}
-          employeeContactColumns={employeeContactColumns}
-          employeeBankColumns={employeeBankColumns}
-        />
+        {data && (
+          <Paper
+            data={data}
+            clickedBtn={clickedBtn}
+            selectedRow={selectedRow}
+            employees={employees}
+            clickedUserData={clickedUserData}
+            selectedSearchItem={selectedSearchItem}
+            saveClickedItemData={saveClickedItemData}
+            saveSelectedItemValue={saveSelectedItemValue}
+            handleButtonClick={handleButtonClick}
+            handleTableRowClick={handleTableRowClick}
+            employeeColumns={employeeColumns}
+            employeeContactColumns={employeeContactColumns}
+            employeeBankColumns={employeeBankColumns}
+          />
+        )}
       </div>
       {clickedBtn && (
         <Modal

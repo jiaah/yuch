@@ -4,6 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from 'react-router-dom';
 import { formatNumber } from '../../../utils/reformat';
+import { saveYposition } from '../../../helpers/scrollPosition';
 
 const styles = theme => ({
   resize: {
@@ -38,6 +39,7 @@ const SpecialMealTableRow = ({
         <Link
           className="td-none c-point2 fw6"
           to={`/invoice/user?name=${row.companyName}&id=${row.userId}`}
+          onClick={saveYposition}
         >
           {row.companyName}
         </Link>

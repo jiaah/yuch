@@ -52,7 +52,8 @@ const RatesContainer = ({
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setData(res);
+    await setData(res);
+    return keepScrollPosition();
   };
 
   useEffect(() => {
@@ -61,7 +62,6 @@ const RatesContainer = ({
       showModal();
     }
     fetchCateringRates();
-    keepScrollPosition();
     return () =>
       Promise.all([
         clickedUserData.length !== 0 && resetClickedItemData(),
@@ -117,16 +117,18 @@ const RatesContainer = ({
             handleClick={() => printDiv('print')}
           />
         </div>
-        <RatesPaper
-          data={data}
-          users={dataToRender}
-          selectedRow={selectedRow}
-          selectedSearchItem={selectedSearchItem}
-          clickedUserData={clickedUserData[0] || clickedUserData}
-          handleEditUserBtnClick={handleEditUserBtnClick}
-          handleTableRowClick={handleTableRowClick}
-          isAdminVerified={isAdminVerified}
-        />
+        {data && (
+          <RatesPaper
+            data={data}
+            users={dataToRender}
+            selectedRow={selectedRow}
+            selectedSearchItem={selectedSearchItem}
+            clickedUserData={clickedUserData[0] || clickedUserData}
+            handleEditUserBtnClick={handleEditUserBtnClick}
+            handleTableRowClick={handleTableRowClick}
+            isAdminVerified={isAdminVerified}
+          />
+        )}
         {isAdminVerified &&
           clickedUserData.length !== 0 && (
             <EditRateModal

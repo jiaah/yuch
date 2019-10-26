@@ -16,6 +16,10 @@ import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import Loader from '../../loader';
 import { admin } from '../../../data/data';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as modalActions from '../../../actions/modalAction';
@@ -82,7 +86,8 @@ const SpecialMealContainer = ({
       setSpecialMeal([]);
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setSpecialMeal(res.specialMeal);
+    await setSpecialMeal(res.specialMeal);
+    return keepScrollPosition();
   };
 
   useEffect(() => {
@@ -97,8 +102,8 @@ const SpecialMealContainer = ({
       ]);
   }, []);
 
-  const handleButtonClick = async sub => {
-    await setClickedBtn(sub);
+  const handleButtonClick = sub => {
+    Promise([saveYposition(), setClickedBtn(sub)]);
     return showModal();
   };
 
