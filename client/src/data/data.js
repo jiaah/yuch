@@ -641,12 +641,7 @@ export const employeeColumns = [
     disablePadding: false,
     label: '연락처',
   },
-  {
-    id: 'address',
-    numeric: true,
-    disablePadding: false,
-    label: '주소',
-  },
+
   {
     id: 'startDate',
     numeric: true,
@@ -658,6 +653,12 @@ export const employeeColumns = [
     numeric: true,
     disablePadding: false,
     label: '직책',
+  },
+  {
+    id: 'address',
+    numeric: true,
+    disablePadding: false,
+    label: '주소',
   },
 ];
 

@@ -79,13 +79,13 @@ const EmployeeTableRow = ({
       {row.contactNo}
     </TableCell>
     <TableCell align="right" className={resize}>
-      {row.address}
-    </TableCell>
-    <TableCell align="right" className={resize}>
       {row.startDate}
     </TableCell>
     <TableCell align="right" className={resize}>
       {row.position}
+    </TableCell>
+    <TableCell align="right" className={resize}>
+      {row.address}
     </TableCell>
   </TableRow>
 );
