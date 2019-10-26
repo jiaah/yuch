@@ -54,6 +54,7 @@ const UserAccountContainer = ({
     editUser,
     handleEndingService,
     getUserRates,
+    deleteUser,
   },
   selectedActions: {
     resetSelectedItemValue,
@@ -236,6 +237,7 @@ const UserAccountContainer = ({
         <EditUserModal
           handleCloseModal={handleCloseModal}
           editUser={editUser}
+          deleteUser={deleteUser}
           clickedBtn={clickedBtn}
           clickedUserData={clickedUserData[0]}
           addFlashMessage={addFlashMessage}

@@ -21,6 +21,7 @@ const EditUserModal = ({
   clickedUserData,
   // actions
   editUser,
+  deleteUser,
   addFlashMessage,
   resetPassword,
   handleEndingService,
@@ -56,6 +57,7 @@ const EditUserModal = ({
             formatToYYYYMMDD={formatToYYYYMMDD}
             clickedUserData={clickedUserData}
             formattedToday={formattedToday}
+            deleteUser={deleteUser}
           />
         ) : subModal === 'password' ? (
           <ResetPassword
