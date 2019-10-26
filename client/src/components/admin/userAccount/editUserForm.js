@@ -117,7 +117,7 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
       formClassName="form--radioBtn"
       component={<BusinessTypeOptions name="businessType" />}
       required
-      // disabled
+      disabled
     />
     <RadioButtonFormControl
       label="입금 계좌번호"

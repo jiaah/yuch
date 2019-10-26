@@ -50,26 +50,26 @@ const EndServiceFormBox = ({
   };
 
   const handleSubmit = async () => {
-    deleteUser(clickedUserData.id);
-    // await setSubmitting(true);
-    // const formattedEndDate = formatToYYYYMMDD(endDate);
-    // const formattedStartDate = formatToYYYYMMDD(startDate);
-    // const date = endService ? formattedEndDate : formattedStartDate;
+    // deleteUser(clickedUserData.id);
+    await setSubmitting(true);
+    const formattedEndDate = formatToYYYYMMDD(endDate);
+    const formattedStartDate = formatToYYYYMMDD(startDate);
+    const date = endService ? formattedEndDate : formattedStartDate;
 
-    // const res = await handleEndingService(clickedUserData.id, endService, date);
+    const res = await handleEndingService(clickedUserData.id, endService, date);
 
-    // await offVerification();
-    // if (!res.error) {
-    //   Promise.all([closeSubModal(), handleCloseModal()]);
-    //   addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
-    //   window.location.reload(true);
-    // } else {
-    //   addFlashMessage(
-    //     'error',
-    //     '서비스 설정에 실패하였습니다. 다시 시도해주세요.',
-    //   );
-    // }
-    // return setSubmitting(false);
+    await offVerification();
+    if (!res.error) {
+      Promise.all([closeSubModal(), handleCloseModal()]);
+      addFlashMessage('success', '서비스 설정을 성공적으로 저장하였습니다.');
+      window.location.reload(true);
+    } else {
+      addFlashMessage(
+        'error',
+        '서비스 설정에 실패하였습니다. 다시 시도해주세요.',
+      );
+    }
+    return setSubmitting(false);
   };
 
   // const checkedDate = formatToYYYYMMDD(endDate);
