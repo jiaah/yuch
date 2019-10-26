@@ -28,7 +28,7 @@ export const createEmployee = values => async dispatch => {
   try {
     const res = await Axios.post('/partner/employee', values);
     dispatch({
-      type: types.UPDATE_DATA,
+      type: types.CREATE_DATA,
       api: 'createEmployee',
       payload: values,
     });
@@ -111,7 +111,7 @@ export const createPartner = values => async dispatch => {
   try {
     const res = await Axios.post('/partner/business', values);
     dispatch({
-      type: types.UPDATE_DATA,
+      type: types.CREATE_DATA,
       api: 'createPartner',
       payload: values,
     });

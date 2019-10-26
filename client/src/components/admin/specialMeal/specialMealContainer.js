@@ -82,7 +82,7 @@ const SpecialMealContainer = ({
       setSpecialMeal([]);
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setSpecialMeal(res);
+    return setSpecialMeal(res.specialMeal);
   };
 
   useEffect(() => {

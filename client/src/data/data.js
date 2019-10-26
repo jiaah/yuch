@@ -1,6 +1,8 @@
 // startTime must be fist day of month
 export const admin = {
   companyName: '유청',
+  address: '경주시 황성동 1071-1번지 ',
+  addressSub: '강남골프장 맞은편',
   startTime: '20190901',
   startYear: '2019',
   contactNo1: '(054) 745 - 0999',

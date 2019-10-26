@@ -2,6 +2,7 @@ const moment = require('moment');
 const { raw } = require('objection');
 const Calendars = require('../models/Calendars');
 const SpecialMeal = require('../models/SpecialMeal');
+const BankAccount = require('../models/BankAccount');
 
 const getListsByUserIdWithRangeDate = async (userId, startDate, endDate) => {
   // const results = Calendars.query()
@@ -92,7 +93,8 @@ const findAllByUserIdWithDateRange = async (userId, startedAt, endedAt) => {
 
 const listsByDateRange = async (startedAt, endedAt) => {
   try {
-    const results = await SpecialMeal.query()
+    const result = {};
+    result.specialMeal = await SpecialMeal.query()
       .select(
         'special_meal.id',
         'userId',
@@ -113,9 +115,11 @@ const listsByDateRange = async (startedAt, endedAt) => {
       .orderBy('date', 'asc')
       .orderBy('time', 'asc');
 
-    results.map(result => formatDateTime(result));
+    result.specialMeal.map(specialMeal => formatDateTime(specialMeal));
 
-    return results;
+    result.bankAccounts = await BankAccount.query();
+
+    return result;
   } catch (error) {
     throw error;
   }

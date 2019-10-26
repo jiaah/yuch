@@ -14,7 +14,9 @@ const EditFormBox = ({
   handleCloseModal,
 }) => {
   const handleEditPartner = async (values, { setSubmitting, resetForm }) => {
-    const res = await editPartner(values);
+    const id = clickedUserData.id;
+    const sendingData = { id, ...values };
+    const res = await editPartner(sendingData);
     if (!res.error) {
       addFlashMessage(
         'success',

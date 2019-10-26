@@ -8,7 +8,7 @@ export const getSpecialMeal = date => async dispatch => {
     const res = await Axios.get('/special/users', { params: { date } });
     const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.FETCH_DATA,
       api: 'getSpecialMeal',
       payload: data,
     });
@@ -30,7 +30,7 @@ export const getUserSpecialMeal = (id, date) => async dispatch => {
     const res = await Axios.get(`/special/user/${id}`, { params: { date } });
     const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.FETCH_DATA,
       api: 'getSpecialMeal',
       payload: data,
     });
@@ -52,7 +52,7 @@ export const createSpecialMeal = values => async dispatch => {
     const res = await Axios.post('/special', values);
     const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.CREATE_DATA,
       api: 'createSpecialMeal',
       payload: data,
     });
@@ -73,7 +73,7 @@ export const updateSpecialMeal = values => async dispatch => {
     const res = await Axios.patch(`/special/${values.id}`, values);
     const { data } = res;
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.UPDATE_DATA,
       api: 'updateSpecialMeal',
       payload: data,
     });
@@ -94,7 +94,7 @@ export const deleteSpecialMeal = id => async dispatch => {
     const res = await Axios.delete(`/special/user/${id}`);
 
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.DELETE_DATA,
       api: 'deleteSpecialMeal',
     });
     return res;

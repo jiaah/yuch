@@ -18,7 +18,8 @@ const EditFormBox = ({
     values,
     { setSubmitting, resetForm },
   ) => {
-    const data = { ...values, position };
+    const id = clickedUserData.id;
+    const data = { id, ...values, position };
 
     const res = await editEmployee(data);
     if (!res.error) {

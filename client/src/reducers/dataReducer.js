@@ -10,23 +10,17 @@ const partner = (state = initialState, action) => {
         ...state,
         data: payload,
       };
-    case types.UPDATE_DATA: {
-      const index =
-        state.data.length !== 0 &&
-        state.data.findIndex(s => s.companyName === payload.companyName);
-
-      if (index !== -1) {
-        const newObj = state.data.map(
-          s => (s.companyName === payload.companyName ? payload : s),
-        );
-        return {
-          ...state,
-          data: newObj,
-        };
-      }
+    case types.CREATE_DATA: {
       return {
         ...state,
         data: [...state.data, ...payload],
+      };
+    }
+    case types.UPDATE_DATA: {
+      const newObj = state.data.map(s => (s.id === payload.id ? payload : s));
+      return {
+        ...state,
+        data: newObj,
       };
     }
     case types.DELETE_DATA: {
