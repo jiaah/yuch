@@ -101,31 +101,29 @@ const CateringTable = ({
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
             {sortedData.length !== 0 &&
-              dataToDisplay.map((row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-                return (
-                  <CateringTableRow
-                    key={row.userId}
-                    row={row}
-                    labelId={labelId}
-                    selectedItemValue={selectedItemValue}
-                    handleChange={handleChange}
-                    updateMealQty={updateMealQty}
-                    startEditing={startEditing}
-                    endEditing={endEditing}
-                    editIndex={editIndex}
-                    saveSelectedItemValue={saveSelectedItemValue}
-                    resetSelectedItemValue={resetSelectedItemValue}
-                    isSubmitting={isSubmitting}
-                    handleTableRowClick={handleTableRowClick}
-                    selectedRow={selectedRow}
-                    lunchQtyErr={lunchQtyErr}
-                    dinnerQtyErr={dinnerQtyErr}
-                    lateNightSnackQtyErr={lateNightSnackQtyErr}
-                    inputs={inputs}
-                  />
-                );
-              })}
+              dataToDisplay.map((row, index) => (
+                // const labelId = `enhanced-table-checkbox-${index}`;
+                <CateringTableRow
+                  key={row.userId}
+                  row={row}
+                  // labelId={labelId}
+                  selectedItemValue={selectedItemValue}
+                  handleChange={handleChange}
+                  updateMealQty={updateMealQty}
+                  startEditing={startEditing}
+                  endEditing={endEditing}
+                  editIndex={editIndex}
+                  saveSelectedItemValue={saveSelectedItemValue}
+                  resetSelectedItemValue={resetSelectedItemValue}
+                  isSubmitting={isSubmitting}
+                  handleTableRowClick={handleTableRowClick}
+                  selectedRow={selectedRow}
+                  lunchQtyErr={lunchQtyErr}
+                  dinnerQtyErr={dinnerQtyErr}
+                  lateNightSnackQtyErr={lateNightSnackQtyErr}
+                  inputs={inputs}
+                />
+              ))}
             {emptyRows > 0 && <TableRow style={{ height: 49 * emptyRows }} />}
           </TableBody>
         </Table>

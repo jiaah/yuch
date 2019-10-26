@@ -21,7 +21,7 @@ const CateringTableRow = ({
   classes: { resize, textField, point },
   // var
   row,
-  labelId,
+  // labelId,
   // global state
   selectedItemValue,
   // local state
@@ -134,7 +134,6 @@ const CateringTableRow = ({
             </TableCell>
             <TableCell
               component="th"
-              id={labelId}
               scope="row"
               padding="none"
               className={resize}
@@ -143,10 +142,10 @@ const CateringTableRow = ({
         )}
         <TableCell
           component="th"
-          id={labelId}
+          id={userId}
           scope="row"
           padding="none"
-          className={`${resize} ${point}`}
+          className={`${resize} ${point} catering-admin`}
         >
           {companyName}
         </TableCell>
