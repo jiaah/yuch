@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
@@ -95,7 +95,7 @@ const CateringTableRow = ({
           selectedRow === userId
         }
         className={isOff}
-        onClick={() => handleTableRowClick(userId)}
+        onClick={e => handleTableRowClick(e, userId)}
       >
         {currentlyEditing ? (
           <React.Fragment>

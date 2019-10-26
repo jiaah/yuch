@@ -36,7 +36,7 @@ const SpecialMealInvoice = ({ clickedUserData, data }) => {
   const formattedTime = formatToTimeForm(time);
 
   return (
-    <div className="r--w-60 center mt5" id="print">
+    <div className="r--w-60 center mt4" id="print">
       <div className="print-width">
         <div className="float-right mt2">
           <IconButton

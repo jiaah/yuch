@@ -60,11 +60,12 @@ const CateringContainer = ({
     };
   }, []);
 
-  const handleTableRowClick = id => {
+  const handleTableRowClick = (e, id) => {
+    const { tagName } = e.target;
     onfocusOnSelectdRow(id);
     // if selected row is editing row, do not close editing mode.
     if (id !== editIndex) endEditing();
-    if (selectedItemValue) resetSelectedItemValue();
+    if (tagName !== 'INPUT' && selectedItemValue) resetSelectedItemValue();
   };
 
   const handleSuggestionSelected = () => {
@@ -114,19 +115,21 @@ const CateringContainer = ({
                 handleClick={() => printDiv('print')}
               />
             </div>
-            <CateringPaper
-              users={catering}
-              selectedItemValue={selectedItemValue}
-              updateUserCatering={updateUserCatering}
-              addFlashMessage={addFlashMessage}
-              saveSelectedItemValue={saveSelectedItemValue}
-              resetSelectedItemValue={resetSelectedItemValue}
-              startEditing={startEditing}
-              endEditing={endEditing}
-              editIndex={editIndex}
-              handleTableRowClick={handleTableRowClick}
-              selectedRow={selectedRow}
-            />
+            {catering && (
+              <CateringPaper
+                users={catering}
+                selectedItemValue={selectedItemValue}
+                updateUserCatering={updateUserCatering}
+                addFlashMessage={addFlashMessage}
+                saveSelectedItemValue={saveSelectedItemValue}
+                resetSelectedItemValue={resetSelectedItemValue}
+                startEditing={startEditing}
+                endEditing={endEditing}
+                editIndex={editIndex}
+                handleTableRowClick={handleTableRowClick}
+                selectedRow={selectedRow}
+              />
+            )}
           </div>
         </div>
       </div>
