@@ -20,6 +20,7 @@ const CateringPaper = ({
   startEditing,
   endEditing,
   handleTableRowClick,
+  saveYposition,
 }) => {
   // error handler
   const [lunchQtyErr, setLunchQtyErr] = useState(false);
@@ -58,6 +59,7 @@ const CateringPaper = ({
           } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
         );
       } else {
+        await saveYposition();
         await Promise.all([
           addFlashMessage(
             'success',

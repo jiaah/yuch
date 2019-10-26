@@ -11,6 +11,10 @@ import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from './cateringPaper';
+import {
+  keepScrollPosition,
+  saveYposition,
+} from '../../../helpers/scrollPosition';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../../actions/dateTrackerAction';
 import * as cateringActions from '../../../actions/cateringAction';
@@ -46,12 +50,12 @@ const CateringContainer = ({
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    return setCatering(res);
+    await setCatering(res);
+    return keepScrollPosition();
   };
 
   useEffect(() => {
     fetchData(date);
-
     return () => {
       Promise.all([
         resetDateDaily(),
@@ -128,6 +132,7 @@ const CateringContainer = ({
                 editIndex={editIndex}
                 handleTableRowClick={handleTableRowClick}
                 selectedRow={selectedRow}
+                saveYposition={saveYposition}
               />
             )}
           </div>
