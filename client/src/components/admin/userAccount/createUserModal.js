@@ -27,12 +27,18 @@ const UserAccountModal = ({
   }, []);
 
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
-    const { companyName, confirmPassword, startDate, ...others } = values;
+    const { companyName, startDate, contactNo, ...others } = values;
 
     const formattedDate = formatToYYYYMMDD(startDate);
+    // set contactNo as password
+    const splittedContact = contactNo.split('');
+    const filteredContact = splittedContact.filter(i => i !== '-');
+    const password = filteredContact.join('');
 
     const userInfo = {
       companyName,
+      contactNo,
+      password,
       startDate: formattedDate,
       ...others,
     };
@@ -59,8 +65,6 @@ const UserAccountModal = ({
 
   const values = {
     username: '',
-    password: '',
-    confirmPassword: '',
     companyName: '',
     contactNo: '',
     email: '',

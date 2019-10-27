@@ -24,16 +24,6 @@ export const userAccountValidation = Yup.object({
     .matches(engNumRegExp, '특수문자는 _ 만 사용 가능합니다.')
     .max(12, '12글자 아래로 입력해주세요.')
     .required('고객 로그인 아이디를 입력하세요.'),
-  password: Yup.string('')
-    .lowercase('소문자로 입력해주세요.')
-    .matches(/^\S+$/, '글자를 붙여쓰세요.')
-    .matches(engNumRegExp, '숫자 혹은 영숫자 조합만 사용하세요.')
-    .min(8, '숫자를 포함한 최소 8자 이상이어야 합니다.')
-    .required('비밀번호를 입력하세요.'),
-  confirmPassword: Yup.string('')
-    .lowercase('소문자로 입력해주세요.')
-    .required('비밀번호를 입력하세요.')
-    .oneOf([Yup.ref('password')], '비밀번호가 일치하지 않습니다.'),
   contactNo: Yup.string()
     .matches(phoneRegExp, "' - '를 포함한 숫자를 입력해주세요.")
     .required('연락처를 입력하세요.'),

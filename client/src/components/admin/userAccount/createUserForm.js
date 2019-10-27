@@ -1,11 +1,11 @@
 import React from 'react';
 /* --- Components --- */
 import FormikField from '../../../shared/form/formikField';
-import PasswordField from '../../../shared/form/passwordField';
 import FormButton from '../../../shared/form/formButton';
 import RadioButtonFormControl from '../../../shared/form/radioButtonFormControl';
 import BusinessTypeOptions from './businessTypeOptions';
 import BankAccountOptions from './bankAccountOptions';
+import IconMessage from '../../../shared/iconMessage';
 
 const CreateUserForm = props => {
   const { bankAccount, isSubmitting } = props;
@@ -32,28 +32,6 @@ const CreateUserForm = props => {
             placeholder="(영문) yuchung"
             required
           />
-          <PasswordField
-            label="비밀번호"
-            name="password"
-            styleName="textFieldC"
-            placeholder="(연락처) 00000000000"
-            required
-          />
-          <PasswordField
-            label="비밀번호 확인"
-            name="confirmPassword"
-            styleName="textFieldC"
-            required
-          />
-          <FormikField
-            label="주소"
-            name="address"
-            type="text"
-            icon="address"
-            styleName="textFieldC"
-          />
-        </div>
-        <div className="media--flex-column-m">
           <FormikField
             label="연락처"
             name="contactNo"
@@ -63,6 +41,16 @@ const CreateUserForm = props => {
             placeholder="000-000-0000"
             required
           />
+          <FormikField
+            label="서비스 시작일"
+            name="startDate"
+            type="date"
+            icon="calendar"
+            styleName="textFieldC"
+            required
+          />
+        </div>
+        <div className="media--flex-column-m">
           <FormikField
             label="식수가격"
             name="mealPrice"
@@ -90,12 +78,11 @@ const CreateUserForm = props => {
             placeholder="000-00-00000"
           />
           <FormikField
-            label="서비스 시작일"
-            name="startDate"
-            type="date"
-            icon="calendar"
+            label="주소"
+            name="address"
+            type="text"
+            icon="address"
             styleName="textFieldC"
-            required
           />
         </div>
       </div>
@@ -150,6 +137,18 @@ const CreateUserForm = props => {
           isSubmitting={isSubmitting}
         />
       </div>
+      <IconMessage
+        name="info"
+        width="15"
+        height="18"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text="비밀번호는 ' - ' 를 제외한 연락처로 자동 설정됩니다."
+        position="center"
+        iconBoxStyle="mt4"
+        textStyle="icon-message--info f-mini"
+      />
     </React.Fragment>
   );
 };
