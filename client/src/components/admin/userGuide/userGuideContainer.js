@@ -12,6 +12,7 @@ import Select from '../../../shared/form/select';
 import Welcome from './welcome';
 import MealPrice from './mealPrice';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import { removeRegExp } from '../../../utils/reformat';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 /* --- images --- */
@@ -75,9 +76,7 @@ const UserGuide = ({
     const splittedDate = rates[0].startedAt.split('');
 
     // set contactNo as password
-    const splittedContact = contactNo.split('');
-    const filteredContact = splittedContact.filter(i => i !== '-');
-    const password = filteredContact.join('');
+    const password = await removeRegExp(contactNo);
 
     return setInput({
       ...input,

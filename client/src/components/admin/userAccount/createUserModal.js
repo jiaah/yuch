@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik';
 /* --- Components --- */
 import CreateUserForm from './createUserForm';
 import Modal from '../../../shared/modal';
+import { removeRegExp } from '../../../utils/reformat';
 
 const UserAccountModal = ({
   // local states
@@ -28,12 +29,9 @@ const UserAccountModal = ({
 
   const handleCreateUser = async (values, { setSubmitting, resetForm }) => {
     const { companyName, startDate, contactNo, ...others } = values;
-
-    const formattedDate = formatToYYYYMMDD(startDate);
+    const formattedDate = await formatToYYYYMMDD(startDate);
     // set contactNo as password
-    const splittedContact = contactNo.split('');
-    const filteredContact = splittedContact.filter(i => i !== '-');
-    const password = filteredContact.join('');
+    const password = await removeRegExp(contactNo);
 
     const userInfo = {
       companyName,

@@ -8,3 +8,10 @@ export const combinedFormat = num => {
   const formattedNum = formatNumber(cyyFormattedNum);
   return formattedNum;
 };
+
+export const removeRegExp = str => {
+  const splitted = str.split('');
+  const filtered = splitted.filter(i => i !== '-');
+  const newStr = filtered.join('');
+  return newStr;
+};
