@@ -8,29 +8,29 @@ import TableCell from '@material-ui/core/TableCell';
 import EnhancedTableHead from '../../shared/tableHead';
 import { userInvoiceColumns } from '../../data/data';
 import InvoiceTabelRow from './invoiceTableRow';
-import Loader from '../loader';
+// import Loader from '../loader';
 import { formatNumber, combinedFormat } from '../../utils/reformat';
 
-const SpecialMealTableRow = Loader({
-  loader: () =>
-    import('./specialMealTableRow' /* webpackChunkName: 'BankModal' */),
-});
+// const SpecialMealTableRow = Loader({
+//   loader: () =>
+//     import('./specialMealTableRow' /* webpackChunkName: 'BankModal' */),
+// });
 
 const styles = () => ({
   tableWrapper: {
     overflowX: 'auto',
   },
   table: { minWidth: 470 },
-  specialColumn: { color: '#023864', paddingLeft: 35 },
+  // specialColumn: { color: '#023864', paddingLeft: 35 },
   font: { fontWeight: 'bold' },
 });
 
 const InvoiceTable = ({
-  classes: { tableWrapper, table, specialColumn, font },
+  classes: { tableWrapper, table, font },
   data,
   invoiceFormat,
 }) => {
-  const { caterings, mealPrice, specialMeals, sumTotal } = data;
+  const { caterings, mealPrice, sumTotal } = data;
   const TAX_RATE = 0.1;
 
   const invoiceTaxes = TAX_RATE * sumTotal;
@@ -56,7 +56,7 @@ const InvoiceTable = ({
                 invoiceFormat={invoiceFormat}
               />
             ))}
-          {specialMeals.length !== 0 && (
+          {/* {specialMeals.length !== 0 && (
             <React.Fragment>
               <TableRow>
                 <TableCell colSpan={7} align="left" className={specialColumn}>
@@ -72,7 +72,7 @@ const InvoiceTable = ({
                 />
               ))}
             </React.Fragment>
-          )}
+          )} */}
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />

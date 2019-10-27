@@ -31,13 +31,14 @@ const Lists = async (date, startedAt, endedAt) => {
         endedAt,
       );
 
-      const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
-        user.id,
-        startedAt,
-        endedAt,
-      );
+      // const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
+      //   user.id,
+      //   startedAt,
+      //   endedAt,
+      // );
 
-      const sumTotal = cateringSumTotal + specialSumTotal;
+      // const sumTotal = cateringSumTotal + specialSumTotal;
+      const sumTotal = cateringSumTotal;
 
       if (await invoiceExist(user.id, startedAt)) {
         // update Invoice
@@ -118,13 +119,14 @@ const findOne = async (userId, startedAt, endedAt) => {
       endedAt,
     );
 
-    const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
-      userId,
-      startedAt,
-      endedAt,
-    );
+    // const specialSumTotal = await specialService.getSumTotalByUserIdWithRangeDate(
+    //   userId,
+    //   startedAt,
+    //   endedAt,
+    // );
 
-    result.sumTotal = cateringSumTotal + specialSumTotal;
+    // result.sumTotal = cateringSumTotal + specialSumTotal;
+    result.sumTotal = cateringSumTotal;
 
     const invoice = await Invoice.query()
       .where({ userId, date: startedAt })
@@ -153,11 +155,11 @@ const findOne = async (userId, startedAt, endedAt) => {
       endedAt,
     );
 
-    result.specialMeals = await specialService.getListsByUserIdWithRangeDate(
-      userId,
-      startedAt,
-      endedAt,
-    );
+    // result.specialMeals = await specialService.getListsByUserIdWithRangeDate(
+    //   userId,
+    //   startedAt,
+    //   endedAt,
+    // );
 
     return result;
   } catch (error) {

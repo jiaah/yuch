@@ -434,7 +434,7 @@ export const specialMealTableHeadColumns = [
     id: 'payment',
     numeric: true,
     disablePadding: false,
-    label: '인보이스 포함',
+    label: '고객사 등록',
   },
 ];
 
