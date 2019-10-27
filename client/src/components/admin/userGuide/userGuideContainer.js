@@ -12,7 +12,7 @@ import Select from '../../../shared/form/select';
 import Welcome from './welcome';
 import MealPrice from './mealPrice';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import { removeRegExp } from '../../../utils/reformat';
+import { removeSpecialCharacters } from '../../../utils/reformat';
 /* --- Actions --- */
 import * as adminActions from '../../../actions/adminAccountAction';
 /* --- images --- */
@@ -76,7 +76,7 @@ const UserGuide = ({
     const splittedDate = rates[0].startedAt.split('');
 
     // set contactNo as password
-    const password = await removeRegExp(contactNo);
+    const password = await removeSpecialCharacters(contactNo);
 
     return setInput({
       ...input,
