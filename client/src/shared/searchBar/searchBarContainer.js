@@ -74,7 +74,7 @@ const SearchBar = ({
 
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
-    const regex = await new RegExp(`^${wordToMatch}`, 'gi');
+    const regex = await new RegExp(`[${wordToMatch}]`, 'gi');
     const suggestion = await data
       .sort()
       .filter(u => u[searchingProp].match(regex));
