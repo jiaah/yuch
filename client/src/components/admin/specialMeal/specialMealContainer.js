@@ -200,10 +200,22 @@ const SpecialMealContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
-        text={adminSpecialMealMsg}
+        text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
         position="end"
         iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
+        textStyle="icon-message--info f-mini"
+      />
+      <IconMessage
+        name="info"
+        width="17"
+        height="20"
+        viewBox="0 0 20 20"
+        fillOuter="#2196F3"
+        fillInner="#ffffff"
+        text={adminSpecialMealMsg}
+        position="end"
+        iconBoxStyle="mt2 pw1"
+        textStyle="icon-message--info f-mini"
       />
       {clickedBtn && (
         <ModalControlloer

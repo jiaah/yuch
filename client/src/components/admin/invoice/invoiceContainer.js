@@ -149,21 +149,9 @@ const InvoiceContainer = ({
         viewBox="0 0 20 20"
         fillOuter="#2196F3"
         fillInner="#ffffff"
-        text="고객사에 등록되어있는 특식이 포함된 합계입니다."
+        text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
         position="end"
         iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text="고객사별 거래명세서를 보시려면 고객사명을 클릭하여주세요."
-        position="end"
-        iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info f-mini"
       />
       {show && (

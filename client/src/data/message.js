@@ -131,10 +131,9 @@ export const updateRateMessageB = (
 
 export const updateRateMessageC = (
   <p className="f-mini">
-    인보이스 재발행&#58; &#39;인보이스 &#62; 거래명세서&#39;
-    &#8201;&#8594;&#8199;
+    인보이스 재발행&#58; 인보이스 &#62; 거래명세서 &#62;{' '}
     <Link className="c-point2 td-none" to="/admin/invoice/users">
-      &#39;인보이스&#39; 재발행 버튼
+      인보이스 재발행 버튼
     </Link>{' '}
     클릭
   </p>
@@ -217,23 +216,26 @@ export const adminCateringMsg = (
       방지하기위해
       <br />
       <Link className="c-point2 td-none" to="/admin/account/users">
-        &#39;고객관리&#8201;&#62;&#8201;고객계정&#8201;&#62;&#8201;수정&#8201;&#62;&#8201;서비스
-        종료&#39;
+        &#39;고객관리 &#62; 고객계정 &#62; 수정 &#62; 서비스 종료&#39;
       </Link>{' '}
       를 해주세요.
     </p>
     <p className="f-mini pt3">
-      &#42; <span className="c-point2">지난 달의 식수변경</span>을 한 경우에는{' '}
-      <span className="c-point2">반드시 인보이스를 재발행</span> 해주세요&#46;
+      &#42; <span className="c-point2">지난 달의 식수변경</span>을 한 경우에는
+      반드시 <br />
+      <span className="c-point2">
+        &#39;인보이스 &#62; 거래명세서 &#62;{' '}
+        <Link className="c-point2 td-none" to="/admin/invoice/users">
+          인보이스 재발행 버튼
+        </Link>{' '}
+        클릭&#39;
+      </span>{' '}
+      을 해주세요&#46;
     </p>
-    <p className="f-mini pt3">
-      [ 인보이스 재발행하는 방법 ]<br /> &#39;인보이스 &#62; 거래명세서&#39;
-      &#8201;&#8594;&#8199;
-      <Link className="c-point2 td-none" to="/admin/invoice/users">
-        &#39;인보이스&#39;&#8201; 재발행 버튼
-      </Link>{' '}
-      클릭
-    </p>
+    {/* <p className="f-mini pt3">
+      [ 인보이스 재발행하는 방법 ]<br />
+
+    </p> */}
     {/* <p className="f-mini pt3">
       [ <span className="c-point2">휴먼고객</span>의 지난 식수량 변경하는 방법 ]
       <br />
@@ -367,10 +369,11 @@ export const userSpecialMealNotice = (
 );
 
 export const adminSpecialMealMsg = (
-  <p className="f-mini">
-    등록된&#8201;
-    <span className="c-point2">고객사가 내역을 볼 수 있으며</span>, 월말 거래
-    명세서에는 포함되지 않습니다&#46;
+  <p>
+    <span className="c-point2">
+      고객사가 등록된 특식 내역은 고객사가 볼 수 있으며
+    </span>
+    , 월말 거래 명세서에는 포함되지 않습니다&#46;
   </p>
 );
 
