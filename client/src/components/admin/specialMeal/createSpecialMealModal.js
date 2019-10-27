@@ -59,13 +59,17 @@ const createModal = ({
     setState({
       ...state,
       userId: null,
+      selectedUser: false,
     });
   };
 
   // yuch client selection checkbox
   const handleChange = name => async event => {
     const checked = event.target.checked;
-    return setState({ ...state, [name]: checked });
+    return setState({
+      ...state,
+      [name]: checked,
+    });
   };
 
   // get users list

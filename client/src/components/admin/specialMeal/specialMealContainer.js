@@ -32,8 +32,6 @@ import IconMessage from '../../../shared/iconMessage';
 import {
   adminSpecialMealMsg,
   adminSpecialMealunregisteredMsg,
-  adminSpecialMealMsgA,
-  adminSpecialMealMsgB,
 } from '../../../data/message';
 
 const ModalControlloer = Loader({
@@ -104,7 +102,7 @@ const SpecialMealContainer = ({
   }, []);
 
   const handleButtonClick = sub => {
-    Promise([saveYposition(), setClickedBtn(sub)]);
+    Promise.all([saveYposition(), setClickedBtn(sub)]);
     return showModal();
   };
 
@@ -114,12 +112,11 @@ const SpecialMealContainer = ({
   };
 
   // off row focus
-  const handleSuggestionSelected = data =>
-    Promise.all([
-      scrollToElement(data.id),
-      selectedRow && offFocusOnSelectdRow(),
-      clickedUserData.length !== 0 && resetClickedItemData(),
-    ]);
+  const handleSuggestionSelected = data => {
+    scrollToElement(data.id);
+    if (selectedRow) offFocusOnSelectdRow();
+    if (clickedUserData.length !== 0) resetClickedItemData();
+  };
 
   // Render all users list from a selected user list [Search]
   const renderAllUsers = () => {
@@ -209,30 +206,6 @@ const SpecialMealContainer = ({
         text={adminSpecialMealMsg}
         position="end"
         iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={adminSpecialMealMsgA}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={adminSpecialMealMsgB}
-        position="end"
-        iconBoxStyle="mt2 pw1"
         textStyle="icon-message--info"
       />
       {clickedBtn && (

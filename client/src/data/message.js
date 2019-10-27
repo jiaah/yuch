@@ -368,15 +368,9 @@ export const userSpecialMealNotice = (
 
 export const adminSpecialMealMsg = (
   <p className="f-mini">
-    특식의 계산서는{' '}
-    <span className="c-point2">고객사의 월말 거래명세서에 포함</span>
-    되고, <br />
-    등록된 내역을 <span className="c-point2">고객사가 볼 수 있으며</span>
-    ,&#8199;
-    <span className="c-point2">
-      인보이스 포함에 &#8201;&#39;YES&#39;&#8199;
-    </span>
-    라고 표시됩니다.
+    등록된&#8201;
+    <span className="c-point2">고객사가 내역을 볼 수 있으며</span>, 위탁급식
+    월말 거래 명세서에는 포함되지 않습니다&#46;
   </p>
 );
 
@@ -384,20 +378,6 @@ export const adminSpecialMealunregisteredMsg = (
   <p className="f-mini">
     <span className="c-point2">등록된 고객사가 없습니다.</span>
     &#8199;등록해주세요.
-  </p>
-);
-
-export const adminSpecialMealMsgA = (
-  <p className="f-mini">
-    월말 거래명세서와 <span className="c-point2">별개로 정산</span>을 원하시면,
-    &#8201;&#39;유청 고객 거래 명세서 등록&#39;&#8201;을 선택하지 마세요.
-  </p>
-);
-
-export const adminSpecialMealMsgB = (
-  <p className="f-mini">
-    유청 고객 거래 명세서에 등록되지 않은 특식을 등록하고자 하시면, 변경하고자
-    하는 특식을 삭제한 후 재등록하여주세요&#46;
   </p>
 );
 

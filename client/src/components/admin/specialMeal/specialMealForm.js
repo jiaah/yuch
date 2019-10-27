@@ -8,6 +8,7 @@ import TextArea from '../../../shared/form/textAreaFormik';
 import FormButton from '../../../shared/form/formButton';
 import TimeField from '../../../shared/form/timeField';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import { admin } from '../../../data/data';
 
 const styles = theme => ({
   checkbox: {
@@ -31,13 +32,13 @@ const SpecialMealForm = ({
 }) => {
   let labelValue;
   if (clickedBtn === 'create') {
-    labelValue = '고객사 거래 명세서에 등록';
+    labelValue = `${admin.companyName} 고객사 등록`;
   }
   if (clickedBtn !== 'create' && state.userId) {
-    labelValue = `${state.companyName} 고객사 월말 거래 명세서에 포함`;
+    labelValue = `${state.companyName} 고객사 등록`;
   }
   if (clickedBtn !== 'create' && !state.selectedUser) {
-    labelValue = `고객사 월말 거래 명세서에 포함되지 않습니다.`;
+    labelValue = `등록된 ${admin.companyName} 고객사가 없습니다.`;
   }
 
   return (
@@ -50,7 +51,6 @@ const SpecialMealForm = ({
                 checked={state.selectedUser}
                 onChange={handleChange('selectedUser')}
                 value="selectedUser"
-                disabled={clickedBtn !== 'create' && !state.userId}
               />
             }
             label={labelValue}
