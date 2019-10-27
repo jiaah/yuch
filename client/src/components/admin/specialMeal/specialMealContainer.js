@@ -29,10 +29,7 @@ import * as specialMealActions from '../../../actions/specialMealAction';
 import * as selectedActions from '../../../actions/selectedAction';
 import { getUsers } from '../../../actions/adminAccountAction';
 import IconMessage from '../../../shared/iconMessage';
-import {
-  adminSpecialMealMsg,
-  adminSpecialMealunregisteredMsg,
-} from '../../../data/message';
+import { adminSpecialMealMsg } from '../../../data/message';
 
 const ModalControlloer = Loader({
   loader: () => import('./modalController' /* webpackChunkName: 'BankModal' */),
@@ -223,7 +220,6 @@ const SpecialMealContainer = ({
           resetClickedItemData={resetClickedItemData}
           getUsers={getUsers}
           adminSpecialMealMsg={adminSpecialMealMsg}
-          adminSpecialMealunregisteredMsg={adminSpecialMealunregisteredMsg}
         />
       )}
     </div>

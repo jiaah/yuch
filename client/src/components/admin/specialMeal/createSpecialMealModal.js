@@ -35,8 +35,8 @@ const createModal = ({
   };
 
   const [state, setState] = useState({
-    selectedUser: false,
     userId: null,
+    selectedUser: false,
     users: [],
     inputValues,
   });
@@ -59,7 +59,6 @@ const createModal = ({
     setState({
       ...state,
       userId: null,
-      selectedUser: false,
     });
   };
 
@@ -125,9 +124,6 @@ const createModal = ({
                 handleChange={handleChange}
                 state={state}
                 adminSpecialMealMsg={adminSpecialMealMsg}
-                adminSpecialMealunregisteredMsg={
-                  adminSpecialMealunregisteredMsg
-                }
                 handleSuggestionSelected={handleSuggestionSelected}
                 handleResetSearch={handleResetSearch}
                 clickedBtn={clickedBtn}

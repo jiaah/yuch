@@ -59,6 +59,7 @@ const styles = theme => ({
 const SearchBar = ({
   classes: { search, searchIcon, input, closeIcon },
   data,
+  disabled,
   searchingProp,
   // for special_meal create modal
   isSecondSearchBar,
@@ -134,6 +135,7 @@ const SearchBar = ({
           onChange={handleChange}
           value={inputValue || ''}
           className={input}
+          disabled={!!disabled}
         />
         <div className={closeIcon}>
           <IconButton

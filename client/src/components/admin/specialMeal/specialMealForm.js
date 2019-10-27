@@ -27,7 +27,6 @@ const SpecialMealForm = ({
   handleChange,
   state,
   adminSpecialMealMsg,
-  adminSpecialMealunregisteredMsg,
   clickedBtn,
 }) => {
   let labelValue;
@@ -56,22 +55,22 @@ const SpecialMealForm = ({
             label={labelValue}
             className={checkbox}
           />
-          {state.selectedUser &&
-            clickedBtn === 'create' && (
-              <SearchBar
-                data={state.users}
-                searchingProp="companyName"
-                handleSuggestionSelected={handleSuggestionSelected}
-                handleResetSearch={handleResetSearch}
-                isSecondSearchBar={true}
-              />
-            )}
+          {clickedBtn === 'create' && (
+            <SearchBar
+              data={state.users}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={handleResetSearch}
+              isSecondSearchBar={true}
+              disabled={!state.selectedUser}
+            />
+          )}
         </div>
         {state.selectedUser && state.userId && adminSpecialMealMsg}
         {clickedBtn === 'create' &&
           state.selectedUser &&
           !state.userId &&
-          adminSpecialMealunregisteredMsg}
+          '등록된 고객사가 없습니다. 등록해주세요.'}
       </div>
       <div className="mt4 mb2 media--justify-around">
         <div className="media--flex-column-m">

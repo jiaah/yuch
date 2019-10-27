@@ -369,15 +369,8 @@ export const userSpecialMealNotice = (
 export const adminSpecialMealMsg = (
   <p className="f-mini">
     등록된&#8201;
-    <span className="c-point2">고객사가 내역을 볼 수 있으며</span>, 위탁급식
-    월말 거래 명세서에는 포함되지 않습니다&#46;
-  </p>
-);
-
-export const adminSpecialMealunregisteredMsg = (
-  <p className="f-mini">
-    <span className="c-point2">등록된 고객사가 없습니다.</span>
-    &#8199;등록해주세요.
+    <span className="c-point2">고객사가 내역을 볼 수 있으며</span>, 월말 거래
+    명세서에는 포함되지 않습니다&#46;
   </p>
 );
 
