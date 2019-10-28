@@ -9,16 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
+import SearchBar from '../../../shared/searchBar/searchBarContainer';
 
 const drawerWidth = 500;
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  menuButton: {
-    marginRight: 36,
-  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -67,7 +62,9 @@ const DeliveryDrawer = ({
     return setUnassignedUsers(res.activeUsers);
   };
 
-  useEffect(() => fetchUsers(), []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -77,6 +74,7 @@ const DeliveryDrawer = ({
     setOpen(false);
   };
 
+  const hideText = open ? '' : 'dn';
   return (
     <Drawer
       variant="permanent"
@@ -111,16 +109,24 @@ const DeliveryDrawer = ({
           />
         )}
       </div>
-      <h3>고객사</h3>
+      <div className="flex flex-column-m items-center pb2">
+        <p className="f-large pb2">고객사</p>
+        <SearchBar
+          size="small"
+          data={unassignedUsers}
+          searchingProp="companyName"
+          handleSuggestionSelected={() => {}}
+          handleResetSearch={() => {}}
+        />
+      </div>
+
       <Divider />
       <List>
         {unassignedUsers &&
           unassignedUsers.map(u => (
             <ListItem key={u.id}>
-              <ListItemIcon className={`${listItemA} fw4`}>
-                {u.companyName}
-              </ListItemIcon>
-              <ListItemIcon>{u.address}</ListItemIcon>
+              <p className={`${listItemA} fw3 c-text2`}>{u.companyName}</p>
+              <p className={`${hideText} c-text-grey`}>{u.address}</p>
             </ListItem>
           ))}
       </List>

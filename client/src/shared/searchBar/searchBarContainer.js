@@ -29,6 +29,15 @@ const styles = theme => ({
       width: '250px',
     },
   },
+  searchS: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    border: '2px solid #ee91054a',
+    width: '170px',
+    [theme.breakpoints.up('sm')]: {
+      width: '190px',
+    },
+  },
   searchIcon: {
     width: '20px',
     height: '100%',
@@ -57,7 +66,8 @@ const styles = theme => ({
 });
 
 const SearchBar = ({
-  classes: { search, searchIcon, input, closeIcon },
+  classes: { search, searchS, searchIcon, input, closeIcon },
+  size,
   data,
   disabled,
   searchingProp,
@@ -112,11 +122,12 @@ const SearchBar = ({
   );
 
   const open = Boolean(anchorEl);
+  const width = size === 'small' ? searchS : search;
 
   return (
     <React.Fragment>
       <div
-        className={`flex flex-row-m ${search} search-box`}
+        className={`flex flex-row-m ${width} search-box`}
         onKeyUp={handleOnKeyUp}
       >
         <div className={searchIcon}>
