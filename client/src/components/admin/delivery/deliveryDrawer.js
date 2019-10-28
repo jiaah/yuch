@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
+import DrawerList from './drawerList';
 
 const drawerWidth = 500;
 
@@ -61,6 +60,8 @@ const styles = theme => ({
 
 const DeliveryDrawer = ({
   classes: { paper, drawer, drawerOpen, drawerClose, toolbar, listItemA },
+  // global state
+  selectedSearchItem,
   // actions
   getUsers,
 }) => {
@@ -140,16 +141,13 @@ const DeliveryDrawer = ({
         </div>
 
         <Divider />
-        <List>
-          {unassignedUsers &&
-            unassignedUsers.map(u => (
-              <ListItem key={u.id}>
-                <p className={`${listItemA} fw3 c-text2`}>{u.companyName}</p>
-                <p className={`${hideText} c-text-grey`}>{u.address}</p>
-              </ListItem>
-            ))}
-        </List>
-      </Drawer>{' '}
+        <DrawerList
+          unassignedUsers={unassignedUsers}
+          selectedSearchItem={selectedSearchItem}
+          listItemA={listItemA}
+          hideText={hideText}
+        />
+      </Drawer>
     </div>
   );
 };

@@ -8,6 +8,9 @@ import * as deliveryActions from '../../../actions/deliveryAction';
 import { getUsers } from '../../../actions/adminAccountAction';
 
 const DeliveryContainer = ({
+  // state
+  selectedSearchItem,
+  // actions
   getUsers,
   deliveryActions: { getRoutes, createRoute, deleteRoute },
 }) => {
@@ -26,11 +29,20 @@ const DeliveryContainer = ({
     <div className="container-a r--w-50">
       <h2>위탁급식 배달 루트</h2>
       <div>
-        <DeliveryDrawer getUsers={getUsers} />
+        <DeliveryDrawer
+          getUsers={getUsers}
+          selectedSearchItem={selectedSearchItem}
+        />
       </div>
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  // clickedUserData: state.selected.data,
+  selectedSearchItem: state.selected.value,
+  // usersStatus: state.selected.users,
+});
 
 const mapDispatchToProps = dispatch => ({
   deliveryActions: bindActionCreators(deliveryActions, dispatch),
@@ -38,6 +50,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(DeliveryContainer);
