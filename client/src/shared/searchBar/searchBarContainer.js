@@ -35,7 +35,7 @@ const styles = theme => ({
     border: '2px solid #ee91054a',
     width: '170px',
     [theme.breakpoints.up('sm')]: {
-      width: '190px',
+      width: '220px',
     },
   },
   searchIcon: {
