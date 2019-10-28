@@ -188,24 +188,26 @@ const UserAccountContainer = ({
           />
         </div>
       </div>
-      <Paper
-        component={
-          allUsers && allUsers.length !== 0 ? (
-            <UserTable
-              handleEditUserBtnClick={handleEditUserBtnClick}
-              handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
-              users={selctedUsers}
-              selectedSearchItem={selectedSearchItem}
-              clickedUserData={clickedUserData[0] || clickedUserData}
-              handleTableRowClick={handleTableRowClick}
-              selectedRow={selectedRow}
-              userAccountTableHeadColumns={userAccountTableHeadColumns}
-            />
-          ) : (
-            <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
-          )
-        }
-      />
+      {allUsers && (
+        <Paper
+          component={
+            allUsers.length !== 0 ? (
+              <UserTable
+                handleEditUserBtnClick={handleEditUserBtnClick}
+                handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
+                users={selctedUsers}
+                selectedSearchItem={selectedSearchItem}
+                clickedUserData={clickedUserData[0] || clickedUserData}
+                handleTableRowClick={handleTableRowClick}
+                selectedRow={selectedRow}
+                userAccountTableHeadColumns={userAccountTableHeadColumns}
+              />
+            ) : (
+              <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+            )
+          }
+        />
+      )}
       <IconMessage
         name="info"
         width="17"
