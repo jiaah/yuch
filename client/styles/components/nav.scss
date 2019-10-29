@@ -2,9 +2,11 @@
   z-index: 10;
   background-color: #ffffff;
   padding: .5em .7em 0 .7em;
+  height: 160px;
 
-  @include for-big-desktop-up {
+  @include for-m-desktop-up {
     letter-spacing: 1.2px;
+    height: 170px;
   }
 }
 
@@ -18,7 +20,7 @@
   -o-border-radius: 5px;
   padding: 5.6px 18px 3.4px 18px;
 
-  @include for-big-desktop-up {
+  @include for-m-desktop-up {
     padding-top: 8px;
     padding-bottom: 6px;
   }
@@ -31,12 +33,11 @@
   background-color: $c-point1;
   color: #ffffff;
 
-  @include for-tablet-landscape-up {
+  @include for-desktop-up {
     padding: 4.3px 19px 1.8px 20px;
-
   }
 
-  @include for-big-desktop-up {
+  @include for-m-desktop-up {
     padding-top: 6px;
     padding-bottom: 3px;
   }
@@ -66,7 +67,7 @@
   justify-content: space-around;
   background-color: #ffffff;
 
-  @include for-big-desktop-up {
+  @include for-m-desktop-up {
     padding-top: .4em;
     padding-bottom: .4em;
   }
@@ -75,7 +76,7 @@
 .nav-menu--btn {
   width: 5em;
 
-  @include for-tablet-portrait-up {
+  @include for-desktop-up {
     width: 8em;
   }
 }
@@ -123,7 +124,7 @@
   margin-top: .8em;
   margin-bottom: .8em;
 
-  @include for-big-desktop-up {
+  @include for-m-desktop-up {
     width: 350px;
     margin-top: .2em;
     margin-bottom: .9em;

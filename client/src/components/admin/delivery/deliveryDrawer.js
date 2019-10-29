@@ -34,7 +34,6 @@ const DeliveryDrawer = ({
     setOpen(false);
   };
 
-  const hideText = open ? '' : 'dn';
   return (
     <Drawer
       variant="permanent"
@@ -90,10 +89,10 @@ const DeliveryDrawer = ({
 
       <Divider />
       <DrawerList
+        open={open}
         unassignedUsers={unassignedUsers}
         selectedSearchItem={selectedSearchItem}
         listItemA={listItemA}
-        hideText={hideText}
       />
     </Drawer>
   );

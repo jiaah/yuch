@@ -19,13 +19,13 @@ const styles = theme => ({
   paper: {
     height: 'calc(100% - 161px)',
     top: 161,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 168px)',
-      top: 168,
-    },
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 185px)',
-      top: 185,
+      height: 'calc(100% - 170px)',
+      top: 170,
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: 'calc(100% - 190px)',
+      top: 190,
     },
   },
   drawer: {
@@ -57,7 +57,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(1, 1, 0, 1),
     height: 40,
   },
   listItemA: { width: 250 },
