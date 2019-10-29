@@ -63,7 +63,6 @@ const styles = theme => ({
   listItemA: { width: 250 },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
   },
 });
 
@@ -87,7 +86,7 @@ const DeliveryContainer = ({
   }, []);
 
   return (
-    <div className="container-a r--w-50">
+    <div className="container-a">
       <div className={classes.root}>
         <DeliveryDrawer
           getUsers={getUsers}
