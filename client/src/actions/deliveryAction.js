@@ -6,8 +6,9 @@ export const getRoutes = () => async dispatch => {
   try {
     const res = await Axios.get('/delivery/routes');
     dispatch({
-      type: types.HTTP_SUCCESS,
+      type: types.FETCH_DATA,
       api: 'getRoutes',
+      payload: res.data,
     });
     return res.data;
   } catch (error) {
@@ -20,11 +21,15 @@ export const getRoutes = () => async dispatch => {
   }
 };
 
-export const createRoute = values => async dispatch => {
+export const createRoute = route => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'createRoute' });
   try {
-    const res = await Axios.post('/delivery/route', values);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'createRoute' });
+    const res = await Axios.post('/delivery/route', { route });
+    dispatch({
+      type: types.CREATE_DATA,
+      api: 'createRoute',
+      payload: { route },
+    });
     return res;
   } catch (error) {
     return dispatch({
@@ -40,7 +45,7 @@ export const deleteRoute = id => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'deleteRoute' });
   try {
     const res = await Axios.delete(`/admin/bankaccount/${id}`);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'deleteRoute' });
+    dispatch({ type: types.DELETE_DATA, api: 'deleteRoute', payload: { id } });
     return res;
   } catch (error) {
     return dispatch({

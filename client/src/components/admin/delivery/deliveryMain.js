@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import Loader from '../../loader';
 
-const DeliveryMain = ({ classes: { content } }) => {
-  const addBoard = () => {
-    console.log('create board');
+const RouteBoard = Loader({
+  loader: () => import('./routeBoard' /* webpackChunkName: 'RouteBoard' */),
+});
+
+const DeliveryMain = ({
+  classes: { content },
+  deliveryActions: { getRoutes, createRoute, deleteRoute },
+}) => {
+  const addBoard = async () => {
+    // add title
+    // create Route with title
+    const res = await createRoute('3route');
   };
+
   return (
     <main className={`${content} r--w-80`}>
       <h2 className="flex justify-center lh-1">배달 루트</h2>
@@ -26,6 +36,9 @@ const DeliveryMain = ({ classes: { content } }) => {
           viewBox="0 0 25 25"
           handleClick={() => printDiv('print')}
         />
+      </div>
+      <div className="flex flex-wrap">
+        {/* {routes && routes.map(() => <RouteBoard />)} */}
       </div>
     </main>
   );

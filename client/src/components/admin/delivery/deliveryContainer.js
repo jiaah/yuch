@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -72,13 +72,10 @@ const DeliveryContainer = ({
   selectedSearchItem,
   // actions
   getUsers,
-  deliveryActions: { getRoutes, createRoute, deleteRoute },
+  deliveryActions,
 }) => {
-  const [state, setState] = useState({ routes: null });
-
   const fetchData = async () => {
-    const routes = await getRoutes();
-    setState({ ...state, routes });
+    const routes = await deliveryActions.getRoutes();
   };
 
   useEffect(() => {
@@ -93,7 +90,7 @@ const DeliveryContainer = ({
           selectedSearchItem={selectedSearchItem}
           classes={classes}
         />
-        <DeliveryMain classes={classes} />
+        <DeliveryMain classes={classes} deliveryActions={deliveryActions} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import * as types from '../actions/actionTypes';
 
 const initialState = { data: [] };
 
-const partner = (state = initialState, action) => {
+const data = (state = initialState, action) => {
   const { payload } = action;
   switch (action.type) {
     case types.FETCH_DATA:
@@ -39,4 +39,4 @@ const partner = (state = initialState, action) => {
   }
 };
 
-export default partner;
+export default data;

@@ -4,7 +4,9 @@ exports.createRoute = (req, res) => {
   const { route } = req.body;
   knex('routes')
     .insert({ route })
-    .then(() => res.status(200).json())
+    .where({ route })
+    .first()
+    .then(route => res.status(200).json(route))
     .catch(err => res.status(500).json(err));
 };
 

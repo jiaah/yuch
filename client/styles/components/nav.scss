@@ -2,11 +2,9 @@
   z-index: 10;
   background-color: #ffffff;
   padding: .5em .7em 0 .7em;
-  height: 160px;
 
   @include for-m-desktop-up {
     letter-spacing: 1.2px;
-    height: 170px;
   }
 }
 
@@ -27,7 +25,7 @@
 }
 
 .nav--login-btn {
-  padding: 4.2px 17px 1.4px 18px;
+  padding: 4.2px 17px 2.4px 18px;
   margin: 5px 0;
   border: 1.48px solid $c-point1;
   background-color: $c-point1;
@@ -55,10 +53,10 @@
 .anchor:hover {
   color: #c4c4c4;
   transition: color .2s;
-  -webkit-transition: font-weight .2s;
-  -moz-transition: font-weight .2s;
-  -ms-transition: font-weight .2s;
-  -o-transition: font-weight .2s;
+  -webkit-transition: color .2s;
+  -moz-transition: color .2s;
+  -ms-transition: color .2s;
+  -o-transition: color .2s;
 }
 
 .nav-menu {
