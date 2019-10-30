@@ -11,7 +11,8 @@ const DeleteModal = ({
   hideModal,
 }) => {
   const handleDeleteUser = async () => {
-    const res = await deleteSpecialMeal(clickedUserData);
+    const res = await deleteSpecialMeal(clickedUserData.id);
+
     if (!res.error) {
       await hideModal();
       return window.location.reload(true);

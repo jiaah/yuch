@@ -44,7 +44,7 @@ const SpecialMealTable = ({
   };
 
   const handleDeleteBtnClick = async id => {
-    await saveClickedItemData(id);
+    await saveClickedItemData({ id });
     return handleButtonClick('delete');
   };
 
@@ -79,7 +79,6 @@ const SpecialMealTable = ({
                   selectedRow={selectedRow}
                   clickedUserData={clickedUserData}
                   upComingEvent={upComingEvent}
-                  getClickedUserData={getClickedUserData}
                 />
               );
             })}

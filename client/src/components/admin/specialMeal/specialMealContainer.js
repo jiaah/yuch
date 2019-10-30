@@ -93,7 +93,7 @@ const SpecialMealContainer = ({
         resetDateDaily(),
         hideModal(),
         selectedRow && offFocusOnSelectdRow(),
-        clickedUserData.length !== 0 && resetClickedItemData(),
+        // clickedUserData.length !== 0 && resetClickedItemData(),
         selectedItemValue && resetSelectedItemValue(),
       ]);
   }, []);
@@ -103,9 +103,10 @@ const SpecialMealContainer = ({
     return showModal();
   };
 
-  const handleTableRowClick = id => {
+  const handleTableRowClick = (e, id) => {
+    const { tagName } = e.target;
     onFocusOnSelectdRow(id);
-    if (clickedUserData.length !== 0) resetClickedItemData();
+    if (clickedUserData.length !== 0 && tagName !== 'A') resetClickedItemData();
   };
 
   // off row focus

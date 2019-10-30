@@ -29,7 +29,6 @@ const SpecialMealTableRow = ({
   handleTableRowClick,
   handleEditBtnClick,
   handleDeleteBtnClick,
-  getClickedUserData,
   formatToDateForm,
 }) => {
   const { userId, companyName, date } = clickedUserData;
@@ -47,7 +46,7 @@ const SpecialMealTableRow = ({
   return (
     <TableRow
       key={row.id}
-      onClick={() => handleTableRowClick(row.id)}
+      onClick={e => handleTableRowClick(e, row.id)}
       role="checkbox"
       aria-checked={selectedRow === row.id}
       tabIndex={-1}
@@ -81,7 +80,6 @@ const SpecialMealTableRow = ({
           id={row.id}
           className="td-none c-text"
           to={`/invoice/special-meal?name=${row.companyName}`}
-          onClick={() => getClickedUserData(row.id)}
         >
           {row.companyName}
         </Link>

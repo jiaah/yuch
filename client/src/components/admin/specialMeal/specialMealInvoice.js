@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatNumber, combinedFormat } from '../../../utils/reformat';
-import Paper from '../../../shared/paper';
+import queryString from 'query-string';
 /* --- images --- */
 import logo from '../../../../assets/img/yuch-logo.png';
 /* --- Components --- */
@@ -9,8 +8,16 @@ import { formatToDayDateForm, formatToTimeForm } from '../../../utils/date';
 import { printDiv } from '../../../utils/print';
 import IconButton from '../../../shared/form/iconButton';
 import { admin } from '../../../data/data';
+import { formatNumber, combinedFormat } from '../../../utils/reformat';
+import Paper from '../../../shared/paper';
 
-const SpecialMealInvoice = ({ clickedUserData, data }) => {
+const SpecialMealInvoice = ({ data }) => {
+  const parsed = queryString.parse(location.search);
+
+  const filteredData = data.specialMeal.filter(
+    b => b.companyName === parsed.name,
+  );
+
   const {
     companyName,
     sideDish,
@@ -19,7 +26,7 @@ const SpecialMealInvoice = ({ clickedUserData, data }) => {
     date,
     time,
     sumTotal,
-  } = clickedUserData[0];
+  } = filteredData[0];
   const bankAccount = data.bankAccounts[0];
   // const TAX_RATE = 0.1;
 
@@ -130,8 +137,7 @@ const SpecialMealInvoice = ({ clickedUserData, data }) => {
 };
 
 const mapStateToProps = state => ({
-  clickedUserData: state.selected.data,
-  data: state.data.data,
+  data: state.httpHandler.data[0],
 });
 
 export default connect(
