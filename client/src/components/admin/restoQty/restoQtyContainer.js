@@ -60,16 +60,19 @@ const RestoQtyContainer = ({
   useEffect(() => {
     fetchData(date);
     return () => {
-      resetDateDaily();
-      resetSelectedItemValue();
+      Promise.all([
+        resetDateDaily(),
+        selectedItemValue && resetSelectedItemValue(),
+      ]);
     };
   }, []);
 
   const handleTableRowClick = id => {
+    const { tagName } = e.target;
     onfocusOnSelectdRow(id);
     // if selected row is editing row, do not close editing mode.
     if (id !== editIndex) endEditing();
-    if (selectedItemValue) resetSelectedItemValue();
+    if (tagName !== 'INPUT' && selectedItemValue) resetSelectedItemValue();
   };
 
   const handleSuggestionSelected = data =>
