@@ -1,4 +1,11 @@
 apps:
+  - name: migrate
+    script: npm
+    args: migrate:latest
+    interpreter: /bin/sh
+    instances: 1
+    exec_mode: fork_mode
+    autorestart: false
   - name: app
     script: npm
     args: start
