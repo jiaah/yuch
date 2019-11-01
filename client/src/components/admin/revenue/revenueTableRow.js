@@ -22,6 +22,9 @@ const RevenueTableRow = ({
   onfocusOnSelectdRow,
 }) => {
   const formattedDate = revenueFormat(row.date);
+  const formattedInvoice = formatNumber(row.sumTotalInvoice);
+  const formattedSpecialMeal = formatNumber(row.sumTotalSpecialMeal);
+  const formattedResto = formatNumber(row.sumTotalResto);
   const formattedSumTotal = formatNumber(row.sumTotal);
 
   return (
@@ -36,13 +39,13 @@ const RevenueTableRow = ({
         {formattedDate}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sumTotalInvoice}
+        {formattedInvoice}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sumTotalSpecialMeal}
+        {formattedSpecialMeal}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.sumTotalResto}
+        {formattedResto}
       </TableCell>
       <TableCell align="right" className={resize}>
         {formattedSumTotal}
