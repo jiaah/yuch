@@ -1,5 +1,6 @@
 import React from 'react';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import { getIn } from 'formik';
 
 const styles = {
   color: '#ed4337',
@@ -13,10 +14,13 @@ const styles = {
 };
 
 const RadioButtonGroup = ({
-  field: { onChange, name, ...rest },
+  field: { onChange, name, value, ...rest },
   form: { errors, touched, setFieldValue },
   ...props
 }) => {
+  const errorMessage = getIn(errors, name);
+  const isTouched = getIn(touched, name);
+
   const change = (e, name, shouldValidate) => {
     e.persist();
     const inputValue = e.target.value;
@@ -27,12 +31,13 @@ const RadioButtonGroup = ({
     <React.Fragment>
       <RadioGroup
         id="radioGroup"
+        value={value || ''}
         onChange={e => change(e, name, true)}
         {...rest}
         {...props}
         row
       />
-      <p style={styles}>{touched[name] && errors[name]}</p>
+      <p style={styles}>{isTouched && errorMessage}</p>
     </React.Fragment>
   );
 };
