@@ -11,8 +11,9 @@ import {
 import {
   admin,
   revenueColumns,
-  revenueChartlist,
-  revenueChartMultiLines,
+  revenueRestoSpecial,
+  revenueYuch,
+  revenueInvoice,
 } from '../../../data/data.js';
 import { formatNumber } from '../../../utils/reformat';
 import { printDiv } from '../../../utils/print';
@@ -57,7 +58,7 @@ const RevenueContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-60">
+    <div id="print" className="container-a r--w-40">
       <div className="print-width print-tc">
         <h2
           className="pointer"
@@ -104,9 +105,8 @@ const RevenueContainer = ({
             handleClick={() => printDiv('print')}
           />
         </div>
-        {data &&
-          data.length !== 0 &&
-          visualization === 'table' && (
+        {data && data.length !== 0 ? (
+          visualization === 'table' ? (
             <Paper
               component={
                 <Table
@@ -117,16 +117,16 @@ const RevenueContainer = ({
                 />
               }
             />
-          )}
-        {visualization === 'chart' && (
-          <RevenueChart
-            data={data}
-            formatNumber={formatNumber}
-            revenueFormat={revenueFormat}
-            list={revenueChartlist}
-            listB={revenueChartMultiLines}
-          />
-        )}
+          ) : visualization === 'chart' ? (
+            <RevenueChart
+              data={data}
+              // list
+              revenueRestoSpecial={revenueRestoSpecial}
+              revenueYuch={revenueYuch}
+              revenueInvoice={revenueInvoice}
+            />
+          ) : null
+        ) : null}
         <IconMessage
           name="info"
           width="17"
