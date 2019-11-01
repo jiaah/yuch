@@ -55,6 +55,8 @@ export const userAccountValidation = Yup.object({
     businessRegExp,
     "' - '를 포함한 숫자를 입력해주세요.",
   ),
+  businessType: Yup.string().required('타입을 선택해주세요.'),
+  bankAccountId: Yup.string().required('계좌를 선택해주세요.'),
 });
 
 export const editUserAccountValidation = Yup.object({

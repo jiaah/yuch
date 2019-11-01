@@ -71,8 +71,8 @@ const UserAccountModal = ({
     lunchQty: null,
     dinnerQty: null,
     lateNightSnackQty: null,
-    bankAccountId: bankAccount.length !== 0 ? bankAccount[0].id : '',
-    businessType: 'catering',
+    bankAccountId: '',
+    businessType: '',
     businessNo: '',
     startDate: formattedToday,
   };
