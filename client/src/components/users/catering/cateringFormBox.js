@@ -13,8 +13,8 @@ const CateringFormBox = ({
   businessType,
 }) => {
   const handleUpdateCatering = async (values, { setSubmitting }) => {
-    const updateDate = catering.date;
-    const data = { ...values, updateDate };
+    const date = catering.date;
+    const data = { ...values, date };
 
     const res = updateUserCatering(catering.userId, data);
     if (!res.error) {

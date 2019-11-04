@@ -49,6 +49,7 @@ const CateringPaper = ({
   };
 
   const handleUpdate = async (userId, values) => {
+    console.log('values: ', values);
     if (!lunchQtyErr && !dinnerQtyErr && !lateNightSnackQtyErr) {
       const res = await updateUserCatering(userId, values);
       if (res.error) {

@@ -97,7 +97,7 @@ const UserGuide = ({
   const handleChange = (e, name) =>
     setInput({ ...input, [name]: e.target.value });
 
-  const margin = guide === '회원 등록' ? 'mt4' : 'mt5';
+  const margin = guide === '회원 등록' ? 'mt3' : 'mt5';
 
   return (
     <div className="container-a r--w-60">

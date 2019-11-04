@@ -67,7 +67,7 @@ const RestoQtyContainer = ({
     };
   }, []);
 
-  const handleTableRowClick = id => {
+  const handleTableRowClick = (e, id) => {
     const { tagName } = e.target;
     onfocusOnSelectdRow(id);
     // if selected row is editing row, do not close editing mode.
