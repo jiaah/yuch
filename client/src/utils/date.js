@@ -104,7 +104,7 @@ export const isLunchQtyChangeDisabled = date => {
 export const isDinnerQtyChangeDisabled = date => {
   if (date >= today) {
     const timeStamp = moment();
-    const endTime = moment(`${date} 1330`, 'YYYYMMDD hhmm');
+    const endTime = moment(`${date} 1400`, 'YYYYMMDD hhmm');
 
     if (timeStamp.isBefore(endTime)) {
       return false;
