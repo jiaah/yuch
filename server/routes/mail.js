@@ -15,7 +15,7 @@ module.exports = () => {
       .then(() =>
         res.status(201).send('Reserve Email has been sent successfully!'),
       )
-      .catch(err => res.status(400).json(err));
+      .catch(err => next(err));
   });
 
   router.post('/bug', (req, res, next) => {
@@ -30,7 +30,7 @@ module.exports = () => {
 
     sendEmail(mailOptions)
       .then(() => res.status(201).send('Email has been sent successfully!'))
-      .catch(err => res.status(400).json(err));
+      .catch(err => next(err));
   });
 
   return router;

@@ -38,7 +38,7 @@ const ResetContainer = ({
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container tc">
       <h2>비밀번호 변경</h2>
       <Formik
         initialValues={passwordValues}
