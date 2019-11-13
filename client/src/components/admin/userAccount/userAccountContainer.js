@@ -192,7 +192,9 @@ const UserAccountContainer = ({
           </div>
           <Paper
             component={
-              allUsers.length !== 0 ? (
+              allUsers.length === 0 ? (
+                <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+              ) : (
                 <UserTable
                   handleEditUserBtnClick={handleEditUserBtnClick}
                   handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
@@ -203,8 +205,6 @@ const UserAccountContainer = ({
                   selectedRow={selectedRow}
                   userAccountTableHeadColumns={userAccountTableHeadColumns}
                 />
-              ) : (
-                <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
               )
             }
           />

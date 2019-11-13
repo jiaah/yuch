@@ -175,7 +175,9 @@ const SpecialMealContainer = ({
                 isDivided={false}
                 component={
                   <React.Fragment>
-                    {specialMeal.length !== 0 ? (
+                    {specialMeal.length === 0 ? (
+                      <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+                    ) : (
                       <Table
                         users={specialMeal}
                         selectedRow={selectedRow}
@@ -188,8 +190,6 @@ const SpecialMealContainer = ({
                         formatToYYYYMMDD={formatToYYYYMMDD}
                         today={today}
                       />
-                    ) : (
-                      <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
                     )}
                   </React.Fragment>
                 }

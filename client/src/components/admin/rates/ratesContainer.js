@@ -102,24 +102,24 @@ const RatesContainer = ({
   const width = data && data.length > 10 ? 'w-90' : 'r--w-50';
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width print-tc">
-        <h2>식수가격</h2>
-        <div className="paper-label-box flex justify-between">
-          <SearchBar
-            data={data}
-            searchingProp="companyName"
-            handleSuggestionSelected={handleSuggestionSelected}
-            handleResetSearch={() => {}}
-          />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
-        </div>
-        {data && (
+      {data && (
+        <div className="print-width print-tc">
+          <h2>식수가격</h2>
+          <div className="paper-label-box flex justify-between">
+            <SearchBar
+              data={data}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
+            />
+            <IconButton
+              name="print"
+              width="32"
+              height="32"
+              viewBox="0 0 25 25"
+              handleClick={() => printDiv('print')}
+            />
+          </div>
           <RatesPaper
             data={data}
             users={dataToRender}
@@ -130,20 +130,20 @@ const RatesContainer = ({
             handleTableRowClick={handleTableRowClick}
             isAdminVerified={isAdminVerified}
           />
-        )}
-        {isAdminVerified &&
-          clickedUserData.length !== 0 && (
-            <EditRateModal
-              clickedUserData={clickedUserData[0]}
-              hideModal={hideModal}
-              updateReservedPrice={updateReservedPrice}
-              addFlashMessage={addFlashMessage}
-              saveYposition={saveYposition}
-              updateRatesMonth={updateRatesMonth}
-            />
-          )}
-        <AdminVerificationModal />
-      </div>
+          {isAdminVerified &&
+            clickedUserData.length !== 0 && (
+              <EditRateModal
+                clickedUserData={clickedUserData[0]}
+                hideModal={hideModal}
+                updateReservedPrice={updateReservedPrice}
+                addFlashMessage={addFlashMessage}
+                saveYposition={saveYposition}
+                updateRatesMonth={updateRatesMonth}
+              />
+            )}
+          <AdminVerificationModal />
+        </div>
+      )}
     </div>
   );
 };

@@ -49,7 +49,6 @@ const CateringPaper = ({
   };
 
   const handleUpdate = async (userId, values) => {
-    console.log('values: ', values);
     if (!lunchQtyErr && !dinnerQtyErr && !lateNightSnackQtyErr) {
       const res = await updateUserCatering(userId, values);
       if (res.error) {
@@ -77,7 +76,11 @@ const CateringPaper = ({
 
   return (
     <div className="paper">
-      {users && users.length !== 0 ? (
+      {users.length === 0 ? (
+        <Paper
+          component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}
+        />
+      ) : (
         <React.Fragment>
           <Paper
             isDivided={users.length > 10 && true}
@@ -125,10 +128,6 @@ const CateringPaper = ({
             />
           )}
         </React.Fragment>
-      ) : (
-        <Paper
-          component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}
-        />
       )}
     </div>
   );

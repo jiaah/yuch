@@ -25,7 +25,7 @@ const EmployeesPaper = ({
   employeeBankColumns,
 }) => (
   <React.Fragment>
-    {data && data.length === 0 ? (
+    {data.length === 0 ? (
       <Paper
         component={<h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>}
       />
