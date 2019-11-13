@@ -19,7 +19,6 @@ const PasswordForm = ({ isSubmitting }) => (
                 icon="filledUser"
                 styleName="textFieldA"
                 variant="outlined"
-                placeholder="yucheong"
                 required
               />
             </td>
@@ -37,7 +36,6 @@ const PasswordForm = ({ isSubmitting }) => (
                 icon="email"
                 styleName="textFieldA"
                 variant="outlined"
-                placeholder="sleket12@hanmail.net"
                 required
               />
             </td>

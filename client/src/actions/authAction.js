@@ -175,15 +175,18 @@ export const sendVerificationCodeToEmail = (
 ) => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'sendVerificationCodeToEmail' });
   try {
-    await Axios.post('/auth/forgot/password', {
+    const res = await Axios.post('/auth/forgot/password', {
       username,
       email,
     });
-    return dispatch({
+    dispatch({
       type: types.HTTP_SUCCESS,
       api: 'sendVerificationCodeToEmail',
     });
+    console.log('res: ', res);
+    return res;
   } catch (error) {
+    console.log('error: ', error);
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'sendVerificationCodeToEmail',
