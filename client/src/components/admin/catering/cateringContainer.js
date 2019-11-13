@@ -84,65 +84,67 @@ const CateringContainer = ({
 
   const width = catering && catering.length > 10 ? 'r--w-80' : 'r--w-50';
   return (
-    <div className={`container-a ${width}`}>
-      <div id="print">
-        <div className="print-width print-tc">
-          <h2
-            className="pointer"
-            title="오늘 날짜로 돌아가기"
-            onClick={resetDateDaily}
-          >
-            위탁급식 식수 현황
-          </h2>
-          <DateButtons
-            date={date}
-            reload={true}
-            unit="dd"
-            formattedDate={formattedDate}
-            startTime={admin.startTime}
-            endTime={inAWeek}
-            updateDate={updateDateDaily}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
-          />
-          <div className="center">
-            <div className="paper-label-box justify-between">
-              <SearchBar
-                data={catering}
-                searchingProp="companyName"
-                handleSuggestionSelected={handleSuggestionSelected}
-                handleResetSearch={handleResetSearch}
-              />
-              <IconButton
-                name="print"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={() => printDiv('print')}
-              />
-            </div>
-            {catering && (
-              <CateringPaper
-                users={catering}
-                selectedItemValue={selectedItemValue}
-                updateUserCatering={updateUserCatering}
+    <React.Fragment>
+      {catering && (
+        <div className={`container-a ${width}`}>
+          <div id="print">
+            <div className="print-width print-tc">
+              <h2
+                className="pointer"
+                title="오늘 날짜로 돌아가기"
+                onClick={resetDateDaily}
+              >
+                위탁급식 식수 현황
+              </h2>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="dd"
+                formattedDate={formattedDate}
+                startTime={admin.startTime}
+                endTime={inAWeek}
+                updateDate={updateDateDaily}
                 addFlashMessage={addFlashMessage}
-                saveSelectedItemValue={saveSelectedItemValue}
-                resetSelectedItemValue={resetSelectedItemValue}
-                startEditing={startEditing}
-                endEditing={endEditing}
-                editIndex={editIndex}
-                handleTableRowClick={handleTableRowClick}
-                selectedRow={selectedRow}
-                saveYposition={saveYposition}
+                fetchData={fetchData}
+                dateForwardMessage="7일 내의 식수량만 미리 등록 할 수 있습니다."
               />
-            )}
+              <div className="center">
+                <div className="paper-label-box justify-between">
+                  <SearchBar
+                    data={catering}
+                    searchingProp="companyName"
+                    handleSuggestionSelected={handleSuggestionSelected}
+                    handleResetSearch={handleResetSearch}
+                  />
+                  <IconButton
+                    name="print"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => printDiv('print')}
+                  />
+                </div>
+                <CateringPaper
+                  users={catering}
+                  selectedItemValue={selectedItemValue}
+                  updateUserCatering={updateUserCatering}
+                  addFlashMessage={addFlashMessage}
+                  saveSelectedItemValue={saveSelectedItemValue}
+                  resetSelectedItemValue={resetSelectedItemValue}
+                  startEditing={startEditing}
+                  endEditing={endEditing}
+                  editIndex={editIndex}
+                  handleTableRowClick={handleTableRowClick}
+                  selectedRow={selectedRow}
+                  saveYposition={saveYposition}
+                />
+              </div>
+            </div>
           </div>
+          {adminCateringMsg}
         </div>
-      </div>
-      {adminCateringMsg}
-    </div>
+      )}
+    </React.Fragment>
   );
 };
 

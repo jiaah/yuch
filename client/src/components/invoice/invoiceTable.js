@@ -41,6 +41,15 @@ const InvoiceTable = ({
   const formattedInvoiceTaxes = combinedFormat(invoiceTaxes);
   const formattedInvoiceTotal = combinedFormat(invoiceTotal);
 
+  // 식수량 합
+  const calTotal = (acc, cur) => acc + cur;
+  const lunchTotal = caterings.map(i => i.lunchQty).reduce(calTotal);
+  const dinnerTotal = caterings.map(i => i.dinnerQty).reduce(calTotal);
+  const lateNightSnackTotal = caterings
+    .map(i => i.lateNightSnackQty)
+    .reduce(calTotal);
+  const totalQty = lunchTotal + dinnerTotal + lateNightSnackTotal;
+
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="invoice" size="small">
@@ -73,6 +82,15 @@ const InvoiceTable = ({
               ))}
             </React.Fragment>
           )} */}
+          <TableRow>
+            <TableCell align="right">식수량 합계</TableCell>
+            <TableCell align="right">{lunchTotal}</TableCell>
+            <TableCell align="right">{dinnerTotal}</TableCell>
+            <TableCell align="right">{lateNightSnackTotal}</TableCell>
+            <TableCell align="right" colSpan={2}>
+              {totalQty}
+            </TableCell>
+          </TableRow>
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell rowSpan={3} />

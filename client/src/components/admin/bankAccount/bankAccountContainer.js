@@ -69,74 +69,78 @@ const BankAccountContainer = ({
   };
 
   return (
-    <div className="container-a r--w-50">
-      <h2>유청 은행 계좌</h2>
-      <div className="paper-label-box justify-end">
-        <div className="flex">
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="add"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
+    <React.Fragment>
+      {bankAccount && (
+        <div className="container-a r--w-50">
+          <h2>유청 은행 계좌</h2>
+          <div className="paper-label-box justify-end">
+            <div className="flex">
+              <IconButton
+                handleClick={() => handleButtonClick('create')}
+                name="add"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+              />
+            </div>
+          </div>
+          <Paper
+            component={
+              <BankTable
+                bankAccountTableHeadColumns={bankAccountTableHeadColumns}
+                bankAccount={bankAccount}
+                clickedBtn={clickedBtn}
+                saveClickedItemData={saveClickedItemData}
+                saveSelectedItemValue={saveSelectedItemValue}
+                handleButtonClick={handleButtonClick}
+              />
+            }
           />
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text={bankAccountPageInfoA}
+            position="end"
+            iconBoxStyle="mt3 pw1"
+            textStyle="icon-message--info"
+          />
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text={bankAccountPageInfoB}
+            position="end"
+            iconBoxStyle="mt2 pw1"
+            textStyle="icon-message--info"
+          />
+          {clickedBtn && (
+            <BankModal
+              resetClickedItemData={resetClickedItemData}
+              hideModal={hideModal}
+              bankAccountValidation={bankAccountValidation}
+              clickedBtn={clickedBtn}
+              clickedUserData={clickedUserData}
+              selectedSearchItem={selectedSearchItem}
+              createBankAccount={createBankAccount}
+              editBankAccount={editBankAccount}
+              deleteBankAccount={deleteBankAccount}
+              addFlashMessage={addFlashMessage}
+              resetSelectedItemValue={resetSelectedItemValue}
+              bankAccount={bankAccount}
+              handleAdminVerificationStatus={handleAdminVerificationStatus}
+              isAdminVerified={isAdminVerified}
+            />
+          )}
         </div>
-      </div>
-      <Paper
-        component={
-          <BankTable
-            bankAccountTableHeadColumns={bankAccountTableHeadColumns}
-            bankAccount={bankAccount}
-            clickedBtn={clickedBtn}
-            saveClickedItemData={saveClickedItemData}
-            saveSelectedItemValue={saveSelectedItemValue}
-            handleButtonClick={handleButtonClick}
-          />
-        }
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={bankAccountPageInfoA}
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={bankAccountPageInfoB}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info"
-      />
-      {clickedBtn && (
-        <BankModal
-          resetClickedItemData={resetClickedItemData}
-          hideModal={hideModal}
-          bankAccountValidation={bankAccountValidation}
-          clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData}
-          selectedSearchItem={selectedSearchItem}
-          createBankAccount={createBankAccount}
-          editBankAccount={editBankAccount}
-          deleteBankAccount={deleteBankAccount}
-          addFlashMessage={addFlashMessage}
-          resetSelectedItemValue={resetSelectedItemValue}
-          bankAccount={bankAccount}
-          handleAdminVerificationStatus={handleAdminVerificationStatus}
-          isAdminVerified={isAdminVerified}
-        />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -38,38 +38,42 @@ const AdminAccountContainer = ({
   const openPasswordForm = () => setPwdOpen(true);
   const closePasswordForm = () => setPwdOpen(false);
   return (
-    <div className="container-a r--w-40">
-      <h2>Personal Info</h2>
-      <p className="pb3 pt3 f-mini">
-        홈페이지 메인화면의 연락처와 예약받는 이메일 주소는 변경되지 않습니다.
-      </p>
-      <Paper
-        classname="center"
-        component={
-          <React.Fragment>
-            <h3 className="flex justify-start">Profile</h3>
-            {/* 'adminData' condition is needed as 'formik form values' render
+    <React.Fragment>
+      {adminData && (
+        <div className="container-a r--w-40">
+          <h2>Personal Info</h2>
+          <p className="pb3 pt3 f-mini">
+            홈페이지 메인화면의 연락처와 예약받는 이메일 주소는 변경되지
+            않습니다.
+          </p>
+          <Paper
+            classname="center"
+            component={
+              <React.Fragment>
+                <h3 className="flex justify-start">Profile</h3>
+                {/* 'adminData' condition is needed as 'formik form values' render
             before receiving 'the retrieved admin data' */}
-            {adminData &&
-              !pwdOpen && (
-                <FormBox
-                  adminData={adminData}
-                  adminAccountValidation={adminAccountValidation}
-                  editAdminAccount={editAdminAccount}
-                  addFlashMessage={addFlashMessage}
-                  openPasswordForm={openPasswordForm}
-                />
-              )}
-            {pwdOpen && (
-              <ChangePwContainer
-                userData={adminData}
-                closePasswordForm={closePasswordForm}
-              />
-            )}
-          </React.Fragment>
-        }
-      />
-    </div>
+                {!pwdOpen && (
+                  <FormBox
+                    adminData={adminData}
+                    adminAccountValidation={adminAccountValidation}
+                    editAdminAccount={editAdminAccount}
+                    addFlashMessage={addFlashMessage}
+                    openPasswordForm={openPasswordForm}
+                  />
+                )}
+                {pwdOpen && (
+                  <ChangePwContainer
+                    userData={adminData}
+                    closePasswordForm={closePasswordForm}
+                  />
+                )}
+              </React.Fragment>
+            }
+          />
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 const mapStateToPorps = state => ({

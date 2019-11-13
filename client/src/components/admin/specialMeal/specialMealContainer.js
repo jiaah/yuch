@@ -123,119 +123,123 @@ const SpecialMealContainer = ({
   };
 
   return (
-    <div className="container-a r--w-98">
-      <div id="print">
-        <div className="print-width print-tc">
-          <h2
-            className="pointer"
-            title="오늘 일자로 돌아가기"
-            onClick={resetDateDaily}
-          >
-            특식 관리
-          </h2>
-          <DateButtons
-            date={date}
-            reload={true}
-            unit="mm"
-            formattedDate={formattedDate}
-            startTime={admin.startTime}
-            endTime={`${inONEYear}01`}
-            updateDate={updateDateDaily}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            dateForwardMessage="존재하지 않는 페이지입니다."
-          />
-          <div className="paper-label-box justify-between">
-            <SearchBar
-              data={specialMeal}
-              searchingProp="companyName"
-              handleSuggestionSelected={handleSuggestionSelected}
-              handleResetSearch={renderAllUsers}
-            />
-            <div>
-              <IconButton
-                handleClick={() => handleButtonClick('create')}
-                name="add"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
+    <React.Fragment>
+      {specialMeal && (
+        <div className="container-a r--w-98">
+          <div id="print">
+            <div className="print-width print-tc">
+              <h2
+                className="pointer"
+                title="오늘 일자로 돌아가기"
+                onClick={resetDateDaily}
+              >
+                특식 관리
+              </h2>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="mm"
+                formattedDate={formattedDate}
+                startTime={admin.startTime}
+                endTime={`${inONEYear}01`}
+                updateDate={updateDateDaily}
+                addFlashMessage={addFlashMessage}
+                fetchData={fetchData}
+                dateForwardMessage="존재하지 않는 페이지입니다."
               />
-              <IconButton
-                name="print"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={() => printDiv('print')}
+              <div className="paper-label-box justify-between">
+                <SearchBar
+                  data={specialMeal}
+                  searchingProp="companyName"
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={renderAllUsers}
+                />
+                <div>
+                  <IconButton
+                    handleClick={() => handleButtonClick('create')}
+                    name="add"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                  />
+                  <IconButton
+                    name="print"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => printDiv('print')}
+                  />
+                </div>
+              </div>
+              <Paper
+                isDivided={false}
+                component={
+                  <React.Fragment>
+                    {specialMeal.length !== 0 ? (
+                      <Table
+                        users={specialMeal}
+                        selectedRow={selectedRow}
+                        clickedUserData={clickedUserData[0] || clickedUserData}
+                        selectedItemValue={selectedItemValue}
+                        saveClickedItemData={saveClickedItemData}
+                        handleButtonClick={handleButtonClick}
+                        formatToDateForm={formatToDateForm}
+                        handleTableRowClick={handleTableRowClick}
+                        formatToYYYYMMDD={formatToYYYYMMDD}
+                        today={today}
+                      />
+                    ) : (
+                      <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
+                    )}
+                  </React.Fragment>
+                }
               />
             </div>
           </div>
-          <Paper
-            isDivided={false}
-            component={
-              <React.Fragment>
-                {specialMeal && specialMeal.length !== 0 ? (
-                  <Table
-                    users={specialMeal}
-                    selectedRow={selectedRow}
-                    clickedUserData={clickedUserData[0] || clickedUserData}
-                    selectedItemValue={selectedItemValue}
-                    saveClickedItemData={saveClickedItemData}
-                    handleButtonClick={handleButtonClick}
-                    formatToDateForm={formatToDateForm}
-                    handleTableRowClick={handleTableRowClick}
-                    formatToYYYYMMDD={formatToYYYYMMDD}
-                    today={today}
-                  />
-                ) : (
-                  <h3 className="mt4 mb4">등록된 특식이 없습니다.</h3>
-                )}
-              </React.Fragment>
-            }
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
+            position="end"
+            iconBoxStyle="mt3 pw1"
+            textStyle="icon-message--info f-mini"
           />
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text={adminSpecialMealMsg}
+            position="end"
+            iconBoxStyle="mt2 pw1"
+            textStyle="icon-message--info f-mini"
+          />
+          {clickedBtn && (
+            <ModalControlloer
+              clickedBtn={clickedBtn}
+              formattedTmr={formattedTmr}
+              clickedUserData={clickedUserData}
+              hideModal={hideModal}
+              addFlashMessage={addFlashMessage}
+              createSpecialMeal={createSpecialMeal}
+              updateSpecialMeal={updateSpecialMeal}
+              deleteSpecialMeal={deleteSpecialMeal}
+              resetSelectedItemValue={resetSelectedItemValue}
+              saveClickedItemData={saveClickedItemData}
+              resetClickedItemData={resetClickedItemData}
+              getUsers={getUsers}
+              adminSpecialMealMsg={adminSpecialMealMsg}
+            />
+          )}
         </div>
-      </div>
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info f-mini"
-      />
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={adminSpecialMealMsg}
-        position="end"
-        iconBoxStyle="mt2 pw1"
-        textStyle="icon-message--info f-mini"
-      />
-      {clickedBtn && (
-        <ModalControlloer
-          clickedBtn={clickedBtn}
-          formattedTmr={formattedTmr}
-          clickedUserData={clickedUserData}
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          createSpecialMeal={createSpecialMeal}
-          updateSpecialMeal={updateSpecialMeal}
-          deleteSpecialMeal={deleteSpecialMeal}
-          resetSelectedItemValue={resetSelectedItemValue}
-          saveClickedItemData={saveClickedItemData}
-          resetClickedItemData={resetClickedItemData}
-          getUsers={getUsers}
-          adminSpecialMealMsg={adminSpecialMealMsg}
-        />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

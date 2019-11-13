@@ -54,30 +54,32 @@ const BusinessNoContainer = ({
 
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width print-tc">
-        <h2>고객 사업자 번호</h2>
-        <div className="paper-label-box flex justify-between pt2">
-          <SearchBar
-            data={data}
-            searchingProp="companyName"
-            handleSuggestionSelected={handleSuggestionSelected}
-            handleResetSearch={() => {}}
-          />
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
+      {data && (
+        <div className="print-width print-tc">
+          <h2>고객 사업자 번호</h2>
+          <div className="paper-label-box flex justify-between pt2">
+            <SearchBar
+              data={data}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
+            />
+            <IconButton
+              name="print"
+              width="32"
+              height="32"
+              viewBox="0 0 25 25"
+              handleClick={() => printDiv('print')}
+            />
+          </div>
+          <BusinessNoPaper
+            users={data}
+            selectedItemValue={selectedItemValue}
+            selectedRow={selectedRow}
+            handleTableRowClick={handleTableRowClick}
           />
         </div>
-        <BusinessNoPaper
-          users={data}
-          selectedItemValue={selectedItemValue}
-          selectedRow={selectedRow}
-          handleTableRowClick={handleTableRowClick}
-        />
-      </div>
+      )}
     </div>
   );
 };

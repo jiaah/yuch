@@ -51,50 +51,55 @@ const SpecialMealContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-98">
-      <div className="print-width print-tc">
-        <h2
-          className="pointer"
-          title="오늘 일자로 돌아가기"
-          onClick={resetDateDaily}
-        >
-          특식
-        </h2>
-        <DateButtons
-          date={date}
-          reload={true}
-          unit="mm"
-          formattedDate={formattedDate}
-          startTime={admin.startTime}
-          endTime={`${inONEYear}01`}
-          updateDate={updateDateDaily}
-          addFlashMessage={addFlashMessage}
-          fetchData={fetchData}
-          dateForwardMessage="존재하지 않는 페이지입니다."
-        />
-        <div className="paper-label-box justify-end">
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
+    <React.Fragment>
+      {specialMeal && (
+        <div id="print" className="container-a r--w-98">
+          <div className="print-width print-tc">
+            <h2
+              className="pointer"
+              title="오늘 일자로 돌아가기"
+              onClick={resetDateDaily}
+            >
+              특식
+            </h2>
+            <DateButtons
+              date={date}
+              reload={true}
+              unit="mm"
+              formattedDate={formattedDate}
+              startTime={admin.startTime}
+              endTime={`${inONEYear}01`}
+              updateDate={updateDateDaily}
+              addFlashMessage={addFlashMessage}
+              fetchData={fetchData}
+              dateForwardMessage="존재하지 않는 페이지입니다."
+            />
+            <div className="paper-label-box justify-end">
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
+            <Paper
+              component={
+                specialMeal && specialMeal.length !== 0 ? (
+                  <Table
+                    data={specialMeal}
+                    formatToDateForm={formatToDateForm}
+                  />
+                ) : (
+                  <h3 className="mt4 mb4">신청한 특식이 없습니다.</h3>
+                )
+              }
+            />
+          </div>
+          {userSpecialMealNotice}
         </div>
-        {specialMeal && (
-          <Paper
-            component={
-              specialMeal && specialMeal.length !== 0 ? (
-                <Table data={specialMeal} formatToDateForm={formatToDateForm} />
-              ) : (
-                <h3 className="mt4 mb4">신청한 특식이 없습니다.</h3>
-              )
-            }
-          />
-        )}
-      </div>
-      {userSpecialMealNotice}
-    </div>
+      )}
+    </React.Fragment>
   );
 };
 

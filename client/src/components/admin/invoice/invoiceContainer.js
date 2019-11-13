@@ -88,83 +88,87 @@ const InvoiceContainer = ({
 
   const width = data && data.length > 10 ? 'r--w-80' : 'r--w-50';
   return (
-    <div className={`container-a ${width}`}>
-      <div id="print">
-        <div className="print-width print-tc">
-          <h2
-            className="pointer"
-            title="오늘 일자로 돌아가기"
-            onClick={resetDateMonthly}
-          >
-            고객사 매출 현황
-          </h2>
-          <DateButtons
-            date={date}
-            reload={true}
-            unit="mm"
-            formattedDate={formattedDate}
-            startTime={admin.startTime}
-            endTime={`${thisMonthYYYYMM}01`}
-            updateDate={updateDateMonthly}
-            addFlashMessage={addFlashMessage}
-            fetchData={fetchData}
-            dateForwardMessage="매월 1일에 발급됩니다."
-          />
-          <div className="paper-label-box justify-between">
-            <SearchBar
-              data={data}
-              searchingProp="companyName"
-              handleSuggestionSelected={handleSuggestionSelected}
-              handleResetSearch={() => {}}
-            />
-            <div className="flex">
-              <IconButton
-                name="update"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={showModal}
+    <React.Fragment>
+      {data && (
+        <div className={`container-a ${width}`}>
+          <div id="print">
+            <div className="print-width print-tc">
+              <h2
+                className="pointer"
+                title="오늘 일자로 돌아가기"
+                onClick={resetDateMonthly}
+              >
+                고객사 매출 현황
+              </h2>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="mm"
+                formattedDate={formattedDate}
+                startTime={admin.startTime}
+                endTime={`${thisMonthYYYYMM}01`}
+                updateDate={updateDateMonthly}
+                addFlashMessage={addFlashMessage}
+                fetchData={fetchData}
+                dateForwardMessage="매월 1일에 발급됩니다."
               />
-              <IconButton
-                name="print"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={() => printDiv('print')}
+              <div className="paper-label-box justify-between">
+                <SearchBar
+                  data={data}
+                  searchingProp="companyName"
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={() => {}}
+                />
+                <div className="flex">
+                  <IconButton
+                    name="update"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={showModal}
+                  />
+                  <IconButton
+                    name="print"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => printDiv('print')}
+                  />
+                </div>
+              </div>
+              <Paper
+                data={data}
+                selectedRow={selectedRow}
+                searchedValue={searchedValue}
+                onfocusOnSelectdRow={onfocusOnSelectdRow}
               />
             </div>
           </div>
-          <Paper
-            data={data}
-            selectedRow={selectedRow}
-            searchedValue={searchedValue}
-            onfocusOnSelectdRow={onfocusOnSelectdRow}
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
+            position="end"
+            iconBoxStyle="mt3 pw1"
+            textStyle="icon-message--info f-mini"
           />
+          {show && (
+            <UpdateInvoiceModal
+              updateInvoiceMonth={updateInvoiceMonth}
+              updateUsersInvoice={updateUsersInvoice}
+              addFlashMessage={addFlashMessage}
+              hideModal={hideModal}
+              formatSlashToYYMM={formatSlashToYYMM}
+              selectOptionsYYYYMM={selectOptionsYYYYMM}
+            />
+          )}
         </div>
-      </div>
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text="거래명세서를 보시려면 고객사명을 클릭하여주세요."
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info f-mini"
-      />
-      {show && (
-        <UpdateInvoiceModal
-          updateInvoiceMonth={updateInvoiceMonth}
-          updateUsersInvoice={updateUsersInvoice}
-          addFlashMessage={addFlashMessage}
-          hideModal={hideModal}
-          formatSlashToYYMM={formatSlashToYYMM}
-          selectOptionsYYYYMM={selectOptionsYYYYMM}
-        />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

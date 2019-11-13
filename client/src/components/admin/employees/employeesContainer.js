@@ -110,84 +110,86 @@ const Container = ({
         : 'r--w-50';
 
   return (
-    <div id="print" className={`container-a ${width}`}>
-      <div className="print-width print-tc">
-        <h2>{`${admin.companyName} 직원`}</h2>
-        <div className="paper-label-box justify-between pt2">
-          <div>
-            <SearchBar
-              data={data}
-              searchingProp="name"
-              handleSuggestionSelected={handleSuggestionSelected}
-              handleResetSearch={() => {}}
-            />
-          </div>
-          <div className="flex">
-            <Select
-              label=""
-              name="employees"
-              selectedValue={employees}
-              options={[
-                { value: '전체' },
-                { value: '계좌' },
-                { value: '연락처' },
-              ]}
-              size="small"
-            />
-            {employees === '전체' && (
-              <IconButton
-                handleClick={() => handleButtonClick('create')}
-                name="personAdd"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-              />
-            )}
-            <div className="tablet employee-icon-print">
-              <IconButton
-                name="print"
-                width="32"
-                height="32"
-                viewBox="0 0 25 25"
-                handleClick={() => printDiv('print')}
-              />
+    <React.Fragment>
+      {data && (
+        <div id="print" className={`container-a ${width}`}>
+          <div className="print-width print-tc">
+            <h2>{`${admin.companyName} 직원`}</h2>
+            <div className="paper-label-box justify-between pt2">
+              <div>
+                <SearchBar
+                  data={data}
+                  searchingProp="name"
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={() => {}}
+                />
+              </div>
+              <div className="flex">
+                <Select
+                  label=""
+                  name="employees"
+                  selectedValue={employees}
+                  options={[
+                    { value: '전체' },
+                    { value: '계좌' },
+                    { value: '연락처' },
+                  ]}
+                  size="small"
+                />
+                {employees === '전체' && (
+                  <IconButton
+                    handleClick={() => handleButtonClick('create')}
+                    name="personAdd"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                  />
+                )}
+                <div className="tablet employee-icon-print">
+                  <IconButton
+                    name="print"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => printDiv('print')}
+                  />
+                </div>
+              </div>
             </div>
+            <Paper
+              data={data}
+              clickedBtn={clickedBtn}
+              selectedRow={selectedRow}
+              employees={employees}
+              clickedUserData={clickedUserData}
+              selectedSearchItem={selectedSearchItem}
+              saveClickedItemData={saveClickedItemData}
+              saveSelectedItemValue={saveSelectedItemValue}
+              handleButtonClick={handleButtonClick}
+              handleTableRowClick={handleTableRowClick}
+              employeeColumns={employeeColumns}
+              employeeContactColumns={employeeContactColumns}
+              employeeBankColumns={employeeBankColumns}
+            />
           </div>
+          {clickedBtn && (
+            <Modal
+              position={position}
+              clickedBtn={clickedBtn}
+              clickedUserData={clickedUserData}
+              selectedSearchItem={selectedSearchItem}
+              hideModal={hideModal}
+              addFlashMessage={addFlashMessage}
+              saveClickedItemData={saveClickedItemData}
+              resetClickedItemData={resetClickedItemData}
+              createEmployee={createEmployee}
+              editEmployee={editEmployee}
+              deleteEmployee={deleteEmployee}
+            />
+          )}
         </div>
-        {data && (
-          <Paper
-            data={data}
-            clickedBtn={clickedBtn}
-            selectedRow={selectedRow}
-            employees={employees}
-            clickedUserData={clickedUserData}
-            selectedSearchItem={selectedSearchItem}
-            saveClickedItemData={saveClickedItemData}
-            saveSelectedItemValue={saveSelectedItemValue}
-            handleButtonClick={handleButtonClick}
-            handleTableRowClick={handleTableRowClick}
-            employeeColumns={employeeColumns}
-            employeeContactColumns={employeeContactColumns}
-            employeeBankColumns={employeeBankColumns}
-          />
-        )}
-      </div>
-      {clickedBtn && (
-        <Modal
-          position={position}
-          clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData}
-          selectedSearchItem={selectedSearchItem}
-          hideModal={hideModal}
-          addFlashMessage={addFlashMessage}
-          saveClickedItemData={saveClickedItemData}
-          resetClickedItemData={resetClickedItemData}
-          createEmployee={createEmployee}
-          editEmployee={editEmployee}
-          deleteEmployee={deleteEmployee}
-        />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

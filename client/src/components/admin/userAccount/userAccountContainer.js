@@ -150,117 +150,120 @@ const UserAccountContainer = ({
   };
 
   return (
-    <div className="container-a r--w-98">
-      {/* auto complete search bar by companyName */}
-      <h2>고객 계정</h2>
-      <div className="paper-label-box justify-between ">
-        <div className="flex">
-          <div className="mr3">
-            <SearchBar
-              data={selctedUsers}
-              searchingProp="companyName"
-              handleSuggestionSelected={handleSuggestionSelected}
-              handleResetSearch={() => {}}
-            />
-          </div>
-          <p className="f-mini paper-label-box--number tablet">
-            총 고객 수&#8201;&#8201;
-            <span className="b">{selctedUsers && selctedUsers.length}</span>
-          </p>
-        </div>
-        <div className="flex">
-          <Select
-            label=""
-            name="users"
-            selectedValue={usersStatus}
-            options={[
-              { value: '활성 계정' },
-              { value: '비활성 계정' },
-              { value: '전체 계정' },
-            ]}
-          />
-          <IconButton
-            handleClick={() => handleButtonClick('create')}
-            name="personAdd"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-          />
-        </div>
-      </div>
+    <React.Fragment>
       {allUsers && (
-        <Paper
-          component={
-            allUsers.length !== 0 ? (
-              <UserTable
-                handleEditUserBtnClick={handleEditUserBtnClick}
-                handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
-                users={selctedUsers}
-                selectedSearchItem={selectedSearchItem}
-                clickedUserData={clickedUserData[0] || clickedUserData}
-                handleTableRowClick={handleTableRowClick}
-                selectedRow={selectedRow}
-                userAccountTableHeadColumns={userAccountTableHeadColumns}
+        <div className="container-a r--w-98">
+          {/* auto complete search bar by companyName */}
+          <h2>고객 계정</h2>
+          <div className="paper-label-box justify-between ">
+            <div className="flex">
+              <div className="mr3">
+                <SearchBar
+                  data={selctedUsers}
+                  searchingProp="companyName"
+                  handleSuggestionSelected={handleSuggestionSelected}
+                  handleResetSearch={() => {}}
+                />
+              </div>
+              <p className="f-mini paper-label-box--number tablet">
+                총 고객 수&#8201;&#8201;
+                <span className="b">{selctedUsers && selctedUsers.length}</span>
+              </p>
+            </div>
+            <div className="flex">
+              <Select
+                label=""
+                name="users"
+                selectedValue={usersStatus}
+                options={[
+                  { value: '활성 계정' },
+                  { value: '비활성 계정' },
+                  { value: '전체 계정' },
+                ]}
               />
-            ) : (
-              <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
-            )
-          }
-        />
+              <IconButton
+                handleClick={() => handleButtonClick('create')}
+                name="personAdd"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+              />
+            </div>
+          </div>
+          <Paper
+            component={
+              allUsers.length !== 0 ? (
+                <UserTable
+                  handleEditUserBtnClick={handleEditUserBtnClick}
+                  handleUserMealPriceBtnClick={handleUserMealPriceBtnClick}
+                  users={selctedUsers}
+                  selectedSearchItem={selectedSearchItem}
+                  clickedUserData={clickedUserData[0] || clickedUserData}
+                  handleTableRowClick={handleTableRowClick}
+                  selectedRow={selectedRow}
+                  userAccountTableHeadColumns={userAccountTableHeadColumns}
+                />
+              ) : (
+                <h3 className="mt4 mb4">등록된 데이터가 없습니다.</h3>
+              )
+            }
+          />
+
+          <IconMessage
+            name="info"
+            width="17"
+            height="20"
+            viewBox="0 0 20 20"
+            fillOuter="#2196F3"
+            fillInner="#ffffff"
+            text={ratesPageInfo}
+            position="end"
+            iconBoxStyle="mt3 pw1"
+            textStyle="icon-message--info"
+          />
+          {clickedBtn === 'create' ? (
+            <CreateUserModal
+              handleCloseModal={handleCloseModal}
+              createUser={createUser}
+              addFlashMessage={addFlashMessage}
+              selectedSearchItem={selectedSearchItem}
+              saveClickedItemData={saveClickedItemData}
+              resetClickedItemData={resetClickedItemData}
+              resetSelectedItemValue={resetSelectedItemValue}
+              bankAccount={bankAccount}
+              userAccountValidation={userAccountValidation}
+              clickedUserData={clickedUserData}
+              formatToYYYYMMDD={formatToYYYYMMDD}
+              formattedToday={formattedToday}
+            />
+          ) : clickedBtn === 'edit' && clickedUserData.length !== 0 ? (
+            <EditUserModal
+              handleCloseModal={handleCloseModal}
+              editUser={editUser}
+              deleteUser={deleteUser}
+              clickedBtn={clickedBtn}
+              clickedUserData={clickedUserData[0]}
+              addFlashMessage={addFlashMessage}
+              bankAccount={bankAccount}
+              handleEndingService={handleEndingService}
+              resetPassword={resetPassword}
+              editUserAccountValidation={editUserAccountValidation}
+              resetPasswordValidation={resetPasswordValidation}
+              formatToYYYYMMDD={formatToYYYYMMDD}
+              formattedToday={formattedToday}
+            />
+          ) : clickedBtn === 'mealPrice' && clickedUserData.length !== 0 ? (
+            <MealPriceModal
+              clickedUserData={clickedUserData[0]}
+              hideModal={hideModal}
+              getUserRates={getUserRates}
+              userMealPriceColumns={userMealPriceColumns}
+              isThisMonth={isThisMonth}
+            />
+          ) : null}
+        </div>
       )}
-      <IconMessage
-        name="info"
-        width="17"
-        height="20"
-        viewBox="0 0 20 20"
-        fillOuter="#2196F3"
-        fillInner="#ffffff"
-        text={ratesPageInfo}
-        position="end"
-        iconBoxStyle="mt3 pw1"
-        textStyle="icon-message--info"
-      />
-      {clickedBtn === 'create' ? (
-        <CreateUserModal
-          handleCloseModal={handleCloseModal}
-          createUser={createUser}
-          addFlashMessage={addFlashMessage}
-          selectedSearchItem={selectedSearchItem}
-          saveClickedItemData={saveClickedItemData}
-          resetClickedItemData={resetClickedItemData}
-          resetSelectedItemValue={resetSelectedItemValue}
-          bankAccount={bankAccount}
-          userAccountValidation={userAccountValidation}
-          clickedUserData={clickedUserData}
-          formatToYYYYMMDD={formatToYYYYMMDD}
-          formattedToday={formattedToday}
-        />
-      ) : clickedBtn === 'edit' && clickedUserData.length !== 0 ? (
-        <EditUserModal
-          handleCloseModal={handleCloseModal}
-          editUser={editUser}
-          deleteUser={deleteUser}
-          clickedBtn={clickedBtn}
-          clickedUserData={clickedUserData[0]}
-          addFlashMessage={addFlashMessage}
-          bankAccount={bankAccount}
-          handleEndingService={handleEndingService}
-          resetPassword={resetPassword}
-          editUserAccountValidation={editUserAccountValidation}
-          resetPasswordValidation={resetPasswordValidation}
-          formatToYYYYMMDD={formatToYYYYMMDD}
-          formattedToday={formattedToday}
-        />
-      ) : clickedBtn === 'mealPrice' && clickedUserData.length !== 0 ? (
-        <MealPriceModal
-          clickedUserData={clickedUserData[0]}
-          hideModal={hideModal}
-          getUserRates={getUserRates}
-          userMealPriceColumns={userMealPriceColumns}
-          isThisMonth={isThisMonth}
-        />
-      ) : null}
-    </div>
+    </React.Fragment>
   );
 };
 

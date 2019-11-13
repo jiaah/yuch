@@ -65,40 +65,43 @@ const RestoContainer = ({
   const formattedDate = formatToDateForm(date);
 
   return (
-    <div className="container-b">
-      <h2
-        className="pointer"
-        title="오늘 일자로 돌아가기"
-        onClick={() => resetToToday()}
-      >
-        식당 매출 관리
-      </h2>
-      <React.Fragment>
-        <DateButtons
-          date={date}
-          reload={false}
-          unit="dd"
-          formattedDate={formattedDate}
-          startTime={admin.startTime}
-          endTime={tomorrow}
-          updateDate={updateDateDaily}
-          addFlashMessage={addFlashMessage}
-          fetchData={dataFilter}
-          dateForwardMessage="존재하지 않는 페이지입니다."
-        />
-        {resto && (
-          <div className="input-table">
-            <RestoFormBox
-              resto={resto}
+    <React.Fragment>
+      {resto && (
+        <div className="container-b">
+          <h2
+            className="pointer"
+            title="오늘 일자로 돌아가기"
+            onClick={() => resetToToday()}
+          >
+            식당 매출 관리
+          </h2>
+          <React.Fragment>
+            <DateButtons
               date={date}
-              updateRestoSales={updateRestoSales}
+              reload={false}
+              unit="dd"
+              formattedDate={formattedDate}
+              startTime={admin.startTime}
+              endTime={tomorrow}
+              updateDate={updateDateDaily}
               addFlashMessage={addFlashMessage}
+              fetchData={dataFilter}
+              dateForwardMessage="존재하지 않는 페이지입니다."
             />
-          </div>
-        )}
-      </React.Fragment>
-      {restoSalesMsg}
-    </div>
+
+            <div className="input-table">
+              <RestoFormBox
+                resto={resto}
+                date={date}
+                updateRestoSales={updateRestoSales}
+                addFlashMessage={addFlashMessage}
+              />
+            </div>
+          </React.Fragment>
+          {restoSalesMsg}
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

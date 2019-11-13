@@ -58,89 +58,92 @@ const RevenueContainer = ({
   }, []);
 
   return (
-    <div id="print" className="container-a r--w-40">
-      <div className="print-width print-tc">
-        <h2
-          className="pointer"
-          title="오늘 일자로 돌아가기"
-          onClick={resetDateYearly}
-        >
-          유청 매출 현황
-        </h2>
-        <DateButtons
-          date={date}
-          reload={true}
-          unit="yy"
-          formattedDate={formattedDate}
-          startTime={`${admin.startYear}0101`}
-          endTime={`${nextYear}0101`}
-          updateDate={updateDateYearly}
-          addFlashMessage={addFlashMessage}
-          fetchData={fetchData}
-          dateForwardMessage="존재하지 않는 페이지입니다."
-        />
-        <div className="paper-label-box justify-end">
-          {visualization === 'chart' ? (
-            <IconButton
-              name="tableChart"
-              width="32"
-              height="32"
-              viewBox="0 0 25 25"
-              handleClick={() => dataVisualization('table')}
-            />
-          ) : (
-            <IconButton
-              name="showChart"
-              width="32"
-              height="32"
-              viewBox="0 0 25 25"
-              handleClick={() => dataVisualization('chart')}
-            />
-          )}
-          <IconButton
-            name="print"
-            width="32"
-            height="32"
-            viewBox="0 0 25 25"
-            handleClick={() => printDiv('print')}
-          />
-        </div>
-        {data && data.length !== 0 ? (
-          visualization === 'table' ? (
-            <Paper
-              component={
-                <Table
-                  data={data}
-                  revenueColumns={revenueColumns}
-                  revenueFormat={revenueFormat}
-                  formatNumber={formatNumber}
+    <React.Fragment>
+      {data &&
+        data.length !== 0 && (
+          <div id="print" className="container-a r--w-40">
+            <div className="print-width print-tc">
+              <h2
+                className="pointer"
+                title="오늘 일자로 돌아가기"
+                onClick={resetDateYearly}
+              >
+                유청 매출 현황
+              </h2>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="yy"
+                formattedDate={formattedDate}
+                startTime={`${admin.startYear}0101`}
+                endTime={`${nextYear}0101`}
+                updateDate={updateDateYearly}
+                addFlashMessage={addFlashMessage}
+                fetchData={fetchData}
+                dateForwardMessage="존재하지 않는 페이지입니다."
+              />
+              <div className="paper-label-box justify-end">
+                {visualization === 'chart' ? (
+                  <IconButton
+                    name="tableChart"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => dataVisualization('table')}
+                  />
+                ) : (
+                  <IconButton
+                    name="showChart"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => dataVisualization('chart')}
+                  />
+                )}
+                <IconButton
+                  name="print"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 25 25"
+                  handleClick={() => printDiv('print')}
                 />
-              }
-            />
-          ) : visualization === 'chart' ? (
-            <RevenueChart
-              data={data}
-              // list
-              revenueRestoSpecial={revenueRestoSpecial}
-              revenueYuch={revenueYuch}
-              revenueInvoice={revenueInvoice}
-            />
-          ) : null
-        ) : null}
-        <IconMessage
-          name="info"
-          width="17"
-          height="20"
-          viewBox="0 0 20 20"
-          fillOuter="#2196F3"
-          fillInner="#ffffff"
-          text="식당 식수 매출은 레스토랑으로 분류됩니다."
-          position="end"
-          iconBoxStyle="mt3 pw1"
-          textStyle="icon-message--info f-mimi"
-        />
-      </div>
-    </div>
+              </div>
+              {visualization === 'table' ? (
+                <Paper
+                  component={
+                    <Table
+                      data={data}
+                      revenueColumns={revenueColumns}
+                      revenueFormat={revenueFormat}
+                      formatNumber={formatNumber}
+                    />
+                  }
+                />
+              ) : visualization === 'chart' ? (
+                <RevenueChart
+                  data={data}
+                  // list
+                  revenueRestoSpecial={revenueRestoSpecial}
+                  revenueYuch={revenueYuch}
+                  revenueInvoice={revenueInvoice}
+                />
+              ) : null}
+              <IconMessage
+                name="info"
+                width="17"
+                height="20"
+                viewBox="0 0 20 20"
+                fillOuter="#2196F3"
+                fillInner="#ffffff"
+                text="식당 식수 매출은 레스토랑으로 분류됩니다."
+                position="end"
+                iconBoxStyle="mt3 pw1"
+                textStyle="icon-message--info f-mimi"
+              />
+            </div>
+          </div>
+        )}
+    </React.Fragment>
   );
 };
 

@@ -91,33 +91,33 @@ const Container = ({
 
   return (
     <div id="print" className={`container-a ${width}`}>
-      <div className="print-width print-tc">
-        <h2>거래처</h2>
-        <div className="paper-label-box justify-between">
-          <SearchBar
-            data={data}
-            searchingProp="companyName"
-            handleSuggestionSelected={handleSuggestionSelected}
-            handleResetSearch={() => {}}
-          />
-          <div className="flex">
-            <IconButton
-              handleClick={() => handleButtonClick('create')}
-              name="add"
-              width="30"
-              height="30"
-              viewBox="0 0 24 24"
+      {data && (
+        <div className="print-width print-tc">
+          <h2>거래처</h2>
+          <div className="paper-label-box justify-between">
+            <SearchBar
+              data={data}
+              searchingProp="companyName"
+              handleSuggestionSelected={handleSuggestionSelected}
+              handleResetSearch={() => {}}
             />
-            <IconButton
-              name="print"
-              width="32"
-              height="32"
-              viewBox="0 0 25 25"
-              handleClick={() => printDiv('print')}
-            />
+            <div className="flex">
+              <IconButton
+                handleClick={() => handleButtonClick('create')}
+                name="add"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+              />
+              <IconButton
+                name="print"
+                width="32"
+                height="32"
+                viewBox="0 0 25 25"
+                handleClick={() => printDiv('print')}
+              />
+            </div>
           </div>
-        </div>
-        {data && (
           <Paper
             data={data}
             selectedRow={selectedRow}
@@ -129,22 +129,22 @@ const Container = ({
             partnerColumns={partnerColumns}
             clickedUserData={clickedUserData}
           />
-        )}
-        {clickedBtn && (
-          <Modal
-            clickedBtn={clickedBtn}
-            clickedUserData={clickedUserData}
-            selectedSearchItem={selectedSearchItem}
-            hideModal={hideModal}
-            addFlashMessage={addFlashMessage}
-            saveClickedItemData={saveClickedItemData}
-            resetClickedItemData={resetClickedItemData}
-            createPartner={createPartner}
-            editPartner={editPartner}
-            deletePartner={deletePartner}
-          />
-        )}
-      </div>
+          {clickedBtn && (
+            <Modal
+              clickedBtn={clickedBtn}
+              clickedUserData={clickedUserData}
+              selectedSearchItem={selectedSearchItem}
+              hideModal={hideModal}
+              addFlashMessage={addFlashMessage}
+              saveClickedItemData={saveClickedItemData}
+              resetClickedItemData={resetClickedItemData}
+              createPartner={createPartner}
+              editPartner={editPartner}
+              deletePartner={deletePartner}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

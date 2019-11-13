@@ -30,7 +30,7 @@ const InvoicePaper = ({
 
   return (
     <div className="paper">
-      {data && data.length !== 0 ? (
+      {data.length !== 0 ? (
         <React.Fragment>
           <Paper
             isDivided={data.length > 10 && true}

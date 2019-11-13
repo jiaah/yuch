@@ -66,42 +66,44 @@ const CateringContainer = ({
 
   if (isActive) {
     return (
-      <div className="container-b">
-        <h2
-          className="pointer"
-          title="오늘 일자로 돌아가기"
-          onClick={resetDateDaily}
-        >
-          식수현황
-        </h2>
+      <React.Fragment>
         {catering && (
-          <React.Fragment>
-            <DateButtons
-              date={date}
-              reload={true}
-              unit="dd"
-              formattedDate={formattedDate}
-              startTime={startDate}
-              endTime={endDate}
-              updateDate={updateDateDaily}
-              addFlashMessage={addFlashMessage}
-              fetchData={fetchData}
-              dateForwardMessage={message}
-            />
-            <div className="input-table">
-              <CateringFormBox
-                catering={catering}
-                updateUserCatering={updateUserCatering}
+          <div className="container-b">
+            <h2
+              className="pointer"
+              title="오늘 일자로 돌아가기"
+              onClick={resetDateDaily}
+            >
+              식수현황
+            </h2>
+            <React.Fragment>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="dd"
+                formattedDate={formattedDate}
+                startTime={startDate}
+                endTime={endDate}
+                updateDate={updateDateDaily}
                 addFlashMessage={addFlashMessage}
-                isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
-                isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
-                businessType={businessType}
+                fetchData={fetchData}
+                dateForwardMessage={message}
               />
-            </div>
-          </React.Fragment>
+              <div className="input-table">
+                <CateringFormBox
+                  catering={catering}
+                  updateUserCatering={updateUserCatering}
+                  addFlashMessage={addFlashMessage}
+                  isLunchQtyDisabled={isLunchQtyChangeDisabled(date)}
+                  isDinnerQtyDisabled={isDinnerQtyChangeDisabled(date)}
+                  businessType={businessType}
+                />
+              </div>
+            </React.Fragment>
+            {userCateringMsg}
+          </div>
         )}
-        {userCateringMsg}
-      </div>
+      </React.Fragment>
     );
   }
 
