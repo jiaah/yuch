@@ -39,18 +39,18 @@ export const userAccountValidation = Yup.object({
   lunchQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   dinnerQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   lateNightSnackQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   businessNo: Yup.string().matches(
     businessRegExp,
     "' - '를 포함한 숫자를 입력해주세요.",
@@ -83,18 +83,18 @@ export const editUserAccountValidation = Yup.object({
   lunchQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   dinnerQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   lateNightSnackQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .integer('1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.'),
+    .integer('0이상의 숫자를 입력해 주세요.')
+    .min(0, '0이상의 숫자를 입력해 주세요.'),
   businessNo: Yup.string().matches(
     businessRegExp,
     "' - '를 포함한 숫자를 입력해주세요.",
@@ -226,21 +226,18 @@ export const cateringValidation = Yup.object({
   lunchQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .min(1, '1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.')
-    .integer('1이상의 숫자를 입력해 주세요.'),
+    .min(0, '0이상의 숫자를 입력해 주세요.')
+    .integer('0이상의 숫자를 입력해 주세요.'),
   dinnerQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .min(1, '1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.')
-    .integer('1이상의 숫자를 입력해 주세요.'),
+    .min(0, '0이상의 숫자를 입력해 주세요.')
+    .integer('0이상의 숫자를 입력해 주세요.'),
   lateNightSnackQty: Yup.number()
     .nullable()
     .typeError('숫자만 입력하세요.')
-    .min(1, '1이상의 숫자를 입력해 주세요.')
-    .positive('1이상의 숫자를 입력해 주세요.')
-    .integer('1이상의 숫자를 입력해 주세요.'),
+    .min(0, '0이상의 숫자를 입력해 주세요.')
+    .integer('0이상의 숫자를 입력해 주세요.'),
 });
 
 export const specialMealValidation = Yup.object({

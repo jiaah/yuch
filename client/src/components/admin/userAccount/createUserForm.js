@@ -93,7 +93,6 @@ const CreateUserForm = props => {
           type="text"
           icon="catering"
           styleName="textFieldD"
-          placeholder="70"
         />
         <FormikField
           label="석식 식수량"
@@ -101,7 +100,6 @@ const CreateUserForm = props => {
           type="text"
           icon="catering"
           styleName="textFieldD"
-          placeholder="35"
         />
         <FormikField
           label="야식 식수량"
@@ -109,7 +107,6 @@ const CreateUserForm = props => {
           type="text"
           icon="catering"
           styleName="textFieldD"
-          placeholder="35"
         />
       </div>
       <RadioButtonFormControl
