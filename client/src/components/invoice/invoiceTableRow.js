@@ -11,7 +11,7 @@ const styles = theme => ({
   },
   font: { fontWeight: 'bold' },
   pointSun: { color: '#E8716F' },
-  pointSat: { colot: '#2196F3' },
+  pointSat: { color: '#2196F3' },
 });
 
 const InvoiceTableRow = ({
@@ -27,19 +27,20 @@ const InvoiceTableRow = ({
   const formattedMealPrice = formatNumber(mealPrice);
   const { date, day } = invoiceFormat(row.date);
   const isWeekend = day === 'Sat' ? pointSat : day === 'Sun' ? pointSun : null;
+
   return (
     <TableRow tabIndex={-1}>
       <TableCell align="right" className={`${resize} ${isWeekend} ${font}`}>
         {date}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lunchQty}
+        {row.lunchQty || '.'}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.dinnerQty}
+        {row.dinnerQty || '.'}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lateNightSnackQty}
+        {row.lateNightSnackQty || '.'}
       </TableCell>
       <TableCell align="right" className={resize}>
         {formattedMealPrice}
