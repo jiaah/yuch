@@ -35,7 +35,7 @@ const DeleteUserFormBox = ({
     );
     return setSubmitting(false);
   };
-  console.log('clickedUserDate', clickedUserData);
+
   return (
     <Formik
       initialValues={clickedUserData}
