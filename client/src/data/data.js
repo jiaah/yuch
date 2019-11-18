@@ -154,13 +154,13 @@ export const navAdminItems = {
     },
     {
       id: 13,
-      name: `${admin.companyName} 계정`,
-      to: '/admin/account',
+      name: `${admin.companyName} 계좌`,
+      to: '/admin/account/bank',
     },
     {
       id: 14,
-      name: `${admin.companyName} 계좌`,
-      to: '/admin/account/bank',
+      name: `${admin.companyName} 계정`,
+      to: '/admin/account',
     },
   ],
 };
