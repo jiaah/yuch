@@ -7,18 +7,28 @@ export const resetReserve = () => ({
 
 export const reserve = reserveInfo => async dispatch => {
   dispatch({ type: types.HTTP_REQUEST, api: 'reserve' });
+
+  let resFeedback = null;
+  let res;
+
   try {
-    const res = await Axios.post('/mail/reserve', reserveInfo);
-    dispatch({ type: types.HTTP_SUCCESS, api: 'reserve' });
-    return res;
+    res = await Axios.post('/mail/reserve', reserveInfo);
+    resFeedback = { type: types.HTTP_SUCCESS, api: 'reserve' };
   } catch (error) {
-    return dispatch({
+    console.error(error);
+    resFeedback = {
       type: types.HTTP_FAILURE,
       api: 'reserve',
-      status: error.response.status,
+      status: error.response ? error.response.status : 400,
       error: 'Sending a reservation email failed.',
-    });
+    };
   }
+
+  if (resFeedback.error) {
+    return dispatch(resFeedback);
+  }
+  dispatch(resFeedback);
+  return res;
 };
 
 export const bugReport = (error, errorInfo) => async dispatch => {

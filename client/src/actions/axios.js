@@ -10,7 +10,7 @@ import {
 // create axios instance
 export const Axios = axios.create({
   baseURL: API_HOST,
-  timeout: 1000,
+  timeout: 10000, // 10s timeout for requests
 });
 
 Axios.interceptors.request.use(

@@ -85,21 +85,21 @@ const EditUserForm = ({ bankAccount, isSubmitting, showSubModal }) => (
       <FormikField
         label="중식 식수량"
         name="lunchQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldD"
       />
       <FormikField
         label="석식 식수량"
         name="dinnerQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldD"
       />
       <FormikField
         label="야식 식수량"
         name="lateNightSnackQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldD"
       />

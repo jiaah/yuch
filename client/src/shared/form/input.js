@@ -99,23 +99,23 @@ const Input = ({
     const inputValue = e.target.value;
     let value;
 
-    if (
-      name === 'lunchQty' ||
-      name === 'dinnerQty' ||
-      name === 'lateNightSnackQty' ||
-      name === 'mealPrice' ||
-      name === 'reservePrice' ||
-      name === 'lunch' ||
-      name === 'dinner' ||
-      name === 'quantity'
-    ) {
-      // to avoid isNaN('') === false, use parseInt('') // output: NaN
-      if (inputValue !== '') {
-        value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
-      } else {
-        value = null;
-      }
-    }
+    // if (
+    //   name === 'lunchQty' ||
+    //   name === 'dinnerQty' ||
+    //   name === 'lateNightSnackQty' ||
+    //   name === 'mealPrice' ||
+    //   name === 'reservePrice' ||
+    //   name === 'lunch' ||
+    //   name === 'dinner' ||
+    //   name === 'quantity'
+    // ) {
+    //   // to avoid isNaN('') === false, use parseInt('') // output: NaN
+    //   if (inputValue !== '') {
+    //     value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
+    //   } else {
+    //     value = null;
+    //   }
+    // }
     if (
       name === 'username' ||
       name === 'password' ||
@@ -125,26 +125,34 @@ const Input = ({
       value = inputValue.toLowerCase();
     }
 
-    if (
-      name === 'name' ||
-      name === 'companyName' ||
-      name === 'address' ||
-      name === 'contactNo' ||
-      name === 'email' ||
-      name === 'businessNo' ||
-      name === 'startDate' ||
-      name === 'endDate' ||
-      name === 'date' ||
-      name === 'time' ||
-      name === 'sideDish' ||
-      name === 'note' ||
-      name === 'accountHolder' ||
-      name === 'bankName' ||
-      name === 'accountNo'
-    ) {
-      value = inputValue;
-    }
-
+    // if (
+    //   // name === 'lunchQty' ||
+    //   // name === 'dinnerQty' ||
+    //   // name === 'lateNightSnackQty' ||
+    //   // name === 'mealPrice' ||
+    //   // name === 'reservePrice' ||
+    //   // name === 'lunch' ||
+    //   // name === 'dinner' ||
+    //   // name === 'quantity' ||
+    //   name === 'name' ||
+    //   name === 'companyName' ||
+    //   name === 'address' ||
+    //   name === 'contactNo' ||
+    //   name === 'email' ||
+    //   name === 'businessNo' ||
+    //   name === 'startDate' ||
+    //   name === 'endDate' ||
+    //   name === 'date' ||
+    //   name === 'time' ||
+    //   name === 'sideDish' ||
+    //   name === 'note' ||
+    //   name === 'accountHolder' ||
+    //   name === 'bankName' ||
+    //   name === 'accountNo'
+    // ) {
+    value = inputValue;
+    // }
+    console.log(value, typeof value);
     return setFieldValue(name, value, shouldValidate);
   };
 

@@ -1,8 +1,5 @@
 const router = require('express').Router();
-const sgMail = require('@sendgrid/mail');
-// const sendEmail = require('../lib/send-email');
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const sendEmail = require('../lib/send-email');
 
 module.exports = () => {
   router.post('/reserve', (req, res, next) => {
@@ -14,8 +11,7 @@ module.exports = () => {
       html: `<p>이름: ${name} <br/> 연락처: ${contact}<br/> 인원수: ${number}<br/> 장소: ${place}<br/> 날짜: ${date}<br/> 예약시간: ${time}</p>`,
     };
 
-    sgMail
-      .send(mailOptions)
+    sendEmail(mailOptions)
       .then(() =>
         res.status(201).send('Reserve Email has been sent successfully!'),
       )
@@ -32,8 +28,7 @@ module.exports = () => {
       html: `<p>${error} <br/><br/> ${errorInfo}</p>`,
     };
 
-    sgMail
-      .send(mailOptions)
+    sendEmail(mailOptions)
       .then(() => res.status(201).send('Email has been sent successfully!'))
       .catch(err => next(err));
   });
