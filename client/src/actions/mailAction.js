@@ -15,7 +15,6 @@ export const reserve = reserveInfo => async dispatch => {
     res = await Axios.post('/mail/reserve', reserveInfo);
     resFeedback = { type: types.HTTP_SUCCESS, api: 'reserve' };
   } catch (error) {
-    console.error(error);
     resFeedback = {
       type: types.HTTP_FAILURE,
       api: 'reserve',
