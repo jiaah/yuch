@@ -14,7 +14,9 @@ export const reserve = reserveInfo => async dispatch => {
   try {
     res = await Axios.post('/mail/reserve', reserveInfo);
     resFeedback = { type: types.HTTP_SUCCESS, api: 'reserve' };
+    console.log('res in action: ', res);
   } catch (error) {
+    console.log('error in action: ', error);
     resFeedback = {
       type: types.HTTP_FAILURE,
       api: 'reserve',
