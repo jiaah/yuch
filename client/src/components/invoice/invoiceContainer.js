@@ -86,11 +86,17 @@ const InvoiceContainer = ({
                   unit="mm"
                   formattedDate={formattedDate}
                   startTime={parsedStartDate}
-                  endTime={`${thisMonthYYYYMM}01`}
+                  endTime={
+                    isAdmin ? `${thisMonthYYYYMM}32` : `${thisMonthYYYYMM}01`
+                  }
                   updateDate={updateDateMonthly}
                   addFlashMessage={addFlashMessage}
                   fetchData={fetchData}
-                  dateForwardMessage="매월 1일에 세금명세서가 발급됩니다."
+                  dateForwardMessage={
+                    isAdmin
+                      ? '다음달 명세서는 발급될 수 없습니다.'
+                      : '매월 1일에 세금명세서가 발급됩니다.'
+                  }
                 />
                 <div className="paper-label-box justify-end noprint">
                   <Link to="/admin/invoice/users">

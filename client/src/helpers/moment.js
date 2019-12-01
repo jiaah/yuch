@@ -49,6 +49,10 @@ export const lastMonthYYYYMM = moment()
   .format('YYYYMM');
 
 export const thisMonthYYYYMM = moment().format('YYYYMM');
+export const nextMonthYYYYMM = moment()
+  .add(+1, 'months')
+  .format('YYYYMM');
+
 export const thisYear = moment().format('YYYY');
 export const nextYear = moment()
   .add(1, 'years')

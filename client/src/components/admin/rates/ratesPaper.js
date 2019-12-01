@@ -81,13 +81,7 @@ const RatesPaper = ({
     );
 
   return (
-    <Paper
-      component={
-        <h3 className="mt4 mb4">
-          브라우저 새로고침을 하여, 관리자 인증을 해주세요.
-        </h3>
-      }
-    />
+    <Paper component={<h3 className="mt4 mb4">관리자 인증을 해주세요.</h3>} />
   );
 };
 

@@ -106,11 +106,11 @@ const InvoiceContainer = ({
                 unit="mm"
                 formattedDate={formattedDate}
                 startTime={admin.startTime}
-                endTime={`${thisMonthYYYYMM}01`}
+                endTime={`${thisMonthYYYYMM}32`}
                 updateDate={updateDateMonthly}
                 addFlashMessage={addFlashMessage}
                 fetchData={fetchData}
-                dateForwardMessage="매월 1일에 발급됩니다."
+                dateForwardMessage="다음달 명세서는 발급될 수 없습니다."
               />
               <div className="paper-label-box justify-between">
                 <SearchBar
