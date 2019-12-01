@@ -52,7 +52,7 @@ const Container = ({
 }) => {
   const [data, setData] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
-
+  console.log('data: ', data);
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
   const onFocusOnSelectdRow = id => setSelectedRow(id);
@@ -60,6 +60,7 @@ const Container = ({
 
   const fetchData = async () => {
     const res = await getEmployees();
+    console.log('res: ', res);
 
     if (!res.error) {
       const orderedData = await orderByPositions(res);
