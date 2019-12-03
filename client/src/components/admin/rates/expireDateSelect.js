@@ -23,7 +23,7 @@ const ExpireDateSelect = ({
   handleSelectChange,
   classes: { formControl, font },
 }) => {
-  const options = selectOptionsYYYYMM([1, 0, -1]);
+  const options = selectOptionsYYYYMM([1, 0, -1, -2]);
   return (
     <FormControl className={formControl}>
       <InputLabel required={true}>적용일자 (YYYY/MM/01)</InputLabel>
