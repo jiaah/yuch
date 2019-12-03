@@ -20,6 +20,7 @@ const AdminAccountContainer = ({
 }) => {
   const [adminData, setAdminData] = useState(null);
   const [pwdOpen, setPwdOpen] = useState(false);
+
   const fetchAdminData = async () => {
     const data = await getAdmin(id);
     if (data.error) {
@@ -37,6 +38,7 @@ const AdminAccountContainer = ({
 
   const openPasswordForm = () => setPwdOpen(true);
   const closePasswordForm = () => setPwdOpen(false);
+
   return (
     <React.Fragment>
       {adminData && (

@@ -12,7 +12,7 @@ const InputFields = ({
       <FormikField
         label="중식"
         name="lunchQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
@@ -21,7 +21,7 @@ const InputFields = ({
       <FormikField
         label="석식"
         name="dinnerQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
@@ -30,7 +30,7 @@ const InputFields = ({
       <FormikField
         label="야식"
         name="lateNightSnackQty"
-        type="text"
+        type="number"
         icon="catering"
         styleName="textFieldC"
         variant="outlined"
@@ -51,7 +51,7 @@ const InputFields = ({
           <td className="pw1 pt3 vr">
             <FormikField
               name="lunchQty"
-              type="text"
+              type="number"
               icon="catering"
               styleName="textFieldC"
               variant="outlined"
@@ -61,7 +61,7 @@ const InputFields = ({
           <td className="pw1 vr">
             <FormikField
               name="dinnerQty"
-              type="text"
+              type="number"
               icon="catering"
               styleName="textFieldC"
               variant="outlined"
@@ -71,7 +71,7 @@ const InputFields = ({
           <td className="pw1">
             <FormikField
               name="lateNightSnackQty"
-              type="text"
+              type="number"
               icon="catering"
               styleName="textFieldC"
               variant="outlined"

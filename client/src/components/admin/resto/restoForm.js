@@ -10,7 +10,7 @@ const CateringForm = ({ isSubmitting }) => (
         <FormikField
           label="중식"
           name="lunch"
-          type="text"
+          type="number"
           icon="money"
           styleName="textFieldC"
           variant="outlined"
@@ -19,7 +19,7 @@ const CateringForm = ({ isSubmitting }) => (
         <FormikField
           label="석식"
           name="dinner"
-          type="text"
+          type="number"
           icon="money"
           styleName="textFieldC"
           variant="outlined"
@@ -39,7 +39,7 @@ const CateringForm = ({ isSubmitting }) => (
             <td className="pw1 pt3 vr">
               <FormikField
                 name="lunch"
-                type="text"
+                type="number"
                 icon="money"
                 styleName="textFieldC"
                 variant="outlined"
@@ -49,7 +49,7 @@ const CateringForm = ({ isSubmitting }) => (
             <td className="pw1">
               <FormikField
                 name="dinner"
-                type="text"
+                type="number"
                 icon="money"
                 styleName="textFieldC"
                 variant="outlined"

@@ -152,6 +152,7 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="lunchQty"
+              type="number"
               onChange={e => handleChange(e, 'lunchQty', userId)}
               value={lunch}
               className={textField}
@@ -167,6 +168,7 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="dinnerQty"
+              type="number"
               onChange={e => handleChange(e, 'dinnerQty', userId)}
               value={dinner}
               className={textField}
@@ -182,6 +184,7 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="lateNightSnackQty"
+              type="number"
               onChange={e => handleChange(e, 'lateNightSnackQty', userId)}
               value={lateNightSnack}
               className={textField}

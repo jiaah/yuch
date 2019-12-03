@@ -17,7 +17,7 @@ const EditRateForm = ({ selectedDate, handleSelectChange, isSubmitting }) => (
         <FormikField
           label="변동가격"
           name="reservePrice"
-          type="text"
+          type="number"
           icon="money"
           styleName="textFieldF"
           required
