@@ -11,7 +11,7 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
         <span className="b">자동화된 시스템 </span>
         으로 운영합니다.
       </p>
-      <p className="mt4 lh-2">
+      <p className="mt3 lh-2">
         # {adminCompanyName} 홈페이지에서{' '}
         <span className="b c-blue">식수량 신청 또는 변경</span>
         <br /># 식수량이 일정하신 고객님을 위한{' '}
@@ -24,7 +24,7 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
         <span className="b c-blue">언제, 어디서든 열람</span>
       </p>
       <div className="flex flex-column-m items-center mh3">
-        <div className="pb2 text-br">
+        <div className="pb2 pt3 text-br">
           <TextField
             name="username"
             label="아이디"
@@ -55,7 +55,7 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
           />
         </div>
       </div>
-      <p className="mt3 underline">https://yu-chung.com/</p>
+      <p className="mt2 underline">https://yu-chung.com/</p>
       <p className="mt1 mb3">
         <span className="b">&#39;구글 크롬&#39;</span> 웹 브라우저에서 &#39;
         <span className="b">유청 위탁급식</span>
