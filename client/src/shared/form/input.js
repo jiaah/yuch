@@ -113,7 +113,7 @@ const Input = ({
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
       } else {
-        value = '';
+        value = null;
       }
     }
     if (
