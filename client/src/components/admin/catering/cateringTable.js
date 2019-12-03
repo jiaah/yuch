@@ -25,9 +25,6 @@ const CateringTable = ({
   sortedData,
   editIndex,
   selectedRow,
-  lunchQtyErr,
-  dinnerQtyErr,
-  lateNightSnackQtyErr,
   // global states
   selectedItemValue,
   // actions
@@ -38,11 +35,12 @@ const CateringTable = ({
   endEditing,
   handleTableRowClick,
   handleUpdate,
-  validation,
 }) => {
   const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);
   const [inputs, setInputs] = useState(null);
+
+  const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   // create inputs array to map it with ref
   const createInputArrayForRefs = async () => {
@@ -54,8 +52,6 @@ const CateringTable = ({
   useEffect(() => {
     createInputArrayForRefs();
   }, []);
-
-  const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   const handleChange = (e, name, id) => {
     const { value } = e.target;
@@ -88,8 +84,6 @@ const CateringTable = ({
       }
       return null;
     });
-
-    await validation(values[0]);
     await handleUpdate(userId, values[0]);
     return setSubmitting(false);
   };
@@ -116,9 +110,6 @@ const CateringTable = ({
                   isSubmitting={isSubmitting}
                   handleTableRowClick={handleTableRowClick}
                   selectedRow={selectedRow}
-                  lunchQtyErr={lunchQtyErr}
-                  dinnerQtyErr={dinnerQtyErr}
-                  lateNightSnackQtyErr={lateNightSnackQtyErr}
                   inputs={inputs}
                 />
               ))}

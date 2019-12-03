@@ -28,9 +28,6 @@ const CateringTableRow = ({
   editIndex,
   isSubmitting,
   selectedRow,
-  lunchQtyErr,
-  dinnerQtyErr,
-  lateNightSnackQtyErr,
   // funcs
   handleChange,
   updateMealQty,
@@ -41,25 +38,41 @@ const CateringTableRow = ({
   saveSelectedItemValue,
   resetSelectedItemValue,
 }) => {
+  const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
+
+  const lunch = lunchQty === null ? '' : lunchQty;
+  const dinner = dinnerQty === null ? '' : dinnerQty;
+  const lateNightSnack = lateNightSnackQty === null ? '' : lateNightSnackQty;
+
+  // error handler
+  const isLunchErr = !!(
+    (typeof lunch === 'string' && lunch !== '') ||
+    lunch < 0
+  );
+  const isDinnerErr = !!(
+    (typeof dinner === 'string' && dinner !== '') ||
+    dinner < 0
+  );
+  const isLateSnackErr = !!(
+    (typeof lateNightSnack === 'string' && lateNightSnack !== '') ||
+    lateNightSnack < 0
+  );
+  const isInvalid = !!(isLunchErr || isDinnerErr || isLateSnackErr);
+
+  const currentlyEditing = !!(editIndex === userId || isInvalid);
+
   // create input refs
   const inputRefs = inputs && useRef(inputs.map(() => React.createRef()));
   // move focus to next input ref
   const handleKeyPress = (e, id) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      if (id === inputs.length - 1) {
+      if (id === inputs.length - 1 && !isInvalid) {
         return updateMealQty(userId);
       }
       return inputRefs.current[id].current.focus();
     }
   };
-
-  const { userId, companyName, lunchQty, dinnerQty, lateNightSnackQty } = row;
-  const currentlyEditing = editIndex === userId;
-
-  const lunch = lunchQty === null ? '' : lunchQty;
-  const dinner = dinnerQty === null ? '' : dinnerQty;
-  const lateNightSnack = lateNightSnackQty === null ? '' : lateNightSnackQty;
 
   // blur the rest on edit
   const isOff =
@@ -77,8 +90,10 @@ const CateringTableRow = ({
   };
 
   const handleCloseBtnClick = async () => {
-    endEditing();
-    resetSelectedItemValue();
+    if (!isInvalid) {
+      await endEditing();
+      resetSelectedItemValue();
+    }
   };
 
   return (
@@ -104,8 +119,10 @@ const CateringTableRow = ({
                 width="19"
                 height="19"
                 viewBox="0 0 24 24"
-                isSubmitting={isSubmitting}
-                handleClick={() => updateMealQty(userId)}
+                isSubmitting={isSubmitting || isInvalid}
+                handleClick={() => {
+                  if (!isInvalid) updateMealQty(userId);
+                }}
               />
             </TableCell>
             <TableCell padding="checkbox">
@@ -152,12 +169,11 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="lunchQty"
-              type="number"
+              type="text"
               onChange={e => handleChange(e, 'lunchQty', userId)}
               value={lunch}
               className={textField}
-              error={lunchQtyErr}
-              inputRef={inputRefs.current[0]}
+              error={isLunchErr}
               onKeyDown={e => handleKeyPress(e, 1)}
             />
           ) : (
@@ -168,11 +184,11 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="dinnerQty"
-              type="number"
+              type="text"
               onChange={e => handleChange(e, 'dinnerQty', userId)}
               value={dinner}
               className={textField}
-              error={dinnerQtyErr}
+              error={isDinnerErr}
               inputRef={inputRefs.current[1]}
               onKeyDown={e => handleKeyPress(e, 2)}
             />
@@ -184,11 +200,11 @@ const CateringTableRow = ({
           {currentlyEditing ? (
             <TextField
               name="lateNightSnackQty"
-              type="number"
+              type="text"
               onChange={e => handleChange(e, 'lateNightSnackQty', userId)}
               value={lateNightSnack}
               className={textField}
-              error={lateNightSnackQtyErr}
+              error={isLateSnackErr}
               inputRef={inputRefs.current[2]}
               onKeyDown={e => handleKeyPress(e, inputs.length - 1)}
             />

@@ -66,11 +66,12 @@ const CateringContainer = ({
   }, []);
 
   const handleTableRowClick = (e, id) => {
-    const { tagName } = e.target;
+    // const { tagName } = e.target;
     onfocusOnSelectdRow(id);
     // if selected row is editing row, do not close editing mode.
-    if (id !== editIndex) endEditing();
-    if (tagName !== 'INPUT' && selectedItemValue) resetSelectedItemValue();
+    // if (id !== editIndex) endEditing();
+    // if (tagName !== 'INPUT' && tagName !== 'svg' && selectedItemValue)
+    //   resetSelectedItemValue();
   };
 
   const handleSuggestionSelected = data =>

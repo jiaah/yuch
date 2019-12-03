@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 /* --- Components --- */
 import Paper from '../../../shared/paper';
 import CateringTable from './cateringTable';
@@ -22,53 +22,23 @@ const CateringPaper = ({
   handleTableRowClick,
   saveYposition,
 }) => {
-  // error handler
-  const [lunchQtyErr, setLunchQtyErr] = useState(false);
-  const [dinnerQtyErr, setDinnerQtyErr] = useState(false);
-  const [lateNightSnackQtyErr, setLateNightSnackQtyErr] = useState(false);
-
-  const validation = values => {
-    if (typeof values.lunchQty !== 'number' && values.lunchQty !== null) {
-      setLunchQtyErr(true);
-    } else {
-      setLunchQtyErr(false);
-    }
-    if (typeof values.dinnerQty !== 'number' && values.dinnerQty !== null) {
-      setDinnerQtyErr(true);
-    } else {
-      setDinnerQtyErr(false);
-    }
-    if (
-      typeof values.lateNightSnackQty !== 'number' &&
-      values.lateNightSnackQty !== null
-    ) {
-      setLateNightSnackQtyErr(true);
-    } else {
-      setLateNightSnackQtyErr(false);
-    }
-  };
-
   const handleUpdate = async (userId, values) => {
-    if (!lunchQtyErr && !dinnerQtyErr && !lateNightSnackQtyErr) {
-      const res = await updateUserCatering(userId, values);
-      if (res.error) {
+    const res = await updateUserCatering(userId, values);
+    if (res.error) {
+      addFlashMessage(
+        'error',
+        `${values.companyName} 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
+      );
+    } else {
+      await saveYposition();
+      await Promise.all([
         addFlashMessage(
-          'error',
-          `${
-            values.companyName
-          } 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
-        );
-      } else {
-        await saveYposition();
-        await Promise.all([
-          addFlashMessage(
-            'success',
-            `${values.companyName} 식수 등록되었습니다.`,
-          ),
-          endEditing(),
-        ]);
-        window.location.reload(true);
-      }
+          'success',
+          `${values.companyName} 식수 등록되었습니다.`,
+        ),
+        endEditing(),
+      ]);
+      // window.location.reload(true);
     }
   };
 
@@ -96,10 +66,6 @@ const CateringPaper = ({
                 handleTableRowClick={handleTableRowClick}
                 selectedRow={selectedRow}
                 handleUpdate={handleUpdate}
-                validation={validation}
-                lunchQtyErr={lunchQtyErr}
-                dinnerQtyErr={dinnerQtyErr}
-                lateNightSnackQtyErr={lateNightSnackQtyErr}
               />
             }
           />
@@ -119,10 +85,6 @@ const CateringPaper = ({
                   handleTableRowClick={handleTableRowClick}
                   selectedRow={selectedRow}
                   handleUpdate={handleUpdate}
-                  validation={validation}
-                  lunchQtyErr={lunchQtyErr}
-                  dinnerQtyErr={dinnerQtyErr}
-                  lateNightSnackQtyErr={lateNightSnackQtyErr}
                 />
               }
             />

@@ -118,20 +118,17 @@ const findOneByUserIdWithDate = async (userId, date) => {
       ? moment(user.endDate).format('YYYYMMDD')
       : null;
 
-    if (result.lunchQty === 0) {
-      result.lunchQty = null;
-    }
+    // if (result.lunchQty === 0) {
+    //   result.lunchQty = null;
+    // }
 
-    if (result.dinnerQty === 0) {
-      result.dinnerQty = null;
-    }
+    // if (result.dinnerQty === 0) {
+    //   result.dinnerQty = null;
+    // }
 
-    if (result.lateNightSnackQty === 0) {
-      result.lateNightSnackQty = null;
-    }
-
-    // console.log(result);
-
+    // if (result.lateNightSnackQty === 0) {
+    //   result.lateNightSnackQty = null;
+    // }
     return result;
   } catch (error) {
     throw error;
@@ -207,17 +204,17 @@ const updateByUserIdWithDate = async (
         ? moment(user.endDate).format('YYYYMMDD')
         : null;
 
-      if (result.lunchQty === 0) {
-        result.lunchQty = null;
-      }
+      // if (result.lunchQty === 0) {
+      //   result.lunchQty = null;
+      // }
 
-      if (result.dinnerQty === 0) {
-        result.dinnerQty = null;
-      }
+      // if (result.dinnerQty === 0) {
+      //   result.dinnerQty = null;
+      // }
 
-      if (result.lateNightSnackQty === 0) {
-        result.lateNightSnackQty = null;
-      }
+      // if (result.lateNightSnackQty === 0) {
+      //   result.lateNightSnackQty = null;
+      // }
     }
     return result;
   } catch (error) {

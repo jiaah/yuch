@@ -113,7 +113,7 @@ const Input = ({
       if (inputValue !== '') {
         value = isNaN(inputValue) ? inputValue : parseInt(inputValue, 10);
       } else {
-        value = null;
+        value = '';
       }
     }
     if (
@@ -144,6 +144,7 @@ const Input = ({
     ) {
       value = inputValue;
     }
+
     return setFieldValue(name, value, shouldValidate);
   };
 
@@ -165,10 +166,12 @@ const Input = ({
       />
     );
   }
+
+  const input = value === 0 || value ? value : '';
   return (
     <TextField
       name={name}
-      value={value || ''}
+      value={input}
       onChange={e => change(e, name, true)}
       onBlur={onBlur}
       {...props}
