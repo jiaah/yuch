@@ -34,13 +34,13 @@ const InvoiceTableRow = ({
         {date}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lunchQty || '.'}
+        {row.lunchQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.dinnerQty || '.'}
+        {row.dinnerQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lateNightSnackQty || '.'}
+        {row.lateNightSnackQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
         {formattedMealPrice}
