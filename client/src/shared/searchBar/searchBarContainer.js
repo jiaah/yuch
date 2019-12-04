@@ -83,6 +83,9 @@ const SearchBar = ({
   const [anchorEl, setAnchorEl] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
 
+  const open = Boolean(anchorEl);
+  const width = size === 'small' ? searchS : search;
+
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
     const regex = await new RegExp(`^[${wordToMatch}]`, 'gi');
@@ -101,16 +104,23 @@ const SearchBar = ({
   };
 
   const suggestionSelected = data => {
-    setInputValue(data[searchingProp]); // display the selected value in search bar
-    setAnchorEl(null); // close autocomplete popper
-    setSuggestions([]); // reset autoComplete matching suggestions
-    if (!isSecondSearchBar) saveSelectedItemValue(data[searchingProp]); // make the selected value accesible in a parents component via redux
+    Promise.all([
+      setInputValue(data[searchingProp]), // display the selected value in search bar
+      setAnchorEl(null), // close autocomplete popper
+      setSuggestions([]), // reset autoComplete matching suggestions
+      !isSecondSearchBar ? saveSelectedItemValue(data[searchingProp]) : null, // make the selected value accesible in a parents component via redux
+    ]);
     return handleSuggestionSelected(data);
   };
 
   const resetSearch = () => {
-    setInputValue(null);
-    if (!isSecondSearchBar) resetSelectedItemValue();
+    Promise.all([
+      setAnchorEl(null),
+      setInputValue(null),
+      setSuggestions([]),
+      !isSecondSearchBar ? resetSelectedItemValue() : null,
+    ]);
+
     return handleResetSearch();
   };
 
@@ -120,9 +130,6 @@ const SearchBar = ({
     },
     [],
   );
-
-  const open = Boolean(anchorEl);
-  const width = size === 'small' ? searchS : search;
 
   return (
     <React.Fragment>
