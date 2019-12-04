@@ -1,82 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withStyles } from '@material-ui/core/styles';
-import compose from 'recompose/compose';
 /* --- Components --- */
 import DeliveryDrawer from './deliveryDrawer';
 import DeliveryMain from './deliveryMain';
 /* --- Actions --- */
 import * as deliveryActions from '../../../actions/deliveryAction';
 import { getUsers } from '../../../actions/adminAccountAction';
+import { addFlashMessage } from '../../../actions/messageAction';
 
-const drawerWidth = 500;
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
+const mockData = [
+  {
+    routes: { id: '#1', route: '1route' },
+    delivery: [
+      { id: '1', companyName: 'user1', address: 'as' },
+      { id: '2', companyName: 'user2', address: 'as' },
+      { id: '3', companyName: 'user3', address: 'as' },
+    ],
   },
-  paper: {
-    height: 'calc(100% - 161px)',
-    top: 161,
-    [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 170px)',
-      top: 170,
-    },
-    [theme.breakpoints.up('lg')]: {
-      height: 'calc(100% - 190px)',
-      top: 190,
-    },
+  {
+    routes: { id: '#2', route: '2route' },
+    delivery: [
+      { id: '4', companyName: 'user4', address: 'as' },
+      { id: '5', companyName: 'user5', address: 'as' },
+      { id: '6', companyName: 'user6', address: 'as' },
+    ],
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    overflowY: 'scroll',
+  {
+    routes: { id: '#3', route: '3route' },
+    delivery: [
+      { id: '7', companyName: 'user7', address: 'as' },
+      { id: '8', companyName: 'user8', address: 'as' },
+      { id: '9', companyName: 'user9', address: 'as' },
+    ],
   },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    overflowX: 'scroll',
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: 200,
-    [theme.breakpoints.up('sm')]: {
-      width: 240,
-    },
-    overflowX: 'hidden',
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(1, 1, 0, 1),
-    height: 40,
-  },
-  listItemA: { width: 250 },
-  content: {
-    flexGrow: 1,
-  },
-});
+];
 
 const DeliveryContainer = ({
-  classes,
   // state
   selectedSearchItem,
   // actions
+  addFlashMessage,
   getUsers,
   deliveryActions,
 }) => {
-  const fetchData = async () => {
-    const routes = await deliveryActions.getRoutes();
-  };
+  const [data, setData] = useState(null);
+
+  const fetchData = async () =>
+    // const res = await deliveryActions.getRoutes();
+    // console.log('res: ', res);
+    // if (res.error) {
+    //   return addFlashMessage('error', '데이터를 가져오는데 실패하였습니다.');
+    // }
+    setData(mockData);
 
   useEffect(() => {
     fetchData();
@@ -84,13 +60,12 @@ const DeliveryContainer = ({
 
   return (
     <div className="container-a">
-      <div className={classes.root}>
+      <div className="flex">
         <DeliveryDrawer
           getUsers={getUsers}
           selectedSearchItem={selectedSearchItem}
-          classes={classes}
         />
-        <DeliveryMain classes={classes} deliveryActions={deliveryActions} />
+        <DeliveryMain deliveryActions={deliveryActions} data={data} />
       </div>
     </div>
   );
@@ -101,14 +76,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  addFlashMessage: (variant, message) =>
+    dispatch(addFlashMessage(variant, message)),
   deliveryActions: bindActionCreators(deliveryActions, dispatch),
   getUsers: () => dispatch(getUsers()),
 });
 
-export default compose(
-  withStyles(styles),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
 )(DeliveryContainer);

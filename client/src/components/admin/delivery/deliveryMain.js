@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
+import { styles } from './deliveryStyles';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import Loader from '../../loader';
-
-const RouteBoard = Loader({
-  loader: () => import('./routeBoard' /* webpackChunkName: 'RouteBoard' */),
-});
+import DeliveryMainBoard from './deliveryMainBoard';
 
 const DeliveryMain = ({
   classes: { content },
+  data,
   deliveryActions: { getRoutes, createRoute, deleteRoute },
 }) => {
   const addBoard = async () => {
     // add title
     // create Route with title
     const res = await createRoute('3route');
+    console.log('res: ', res);
   };
 
   return (
@@ -37,10 +37,8 @@ const DeliveryMain = ({
           handleClick={() => printDiv('print')}
         />
       </div>
-      <div className="flex flex-wrap">
-        {/* {routes && routes.map(() => <RouteBoard />)} */}
-      </div>
+      <DeliveryMainBoard data={data} />
     </main>
   );
 };
-export default DeliveryMain;
+export default withStyles(styles)(DeliveryMain);
