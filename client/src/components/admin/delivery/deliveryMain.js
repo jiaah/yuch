@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 /* --- Components --- */
-import { styles } from './deliveryStyles';
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
 import DeliveryMainBoard from './deliveryMainBoard';
 
-const DeliveryMain = ({
-  classes: { content },
-  data,
-  deliveryActions: { getRoutes, createRoute, deleteRoute },
-}) => {
+const DeliveryMain = ({ classes: { content }, data }) => {
   const addBoard = async () => {
-    // add title
-    // create Route with title
-    const res = await createRoute('3route');
-    console.log('res: ', res);
+    // Q) board 생성할때 마다 db에 저장 ?
+    const res = await createRoute('루트');
   };
 
   return (
-    <main className={`${content} r--w-80`}>
+    <main className={`${content} r--w-80}`}>
       <h2 className="flex justify-center lh-1">배달 루트</h2>
       <div className="flex justify-end">
         <IconButton
@@ -41,4 +33,4 @@ const DeliveryMain = ({
     </main>
   );
 };
-export default withStyles(styles)(DeliveryMain);
+export default DeliveryMain;

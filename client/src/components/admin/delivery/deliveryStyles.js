@@ -1,6 +1,9 @@
 const drawerWidth = 500;
 
 export const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
   // Drawer
   paper: {
     height: 'calc(100% - 161px)',
@@ -19,6 +22,7 @@ export const styles = theme => ({
     flexShrink: 0,
     whiteSpace: 'nowrap',
     overflowY: 'scroll',
+    zIndex: '1',
   },
   drawerOpen: {
     width: drawerWidth,

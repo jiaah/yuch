@@ -2,7 +2,7 @@ import React from 'react';
 /* --- Components --- */
 import List from './list';
 
-const DeliveryDrawerBoard = ({
+const DeliveryDrawerList = ({
   // local state
   open,
   usersList,
@@ -17,4 +17,4 @@ const DeliveryDrawerBoard = ({
   return <List data={data} open={open} />;
 };
 
-export default DeliveryDrawerBoard;
+export default DeliveryDrawerList;

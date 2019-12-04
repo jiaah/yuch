@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
-import { styles } from './deliveryStyles';
 import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
-import DeliveryDrawerBoard from './deliveryDrawerBoard';
+import DeliveryDrawerList from './deliveryDrawerList';
 
 const DeliveryDrawer = ({
   classes: { paper, drawer, drawerOpen, drawerClose, toolbar },
   // global state
   selectedSearchItem,
+  // local state
+  routes,
   // actions
   getUsers,
 }) => {
@@ -21,6 +21,7 @@ const DeliveryDrawer = ({
 
   const fetchUsers = async () => {
     const res = await getUsers();
+    // filter -> routes 테이블에 존재하지 않는 users
     return setUsersList(res.activeUsers);
   };
 
@@ -84,7 +85,7 @@ const DeliveryDrawer = ({
         />
       </div>
       <Divider />
-      <DeliveryDrawerBoard
+      <DeliveryDrawerList
         open={open}
         usersList={usersList}
         selectedSearchItem={selectedSearchItem}
@@ -93,4 +94,4 @@ const DeliveryDrawer = ({
   );
 };
 
-export default withStyles(styles)(DeliveryDrawer);
+export default DeliveryDrawer;
