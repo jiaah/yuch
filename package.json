@@ -12,9 +12,7 @@
       "target": "http://localhost:9080"
     }
   },
-  "browserslist": [
-    "defaults"
-  ],
+  "browserslist": ["defaults", "not IE 11", "not IE_Mob 11", "maintained node versions"],
   "scripts": {
     "webpack-init": "webpack-dev-server --config=webpack.dev.js",
     "precommit": "lint-staged",
