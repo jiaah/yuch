@@ -12,20 +12,9 @@
       "target": "http://localhost:9080"
     }
   },
-  "browserslist": {
-    "production": [
-      "last 1 version",
-      "> 1%",
-      "not dead",
-      "ie >= 11"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version",
-      "ie11"
-    ]
-  },
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
     "webpack-init": "webpack-dev-server --config=webpack.dev.js",
     "precommit": "lint-staged",
