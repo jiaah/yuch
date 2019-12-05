@@ -23,8 +23,8 @@ const InvoiceTableRow = ({
 }) => {
   const totalQty = row.lunchQty + row.dinnerQty + row.lateNightSnackQty;
   const total = totalQty * mealPrice;
+  const price = totalQty === 0 ? '' : formatNumber(mealPrice);
 
-  const formattedMealPrice = formatNumber(mealPrice);
   const { date, day } = invoiceFormat(row.date);
   const isWeekend = day === 'Sat' ? pointSat : day === 'Sun' ? pointSun : null;
 
@@ -43,7 +43,7 @@ const InvoiceTableRow = ({
         {row.lateNightSnackQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {formattedMealPrice}
+        {price}
       </TableCell>
       <TableCell align="right" className={resize}>
         {total}
