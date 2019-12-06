@@ -6,3 +6,17 @@
 .delivery-board {
   width: 300px;
 }
+
+.delivery-board--print {
+  width: 650px;
+}
+
+.delivery-toggle {
+  z-index: 1500;
+  background-color: #ffffff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

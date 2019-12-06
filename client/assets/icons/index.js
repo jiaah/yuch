@@ -39,9 +39,12 @@ import Update from './update';
 import Contact from './contact';
 import ShowChart from './showChart';
 import TableChart from './tableChart';
+import MoreHoriz from './moreHoriz';
 
 const Icon = props => {
   switch (props.name) {
+    case 'moreHoriz':
+      return <MoreHoriz {...props} />;
     case 'showChart':
       return <ShowChart {...props} />;
     case 'tableChart':

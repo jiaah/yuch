@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
@@ -69,7 +68,7 @@ const DeliveryDrawer = ({
           />
         )}
       </div>
-      <div className="flex flex-column-m items-center pb2">
+      <div className="flex flex-column-m items-center ph1">
         <p
           className="f-regular
            pb2"
@@ -84,7 +83,6 @@ const DeliveryDrawer = ({
           handleResetSearch={() => {}}
         />
       </div>
-      <Divider />
       <DeliveryDrawerList
         open={open}
         usersList={usersList}

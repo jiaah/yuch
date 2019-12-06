@@ -47,11 +47,19 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: theme.spacing(1, 1, 0, 1),
+    padding: theme.spacing(2, 1, 0, 1),
     height: 40,
   },
   // Main
   content: {
     flexGrow: 1,
+  },
+  board: {
+    backgroundColor: '#ebecf0',
+    padding: '.1em',
+  },
+  boardPrint: {
+    backgroundColor: '#fff',
+    padding: '.1em',
   },
 });

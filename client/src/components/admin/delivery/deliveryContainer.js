@@ -5,7 +5,7 @@ import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 /* --- Components --- */
 import DeliveryDrawer from './deliveryDrawer';
-import DeliveryMain from './deliveryMain';
+import Delivery from './delivery';
 import { styles } from './deliveryStyles';
 /* --- Actions --- */
 import * as deliveryActions from '../../../actions/deliveryAction';
@@ -14,15 +14,21 @@ import { addFlashMessage } from '../../../actions/messageAction';
 
 const mockData = [
   {
-    routes: { id: '#1', route: '1route' },
+    id: '#1',
+    route: '1route',
     delivery: [
-      { id: '1', companyName: 'user1', address: 'asasdfasdf' },
+      {
+        id: '1',
+        companyName: 'user1',
+        address: '왕십리구 마성로 119 2층 코딩학원',
+      },
       { id: '2', companyName: 'user2', address: 'asawfasdfasdf' },
       { id: '3', companyName: 'user3', address: 'aswerwesdf425' },
     ],
   },
   {
-    routes: { id: '#2', route: '2route' },
+    id: '#2',
+    route: '2route',
     delivery: [
       { id: '4', companyName: 'user4', address: 'as343' },
       { id: '5', companyName: 'user5', address: 'as34wters' },
@@ -30,7 +36,8 @@ const mockData = [
     ],
   },
   {
-    routes: { id: '#3', route: '3route' },
+    id: '#3',
+    route: '3route',
     delivery: [
       { id: '7', companyName: 'user7', address: 'as34534534534rew' },
       { id: '8', companyName: 'user8', address: 'as345345345345' },
@@ -72,7 +79,7 @@ const DeliveryContainer = ({
           getUsers={getUsers}
           selectedSearchItem={selectedSearchItem}
         />
-        <DeliveryMain
+        <Delivery
           data={routes}
           classes={classes}
           createRoute={createRoute}

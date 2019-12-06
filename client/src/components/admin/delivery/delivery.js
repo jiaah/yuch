@@ -2,16 +2,16 @@ import React from 'react';
 /* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import { printDiv } from '../../../utils/print';
-import DeliveryMainBoard from './deliveryMainBoard';
+import DeliveryBoardList from './deliveryBoardList';
 
-const DeliveryMain = ({ classes: { content }, data }) => {
+const Delivery = ({ classes, data }) => {
   const addBoard = async () => {
     // Q) board 생성할때 마다 db에 저장 ?
     const res = await createRoute('루트');
   };
 
   return (
-    <main className={`${content} r--w-80}`}>
+    <main className={`${classes.content} r--w-80}`}>
       <h2 className="flex justify-center lh-1">배달 루트</h2>
       <div className="flex justify-end">
         <IconButton
@@ -29,8 +29,8 @@ const DeliveryMain = ({ classes: { content }, data }) => {
           handleClick={() => printDiv('print')}
         />
       </div>
-      <DeliveryMainBoard data={data} />
+      <DeliveryBoardList data={data} classes={classes} />
     </main>
   );
 };
-export default DeliveryMain;
+export default Delivery;
