@@ -9,17 +9,13 @@ export const DeliveryBoardList = ({ classes, data }) => (
       data.map(d => {
         const { id, route, delivery } = d;
         return (
-          <div id="print">
-            <div className="print-width print-tc">
-              <Board
-                classes={classes}
-                key={id}
-                id={id}
-                route={route}
-                delivery={delivery}
-              />
-            </div>
-          </div>
+          <Board
+            classes={classes}
+            key={id}
+            id={id}
+            route={route}
+            delivery={delivery}
+          />
         );
       })}
   </div>

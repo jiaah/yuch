@@ -1,0 +1,33 @@
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  #print {
+    display: block;
+  }
+
+  .only-print {
+    display: inline;
+  }
+
+  .print-width {
+    width: 99%;
+    height: 100%;
+    margin: auto;
+    padding: 3em;
+    // padding-top: 5px;
+  }
+
+  .print-tc {
+    text-align: center;
+  }
+
+  .print-breakAfter {
+    page-break-after: auto;
+  }
+
+  .print-tr {
+    page-break-inside: avoid;
+  }
+}
