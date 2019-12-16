@@ -12,7 +12,7 @@ module.exports = {
         },
         loose: true,
         modules: isTest ? 'commonjs' : false,
-        debug: isTest ? false : true,
+        debug: !isTest,
       },
     ],
     'react',

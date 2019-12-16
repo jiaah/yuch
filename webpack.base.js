@@ -11,7 +11,7 @@ const NODE_ENV = process.env.NODE_ENV;
 const devMode = NODE_ENV !== 'production';
 const isTest = NODE_ENV === 'test';
 
-const babelConfig = require('./.babelrc.js');
+const babelConfig = require('./babelrc.config');
 
 module.exports = {
   output: {
