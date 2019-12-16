@@ -1,5 +1,4 @@
 export const printDiv = async divName => {
-  console.log('divName: ', divName);
   const printContents = document.getElementById(divName).innerHTML;
   const originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;

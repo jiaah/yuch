@@ -5,7 +5,7 @@ module.exports = {
     [
       'env',
       {
-        useBuiltIns: 'entry',
+        useBuiltIns: 'usage',
         targets: {
           uglify: true,
           node: 'current',
@@ -19,7 +19,15 @@ module.exports = {
   ],
   retainLines: true,
   plugins: [
-    'transform-runtime',
+    [
+      'transform-runtime',
+      {
+        corejs: {
+          version: 3,
+          proposals: true,
+        },
+      },
+    ],
     'transform-class-properties',
     'transform-object-rest-spread',
     'syntax-dynamic-import',

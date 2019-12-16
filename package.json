@@ -12,7 +12,12 @@
       "target": "http://localhost:9080"
     }
   },
-  "browserslist": ["defaults", "not IE 11", "not IE_Mob 11", "maintained node versions"],
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ],
   "scripts": {
     "webpack-init": "webpack-dev-server --config=webpack.dev.js",
     "precommit": "lint-staged",
@@ -73,12 +78,14 @@
   },
   "homepage": "https://yu-chung.com/",
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.7.6",
     "@material-ui/core": "^4.3.2",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/styles": "^4.3.0",
     "@sendgrid/mail": "^6.3.1",
     "autoprefixer": "^9.1.1",
     "axios": "^0.18.0",
+    "babel-runtime": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "browserslist": "^4.8.0",
@@ -164,7 +171,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
-    "babel-runtime": "^6.26.0",
     "brotli-webpack-plugin": "^1.0.0",
     "cypress": "^3.4.1",
     "eslint": "^5.3.0",
