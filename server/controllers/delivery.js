@@ -1,4 +1,6 @@
 const knex = require('../database');
+const Routes = require('../models/Routes');
+const Delivery = require('../models/Delivery');
 
 exports.createRoute = (req, res) => {
   const { route } = req.body;
@@ -15,6 +17,18 @@ exports.getRoutes = (req, res) =>
     .select('*')
     .then(routes => res.status(200).json(routes))
     .catch(err => res.status(500).json(err));
+// Routes.query()
+//   .select(
+//     'routes.id',
+//     'routes.route',
+//     'delivery.id',
+//     'delivery.routeId',
+//     'delivery.userId',
+//   )
+//   .leftJoin('delivery', 'routes.id', 'delivery.routeId')
+//   .then(res => {
+//     console.log(res);
+//   });
 
 exports.deleteRoute = (req, res) => {
   knex('routes')

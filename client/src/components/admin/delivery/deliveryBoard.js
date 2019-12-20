@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
+import { TextField } from '@material-ui/core';
 /* --- Components --- */
 import List from './list';
 import IconButton from '../../../shared/form/iconButton';
@@ -11,12 +12,19 @@ export const DeliveryBoard = ({
   id,
   route,
   delivery,
+  // local state
+  onRouteEdit,
+  // func
+  handleRouteEdit,
+  handleChange,
+  handleKeyPress,
 }) => {
   // anchorEl Prop: The DOM element used to set the position of the menu.
   const [state, setState] = useState({
     activeId: null,
     anchorEl: null,
     onPrint: false,
+    onRouteEdit: false,
   });
 
   const { activeId, anchorEl, onPrint } = state;
@@ -47,7 +55,22 @@ export const DeliveryBoard = ({
         <Paper className={`ma3 ${width} ${backgroundColor}`}>
           <div key={id} className="mh1">
             <div className="flex justify-between mb2 mw1">
-              <p className="f-regular">{route}</p>
+              <div>
+                {onRouteEdit ? (
+                  <TextField
+                    name="route"
+                    type="text"
+                    onChange={e => handleChange(e, id)}
+                    value={route}
+                    onKeyDown={e => handleKeyPress(e, id)}
+                  />
+                ) : (
+                  <p className="f-regular" onClick={handleRouteEdit}>
+                    {route}
+                  </p>
+                )}
+              </div>
+
               <div
                 aria-owns={activeId === id ? 'menu-list-grow' : undefined}
                 aria-haspopup={activeId === id ? 'true' : 'false'}

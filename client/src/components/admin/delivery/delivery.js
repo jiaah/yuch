@@ -29,7 +29,10 @@ const Delivery = ({ classes, data }) => {
           handleClick={() => printDiv('print')}
         />
       </div>
-      <DeliveryBoardList data={data} classes={classes} />
+      {data &&
+        data.length !== 0 && (
+          <DeliveryBoardList data={data} classes={classes} />
+        )}
     </main>
   );
 };

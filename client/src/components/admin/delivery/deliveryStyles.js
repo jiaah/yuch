@@ -58,7 +58,6 @@ export const styles = theme => ({
     overflowY: 'scroll',
     paddingTop: '3em',
   },
-  boardWrap: { overflowY: 'scroll' },
   board: {
     backgroundColor: '#ebecf0',
     padding: '.1em',

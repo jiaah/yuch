@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
-/* --- Components --- */
 import { TextField } from '@material-ui/core';
+/* --- Components --- */
 import IconButton from '../../../shared/form/iconButton';
 import IconFormButton from '../../../shared/form/iconFormButton';
 
