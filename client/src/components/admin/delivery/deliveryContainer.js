@@ -71,21 +71,19 @@ const DeliveryContainer = ({
   }, []);
 
   return (
-    <div className="container-a">
-      <div className={classes.root}>
-        <DeliveryDrawer
-          routes={routes}
-          classes={classes}
-          getUsers={getUsers}
-          selectedSearchItem={selectedSearchItem}
-        />
-        <Delivery
-          data={routes}
-          classes={classes}
-          createRoute={createRoute}
-          deleteRoute={deleteRoute}
-        />
-      </div>
+    <div className={classes.root}>
+      <DeliveryDrawer
+        routes={routes}
+        classes={classes}
+        getUsers={getUsers}
+        selectedSearchItem={selectedSearchItem}
+      />
+      <Delivery
+        data={routes}
+        classes={classes}
+        createRoute={createRoute}
+        deleteRoute={deleteRoute}
+      />
     </div>
   );
 };

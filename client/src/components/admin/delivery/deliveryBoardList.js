@@ -3,7 +3,7 @@ import React from 'react';
 import Board from './deliveryBoard';
 
 export const DeliveryBoardList = ({ classes, data }) => (
-  <div className="flex flex-wrap">
+  <div className={`flex flex-wrap ${classes.boardWrap}`}>
     {data &&
       data.length !== 0 &&
       data.map(d => {

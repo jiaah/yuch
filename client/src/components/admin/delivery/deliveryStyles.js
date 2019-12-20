@@ -3,6 +3,7 @@ const drawerWidth = 500;
 export const styles = theme => ({
   root: {
     display: 'flex',
+    overflowY: 'hidden',
   },
   // Drawer
   paper: {
@@ -53,7 +54,11 @@ export const styles = theme => ({
   // Main
   content: {
     flexGrow: 1,
+    height: 'calc(100vh - 170px)',
+    overflowY: 'scroll',
+    paddingTop: '3em',
   },
+  boardWrap: { overflowY: 'scroll' },
   board: {
     backgroundColor: '#ebecf0',
     padding: '.1em',

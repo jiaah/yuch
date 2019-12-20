@@ -11,7 +11,7 @@ const Delivery = ({ classes, data }) => {
   };
 
   return (
-    <main className={`${classes.content} r--w-80}`}>
+    <main className={`${classes.content} r--w-80`}>
       <h2 className="flex justify-center lh-1">배달 루트</h2>
       <div className="flex justify-end">
         <IconButton
