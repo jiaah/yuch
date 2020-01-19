@@ -11,9 +11,7 @@ const styles = theme => ({
     width: 200,
     marginTop: '30px',
     [theme.breakpoints.up('md')]: {
-      marginLeft: '40px',
-      marginTop: '18px',
-      marginBottom: '11px',
+      margin: '15.5px 20px 11px 20px',
     },
   },
 });

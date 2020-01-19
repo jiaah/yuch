@@ -12,10 +12,8 @@ export const getEmployees = () => async dispatch => {
       api: 'getEmployees',
       payload: data,
     });
-    console.log('res in action: ', res);
     return data;
   } catch (error) {
-    console.log('error in action: ', error);
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'getEmployees',

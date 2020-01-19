@@ -5,8 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Icon from '../../../assets/icons';
 /* --- Actions --- */
 import {
   saveSelectValue,
@@ -39,7 +37,7 @@ const styles = theme => ({
   large: {
     width: 200,
   },
-  labelPosition: { marginTop: '9.7px', marginLeft: '-13.8px' },
+  labelPosition: { marginTop: '9.7px' },
 });
 
 const SelectForm = ({
@@ -48,6 +46,8 @@ const SelectForm = ({
   name,
   options,
   size,
+  variant,
+  required,
   // global state
   selectedValue,
   // actions
@@ -80,10 +80,16 @@ const SelectForm = ({
     formControl = regular;
   }
 
+  const addLabelMargin = name === 'position' ? labelPosition : '';
+
   return (
     <div className="no-print">
-      <FormControl variant="outlined" className={`${formControl} ${width}`}>
-        <InputLabel htmlFor="filled-age-simple" className={labelPosition}>
+      <FormControl
+        variant={variant}
+        required={!!required}
+        className={`${formControl} ${width}`}
+      >
+        <InputLabel htmlFor={label} className={addLabelMargin}>
           {label}
         </InputLabel>
         <Select
@@ -93,7 +99,7 @@ const SelectForm = ({
           className={font}
           inputProps={{
             name,
-            id: 'users-active-status',
+            id: { label },
           }}
         >
           {options.map(item => (
@@ -113,8 +119,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withStyles(styles)(
-  connect(
-    null,
-    mapDispatchToProps,
-  )(SelectForm),
+  connect(null, mapDispatchToProps)(SelectForm),
 );

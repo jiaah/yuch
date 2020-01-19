@@ -26,6 +26,7 @@ const Form = ({ isSubmitting, position }) => (
             { value: '매니저' },
             { value: '주방장' },
             { value: '주방보조' },
+            { value: '부장' },
             { value: '기사' },
             { value: '직원' },
           ]}

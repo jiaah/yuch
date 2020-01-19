@@ -62,9 +62,8 @@ const Container = ({
     const res = await getEmployees();
 
     if (!res.error) {
-      // const orderedData = await orderByPositions(res);
-      await setData(res);
-      // await setData(orderedData);
+      const orderedData = await orderByPositions(res);
+      await setData(orderedData);
       return keepScrollPosition();
     }
     return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');

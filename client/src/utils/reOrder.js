@@ -5,6 +5,7 @@ export const orderByPositions = async data => {
     '매니저',
     '주방장',
     '주방보조',
+    '부장',
     '기사',
     '직원',
   ];
@@ -14,8 +15,9 @@ export const orderByPositions = async data => {
   const manager = data.filter(i => i.position === positions[2]);
   const chef = data.filter(i => i.position === positions[3]);
   const subChef = data.filter(i => i.position === positions[4]);
-  const deliveryMen = data.filter(i => i.position === positions[5]);
-  const workers = data.filter(i => i.position === positions[6]);
+  const deliveryManager = data.filter(i => i.position === positions[5]);
+  const deliveryMen = data.filter(i => i.position === positions[6]);
+  const workers = data.filter(i => i.position === positions[7]);
 
   const orderedData = [
     ...owner,
@@ -23,6 +25,7 @@ export const orderByPositions = async data => {
     ...manager,
     ...chef,
     ...subChef,
+    ...deliveryManager,
     ...deliveryMen,
     ...workers,
   ];
