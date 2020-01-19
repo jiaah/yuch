@@ -88,7 +88,6 @@ const UserAccountContainer = ({
 
   const fetchUsersData = async () => {
     const data = await getUsers();
-    console.log('data: ', data);
 
     if (data.error)
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');

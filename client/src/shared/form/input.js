@@ -166,7 +166,7 @@ const Input = ({
       />
     );
   }
-
+  console.log(name, value);
   const input = value === 0 || value ? value : '';
   return (
     <TextField

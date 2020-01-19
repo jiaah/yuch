@@ -44,7 +44,7 @@ const CreateFormBox = ({
     if (!res.error) {
       addFlashMessage('success', `성공적으로 등록하였습니다.`);
       await Promise.all([resetForm({}), handleCloseModal()]);
-      // window.location.reload(true);
+      window.location.reload(true);
     } else {
       addFlashMessage(
         'error',

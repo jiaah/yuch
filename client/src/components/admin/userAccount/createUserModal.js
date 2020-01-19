@@ -40,7 +40,6 @@ const UserAccountModal = ({
       startDate: formattedDate,
       ...others,
     };
-
     const res = await createUser(userInfo);
 
     if (!res.error) {
@@ -68,9 +67,9 @@ const UserAccountModal = ({
     email: '',
     address: '',
     mealPrice: null,
-    lunchQty: '',
-    dinnerQty: '',
-    lateNightSnackQty: '',
+    lunchQty: null,
+    dinnerQty: null,
+    lateNightSnackQty: null,
     bankAccountId: '',
     businessType: '',
     businessNo: '',
