@@ -29,6 +29,7 @@ const Form = ({ isSubmitting, position }) => (
             { value: '기사' },
             { value: '직원' },
           ]}
+          required
         />
         <FormikField
           label="연락처"

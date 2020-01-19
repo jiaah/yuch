@@ -52,7 +52,7 @@ const Container = ({
 }) => {
   const [data, setData] = useState(null);
   const [clickedBtn, setClickedBtn] = useState(null);
-  console.log('data: ', data);
+
   // selected row on click
   const [selectedRow, setSelectedRow] = useState(null);
   const onFocusOnSelectdRow = id => setSelectedRow(id);
@@ -60,11 +60,11 @@ const Container = ({
 
   const fetchData = async () => {
     const res = await getEmployees();
-    console.log('res: ', res);
 
     if (!res.error) {
-      const orderedData = await orderByPositions(res);
-      await setData(orderedData);
+      // const orderedData = await orderByPositions(res);
+      await setData(res);
+      // await setData(orderedData);
       return keepScrollPosition();
     }
     return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
@@ -107,8 +107,8 @@ const Container = ({
     employees === '전체'
       ? 'r--w-80'
       : employees === '연락처'
-        ? 'r--w-40'
-        : 'r--w-50';
+      ? 'r--w-40'
+      : 'r--w-50';
 
   return (
     <React.Fragment>
@@ -210,7 +210,4 @@ const mapDispatchToProps = dispatch => ({
   partnerActions: bindActionCreators(partnerActions, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);
