@@ -66,11 +66,13 @@ const InvoiceContainer = ({
       {data && data.length !== 0 && (
         <div id="print" className="container-a r--w-50 invoice-width">
           <div className="print-width">
-            <img
-              className="guide--yuch-logo-s dn only-print"
-              src={logo}
-              alt="logo"
-            />
+            {data.bankAccount.accountHolder === '김귀자' && (
+              <img
+                className="guide--yuch-logo-s dn only-print"
+                src={logo}
+                alt="logo"
+              />
+            )}
             <div className="print-tc">
               <h2
                 className="pointer center"
