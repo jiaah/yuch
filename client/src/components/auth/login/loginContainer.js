@@ -42,6 +42,7 @@ export const Login = ({
     // res.error : when API request failed
     // res === undefined : when received token is undefined
     if (res.error || res === undefined || res === null) {
+      console.log('res.error @ login : ', res.error);
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
@@ -80,7 +81,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addFlashMessage(variant, message)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
