@@ -12,6 +12,10 @@ export const admin = {
   contactNo3Link: '+82-10-8034-0057',
 };
 
+export const admin2 = {
+  companyName: '대경',
+};
+
 export const navHome = [
   {
     id: 1,
@@ -172,12 +176,8 @@ export const message = {
     unauthenticated: '로그인을 해주세요.',
   },
   reserve: {
-    success: `예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, ${
-      admin.companyName
-    }으로 연락주시길 바랍니다.`,
-    error: `프로그램 오류로 예약신청이 전송되지 않았습니다. ${
-      admin.companyName
-    }으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.`,
+    success: `예약 상담과 확정을 위해 24시간 이내로 연락을 드리겠습니다. 만약 연락을 못받으시면, ${admin.companyName}으로 연락주시길 바랍니다.`,
+    error: `프로그램 오류로 예약신청이 전송되지 않았습니다. ${admin.companyName}으로 전화해주시기 바랍니다. 불편을 끼쳐드려 죄송합니다.`,
   },
 };
 

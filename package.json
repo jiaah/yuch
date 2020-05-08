@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "8.11.1",
-    "npm": "6.1.0"
+    "node": "12.14.0",
+    "npm": "6.13.4"
   },
   "proxy": {
     "/api/*": {

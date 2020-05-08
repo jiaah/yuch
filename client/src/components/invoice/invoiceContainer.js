@@ -63,86 +63,89 @@ const InvoiceContainer = ({
 
   return (
     <React.Fragment>
-      {data &&
-        data.length !== 0 && (
-          <div id="print" className="container-a r--w-50 invoice-width">
-            <div className="print-width">
-              <img
-                className="guide--yuch-logo-s dn only-print"
-                src={logo}
-                alt="logo"
+      {data && data.length !== 0 && (
+        <div id="print" className="container-a r--w-50 invoice-width">
+          <div className="print-width">
+            <img
+              className="guide--yuch-logo-s dn only-print"
+              src={logo}
+              alt="logo"
+            />
+            <div className="print-tc">
+              <h2
+                className="pointer center"
+                title="오늘 일자로 돌아가기"
+                onClick={resetDateMonthly}
+              >
+                {name}
+              </h2>
+              <DateButtons
+                date={date}
+                reload={true}
+                unit="mm"
+                formattedDate={formattedDate}
+                startTime={parsedStartDate}
+                endTime={
+                  isAdmin ? `${thisMonthYYYYMM}32` : `${thisMonthYYYYMM}01`
+                }
+                updateDate={updateDateMonthly}
+                addFlashMessage={addFlashMessage}
+                fetchData={fetchData}
+                dateForwardMessage={
+                  isAdmin
+                    ? '다음달 명세서는 발급될 수 없습니다.'
+                    : '매월 1일에 세금명세서가 발급됩니다.'
+                }
               />
-              <div className="print-tc">
-                <h2
-                  className="pointer center"
-                  title="오늘 일자로 돌아가기"
-                  onClick={resetDateMonthly}
-                >
-                  {name}
-                </h2>
-                <DateButtons
-                  date={date}
-                  reload={true}
-                  unit="mm"
-                  formattedDate={formattedDate}
-                  startTime={parsedStartDate}
-                  endTime={
-                    isAdmin ? `${thisMonthYYYYMM}32` : `${thisMonthYYYYMM}01`
-                  }
-                  updateDate={updateDateMonthly}
-                  addFlashMessage={addFlashMessage}
-                  fetchData={fetchData}
-                  dateForwardMessage={
-                    isAdmin
-                      ? '다음달 명세서는 발급될 수 없습니다.'
-                      : '매월 1일에 세금명세서가 발급됩니다.'
-                  }
-                />
-                <div className="paper-label-box justify-end noprint">
-                  <Link to="/admin/invoice/users">
-                    <IconButton
-                      name="list"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 25 25"
-                      handleClick={() => {}}
-                    />
-                  </Link>
+              <div className="paper-label-box justify-end noprint">
+                <Link to="/admin/invoice/users">
                   <IconButton
-                    name="print"
+                    name="list"
                     width="32"
                     height="32"
                     viewBox="0 0 25 25"
-                    handleClick={() => printDiv('print')}
+                    handleClick={() => {}}
                   />
-                </div>
-
-                <Paper
-                  component={
-                    <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
-                  }
+                </Link>
+                <IconButton
+                  name="print"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 25 25"
+                  handleClick={() => printDiv('print')}
                 />
-                <div className="flex justify-between mt3 pw1">
-                  <p>
-                    {data.bankAccount.accountHolder}
-                    &#8199;
-                    {data.bankAccount.accountNo}
-                    &#8199;
-                    {data.bankAccount.bankName}
-                  </p>
-                  <p>
-                    성명
-                    :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
-                  </p>
-                  <p>{admin.companyName}</p>
-                </div>
-                <div className="float-right mt3 mr5">
-                  <p>서명 후 돌려주세요. 감사합니다.</p>
-                </div>
+              </div>
+
+              <Paper
+                component={
+                  <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
+                }
+              />
+              <div className="flex justify-between mt3 pw1">
+                <p>
+                  {data.bankAccount.accountHolder}
+                  &#8199;
+                  {data.bankAccount.accountNo}
+                  &#8199;
+                  {data.bankAccount.bankName}
+                </p>
+                <p>
+                  성명
+                  :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
+                </p>
+                <p>
+                  {data.bankAccount.accountHolder === '김귀자'
+                    ? '유청'
+                    : '대성'}
+                </p>
+              </div>
+              <div className="float-right mt3 mr5">
+                <p>서명 후 돌려주세요. 감사합니다.</p>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
     </React.Fragment>
   );
 };
@@ -160,7 +163,4 @@ const mapDispatchToProps = dispatch => ({
   invoiceActions: bindActionCreators(invoiceActions, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(InvoiceContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceContainer);
