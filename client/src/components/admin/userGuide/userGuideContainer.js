@@ -141,7 +141,7 @@ const UserGuide = ({
                 className={textFieldA}
               />
               <p className="ml3">
-                고객님, &#8199;
+                대표님, &#8199;
                 {guide === '회원 등록' && (
                   <React.Fragment>
                     <span className="b">환영합니다</span>.
@@ -190,8 +190,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   withStyles(styles),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
 )(UserGuide);
