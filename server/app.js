@@ -40,10 +40,8 @@ app.use('/api', routes);
 if (app.get('env') === 'production') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500).send({
-      message: err.message,
-      // error: {}
-      // 로그인 이슈 해결 후 제거할 것 !!!
-      error: err.stack,
+      message: err,
+      error: {},
     });
   });
 }

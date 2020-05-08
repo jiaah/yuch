@@ -139,11 +139,11 @@ export const navAdminItems = {
       name: '고객 가이드',
       to: '/admin/account/user/guide',
     },
-    {
-      id: 13,
-      name: '배달 루트',
-      to: '/admin/account/delivery',
-    },
+    // {
+    //   id: 13,
+    //   name: '배달 루트',
+    //   to: '/admin/account/delivery',
+    // },
   ],
   4: [
     {
