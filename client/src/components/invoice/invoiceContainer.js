@@ -16,7 +16,7 @@ import DateButtons from '../../shared/form/dateButtons';
 import IconButton from '../../shared/form/iconButton';
 import Paper from '../../shared/paper';
 import InvoiceTable from './invoiceTable';
-import { admin } from '../../data/data';
+import { admin, admin2 } from '../../data/data';
 /* --- Actions --- */
 import * as dateTrackerActiions from '../../actions/dateTrackerAction';
 import { addFlashMessage } from '../../actions/messageAction';
@@ -131,12 +131,12 @@ const InvoiceContainer = ({
                 </p>
                 <p>
                   성명
-                  :&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
+                  &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
                 </p>
                 <p>
                   {data.bankAccount.accountHolder === '김귀자'
-                    ? '유청'
-                    : '대성'}
+                    ? admin.companyName
+                    : admin2.companyName}
                 </p>
               </div>
               <div className="float-right mt3 mr5">
