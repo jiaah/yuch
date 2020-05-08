@@ -39,10 +39,10 @@ export const Login = ({
     }
 
     const res = await userLogin(username, password, keepMeLoggedIn);
+    console.log('res.error @ login : ', res);
     // res.error : when API request failed
     // res === undefined : when received token is undefined
     if (res.error || res === undefined || res === null) {
-      console.log('res.error @ login : ', res.error);
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
