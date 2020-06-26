@@ -34,7 +34,7 @@ module.exports = {
     connection: DATABASE_URL,
     pool: {
       min: 2,
-      max: 5,
+      max: 50,
     },
     migrations: {
       directory: `${__dirname}/server/database/migrations`,
