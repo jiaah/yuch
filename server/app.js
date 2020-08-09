@@ -12,20 +12,26 @@ Model.knex(knex);
 
 const app = express();
 
-// CORS
-const whitelist = ['https://yu-chung.com'];
+// CORS Config
+const whitelist = [
+  'https://yu-chung.com',
+  'https://yu-chung.com/api/',
+  'http://localhost:9080/',
+];
+
+const msg =
+  'The CORS policy for this site does not allow access from the specified Origin.';
 
 const corsOptions = {
   origin(origin, callback) {
     const originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-    callback(null, originIsWhitelisted);
+    callback(new Error(msg), originIsWhitelisted);
   },
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  methods: ['GET, POST', 'PATCH', 'DELETE'],
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PATCH', 'DELETE');

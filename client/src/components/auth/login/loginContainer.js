@@ -23,7 +23,6 @@ export const Login = ({
   addFlashMessage,
 }) => {
   const { loggedInUser, loginFailed } = data.message.auth;
-
   const [keepMeLoggedIn, setKeepMeLoggedIn] = useState(false);
 
   const handleKeepMeLoggedIn = () => setKeepMeLoggedIn(!keepMeLoggedIn);
@@ -42,7 +41,6 @@ export const Login = ({
     // res.error : when API request failed
     // res === undefined : when received token is undefined
     if (res.error || res === undefined || res === null) {
-      console.log('res.error @ login : ', res);
       addFlashMessage('error', loginFailed);
       return setSubmitting(false);
     }
