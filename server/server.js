@@ -13,6 +13,31 @@ const isProd = process.env.NODE_ENV === 'production';
 const DIST_DIR = path.join(__dirname, '../', 'public/dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
+const whitelist = ['https://yu-chung.com'];
+
+const corsOptions = {
+  origin(origin, callback) {
+    const originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PATCH', 'DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+  } else {
+    res.header('Access-Control-Allow-Origin', 'https://yu-chung.com');
+  }
+
+  return next();
+});
+
 if (!isProd) {
   const compiler = webpack(config);
 
@@ -42,11 +67,10 @@ if (!isProd) {
   });
 } else {
   app.use(express.static(DIST_DIR));
-  app.get('*', cors(app.get('corsOptions')), (req, res) =>
-    res.sendFile(HTML_FILE),
-  );
 
-  app.get('/', cors(app.get('corsOptions')), (req, res) => {
+  app.get('*', cors(corsOptions), (req, res) => res.sendFile(HTML_FILE));
+
+  app.get('/', cors(corsOptions), (req, res) => {
     res.redirect('https://yu-chung.com');
   });
 
