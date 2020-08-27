@@ -27,10 +27,6 @@ const app = express();
 //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 // };
 
-// app.use(cors(corsOptions));
-// // include before other routes
-// app.options('*', cors(corsOptions));
-
 // app.use(cors(app.get('corsOptions')));
 
 // app.use((req, res, next) => {
@@ -52,10 +48,19 @@ const app = express();
 //   return next();
 // });
 
-app.set('corsOptions', {
+// app.set('corsOptions', {
+//   origin: 'https://yu-chung.com',
+//   optionsSuccessStatus: 200,
+// });
+
+const corsOptions = {
   origin: 'https://yu-chung.com',
   optionsSuccessStatus: 200,
-});
+};
+
+app.use(cors(corsOptions));
+// include before other routes
+app.options('*', cors(corsOptions));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
