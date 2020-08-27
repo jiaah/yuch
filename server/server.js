@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
+const cors = require('cors');
 const config = require('../webpack.dev');
 
 const app = require('./app');
