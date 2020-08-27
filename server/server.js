@@ -41,12 +41,12 @@ if (!isProd) {
   });
 } else {
   app.use(express.static(DIST_DIR));
-
-  app.get('*', (req, res) => res.sendFile(HTML_FILE));
-
-  app.get('/', (req, res) => {
-    res.redirect('https://yu-chung.com');
-  });
+  app.get('*', cors(app.get('corsOptions')), (req, res) =>
+    res.sendFile(HTML_FILE),
+  );
+  app.get('/', cors(app.get('corsOptions')), (req, res) =>
+    res.redirect('https://yu-chung.com'),
+  );
 
   // catch 404 and forward to error handler
   app.use((req, res, next) =>
