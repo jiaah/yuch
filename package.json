@@ -149,7 +149,7 @@
     "vanilla-lazyload": "^8.17.0",
     "victory": "^33.1.1",
     "webpack": "^4.39.2",
-    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-manifest-plugin": "^2.0.4",
