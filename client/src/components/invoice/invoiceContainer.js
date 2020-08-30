@@ -61,16 +61,19 @@ const InvoiceContainer = ({
     fetchData(date);
   }, []);
 
+  // 유청인지 확인 ( 계좌정보가 대경이 아닌것은 모두 유청으로 처리 )
+  const isYuch = data.bankAccount.accountHolder !== admin2.companyName;
+
   return (
     <React.Fragment>
       {data && data.length !== 0 && (
         <div id="print" className="container-a r--w-50 invoice-width">
           <div className="print-width">
-            {data.bankAccount.accountHolder === '김귀자' && (
+            {isYuch && (
               <img
                 className="guide--yuch-logo-s dn only-print"
                 src={logo}
-                alt="logo"
+                alt="yuch-logo"
               />
             )}
             <div className="print-tc">
@@ -135,12 +138,7 @@ const InvoiceContainer = ({
                   성명
                   &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
                 </p>
-                <p>
-                  {data.bankAccount.accountHolder !== admin.companyName ||
-                  data.bankAccount.accountHolder !== admin2.companyName
-                    ? admin.companyName
-                    : data.bankAccount.accountHolder}
-                </p>
+                <p>{isYuch ? admin.companyName : admin2.companyName}</p>
               </div>
               <div className="float-right mt3 mr5">
                 <p>서명 후 돌려주세요. 감사합니다.</p>
