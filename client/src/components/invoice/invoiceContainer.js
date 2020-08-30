@@ -136,9 +136,10 @@ const InvoiceContainer = ({
                   &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
                 </p>
                 <p>
-                  {data.bankAccount.accountHolder === '김귀자'
+                  {data.bankAccount.accountHolder !== admin.companyName ||
+                  data.bankAccount.accountHolder !== admin2.companyName
                     ? admin.companyName
-                    : admin2.companyName}
+                    : data.bankAccount.accountHolder}
                 </p>
               </div>
               <div className="float-right mt3 mr5">
