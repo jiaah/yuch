@@ -79,7 +79,4 @@ const mapDispatchToProps = dispatch => ({
   messageActions: bindActionCreators(messageActions, dispatch),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ForgotContainer);
+export default connect(null, mapDispatchToProps)(ForgotContainer);

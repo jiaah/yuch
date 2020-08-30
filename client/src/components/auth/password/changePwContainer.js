@@ -63,7 +63,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changePassword(id, password, newPassword)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ChangePasswordContainer);
+export default connect(null, mapDispatchToProps)(ChangePasswordContainer);
