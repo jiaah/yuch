@@ -66,13 +66,14 @@ const InvoiceContainer = ({
       {data && data.length !== 0 && (
         <div id="print" className="container-a r--w-50 invoice-width">
           <div className="print-width">
-            {data.bankAccount.accountHolder !== admin2.companyName && (
+            {/* 대경은 유청 이미지 로고 빼기 */}
+            {data.bankAccount.accountHolder !== admin2.companyName ? (
               <img
                 className="guide--yuch-logo-s dn only-print"
                 src={logo}
                 alt="yuch-logo"
               />
-            )}
+            ) : null}
             <div className="print-tc">
               <h2
                 className="pointer center"
@@ -136,10 +137,10 @@ const InvoiceContainer = ({
                   &#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199;(인)
                 </p>
                 <p>
-                  {/*  유청인지 확인 ( 계좌정보가 대경이 아닌것은 모두 유청으로 처리 ) */}
-                  {data.bankAccount.accountHolder !== admin2.companyName
-                    ? admin.companyName
-                    : admin2.companyName}
+                  {/*  예금주가 대경이 아닌것은 모두 유청으로 처리 */}
+                  {data.bankAccount.accountHolder === admin2.companyName
+                    ? admin2.companyName
+                    : admin.companyName}
                 </p>
               </div>
               <div className="float-right mt3 mr5">
