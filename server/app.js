@@ -7,7 +7,7 @@ const { Model } = require('objection');
 const knex = require('./database');
 const routes = require('./routes');
 
-// Bind all Models to a knex instance
+// Bind all Models to a knex instance.
 Model.knex(knex);
 
 const app = express();
