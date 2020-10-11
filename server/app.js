@@ -40,8 +40,9 @@ app.use('/api', routes);
 if (app.get('env') === 'production') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500).send({
-      message: err,
-      error: {},
+      message: err.message,
+      // error: {},
+      error: error.stack
     });
   });
 }
