@@ -76,7 +76,7 @@
   "bugs": {
     "url": "https://github.com/Jin827/homemeal/issues"
   },
-  "homepage": "https://yu-chung.com/",
+  "homepage": "https://www.yu-chung.com/",
   "dependencies": {
     "@babel/runtime-corejs3": "^7.7.6",
     "@material-ui/core": "^4.3.2",
