@@ -47,7 +47,7 @@ if (!isProd) {
   );
 
   app.get('/', cors(app.get('corsOptions')), (req, res) => {
-    res.redirect('https://yu-chung.com');
+    res.redirect('https://www.yu-chung.com');
   });
 
   // catch 404 and forward to error handler
