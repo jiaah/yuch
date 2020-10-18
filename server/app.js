@@ -13,7 +13,7 @@ Model.knex(knex);
 const app = express();
 
 app.set('corsOptions', {
-  origin: 'https://yu-chung.com',
+  origin: 'https://www.yu-chung.com',
   optionsSuccessStatus: 200,
 });
 
@@ -42,7 +42,7 @@ if (app.get('env') === 'production') {
     res.status(err.status || 500).send({
       message: err.message,
       // error: {},
-      error: error.stack
+      error: error.stack,
     });
   });
 }
