@@ -2,42 +2,42 @@ import moment from 'moment';
 import { today } from '../helpers/moment';
 
 export const dayBefore = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(-1, 'days')
     .format('YYYYMMDD');
 
 export const dayAfter = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(1, 'days')
     .format('YYYYMMDD');
 
 export const weekBefore = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(-7, 'days')
     .format('YYYYMMDD');
 
 export const weekAfter = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(7, 'days')
     .format('YYYYMMDD');
 
 export const monthBefore = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(-1, 'months')
     .format('YYYYMMDD');
 
 export const monthAfter = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(1, 'months')
     .format('YYYYMMDD');
 
 export const yearBefore = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(-1, 'years')
     .format('YYYYMMDD');
 
 export const yearAfter = date =>
-  moment(date)
+  moment(date, 'YYYYMMDD')
     .add(1, 'years')
     .format('YYYYMMDD');
 
@@ -51,7 +51,7 @@ export const firstDayOfLastMonth = () => {
 };
 
 export const firstDayOfYYYYMMDD = date => {
-  const parsedDate = moment(date).format('YYYYMM');
+  const parsedDate = moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYYMM');
   const formattedDate = `${parsedDate}01`;
   return formattedDate;
 };
@@ -71,16 +71,24 @@ export const formatToYearDateForm = date =>
 export const formatToTimeForm = time =>
   moment(time, 'hh:mm').format('hh 시 mm 분');
 
-export const formatToYYYY = date => moment(date).format('YYYY');
-export const formatToYYYYMM = date => moment(date).format('YYYYMM');
-export const formatToYYYYMMDD = date => moment(date).format('YYYYMMDD');
+export const formatToYYYY = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY');
 
-export const formatWithDash = date => moment(date).format('YYYY-MM-DD');
-export const formatWithSlash = date => moment(date).format('YYYY/MM/DD');
+export const formatToYYYYMM = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYYMM');
+
+export const formatToYYYYMMDD = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYYMMDD');
+
+export const formatWithDash = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY-MM-DD');
+
+export const formatWithSlash = date =>
+  moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY/MM/DD');
 
 export const invoiceFormat = value => {
-  const date = moment(value).format('DD');
-  const day = moment(value).format('ddd');
+  const date = moment(value, ['YYYYMMDD', 'YYYY-MM-DD']).format('DD');
+  const day = moment(value, ['YYYYMMDD', 'YYYY-MM-DD']).format('ddd');
   return { date, day };
 };
 export const formatSlashToYYMM = date =>
@@ -137,7 +145,7 @@ export const isActiveUser = (startDate, endDate) => {
   const formattedEndDate = formatWithDash(endDate);
   const today = moment().format('YYYY-MM-DD');
 
-  const isActive = moment(today).isBetween(
+  const isActive = moment(today, 'YYYY-MM-DD').isBetween(
     formattedStartDate,
     formattedEndDate,
     'days',
@@ -148,6 +156,11 @@ export const isActiveUser = (startDate, endDate) => {
 
 export const isThisMonth = (startDate, endDate) => {
   const today = moment().format('YYYY-MM-DD');
-  const isActive = moment(today).isBetween(startDate, endDate, 'months', '[]');
+  const isActive = moment(today, 'YYYY-MM-DD').isBetween(
+    startDate,
+    endDate,
+    'months',
+    '[]',
+  );
   return isActive;
 };
