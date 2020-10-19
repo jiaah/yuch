@@ -13,7 +13,7 @@ Model.knex(knex);
 const app = express();
 
 app.set('corsOptions', {
-  origin: 'https://www.yu-chung.com',
+  origin: 'https://yu-chung.com',
   optionsSuccessStatus: 200,
 });
 
