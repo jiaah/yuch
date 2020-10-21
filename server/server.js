@@ -13,11 +13,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const DIST_DIR = path.join(__dirname, '../', 'public/dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
-delete window.document.referrer;
-Object.defineProperty(document, 'referrer', {
-  get: () => 'https://yu-chung.com',
-});
-
 if (!isProd) {
   const compiler = webpack(config);
 
