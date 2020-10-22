@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
-import { API_HOST } from '../../config';
+// import { API_HOST } from '../../config';
 
 import {
   getToken,
@@ -14,9 +14,21 @@ import {
 //   resetTokenAndReattemptRequest,
 // } from './interceptorsHelpers';
 
+// Current URL: http://www.example.com/foo/bar
+
+// example.com
+// | config.js on client
+// external-service.com
+
+//  api/auth/login                  -->  http://example.com/foo/api/auth/login
+// /api/auth/login                   -> http://example.com/api/auth/login
+// https://example.com/api/auth/login -> https://domain.com/api/auth/login
+
 // create axios instance
 export const Axios = axios.create({
-  baseURL: API_HOST,
+  // baseURL: API_HOST,
+  // baseURL: location.href.split("/").slice(0, 3).join("/")
+  baseURL: '/api',
   timeout: 10000,
 });
 
@@ -90,10 +102,7 @@ const responseInterceptor = () => {
       const originalRequest = error.config;
 
       // to stop going in an infinite loop when refreshToken is invalid.
-      if (
-        status === 401 &&
-        originalRequest.url === `${API_HOST}/auth/refresh`
-      ) {
+      if (status === 401 && originalRequest.url.includes(`/auth/refresh`)) {
         Axios.interceptors.response.eject(interceptor);
         return Promise.reject(error);
       }
