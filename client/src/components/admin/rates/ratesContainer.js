@@ -97,7 +97,7 @@ const RatesContainer = ({
     if (clickedUserData.length !== 0) resetClickedItemData();
   };
 
-  // only renders mealprice data when admin user is confirmedconsole.log();
+  // only renders mealprice data when admin user is confirmed
   const dataToRender = isAdminVerified ? data : [];
   const width = data && data.length > 10 ? 'w-90' : 'r--w-50';
   return (
@@ -130,17 +130,16 @@ const RatesContainer = ({
             handleTableRowClick={handleTableRowClick}
             isAdminVerified={isAdminVerified}
           />
-          {isAdminVerified &&
-            clickedUserData.length !== 0 && (
-              <EditRateModal
-                clickedUserData={clickedUserData[0]}
-                hideModal={hideModal}
-                updateReservedPrice={updateReservedPrice}
-                addFlashMessage={addFlashMessage}
-                saveYposition={saveYposition}
-                updateRatesMonth={updateRatesMonth}
-              />
-            )}
+          {isAdminVerified && clickedUserData.length !== 0 && (
+            <EditRateModal
+              clickedUserData={clickedUserData[0]}
+              hideModal={hideModal}
+              updateReservedPrice={updateReservedPrice}
+              addFlashMessage={addFlashMessage}
+              saveYposition={saveYposition}
+              updateRatesMonth={updateRatesMonth}
+            />
+          )}
           <AdminVerificationModal />
         </div>
       )}
@@ -166,7 +165,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(handleAdminVerificationStatus()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RatesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RatesContainer);

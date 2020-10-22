@@ -23,7 +23,6 @@ export const fetchUserCatering = (id, date) => async dispatch => {
 };
 
 export const updateUserCatering = (id, data) => async dispatch => {
-  console.log('id, data: ', id, data);
   dispatch({ type: types.HTTP_REQUEST, api: 'updateUserCatering' });
 
   try {

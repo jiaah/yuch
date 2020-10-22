@@ -183,10 +183,8 @@ export const sendVerificationCodeToEmail = (
       type: types.HTTP_SUCCESS,
       api: 'sendVerificationCodeToEmail',
     });
-    console.log('res: ', res);
     return res;
   } catch (error) {
-    console.log('error: ', error);
     return dispatch({
       type: types.HTTP_FAILURE,
       api: 'sendVerificationCodeToEmail',
