@@ -1,32 +1,14 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
-// import { API_HOST } from '../../config';
-
 import {
   getToken,
   getRefreshToken,
   saveToken,
   saveRefreshToken,
 } from '../../localStorage';
-// import { getToken } from '../../localStorage';
-// import {
-//   isTokenExpiredError,
-//   resetTokenAndReattemptRequest,
-// } from './interceptorsHelpers';
-
-// Current URL: http://www.example.com/foo/bar
-
-// example.com
-// | config.js on client
-// external-service.com
-
-//  api/auth/login                  -->  http://example.com/foo/api/auth/login
-// /api/auth/login                   -> http://example.com/api/auth/login
-// https://example.com/api/auth/login -> https://domain.com/api/auth/login
 
 // create axios instance
 export const Axios = axios.create({
-  // baseURL: API_HOST,
   // baseURL: location.href.split("/").slice(0, 3).join("/")
   baseURL: '/api',
   timeout: 10000,
