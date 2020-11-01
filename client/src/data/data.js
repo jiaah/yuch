@@ -14,6 +14,7 @@ export const admin = {
 
 export const admin2 = {
   companyName: '대경',
+  accountHolder: '이상환(대경)'
 };
 
 export const navHome = [

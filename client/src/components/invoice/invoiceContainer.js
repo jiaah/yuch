@@ -107,7 +107,7 @@ const InvoiceContainer = ({
                     width="32"
                     height="32"
                     viewBox="0 0 25 25"
-                    handleClick={() => {}}
+                    handleClick={() => { }}
                   />
                 </Link>
                 <IconButton
@@ -138,7 +138,7 @@ const InvoiceContainer = ({
                 </p>
                 <p>
                   {/*  예금주가 대경이 아닌것은 모두 유청으로 처리 */}
-                  {data.bankAccount.accountHolder === admin2.companyName
+                  {data.bankAccount.accountHolder === admin2.accountHolder
                     ? admin2.companyName
                     : admin.companyName}
                 </p>
