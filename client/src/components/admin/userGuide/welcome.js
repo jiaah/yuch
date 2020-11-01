@@ -17,7 +17,7 @@ const Welcome = ({ handleChange, adminCompanyName, state, textField }) => {
         <br /># 식수량이 일정하신 고객님을 위한{' '}
         <span className="b c-blue">기본 식수량 설정 옵션</span>
         <br /># 발행된 거래명세서는 <span className="b c-blue">
-          매월 1일
+          매월 마지막 날
         </span>{' '}
         홈페이지에서 바로 확인
         <br /># 지난 거래명세서{' '}

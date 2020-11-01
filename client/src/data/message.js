@@ -186,6 +186,7 @@ export const userCateringMsg = (
       석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 14 시 00 분<br />
     </p>
     <p className="f-mini">
+      &#42; 원활한 서비스 제공을 위해 가능한 9시까지 식수 등록을 해주시기 바랍니다.&#46; <br />
       &#42; 변경 가능시간이 지난 후, 변경을 원하시면 {admin.companyName}
       으로 문의해주시기 바랍니다&#46; <br />
       &#42; {admin.companyName}
