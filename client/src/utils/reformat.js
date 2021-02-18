@@ -10,8 +10,6 @@ export const combinedFormat = num => {
 };
 
 export const removeSpecialCharacters = str => {
-  const splitted = str.split('');
-  const filtered = splitted.filter(i => i !== '-');
-  const newStr = filtered.join('');
-  return newStr;
+  const regExp = /\W+/g;
+  return str.replace(regExp, '');
 };

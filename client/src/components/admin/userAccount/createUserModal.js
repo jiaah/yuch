@@ -50,7 +50,7 @@ const UserAccountModal = ({
         // to ensure to display all users list when reload page
         selectedSearchItem ? resetSelectedItemValue() : null,
       ]);
-      window.location.reload(true);
+      // window.location.reload(true);
     } else {
       await addFlashMessage(
         'error',
