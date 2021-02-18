@@ -17,5 +17,6 @@
 			"command": "wallaby.start",
 			"message": "Running wallaby"
 		}
-	]
+  ],
+  "terminal.integrated.shell.osx": "/bin/zsh"
 }

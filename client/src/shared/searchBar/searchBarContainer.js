@@ -88,7 +88,7 @@ const SearchBar = ({
 
   const handleChange = ({ target: { value } }) => setInputValue(value);
   const getSuggestions = async wordToMatch => {
-    const regex = await new RegExp(`^[${wordToMatch}]`, 'gi');
+    const regex = await new RegExp(`[${wordToMatch}]`, 'gi');
     const suggestion = await data
       .sort()
       .filter(u => u[searchingProp].match(regex));
@@ -98,9 +98,12 @@ const SearchBar = ({
   const handleOnKeyUp = e => {
     const value = e.target.value;
     // these conditions are to keep the popper open while user is typing
-    if (!anchorEl || value.length === 0)
+    if (!anchorEl || value.length === 0) {
       setAnchorEl(anchorEl ? null : e.currentTarget);
-    if (value.length > 0) getSuggestions(value);
+    }
+    if (value.length > 0) {
+      getSuggestions(value);
+    }
   };
 
   const suggestionSelected = data => {
@@ -184,8 +187,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   withStyles(styles),
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
+  connect(null, mapDispatchToProps),
 )(SearchBar);
