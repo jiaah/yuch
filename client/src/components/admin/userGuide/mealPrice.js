@@ -15,9 +15,9 @@ const MealPrice = ({
     <React.Fragment>
       <p className="guide--margin">
         2018년 이후 식수가격을 동결하였으나 뛰는 물가와 인건비 상승으로
-        부득이하게 <span className="b c-blue">식수가격을 인상</span>
-        하게 <br />
-        됨을 알려드립니다.
+        부득이하게 <br />
+        <span className="b c-blue">식수가격을 인상</span>
+        하게됨을 알려드립니다.
       </p>
       <div className="guide--margin flex justify-center">
         <p>고객님의 식수가격은</p>
