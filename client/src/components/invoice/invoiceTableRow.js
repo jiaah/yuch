@@ -28,19 +28,21 @@ const InvoiceTableRow = ({
   const { date, day } = invoiceFormat(row.date);
   const isWeekend = day === 'Sat' ? pointSat : day === 'Sun' ? pointSun : null;
 
+
   return (
     <TableRow tabIndex={-1}>
       <TableCell align="right" className={`${resize} ${isWeekend} ${font}`}>
         {date}
       </TableCell>
+      {/** 식수가 있는 날은, 식수가 없는 식사를 '0'으로 표시해준다. */}
       <TableCell align="right" className={resize}>
-        {typeof row.lunchQty === "number" ? row.lunchQty : ''}
+        { row.lunchQty || (total ? '0' : '')}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {typeof row.dinnerQty === "number" ? row.dinnerQty : ''}
+        {row.dinnerQty || (total ? '0' : '')}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {typeof row.lateNightSnackQty === "number"  ? row.lateNightSnackQty : ''}
+        {row.lateNightSnackQty || (total ? '0' : '')}
       </TableCell>
       <TableCell align="right" className={resize}>
         {price}
