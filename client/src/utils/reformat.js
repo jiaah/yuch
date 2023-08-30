@@ -1,4 +1,4 @@
-export const ccyFormat = num => `${num.toFixed(2)}`;
+export const ccyFormat = num => `${num.toFixed(0)}`;
 
 export const formatNumber = num =>
   num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
