@@ -43,9 +43,9 @@ export const headerMsgC = (
       성당, 교회 각종 행사모임{' '}
       <span className="header--text--point-color">출장뷔페</span>
       <div className="mt2 header--price">
-        반찬 (6가지)&#8199;&#8199;&#8201; 6,000 원<br />
-        반찬 (8가지)&#8199;&#8199;&#8201; 8,000 원<br />
-        반찬 (10가지)&#8199; 10,000 원
+        반찬 (6가지)&#8199;&#8199;&#8201; 8,000 원<br />
+        반찬 (8가지)&#8199;&#8199;&#8201; 10,000 원<br />
+        반찬 (10가지)&#8199; 12,000 원
       </div>
     </h1>
   </div>
@@ -59,7 +59,7 @@ export const headerMsgD = (
       가정식 한식뷔페
       <br />
       당신을 위한{' '}
-      <span className="header--text--point-color">4000원의 행복</span>을
+      <span className="header--text--point-color">7000원의 행복</span>을
       가지세요&#46;
     </h1>
     <p className="white">* 현금가</p>

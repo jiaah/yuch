@@ -34,13 +34,13 @@ const InvoiceTableRow = ({
         {date}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lunchQty || ''}
+        {typeof row.lunchQty === "number" ? row.lunchQty : ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.dinnerQty || ''}
+        {typeof row.dinnerQty === "number" ? row.dinnerQty : ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lateNightSnackQty || ''}
+        {typeof row.lateNightSnackQty === "number"  ? row.lateNightSnackQty : ''}
       </TableCell>
       <TableCell align="right" className={resize}>
         {price}
