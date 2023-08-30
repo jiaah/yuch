@@ -43,9 +43,18 @@ export const headerMsgC = (
       성당, 교회 각종 행사모임{' '}
       <span className="header--text--point-color">출장뷔페</span>
       <div className="mt2 header--price">
-        반찬 (6가지)&#8199;&#8199;&#8201; 8,000 원<br />
-        반찬 (8가지)&#8199;&#8199;&#8201; 10,000 원<br />
-        반찬 (10가지)&#8199; 12,000 원
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+            <span>반찬 (6가지)</span>
+            <span>반찬 (8가지)</span>
+            <span>반찬 (10가지)</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'right' }}>
+            <span>8,000 원</span>
+            <span>10,000 원</span>
+            <span>12,000 원</span>
+          </div>
+        </div>
       </div>
     </h1>
   </div>
