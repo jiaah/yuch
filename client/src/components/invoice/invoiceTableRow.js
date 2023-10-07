@@ -22,7 +22,7 @@ const InvoiceTableRow = ({
   invoiceFormat,
 }) => {
   const totalQty = row.lunchQty + row.dinnerQty + row.lateNightSnackQty;
-  const total = totalQty * mealPrice;
+  const total = formatNumber(totalQty * mealPrice);
   const price = totalQty ? formatNumber(mealPrice) : '';
 
   const { date, day } = invoiceFormat(row.date);
