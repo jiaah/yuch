@@ -5,8 +5,8 @@ export const formatNumber = num =>
 
 export const combinedFormat = num => {
   const cyyFormattedNum = ccyFormat(num);
-  const formattedNum = formatNumber(cyyFormattedNum);
-  return formattedNum;
+  // const formattedNum = formatNumber(cyyFormattedNum);
+  return cyyFormattedNum;
 };
 
 export const removeSpecialCharacters = str => {
