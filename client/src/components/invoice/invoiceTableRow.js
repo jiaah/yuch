@@ -34,16 +34,17 @@ const InvoiceTableRow = ({
       <TableCell align="right" className={`${resize} ${isWeekend} ${font}`}>
         {date}
       </TableCell>
-      {/** 식수가 있는 날은, 식수가 없는 식사를 '0'으로 표시해준다. */}
+
       <TableCell align="right" className={resize}>
-        { row.lunchQty || (total ? '0' : '')}
+        { row.lunchQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.dinnerQty || (total ? '0' : '')}
+        {row.dinnerQty || ''}
       </TableCell>
       <TableCell align="right" className={resize}>
-        {row.lateNightSnackQty || (total ? '0' : '')}
+        {row.lateNightSnackQty || ''}
       </TableCell>
+
       <TableCell align="right" className={resize}>
         {price}
       </TableCell>
