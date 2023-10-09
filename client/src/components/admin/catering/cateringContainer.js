@@ -54,18 +54,14 @@ const CateringContainer = ({
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
 
-    console.log('필터: ', type)
-    console.log('식수 전체 데이터: ', res);
-
     if(type === '전체'){
       setCatering(res);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
       const filtered = res.filter((item)=> {
-        console.log('filter > item: ', item.companyName, item.lunchQty, item.dinnerQty, Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty));
         return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
       });
-      console.log('filtered: ', filtered)
+
       setCatering(filtered);
     }
 
@@ -74,13 +70,17 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData(date);
+  }, [type]);
+
+  useEffect(()=>{
+
     return () => {
       Promise.all([
         resetDateDaily(),
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, [type]);
+  },[])
 
   const handleTableRowClick = (e, id) => onfocusOnSelectdRow(id);
 

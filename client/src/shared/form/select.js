@@ -54,6 +54,8 @@ const SelectForm = ({
   saveSelectValue,
   resetSelectValue,
 }) => {
+  console.log('Select > selectedValue: ',selectedValue);
+
   const handleChange = ({ target: name }) =>
     saveSelectValue(name.name, name.value);
 
@@ -94,7 +96,7 @@ const SelectForm = ({
         </InputLabel>
         <Select
           value={selectedValue}
-          renderValue={selectedValue => selectedValue}
+          renderValue={value => value}
           onChange={handleChange}
           className={font}
           inputProps={{
