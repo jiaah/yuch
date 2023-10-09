@@ -136,13 +136,13 @@ const RestoQtyContainer = ({
                     handleResetSearch={handleResetSearch}
                   />
                   <div className="flex">
-                    {type && <Select
+                    <Select
                       label=""
                       name="type"
                       selectedValue={type}
                       options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
                       size="small"
-                    />}
+                    />
                     <IconButton
                       name="print"
                       width="32"
