@@ -24,7 +24,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
-  guide,
+  type,
   date,
   selectedItemValue,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
@@ -115,8 +115,8 @@ const CateringContainer = ({
                   <div className="flex">
                     <Select
                       label=""
-                      name="guide"
-                      selectedValue={guide}
+                      name="type"
+                      selectedValue={type}
                       options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
                       size="small"
                     />
@@ -157,7 +157,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
-  guide: state.selected.guide,
+  type: state.selected.type,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
