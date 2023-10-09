@@ -35,6 +35,7 @@ const RestoQtyContainer = ({
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
+  console.log('state: ', catering);
 
   // switch text <-> textfield
   const [editIndex, setEditIndex] = useState(null);
@@ -55,6 +56,9 @@ const RestoQtyContainer = ({
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
+
+    console.log('필터: ', guide)
+    console.log('식수 전체 데이터: ', res);
 
     if(guide === '전체'){
       setCatering(res);
