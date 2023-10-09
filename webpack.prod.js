@@ -27,7 +27,7 @@ const config = {
           ecma: 5,
           compress: true,
           output: {
-            comments: false,
+           // comments: false,
             beautify: false,
           },
         },
