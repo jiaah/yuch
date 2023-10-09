@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 /* --- Components --- */
 import { inAWeek } from '../../../helpers/moment';
 import { formatToDateForm } from '../../../utils/date';
+import { ascending } from '../../../utils/reformat';
 import { admin } from '../../../data/data.js';
 import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
@@ -55,14 +56,18 @@ const CateringContainer = ({
     }
 
     if(type === '전체'){
-      setCatering(res);
+      const sorted = res.sort(ascending);
+
+      setCatering(sorted);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
       const filtered = res.filter((item)=> {
         return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
       });
 
-      setCatering(filtered);
+      const sorted = filtered.sort(ascending);
+
+      setCatering(sorted);
     }
 
     return keepScrollPosition();
