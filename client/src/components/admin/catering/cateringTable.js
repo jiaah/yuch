@@ -36,7 +36,7 @@ const CateringTable = ({
   handleTableRowClick,
   handleUpdate,
 }) => {
-  const [dataToDisplay, setDataToDisplay] = useState(null);
+  const [dataToDisplay, setDataToDisplay] = useState(sortedData);
   const [isSubmitting, setSubmitting] = useState(false);
   const [inputs, setInputs] = useState(null);
   console.log('table > sortedData: ', sortedData)
@@ -51,7 +51,7 @@ const CateringTable = ({
   };
 
   useEffect(()=>{
-    if(!dataToDisplay){
+    if(!sortedData){
       return;
     }
 
