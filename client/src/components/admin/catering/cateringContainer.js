@@ -9,6 +9,7 @@ import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
+import Select from '../../../shared/form/select';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from './cateringPaper';
 import {
@@ -23,6 +24,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
+  guide,
   date,
   selectedItemValue,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
@@ -110,13 +112,22 @@ const CateringContainer = ({
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
-                  <IconButton
-                    name="print"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 25 25"
-                    handleClick={() => printDiv('print')}
-                  />
+                  <div className="flex">
+                    <Select
+                      label=""
+                      name="guide"
+                      selectedValue={guide}
+                      options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
+                      size="small"
+                    />
+                    <IconButton
+                      name="print"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 25 25"
+                      handleClick={() => printDiv('print')}
+                    />
+                  </div>
                 </div>
                 <CateringPaper
                   users={catering}
@@ -146,6 +157,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
+  guide: state.selected.guide,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

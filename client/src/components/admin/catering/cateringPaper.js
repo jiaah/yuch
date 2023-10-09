@@ -43,17 +43,19 @@ const CateringPaper = ({
   };
 
   const { sortedDataA, sortedDataB } = divideInTow(users);
+  console.log('좌 데이터: ', sortedDataA);
+  console.log('우 데이터: ', sortedDataB);
 
   return (
     <div className="paper">
       {users.length === 0 ? (
         <Paper
-          component={<h3 className="mt4 mb4">등록된 고객이 없습니다.</h3>}
+          component={<h3 className="mt4 mb4">조건에 만족하는 업체가 없습니다.</h3>}
         />
       ) : (
         <React.Fragment>
           <Paper
-            isDivided={users.length > 10 && true}
+            isDivided={sortedDataB && sortedDataB.length > 0}
             component={
               <CateringTable
                 sortedData={sortedDataA}
@@ -69,7 +71,7 @@ const CateringPaper = ({
               />
             }
           />
-          {users.length > 10 && (
+          {sortedDataB && sortedDataB.length > 0 && (
             <Paper
               classname="paper--sec"
               isDivided={true}
