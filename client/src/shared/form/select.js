@@ -70,7 +70,7 @@ const SelectForm = ({
   }
 
   let formControl;
-  if (name === 'users' || name === 'employees' || name === 'guide') {
+  if (name === 'users' || name === 'employees' || name === 'guide' || name === 'type') {
     formControl = users;
   }
   if (name === 'position') {

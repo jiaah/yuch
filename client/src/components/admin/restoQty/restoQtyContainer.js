@@ -65,7 +65,7 @@ const RestoQtyContainer = ({
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
       const filtered = res.filter((item)=> {
-        console.log('filter > item: ', item.name, Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty));
+        console.log('filter > item: ', item.companyName, Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty));
         return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
       });
       console.log('filtered: ', filtered)
