@@ -15,8 +15,8 @@ export const removeSpecialCharacters = str => {
 };
 
 export const ascending = ( a , b ) => {
-  if ( ! isNaN( a ) &&  ! isNaN( b )  ) return a - b;
-  var a = a.toString();
-  var b = b.toString();
-  return ( a < b ) ? -1 : ( a == b ) ? 0 : 1;
+  if ( ! isNaN( a.companyName ) &&  ! isNaN( b.companyName )  ) return a.companyName - b.companyName;
+  var companyNameA = a.companyName.toString();
+  var companyNameB = b.companyName.toString();
+  return ( companyNameA < companyNameB ) ? -1 : ( companyNameA == companyNameB ) ? 0 : 1;
 }
