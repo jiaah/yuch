@@ -13,3 +13,10 @@ export const removeSpecialCharacters = str => {
   const regExp = /\W+/g;
   return str.replace(regExp, '');
 };
+
+export const ascending = ( a , b ) => {
+  if ( ! isNaN( a ) &&  ! isNaN( b )  ) return a - b;
+  var a = a.toString();
+  var b = b.toString();
+  return ( a < b ) ? -1 : ( a == b ) ? 0 : 1;
+}
