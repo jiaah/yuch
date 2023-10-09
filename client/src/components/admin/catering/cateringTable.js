@@ -36,10 +36,11 @@ const CateringTable = ({
   handleTableRowClick,
   handleUpdate,
 }) => {
-  const [dataToDisplay, setDataToDisplay] = useState(sortedData);
+  const [dataToDisplay, setDataToDisplay] = useState(null);
   const [isSubmitting, setSubmitting] = useState(false);
   const [inputs, setInputs] = useState(null);
-
+  console.log('table > sortedData: ', sortedData)
+  console.log('table > dataToDisplay: ', dataToDisplay)
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   // create inputs array to map it with ref
@@ -48,6 +49,14 @@ const CateringTable = ({
     const res = await createForLoopArray(4, 'input');
     return setInputs(res);
   };
+
+  useEffect(()=>{
+    if(!dataToDisplay){
+      return;
+    }
+
+    setDataToDisplay(sortedData)
+  },[sortedData])
 
   useEffect(() => {
     createInputArrayForRefs();
@@ -94,7 +103,7 @@ const CateringTable = ({
         <Table className={table} aria-labelledby="catering" size="small">
           <TableHead list={data.usersCateringTableHeadColumns} />
           <TableBody>
-            {sortedData.length !== 0 &&
+            {dataToDisplay && dataToDisplay.length !== 0 &&
               dataToDisplay.map(row => (
                 <CateringTableRow
                   key={row.userId}
