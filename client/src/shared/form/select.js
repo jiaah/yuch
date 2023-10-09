@@ -54,8 +54,6 @@ const SelectForm = ({
   saveSelectValue,
   resetSelectValue,
 }) => {
-  console.log('Select > selectedValue: ',selectedValue);
-
   const handleChange = ({ target: name }) =>
     saveSelectValue(name.name, name.value);
 
