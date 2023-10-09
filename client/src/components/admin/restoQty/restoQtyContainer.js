@@ -9,6 +9,7 @@ import { adminCateringMsg } from '../../../data/message';
 import DateButtons from '../../../shared/form/dateButtons';
 import SearchBar from '../../../shared/searchBar/searchBarContainer';
 import IconButton from '../../../shared/form/iconButton';
+import Select from '../../../shared/form/select';
 import { printDiv } from '../../../utils/print';
 import CateringPaper from '../catering/cateringPaper';
 import {
