@@ -25,7 +25,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const RestoQtyContainer = ({
-  guide,
+  type,
   date,
   selectedItemValue,
   fetchUsersResto,
@@ -57,14 +57,18 @@ const RestoQtyContainer = ({
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
 
-    console.log('필터: ', guide)
+    console.log('필터: ', type)
     console.log('식수 전체 데이터: ', res);
 
-    if(guide === '전체'){
+    if(type === '전체'){
       setCatering(res);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
-      const filtered = res.filter((item)=> Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty))
+      const filtered = res.filter((item)=> {
+        console.log('filter > item: ', item.name, Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty));
+        return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
+      });
+      console.log('filtered: ', filtered)
       setCatering(filtered);
     }
 
@@ -80,7 +84,7 @@ const RestoQtyContainer = ({
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, [guide]);
+  }, [type]);
 
   const handleTableRowClick = (e, id) => {
     const { tagName } = e.target;
@@ -136,8 +140,8 @@ const RestoQtyContainer = ({
                   <div className="flex">
                     <Select
                       label=""
-                      name="guide"
-                      selectedValue={guide}
+                      name="type"
+                      selectedValue={type}
                       options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
                       size="small"
                     />
@@ -178,7 +182,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
-  guide: state.selected.guide,
+  type: state.selected.type,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
