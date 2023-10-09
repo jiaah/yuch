@@ -24,6 +24,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const RestoQtyContainer = ({
+  guide,
   date,
   selectedItemValue,
   fetchUsersResto,
@@ -53,19 +54,28 @@ const RestoQtyContainer = ({
     if (res.error) {
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
-    await setCatering(res);
+
+    if(guide === '전체'){
+      setCatering(res);
+    } else {
+      // 등록된 식수가 있는 업체 목록을 반환하기
+      const filtered = res.filter((item)=> Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty))
+      setCatering(filtered);
+    }
+
     return keepScrollPosition();
   };
 
   useEffect(() => {
     fetchData(date);
+
     return () => {
       Promise.all([
         resetDateDaily(),
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, []);
+  }, [guide]);
 
   const handleTableRowClick = (e, id) => {
     const { tagName } = e.target;
@@ -118,13 +128,22 @@ const RestoQtyContainer = ({
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
-                  <IconButton
-                    name="print"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 25 25"
-                    handleClick={() => printDiv('print')}
-                  />
+                  <div className="flex">
+                    <Select
+                      label=""
+                      name="guide"
+                      selectedValue={guide}
+                      options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
+                      size="small"
+                    />
+                    <IconButton
+                      name="print"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 25 25"
+                      handleClick={() => printDiv('print')}
+                    />
+                  </div>
                 </div>
                 <CateringPaper
                   users={catering}
@@ -154,6 +173,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
+  guide: state.selected.guide,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),
