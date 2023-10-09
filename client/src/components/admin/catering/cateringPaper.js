@@ -43,8 +43,6 @@ const CateringPaper = ({
   };
 
   const { sortedDataA, sortedDataB } = divideInTow(users);
-  console.log('좌 데이터: ', sortedDataA);
-  console.log('우 데이터: ', sortedDataB);
 
   return (
     <div className="paper">

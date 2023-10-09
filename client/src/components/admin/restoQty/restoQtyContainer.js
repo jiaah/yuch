@@ -35,7 +35,6 @@ const RestoQtyContainer = ({
   addFlashMessage,
 }) => {
   const [catering, setCatering] = useState(null);
-  console.log('state: ', catering);
 
   // switch text <-> textfield
   const [editIndex, setEditIndex] = useState(null);
@@ -57,18 +56,14 @@ const RestoQtyContainer = ({
       return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
 
-    console.log('필터: ', type)
-    console.log('식수 전체 데이터: ', res);
-
     if(type === '전체'){
       setCatering(res);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
       const filtered = res.filter((item)=> {
-        console.log('filter > item: ', item, Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty));
         return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
       });
-      console.log('filtered: ', filtered)
+
       setCatering(filtered);
     }
 
@@ -77,6 +72,9 @@ const RestoQtyContainer = ({
 
   useEffect(() => {
     fetchData(date);
+  }, [type]);
+
+  useEffect(()=>{
 
     return () => {
       Promise.all([
@@ -84,7 +82,7 @@ const RestoQtyContainer = ({
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, [type]);
+  },[])
 
   const handleTableRowClick = (e, id) => {
     const { tagName } = e.target;

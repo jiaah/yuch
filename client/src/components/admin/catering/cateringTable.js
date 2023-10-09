@@ -39,8 +39,7 @@ const CateringTable = ({
   const [dataToDisplay, setDataToDisplay] = useState(null);
   const [isSubmitting, setSubmitting] = useState(false);
   const [inputs, setInputs] = useState(null);
-  console.log('table > sortedData: ', sortedData)
-  console.log('table > dataToDisplay: ', dataToDisplay)
+
   const emptyRows = sortedData.length <= 10 ? 10 - sortedData.length : 0;
 
   // create inputs array to map it with ref
