@@ -60,7 +60,7 @@ const RestoQtyContainer = ({
     if(type === '전체'){
       const sorted = res.sort(ascending);
 
-      setCatering(sorted );
+      setCatering(sorted);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
       const filtered = res.filter((item)=> {
