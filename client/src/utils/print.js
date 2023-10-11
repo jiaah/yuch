@@ -9,37 +9,37 @@ export const printDiv = async divName => {
   // window.print();
   // document.body.innerHTML = originalContents;
 
-  // var newWin = document.getElementById('printf').contentWindow;
-  // newWin.document.write(printContents);
-  // newWin.document.close(); //important!
-  // newWin.focus();
-  // newWin.print();
+  var newWin = document.getElementById('printf').contentWindow;
+  newWin.document.write(printContents);
+  newWin.document.close(); //important!
+  newWin.focus();
+  newWin.print();
 
 
-  const printContents = document.getElementById(divName).innerHTML;
+  // const printContents = document.getElementById(divName).innerHTML;
 
-  // Create a new iframe element and append it to the document
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
+  // // Create a new iframe element and append it to the document
+  // const iframe = document.createElement('iframe');
+  // iframe.style.display = 'none';
+  // document.body.appendChild(iframe);
 
-  // Write the printContents to the iframe
-  iframe.contentDocument.open();
-  iframe.contentDocument.write(`
-    <html>
-    <head>
-      <title>Print</title>
-    </head>
-    <body>
-      ${printContents}
-    </body>
-    </html>
-  `);
-  iframe.contentDocument.close();
+  // // Write the printContents to the iframe
+  // iframe.contentDocument.open();
+  // iframe.contentDocument.write(`
+  //   <html>
+  //   <head>
+  //     <title>Print</title>
+  //   </head>
+  //   <body>
+  //     ${printContents}
+  //   </body>
+  //   </html>
+  // `);
+  // iframe.contentDocument.close();
 
-  // Print the iframe's content
-  iframe.contentWindow.print();
+  // // Print the iframe's content
+  // iframe.contentWindow.print();
 
-  // Remove the iframe from the document
-  document.body.removeChild(iframe);
+  // // Remove the iframe from the document
+  // document.body.removeChild(iframe);
 };
