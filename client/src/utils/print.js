@@ -1,30 +1,38 @@
 export const printDiv = async divName => {
+  /**
+   * @issue
+   * This removes all of the event listeners and scripts that were initially present. -> can result in the page becoming unclickable.
+   */
+  // const printContents = document.getElementById(divName).innerHTML;
+  // const originalContents = document.body.innerHTML;
+  // document.body.innerHTML = printContents;
+  // window.print();
+  // document.body.innerHTML = originalContents;
+
   const printContents = document.getElementById(divName).innerHTML;
-  const originalContents = document.body.innerHTML;
-  document.body.innerHTML = printContents;
-  window.print();
-  document.body.innerHTML = originalContents;
 
-  // const mywindow = await window.open('', 'PRINT', 'height=400,width=600');
-  // mywindow.document.body.innerHTML = await printContents;
-  // mywindow.document.close(); // necessary for IE >= 10
-  // mywindow.focus(); // necessary for IE >= 10*/
-  // mywindow.print();
-  // mywindow.close();
+  // Create a new iframe element and append it to the document
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
 
-  // const mywindow = window.open('', 'PRINT', 'height=400,width=600');
-  // mywindow.document.write(`<html><head><title>${document.title}</title>`);
-  // mywindow.document.write(
-  //   '<link rel="stylesheet" href="../../styles/main.scss" type="text/css" />',
-  // );
-  // mywindow.document.write('</head><body >');
-  // mywindow.document.write(`<h1>${document.title}</h1>`);
-  // mywindow.document.write(printContents);
-  // mywindow.document.write('</body></html>');
-  // mywindow.document.close(); // necessary for IE >= 10
-  // mywindow.focus(); // necessary for IE >= 10*/
-  // mywindow.print();
-  // mywindow.close();
+  // Write the printContents to the iframe
+  iframe.contentDocument.open();
+  iframe.contentDocument.write(`
+    <html>
+    <head>
+      <title>Print</title>
+    </head>
+    <body>
+      ${printContents}
+    </body>
+    </html>
+  `);
+  iframe.contentDocument.close();
 
-  // return true;
+  // Print the iframe's content
+  iframe.contentWindow.print();
+
+  // Remove the iframe from the document
+  document.body.removeChild(iframe);
 };
