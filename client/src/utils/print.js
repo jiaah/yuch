@@ -3,7 +3,7 @@ export const printDiv = async divName => {
    * @issue
    * This removes all of the event listeners and scripts that were initially present. -> can result in the page becoming unclickable.
    */
-  // const printContents = document.getElementById(divName).innerHTML;
+  const printContents = document.getElementById(divName).innerHTML;
   // const originalContents = document.body.innerHTML;
   // document.body.innerHTML = printContents;
   // window.print();
