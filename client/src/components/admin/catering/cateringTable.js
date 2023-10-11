@@ -79,7 +79,7 @@ const CateringTable = ({
   };
 
   const updateMealQty = async userId => {
-    await setSubmitting(true);
+    setSubmitting(true);
     const values = await dataToDisplay.filter(row => {
       if (row.userId === userId) {
         return {
@@ -92,8 +92,11 @@ const CateringTable = ({
       }
       return null;
     });
+
     await handleUpdate(userId, values[0]);
-    return setSubmitting(false);
+    setSubmitting(false);
+
+    return;
   };
 
   return (
