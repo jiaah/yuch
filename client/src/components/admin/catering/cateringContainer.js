@@ -25,7 +25,6 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
-  type,
   date,
   selectedItemValue,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
@@ -48,36 +47,24 @@ const CateringContainer = ({
   // YYYYMMDD -> 'MM 월 DD 일 (ddd)'
   const formattedDate = formatToDateForm(date);
 
-  const fetchData = async when => {
-    const res = await fetchUsersCatering(when);
+  const fetchData = async () => {
+    keepScrollPosition();
+
+    const res = await fetchUsersCatering(date);
 
     if (res.error) {
-      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
+      return;
     }
 
-    if(type === '전체'){
-      const sorted = res.sort(ascending);
+    const sorted = res.sort(ascending);
+    setCatering(sorted);
 
-      setCatering(sorted);
-    } else {
-      // 등록된 식수가 있는 업체 목록을 반환하기
-      const filtered = res.filter((item)=> {
-        return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
-      });
-
-      const sorted = filtered.sort(ascending);
-
-      setCatering(sorted);
-    }
-
-    return keepScrollPosition();
+    return;
   };
 
   useEffect(() => {
-    fetchData(date);
-  }, [type]);
-
-  useEffect(()=>{
+    fetchData();
 
     return () => {
       Promise.all([
@@ -85,7 +72,8 @@ const CateringContainer = ({
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  },[])
+  }, []);
+
 
   const handleTableRowClick = (e, id) => onfocusOnSelectdRow(id);
 
@@ -132,22 +120,13 @@ const CateringContainer = ({
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
-                  <div className="flex">
-                    <Select
-                      label=""
-                      name="type"
-                      selectedValue={type}
-                      options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
-                      size="small"
-                    />
-                    <IconButton
-                      name="print"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 25 25"
-                      handleClick={() => printDiv('print')}
-                    />
-                  </div>
+                  <IconButton
+                    name="print"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 25 25"
+                    handleClick={() => printDiv('print')}
+                  />
                 </div>
                 <CateringPaper
                   users={catering}
@@ -177,7 +156,6 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
-  type: state.selected.type,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

@@ -24,20 +24,21 @@ const CateringPaper = ({
 }) => {
   const handleUpdate = async (userId, values) => {
     const res = await updateUserCatering(userId, values);
+
     if (res.error) {
       addFlashMessage(
         'error',
         `${values.companyName} 식수 등록에 실패하였습니다. 다시 시도해주세요.`,
       );
     } else {
-      await saveYposition();
-      await Promise.all([
-        addFlashMessage(
-          'success',
-          `${values.companyName} 식수 등록되었습니다.`,
-        ),
-        endEditing(),
-      ]);
+      saveYposition();
+      endEditing();
+
+      addFlashMessage(
+        'success',
+        `${values.companyName} 식수 등록되었습니다.`,
+      );
+
       // window.location.reload(true);
     }
   };
