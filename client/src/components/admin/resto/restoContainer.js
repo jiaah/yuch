@@ -66,7 +66,6 @@ const RestoContainer = ({
 
   return (
     <React.Fragment>
-      <iframe id="printf"></iframe>
       {resto && (
         <div className="container-b">
           <h2

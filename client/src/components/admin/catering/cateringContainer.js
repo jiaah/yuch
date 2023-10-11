@@ -101,7 +101,6 @@ const CateringContainer = ({
   const width = catering && catering.length > 10 ? 'r--w-80' : 'r--w-50';
   return (
     <React.Fragment>
-      <iframe id="printf"></iframe>
       {catering && (
         <div className={`container-a ${width}`}>
           <div id="print">
