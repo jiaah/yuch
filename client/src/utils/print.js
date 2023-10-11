@@ -9,6 +9,13 @@ export const printDiv = async divName => {
   // window.print();
   // document.body.innerHTML = originalContents;
 
+  // var newWin = document.getElementById('printf').contentWindow;
+  // newWin.document.write(printContents);
+  // newWin.document.close(); //important!
+  // newWin.focus();
+  // newWin.print();
+
+
   const printContents = document.getElementById(divName).innerHTML;
 
   // Create a new iframe element and append it to the document
