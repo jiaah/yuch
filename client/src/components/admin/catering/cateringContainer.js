@@ -25,6 +25,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const CateringContainer = ({
+  type,
   date,
   selectedItemValue,
   dateTrackerActions: { updateDateDaily, resetDateDaily },
@@ -53,18 +54,31 @@ const CateringContainer = ({
     const res = await fetchUsersCatering(date);
 
     if (res.error) {
-      addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
-      return;
+      return addFlashMessage('error', '서버오류입니다. 다시 시도해주세요.');
     }
 
-    const sorted = res.sort(ascending);
-    setCatering(sorted);
+    if(type === '전체'){
+      const sorted = res.sort(ascending);
+      console.log('sorted', sorted);
+      setCatering(sorted);
+    } else {
+      // 등록된 식수가 있는 업체 목록을 반환하기
+      const filtered = res.filter((item)=> {
+        return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
+      });
+
+      const sorted = filtered.sort(ascending);
+      setCatering(sorted);
+    }
 
     return;
   };
 
   useEffect(() => {
     fetchData();
+  }, []);
+
+  useEffect(()=>{
 
     return () => {
       Promise.all([
@@ -72,8 +86,7 @@ const CateringContainer = ({
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, []);
-
+  },[])
 
   const handleTableRowClick = (e, id) => onfocusOnSelectdRow(id);
 
@@ -136,7 +149,10 @@ const CateringContainer = ({
                   saveSelectedItemValue={saveSelectedItemValue}
                   resetSelectedItemValue={resetSelectedItemValue}
                   startEditing={startEditing}
-                  endEditing={endEditing}
+                  endEditing={() => {
+                    endEditing();
+                    fetchData();
+                  }}
                   editIndex={editIndex}
                   handleTableRowClick={handleTableRowClick}
                   selectedRow={selectedRow}
@@ -156,6 +172,7 @@ const mapStateToProps = state => ({
   date: state.dateTracker.date,
   catering: state.userCatering.caterings,
   selectedItemValue: state.selected.value,
+  type: state.selected.type,
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

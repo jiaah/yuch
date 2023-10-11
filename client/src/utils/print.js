@@ -22,6 +22,7 @@ export const printDiv = async divName => {
     <html>
     <head>
       <title>Print</title>
+      <link rel="stylesheet" type="text/css" media="print" href="styles/main.scss">
     </head>
     <body>
       ${printContents}

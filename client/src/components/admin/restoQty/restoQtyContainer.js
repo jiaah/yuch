@@ -26,6 +26,7 @@ import { addFlashMessage } from '../../../actions/messageAction';
 import * as selectedActions from '../../../actions/selectedAction';
 
 const RestoQtyContainer = ({
+  type,
   date,
   selectedItemValue,
   fetchUsersResto,
@@ -59,14 +60,26 @@ const RestoQtyContainer = ({
       return;
     }
 
-    const sorted = res.sort(ascending);
-    setCatering(sorted);
+    if(type === '전체'){
+      const sorted = res.sort(ascending);
+      setCatering(sorted);
+    } else {
+      // 등록된 식수가 있는 업체 목록을 반환하기
+      const filtered = res.filter((item)=> {
+        return Boolean(item.lunchQty || item.dinnerQty || item.lateNightSnackQty);
+      });
+      const sorted = filtered.sort(ascending);
+      setCatering(sorted);
+    }
 
     return;
   };
 
   useEffect(() => {
     fetchData();
+  }, [type]);
+
+  useEffect(()=>{
 
     return () => {
       Promise.all([
@@ -74,7 +87,7 @@ const RestoQtyContainer = ({
         selectedItemValue && resetSelectedItemValue(),
       ]);
     };
-  }, []);
+  },[])
 
   const handleTableRowClick = (e, id) => {
     const { tagName } = e.target;
@@ -127,13 +140,22 @@ const RestoQtyContainer = ({
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
-                  <IconButton
-                    name="print"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 25 25"
-                    handleClick={() => printDiv('print')}
-                  />
+                  <div className="flex">
+                    <Select
+                      label=""
+                      name="type"
+                      selectedValue={type}
+                      options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
+                      size="small"
+                    />
+                    <IconButton
+                      name="print"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 25 25"
+                      handleClick={() => printDiv('print')}
+                    />
+                  </div>
                 </div>
                 <CateringPaper
                   users={catering}
@@ -143,7 +165,10 @@ const RestoQtyContainer = ({
                   saveSelectedItemValue={saveSelectedItemValue}
                   resetSelectedItemValue={resetSelectedItemValue}
                   startEditing={startEditing}
-                  endEditing={endEditing}
+                  endEditing={() => {
+                    fetchData();
+                    endEditing();
+                  }}
                   editIndex={editIndex}
                   handleTableRowClick={handleTableRowClick}
                   selectedRow={selectedRow}
