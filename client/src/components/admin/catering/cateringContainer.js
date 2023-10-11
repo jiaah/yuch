@@ -59,7 +59,6 @@ const CateringContainer = ({
 
     if(type === '전체'){
       const sorted = res.sort(ascending);
-      console.log('sorted', sorted);
       setCatering(sorted);
     } else {
       // 등록된 식수가 있는 업체 목록을 반환하기
@@ -76,7 +75,7 @@ const CateringContainer = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [type]);
 
   useEffect(()=>{
 
@@ -133,13 +132,22 @@ const CateringContainer = ({
                     handleSuggestionSelected={handleSuggestionSelected}
                     handleResetSearch={handleResetSearch}
                   />
-                  <IconButton
-                    name="print"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 25 25"
-                    handleClick={() => printDiv('print')}
-                  />
+                  <div className="flex">
+                    <Select
+                      label=""
+                      name="type"
+                      selectedValue={type}
+                      options={[{ value: '전체' }, { value: '식수 있는 업체' }]}
+                      size="small"
+                    />
+                    <IconButton
+                      name="print"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 25 25"
+                      handleClick={() => printDiv('print')}
+                    />
+                  </div>
                 </div>
                 <CateringPaper
                   users={catering}
