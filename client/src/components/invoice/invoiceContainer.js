@@ -14,6 +14,7 @@ import {
 import { printDiv } from '../../utils/print';
 import DateButtons from '../../shared/form/dateButtons';
 import IconButton from '../../shared/form/iconButton';
+import Select from '../../shared/form/select';
 import Paper from '../../shared/paper';
 import InvoiceTable from './invoiceTable';
 import { admin, admin2 } from '../../data/data';
@@ -32,6 +33,7 @@ const InvoiceContainer = ({
   dateTrackerActions: { updateDateMonthly, resetDateMonthly },
   invoiceActions: { getUserInvoice },
   addFlashMessage,
+  mealType,
 }) => {
   const [data, setData] = useState([]);
 
@@ -101,6 +103,15 @@ const InvoiceContainer = ({
                 }
               />
               <div className="paper-label-box justify-end noprint">
+                <Select
+                  label=""
+                  name="mealType"
+                  selectedValue={mealType}
+                  options={[
+                    { value: '조식' },
+                    { value: '야식' },
+                  ]}
+                />
                 <Link to="/admin/invoice/users">
                   <IconButton
                     name="list"
@@ -121,7 +132,7 @@ const InvoiceContainer = ({
 
               <Paper
                 component={
-                  <InvoiceTable data={data} invoiceFormat={invoiceFormat} />
+                  <InvoiceTable data={data} invoiceFormat={invoiceFormat} mealType={mealType}/>
                 }
               />
               <div className="flex justify-between mt3 pw1">
@@ -159,6 +170,7 @@ const mapStateToProps = state => ({
   isAdmin: state.auth.isAdmin,
   userId: state.auth.id,
   companyName: state.auth.companyName,
+  mealType: state.selected.mealType
 });
 const mapDispatchToProps = dispatch => ({
   dateTrackerActions: bindActionCreators(dateTrackerActiions, dispatch),

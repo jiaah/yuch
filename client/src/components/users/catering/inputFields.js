@@ -28,7 +28,7 @@ const InputFields = ({
         disabled={isDinnerQtyDisabled}
       />
       <FormikField
-        label="야식"
+        label="조식/야식"
         name="lateNightSnackQty"
         type="number"
         icon="catering"
@@ -42,7 +42,7 @@ const InputFields = ({
         <tr>
           <td className="table-input--pb vr">중식</td>
           <td className="vr">석식</td>
-          <td className="">야식</td>
+          <td className="">조식/야식</td>
         </tr>
         <tr>
           <td className="hr catering--hr" />

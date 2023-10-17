@@ -6,7 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 /* --- Components --- */
 import EnhancedTableHead from '../../shared/tableHead';
-import { userInvoiceColumns } from '../../data/data';
+import { userInvoiceColumnsWithLateNightSnack, userInvoiceColumnsWithBreakfast } from '../../data/data';
 import InvoiceTabelRow from './invoiceTableRow';
 // import Loader from '../loader';
 import { formatNumber, combinedFormat } from '../../utils/reformat';
@@ -29,6 +29,7 @@ const InvoiceTable = ({
   classes: { tableWrapper, table, font },
   data,
   invoiceFormat,
+  mealType,
 }) => {
   const { caterings, mealPrice, sumTotal } = data;
   const TAX_RATE = 0.1;
@@ -53,7 +54,7 @@ const InvoiceTable = ({
   return (
     <div className={tableWrapper}>
       <Table className={table} aria-labelledby="invoice" size="small">
-        <EnhancedTableHead list={userInvoiceColumns} />
+        <EnhancedTableHead list={mealType === '야식' ? userInvoiceColumnsWithLateNightSnack : userInvoiceColumnsWithBreakfast} />
         <TableBody data-testid="bank-account--table">
           {caterings.length !== 0 &&
             caterings.map(row => (

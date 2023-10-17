@@ -212,19 +212,19 @@ export const userAccountTableHeadColumns = [
     id: 'lunchQty',
     numeric: true,
     disablePadding: false,
-    label: '중식식수량',
+    label: '중식수량',
   },
   {
     id: 'dinnerQty',
     numeric: true,
     disablePadding: false,
-    label: '석식식수량',
+    label: '석식수량',
   },
   {
     id: 'lateNightSnackQty',
     numeric: true,
     disablePadding: false,
-    label: '야식식수량',
+    label: '조식/야식수량',
   },
   {
     id: 'mealPrice',
@@ -360,7 +360,7 @@ export const usersCateringTableHeadColumns = [
     id: 'lateNightSnackQty',
     numeric: true,
     disablePadding: false,
-    label: '야식',
+    label: '조식/야식',
   },
 ];
 
@@ -523,7 +523,7 @@ export const invoiceColumns = [
   },
 ];
 
-export const userInvoiceColumns = [
+export const userInvoiceColumnsWithLateNightSnack = [
   {
     id: 'date',
     numeric: true,
@@ -547,6 +547,45 @@ export const userInvoiceColumns = [
     numeric: true,
     disablePadding: false,
     label: '야식',
+  },
+  {
+    id: 'mealPrice',
+    numeric: true,
+    disablePadding: false,
+    label: '식수가격',
+  },
+  {
+    id: 'total',
+    numeric: true,
+    disablePadding: false,
+    label: '합계',
+  },
+];
+
+export const userInvoiceColumnsWithBreakfast = [
+  {
+    id: 'date',
+    numeric: true,
+    disablePadding: false,
+    label: '일자',
+  },
+  {
+    id: 'lunchQty',
+    numeric: true,
+    disablePadding: false,
+    label: '중식',
+  },
+  {
+    id: 'dinnerQty',
+    numeric: true,
+    disablePadding: false,
+    label: '석식',
+  },
+  {
+    id: 'lateNightSnackQty',
+    numeric: true,
+    disablePadding: false,
+    label: '조식',
   },
   {
     id: 'mealPrice',
