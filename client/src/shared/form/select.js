@@ -14,6 +14,7 @@ import {
 const styles = theme => ({
   users: {
     margin: theme.spacing(-1.4, 1.3, 0, 0),
+    minWidth: 100,
   },
   inputC: {
     margin: theme.spacing(2, 1, 1, 1),
@@ -70,14 +71,13 @@ const SelectForm = ({
   }
 
   let formControl;
-  if (name === 'users' || name === 'employees' || name === 'guide' || name === 'type') {
-    formControl = users;
-  }
+
   if (name === 'position') {
     formControl = inputC;
-  }
-  if (name === 'updateInvoice') {
+  } else if (name === 'updateInvoice') {
     formControl = regular;
+  } else {
+    formControl = users;
   }
 
   const addLabelMargin = name === 'position' ? labelPosition : '';
