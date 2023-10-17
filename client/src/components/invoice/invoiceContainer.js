@@ -102,7 +102,7 @@ const InvoiceContainer = ({
                     : '매월 1일에 세금명세서가 발급됩니다.'
                 }
               />
-              <div className="paper-label-box justify-end noprint">
+              <div className="paper-label-box justify-end items-center noprint">
                 <Select
                   label=""
                   name="mealType"
