@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME, LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME } from '../data/data';
 import { today } from '../helpers/moment';
 
 export const dayBefore = date =>
@@ -68,9 +69,11 @@ export const formatToDayDateForm = date =>
 export const formatToYearDateForm = date =>
   moment(date, 'YYYYMMDD').format('YYYY 년');
 
-export const formatToTimeForm = time =>
-  moment(time, 'hh:mm').format('hh 시 mm 분');
-
+// '09:00' -> '09 시 00 분'
+export const formatToTimeForm = (time) => {
+	const [hours, minutes] = time.split(':');
+	return `${hours} 시 ${minutes} 분`;
+}
 export const formatToYYYY = date =>
   moment(date, ['YYYYMMDD', 'YYYY-MM-DD']).format('YYYY');
 
@@ -99,7 +102,7 @@ export const revenueFormat = date => moment(date, 'YYYYMM').format('MM');
 export const isLunchQtyChangeDisabled = date => {
   if (date >= today) {
     const timeStamp = moment();
-    const endTime = moment(`${date} 0930`, 'YYYYMMDD hhmm');
+    const endTime = moment(`${date} ${LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME}`, 'YYYYMMDD hh:mm');
 
     if (timeStamp.isBefore(endTime)) {
       return false;
@@ -112,7 +115,7 @@ export const isLunchQtyChangeDisabled = date => {
 export const isDinnerQtyChangeDisabled = date => {
   if (date >= today) {
     const timeStamp = moment();
-    const endTime = moment(`${date} 1420`, 'YYYYMMDD hhmm');
+    const endTime = moment(`${date} ${DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME}`, 'YYYYMMDD hh:mm');
 
     if (timeStamp.isBefore(endTime)) {
       return false;
