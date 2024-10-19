@@ -1,3 +1,7 @@
+// 식수변경 가능시간
+export const LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME = '09:00';
+export const DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME = '14:00';
+
 // startTime must be fist day of month
 export const admin = {
   companyName: '유청',

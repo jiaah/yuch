@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 /* --- Components --- */
-import { admin } from './data';
+import { formatToTimeForm } from '../utils/date';
+import { admin, DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME, LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME } from './data';
 
 export const headerMsgA = (
   <div className="header-text--box">
@@ -188,11 +189,10 @@ export const deleteBankAccountMsg = (
 
 export const userCateringMsg = (
   <div className="notice">
-    <p className="pb3 b">- &#8201;금일 식수 변경 가능시간&#8201; &#45;</p>
+    <p className="pb3 b">- &#8201;금일 식수변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
-      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 09 시 30
-      분<br />
-      석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 14 시 20 분<br />
+      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 {formatToTimeForm(LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME)}<br />
+      석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 {formatToTimeForm(DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME)}<br />
     </p>
     <p className="f-mini">
       &#42; 원활한 서비스 제공을 위해 가능한 9시까지 식수 등록을 해주시기 바랍니다.&#46; <br />
@@ -208,11 +208,10 @@ export const userCateringMsg = (
 
 export const adminCateringMsg = (
   <div className="notice">
-    <p className="pb3 b">- &#8201;고객 금일 식수 변경 가능시간&#8201; &#45;</p>
+    <p className="pb3 b">- &#8201;고객 금일 식수변경 가능시간&#8201; &#45;</p>
     <p className="pb3 b">
-      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 09 시 30
-      분<br />
-      석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 14 시 20 분<br />
+      중식 &#58;&#8199;&#8199;&#8199;&#8199;&#8199;&#8199; &#126; 금일 {formatToTimeForm(LUNCH_MEAL_COUNT_CHANGE_CUTOFF_TIME)}<br />
+      석식/야식 &#58;&#8199;&#8199;&#8201; &#126; 금일 {formatToTimeForm(DINNER_MEAL_COUNT_CHANGE_CUTOFF_TIME)}<br />
     </p>
     <p className="f-mini">
       &#42; {admin.companyName}
